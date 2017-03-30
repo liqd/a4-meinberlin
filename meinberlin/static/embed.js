@@ -125,7 +125,7 @@ $(document).ready(function () {
     $.post(
       '/accounts/logout/',
       function () {
-        location.reload()
+        location.href = location.pathname + '?' + $.param({initialUrl: currentPath})
       }
     )
   })
@@ -138,7 +138,7 @@ $(document).ready(function () {
 
       if (data.name === 'popup-close' && popup) {
         popup.close()
-        location.reload()
+        location.href = location.pathname + '?' + $.param({initialUrl: currentPath})
       }
     }
   }, false)

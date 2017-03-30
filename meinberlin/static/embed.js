@@ -52,6 +52,7 @@ $(document).ready(function () {
 
     // jump to top after navigation
     $top.focus()
+    $('#platform-link').attr('href', currentPath)
   }
 
   var onReady = function () {

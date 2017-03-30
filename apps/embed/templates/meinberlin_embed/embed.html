@@ -29,7 +29,7 @@
     </header>
     <main class="embed-main"></main>
     <footer class="embed-footer">
-        <a href="{% url 'project-detail' slug %}" data-embed-target="external">{% trans 'Go to platform' %}</a>
+        <a href="{% url 'project-detail' slug %}" data-embed-target="external" id="platform-link">{% trans 'Go to platform' %}</a>
     </footer>
     <div id="embed-confirm" class="modal" tabindex="-1" role="dialog" aria-label="{% trans 'Confirm login' %}" aria-hidden="true">
         <div class="modal-dialog">

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="l-wrapper">
+    <nav class="breadcrumbs">
+        <ul>
+            {% block breadcrumbs %}
+            <li>You need to overwrite the breadcrumbs block</li>
+            {% endblock %}
+        </ul>
+    </nav>
+
+    {% comment %} reuse title as heading {% endcomment %}
+    <h1>{% block title %}You need to overwrite the title block.{% endblock %}</h1>
+
+    <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+        {% csrf_token %}
+        {{ form.media }}
+
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.name %}
+
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
+
+        {% if form.show_categories %}
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.category %}
+        {% endif %}
+
+        {% block additional_fields %}{% endblock %}
+
+        <input type="submit" class="button button--primary" value="{% trans 'Save'%}" />
+        {% block actions %}{% endblock %}
+    </form>
+</div>
+{% endblock %}

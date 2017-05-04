@@ -1,27 +1,26 @@
-{% extends "base.html" %}
+{% extends "meinberlin_contrib/item_form.html" %}
 {% load i18n item_tags %}
 
-{% block title %}Edit {{object.name}}{% endblock %}
-{% block content %}
-<div class="l-wrapper">
-    <nav class="breadcrumbs">
-        <ul>
-            <li>
-                <a href="{% url 'project-detail' object.project.slug %}">
-                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                    {% trans 'back to project' %}</a>
-            </li>
-            <li>
-                {% get_item_detail_url object as detail_url %}
-                <a href="{{ detail_url }}">
-                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                    {% trans 'back to idea' %}</a>
-            </li>
-        </ul>
-    </nav>
+{% block title %}Edit {{idea.name}}{% endblock %}
 
-    <h1>{% trans 'Edit idea' %}</h1>
+{% block breadcrumbs %}
+    <li>
+        <a href="{% url 'project-detail' object.project.slug %}">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        {% trans 'back to project' %}</a>
+    </li>
+    <li>
+        {% get_item_detail_url object as detail_url %}
+        <a href="{{ detail_url }}">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            {% trans 'back to idea' %}</a>
+    </li>
+{% endblock %}
 
-    {% include "meinberlin_mapideas/includes/mapidea_form.html" with cancel=detail_url %}
-</div>
+{% block additional_fields %}
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.point %}
+{% endblock %}
+
+{% block actions %}
+    <a href="{% url 'project-detail' object.project.slug %}" class="button button--light">{% trans 'cancel'%}</a>
 {% endblock %}

@@ -1,22 +1,20 @@
-{% extends "base.html" %}
+{% extends "meinberlin_contrib/item_form.html" %}
 {% load i18n %}
 
-{% block title %}{% trans 'Create a new proposal' %}{% endblock %}
-{% block content %}
-<div class="l-wrapper">
-    <nav class="breadcrumbs">
-        <ul>
-            <li>
-                <a href="{% url 'project-detail' view.project.slug %}">
-                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                    {% trans 'back to project' %}</a>
-            </li>
-        </ul>
-    </nav>
+{% block title %}{% trans 'Submit a new idea' %}{% endblock %}
 
-    <h1>{% trans 'Submit a new idea for this project'%}</h1>
+{% block breadcrumbs %}
+    <li>
+        <a href="{% url 'project-detail' view.project.slug %}">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            {% trans 'back to project' %}</a>
+    </li>
+{% endblock %}
 
-    {% url 'project-detail' view.project.slug as cancel %}
-    {% include "meinberlin_mapideas/includes/mapidea_form.html" with cancel=cancel %}
-</div>
+{% block additional_fields %}
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.point %}
+{% endblock %}
+
+{% block actions %}
+    <a href="{% url 'project-detail' view.project.slug %}" class="button button--light">{% trans 'cancel'%}</a>
 {% endblock %}

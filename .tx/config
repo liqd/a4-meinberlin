@@ -2,13 +2,13 @@
 host = https://www.transifex.com
 
 [a4-meinberlin.django]
-file_filter = meinberlin/locale/<lang>/LC_MESSAGES/django.po
-source_file = meinberlin/locale/en_GB/LC_MESSAGES/django.po
+file_filter = locale/<lang>/LC_MESSAGES/django.po
+source_file = locale/en_GB/LC_MESSAGES/django.po
 source_lang = en_GB
 type = PO
 
 [a4-meinberlin.djangojs]
-file_filter = meinberlin/locale/<lang>/LC_MESSAGES/djangojs.po
-source_file = meinberlin/locale/en_GB/LC_MESSAGES/djangojs.po
+file_filter = locale/<lang>/LC_MESSAGES/djangojs.po
+source_file = locale/en_GB/LC_MESSAGES/djangojs.po
 source_lang = en_GB
 type = PO

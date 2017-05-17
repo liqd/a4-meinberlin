@@ -5,6 +5,7 @@ import requests
 from django.core.management.base import CommandError
 from django.utils import timezone
 
+from adhocracy4.comments.models import Comment
 from adhocracy4.modules.models import Module
 from adhocracy4.phases.models import Phase
 from adhocracy4.projects.models import Project
@@ -139,6 +140,50 @@ class A3ImportCommandMixin():
         user = User.objects.get(username=username)
         return user
 
+    def a3_import_comment(self, token, comment_resource, object_path,
+                          content_object):
+        comment = None
+        data = comment_resource['data']
+        metadata_sheet = data['adhocracy_core.sheets.metadata.IMetadata']
+        is_hidden = metadata_sheet['hidden']
+        user_path = metadata_sheet['creator']
+        creation_date = parse_dt(metadata_sheet['creation_date'])
+        if is_hidden == 'false' and user_path:
+            comment_sheet = data['adhocracy_core.sheets.comment.IComment']
+            object = comment_sheet['refers_to']
+            if object_path == object:
+                user = self.a3_get_user_by_path(user_path, token)
+                content = comment_sheet['content']
+                comment = Comment.objects.create(
+                    comment=content,
+                    creator=user,
+                    content_object=content_object,
+                    created=creation_date,
+                )
+        return comment
+
+    def a3_import_comments(self, comments_path, token, object_path,
+                           content_object):
+        comments_content = self.a3_get_elements(
+            comments_path, token,
+            'adhocracy_core.resources.comment.ICommentVersion', 'content')
+        for comment_resource in comments_content:
+            comment = self.a3_import_comment(
+                token, comment_resource, object_path, content_object)
+            if comment:
+                self.a3_import_comment_replies(
+                    token, comments_content, comment_resource['path'], comment)
+
+    def a3_import_comment_replies(self, token, comments_content, comment_path,
+                                  content_object):
+        for comment_resource in comments_content:
+            comment = self.a3_import_comment(
+                token, comment_resource, comment_path, content_object)
+            if comment:
+                self.a3_import_comment_replies(
+                    token, comments_content, comment_resource['path'],
+                    content_object)
+
     def a3_get_rates(self, rates_path, token, object_path):
         rates = []
         rates_content = self.a3_get_elements(
@@ -169,7 +214,6 @@ class A3ImportCommandMixin():
             typ=typ,
             organisation=organisation,
             created=start_date,
-            modified=end_date,
         )
 
         module = Module.objects.create(

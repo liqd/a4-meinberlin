@@ -10,41 +10,38 @@ class Command(A3ImportCommandMixin, BaseCommand):
     help = 'Import users via the API'
     project_content_type = 'adhocracy_meinberlin.resources.stadtforum.IPoll'
 
-    def import_projects(self, headers, poll_paths, organisation, creator):
-            self.stdout.write('Importing poll for Organisation {} ...'.format(
-                              organisation))
-            for path in poll_paths:
-                self.stdout.write('Importing {} ...'.format(path))
-                creation_date = self.a3_get_creation_date(path, headers)
-                modification_date = self.a3_get_modification_date(path,
-                                                                  headers)
-                last_version_path = self.a3_get_last_version(path, headers)
-                question = self.a3_get_sheet_field(
-                    last_version_path, headers,
-                    'adhocracy_core.sheets.title.ITitle', 'title')
+    def import_project(self, headers, path, organisation, creator):
+        self.stdout.write('Importing {} ...'.format(path))
+        creation_date = self.a3_get_creation_date(path, headers)
+        modification_date = self.a3_get_modification_date(path,
+                                                          headers)
+        last_version_path = self.a3_get_last_version(path, headers)
+        question = self.a3_get_sheet_field(
+            last_version_path, headers,
+            'adhocracy_core.sheets.title.ITitle', 'title')
 
-                project, module = self.create_project(
-                    organisation,
-                    'poll-tbd',
-                    'desc-tbd',
-                    'info-tbd',
-                    creation_date,
-                    modification_date,
-                    'Umfrage',
-                    [poll_phases.VotingPhase()]
-                )
+        project, module = self.create_project(
+            organisation,
+            'poll-tbd',
+            'desc-tbd',
+            'info-tbd',
+            creation_date,
+            modification_date,
+            'Umfrage',
+            [poll_phases.VotingPhase()]
+        )
 
-                poll = poll_models.Poll.objects.create(
-                    module=module, creator=creator)
-                poll.save()
-                question = poll_models.Question(
-                    label=question, weight=1, poll=poll)
-                question.save()
-                yes = poll_models.Choice(label='Ja', question=question)
-                yes.save()
-                no = poll_models.Choice(label='Nein', question=question)
-                no.save()
+        poll = poll_models.Poll.objects.create(
+            module=module, creator=creator)
+        poll.save()
+        question = poll_models.Question(
+            label=question, weight=1, poll=poll)
+        question.save()
+        yes = poll_models.Choice(label='Ja', question=question)
+        yes.save()
+        no = poll_models.Choice(label='Nein', question=question)
+        no.save()
 
-                # TODO: votes
+        # TODO: votes
 
-                # TODO: comments
+        # TODO: comments

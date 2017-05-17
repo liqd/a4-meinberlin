@@ -60,9 +60,12 @@ class A3ImportCommandMixin():
             )
             orga, created = Organisation.objects.get_or_create(name=orga_name)
 
-            self.import_projects(headers, poll_paths, orga, default_creator)
+            self.stdout.write('Importing poll for Organisation {} ...'.format(
+                              orga))
+            for path in poll_paths:
+                self.import_projects(headers, path, orga, default_creator)
 
-    def import_projects(self, headers, poll_paths, organisation, creator):
+    def import_project(self, headers, path, organisation, creator):
             raise NotImplementedError
 
     def a3_login(self, url, username, password):

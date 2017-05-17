@@ -10,6 +10,8 @@ from adhocracy4.projects.models import Project
 from apps.organisations.models import Organisation
 from apps.users.models import User
 
+from . import wagtail
+
 
 def parse_dt(date_str):
     # remove colon in timezone offset
@@ -31,8 +33,11 @@ class A3ImportCommandMixin():
         parser.add_argument('api_password', type=str,
                             help='a3 API admin user password')
         parser.add_argument('creator', type=str, help='a4 creator username')
+        parser.add_argument('wagtail', type=str, help='path to wagtail db')
 
     def handle(self, *args, **options):
+        wagtail_db = wagtail.create_db(options.get('wagtail'))
+
         url = options.get('url')
         user = options.get('api_user')
         password = options.get('api_password')
@@ -63,9 +68,11 @@ class A3ImportCommandMixin():
             self.stdout.write(
                 'Importing project for Organisation {} ...'.format(orga))
             for path in project_paths:
-                self.import_project(headers, path, orga, default_creator)
+                wt = wagtail.get_adhocracy_process(wagtail_db, path)
 
-    def import_project(self, headers, path, organisation, creator):
+                self.import_project(headers, path, orga, default_creator, wt)
+
+    def import_project(self, headers, path, organisation, creator, wt):
             raise NotImplementedError
 
     def a3_login(self, url, username, password):

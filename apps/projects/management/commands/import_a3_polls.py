@@ -10,7 +10,7 @@ class Command(A3ImportCommandMixin, BaseCommand):
     help = 'Import users via the API'
     project_content_type = 'adhocracy_meinberlin.resources.stadtforum.IPoll'
 
-    def import_project(self, headers, path, organisation, creator):
+    def import_project(self, headers, path, organisation, creator, wt):
         self.stdout.write('Importing {} ...'.format(path))
         creation_date = self.a3_get_creation_date(path, headers)
         modification_date = self.a3_get_modification_date(path,
@@ -22,9 +22,9 @@ class Command(A3ImportCommandMixin, BaseCommand):
 
         project, module = self.create_project(
             organisation,
-            'poll-tbd',
-            'desc-tbd',
-            'info-tbd',
+            wt.get('name', 'name-tbd'),
+            wt.get('description', 'desc-tbd'),
+            wt.get('information', 'info-tbd'),
             creation_date,
             modification_date,
             'Umfrage',

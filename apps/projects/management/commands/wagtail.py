@@ -4,7 +4,9 @@ import sqlite3
 
 def _parse_dt(s):
     try:
-        return datetime.datetime.strptime(s, '%Y-%m-%d %H:%M:%S.%f')
+        return datetime.datetime.strptime(
+            s + '+0000',
+            '%Y-%m-%d %H:%M:%S.%f%z')
     except TypeError:
         return None
 

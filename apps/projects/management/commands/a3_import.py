@@ -168,6 +168,8 @@ class A3ImportCommandMixin():
             is_archived=is_archived,
             typ=typ,
             organisation=organisation,
+            created=start_date,
+            modified=end_date,
         )
 
         module = Module.objects.create(

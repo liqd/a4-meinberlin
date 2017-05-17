@@ -90,6 +90,8 @@ class A3ImportCommandMixin():
         query_url = '{}?content_type={}&depth=all&elements={}'.format(
             url, resource_type, elements
         )
+        if 'Version' in resource_type:
+            query_url = query_url + '&tag=LAST'
         res = requests.get(query_url, headers={'X-User-Token': token})
         if res.status_code != requests.codes.ok:
             raise CommandError('Request failed for URL: {}'.format(query_url))
@@ -129,6 +131,32 @@ class A3ImportCommandMixin():
             'adhocracy_core.sheets.metadata.IMetadata', 'modification_date')
         date = parse_dt(date_str)
         return date
+
+    def a3_get_user_by_path(self, path, token):
+        username = self.a3_get_sheet_field(
+            path, token,
+            'adhocracy_core.sheets.principal.IUserBasic', 'name')
+        user = User.objects.get(username=username)
+        return user
+
+    def a3_get_rates(self, rates_path, token, object_path):
+        rates = []
+        rates_content = self.a3_get_elements(
+            rates_path, token,
+            'adhocracy_core.resources.rate.IRateVersion', 'content')
+        for rate in rates_content:
+            data = rate['data']
+            is_hidden = \
+                data['adhocracy_core.sheets.metadata.IMetadata']['hidden']
+            rate_sheet = data['adhocracy_core.sheets.rate.IRate']
+            user_path = rate_sheet['subject']
+            is_object = rate_sheet['object'] == object_path
+            if is_hidden == 'false' and user_path and is_object:
+                user = self.a3_get_user_by_path(user_path, token)
+                rate_value = int(rate_sheet['rate'])
+                if rate_value != 0:
+                    rates.append((user, rate_value))
+        return rates
 
     def create_project(self, organisation, name, description, info, start_date,
                        end_date, is_draft, is_archived, typ, phase_contents):

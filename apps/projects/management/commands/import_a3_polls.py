@@ -33,8 +33,7 @@ class Command(A3ImportCommandMixin, BaseCommand):
             [poll_phases.VotingPhase()]
         )
 
-        poll = poll_models.Poll.objects.create(
-            module=module, creator=creator)
+        poll = poll_models.Poll(module=module, creator=creator)
         poll.save()
         question = poll_models.Question(
             label=question, weight=1, poll=poll)
@@ -44,6 +43,23 @@ class Command(A3ImportCommandMixin, BaseCommand):
         no = poll_models.Choice(label='Nein', question=question)
         no.save()
 
-        # TODO: votes
+        rates_path = path + 'rates/'
+        self.import_rates(
+            token, rates_path, last_version_path, yes, no)
 
-        # TODO: comments
+        # TODO: comments with rates
+
+    def import_rates(self, token, rates_path, object_path, yes_choice,
+                     no_choice):
+        self.stdout.write('Importing rates...')
+        rates = self.a3_get_rates(rates_path, token, object_path)
+        for (user, rate) in rates:
+            choice = None
+            if rate == 1:
+                choice = yes_choice
+            elif rate == -1:
+                choice = no_choice
+            if choice:
+                vote = poll_models.Vote.objects.create(
+                    choice=choice, creator=user)
+                vote.save()

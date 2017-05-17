@@ -66,7 +66,7 @@ class A3ImportCommandMixin():
             orga, created = Organisation.objects.get_or_create(name=orga_name)
 
             self.stdout.write(
-                'Importing project for Organisation {} ...'.format(orga))
+                'Importing projects for Organisation {} ...'.format(orga))
             for path in project_paths:
                 wt = wagtail.get_adhocracy_process(wagtail_db, path)
 

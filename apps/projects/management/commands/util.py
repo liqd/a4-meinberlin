@@ -9,7 +9,7 @@ from adhocracy4.phases.models import Phase
 from adhocracy4.projects.models import Project
 
 
-def a3_login(url, headers, username, password):
+def a3_login(url, username, password):
     login_url = url + 'login_username'
     res = requests.post(
         login_url,
@@ -17,7 +17,7 @@ def a3_login(url, headers, username, password):
     )
     if res.status_code != requests.codes.ok:
         raise CommandError('API user authentication failed.')
-    headers['X-User-Token'] = res.json()['user_token']
+    return res.json()['user_token']
 
 
 def a3_get_elements(url, headers, resource_type, elements):

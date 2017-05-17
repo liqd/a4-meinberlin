@@ -27,8 +27,8 @@ class Command(BaseCommand):
 
         default_creator = User.objects.get(username=creator)
 
-        headers = {}
-        util.a3_login(url, headers, user, password)
+        token = util.a3_login(url, user, password)
+        headers = {'X-User-Token': token}
 
         # TODO: Extract info from wagtail. Some polls are extern.
         orga_paths = util.a3_get_elements(

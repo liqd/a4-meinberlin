@@ -46,21 +46,20 @@ class A3ImportCommandMixin():
         default_creator = User.objects.get(username=creator)
 
         token = self.a3_login(url, user, password)
-        headers = {'X-User-Token': token}
 
         orga_paths = self.a3_get_elements(
-            url, headers,
+            url, token,
             'adhocracy_core.resources.organisation.IOrganisation', 'paths'
         )
 
         for orga_path in orga_paths:
             project_paths = self.a3_get_elements(
-                orga_path, headers, self.project_content_type, 'paths')
+                orga_path, token, self.project_content_type, 'paths')
             if len(project_paths) == 0:
                 continue
 
             orga_name = self.a3_get_sheet_field(
-                orga_path, headers,
+                orga_path, token,
                 'adhocracy_core.sheets.name.IName', 'name'
             )
             orga, created = Organisation.objects.get_or_create(name=orga_name)
@@ -70,9 +69,9 @@ class A3ImportCommandMixin():
             for path in project_paths:
                 wt = wagtail.get_adhocracy_process(wagtail_db, path)
 
-                self.import_project(headers, path, orga, default_creator, wt)
+                self.import_project(token, path, orga, default_creator, wt)
 
-    def import_project(self, headers, path, organisation, creator, wt):
+    def import_project(self, token, path, organisation, creator, wt):
             raise NotImplementedError
 
     def a3_login(self, url, username, password):
@@ -85,19 +84,19 @@ class A3ImportCommandMixin():
             raise CommandError('API user authentication failed.')
         return res.json()['user_token']
 
-    def a3_get_elements(self, url, headers, resource_type, elements):
+    def a3_get_elements(self, url, token, resource_type, elements):
         query_url = '{}?content_type={}&depth=all&elements={}'.format(
             url, resource_type, elements
         )
-        res = requests.get(query_url, headers=headers)
+        res = requests.get(query_url, headers={'X-User-Token': token})
         if res.status_code != requests.codes.ok:
             raise CommandError('Request failed for URL: {}'.format(query_url))
         data = res.json()
         paths = data['data']['adhocracy_core.sheets.pool.IPool']['elements']
         return paths
 
-    def a3_get_sheet_field(self, resource_url, headers, sheet, field):
-        res = requests.get(resource_url, headers=headers)
+    def a3_get_sheet_field(self, resource_url, token, sheet, field):
+        res = requests.get(resource_url, headers={'X-User-Token': token})
         if res.status_code != requests.codes.ok:
             raise CommandError('Request failed for URL: {}'.format(
                 resource_url)
@@ -106,20 +105,20 @@ class A3ImportCommandMixin():
         sheet_field_value = data['data'][sheet][field]
         return sheet_field_value
 
-    def a3_get_last_version(self, resorce_path, headers):
+    def a3_get_last_version(self, resorce_path, token):
         return self.a3_get_sheet_field(
-            resorce_path, headers, 'adhocracy_core.sheets.tags.ITags', 'LAST')
+            resorce_path, token, 'adhocracy_core.sheets.tags.ITags', 'LAST')
 
-    def a3_get_creation_date(self, path, headers):
+    def a3_get_creation_date(self, path, token):
         date_str = self.a3_get_sheet_field(
-            path, headers,
+            path, token,
             'adhocracy_core.sheets.metadata.IMetadata', 'creation_date')
         date = parse_dt(date_str)
         return date
 
-    def a3_get_modification_date(self, path, headers):
+    def a3_get_modification_date(self, path, token):
         date_str = self.a3_get_sheet_field(
-            path, headers,
+            path, token,
             'adhocracy_core.sheets.metadata.IMetadata', 'modification_date')
         date = parse_dt(date_str)
         return date

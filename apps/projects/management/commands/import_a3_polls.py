@@ -10,14 +10,14 @@ class Command(A3ImportCommandMixin, BaseCommand):
     help = 'Import polls via the API'
     project_content_type = 'adhocracy_meinberlin.resources.stadtforum.IPoll'
 
-    def import_project(self, headers, path, organisation, creator, wt):
+    def import_project(self, token, path, organisation, creator, wt):
         self.stdout.write('Importing {} ...'.format(path))
-        creation_date = self.a3_get_creation_date(path, headers)
+        creation_date = self.a3_get_creation_date(path, token)
         modification_date = self.a3_get_modification_date(path,
-                                                          headers)
-        last_version_path = self.a3_get_last_version(path, headers)
+                                                          token)
+        last_version_path = self.a3_get_last_version(path, token)
         question = self.a3_get_sheet_field(
-            last_version_path, headers,
+            last_version_path, token,
             'adhocracy_core.sheets.title.ITitle', 'title')
 
         project, module = self.create_project(

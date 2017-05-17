@@ -95,13 +95,17 @@ class A3ImportCommandMixin():
         paths = data['data']['adhocracy_core.sheets.pool.IPool']['elements']
         return paths
 
-    def a3_get_sheet_field(self, resource_url, token, sheet, field):
+    def a3_get_resource(self, resource_url, token):
         res = requests.get(resource_url, headers={'X-User-Token': token})
         if res.status_code != requests.codes.ok:
             raise CommandError('Request failed for URL: {}'.format(
                 resource_url)
             )
         data = res.json()
+        return data
+
+    def a3_get_sheet_field(self, resource_url, token, sheet, field):
+        data = self.a3_get_resource(resource_url, token)
         sheet_field_value = data['data'][sheet][field]
         return sheet_field_value
 

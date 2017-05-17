@@ -49,9 +49,9 @@ class A3ImportCommandMixin():
         )
 
         for orga_path in orga_paths:
-            poll_paths = self.a3_get_elements(
+            project_paths = self.a3_get_elements(
                 orga_path, headers, self.project_content_type, 'paths')
-            if len(poll_paths) == 0:
+            if len(project_paths) == 0:
                 continue
 
             orga_name = self.a3_get_sheet_field(
@@ -60,9 +60,9 @@ class A3ImportCommandMixin():
             )
             orga, created = Organisation.objects.get_or_create(name=orga_name)
 
-            self.stdout.write('Importing poll for Organisation {} ...'.format(
-                              orga))
-            for path in poll_paths:
+            self.stdout.write(
+                'Importing project for Organisation {} ...'.format(orga))
+            for path in project_paths:
                 self.import_projects(headers, path, orga, default_creator)
 
     def import_project(self, headers, path, organisation, creator):

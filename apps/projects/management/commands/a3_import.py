@@ -1,4 +1,3 @@
-import pytz
 import requests
 
 from django.core.management.base import CommandError
@@ -10,6 +9,16 @@ from adhocracy4.projects.models import Project
 
 from apps.organisations.models import Organisation
 from apps.users.models import User
+
+
+def parse_dt(date_str):
+    # remove colon in timezone offset
+    parts = date_str.split(':')
+    minutes_offset = parts.pop()
+    date_str = ':'.join(parts) + minutes_offset
+
+    date = timezone.datetime.strptime(date_str, '%Y-%m-%dT%H:%M:%S.%f%z')
+    return date
 
 
 class A3ImportCommandMixin():
@@ -95,16 +104,14 @@ class A3ImportCommandMixin():
         date_str = self.a3_get_sheet_field(
             path, headers,
             'adhocracy_core.sheets.metadata.IMetadata', 'creation_date')
-        date = timezone.datetime.strptime(date_str[:19], '%Y-%m-%dT%H:%M:%S')
-        date = date.astimezone(pytz.utc)
+        date = parse_dt(date_str)
         return date
 
     def a3_get_modification_date(self, path, headers):
         date_str = self.a3_get_sheet_field(
             path, headers,
             'adhocracy_core.sheets.metadata.IMetadata', 'modification_date')
-        date = timezone.datetime.strptime(date_str[:19], '%Y-%m-%dT%H:%M:%S')
-        date = date.astimezone(pytz.utc)
+        date = parse_dt(date_str)
         return date
 
     def create_project(self, organisation, name, description, info, start_date,

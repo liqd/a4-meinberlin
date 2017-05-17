@@ -43,19 +43,14 @@ class Command(A3ImportCommandMixin, BaseCommand):
         no = poll_models.Choice(label='Nein', question=question)
         no.save()
 
-        rates_path = path + 'rates/'
-        self.import_rates(
-            token, rates_path, last_version_path, yes, no)
+        self.import_rates(token, path, last_version_path, yes, no)
 
-        comments_path = path + 'comments/'
-        self.a3_import_comments(
-            comments_path, token, last_version_path, poll)
-        # TODO: comments with rates
-        exit()
+        self.stdout.write('Importing comments with rates...')
+        self.a3_import_comments(path, token, last_version_path, poll)
 
     def import_rates(self, token, rates_path, object_path, yes_choice,
                      no_choice):
-        self.stdout.write('Importing rates...')
+        self.stdout.write('Importing poll rates...')
         rates = self.a3_get_rates(rates_path, token, object_path)
         for (user, rate) in rates:
             choice = None

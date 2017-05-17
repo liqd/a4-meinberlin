@@ -2,6 +2,7 @@ from functools import lru_cache
 
 import requests
 
+from django.conf import settings
 from django.core.management.base import CommandError
 from django.utils import timezone
 
@@ -9,6 +10,7 @@ from adhocracy4.comments.models import Comment
 from adhocracy4.modules.models import Module
 from adhocracy4.phases.models import Phase
 from adhocracy4.projects.models import Project
+from adhocracy4.ratings.models import Rating
 
 from apps.organisations.models import Organisation
 from apps.users.models import User
@@ -39,6 +41,11 @@ class A3ImportCommandMixin():
         parser.add_argument('wagtail', type=str, help='path to wagtail db')
 
     def handle(self, *args, **options):
+        if settings.EMAIL_BACKEND != \
+                'django.core.mail.backends.dummy.EmailBackend':
+            raise CommandError('Set EMAIL_BACKEND to '
+                               'django.core.mail.backends.dummy.EmailBackend.')
+
         wagtail_db = wagtail.create_db(options.get('wagtail'))
 
         url = options.get('url')
@@ -162,29 +169,63 @@ class A3ImportCommandMixin():
                 )
         return comment
 
-    def a3_import_comments(self, comments_path, token, object_path,
+    def a3_import_comments(self, resource_path, token, object_path,
                            content_object):
+        comments_path = resource_path + 'comments/'
         comments_content = self.a3_get_elements(
             comments_path, token,
             'adhocracy_core.resources.comment.ICommentVersion', 'content')
         for comment_resource in comments_content:
             comment = self.a3_import_comment(
                 token, comment_resource, object_path, content_object)
-            if comment:
-                self.a3_import_comment_replies(
-                    token, comments_content, comment_resource['path'], comment)
 
-    def a3_import_comment_replies(self, token, comments_content, comment_path,
-                                  content_object):
+            if comment:
+                comment_path = comment_resource['path']
+                self.a3_import_ratings(
+                    resource_path, token, comment_path, comment)
+                self.a3_import_comment_replies(
+                    resource_path, token, comments_content, comment_path,
+                    comment)
+
+    def a3_import_comment_replies(self, resource_path, token, comments_content,
+                                  comment_path, content_object):
         for comment_resource in comments_content:
             comment = self.a3_import_comment(
                 token, comment_resource, comment_path, content_object)
             if comment:
+                self.a3_import_ratings(
+                    resource_path, token, comment_path, comment)
                 self.a3_import_comment_replies(
-                    token, comments_content, comment_resource['path'],
-                    content_object)
+                    resource_path, token, comments_content,
+                    comment_resource['path'], content_object)
 
-    def a3_get_rates(self, rates_path, token, object_path):
+    def a3_import_ratings(self, resource_path, token, object_path,
+                          content_object):
+        rates_path = resource_path + 'rates/'
+        rates_content = self.a3_get_elements(
+            rates_path, token,
+            'adhocracy_core.resources.rate.IRateVersion', 'content')
+        for rate_resource in rates_content:
+            data = rate_resource['data']
+            metadata_sheet = data['adhocracy_core.sheets.metadata.IMetadata']
+            is_hidden = metadata_sheet['hidden']
+            rate_sheet = data['adhocracy_core.sheets.rate.IRate']
+            user_path = rate_sheet['subject']
+            is_object = rate_sheet['object'] == object_path
+            if is_hidden == 'false' and user_path and is_object:
+                creation_date = parse_dt(metadata_sheet['creation_date'])
+                user = self.a3_get_user_by_path(user_path, token)
+                rate_value = int(rate_sheet['rate'])
+                if rate_value != 0:
+                    Rating.objects.create(
+                        value=rate_value,
+                        creator=user,
+                        content_object=content_object,
+                        created=creation_date,
+                    )
+
+    def a3_get_rates(self, resource_path, token, object_path):
+        rates_path = resource_path + 'rates/'
         rates = []
         rates_content = self.a3_get_elements(
             rates_path, token,

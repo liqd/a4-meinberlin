@@ -7,7 +7,7 @@ from .a3_import import A3ImportCommandMixin
 
 
 class Command(A3ImportCommandMixin, BaseCommand):
-    help = 'Import users via the API'
+    help = 'Import polls via the API'
     project_content_type = 'adhocracy_meinberlin.resources.stadtforum.IPoll'
 
     def import_project(self, headers, path, organisation, creator, wt):

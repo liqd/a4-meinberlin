@@ -1,5 +1,4 @@
 from django.core.management.base import BaseCommand
-from django.utils.translation import ugettext_lazy as _
 
 from apps.polls import models as poll_models
 from apps.polls import phases as poll_phases
@@ -31,7 +30,7 @@ class Command(A3ImportCommandMixin, BaseCommand):
                     'info-tbd',
                     creation_date,
                     modification_date,
-                    _('Poll'),
+                    'Umfrage',
                     [poll_phases.VotingPhase()]
                 )
 

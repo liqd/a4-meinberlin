@@ -64,6 +64,22 @@ def get_adhocracy_process(db, path):
     db.execute(sql, (path,))
     adhocracy_process = db.fetchone()
 
+    # try different path variations until we find
+    if adhocracy_process is None:
+        db.execute(sql, (path.rstrip('/'),))
+        adhocracy_process = db.fetchone()
+    if adhocracy_process is None:
+        db.execute(sql, (path + 'VERSION_0000000',))
+        adhocracy_process = db.fetchone()
+    if adhocracy_process is None:
+        db.execute(sql, (path + 'VERSION_0000000/',))
+        adhocracy_process = db.fetchone()
+    if adhocracy_process is None:
+        db.execute(sql, (path + 'VERSION_0000001',))
+        adhocracy_process = db.fetchone()
+    if adhocracy_process is None:
+        db.execute(sql, (path + 'VERSION_0000001/',))
+        adhocracy_process = db.fetchone()
     if adhocracy_process is None:
         print('missing wagtail data:', path)
         return {}

@@ -63,7 +63,7 @@ class A3ImportCommandMixin():
             self.stdout.write(
                 'Importing project for Organisation {} ...'.format(orga))
             for path in project_paths:
-                self.import_projects(headers, path, orga, default_creator)
+                self.import_project(headers, path, orga, default_creator)
 
     def import_project(self, headers, path, organisation, creator):
             raise NotImplementedError

@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 import requests
 
 from django.core.management.base import CommandError
@@ -95,6 +97,7 @@ class A3ImportCommandMixin():
         paths = data['data']['adhocracy_core.sheets.pool.IPool']['elements']
         return paths
 
+    @lru_cache(maxsize=None)
     def a3_get_resource(self, resource_url, token):
         res = requests.get(resource_url, headers={'X-User-Token': token})
         if res.status_code != requests.codes.ok:

@@ -125,13 +125,13 @@ class A3ImportCommandMixin():
         return date
 
     def create_project(self, organisation, name, description, info, start_date,
-                       end_date, typ, phase_contents):
+                       end_date, is_draft, is_archived, typ, phase_contents):
         project = Project.objects.create(
             name=name,
             description=description,
             information=info,
-            is_draft=False,
-            is_archived=True,
+            is_draft=is_draft,
+            is_archived=is_archived,
             typ=typ,
             organisation=organisation,
         )

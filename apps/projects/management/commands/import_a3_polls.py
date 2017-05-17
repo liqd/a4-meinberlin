@@ -27,6 +27,8 @@ class Command(A3ImportCommandMixin, BaseCommand):
             wt.get('information', 'info-tbd'),
             creation_date,
             modification_date,
+            wt.get('is_draft', False),
+            wt.get('is_archived', True),
             'Umfrage',
             [poll_phases.VotingPhase()]
         )

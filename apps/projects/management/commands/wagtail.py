@@ -43,7 +43,7 @@ def _get_process(db, page_id):
         'name': page['title'],
         'description': process['short_description'],
         'is_draft': not page['live'],
-        'image': image['file'],
+        'image': image['file'] if image else None,
         'image_author': process['image_copyright'],
         'is_archived': bool(process['archived']),
         'city': process['city'],

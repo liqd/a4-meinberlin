@@ -74,5 +74,5 @@ class Command(A3ImportCommandMixin, BaseCommand):
                 )
                 idea.save()
 
-                self.a3_import_comments(path, token, last_version_path, idea)
-                self.a3_import_ratings(path, token, last_version_path, idea)
+                self.a3_import_comments(token, last_version_path, idea)
+                self.a3_import_ratings(token, last_version_path, idea)

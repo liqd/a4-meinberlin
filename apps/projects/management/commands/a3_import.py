@@ -82,6 +82,16 @@ class A3ImportCommandMixin():
 
                 self.import_project(token, path, orga, default_creator, wt)
 
+        orga, created = Organisation.objects.get_or_create(name='Undefined')
+        projects_without_orga = self.a3_get_elements(
+            url, token, self.project_content_type, 'paths', depth='1')
+        if len(projects_without_orga) > 0:
+            self.stdout.write(
+                'Importing projects without Organisation...')
+            for path in projects_without_orga:
+                wt = wagtail.get_adhocracy_process(wagtail_db, path)
+                self.import_project(token, path, orga, default_creator, wt)
+
     def import_project(self, token, path, organisation, creator, wt):
             raise NotImplementedError
 
@@ -95,9 +105,10 @@ class A3ImportCommandMixin():
             raise CommandError('API user authentication failed.')
         return res.json()['user_token']
 
-    def a3_get_elements(self, url, token, resource_type, elements):
-        query_url = '{}?content_type={}&depth=all&elements={}'.format(
-            url, resource_type, elements
+    def a3_get_elements(self, url, token, resource_type, elements,
+                        depth='all'):
+        query_url = '{}?content_type={}&depth={}&elements={}'.format(
+            url, resource_type, depth, elements
         )
         if 'Version' in resource_type:
             query_url = query_url + '&tag=LAST'
@@ -170,9 +181,10 @@ class A3ImportCommandMixin():
                 )
         return comment
 
-    def a3_import_comments(self, resource_path, token, object_path,
-                           content_object):
-        comments_path = resource_path + 'comments/'
+    def a3_import_comments(self, token, object_path, content_object):
+        comments_path = self.a3_get_sheet_field(
+            object_path, token,
+            'adhocracy_core.sheets.comment.ICommentable', 'post_pool')
         comments_content = self.a3_get_elements(
             comments_path, token,
             'adhocracy_core.resources.comment.ICommentVersion', 'content')
@@ -182,27 +194,26 @@ class A3ImportCommandMixin():
 
             if comment:
                 comment_path = comment_resource['path']
-                self.a3_import_ratings(
-                    resource_path, token, comment_path, comment)
+                self.a3_import_ratings(token, comment_path, comment)
                 self.a3_import_comment_replies(
-                    resource_path, token, comments_content, comment_path,
-                    comment)
+                    token, comments_content, comment_path, comment)
 
-    def a3_import_comment_replies(self, resource_path, token, comments_content,
-                                  comment_path, content_object):
+    def a3_import_comment_replies(self, token, comments_content, comment_path,
+                                  content_object):
         for comment_resource in comments_content:
             comment = self.a3_import_comment(
                 token, comment_resource, comment_path, content_object)
             if comment:
-                self.a3_import_ratings(
-                    resource_path, token, comment_path, comment)
+                self.a3_import_ratings(token, comment_path, comment)
                 self.a3_import_comment_replies(
-                    resource_path, token, comments_content,
-                    comment_resource['path'], content_object)
+                    token, comments_content, comment_resource['path'],
+                    content_object)
 
-    def a3_import_ratings(self, resource_path, token, object_path,
-                          content_object):
-        rates_path = resource_path + 'rates/'
+    def a3_import_ratings(self, token, object_path, content_object):
+        rates_path = self.a3_get_sheet_field(
+            object_path, token,
+            'adhocracy_core.sheets.rate.IRateable', 'post_pool'
+        )
         rates_content = self.a3_get_elements(
             rates_path, token,
             'adhocracy_core.resources.rate.IRateVersion', 'content')

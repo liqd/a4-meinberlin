@@ -12,9 +12,10 @@ class Command(A3ImportCommandMixin, BaseCommand):
 
     def import_project(self, token, path, organisation, creator, wt):
         self.stdout.write('Importing {} ...'.format(path))
-        creation_date = self.a3_get_creation_date(path, token)
-        modification_date = self.a3_get_modification_date(path,
-                                                          token)
+        creation_date = wt.get(
+            'created', self.a3_get_creation_date(path, token))
+        modification_date = wt.get(
+            'modified', self.a3_get_modification_date(path, token))
         last_version_path = self.a3_get_last_version(path, token)
         question = self.a3_get_sheet_field(
             last_version_path, token,

@@ -1,3 +1,5 @@
+import markdown
+
 from django.core.management.base import BaseCommand
 
 from apps.documents import models as doc_models
@@ -65,10 +67,11 @@ class Command(A3ImportCommandMixin, BaseCommand):
                     continue
                 text = \
                     data['adhocracy_core.sheets.document.IParagraph']['text']
+                html = markdown.markdown(text)
 
                 paragraph = doc_models.Paragraph(
                     name=title,
-                    text=text,
+                    text=html,
                     weight=weight,
                     document=document,
                 )

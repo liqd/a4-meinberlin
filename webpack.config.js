@@ -38,9 +38,9 @@ module.exports = {
   },
   devtool: 'eval',
   output: {
-    libraryTarget: 'var',
+    libraryTarget: 'this',
     library: '[name]',
-    path: './meinberlin/static/',
+    path: path.resolve('./meinberlin/static/'),
     publicPath: '/static/',
     filename: '[name].js'
   },

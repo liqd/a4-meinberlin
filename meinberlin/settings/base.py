@@ -71,21 +71,23 @@ INSTALLED_APPS = (
     'apps.users.apps.Config',
     'apps.projects.apps.Config',
     'apps.organisations.apps.Config',
-    'apps.dashboard.apps.Config',
     'apps.embed.apps.Config',
     'apps.moderatorfeedback.apps.Config',
-    'apps.extprojects.apps.Config',
-    'apps.account.apps.Config',
     'apps.maps.apps.Config',
+    'apps.notifications.apps.Config',
 
-    'apps.ideas.apps.Config',
-    'apps.documents.apps.Config',
+    'apps.account.apps.Config',
+    'apps.dashboard.apps.Config',
+
+    'apps.bplan.apps.Config',
     'apps.budgeting.apps.Config',
+    'apps.documents.apps.Config',
+    'apps.extprojects.apps.Config',
+    'apps.ideas.apps.Config',
+    'apps.kiezkasse.apps.Config',
     'apps.mapideas.apps.Config',
     'apps.polls.apps.Config',
     'apps.topicprio.apps.Config',
-    'apps.bplan.apps.Config',
-    'apps.notifications.apps.Config',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -303,6 +305,7 @@ A4_RATEABLES = (
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_topicprio', 'topic'),
+    ('meinberlin_kiezkasse', 'proposal'),
 )
 
 A4_COMMENTABLES = (
@@ -314,6 +317,7 @@ A4_COMMENTABLES = (
     ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_topicprio', 'topic'),
     ('meinberlin_polls', 'poll'),
+    ('meinberlin_kiezkasse', 'proposal'),
 )
 
 A4_REPORTABLES = (
@@ -322,6 +326,7 @@ A4_REPORTABLES = (
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_topicprio', 'topic'),
+    ('meinberlin_kiezkasse', 'proposal'),
 )
 A4_AUTO_FOLLOWABLES = (('a4comments', 'comment'),)
 
@@ -330,6 +335,7 @@ A4_ACTIONABLES = (
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
+    ('meinberlin_kiezkasse', 'proposal'),
 )
 
 A4_AUTO_FOLLOWABLES = (
@@ -337,6 +343,7 @@ A4_AUTO_FOLLOWABLES = (
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
+    ('meinberlin_kiezkasse', 'proposal'),
     ('meinberlin_polls', 'vote'),  # TODO: really?
 )
 

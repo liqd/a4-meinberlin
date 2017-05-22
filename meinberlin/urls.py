@@ -29,6 +29,7 @@ from apps.documents import urls as paragraph_urls
 from apps.documents.api import DocumentViewSet
 from apps.embed import urls as embed_urls
 from apps.ideas import urls as ideas_urls
+from apps.kiezkasse import urls as kiezkasse_urls
 from apps.mapideas import urls as mapideas_urls
 from apps.polls.api import PollViewSet
 from apps.polls.api import VoteViewSet
@@ -68,16 +69,18 @@ urlpatterns = [
 
     url(r'^ideas/', include(ideas_urls,
                             namespace='meinberlin_ideas')),
-    url(r'^paragraphs/', include(paragraph_urls,
-                                 namespace='meinberlin_documents')),
-    url(r'^budgeting/', include(budgeting_urls,
-                                namespace='meinberlin_budgeting')),
+    url(r'^kiezkasse/', include(kiezkasse_urls,
+                                namespace='meinberlin_kiezkasse')),
     url(r'^mapideas/', include(mapideas_urls,
                                namespace='meinberlin_mapideas')),
-    url(r'^topicprio/', include(topicprio_urls,
-                                namespace='meinberlin_topicprio')),
+    url(r'^paragraphs/', include(paragraph_urls,
+                                 namespace='meinberlin_documents')),
     url(r'^bplan/', include(bplan_urls,
                             namespace='meinberlin_bplan')),
+    url(r'^budgeting/', include(budgeting_urls,
+                                namespace='meinberlin_budgeting')),
+    url(r'^topicprio/', include(topicprio_urls,
+                                namespace='meinberlin_topicprio')),
 
     url(r'^api/', include(ct_router.urls)),
     url(r'^api/', include(module_router.urls)),

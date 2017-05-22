@@ -1,7 +1,7 @@
 {% extends 'meinberlin_dashboard/base_dashboard.html' %}
 {% load i18n item_tags %}
 
-{% block title %}{% trans 'Confirm Topic Deletion' %}{% endblock %}
+{% block title %}{% trans 'Confirm Topic Deletion' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block dashboard_content %}
 <div class="l-wrapper">
@@ -10,10 +10,10 @@
     <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
         {% csrf_token %}
         <input type="submit" class="button button--primary" value="{% trans 'Yes'%}" />
-    </form>
 
-    <a href="{% url 'dashboard-project-management' object.project.slug %}" class="button button--light">
-        {% trans 'Cancel'%}
-    </a>
+        <a href="{% url 'dashboard-project-management' object.project.slug %}" class="button button--light">
+            {% trans 'Cancel'%}
+        </a>
+    </form>
 </div>
 {% endblock %}

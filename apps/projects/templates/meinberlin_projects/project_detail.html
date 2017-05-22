@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% load i18n react_follows thumbnail wagtailcore_tags %}
+{% load i18n rules react_follows thumbnail wagtailcore_tags %}
 
-{% block title %}{{view.project.name}}{% endblock %}
+{% block title %}{{view.project.name}} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
 <div class="project-header{% if view.project.image %} project-header--image{% endif %}" style="{% if view.project.image %}
@@ -15,6 +15,10 @@
                 {% block project_action %}{% endblock %}
                 {% if request.user.is_authenticated %}
                     {% react_follows view.project %}
+                {% endif %}
+                {% has_perm 'meinberlin_projects.add_project' request.user view.project as user_may_change %}
+                {% if user_may_change %}
+                    <a href="{% url 'dashboard-project-edit' view.project.slug %}" class="button button--light">{% trans 'Edit' %}</a>
                 {% endif %}
             </div>
         </div>

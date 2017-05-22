@@ -79,8 +79,11 @@ class A3ImportCommandMixin():
                 'Importing projects for Organisation {} ...'.format(orga))
             for path in project_paths:
                 wt = wagtail.get_adhocracy_process(wagtail_db, path)
-
-                self.import_project(token, path, orga, default_creator, wt)
+                if not self.project_exists(wt):
+                    self.import_project(token, path, orga, default_creator, wt)
+                else:
+                    self.stdout.write(
+                        'Project {} already exists'.format(wt.get('name')))
 
         orga, created = Organisation.objects.get_or_create(name='Undefined')
         projects_without_orga = self.a3_get_elements(
@@ -90,10 +93,20 @@ class A3ImportCommandMixin():
                 'Importing projects without Organisation...')
             for path in projects_without_orga:
                 wt = wagtail.get_adhocracy_process(wagtail_db, path)
-                self.import_project(token, path, orga, default_creator, wt)
+                if not self.project_exists(wt):
+                    self.import_project(token, path, orga, default_creator, wt)
+                else:
+                    self.stdout.write(
+                        'Project {} already exists'.format(wt.get('name')))
 
     def import_project(self, token, path, organisation, creator, wt):
             raise NotImplementedError
+
+    def project_exists(self, wt):
+        name = wt.get('name', None)
+        if name:
+            return Project.objects.filter(name=name).exists()
+        return False
 
     def a3_login(self, url, username, password):
         login_url = url + 'login_username'

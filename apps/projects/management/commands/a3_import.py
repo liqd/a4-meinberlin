@@ -286,6 +286,15 @@ class A3ImportCommandMixin():
             polygon=polygon
         )
 
+    def a3_get_dates(self, path, token, wt):
+        creation_date = wt.get('created')
+        if not creation_date:
+            creation_date = self.a3_get_creation_date(path, token)
+        modification_date = wt.get('modified')
+        if not modification_date:
+            modification_date = self.a3_get_modification_date(path, token)
+        return (creation_date, modification_date)
+
     def create_project(self, organisation, name, description, info, start_date,
                        end_date, is_draft, is_archived, typ, phase_contents):
         project = Project.objects.create(

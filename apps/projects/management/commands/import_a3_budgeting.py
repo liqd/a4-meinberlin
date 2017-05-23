@@ -14,10 +14,7 @@ class Command(A3ImportCommandMixin, BaseCommand):
 
     def import_project(self, token, path, organisation, creator, wt):
         self.stdout.write('Importing {} ...'.format(path))
-        creation_date = wt.get(
-            'created', self.a3_get_creation_date(path, token))
-        modification_date = wt.get(
-            'modified', self.a3_get_modification_date(path, token))
+        creation_date, modification_date = self.a3_get_dates(path, token, wt)
 
         project, module = self.create_project(
             organisation,

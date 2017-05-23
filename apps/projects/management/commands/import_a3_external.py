@@ -32,7 +32,7 @@ class Command(BaseCommand):
                 description=wt['description'],
                 is_draft=wt['is_draft'],
                 is_archived=wt['is_archived'],
-                typ='Externes Projekt',
+                typ='external-project',
                 organisation=orga,
                 url=wt['url']
             )

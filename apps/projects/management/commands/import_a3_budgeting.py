@@ -25,7 +25,7 @@ class Command(A3ImportCommandMixin, BaseCommand):
             modification_date,
             wt.get('is_draft', False),
             wt.get('is_archived', True),
-            'Bürgerhaushalt',
+            '',
             [budgeting_phases.RequestPhase(),
              budgeting_phases.FeedbackPhase()]
         )

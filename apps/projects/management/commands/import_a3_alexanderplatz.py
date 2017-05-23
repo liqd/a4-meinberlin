@@ -30,7 +30,7 @@ class Command(A3ImportCommandMixin, BaseCommand):
             modification_date,
             False,
             True,
-            'Spatial Idea Collection',
+            'map-idea-collection',
             [mapidea_phases.CollectPhase(), mapidea_phases.RatingPhase()]
         )
         location = self.a3_get_sheet_field(
@@ -86,7 +86,7 @@ class Command(A3ImportCommandMixin, BaseCommand):
             modification_date,
             False,
             True,
-            'Text Review',
+            'text-review',
             [doc_phases.CommentPhase()]
         )
 

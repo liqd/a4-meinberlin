@@ -172,14 +172,18 @@ class A3ImportCommandMixin():
         user = User.objects.get(username=username)
         return user
 
-    def a3_import_comment(self, token, comment_resource, object_path,
+    def a3_import_comment(self, token, comment_path, object_path,
                           content_object):
         comment = None
+        comment_resource = self.a3_get_resource(comment_path, token)
         data = comment_resource['data']
         metadata_sheet = data['adhocracy_core.sheets.metadata.IMetadata']
         is_hidden = metadata_sheet['hidden']
         user_path = metadata_sheet['creator']
         creation_date = parse_dt(metadata_sheet['creation_date'])
+        last_version_path = self.a3_get_last_version(comment_path, token)
+        last_version = self.a3_get_resource(last_version_path, token)
+        data = last_version['data']
         if is_hidden == 'false' and user_path:
             comment_sheet = data['adhocracy_core.sheets.comment.IComment']
             object = comment_sheet['refers_to']
@@ -198,28 +202,31 @@ class A3ImportCommandMixin():
         comments_path = self.a3_get_sheet_field(
             object_path, token,
             'adhocracy_core.sheets.comment.ICommentable', 'post_pool')
-        comments_content = self.a3_get_elements(
+        comment_paths = self.a3_get_elements(
             comments_path, token,
-            'adhocracy_core.resources.comment.ICommentVersion', 'content')
-        for comment_resource in comments_content:
+            'adhocracy_core.resources.comment.IComment', 'paths')
+        for comment_path in comment_paths:
             comment = self.a3_import_comment(
-                token, comment_resource, object_path, content_object)
+                token, comment_path, object_path, content_object)
 
             if comment:
-                comment_path = comment_resource['path']
-                self.a3_import_ratings(token, comment_path, comment)
+                comment_version_path = \
+                    self.a3_get_last_version(comment_path, token)
+                self.a3_import_ratings(token, comment_version_path, comment)
                 self.a3_import_comment_replies(
-                    token, comments_content, comment_path, comment)
+                    token, comment_paths, comment_version_path, comment)
 
-    def a3_import_comment_replies(self, token, comments_content, comment_path,
-                                  content_object):
-        for comment_resource in comments_content:
-            comment = self.a3_import_comment(
-                token, comment_resource, comment_path, content_object)
-            if comment:
-                self.a3_import_ratings(token, comment_path, comment)
+    def a3_import_comment_replies(self, token, comment_paths,
+                                  comment_version_path, content_object):
+        for comment_path in comment_paths:
+            reply = self.a3_import_comment(
+                token, comment_path, comment_version_path, content_object)
+            if reply:
+                reply_version_path = \
+                    self.a3_get_last_version(comment_path, token)
+                self.a3_import_ratings(token, comment_version_path, reply)
                 self.a3_import_comment_replies(
-                    token, comments_content, comment_resource['path'],
+                    token, comment_paths, reply_version_path,
                     content_object)
 
     def a3_import_ratings(self, token, object_path, content_object):

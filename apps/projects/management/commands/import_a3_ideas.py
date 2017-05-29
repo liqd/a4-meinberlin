@@ -1,3 +1,5 @@
+import markdown
+
 from django.core.management.base import BaseCommand
 
 from apps.mapideas import models as mapidea_models
@@ -54,7 +56,7 @@ class Command(A3ImportCommandMixin, BaseCommand):
                 title = data['adhocracy_core.sheets.title.ITitle']['title']
                 descr_sheet = \
                     data['adhocracy_core.sheets.description.IDescription']
-                descr = descr_sheet['description']
+                descr = markdown.markdown(descr_sheet['description'])
                 coordinates = \
                     data['adhocracy_core.sheets.geo.IPoint']['coordinates']
                 point = {

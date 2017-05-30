@@ -1,0 +1,47 @@
+html {
+    background: $color-border;
+}
+
+body {
+    background: $color-bg;
+}
+
+#intro .l-wrapper {
+    border-bottom: 1px solid $color-border;
+}
+
+#footer {
+    border-top: 1px solid $color-border;
+}
+
+%colorBg {
+    background-color: $color-brand1;
+    color: $color-bg;
+
+    a {
+        color: inherit;
+    }
+}
+
+#contact {
+    @extend %colorBg;
+}
+
+#examples {
+    @extend %colorBg;
+    background-color: $color-brand2;
+}
+
+#hero {
+    @extend %colorBg;
+    font-weight: bold;
+
+    background-image: url('images/heroimage.jpg');
+    background-size: cover;
+    background-position: 50% 50%;
+
+    height: 40em;
+    max-height: calc(100vh - 5.5em);
+    display: flex;
+    align-items: center;
+}

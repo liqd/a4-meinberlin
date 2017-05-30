@@ -1,0 +1,53 @@
+.example {
+    margin-bottom: 5em;
+
+    h3 {
+        margin-top: 0;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.example-image {
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+@media (min-width: $breakpoint) {
+    .example {
+        @include pie-clearfix;
+    }
+
+    .example-image,
+    .example-body {
+        @include grid-cell;
+    }
+
+    .example-image {
+        @include grid-width(4);
+    }
+
+    .example-body {
+        @include grid-width(6);
+    }
+
+    .example:nth-child(2n) {
+        .example-image {
+            @include grid-position(7);
+        }
+        .example-body {
+            @include grid-position(1);
+        }
+    }
+
+    .example:nth-child(2n+1) {
+        .example-image {
+            @include grid-position(1);
+        }
+        .example-body {
+            @include grid-position(5);
+        }
+    }
+}

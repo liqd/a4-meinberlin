@@ -1,0 +1,15 @@
+button {
+    text-align: center;
+    border: 0;
+    cursor: pointer;
+    background: $color-brand2;
+    color: $color-bg;
+    padding: 0 1em;
+    border-radius: 1em;
+    line-height: 2;
+    font-weight: bold;
+
+    &:hover, &:focus {
+        background: lighten($color-brand2, 5%);
+    }
+}

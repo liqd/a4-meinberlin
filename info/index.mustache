@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <header id="header">
+        <div class="l-wrapper">
+            <a href="#" data-scroll>
+                <img class="logo" alt="mein berlin" src="images/logo.png" />
+            </a>
+            <nav class="jumpNav">
+                {{#jumpNav}}
+                <a href="#{{id}}" data-scroll>{{title}}</a>
+                {{/jumpNav}}
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="l-wrapper">
+                <div class="l-center">
+                    <h1>{{heroTitle}}</h1>
+                    {{#markdown}}{{heroBody}}{{/markdown}}
+                </div>
+            </div>
+        </section>
+
+        <section id="intro">
+            <div class="l-wrapper">
+                <div class="l-center">
+                    <h2>{{introTitle}}</h2>
+                    {{#markdown}}{{introBody}}{{/markdown}}
+                </div>
+            </div>
+        </section>
+
+        <section id="features">
+            <div class="l-wrapper">
+                <h2>{{featuresTitle}}</h2>
+                <div>
+                    {{#features}}
+                    <div class="feature l-same-3">
+                        <img class="feature-icon" src="{{icon}}" alt="" />
+                        <h3>{{title}}</h3>
+                        {{#markdown}}{{body}}{{/markdown}}
+                    </div>
+                    {{/features}}
+                </div>
+            </div>
+        </section>
+
+        <section id="examples">
+            <div class="l-wrapper">
+                <h2>{{examplesTitle}}</h2>
+                <div>
+                    {{#examples}}
+                    <div class="example">
+                        <a href="{{url}}"><img class="example-image" src="{{img}}" alt="{{alt}}" /></a>
+                        <div class="example-body">
+                            <h3>{{title}}</h3>
+                            {{#markdown}}{{body}}{{/markdown}}
+                            <a href="{{url}}">&#8594; Zum Beispielverfahren</a>
+                        </div>
+                    </div>
+                    {{/examples}}
+                </div>
+            </div>
+        </section>
+
+        <section id="processes">
+            <div class="l-wrapper">
+                <h2>{{processesTitle}}</h2>
+                <div>
+                    {{#processes}}
+                    <div class="feature l-same-3">
+                        <img class="feature-icon" src="{{icon}}" alt="" />
+                        <h3>{{title}}</h3>
+                        {{#markdown}}{{body}}{{/markdown}}
+                    </div>
+                    {{/processes}}
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="l-wrapper">
+                <div class="l-center">
+                    <h2>{{contactTitle}}</h2>
+                    {{#markdown}}{{contactBody}}{{/markdown}}
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="l-wrapper">
+            <nav class="footerNav">
+                {{#footerNav}}
+                <a href="{{url}}">{{title}}</a>
+                {{/footerNav}}
+            </nav>
+        </div>
+    </footer>
+
+    <script src="bower_components/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
+    <script>
+        smoothScroll.init({
+            selectorHeader: '#header',
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+html {
+    color: $color-fg;
+    font-family: Arial, sans-serif;
+    line-height: 1.4;
+}
+
+a {
+    color: $color-brand2;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: inherit;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 200%;
+}
+
+h2 {
+    font-size: 150%;
+}
+
+h3 {
+    font-size: 125.5%;
+}
+
+#hero h1 {
+    @extend h2;
+}
+
+#outro h2 {
+    @extend h3;
+}
+
+#features h2,
+#examples h2,
+#processes h2 {
+    text-align: center;
+    margin-bottom: 1.4em;
+}

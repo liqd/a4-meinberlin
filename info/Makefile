@@ -9,7 +9,8 @@ install: all
 	mkdir -p $(TARGET)/images
 	cp -r images/* $(TARGET)/images
 	mkdir -p $(TARGET)/bower_components
-	cp -r bower_components/smooth-scroll $(TARGET)/bower_components
+	mkdir -p $(TARGET)/bower_components/smooth-scroll/dist/js/
+	cp -r bower_components/smooth-scroll/dist/js/smooth-scroll.min.js $(TARGET)/bower_components/smooth-scroll/dist/js/.
 
 index.html: index.mustache build.js node_modules
 	node build.js > $@

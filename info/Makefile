@@ -23,6 +23,7 @@ bower_components:
 	bower install cferdinandi/smooth-scroll
 
 node_modules:
+	mkdir $@
 	npm install mustache
 	npm install markdown-it
 

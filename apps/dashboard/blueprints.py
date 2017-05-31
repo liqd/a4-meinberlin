@@ -53,7 +53,7 @@ blueprints = [
              mapideas_phases.CollectPhase(),
              mapideas_phases.RatingPhase()
          ],
-         image='images/blueprints/map-brainstorming.svg',
+         image='images/blueprints/map-idea-collection.svg',
          settings_model=('a4maps', 'AreaSettings'),
      )),
     ('agenda-setting',
@@ -90,12 +90,11 @@ blueprints = [
          title=_('Participatory budgeting'),
          description=_(
              'With participatory-budgeting it’s possible to make proposals '
-             'with budget specifications and locate them. Afterwards anyone '
-             'can comment and rate on different proposals.'
+             'with budget specifications and locate them. Anyone can comment '
+             'and rate on different proposals.'
          ),
          content=[
-             budgeting_phases.RequestPhase(),
-             budgeting_phases.FeedbackPhase(),
+             budgeting_phases.RequestPhase()
          ],
          image='images/blueprints/participatory-budgeting.svg',
          settings_model=('a4maps', 'AreaSettings'),
@@ -160,7 +159,7 @@ blueprints = [
              kiezkasse_phases.RequestPhase(),
              kiezkasse_phases.FeedbackPhase(),
          ],
-         image='images/blueprints/participatory-budgeting.svg',
+         image='images/blueprints/kiezkasse.svg',
          settings_model=('a4maps', 'AreaSettings'),
      )),
 ]

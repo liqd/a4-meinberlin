@@ -1,0 +1,42 @@
+// stylelint-disable
+
+#header {
+    position: fixed;
+    background: $color-bg;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    line-height: 1.5;
+    box-shadow: 0 0 0.8em rgba($color-fg, 0.1);
+}
+
+body {
+    padding-top: 5.5em;
+}
+
+nav a {
+    color: inherit;
+    text-decoration: none;
+    margin-left: 3em;
+    font-size: 80%;
+
+    &:hover, &:focus {
+        text-decoration: underline;
+    }
+
+    &:first-child {
+        margin-left: 0;
+    }
+}
+
+.logo {
+    width: 7em;
+    position: absolute;
+    bottom: -2em;
+}
+
+.jumpNav {
+    text-align: right;
+    margin-left: 5em;
+}

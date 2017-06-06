@@ -1,0 +1,17 @@
+// stylelint-disable
+
+.feature {
+    font-size: 80%;
+    text-align: center;
+    margin-bottom: 4em;
+}
+
+.feature-icon {
+    height: 6em;
+}
+
+@media (min-width: $breakpoint) {
+    .feature {
+        margin-bottom: 2em;
+    }
+}

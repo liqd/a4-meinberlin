@@ -1,0 +1,44 @@
+// stylelint-disable
+
+@include grid-set('gutter', 3%);
+
+body {
+    max-width: $body-width;
+    margin: 0 auto;
+}
+
+.l-wrapper {
+    @include pie-clearfix;
+    max-width: $wrapper-width;
+    padding: 2em;
+    margin: 0 auto;
+    position: relative;
+}
+
+#header .l-wrapper {
+    max-width: $body-width;
+    box-sizing: border-box;
+}
+
+#footer .l-wrapper {
+    padding-top: 1em;
+}
+
+.l-center {
+    text-align: center;
+}
+
+@media (min-width: $breakpoint) {
+    .l-center {
+        @include grid-span(8, 2);
+        clear: left;
+    }
+
+    .l-same-2 {
+        @include grid-same-width(2);
+    }
+
+    .l-same-3 {
+        @include grid-same-width(3);
+    }
+}

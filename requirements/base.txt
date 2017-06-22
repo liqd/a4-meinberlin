@@ -1,4 +1,4 @@
-git+git://github.com/liqd/adhocracy4.git@master
+git+git://github.com/liqd/adhocracy4.git@5622b401
 Django>=1.8,<1.9 # pyup: >=1.8,<1.9
 wagtail==1.10.1
 django-allauth==0.32.0

@@ -290,7 +290,7 @@ class OrganisationForm(forms.ModelForm):
 
     class Meta:
         model = Organisation
-        fields = ['name']
+        fields = ['name', 'logo']
         labels = {
             'name': _('Organisation name')
         }

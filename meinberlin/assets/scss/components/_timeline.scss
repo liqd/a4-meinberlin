@@ -1,8 +1,9 @@
-$circle-size: 0.6em;
+$circle-size: 0.8em;
 
 .timeline {
     font-size: $font-size-sm;
     padding-left: 2em;
+    margin-bottom: $spacer;
     color: $link-color;
 
     ul {
@@ -118,22 +119,37 @@ $circle-size: 0.6em;
 }
 
 .phase-info {
-    margin-bottom: $spacer * 2;
+    box-shadow: 0 0 2em 0 rgba(0, 0, 0, 0.2);
+    border-radius: $border-radius;
+    margin: $spacer * 2 0;
     padding: $padding;
-    border-left: 0.3em solid transparent;
 }
 
-.phase-info--active {
-    background-color: $bg-tertiary;
-    border-left-color: $brand-primary;
+.phase-info__item {
+    padding: ($padding / 2) 0;
+    border-bottom: 1px solid $border-color;
+
+    &:first-child {
+        border-top: 1px solid $border-color;
+        margin-top: $spacer * 2;
+    }
 }
 
-.phase-info__title {
-    font-size: $font-size-xl;
+.phase-info__active__title,
+.phase-info__active__subtitle {
     margin-bottom: 0.5rem;
+}
+
+.phase-info__active__title {
+    font-size: $font-size-lg;
     margin-top: 0;
 }
 
-.phase-info__subtitle {
-    margin-bottom: 0.5rem;
+.phase-info__item__title {
+    font-weight: bold;
+}
+
+.phase-info__highlight {
+    font-weight: normal;
+    color: $brand-primary;
 }

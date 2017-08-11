@@ -2,14 +2,22 @@
     background-color: $bg-tertiary;
 }
 
+.dashboard-nav__wrapper {
+    display: flex;
+    padding-top: 7em;
+    justify-content: space-between;
+
+    &:after {
+        content: none;
+    }
+}
+
 .dashboard-nav__pages,
 .dashboard-nav__dropdown {
     padding: 1em;
 }
 
 .dashboard-nav__dropdown {
-    border-bottom: 2px solid $body-bg;
-
     .dropdown,
     .dropdown-toggle {
         margin: 0;
@@ -29,6 +37,10 @@
     margin: 0;
 
     list-style: none;
+}
+
+.dashboard-nav__page {
+    float: left;
 }
 
 .dashboard-nav__item {

@@ -197,7 +197,8 @@ $header-overlap: -35px;
 
 .messages,
 .hero-unit,
-.project-header {
+.project-header,
+.dashboard-nav {
     &:first-child {
         margin-top: $header-overlap - $header-margin-bottom;
 

@@ -43,7 +43,7 @@
             </div>
             <ul class="dashboard-nav__pages">
                 <li class="dashboard-nav__page">
-                    <a href="{% url 'dashboard-project-list' organisation_slug=view.organisation.slug %}"
+                    <a href="{% url 'dashboard2-project-list' organisation_slug=view.organisation.slug %}"
                        class="dashboard-nav__item dashboard-nav__item--interactive {% ifequal view.menu_item 'project' %}is-active{% endifequal %}">
                         <i class="fa fa-file-o"></i>
                         {% trans 'Participation projects' %}
@@ -51,14 +51,14 @@
                 </li>
 
                 <li class="dashboard-nav__page">
-                    <a href="{% url 'dashboard-organisation-edit' organisation_slug=view.organisation.slug %}"
+                    <a href="{% url 'dashboard2-organisation-edit' organisation_slug=view.organisation.slug %}"
                        class="dashboard-nav__item dashboard-nav__item--interactive {% ifequal view.menu_item 'organisation' %}is-active{% endifequal %}">
                         <i class="fa fa-cog"></i>
                         {% trans 'Settings' %}
                     </a>
                 </li>
                 <li class="dashboard-nav__page">
-                    <a href="{% url 'dashboard-newsletter-create' organisation_slug=view.organisation.slug %}"
+                    <a href="{% url 'dashboard2-newsletter-create' organisation_slug=view.organisation.slug %}"
                        class="dashboard-nav__item dashboard-nav__item--interactive {% ifequal view.menu_item 'newsletter' %}is-active{% endifequal %}">
                         <i class="fa fa-envelope-o"></i>
                         {% trans 'Newsletter' %}

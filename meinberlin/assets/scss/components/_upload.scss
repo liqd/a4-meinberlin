@@ -13,6 +13,11 @@
     }
 }
 
+.form-control-file:focus + .upload-wrapper__action {
+    border: 1px solid $brand-secondary;
+    background: $brand-secondary;
+}
+
 .upload-wrapper__fields,
 .upload-wrapper__preview {
     margin-bottom: $padding;

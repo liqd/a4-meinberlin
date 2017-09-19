@@ -44,7 +44,7 @@
     <span class="list-item__author">
         {{ object.creator.username }}
     </span>
-    <span class="list-item__date">
-        {{ object.created | date }}
-    </span>
+    <time class="list-item__date" datetime="{{ object.created|date:'c' }}">
+        {{ object.created|date }}
+    </time>
 </li>

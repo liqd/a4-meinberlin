@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-18 16:33+0200\n"
+"POT-Creation-Date: 2017-09-19 15:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1818,22 +1818,26 @@ msgstr "Project on meinBerlin"
 #, python-format
 msgid ""
 "\n"
-"                    Participation possible until %(date)s\n"
+"                    Participation possible until <time datetime=\"%(isodate)s"
+"\">%(date)s</time>\n"
 "                "
 msgstr ""
 "\n"
-"                    Participation possible until %(date)s\n"
+"                    Participation possible until <time datetime=\"%(isodate)s"
+"\">%(date)s</time>\n"
 "                "
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:52
 #, python-format
 msgid ""
 "\n"
-"                    Participation starting from %(date)s\n"
+"                    Participation starting from <time datetime=\"%(isodate)s"
+"\">%(date)s</time>\n"
 "                "
 msgstr ""
 "\n"
-"                    Participation starting from %(date)s\n"
+"                    Participation starting from <time datetime=\"%(isodate)s"
+"\">%(date)s</time>\n"
 "                "
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:7
@@ -1859,18 +1863,18 @@ msgstr "Participation is not possible at the moment."
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:51
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:96
 #, python-format
-msgid "It starts on %(date)s."
-msgstr "It starts on %(date)s."
+msgid "It starts on <time datetime=\"%(isodate)s\">%(date)s</time>."
+msgstr "It starts on <time datetime=\"%(isodate)s\">%(date)s</time>."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:53
 #, python-format
-msgid "It continues on %(date)s."
-msgstr "It continues on %(date)s."
+msgid "It continues on <time datetime=\"%(isodate)s\">%(date)s</time>."
+msgstr "It continues on <time datetime=\"%(isodate)s\">%(date)s</time>."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:55
 #, python-format
-msgid "It ended on %(date)s."
-msgstr "It ended on %(date)s."
+msgid "It ended on <time datetime=\"%(isodate)s\">%(date)s</time>."
+msgstr "It ended on <time datetime=\"%(isodate)s\">%(date)s</time>."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:89
 msgid "Show phase overview"

@@ -8,9 +8,9 @@
                 {{ object.name }}
                 </a>
             </h3>
-            <span class="list-item__date">
-                {{ object.date | date }}
-            </span>
+            <time class="list-item__date" datetime="{{ object.date|date:'c' }}" >
+                {{ object.date|date }}
+            </time>
         </div>
         <div class="lr-bar__right">
             <a href="{% url 'a4dashboard:offlineevent-delete' slug=object.slug %}"

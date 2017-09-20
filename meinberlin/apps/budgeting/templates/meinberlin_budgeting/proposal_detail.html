@@ -22,9 +22,9 @@
                         <strong class="moderator-statement__organisation">
                             {{ proposal.module.project.organisation.name }}
                         </strong>
-                        <span class="moderator-statement__date">
-                            {{ proposal.moderator_statement.created | date }}
-                        </span>
+                        <time class="moderator-statement__date" datetime="{{ proposal.moderator_statement.created|date:'c' }}">
+                            {{ proposal.moderator_statement.created|date }}
+                        </time>
                     </div>
                     <div class="moderator-statement__body">
                         {{ proposal.moderator_statement.statement | safe }}

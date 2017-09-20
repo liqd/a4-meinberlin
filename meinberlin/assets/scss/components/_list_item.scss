@@ -51,9 +51,15 @@
     flex: 1 1 auto;
 }
 
+.list-item__header {
+    display: flex;
+    align-items: flex-start;
+}
+
 .list-item__title {
     margin: 0 0 0.5rem;
     font-size: $font-size-lg;
+    flex: 1 1 auto;
 
     a {
         color: inherit;
@@ -89,8 +95,8 @@
 }
 
 .list-item__stats {
-    float: right;
     margin-left: 0.5em;
+    flex: 0 0 auto;
 }
 
 .list-item__action {

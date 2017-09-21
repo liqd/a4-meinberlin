@@ -133,3 +133,15 @@ class ProjectListView(filter_views.FilteredListView):
                 Q(moderators__pk=self.request.user.pk)
             ) & Q(containers=None)
         ).distinct()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Cast project containers to be able to overwrite Project methods
+        # FIXME: maybe cast external and bplan, too? Not necessary but possible
+        if 'object_list' in context:
+            context['object_list'] = [
+                getattr(project, 'projectcontainer', project)
+                for project in context['object_list']]
+            context['project_list'] = context['object_list']
+        return context

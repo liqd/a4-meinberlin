@@ -119,9 +119,9 @@ class ProjectListView(filter_views.FilteredListView):
 
     def get_queryset(self):
         return super().get_queryset().filter(
-            Q(is_draft=False, is_public=False,
-              participants__pk=self.request.user.pk) |
-            Q(is_draft=False, is_public=False,
-              organisation__initiators__pk=self.request.user.pk) |
-            Q(is_draft=False, is_public=True)
+            Q(is_draft=False) & (
+                Q(is_public=True) |
+                Q(participants__pk=self.request.user.pk) |
+                Q(organisation__initiators__pk=self.request.user.pk)
+            ) & Q(containers=None)
         ).distinct()

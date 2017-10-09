@@ -135,6 +135,7 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
 
 
 class ContainerCreateView(ProjectCreateView):
+    form_class = forms.ContainerCreateForm
     blueprint = ProjectBlueprint(
         title=_('Container'),
         description=_(

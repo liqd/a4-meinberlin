@@ -166,4 +166,14 @@ blueprints = [
          image='images/kiezkasse.svg',
          settings_model=('a4maps', 'AreaSettings'),
      )),
+    ('container',
+     ProjectBlueprint(
+         title=_('Container'),
+         description=_(
+             'A container contains multiple projects.'
+         ),
+         content=[],
+         image='images/container.svg',
+         settings_model=None,
+     )),
 ]

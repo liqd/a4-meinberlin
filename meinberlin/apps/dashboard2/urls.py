@@ -9,9 +9,16 @@ urlpatterns = [
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/projects/$',
         views.ProjectListView.as_view(),
         name='project-list'),
+    url(r'^organisations/(?P<organisation_slug>[-\w_]+)/containers/$',
+        views.ContainerListView.as_view(),
+        name='container-list'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/$',
         views.BlueprintListView.as_view(),
         name='blueprint-list'),
+    url(r'^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/'
+        r'container/$',
+        views.ContainerCreateView.as_view(),
+        name='container-create'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/'
         r'(?P<blueprint_slug>[-\w_]+)/$',
         views.ProjectCreateView.as_view(),

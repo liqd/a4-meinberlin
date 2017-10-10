@@ -20,6 +20,7 @@ from . import forms
 from . import get_project_dashboard
 from . import mixins
 from . import signals
+from .blueprints import ProjectBlueprint
 from .blueprints import get_blueprints
 
 User = get_user_model()
@@ -38,6 +39,22 @@ class ProjectListView(mixins.DashboardBaseMixin,
     model = project_models.Project
     paginate_by = 12
     template_name = 'meinberlin_dashboard2/project_list.html'
+    permission_required = 'a4projects.add_project'
+    menu_item = 'project'
+    filter_set = filter.ProjectFilterSet
+
+    def get_queryset(self):
+        return super().get_queryset().filter(
+            organisation=self.organisation
+        )
+
+
+class ContainerListView(mixins.DashboardBaseMixin,
+                        mixins.DashboardProjectDuplicateMixin,
+                        filter_views.FilteredListView):
+    model = project_models.Project
+    paginate_by = 12
+    template_name = 'meinberlin_dashboard2/container_list.html'
     permission_required = 'a4projects.add_project'
     menu_item = 'project'
     filter_set = filter.ProjectFilterSet
@@ -115,6 +132,19 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
                 module=module,
             )
             phase.save()
+
+
+class ContainerCreateView(ProjectCreateView):
+    form_class = forms.ContainerCreateForm
+    blueprint = ProjectBlueprint(
+        title=_('Container'),
+        description=_(
+            'A container contains multiple projects.'
+        ),
+        content=[],
+        image='images/container.svg',
+        settings_model=None,
+    )
 
 
 class ProjectUpdateView(generic.RedirectView):

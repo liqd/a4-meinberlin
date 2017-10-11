@@ -57,6 +57,13 @@
     }
 }
 
+.project-header__description--bordered {
+    padding: $padding;
+    background-color: $body-bg;
+    border: 1px solid $border-color;
+    border-radius: 0.3em;
+}
+
 .project-header__copyright {
     position: absolute;
     bottom: 0;

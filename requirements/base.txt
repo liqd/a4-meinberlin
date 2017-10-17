@@ -1,4 +1,4 @@
-git+git://github.com/liqd/adhocracy4.git@master#egg=adhocracy4
+git+git://github.com/liqd/adhocracy4.git@0b30a1877327b4867fe739d8099e69e93f34eaa5#egg=adhocracy4
 bcrypt==3.1.3
 django-capture-tag==1.0
 # django multiform (released version 0.1 was too old)

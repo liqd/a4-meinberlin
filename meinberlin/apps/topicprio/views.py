@@ -111,6 +111,9 @@ class TopicCreateView(mixins.DashboardComponentMixin,
             'a4dashboard:topic-list',
             kwargs={'module_slug': self.module.slug})
 
+    def get_permission_object(self):
+        return self.module
+
 
 class TopicUpdateView(mixins.DashboardComponentMixin,
                       mixins.DashboardBaseMixin,
@@ -130,6 +133,9 @@ class TopicUpdateView(mixins.DashboardComponentMixin,
             'a4dashboard:topic-list',
             kwargs={'module_slug': self.module.slug})
 
+    def get_permission_object(self):
+        return self.get_object()
+
 
 class TopicDeleteView(mixins.DashboardComponentMixin,
                       mixins.DashboardBaseMixin,
@@ -148,3 +154,6 @@ class TopicDeleteView(mixins.DashboardComponentMixin,
         return reverse(
             'a4dashboard:topic-list',
             kwargs={'module_slug': self.module.slug})
+
+    def get_permission_object(self):
+        return self.get_object()

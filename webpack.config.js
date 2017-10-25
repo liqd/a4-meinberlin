@@ -29,6 +29,9 @@ module.exports = {
       'leaflet',
       'leaflet/dist/leaflet.css'
     ],
+    'map_display_points2': [
+      './meinberlin/assets/js/map_display_points2.jsx'
+    ],
     datepicker: [
       './meinberlin/assets/js/init-picker.js',
       'datepicker/css/datepicker.min.css'

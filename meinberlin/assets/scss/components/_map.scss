@@ -17,15 +17,21 @@
 }
 
 .map-list {
-    position: relative;
-    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh;
+
+    @media (min-width: $breakpoint) {
+        flex-direction: row;
+    }
 }
 
-.map-list__controls {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: $padding 0;
+.map-list__map {
+    flex: 1 1 300px;
+    height: auto !important;
+}
+
+.map-list__list {
+    flex: 1 1 60%;
+    overflow-y: auto;
 }

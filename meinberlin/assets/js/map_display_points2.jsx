@@ -56,7 +56,7 @@ $(function () {
       $list.children().each(function (j, point) {
         if (i === j) {
           $(point).addClass('is-selected')
-          point.scrollIntoView(true, {behavior: 'smooth'})
+          $(point).scrollintoview()
         } else {
           $(point).removeClass('is-selected')
         }

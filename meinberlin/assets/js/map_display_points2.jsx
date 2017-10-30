@@ -10,6 +10,15 @@ var icon = L.icon({
   shadowAnchor: [20, 54]
 })
 
+var activeIcon = L.icon({
+  iconUrl: '/static/images/map_pin_active_01_2x.png',
+  shadowUrl: '/static/images/map_shadow_01_2x.png',
+  iconSize: [30, 45],
+  iconAnchor: [15, 45],
+  shadowSize: [40, 54],
+  shadowAnchor: [20, 54]
+})
+
 var createMap = function (element, baseurl, attribution, polygon) {
   var basemap = baseurl + '{z}/{x}/{y}.png'
   var baselayer = L.tileLayer(basemap, { attribution: attribution })
@@ -48,17 +57,22 @@ $(function () {
 
   var map = createMap($map[0], baseurl, attribution, polygon)
 
+  var markers = []
+
   $list.children().each(function (i, el) {
     var point = points.features[i].geometry.coordinates
     var marker = L.marker({lng: point[0], lat: point[1]}, {icon: icon}).addTo(map)
+    markers.push(marker)
 
     marker.on('click', function () {
       $list.children().each(function (j, point) {
         if (i === j) {
           $(point).addClass('is-selected')
           $(point).scrollintoview()
+          markers[j].setIcon(activeIcon)
         } else {
           $(point).removeClass('is-selected')
+          markers[j].setIcon(icon)
         }
       })
     })

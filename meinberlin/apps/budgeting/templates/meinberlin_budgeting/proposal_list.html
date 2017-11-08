@@ -3,7 +3,7 @@
 
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'leaflet.js' %}"></script>
-    <script type="text/javascript" src="{% static 'a4maps/map_display_points.js' %}"></script>
+    <script type="text/javascript" src="{% static 'map_display_points2.js' %}"></script>
     {{ block.super }}
 {% endblock %}
 
@@ -28,24 +28,14 @@
             </div>
         </div>
     </div>
-    {% if view.mode == 'map' %}
-        <div class="map-list">
-            <div class="map-list__controls">
-                <div class="l-wrapper">
-                    <div class="leaflet-control-zoom leaflet-bar leaflet-control">
-                        <a class="leaflet-control-zoom-in" id="zoom-in" href="#" title="{% trans 'Zoom in' %}">+</a>
-                        <a class="leaflet-control-zoom-out leaflet-disabled" id="zoom-out" href="#" title="{% trans 'Zoom out' %}">-</a>
-                    </div>
-                </div>
-            </div>
-            {% map_display_points object_list module.settings_instance.polygon %}
-        </div>
-    {% else %}
-        <div class="module-content">
-            <div class="l-wrapper">
-                <div class="l-center-8">
+    <div class="module-content">
+        <div class="l-wrapper">
+            <div class="l-center-8">
+                <div class="map-list">
+                    {% map_display_points object_list module.settings_instance.polygon %}
+
                     {% if object_list.count > 0 %}
-                        <ul class="u-list-reset">
+                        <ul class="u-list-reset map-list__list">
                             {% for object in object_list %}
                                 {% include "meinberlin_budgeting/includes/proposal_list_item.html" with object=object %}
                             {% endfor %}
@@ -58,5 +48,5 @@
                 </div>
             </div>
         </div>
-    {% endif %}
+    </div>
 {% endblock %}

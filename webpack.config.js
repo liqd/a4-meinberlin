@@ -14,6 +14,7 @@ module.exports = {
       'classnames',
       'font-awesome/scss/font-awesome.scss',
       'jquery',
+      'jquery.scrollintoview',
       'js-cookie',
       'react',
       'immutability-helper',
@@ -28,6 +29,9 @@ module.exports = {
     leaflet: [
       'leaflet',
       'leaflet/dist/leaflet.css'
+    ],
+    'map_display_points2': [
+      './meinberlin/assets/js/map_display_points2.jsx'
     ],
     datepicker: [
       './meinberlin/assets/js/init-picker.js',

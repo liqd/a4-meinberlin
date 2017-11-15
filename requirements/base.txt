@@ -1,4 +1,4 @@
-git+git://github.com/liqd/adhocracy4.git@master#egg=adhocracy4
+git+git://github.com/liqd/adhocracy4.git@705b083bf7a5e812c1b2ebda00043703692de219#egg=adhocracy4
 bcrypt==3.1.4
 django-capture-tag==1.0
 html5lib==0.999999999

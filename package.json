@@ -37,7 +37,7 @@
     "leaflet.markercluster": "1.2.0",
     "react-flip-move": "2.9.17",
     "sass-planifolia": "0.4.2",
-    "select2": "4.0.5",
+    "select2": "4.0.6-rc.1",
     "shariff": "2.0.4",
     "tether": "1.4.1",
     "timeago.js": "3.0.2"

@@ -277,85 +277,87 @@ class PlansMap extends React.Component {
   render () {
     return (
       <div>
-        <div className="l-wrapper">
-          <div className="control-bar" role="group" aria-label={django.gettext('Filter bar')}>
-            <form onSubmit={this.onFreeTextFilterSubmit.bind(this)} data-embed-target="ignore" className="input-group form-group u-inline-flex">
-              <input
-                onChange={this.onFreeTextFilterChange.bind(this)}
-                className="input-group__input"
-                name="search"
-                type="search"
-                placeholder={django.gettext('Search')} />
-              <button className="input-group__after btn btn--light" type="submit" title={django.gettext('Search')}>
-                <i className="fa fa-search" aria-label={django.gettext('Search')} />
-              </button>
-            </form>
-            &nbsp;
-            <div className="dropdown ">
-              <button type="button" className="dropdown-toggle btn btn--light btn--select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="id_filter_status">
-                {django.gettext('Status')}: {statusNames[this.state.filters.status] || django.gettext('All')}
-                <i className="fa fa-caret-down" aria-hidden="true" />
-              </button>
-              <ul aria-labelledby="id_filter_status" className="dropdown-menu">
-                <li>
-                  <button
-                    type="button"
-                    className="dropdown-item select-item"
-                    value="-1"
-                    onClick={this.onStatusFilterChange.bind(this)}>
-                    {django.gettext('All')}
-                  </button>
-                </li>
-                {
-                  statusNames.map((name, i) => {
-                    return (
-                      <li key={i}>
-                        <button
-                          type="button"
-                          className="dropdown-item select-item"
-                          value={i}
-                          onClick={this.onStatusFilterChange.bind(this)}>
-                          <i className={`select-item-indicator fa fa-${statusIconNames[i]}`} aria-hidden="true" />
-                          {name}
-                        </button>
-                      </li>
-                    )
-                  })
-                }
-              </ul>
-            </div>
-            &nbsp;
-            <div className="dropdown ">
-              <button type="button" className="dropdown-toggle btn btn--light btn--select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="id_filter_participation">
-                {django.gettext('Participation')}: {participationNames[this.state.filters.participation] || django.gettext('All')}
-                <i className="fa fa-caret-down" aria-hidden="true" />
-              </button>
-              <ul aria-labelledby="id_filter_participation" className="dropdown-menu">
-                <li>
-                  <button
-                    type="button"
-                    className="dropdown-item select-item"
-                    value="-1"
-                    onClick={this.onParticipationFilterChange.bind(this)}>
-                    {django.gettext('All')}
-                  </button>
-                </li>
-                {
-                  participationNames.map((name, i) => {
-                    return (
-                      <li key={i}>
-                        <button
-                          type="button"
-                          className="dropdown-item select-item"
-                          value={i}
-                          onClick={this.onParticipationFilterChange.bind(this)}>
-                          {name}
-                        </button>
-                      </li>
-                    )
-                  })
-                }
-              </ul>
+        <div className="control-bar__top-overlap">
+          <div className="l-wrapper">
+            <div className="control-bar" role="group" aria-label={django.gettext('Filter bar')}>
+              <form onSubmit={this.onFreeTextFilterSubmit.bind(this)} data-embed-target="ignore" className="input-group form-group u-inline-flex">
+                <input
+                  onChange={this.onFreeTextFilterChange.bind(this)}
+                  className="input-group__input"
+                  name="search"
+                  type="search"
+                  placeholder={django.gettext('Search')} />
+                <button className="input-group__after btn btn--light" type="submit" title={django.gettext('Search')}>
+                  <i className="fa fa-search" aria-label={django.gettext('Search')} />
+                </button>
+              </form>
+              &nbsp;
+              <div className="dropdown ">
+                <button type="button" className="dropdown-toggle btn btn--light btn--select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="id_filter_status">
+                  {django.gettext('Status')}: {statusNames[this.state.filters.status] || django.gettext('All')}
+                  <i className="fa fa-caret-down" aria-hidden="true" />
+                </button>
+                <ul aria-labelledby="id_filter_status" className="dropdown-menu">
+                  <li>
+                    <button
+                      type="button"
+                      className="dropdown-item select-item"
+                      value="-1"
+                      onClick={this.onStatusFilterChange.bind(this)}>
+                      {django.gettext('All')}
+                    </button>
+                  </li>
+                  {
+                    statusNames.map((name, i) => {
+                      return (
+                        <li key={i}>
+                          <button
+                            type="button"
+                            className="dropdown-item select-item"
+                            value={i}
+                            onClick={this.onStatusFilterChange.bind(this)}>
+                            <i className={`select-item-indicator fa fa-${statusIconNames[i]}`} aria-hidden="true" />
+                            {name}
+                          </button>
+                        </li>
+                      )
+                    })
+                  }
+                </ul>
+              </div>
+              &nbsp;
+              <div className="dropdown ">
+                <button type="button" className="dropdown-toggle btn btn--light btn--select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="id_filter_participation">
+                  {django.gettext('Participation')}: {participationNames[this.state.filters.participation] || django.gettext('All')}
+                  <i className="fa fa-caret-down" aria-hidden="true" />
+                </button>
+                <ul aria-labelledby="id_filter_participation" className="dropdown-menu">
+                  <li>
+                    <button
+                      type="button"
+                      className="dropdown-item select-item"
+                      value="-1"
+                      onClick={this.onParticipationFilterChange.bind(this)}>
+                      {django.gettext('All')}
+                    </button>
+                  </li>
+                  {
+                    participationNames.map((name, i) => {
+                      return (
+                        <li key={i}>
+                          <button
+                            type="button"
+                            className="dropdown-item select-item"
+                            value={i}
+                            onClick={this.onParticipationFilterChange.bind(this)}>
+                            {name}
+                          </button>
+                        </li>
+                      )
+                    })
+                  }
+                </ul>
+              </div>
             </div>
           </div>
         </div>

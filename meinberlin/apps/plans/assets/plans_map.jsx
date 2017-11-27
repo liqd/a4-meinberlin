@@ -6,6 +6,8 @@ const update = require('immutability-helper')
 const $ = require('jquery')
 const L = require('leaflet')
 
+const {DropdownButton, MenuItem} = require('../../contrib/assets/DropdownButton')
+
 const statusNames = [
   django.gettext('Idea'),
   django.gettext('Planning'),
@@ -89,10 +91,10 @@ class PlansMap extends React.Component {
     })
   }
 
-  onParticipationFilterChange (event) {
+  onParticipationFilterChange (eventKey, event) {
     this.setState({
       filters: update(this.state.filters, {
-        $merge: {participation: parseInt(event.target.value, 10)}
+        $merge: {participation: eventKey}
       })
     })
   }
@@ -321,10 +323,14 @@ class PlansMap extends React.Component {
               </ul>
             </div>
             &nbsp;
-            <select onChange={this.onParticipationFilterChange.bind(this)} className="u-inline btn btn--light">
-              <option value="-1">{django.gettext('Participation')}: {django.gettext('All')}</option>
-              <option value="1">{django.gettext('Participation')}: {django.gettext('Planned')}</option>
-            </select>
+            <DropdownButton
+              id="id_participation-filter"
+              title={django.gettext('Participation')}
+              buttonClassName="btn--light"
+              onSelect={this.onParticipationFilterChange.bind(this)} >
+              <MenuItem eventKey={-1}>{django.gettext('All')}</MenuItem>
+              <MenuItem eventKey={1}>{django.gettext('Planned')}</MenuItem>
+            </DropdownButton>
           </div>
         </div>
 

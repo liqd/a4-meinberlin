@@ -39,6 +39,14 @@
     }
 }
 
+@media (max-width: $breakpoint) {
+    .tab {
+        margin-right: 0;
+        padding-right: 0.4em;
+        padding-left: 0.4em;
+    }
+}
+
 .tablist--right {
     text-align: right;
 }
@@ -66,4 +74,18 @@
 
 .tablist__left {
     float: left;
+}
+
+@media (max-width: $breakpoint) {
+    .tablist__right {
+        margin-bottom: 1em;
+        float: none;
+        text-align: right;
+    }
+
+    .tablist__left {
+        margin-bottom: 1em;
+        float: none;
+        text-align: left;
+    }
 }

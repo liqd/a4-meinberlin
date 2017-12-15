@@ -39,6 +39,14 @@
     }
 }
 
+@media (max-width: $breakpoint) {
+    .tab {
+        margin-right: 0;
+        padding-right: 0.4em;
+        padding-left: 0.4em;
+    }
+}
+
 .tablist--right {
     text-align: right;
 }

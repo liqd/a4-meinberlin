@@ -67,3 +67,11 @@
 .tablist__left {
     float: left;
 }
+
+@media (max-width: $breakpoint) {
+    .tablist__right {
+        margin-bottom: 1em;
+        float: none;
+        text-align: right;
+    }
+}

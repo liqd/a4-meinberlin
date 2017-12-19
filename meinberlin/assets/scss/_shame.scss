@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 // See https://csswizardry.com/2013/04/shame-css/ about this file
 
 // CKEditor applies `box-sizing: content-box` everywhere. The outer element has
@@ -33,6 +34,15 @@ input[type="search"] {
     @extend .btn--small;
 }
 
+.comment .dropdown-toggle,
+.comment .navbar > .btn {
+    @extend %button-base;
+    @extend .btn--light;
+    @extend .btn--small;
+    vertical-align: baseline;
+    line-height: inherit;
+}
+
 // used by adhocracy4 for the follow button, long-term we'd like
 // our own classes.
 .btngroup .btn {
@@ -55,3 +65,5 @@ input[type="search"] {
 .map-list [data-map] {
     min-height: 500px;
 }
+
+/* stylelint-enable no-descending-specificity */

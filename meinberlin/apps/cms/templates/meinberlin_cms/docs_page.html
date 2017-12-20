@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}
@@ -13,7 +13,7 @@
 {% block content %}
     <div class="l-wrapper">
         <div class="l-center-8">
-            <h1>{{ self.title }}</h1>
+            <h1 class="u-first-heading">{{ self.title }}</h1>
 
             {{ self.description|richtext }}
             {% for block in self.body %}

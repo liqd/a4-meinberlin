@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags contrib_tags i18n %}
+
+{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %} &mdash; {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="l-wrapper">
+        <div class="l-center-8">
+            <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+                <ul>
+                    <li>
+                        <a href="{% pageurl self.get_parent %}">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                            {% trans 'Back to index' %}
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="event-detail">
+                <h1 class="event-detail__title">{{ self.title }}</h1>
+                <p class="event-detail__short-description">{{ self.short_description }}</p>
+
+                <dl class="event-detail__data-list">
+                    <dt class="event-detail__data-list__term">{% trans 'When' %}</dt>
+                    <dd class="event-detail__data-list__definition">
+                        <time datetime="{{ self.date|date:'Y-m-d' }}T{{ self.time_start|time:'H:i:s' }}">{{ self.date|date:"SHORT_DATE_FORMAT" }} {{ self.time_start|time:"TIME_FORMAT" }}</time>
+                        -
+                        <time datetime="{{ self.date|date:'Y-m-d' }}T{{ self.time_end|time:'H:i:s' }}">{{ self.time_end|time:"TIME_FORMAT" }}</time>
+                    </dd>
+
+                    <dt class="event-detail__data-list__term">{% trans 'Where' %}</dt>
+                    <dd class="event-detail__data-list__definition">{{ self.place }}</dd>
+
+                    <dt class="event-detail__data-list__term">{% trans 'Contact' %}</dt>
+                    <dd class="event-detail__data-list__definition"><a href="mailto:{{ self.contact }}">{{ self.contact }}</a></dd>
+                </dl>
+
+                <div class="event-detail__description">
+                    {{ self.description|richtext }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

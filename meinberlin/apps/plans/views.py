@@ -2,6 +2,7 @@ import json
 
 from django.conf import settings
 from django.contrib import messages
+from django.http import Http404
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.html import strip_tags
@@ -27,6 +28,13 @@ class PlanDetailView(rules_mixins.PermissionRequiredMixin,
         context = super().get_context_data(**kwargs)
         context['berlin_polygon'] = settings.BERLIN_POLYGON
         return context
+
+    def get_object(self, queryset=None):
+        try:
+            return Plan.objects.get_by_reference_number(
+                self.kwargs.get('reference_number'))
+        except Plan.DoesNotExist:
+            raise Http404('No plan matches the given query.')
 
 
 class PlanListView(rules_mixins.PermissionRequiredMixin,

@@ -7,6 +7,8 @@ from django.db import models
 from adhocracy4.models import base
 from adhocracy4.projects.models import Project
 
+from . import emails
+
 
 class Invite(base.TimeStampedModel):
     creator = models.ForeignKey(
@@ -31,7 +33,16 @@ class Invite(base.TimeStampedModel):
         self.delete()
 
 
+class ParticipantInviteManager(models.Manager):
+    def invite(self, creator, project, email):
+        invite = super().create(project=project, creator=creator, email=email)
+        emails.InviteParticipantEmail.send(invite)
+        return invite
+
+
 class ParticipantInvite(Invite):
+
+    objects = ParticipantInviteManager()
 
     def __str__(self):
         return 'Participation invite to {s.project} for {s.email}'.format(
@@ -46,7 +57,16 @@ class ParticipantInvite(Invite):
         super().accept(user)
 
 
+class ModeratorInviteManager(models.Manager):
+    def invite(self, creator, project, email):
+        invite = super().create(project=project, creator=creator, email=email)
+        emails.InviteModeratorEmail.send(invite)
+        return invite
+
+
 class ModeratorInvite(Invite):
+
+    objects = ModeratorInviteManager()
 
     def __str__(self):
         return 'Moderation invite to {s.project} for {s.email}'.format(s=self)

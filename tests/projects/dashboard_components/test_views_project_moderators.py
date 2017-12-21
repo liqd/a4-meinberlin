@@ -3,7 +3,7 @@ import pytest
 from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.dashboard2 import components
 from meinberlin.apps.ideas.phases import CollectFeedbackPhase
-from meinberlin.apps.projects.models import ModeratorInvite
+from meinberlin.apps.projectinvites.models import ModeratorInvite
 from meinberlin.test.helpers import assert_template_response
 from meinberlin.test.helpers import setup_phase
 
@@ -19,7 +19,7 @@ def test_edit_view(client, phase_factory):
     client.login(username=initiator.email, password='password')
     response = client.get(url)
     assert_template_response(
-        response, 'meinberlin_projects/project_moderators.html')
+        response, 'meinberlin_projectinvites/project_moderators.html')
 
     data = {
         'add_users': 'test1@foo.bar,test2@foo.bar',

@@ -44,16 +44,12 @@
         margin-bottom: 0.5em;
     }
 
-    .dropdown {
-        margin-left: 0.5em;
+    .rating {
+        margin-right: 0.5em;
     }
 
-    .dropdown-toggle {
-        @extend %button-base;
-        @extend .btn--light;
-        @extend .btn--small;
-        vertical-align: baseline;
-        line-height: inherit;
+    .dropdown {
+        margin-left: 0.5em;
     }
 
     .navbar-right {

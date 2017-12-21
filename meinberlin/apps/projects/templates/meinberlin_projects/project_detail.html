@@ -111,6 +111,32 @@
             <div class="l-wrapper">
                 <div class="l-center-8">
                     {{ project.information | richtext }}
+
+                {% if project.projectinformationsection_set.exists %}
+                    {% for section in project.projectinformationsection_set.all %}
+                        <div class="docs-block">
+                            <a
+                                id="project-information-section-{{ section.pk }}-title"
+                                href="#project-information-section-{{ section.pk }}-body"
+                                class="docs-block__title collapsed"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                data-toggle="collapse">
+                                <h2>
+                                    {{ section.title }}
+                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                </h2>
+                            </a>
+
+                            <div
+                                class="docs-block__body collapse"
+                                id="project-information-section-{{ section.pk }}-body"
+                                aria-labelledby="project-information-section-{{ section.pk }}-title">
+                                {{ section.body|richtext }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
                 </div>
             </div>
         </div>

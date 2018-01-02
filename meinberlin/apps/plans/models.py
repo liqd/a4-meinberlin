@@ -1,5 +1,4 @@
 from autoslug import AutoSlugField
-from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
@@ -9,6 +8,8 @@ from adhocracy4 import transforms
 from adhocracy4.maps import fields as map_fields
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.projects import models as project_models
+from meinberlin.apps.ckeditor_collapsible.fields import \
+    RichTextCollapsibleField
 
 STATUS_TODO = 0
 STATUS_PLANNING = 1
@@ -44,7 +45,8 @@ class Plan(UserGeneratedContentModel):
     contact = models.TextField(max_length=255, verbose_name=_('Contact'))
     cost = models.PositiveIntegerField(blank=True, null=True,
                                        verbose_name=_('Cost'))
-    description = RichTextField(verbose_name=_('Description'), blank=True)
+    description = RichTextCollapsibleField(verbose_name=_('Description'),
+                                           blank=True)
     category = models.CharField(max_length=255, verbose_name=_('Type of plan'))
     status = models.SmallIntegerField(choices=(
         (STATUS_TODO, _('Idea')),

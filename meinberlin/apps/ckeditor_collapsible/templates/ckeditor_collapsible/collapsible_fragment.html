@@ -1,10 +1,10 @@
 {% load wagtailcore_tags %}
 
-<div class="docs-block">
+<div class="accordion">
     <a
-        id="docs-block-{{ id }}-title"
-        href="#docs-block-{{ id }}-body"
-        class="docs-block__title collapsed"
+        id="accordion-{{ id }}-title"
+        href="#accordion-{{ id }}-body"
+        class="accordion__title collapsed"
         aria-haspopup="true"
         aria-expanded="false"
         data-toggle="collapse">
@@ -15,9 +15,9 @@
     </a>
 
     <div
-        class="docs-block__body collapse"
-        id="docs-block-{{ id }}-body"
-        aria-labelledby="docs-block-{{ id }}-title">
+        class="accordion__body collapse"
+        id="accordion-{{ id }}-body"
+        aria-labelledby="accordion-{{ id }}-title">
         {{ body|richtext }}
     </div>
 </div>

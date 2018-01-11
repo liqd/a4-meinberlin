@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %} &mdash; {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="l-wrapper">
+        <div class="l-center-8">
+            <h1 class="u-first-heading">{{ self.title }}</h1>
+
+            <ul class="u-list-reset">
+                {% for event in paginator_page.object_list.reverse %}
+                    <li class="calendar-entry">
+                        <time
+                            class="calendar-entry__date"
+                            datetime="{{ event.date|date:'Y-m-d' }}"
+                        >{{ event.date|date:"SHORT_DATE_FORMAT" }}</time>
+                        <h2 class="calendar-entry__title">
+                            <a href="{% pageurl event %}">{{ event.title }}</a>
+                        </h2>
+                        <p class="calendar-entry__description">{{ event.short_description }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% include "meinberlin_contrib/includes/pagination.html" with page_obj=paginator_page %}
+        </div>
+    </div>
+{% endblock %}

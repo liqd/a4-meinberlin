@@ -1,0 +1,60 @@
+.event-detail__title {
+    font-size: $font-size-xl;
+}
+
+.event-detail__data-list {
+    @include clearfix;
+    border-bottom: 1px solid $border-color;
+    margin-bottom: 1.5 * $spacer;
+    margin-top: 1.5 * $spacer;
+}
+
+.event-detail__data-list__term,
+.event-detail__data-list__definition {
+    border-top: 1px solid $border-color;
+    padding: 0.75 * $padding 0;
+}
+
+.event-detail__data-list__term {
+    margin: 0;
+
+    @media (min-width: $breakpoint) {
+        float: left;
+        width: 25%;
+    }
+}
+
+.event-detail__data-list__definition {
+    margin: 0;
+
+    @media (min-width: $breakpoint) {
+        width: 75%;
+        overflow: hidden;
+
+        text-align: right;
+    }
+}
+
+.calendar-entry {
+    border-top: 1px solid $border-color;
+    padding: $spacer 0 0;
+
+    &:last-of-type {
+        border-bottom: 1px solid $border-color;
+        margin-bottom: 1.5em;
+    }
+}
+
+.calendar-entry__title {
+    font-size: $font-size-lg;
+    margin-top: 0;
+
+    a {
+        color: inherit;
+    }
+}
+
+.calendar-entry__date {
+    @include secondary-text;
+    float: right;
+}

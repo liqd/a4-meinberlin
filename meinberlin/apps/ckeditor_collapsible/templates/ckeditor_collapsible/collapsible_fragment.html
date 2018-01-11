@@ -1,0 +1,23 @@
+{% load wagtailcore_tags %}
+
+<div class="accordion">
+    <a
+        id="accordion-{{ id }}-title"
+        href="#accordion-{{ id }}-body"
+        class="accordion__title collapsed"
+        aria-haspopup="true"
+        aria-expanded="false"
+        data-toggle="collapse">
+        <h2>
+            {{ title|safe }}
+            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+        </h2>
+    </a>
+
+    <div
+        class="accordion__body collapse"
+        id="accordion-{{ id }}-body"
+        aria-labelledby="accordion-{{ id }}-title">
+        {{ body|richtext }}
+    </div>
+</div>

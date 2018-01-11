@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n static rules wagtailcore_tags maps_tags %}
+{% load i18n static rules wagtailcore_tags maps_tags ckeditor_collapsible_tags %}
 
 {% block title %}{{ object.title }} &mdash; {{ block.super }}{% endblock %}
 
@@ -43,7 +43,7 @@
 
                 <div class="item-detail__content">
                     {% if object.description %}
-                        {{ object.description|richtext }}
+                        {{ object.description|transform_collapsibles }}
                     {% endif %}
 
                     <dl>

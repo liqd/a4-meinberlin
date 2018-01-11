@@ -82,6 +82,7 @@ INSTALLED_APPS = (
     'meinberlin.apps.notifications.apps.Config',
     'meinberlin.apps.organisations.apps.Config',
     'meinberlin.apps.users.apps.Config',
+    'meinberlin.apps.ckeditor_collapsible',
 
     # General apps containing views
     'meinberlin.apps.account.apps.Config',
@@ -279,8 +280,9 @@ CKEDITOR_CONFIGS = {
         'toolbar_Custom': [
             ['Bold', 'Italic', 'Underline'],
             ['NumberedList', 'BulletedList'],
-            ['Link', 'Unlink']
-        ]
+            ['Link', 'Unlink'],
+            ['CollapsibleItem'],
+        ],
     },
     'image-editor': {
         'width': '100%',
@@ -297,9 +299,10 @@ CKEDITOR_CONFIGS = {
 
 BLEACH_LIST = {
     'default' : {
-        'tags': ['p','strong','em','u','ol','li','ul','a'],
+        'tags': ['p','strong','em','u','ol','li','ul','a', 'div'],
         'attributes': {
             'a': ['href', 'rel'],
+            'div': ['class'],
         },
     },
     'image-editor': {

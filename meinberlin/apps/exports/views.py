@@ -1,4 +1,5 @@
 import csv
+import html
 from collections import OrderedDict
 
 import xlsxwriter
@@ -192,7 +193,8 @@ class ItemExportView(ProjectContextMixin,
         return self.request.build_absolute_uri(item.get_absolute_url())
 
     def get_description_data(self, item):
-        return strip_tags(item.description).strip()
+        text = strip_tags(item.description).strip()
+        return html.unescape(text)
 
     def get_creator_data(self, item):
         return item.creator.username

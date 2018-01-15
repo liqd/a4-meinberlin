@@ -1,0 +1,15 @@
+{{ form.management_form }}
+{% for project_section_form in form %}
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=project_section_form.title %}
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=project_section_form.body %}
+
+    {% if form.can_delete %}
+       {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=project_section_form.DELETE %}
+    {% endif %}
+
+    {% for hidden in project_section_form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+{% endfor %}

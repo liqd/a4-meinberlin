@@ -1,12 +1,15 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+from django.forms import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.projects.models import Project
 from meinberlin.apps.users import fields as user_fields
 
 from .models import ModeratorInvite
 from .models import ParticipantInvite
+from .models import ProjectInformationSection
 
 User = get_user_model()
 
@@ -68,3 +71,20 @@ class InviteUsersFromEmailForm(forms.Form):
             raise ValidationError(
                 _('Please enter email addresses or upload a file'))
         return cleaned_data
+
+
+class ProjectInformationSectionForm(forms.ModelForm):
+
+    class Meta:
+        model = ProjectInformationSection
+        fields = ['title', 'body']
+
+
+ProjectInformationSectionFormSet = inlineformset_factory(
+    Project,
+    ProjectInformationSection,
+    form=ProjectInformationSectionForm,
+    extra=1,
+    can_delete=True,
+    can_order=True,
+)

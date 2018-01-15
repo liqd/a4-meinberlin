@@ -1,9 +1,12 @@
 import uuid
 
+from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4 import transforms
 from adhocracy4.models import base
 from adhocracy4.projects.models import Project
 
@@ -78,3 +81,33 @@ class ModeratorInvite(Invite):
     def accept(self, user):
         self.project.moderators.add(user)
         super().accept(user)
+
+
+class ProjectInformationSection(models.Model):
+    project = models.ForeignKey(
+        Project,
+        on_delete=models.CASCADE
+    )
+
+    title = models.CharField(
+        max_length=255,
+        verbose_name=_('Title of the section'),
+        help_text=_('This title will appear as the heading of the section. '
+                    'It will always be visible and opens the accordion text '
+                    'on click.')
+    )
+    body = RichTextField()
+    weight = models.SmallIntegerField(default=0)
+
+    def save(self, *args, **kwargs):
+        self.body = transforms.clean_html_field(self.body)
+        super().save(*args, **kwargs)
+
+    class Meta:
+        ordering = ['weight', 'pk']
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return self.project.get_absolute_url()

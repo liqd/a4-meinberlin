@@ -1,3 +1,5 @@
+import html
+
 from django.utils import timezone
 from django.utils.html import strip_tags
 from django.utils.translation import ugettext_lazy as _
@@ -40,3 +42,7 @@ class DocumentExportView(ProjectMixin,
 
         text = strip_tags(paragraph.text).strip()
         return text[0:self.PARAGRAPH_TEXT_LIMIT] + ' ...'
+
+    def unescape_and_strip_html(self, text):
+        text = html.unescape(text)
+        return strip_tags(text).strip()

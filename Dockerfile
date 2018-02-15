@@ -76,9 +76,9 @@ RUN apk add --no-cache \
   libstdc++
 
 EXPOSE 6000
-ENTRYPOINT ["scripts/run_after_migrations.sh", \
-            "gunicorn", \
-              "--env", "DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}", \
-              "--bind", "0.0.0.0:6000", \
-              "--workers", "2", \
-              "${WSGI_APP}"]
+ENTRYPOINT python manage.py migrate -v0 && \
+           exec gunicorn \
+               --env DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE} \
+               --bind=0.0.0.0:6000 \
+               --workers=2 \
+               ${WSGI_APP}

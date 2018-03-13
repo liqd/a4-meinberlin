@@ -27,7 +27,7 @@
     "postcss-loader": "2.1.0",
     "sass-loader": "6.0.6",
     "style-loader": "0.20.2",
-    "webpack": "3.11.0",
+    "webpack": "4.0.0",
     "webpack-merge": "4.1.1",
     "adhocracy4": "liqd/adhocracy4#627f1b4d243f1a21679685d27106b93c3dbbf1dc",
     "bootstrap": "4.0.0-alpha.6",

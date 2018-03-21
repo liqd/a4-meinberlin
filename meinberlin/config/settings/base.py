@@ -63,11 +63,13 @@ INSTALLED_APPS = (
     'adhocracy4.comments.apps.CommentsConfig',
     'adhocracy4.dashboard.apps.DashboardConfig',
     'adhocracy4.filters.apps.FiltersConfig',
+    'adhocracy4.files.apps.FilesConfig',
     'adhocracy4.follows.apps.FollowsConfig',
     'adhocracy4.forms.apps.FormsConfig',
     'adhocracy4.images.apps.ImagesConfig',
     'adhocracy4.maps.apps.MapsConfig',
     'adhocracy4.modules.apps.ModulesConfig',
+    'adhocracy4.offlineevents.apps.OfflineEventsConfig',
     'adhocracy4.organisations.apps.OrganisationsConfig',
     'adhocracy4.phases.apps.PhasesConfig',
     'adhocracy4.projects.apps.ProjectsConfig',
@@ -93,7 +95,6 @@ INSTALLED_APPS = (
     'meinberlin.apps.exports.apps.Config',
     'meinberlin.apps.initiators.apps.Config',
     'meinberlin.apps.newsletters.apps.Config',
-    'meinberlin.apps.offlineevents.apps.Config',
     'meinberlin.apps.plans.apps.Config',
     'meinberlin.apps.projects.apps.Config',
 
@@ -199,7 +200,9 @@ MEDIA_URL = '/media/'
 IMAGE_ALIASES = {
     '*': {
         'max_size': 5*10**6,
-        'fileformats': ('image/png', 'image/jpeg', 'image/gif')
+        'fileformats': (('.png', 'image/png'),
+                        ('.jpeg', 'image/jpeg'),
+                        ('.gif', 'image/gif'))
     },
     'heroimage': {'min_resolution': (1500, 500)},
     'tileimage': {'min_resolution': (500, 300)},
@@ -213,6 +216,26 @@ THUMBNAIL_ALIASES = {
         'heroimage': {'size': (1500, 500)},
         'project_thumbnail': {'size': (520, 330)},
         'logo': {'size': (160, 160), 'background': 'white'},
+    }
+}
+
+FILE_ALIASES = {
+    '*': {
+        'max_size': 5 * 10 ** 6,
+        'fileformats': (
+            ('.png', 'image/png'),
+            ('.jpeg', 'image/jpeg'),
+            ('.pdf', 'application/pdf'),
+            ('.doc', 'application/msword'),
+            ('.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'),
+            ('.txt', 'text/plain'),
+            ('.md', 'text/markdown'),
+            ('.xls', 'application/msexcel'),
+            ('.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'),
+            ('.ppt', 'application/mspowerpoint')
+        )
+    },
+    'offlineevents': {
     }
 }
 

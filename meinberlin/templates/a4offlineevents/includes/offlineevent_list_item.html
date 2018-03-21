@@ -9,7 +9,7 @@
         <div class="lr-bar__right">
             <div class="btn-group">
                 {% spaceless %}
-                    <a href="{% url 'meinberlin_offlineevents:offlineevent-detail' slug=object.slug %}"
+                    <a href="{{ object.get_absolute_url }}"
                        class="btn btn--small btn--light">
                         <i class="fa fa-eye" aria-hidden="true"></i>
                         {% trans 'View' %}

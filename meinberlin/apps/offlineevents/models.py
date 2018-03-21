@@ -6,7 +6,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4 import transforms
 from adhocracy4.models.base import UserGeneratedContentModel
-from adhocracy4.projects import models as project_models
 
 
 class OfflineEvent(UserGeneratedContentModel):
@@ -16,7 +15,7 @@ class OfflineEvent(UserGeneratedContentModel):
     description = RichTextUploadingField(
         config_name='image-editor', verbose_name=_('Description'))
     project = models.ForeignKey(
-        project_models.Project, on_delete=models.CASCADE)
+        'a4projects.Project', on_delete=models.CASCADE, related_name='+')
 
     class Meta:
         ordering = ['-date']

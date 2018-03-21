@@ -7,7 +7,7 @@
     <h1 class="u-first-heading">{% trans 'Add a new offline event'%}</h1>
 
     {% url 'a4dashboard:offlineevent-list' project_slug=project.slug as cancel %}
-    {% include "meinberlin_offlineevents/includes/offlineevent_form.html" with cancel=cancel %}
+    {% include "a4offlineevents/includes/offlineevent_form.html" with cancel=cancel %}
 </div>
 {% endblock %}
 

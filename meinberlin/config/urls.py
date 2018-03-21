@@ -60,6 +60,7 @@ urlpatterns = [
     url(r'^documents/', include('wagtail.wagtaildocs.urls')),
     url(r'^projects/', include('meinberlin.apps.projects.urls')),
     url(r'^modules/', include('adhocracy4.modules.urls')),
+    url(r'^offlineevents/', include('adhocracy4.offlineevents.urls')),
 
     url(r'^ideas/', include('meinberlin.apps.ideas.urls',
                             namespace='meinberlin_ideas')),
@@ -77,8 +78,6 @@ urlpatterns = [
                                 namespace='meinberlin_topicprio')),
     url(r'^maptopicprio/', include('meinberlin.apps.maptopicprio.urls',
                                    namespace='meinberlin_maptopicprio')),
-    url(r'^offlineevents/', include('meinberlin.apps.offlineevents.urls',
-                                    namespace='meinberlin_offlineevents')),
     url(r'^newsletters/', include('meinberlin.apps.newsletters.urls',
                                   namespace='meinberlin_newsletters')),
     url(r'^vorhaben/', include('meinberlin.apps.plans.urls',

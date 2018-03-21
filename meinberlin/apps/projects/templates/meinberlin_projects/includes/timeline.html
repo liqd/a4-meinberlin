@@ -1,6 +1,6 @@
 {% load contrib_tags i18n offlineevent_tags static %}
 
-{% offlineevents_and_modules_sorted project as modules_and_events %}
+{% with modules_and_events=project.sorted_modules_with_offlineevents %}
 {% with modules_and_events|length as module_event_count %}
 
 {% if module_event_count > 1 %}
@@ -105,4 +105,5 @@
     </div>
 {% endif %}
 
+{% endwith %}
 {% endwith %}

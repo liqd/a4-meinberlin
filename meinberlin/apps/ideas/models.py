@@ -12,6 +12,7 @@ from adhocracy4.images.fields import ConfiguredImageField
 from adhocracy4.models import query
 from adhocracy4.modules import models as module_models
 from adhocracy4.ratings import models as rating_models
+from meinberlin.apps.labels.models import Label
 from meinberlin.apps.moderatorfeedback.models import Moderateable
 
 
@@ -41,6 +42,10 @@ class AbstractIdea(module_models.Item, Moderateable):
                                related_query_name='idea',
                                object_id_field='object_pk')
     category = CategoryField()
+    label = models.ManyToManyField(Label,
+                                   related_name=('%(app_label)s_'
+                                                 '%(class)s_label')
+                                   )
 
     objects = IdeaQuerySet.as_manager()
 

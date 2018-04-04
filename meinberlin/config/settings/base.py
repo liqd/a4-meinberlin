@@ -92,6 +92,7 @@ INSTALLED_APPS = (
     'meinberlin.apps.embed.apps.Config',
     'meinberlin.apps.exports.apps.Config',
     'meinberlin.apps.initiators.apps.Config',
+    'meinberlin.apps.labels.apps.Config',
     'meinberlin.apps.newsletters.apps.Config',
     'meinberlin.apps.offlineevents.apps.Config',
     'meinberlin.apps.plans.apps.Config',

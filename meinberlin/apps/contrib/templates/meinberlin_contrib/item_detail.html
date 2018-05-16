@@ -1,7 +1,9 @@
 {% extends "base.html" %}
-{% load i18n module_tags rules react_comments react_ratings react_reports wagtailcore_tags item_tags contrib_tags %}
+{% load i18n module_tags rules react_comments react_ratings react_reports wagtailcore_tags item_tags contrib_tags thumbnail moderatorremark_tags %}
 
 {% block title %}{{object.name}} &mdash; {{ block.super }}{% endblock %}
+
+
 {% block content %}
 <div class="l-wrapper">
     <div class="l-center-6">
@@ -20,21 +22,40 @@
             <h1 class="item-detail__title">{{ object.name }}</h1>
 
             <div class="item-detail__labels">
+                {% if object.moderator_feedback %}
+                    <span class="label label--big label--{{ object.moderator_feedback|classify }}">
+                        {{ object.get_moderator_feedback_display }}
+                    </span>
+                {% endif %}
                 {% if object.category %}
                     <div class="label label--big">{{ object.category }}</div>
                 {% endif %}
                 {% block additional_labels %}{% endblock %}
+                {% if object.labels %}
+                    {% for label in object.labels.all %}
+                        <div class="label label--big">{{ label.name }}</div>
+                    {% endfor %}
+                {% endif %}
             </div>
 
             <div class="item-detail__content">
-                {{ object.description | richtext }}
+                <div class="item-detail__basic-content">
+                    <img class="item-detail__image" src="{% thumbnail object.image 'item_image' %}" alt="">
+                    {{ object.description | richtext }}
+                </div>
 
                 {% block additional_content %}{% endblock %}
             </div>
 
-            <div class="item-detail__meta">
-                <strong class="item-detail__creator">{{ object.creator.username }}</strong>
-                {% html_date object.created %}
+            <div class="item-detail__meta lr-bar">
+                <div class="lr-bar__left">
+                    <strong class="item-detail__creator">{{ object.creator.username }}</strong>
+                    {% html_date object.created %}
+                </div>
+                <div class="lr-bar__right">
+                    <strong>{% trans 'Reference No.' %}:</strong>
+                    {{ object.reference_number }}
+                </div>
             </div>
 
             <div class="item-detail__actions lr-bar">
@@ -46,9 +67,18 @@
 
                 {% get_item_change_permission object as change_perm %}
                 {% has_perm change_perm request.user object as user_may_change %}
+                {% get_item_permission object 'moderate' as moderate_perm %}
+                {% has_perm moderate_perm request.user object as is_moderator %}
+
+
+                <div class="lr-bar__right">
+                {% if is_moderator %}
+                    {% popover_remark object %}
+                {% endif %}
 
                 {% if request.user.is_authenticated %}
-                    <div class="dropdown lr-bar__right">
+
+                    <div class="dropdown dropdown--right">
                         <button
                                 title="{% trans 'Actions' %}"
                                 type="button"
@@ -67,17 +97,43 @@
                             {% get_item_delete_url object as delete_url %}
                             <a class="dropdown-item" href="{{ delete_url }}">{% trans 'Delete' %}</a>
                             {% endif %}
+
+                            {% get_item_url object 'moderate' False as moderate_url %}
+                            {% if is_moderator and moderate_url %}
+                                <li>
+                                    <a class="dropdown-item" href="{{ moderate_url }}">{% trans 'Moderate' %}</a>
+                                </li>
+                            {% endif %}
+
                             {% block dropdown_items %}{% endblock %}
                             {% trans 'Report' as report_text %}
                             {% react_reports object text=report_text class='dropdown-item' %}
                         </div>
                     </div>
                 {% endif %}
+                </div>
             </div>
         </div>
     </div>
 
-    {% block moderator_statement %}{% endblock %}
+    {% block moderator_statement %}
+        {% if object.moderator_statement.statement %}
+            <div class="l-center-8">
+                <div class="moderator-statement">
+                    <h2 class="moderator-statement__title">{% trans 'Official Statement' %}</h2>
+                    <div class="moderator-statement__subtitle">
+                        <strong class="moderator-statement__organisation">
+                            {{ object.module.project.organisation.name }}
+                        </strong>
+                        {% html_date object.moderator_statement.created class='moderator-statement__date' %}
+                    </div>
+                    <div class="moderator-statement__body">
+                        {{ object.moderator_statement.statement | safe }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endblock %}
 
     <div class="l-center-6">
         {% react_comments object %}

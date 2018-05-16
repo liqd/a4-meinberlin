@@ -103,6 +103,8 @@ $circle-size: 0.8em;
     }
 
     .timeline__button:after {
+        z-index: auto;
+
         top: auto;
         margin-top: 0;
 
@@ -118,6 +120,18 @@ $circle-size: 0.8em;
         right: 0;
         text-align: center;
     }
+}
+
+.timeline-detail {
+    margin-bottom: $spacer;
+}
+
+.timeline-detail__title {
+    font-size: $font-size-xl;
+}
+
+.timeline-detail__meta {
+    padding-bottom: 0.6em;
 }
 
 .phase-info__item {

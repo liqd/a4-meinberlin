@@ -16,7 +16,7 @@
     // the current dropdown-toggle should be above the dropdown-menu shadow
     .dropdown.show & {
         position: relative;
-        z-index: 2;
+        z-index: 3;
     }
 
     i {
@@ -26,6 +26,10 @@
     .fa-ellipsis-h {
         vertical-align: middle;
     }
+
+    .dropdown-item__icon {
+        display: none;
+    }
 }
 
 .dropdown-menu {
@@ -34,10 +38,11 @@
     position: absolute;
     left: 0;
     min-width: 100%;
+    width: max-content;
     max-width: none;
     padding: 0;
     margin: 0;
-    z-index: 1;
+    z-index: 2;
     background-color: $body-bg;
     color: contrast-color($body-bg);
     border: 1px solid $text-color;
@@ -84,6 +89,14 @@
 
     .dropdown.show & {
         display: block;
+    }
+
+    img {
+        display: inline-block;
+        height: 1.6em;
+        width: auto;
+        vertical-align: middle;
+        margin-right: 0.6em;
     }
 
     @media print {

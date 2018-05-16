@@ -34,17 +34,17 @@
 </nav>
 {% endif %}
 
-{% if not object|is_offlineevent %}
+{% if not object|is_offlineevent and not object|has_activity %}
     <div class="l-center-6">
-        <div class="item-detail">
+        <div class="timeline-detail">
             {% if module %}
                 {% if module_event_count > 1 %}
-                    <h2 class="item-detail__title">
+                    <h2 class="timeline-detail__title">
                         {{ module.name }}
                     </h2>
                 {% endif %}
                 {% if not module.active_phase %}
-                    <div class="item-detail__meta">
+                    <div class="timeline-detail__meta">
                         <strong>
                             {% trans 'Participation is not possible at the moment.' %}
                             {% if not module.past_phases %}
@@ -61,14 +61,15 @@
                     </div>
                 {% endif %}
                 {% if module_event_count > 1 and  module.description %}
-                    <div class="item-detail__meta">
+                    <div class="timeline-detail__meta">
                         {{ module.description|linebreaksbr }}
                     </div>
                 {% endif %}
 
-                <div class="phase-info collapse" id="phase-overview">
+                {% with phase_count=module.phases.count %}
+                <div class="phase-info">
                     {% for phase in module.phases %}{# FIXME: not ordered by start_date but by weight #}
-                        <div class="phase-info__item">
+                        <div class="phase-info__item {% if phase_count == 1 %} u-no-border {% endif %}">
                             <div class="phase-info__item__title{% if phase == module.active_phase %} lr-bar{% endif %}">
                                 {% if phase == module.active_phase %}
                                     <span class="lr-bar__left">{{ phase.name }}</span>
@@ -87,13 +88,10 @@
                         </div>
                     {% endfor %}
                 </div>
+            {% endwith %}
 
-                <button class="btn btn--link" type="button" data-toggle="collapse" data-target="#phase-overview" aria-expanded="false" aria-controls="phase-overview">
-                    <span class="u-if-collapsed">{% trans 'Show phase overview' %}</span>
-                    <span class="u-if-not-collapsed">{% trans 'Hide phase overview' %}</span>
-                </button>
             {% else %}
-                <div class="item-detail__meta">
+                <div class="timeline-detail__meta">
                     <strong>
                         {% trans 'Participation is not possible at the moment.' %}
                         {% html_date project.future_phases.first.start_date 'DATE_FORMAT' as start_date %}

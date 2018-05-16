@@ -16,6 +16,7 @@ $bg-secondary: #f6f6f6 !default;
 $bg-tertiary: #e6e6e6 !default;
 $text-color: #333 !default;
 $text-color-inverted: $body-bg !default;
+$text-color-gray: #666;
 $shadow: rgba(#000, 0.25) !default;
 
 $print-black: #000 !default;
@@ -42,6 +43,7 @@ $font-size-lg: 1.25rem !default;
 $font-size-sm: 0.8rem !default;
 $font-size-xs: 0.64rem !default;
 
+$breakpoint-xs: 32em !default;
 $breakpoint: 50em !default;
 $breakpoint-md: 64em !default;
 $wrapper-width: 81rem !default;
@@ -55,3 +57,6 @@ $planifolia-contrast-dark-default: $text-color;
 $planifolia-contrast-light-default: $text-color-inverted;
 
 $enable-caret: false;
+
+$idea-remark-bg: #faf5d1 !default;
+$idea-remark-color: #999 !default;

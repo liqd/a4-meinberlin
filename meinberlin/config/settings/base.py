@@ -61,10 +61,12 @@ INSTALLED_APPS = (
     'adhocracy4.categories.apps.CategoriesConfig',
     'adhocracy4.ckeditor.apps.CKEditorConfig',
     'adhocracy4.comments.apps.CommentsConfig',
+    'adhocracy4.dashboard.apps.DashboardConfig',
     'adhocracy4.filters.apps.FiltersConfig',
     'adhocracy4.follows.apps.FollowsConfig',
     'adhocracy4.forms.apps.FormsConfig',
     'adhocracy4.images.apps.ImagesConfig',
+    'adhocracy4.labels.apps.LabelsConfig',
     'adhocracy4.maps.apps.MapsConfig',
     'adhocracy4.modules.apps.ModulesConfig',
     'adhocracy4.organisations.apps.OrganisationsConfig',
@@ -80,6 +82,7 @@ INSTALLED_APPS = (
     'meinberlin.apps.contrib.apps.Config',
     'meinberlin.apps.maps.apps.Config',
     'meinberlin.apps.moderatorfeedback.apps.Config',
+    'meinberlin.apps.moderatorremark.apps.Config',
     'meinberlin.apps.notifications.apps.Config',
     'meinberlin.apps.organisations.apps.Config',
     'meinberlin.apps.users.apps.Config',
@@ -87,7 +90,6 @@ INSTALLED_APPS = (
     # General apps containing views
     'meinberlin.apps.account.apps.Config',
     'meinberlin.apps.adminlog.apps.Config',
-    'meinberlin.apps.dashboard2.apps.Config',
     'meinberlin.apps.dashboard.apps.Config',
     'meinberlin.apps.embed.apps.Config',
     'meinberlin.apps.exports.apps.Config',
@@ -98,6 +100,7 @@ INSTALLED_APPS = (
     'meinberlin.apps.projects.apps.Config',
 
     # Apps defining phases
+    'meinberlin.apps.activities.apps.Config',
     'meinberlin.apps.bplan.apps.Config',
     'meinberlin.apps.budgeting.apps.Config',
     'meinberlin.apps.documents.apps.Config',
@@ -112,6 +115,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE = (
+    'django_cloudflare_push.middleware.push_middleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -120,12 +124,12 @@ MIDDLEWARE = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
 
     'wagtail.wagtailcore.middleware.SiteMiddleware',
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
 
     'meinberlin.apps.embed.middleware.AjaxPathMiddleware',
+    'csp.middleware.CSPMiddleware'
 )
 
 SITE_ID = 1
@@ -172,7 +176,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'de-DE'
 
 TIME_ZONE = 'Europe/Berlin'
 
@@ -205,7 +209,7 @@ IMAGE_ALIASES = {
     'tileimage': {'min_resolution': (500, 300)},
     'logo': {'min_resolution': (200, 50)},
     'avatar': {'min_resolution': (200, 200)},
-    'idea_image': {'min_resolution': (800, 200)},
+    'idea_image': {'min_resolution': (600, 400)},
 }
 
 THUMBNAIL_ALIASES = {
@@ -213,6 +217,8 @@ THUMBNAIL_ALIASES = {
         'heroimage': {'size': (1500, 500)},
         'project_thumbnail': {'size': (520, 330)},
         'logo': {'size': (160, 160), 'background': 'white'},
+        'item_image': {'size': (330, 0), 'crop': 'scale'},
+        'map_thumbnail': {'size': (200, 200), 'crop': 'smart'},
     }
 }
 
@@ -400,12 +406,14 @@ A4_ACTIONABLES = (
 )
 
 A4_AUTO_FOLLOWABLES = (
-    ('a4comments', 'comment'),
-    ('meinberlin_ideas', 'idea'),
-    ('meinberlin_mapideas', 'mapidea'),
-    ('meinberlin_budgeting', 'proposal'),
-    ('meinberlin_kiezkasse', 'proposal'),
-    ('meinberlin_polls', 'vote'),  # TODO: really?
+    # Disabled to keep current behaviour: the auto follow functionality did
+    # not work until 2018/03/21 due to a adhocracy4 bug
+    # ('a4comments', 'comment'),
+    # ('meinberlin_ideas', 'idea'),
+    # ('meinberlin_mapideas', 'mapidea'),
+    # ('meinberlin_budgeting', 'proposal'),
+    # ('meinberlin_kiezkasse', 'proposal'),
+    # ('meinberlin_polls', 'vote'),
 )
 
 A4_CATEGORIZABLE = (
@@ -415,6 +423,33 @@ A4_CATEGORIZABLE = (
     ('meinberlin_kiezkasse', 'proposal'),
     ('meinberlin_topicprio', 'topic'),
     ('meinberlin_maptopicprio', 'maptopic'),
+)
+
+A4_LABELS_ADDABLE = (
+    ('meinberlin_ideas', 'idea'),
+    ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_budgeting', 'proposal'),
+    ('meinberlin_kiezkasse', 'proposal'),
+    ('meinberlin_topicprio', 'topic'),
+    ('meinberlin_maptopicprio', 'maptopic'),
+)
+
+A4_CATEGORY_ICONS = (
+    ('', _('Pin without icon')),
+    ('diamant', _('Diamond')),
+    ('dreieck_oben', _('Triangle up')),
+    ('dreieck_unten', _('Triangle down')),
+    ('ellipse', _('Ellipse')),
+    ('halbkreis', _('Semi circle')),
+    ('hexagon', _('Hexagon')),
+    ('parallelogramm', _('Rhomboid')),
+    ('pentagramm', _('Star')),
+    ('quadrat', _('Square')),
+    ('raute', _('Octothorpe')),
+    ('rechtecke', _('Rectangle')),
+    ('ring', _('Circle')),
+    ('rw_dreieck', _('Right triangle')),
+    ('zickzack', _('Zigzag'))
 )
 
 
@@ -433,3 +468,13 @@ SUPERVISOR_EMAIL = 'berlin-supervisor@liqd.net'
 # The default language is used for emails and strings
 # that are stored translated to the database.
 DEFAULT_LANGUAGE = 'de'
+
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
+CSP_IMG_SRC = ("'self'", "data:", "*.tile.openstreetmap.org", "https://maps.berlinonline.de")
+CSP_CONNECT_SRC = ("'self'", "https://bplan-prod.liqd.net")
+CSP_EXCLUDE_URL_PREFIXES = ("/admin", )
+CSP_REPORT_ONLY = True
+
+SECURE_BROWSER_XSS_FILTER = True
+SESSION_COOKIE_HTTPONLY = True
+SECURE_CONTENT_TYPE_NOSNIFF = True

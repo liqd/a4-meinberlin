@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="l-wrapper">
+    <div class="l-wrapper u-spacer-bottom-double">
         <div class="l-center-6">
             <h1 class="u-first-heading">
                 {% trans 'Plans' %}
@@ -25,6 +25,6 @@
         </div>
     </div>
 
-    <div data-map="plans" data-items="{{ items }}" data-districts="{{ districts }}"  data-district-names="{{ district_names }}" data-attribution="{{ attribution }}" data-baseurl="{{ baseurl }}" data-bounds="{{ bounds }}"></div>
+    <div data-map="plans" data-items="{{ items }}" data-districts="{{ districts }}"  data-district-names="{{ district_names }}" data-attribution="{{ attribution }}" data-baseurl="{{ baseurl }}" data-bounds="{{ bounds }}" data-export-url="{% url 'meinberlin_plans:plan-export' %}"></div>
 
 {% endblock %}

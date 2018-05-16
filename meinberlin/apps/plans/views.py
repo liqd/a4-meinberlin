@@ -5,17 +5,17 @@ from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
 from django.utils import timezone
-from django.utils.html import strip_tags
+from django.utils.translation import ugettext
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
+from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from adhocracy4.exports import mixins as export_mixins
+from adhocracy4.exports import unescape_and_strip_html
 from adhocracy4.exports import views as export_views
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
-from meinberlin.apps.dashboard2 import mixins as a4dashboard_mixins
 from meinberlin.apps.maps.models import MapPreset
-from meinberlin.apps.maps.models import MapPresetCategory
 from meinberlin.apps.plans.forms import PlanForm
 from meinberlin.apps.plans.models import Plan
 
@@ -42,12 +42,42 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
 
     def get_districts(self):
         try:
-            berlin = MapPresetCategory.objects.get(name='Berlin')
-            return MapPreset.objects\
-                .filter(category=berlin)\
-                .exclude(name='Berlin')
+            return MapPreset.objects.filter(
+                category__name='Bezirke - Berlin')
         except ObjectDoesNotExist:
             return []
+
+    def _get_status_string(self, projects):
+
+        future_phase = None
+        for project in projects:
+            phases = project.phases
+            if phases.active_phases():
+                return ugettext('running')
+            if phases.future_phases():
+                date = phases.future_phases().first().start_date
+                if not future_phase:
+                    future_phase = date
+                else:
+                    if date < future_phase:
+                        future_phase = date
+
+        if future_phase:
+            return ugettext('starts at {}').format(future_phase.date())
+
+    def _get_participation_status(self, item):
+        projects = item.projects.all()\
+            .filter(is_draft=False,
+                    is_archived=False,
+                    is_public=True)
+        if not projects:
+            return item.get_participation_display(), False
+        else:
+            status_string = self._get_status_string(projects)
+            if status_string:
+                return status_string, True
+            else:
+                return item.get_participation_display(), False
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -65,21 +95,28 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                        key=lambda x: x.modified or x.created,
                        reverse=True)
 
-        context['items'] = json.dumps([{
-            'title': item.title,
-            'url': item.get_absolute_url(),
-            'organisation': item.organisation.name,
-            'point': item.point,
-            'point_label': item.point_label,
-            'cost': item.cost,
-            'district': item.district.name,
-            'category': item.category,
-            'status': item.status,
-            'status_display': item.get_status_display(),
-            'participation': item.participation,
-            'participation_display': item.get_participation_display(),
-        } for item in items])
+        result = []
 
+        for item in items:
+            participation_string, active = self._get_participation_status(item)
+            result.append({
+                'title': item.title,
+                'url': item.get_absolute_url(),
+                'organisation': item.organisation.name,
+                'point': item.point,
+                'point_label': item.point_label,
+                'cost': item.cost,
+                'district': item.district.name,
+                'category': item.category,
+                'status': item.status,
+                'status_display': item.get_status_display(),
+                'participation_string': participation_string,
+                'participation_active': active,
+                'participation': item.participation,
+                'participation_display': item.get_participation_display(),
+            })
+
+        context['items'] = json.dumps(result)
         context['baseurl'] = settings.A4_MAP_BASEURL
         context['attribution'] = settings.A4_MAP_ATTRIBUTION
         context['bounds'] = json.dumps(settings.A4_MAP_BOUNDING_BOX)
@@ -88,30 +125,63 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
 
 
 class PlanExportView(rules_mixins.PermissionRequiredMixin,
+                     export_mixins.ItemExportWithLinkMixin,
+                     export_mixins.ExportModelFieldsMixin,
                      export_mixins.ItemExportWithLocationMixin,
-                     export_views.ItemExportView):
+                     export_views.BaseExport,
+                     export_views.AbstractXlsxExportView):
 
     permission_required = 'meinberlin_plans.list_plan'
     model = models.Plan
-    fields = ['title', 'organisation', 'project', 'contact', 'cost',
+    fields = ['title', 'organisation', 'contact', 'district', 'cost',
               'description', 'category', 'status', 'participation']
+    html_fields = ['description']
 
-    def get_queryset(self):
+    def get_object_list(self):
         return models.Plan.objects.all()
 
     def get_base_filename(self):
         return 'plans_%s' % timezone.now().strftime('%Y%m%dT%H%M%S')
 
+    def get_virtual_fields(self, virtual):
+        virtual = super().get_virtual_fields(virtual)
+        virtual['projects'] = ugettext('Projects')
+        virtual['projects_links'] = ugettext('Project Links')
+        return virtual
+
     def get_organisation_data(self, item):
         return item.organisation.name
 
-    def get_project_data(self, item):
-        if item.project:
-            return item.project.name
-        return ''
+    def get_district_data(self, item):
+        return item.district.name
 
     def get_contact_data(self, item):
-        return strip_tags(item.contact).strip()
+        return unescape_and_strip_html(item.contact)
+
+    def get_status_data(self, item):
+        return item.get_status_display()
+
+    def get_participation_data(self, item):
+        return item.get_participation_display()
+
+    def get_description_data(self, item):
+        return unescape_and_strip_html(item.description)
+
+    def get_projects_data(self, item):
+        if item.projects.all():
+            return ', \n'.join(
+                [project.name
+                 for project in item.projects.all()]
+            )
+        return ''
+
+    def get_projects_links_data(self, item):
+        if item.projects.all():
+            return str([self.request.build_absolute_uri(
+                        project.get_absolute_url())
+                        for project in item.projects.all()
+                        ])
+        return ''
 
 
 class DashboardPlanListView(a4dashboard_mixins.DashboardBaseMixin,

@@ -3,12 +3,15 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.categories.forms import CategorizableFieldMixin
+from adhocracy4.labels.mixins import LabelsAddableFieldMixin
 from adhocracy4.maps import widgets as maps_widgets
 
 from . import models
 
 
-class MapTopicForm(CategorizableFieldMixin, forms.ModelForm):
+class MapTopicForm(CategorizableFieldMixin,
+                   LabelsAddableFieldMixin,
+                   forms.ModelForm):
 
     description = fields.RichTextUploadingFormField(
         config_name='image-editor', required=True)
@@ -23,7 +26,8 @@ class MapTopicForm(CategorizableFieldMixin, forms.ModelForm):
 
     class Meta:
         model = models.MapTopic
-        fields = ['name', 'description', 'category', 'point', 'point_label']
+        fields = ['name', 'description', 'category',
+                  'labels', 'point', 'point_label']
         labels = {
             'point': _('Locate the place on a map'),
             'point_label': _('Place label'),

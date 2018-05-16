@@ -9,9 +9,9 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
+from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from adhocracy4.follows.models import Follow
 from adhocracy4.rules import mixins as rules_mixins
-from meinberlin.apps.dashboard2 import mixins as a4dashboard_mixins
 from meinberlin.apps.newsletters.forms import NewsletterForm
 
 from . import emails
@@ -66,7 +66,6 @@ class NewsletterCreateView(rules_mixins.PermissionRequiredMixin,
         form.save_m2m()
 
         receivers = int(form.cleaned_data['receivers'])
-        participant_ids = []
 
         if receivers == models.PROJECT:
             participant_ids = Follow.objects.filter(
@@ -88,6 +87,8 @@ class NewsletterCreateView(rules_mixins.PermissionRequiredMixin,
             participant_ids = Organisation.objects.get(
                 pk=organisation.pk).initiators.all()\
                 .values_list('pk', flat=True)
+        else:
+            participant_ids = []
 
         emails.NewsletterEmail.send(instance,
                                     participant_ids=list(participant_ids),

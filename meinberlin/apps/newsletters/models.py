@@ -1,6 +1,7 @@
 import re
 
 from background_task.models_completed import CompletedTask
+from background_task.models import Task
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
 from django.contrib.contenttypes.fields import GenericRelation
@@ -52,7 +53,8 @@ class Newsletter(UserGeneratedContentModel):
                                      null=True, blank=True,
                                      on_delete=models.CASCADE)
 
-    tasks = GenericRelation(CompletedTask, content_type_field='creator_content_type', object_id_field='creator_object_id')
+    completed_tasks = GenericRelation(CompletedTask, content_type_field='creator_content_type', object_id_field='creator_object_id')
+    tasks = GenericRelation(Task, content_type_field='creator_content_type', object_id_field='creator_object_id')
 
     @cached_property
     def body_with_absolute_urls(self):

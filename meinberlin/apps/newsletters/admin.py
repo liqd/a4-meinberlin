@@ -10,23 +10,16 @@ from . import models
 
 @admin.register(models.Newsletter)
 class NewsletterAdmin(admin.ModelAdmin):
-    list_display = ('subject', 'sent', 'project', 'mail_status')
+    list_display = ('subject', 'sent', 'project', 'email_status')
     list_filter = (
         'project__organisation',
         'project__is_archived',
         ProjectAdminFilter
     )
     date_hierarchy = 'sent'
+    readonly_fields = ['email_status']
     
-    #def errors(self, newsletter):
-        #return '<a href="{}?creator_object_id={}">{}/{}</a>'.format(
-                        #reverse('admin:meinberlin_newsletters_newslettertask_changelist'),
-                        #newsletter.id,
-                        #newsletter.completed_tasks.exclude(last_error='').count(),
-                        #newsletter.completed_tasks.count())
-    #errors.allow_tags = True
-
-    def mail_status(self, newsletter):
+    def email_status(self, newsletter):
         queue = newsletter.tasks.count()
         success = newsletter.completed_tasks.filter(last_error='').count()
         errors = newsletter.completed_tasks.exclude(last_error='').count()
@@ -36,11 +29,13 @@ class NewsletterAdmin(admin.ModelAdmin):
             errors=errors,
             url=reverse('admin:meinberlin_newsletters_newslettertask_changelist'),
             newsletter_id=newsletter.id)
-    mail_status.allow_tags = True
+    email_status.allow_tags = True
 
+# Kind of a hack so we can have tasks two times in the admin interface
 class NewsletterTask(CompletedTask):
     class Meta:
         proxy = True
+        verbose_name = 'Newsletter send Email'
 
 @admin.register(NewsletterTask)
 class NewsletterTaskAdmin(admin.ModelAdmin):
@@ -49,18 +44,13 @@ class NewsletterTaskAdmin(admin.ModelAdmin):
     list_filter = ['creator_object_id']
 
     def get_queryset(self, request):
-        #import pdb; pdb.set_trace()
         newsletter_content_type = ContentType.objects.get(app_label='meinberlin_newsletters', model='newsletter')
         qs = super().get_queryset(request).filter(creator_content_type=newsletter_content_type.pk)
-        newsletter_id = request.GET.get('creator_object_id')
-        if newsletter_id:
-            return qs.filter(creator_object_id=newsletter_id)
         return qs
 
     def newsletter_id(self, task):
-        if task.creator:
-            url = reverse('admin:meinberlin_newsletters_newsletter_change', args=[task.creator.id])
-            return '<a href="{}">{}</a>'.format(url, task.creator.id)  # no escaping
+        url = reverse('admin:meinberlin_newsletters_newsletter_change', args=[task.creator.id])
+        return '<a href="{}">{}</a>'.format(url, task.creator.id)  # no escaping
     newsletter_id.allow_tags = True
     newsletter_id.admin_order_field = 'creator_object_id'
 

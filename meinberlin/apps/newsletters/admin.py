@@ -13,7 +13,12 @@ from . import models
 
 @admin.register(models.Newsletter)
 class NewsletterAdmin(admin.ModelAdmin):
-    list_display = ('subject', 'sent', 'project', 'email_status')
+    list_display = (
+        'subject',
+        'sent',
+        'project',
+        'organisation',
+        'email_status')
     list_filter = (
         'project__organisation',
         'project__is_archived',
@@ -43,7 +48,7 @@ class NewsletterAdmin(admin.ModelAdmin):
 class NewsletterTask(CompletedTask):
     class Meta:
         proxy = True
-        verbose_name = 'Newsletter send Email'
+        verbose_name = 'Newsletter Email'
 
 
 @admin.register(NewsletterTask)

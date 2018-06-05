@@ -26,7 +26,9 @@ class NewsletterAdmin(admin.ModelAdmin):
         queue = newsletter.tasks.count()
         success = newsletter.completed_tasks.filter(last_error='').count()
         errors = newsletter.completed_tasks.exclude(last_error='').count()
-        return '<a href="{url}?creator_object_id={newsletter_id}">{errors} errors; {success} success</a>; {queue} in queue'.format(
+        return ('<a href="{url}?creator_object_id={newsletter_id}">'
+                '{errors} errors; {success} success</a>;'
+                '{queue} in queue').format(
             queue=queue,
             success=success,
             errors=errors,

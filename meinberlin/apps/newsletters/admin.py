@@ -40,7 +40,6 @@ class NewsletterAdmin(admin.ModelAdmin):
             url=reverse(
                 'admin:meinberlin_newsletters_newslettertask_changelist'),
             newsletter_id=newsletter.id)
-
     email_status.allow_tags = True
 
 

@@ -1,8 +1,5 @@
 import re
 
-from adhocracy4 import transforms
-from adhocracy4.models.base import UserGeneratedContentModel
-from adhocracy4.projects.models import Project
 from background_task.models import Task
 from background_task.models_completed import CompletedTask
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -11,6 +8,10 @@ from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
+
+from adhocracy4 import transforms
+from adhocracy4.models.base import UserGeneratedContentModel
+from adhocracy4.projects.models import Project
 
 PLATFORM = 0
 ORGANISATION = 1

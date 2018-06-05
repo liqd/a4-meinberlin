@@ -1,7 +1,10 @@
 import re
 
+from background_task.models import Task
+from background_task.models_completed import CompletedTask
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
@@ -49,6 +52,13 @@ class Newsletter(UserGeneratedContentModel):
     organisation = models.ForeignKey(settings.A4_ORGANISATIONS_MODEL,
                                      null=True, blank=True,
                                      on_delete=models.CASCADE)
+
+    completed_tasks = GenericRelation(CompletedTask,
+                                      content_type_field='creator_content_type', # noqa
+                                      object_id_field='creator_object_id')
+    tasks = GenericRelation(Task,
+                            content_type_field='creator_content_type',
+                            object_id_field='creator_object_id')
 
     @cached_property
     def body_with_absolute_urls(self):

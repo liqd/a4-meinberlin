@@ -1,10 +1,9 @@
 import json
 
-from django.contrib import admin
-
-from adhocracy4.projects.admin import ProjectAdminFilter
 from adhocracy4.emails.tasks import deserialize_email
+from adhocracy4.projects.admin import ProjectAdminFilter
 from background_task.models_completed import CompletedTask
+from django.contrib import admin
 from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
 

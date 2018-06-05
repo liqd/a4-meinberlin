@@ -1,6 +1,9 @@
+import json
+
 from django.contrib import admin
 
 from adhocracy4.projects.admin import ProjectAdminFilter
+from adhocracy4.emails.tasks import deserialize_email
 from background_task.models_completed import CompletedTask
 from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
@@ -42,6 +45,7 @@ class NewsletterTaskAdmin(admin.ModelAdmin):
     
     list_display = ['verbose_name', 'newsletter_id', 'last_error_line']
     list_filter = ['creator_object_id']
+    readonly_fields = ['raw_email']
 
     def get_queryset(self, request):
         newsletter_content_type = ContentType.objects.get(app_label='meinberlin_newsletters', model='newsletter')
@@ -59,3 +63,8 @@ class NewsletterTaskAdmin(admin.ModelAdmin):
         if lines:
             return lines[-1]
     last_error_line.admin_order_field = 'last_error'
+
+    def raw_email(self, task):
+        task_args, task_kwargs = json.loads(task.task_params)
+        email = deserialize_email(task_args[0])
+        return  email.message()

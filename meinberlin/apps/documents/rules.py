@@ -1,7 +1,7 @@
 import rules
 
 from adhocracy4.modules import predicates as module_predicates
-from adhocracy4.porjects import predicates as project_predicates
+from adhocracy4.projects import predicates as project_predicates
 
 rules.add_perm(
     'meinberlin_documents.view_chapter',

@@ -109,7 +109,7 @@ INSTALLED_APPS = (
     'meinberlin.apps.kiezkasse.apps.Config',
     'meinberlin.apps.mapideas.apps.Config',
     'meinberlin.apps.maptopicprio.apps.Config',
-    'adhocracy4.polls.apps.Config',
+    'adhocracy4.polls.apps.PollsConfig',
     'meinberlin.apps.projectcontainers.apps.Config',
     'meinberlin.apps.topicprio.apps.Config',
 )

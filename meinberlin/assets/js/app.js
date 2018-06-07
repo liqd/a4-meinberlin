@@ -58,8 +58,8 @@ var init = function () {
   initialiseWidget('a4', 'follows', ReactFollows.renderFollow)
   initialiseWidget('a4', 'ratings', ReactRatings.renderRatings)
   initialiseWidget('a4', 'reports', ReactReports.renderReports)
-  initialiseWidget('mb', 'polls', ReactPolls.renderPolls)
-  initialiseWidget('mb', 'poll-management', ReactPolls.renderPollManagement)
+  initialiseWidget('a4', 'polls', ReactPolls.renderPolls)
+  initialiseWidget('a4', 'poll-management', ReactPolls.renderPollManagement)
 
   initialiseWidget('mb', 'document-management', ReactDocuments.renderDocumentManagement)
 }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-05 16:08+0200\n"
+"POT-Creation-Date: 2018-06-11 14:42+0200\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,20 +67,23 @@ msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:130
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:90
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:93
 #: adhocracy4/comments/static/comments/Comment.jsx:130
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:90
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:93
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:49
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:52
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:122
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:125
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:90
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:93
 msgid "Delete"
 msgstr "Löschen"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:131
 #: adhocracy4/static/Modal.jsx:49
 #: adhocracy4/comments/static/comments/Comment.jsx:131
+#: adhocracy4/static/Modal.jsx:49
 msgid "Abort"
 msgstr "Abbrechen"
 
@@ -192,6 +195,123 @@ msgstr "Entfolgen"
 msgid "Follow"
 msgstr "Folgen"
 
+#: adhocracy4/polls/static/polls/ChoiceForm.jsx:24
+#: adhocracy4/polls/static/polls/ChoiceForm.jsx:27
+#: adhocracy4/polls/static/polls/ChoiceForm.jsx:24
+#: adhocracy4/polls/static/polls/ChoiceForm.jsx:27
+msgid "remove"
+msgstr "entfernen"
+
+#: adhocracy4/polls/static/polls/PollManagement.jsx:188
+#: adhocracy4/polls/static/polls/PollManagement.jsx:188
+msgid "The poll has been updated."
+msgstr "Die Umfrage wurde aktualisiert."
+
+#: adhocracy4/polls/static/polls/PollManagement.jsx:205
+#: adhocracy4/polls/static/polls/PollManagement.jsx:205
+msgid "The poll could not be updated."
+msgstr "Die Umfrage konnte nicht aktualisiert werden."
+
+#: adhocracy4/polls/static/polls/PollManagement.jsx:246
+#: adhocracy4/polls/static/polls/PollManagement.jsx:246
+msgid "Add a new question"
+msgstr "Neue Frage"
+
+#: adhocracy4/polls/static/polls/PollManagement.jsx:252
+#: adhocracy4/polls/static/polls/PollManagement.jsx:252
+#: meinberlin/apps/documents/assets/DocumentManagement.jsx:324
+msgid "Save"
+msgstr "Speichern"
+
+#: adhocracy4/polls/static/polls/Question.jsx:51
+#: adhocracy4/polls/static/polls/Question.jsx:51
+msgid "Vote counted"
+msgstr "Ihre Stimme wurde gezählt."
+
+#: adhocracy4/polls/static/polls/Question.jsx:61
+#: adhocracy4/polls/static/polls/Question.jsx:61
+msgid "Vote has not been counted due to a server error."
+msgstr "Ihre Stimme konnte aufgrund eines Serverfehlers nicht gezählt werden."
+
+#: adhocracy4/polls/static/polls/Question.jsx:108
+#: adhocracy4/polls/static/polls/Question.jsx:108
+msgid "Vote"
+msgstr "Stimme abgeben"
+
+#: adhocracy4/polls/static/polls/Question.jsx:114
+#: adhocracy4/polls/static/polls/Question.jsx:114
+msgid "Please login to vote"
+msgstr "Bitte melden Sie sich zum Abstimmen an."
+
+#: adhocracy4/polls/static/polls/Question.jsx:136
+#: adhocracy4/polls/static/polls/Question.jsx:136
+msgid "vote"
+msgid_plural "votes"
+msgstr[0] "Stimme"
+msgstr[1] "Stimmen"
+
+#: adhocracy4/polls/static/polls/Question.jsx:137
+#: adhocracy4/polls/static/polls/Question.jsx:137
+msgid "To poll"
+msgstr "Zur Umfrage"
+
+#: adhocracy4/polls/static/polls/Question.jsx:140
+#: adhocracy4/polls/static/polls/Question.jsx:140
+msgid "Change vote"
+msgstr "Stimme ändern"
+
+#: adhocracy4/polls/static/polls/Question.jsx:144
+#: adhocracy4/polls/static/polls/Question.jsx:144
+msgid "Show preliminary results"
+msgstr "Vorläufiges Ergebnis zeigen"
+
+#: adhocracy4/polls/static/polls/Question.jsx:172
+#: adhocracy4/polls/static/polls/Question.jsx:172
+msgid "Your choice"
+msgstr "Ihre Wahl"
+
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:14
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:14
+msgid "Question"
+msgstr "Frage"
+
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:34
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:34
+msgid "Users can select more than one answer."
+msgstr "Nutzer*innen können für mehrere Antworten abstimmen."
+
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:42
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:42
+msgid "Choice"
+msgstr "Auswahl"
+
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:64
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:64
+msgid "Add a new choice"
+msgstr "Neue Antwort"
+
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:73
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:76
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:73
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:76
+#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:31
+#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:34
+#: meinberlin/apps/documents/assets/ParagraphForm.jsx:105
+#: meinberlin/apps/documents/assets/ParagraphForm.jsx:108
+msgid "Move up"
+msgstr "nach oben"
+
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:82
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:85
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:82
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:85
+#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:40
+#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:43
+#: meinberlin/apps/documents/assets/ParagraphForm.jsx:114
+#: meinberlin/apps/documents/assets/ParagraphForm.jsx:117
+msgid "Move down"
+msgstr "nach unten"
+
 #: adhocracy4/reports/static/reports/ReportModal.jsx:57
 #: adhocracy4/reports/static/reports/ReportModal.jsx:57
 msgid "Thank you! We are taking care of it."
@@ -207,6 +327,8 @@ msgstr "Ihre Nachricht hier"
 msgid "Send Report"
 msgstr "Meldung senden"
 
+#: adhocracy4/static/Alert.jsx:10
+#: adhocracy4/static/Alert.jsx:11
 #: adhocracy4/static/Alert.jsx:10
 #: adhocracy4/static/Alert.jsx:11
 #: meinberlin/apps/contrib/assets/Alert.jsx:10
@@ -239,24 +361,6 @@ msgstr "Kapitelnavigation"
 msgid "Add a new chapter"
 msgstr "Neues Kapitel hinzufügen"
 
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:31
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:34
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:105
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:108
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:73
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:76
-msgid "Move up"
-msgstr "nach oben"
-
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:40
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:43
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:114
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:117
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:82
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:85
-msgid "Move down"
-msgstr "nach unten"
-
 #: meinberlin/apps/documents/assets/DocumentManagement.jsx:18
 msgid "first chapter"
 msgstr "Erstes Kapitel"
@@ -280,11 +384,6 @@ msgstr "Inhaltsverzeichnis"
 #: meinberlin/apps/documents/assets/DocumentManagement.jsx:307
 msgid "Edit chapter"
 msgstr "Kapitel bearbeiten"
-
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:324
-#: meinberlin/apps/polls/assets/PollManagement.jsx:252
-msgid "Save"
-msgstr "Speichern"
 
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:70
 msgid "Headline"
@@ -443,77 +542,6 @@ msgstr "Excel herunterladen"
 #: meinberlin/apps/plans/assets/plans_map.jsx:562
 msgid "Address could not be found"
 msgstr "Keine Adresse gefunden"
-
-#: meinberlin/apps/polls/assets/ChoiceForm.jsx:24
-#: meinberlin/apps/polls/assets/ChoiceForm.jsx:27
-msgid "remove"
-msgstr "entfernen"
-
-#: meinberlin/apps/polls/assets/PollManagement.jsx:188
-msgid "The poll has been updated."
-msgstr "Die Umfrage wurde aktualisiert."
-
-#: meinberlin/apps/polls/assets/PollManagement.jsx:205
-msgid "The poll could not be updated."
-msgstr "Die Umfrage konnte nicht aktualisiert werden."
-
-#: meinberlin/apps/polls/assets/PollManagement.jsx:246
-msgid "Add a new question"
-msgstr "Neue Frage"
-
-#: meinberlin/apps/polls/assets/Question.jsx:51
-msgid "Vote counted"
-msgstr "Ihre Stimme wurde gezählt."
-
-#: meinberlin/apps/polls/assets/Question.jsx:61
-msgid "Vote has not been counted due to a server error."
-msgstr "Ihre Stimme konnte aufgrund eines Serverfehlers nicht gezählt werden."
-
-#: meinberlin/apps/polls/assets/Question.jsx:108
-msgid "Vote"
-msgstr "Stimme abgeben"
-
-#: meinberlin/apps/polls/assets/Question.jsx:114
-msgid "Please login to vote"
-msgstr "Bitte melden Sie sich zum Abstimmen an."
-
-#: meinberlin/apps/polls/assets/Question.jsx:136
-msgid "vote"
-msgid_plural "votes"
-msgstr[0] "Stimme"
-msgstr[1] "Stimmen"
-
-#: meinberlin/apps/polls/assets/Question.jsx:137
-msgid "To poll"
-msgstr "Zur Umfrage"
-
-#: meinberlin/apps/polls/assets/Question.jsx:140
-msgid "Change vote"
-msgstr "Stimme ändern"
-
-#: meinberlin/apps/polls/assets/Question.jsx:144
-msgid "Show preliminary results"
-msgstr "Vorläufiges Ergebnis zeigen"
-
-#: meinberlin/apps/polls/assets/Question.jsx:172
-msgid "Your choice"
-msgstr "Ihre Wahl"
-
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:14
-msgid "Question"
-msgstr "Frage"
-
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:34
-msgid "Users can select more than one answer."
-msgstr "Nutzer*innen können für mehrere Antworten abstimmen."
-
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:42
-msgid "Choice"
-msgstr "Auswahl"
-
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:64
-msgid "Add a new choice"
-msgstr "Neue Antwort"
 
 #: meinberlin/assets/js/embed.js:85
 msgid "We couldn't find what you were looking for."

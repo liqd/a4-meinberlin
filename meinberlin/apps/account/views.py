@@ -65,7 +65,7 @@ class ProfileActionsView(BaseActivityView):
 
 class ProfileUserActionsView(BaseActivityView):
 
-    title = _('My Activities')
+    title = _('My Contributions')
     hint = _('Here you can see your contributions.')
 
     def get_queryset(self):

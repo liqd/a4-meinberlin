@@ -73,6 +73,7 @@ INSTALLED_APPS = (
     'adhocracy4.organisations.apps.OrganisationsConfig',
     'adhocracy4.phases.apps.PhasesConfig',
     'adhocracy4.projects.apps.ProjectsConfig',
+    'adhocracy4.polls.apps.PollConfig',
     'adhocracy4.ratings.apps.RatingsConfig',
     'adhocracy4.reports.apps.ReportsConfig',
     'adhocracy4.rules.apps.RulesConfig',
@@ -110,7 +111,6 @@ INSTALLED_APPS = (
     'meinberlin.apps.kiezkasse.apps.Config',
     'meinberlin.apps.mapideas.apps.Config',
     'meinberlin.apps.maptopicprio.apps.Config',
-    'adhocracy4.polls.apps.Config',
     'meinberlin.apps.projectcontainers.apps.Config',
     'meinberlin.apps.topicprio.apps.Config',
 )

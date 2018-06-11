@@ -379,13 +379,13 @@ A4_RATEABLES = (
 
 A4_COMMENTABLES = (
     ('a4comments', 'comment'),
+    ('a4polls', 'poll'),
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_kiezkasse', 'proposal'),
     ('meinberlin_topicprio', 'topic'),
     ('meinberlin_maptopicprio', 'maptopic'),
-    ('a4polls', 'poll'),
     ('meinberlin_documents', 'chapter'),
     ('meinberlin_documents', 'paragraph'),
 )

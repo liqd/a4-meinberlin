@@ -51,7 +51,9 @@ class BaseActivityView(LoginRequiredMixin,
 class ProfileActionsView(BaseActivityView):
 
     title = _('Activities')
-    hint = _('Here you can find any actions that have happened in projects you are following.')
+    hint = _(
+        'Here you can find any actions that have happened in projects you are'
+        ' following.')
 
     def get_queryset(self):
         user = get_object_or_404(User, pk=self.request.user.id)

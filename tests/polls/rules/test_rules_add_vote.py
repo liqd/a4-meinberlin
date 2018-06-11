@@ -1,7 +1,7 @@
 import pytest
 import rules
 
-from meinberlin.apps.polls import phases
+from adhocracy4.polls import phases
 from meinberlin.test.helpers import freeze_phase
 from meinberlin.test.helpers import freeze_post_phase
 from meinberlin.test.helpers import freeze_pre_phase

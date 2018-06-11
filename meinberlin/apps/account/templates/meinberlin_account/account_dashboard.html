@@ -29,6 +29,12 @@
                         </a>
                     </li>
                     <li class="dashboard-nav__page">
+                        <a href="{% url 'user_account_actions' %}"
+                           class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "user_account_actions" %}is-active{% endif %}">
+                            {% trans 'My Contributions ' %}
+                        </a>
+                    </li>
+                    <li class="dashboard-nav__page">
                         <a href="{% url 'account_change_password' %}"
                            class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "account_change_password" %}is-active{% endif %}">
                             {% trans 'Change password' %}

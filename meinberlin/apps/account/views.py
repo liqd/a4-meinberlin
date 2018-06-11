@@ -34,16 +34,42 @@ class ProfileUpdateView(SuccessMessageMixin,
         return self.request.path
 
 
-class ProfileActionsView(LoginRequiredMixin,
-                         generic.ListView):
+class BaseActivityView(LoginRequiredMixin,
+                       generic.ListView):
 
     model = Action
     paginate_by = 10
     template_name = 'meinberlin_account/actions.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = self.title
+        context['hint'] = self.hint
+        return context
+
+
+class ProfileActionsView(BaseActivityView):
+
+    title = _('Activities')
+    hint = _(
+        'Here you can find any actions that have happened in projects you are'
+        ' following.')
 
     def get_queryset(self):
         user = get_object_or_404(User, pk=self.request.user.id)
         qs = super().get_queryset()
         qs = qs.filter(project__follow__creator=user,
                        project__follow__enabled=True)
+        return qs.exclude_updates()
+
+
+class ProfileUserActionsView(BaseActivityView):
+
+    title = _('My Contributions')
+    hint = _('Here you can see your contributions.')
+
+    def get_queryset(self):
+        user = get_object_or_404(User, pk=self.request.user.id)
+        qs = super().get_queryset()
+        qs = qs.filter(actor=user)
         return qs.exclude_updates()

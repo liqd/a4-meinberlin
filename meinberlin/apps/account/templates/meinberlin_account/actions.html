@@ -5,8 +5,8 @@
 {% block title %}{% trans 'Activities' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block dashboard_content %}
-    <h1 class="u-first-heading">{% trans 'Activities' %}</h1>
-    <p>{% trans 'Here you can find any actions that have happened in projects you are following.' %}</p>
+    <h1 class="u-first-heading">{{ title }}</h1>
+    <p>{{ hint }}</p>
 
     <div>
         {% for action in action_list %}

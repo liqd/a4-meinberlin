@@ -73,6 +73,7 @@ INSTALLED_APPS = (
     'adhocracy4.organisations.apps.OrganisationsConfig',
     'adhocracy4.phases.apps.PhasesConfig',
     'adhocracy4.projects.apps.ProjectsConfig',
+    'adhocracy4.polls.apps.PollsConfig',
     'adhocracy4.ratings.apps.RatingsConfig',
     'adhocracy4.reports.apps.ReportsConfig',
     'adhocracy4.rules.apps.RulesConfig',
@@ -110,7 +111,6 @@ INSTALLED_APPS = (
     'meinberlin.apps.kiezkasse.apps.Config',
     'meinberlin.apps.mapideas.apps.Config',
     'meinberlin.apps.maptopicprio.apps.Config',
-    'meinberlin.apps.polls.apps.Config',
     'meinberlin.apps.projectcontainers.apps.Config',
     'meinberlin.apps.topicprio.apps.Config',
 )
@@ -203,7 +203,7 @@ MEDIA_URL = '/media/'
 
 IMAGE_ALIASES = {
     '*': {
-        'max_size': 5*10**6,
+        'max_size': 5 * 10**6,
         'fileformats': ('image/png', 'image/jpeg', 'image/gif')
     },
     'heroimage': {'min_resolution': (1500, 500)},
@@ -316,14 +316,14 @@ CKEDITOR_CONFIGS = {
 }
 
 BLEACH_LIST = {
-    'default' : {
-        'tags': ['p','strong','em','u','ol','li','ul','a'],
+    'default': {
+        'tags': ['p', 'strong', 'em', 'u', 'ol', 'li', 'ul', 'a'],
         'attributes': {
             'a': ['href', 'rel'],
         },
     },
     'image-editor': {
-        'tags': ['p','strong','em','u','ol','li','ul','a','img'],
+        'tags': ['p', 'strong', 'em', 'u', 'ol', 'li', 'ul', 'a', 'img'],
         'attributes': {
             'a': ['href', 'rel'],
             'img': ['src', 'alt', 'style']
@@ -379,13 +379,13 @@ A4_RATEABLES = (
 
 A4_COMMENTABLES = (
     ('a4comments', 'comment'),
+    ('a4polls', 'poll'),
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_kiezkasse', 'proposal'),
     ('meinberlin_topicprio', 'topic'),
     ('meinberlin_maptopicprio', 'maptopic'),
-    ('meinberlin_polls', 'poll'),
     ('meinberlin_documents', 'chapter'),
     ('meinberlin_documents', 'paragraph'),
 )
@@ -414,7 +414,7 @@ A4_AUTO_FOLLOWABLES = (
     # ('meinberlin_mapideas', 'mapidea'),
     # ('meinberlin_budgeting', 'proposal'),
     # ('meinberlin_kiezkasse', 'proposal'),
-    # ('meinberlin_polls', 'vote'),
+    # ('a4polls', 'vote'),
 )
 
 A4_CATEGORIZABLE = (
@@ -460,8 +460,7 @@ A4_MAP_BOUNDING_BOX = ([[52.3517, 13.8229], [52.6839, 12.9543]])
 
 A4_DASHBOARD = {
     'PROJECT_DASHBOARD_CLASS': 'meinberlin.apps.dashboard.TypedProjectDashboard',
-    'BLUEPRINTS': 'meinberlin.apps.dashboard.blueprints.blueprints'
-}
+    'BLUEPRINTS': 'meinberlin.apps.dashboard.blueprints.blueprints'}
 
 CONTACT_EMAIL = 'support-berlin@liqd.net'
 SUPERVISOR_EMAIL = 'berlin-supervisor@liqd.net'
@@ -471,7 +470,11 @@ SUPERVISOR_EMAIL = 'berlin-supervisor@liqd.net'
 DEFAULT_LANGUAGE = 'de'
 
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
-CSP_IMG_SRC = ("'self'", "data:", "*.tile.openstreetmap.org", "https://maps.berlinonline.de")
+CSP_IMG_SRC = (
+    "'self'",
+    "data:",
+    "*.tile.openstreetmap.org",
+    "https://maps.berlinonline.de")
 CSP_CONNECT_SRC = ("'self'", "https://bplan-prod.liqd.net")
 CSP_EXCLUDE_URL_PREFIXES = ("/admin", )
 CSP_REPORT_ONLY = True

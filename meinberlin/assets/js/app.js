@@ -22,9 +22,9 @@ var ReactComments = require('adhocracy4').comments
 var ReactRatings = require('adhocracy4').ratings
 var ReactReports = require('adhocracy4').reports
 var ReactFollows = require('adhocracy4').follows
+var ReactPolls = require('adhocracy4').polls
 
 var ReactDocuments = require('../../apps/documents/assets/react_documents.jsx')
-var ReactPolls = require('../../apps/polls/assets/react_polls.jsx')
 
 var relativeTimestamps = require('../../apps/actions/assets/timestamps.js')
 var mapAddress = require('./map-address.js')
@@ -58,10 +58,10 @@ var init = function () {
   initialiseWidget('a4', 'follows', ReactFollows.renderFollow)
   initialiseWidget('a4', 'ratings', ReactRatings.renderRatings)
   initialiseWidget('a4', 'reports', ReactReports.renderReports)
+  initialiseWidget('a4', 'polls', ReactPolls.renderPolls)
+  initialiseWidget('a4', 'poll-management', ReactPolls.renderPollManagement)
 
   initialiseWidget('mb', 'document-management', ReactDocuments.renderDocumentManagement)
-  initialiseWidget('mb', 'polls', ReactPolls.renderPolls)
-  initialiseWidget('mb', 'poll-management', ReactPolls.renderPollManagement)
 }
 
 $(init)

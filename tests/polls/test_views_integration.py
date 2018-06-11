@@ -17,4 +17,4 @@ def test_detail_view(client, phase_factory, poll_factory, question_factory,
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(
-            response, 'meinberlin_polls/poll_detail.html')
+            response, 'a4polls/poll_detail.html')

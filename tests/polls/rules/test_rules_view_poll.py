@@ -8,7 +8,7 @@ from meinberlin.test.helpers import freeze_pre_phase
 from meinberlin.test.helpers import setup_phase
 from meinberlin.test.helpers import setup_users
 
-perm_name = 'meinberlin_polls.view_poll'
+perm_name = 'a4polls.view_poll'
 
 
 def test_perm_exists():

@@ -8,7 +8,7 @@ from meinberlin.test.helpers import freeze_pre_phase
 from meinberlin.test.helpers import setup_phase
 from meinberlin.test.helpers import setup_users
 
-perm_name = 'meinberlin_polls.comment_poll'
+perm_name = 'a4polls.comment_poll'
 
 
 def test_perm_exists():

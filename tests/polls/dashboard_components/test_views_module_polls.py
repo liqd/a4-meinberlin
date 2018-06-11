@@ -17,4 +17,4 @@ def test_edit_view(client, phase_factory):
     client.login(username=initiator.email, password='password')
     response = client.get(url)
     assert_template_response(
-        response, 'meinberlin_polls/poll_dashboard.html')
+        response, 'a4polls/poll_dashboard.html')

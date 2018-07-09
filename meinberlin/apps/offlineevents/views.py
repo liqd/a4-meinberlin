@@ -58,6 +58,12 @@ class OfflineEventCreateView(ProjectMixin,
     def get_permission_object(self):
         return self.project
 
+    @classmethod
+    def as_view(cls, **initkwargs):
+        view = super(OfflineEventCreateView, cls).as_view(**initkwargs)
+        view._csp_exempt = True
+        return view
+
 
 class OfflineEventUpdateView(ProjectMixin,
                              mixins.DashboardBaseMixin,

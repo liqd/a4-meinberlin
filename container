@@ -1,0 +1,40 @@
+#!/usr/bin/env plash-exec
+# plash-exec: exec=/usr/local/bin/entrypoint
+
+--image
+alpine
+
+--layer
+apk
+python3
+make
+nodejs
+git
+libffi-dev
+build-base
+python3-dev
+zlib-dev
+jpeg-dev
+zlib-dev
+freetype-dev
+lcms2-dev
+openjpeg-dev
+tiff-dev
+libxml2-dev
+libxslt-dev
+libmagic
+
+--write-script
+/usr/local/bin/manage.py
+#!/bin/sh
+venv/bin/python manage.py "$@"
+
+--write-script
+/usr/local/bin/entrypoint
+#!/bin/sh
+
+# if no argument, start the shell
+if [ -z "$*" ]; then exec ash; fi
+
+export PATH=$PWD/venv/bin:$PWD/node_modules/.bin:$PATH
+exec /usr/bin/env "$@"

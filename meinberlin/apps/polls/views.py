@@ -16,20 +16,18 @@ class PollDetailView(ProjectMixin,
     model = models.Poll
     permission_required = 'meinberlin_polls.view_poll'
 
+    # use a custom 404 page
     def get(self, request, *args, **kwargs):
         try:
-            self.object = self.get_object()
-            context = self.get_context_data(object=self.object)
-            return self.render_to_response(context)
-
+            return super().get(request, *args, **kwargs)
         except Http404:
-            self.object = None
-            context = self.get_context_data(object=None, request=self.request,)
             return render_to_response(
                 'meinberlin_polls/poll_404.html',
-                context=context,
-                status=404
-            )
+                context={
+                    'project': self.project,
+                    'request': self.request,
+                    'module': self.module},
+                status=404)
 
     def get_object(self):
         return get_object_or_404(models.Poll, module=self.module)

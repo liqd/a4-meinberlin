@@ -12,6 +12,7 @@ from rest_framework import routers
 from wagtail.contrib.wagtailsitemaps import views as wagtail_sitemap_views
 from wagtail.contrib.wagtailsitemaps.sitemap_generator import Sitemap as WagtailSitemap
 from meinberlin.apps.contrib.sitemaps.adhocracy4_sitemap import Adhocracy4Sitemap
+from meinberlin.apps.contrib.sitemaps.static_sitemap import StaticSitemap
 
 from adhocracy4.api import routers as a4routers
 from adhocracy4.comments.api import CommentViewSet
@@ -55,6 +56,7 @@ question_router.register(r'vote', VoteViewSet, base_name='vote')
 sitemaps = {
     'adhocracy4': Adhocracy4Sitemap,
     'wagtail': WagtailSitemap,
+    'static': StaticSitemap
 }
 
 urlpatterns = [

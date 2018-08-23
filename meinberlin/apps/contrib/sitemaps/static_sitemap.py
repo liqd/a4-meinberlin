@@ -2,12 +2,12 @@ from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
 
 
-class RootSitemap(Sitemap):
-    changefreq = "never"
-    priority = 0.5
+class StaticSitemap(Sitemap):
+    changefreq = "monthly"
+    priority = 0.8
 
     def items(self):
-        return ["wagtail_sitemap", "adhocracy4_sitemap"]
+        return ["project-list"]
 
     def location(self, obj):
         return reverse(obj)

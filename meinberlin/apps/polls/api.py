@@ -14,7 +14,8 @@ from .models import Question
 from .models import Vote
 from .serializers import PollSerializer
 from .serializers import QuestionSerializer
-from .validators import choice_belongs_to_question
+
+# from .validators import choice_belongs_to_question
 
 
 class PollViewSet(mixins.UpdateModelMixin,
@@ -70,8 +71,10 @@ class VoteViewSet(viewsets.ViewSet):
         elif len(choices) > 1 and not question.multiple_choice:
             raise ValidationError('multiple choice disabled for question')
 
+        '''
         for choice in choices:
             choice_belongs_to_question(choice, question.pk)
+        '''
 
     def clear_current_choices(self):
         Vote.objects\

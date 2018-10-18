@@ -44,7 +44,7 @@ class MenuItem(models.Model):
 
 
 @register_snippet
-class NavigationMenu(ClusterableModel):
+class HeaderMenu(ClusterableModel):
 
     menu_name = models.CharField(max_length=255, null=False, blank=False)
 
@@ -57,5 +57,5 @@ class NavigationMenu(ClusterableModel):
     ]
 
 
-class NavigationMenuItem(Orderable, MenuItem):
-parent = ParentalKey('cms_snippets.NavigationMenu', related_name='menu_items')
+class HeaderMenuItem(Orderable, MenuItem):
+parent = ParentalKey('cms_snippets.HeaderMenu', related_name='menu_items')

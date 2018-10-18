@@ -126,6 +126,24 @@ class NavigationMenuItem(Orderable, MenuItem):
     parent = ParentalKey('meinberlin_cms.NavigationMenu', related_name='items')
 
 
+@register_snippet
+class HeaderMenu(ClusterableModel):
+    title = models.CharField(max_length=255, null=False, blank=False)
+
+    def __str__(self):
+        return self.title
+
+    panels = [
+        edit_handlers.FieldPanel('title'),
+        edit_handlers.InlinePanel('items')
+    ]
+
+
+class HeaderMenuItem(Orderable, MenuItem):
+    parent = ParentalKey('meinberlin_cms.HeaderMenu', related_name='items')
+
+
+
 class EmailFormField(AbstractFormField):
     page = ParentalKey('EmailFormPage', related_name='form_fields')
 

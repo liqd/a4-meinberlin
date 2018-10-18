@@ -21,6 +21,14 @@ class MenuItem(models.Model):
     title = models.CharField(
         max_length=255, verbose_name="Title")
 
+    header_image = models.ForeignKey(
+        'meinberlin_cms.CustomImage',
+        null=True,
+        blank=False,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
     subpages = StreamField(
         [('link', LinkBlock())],
         blank=True,

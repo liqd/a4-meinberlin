@@ -15,7 +15,7 @@ from wagtail.wagtailimages.models import Image
 from wagtail.wagtailsnippets.models import register_snippet
 
 from meinberlin.apps.actions import blocks as actions_blocks
-
+from wagtail.wagtailadmin.edit_handlers import (FieldPanel, InlinePanel, PageChooserPanel)
 from . import blocks as cms_blocks
 from . import emails
 
@@ -126,9 +126,41 @@ class NavigationMenuItem(Orderable, MenuItem):
     parent = ParentalKey('meinberlin_cms.NavigationMenu', related_name='items')
 
 
+class HeaderItem(models.Model):
+    link_page = models.ForeignKey(
+        'wagtailcore.Page',
+        related_name='+',
+        null=True,
+        blank=True,
+    )
+    title = models.CharField(
+        max_length=255, verbose_name="Title")
+
+    header_image = models.ForeignKey(
+        'meinberlin_cms.CustomImage',
+        null=True,
+        blank=False,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    @property
+    def url(self):
+        return self.link_page.url
+
+    def __str__(self):
+        return self.title
+
+    panels = [
+        PageChooserPanel('link_page'),
+        FieldPanel('title'),
+        ImageChooserPanel('header_image')
+    ]
+
 @register_snippet
 class HeaderMenu(ClusterableModel):
     title = models.CharField(max_length=255, null=False, blank=False)
+
 
     def __str__(self):
         return self.title
@@ -139,7 +171,7 @@ class HeaderMenu(ClusterableModel):
     ]
 
 
-class HeaderMenuItem(Orderable, MenuItem):
+class HeaderMenuItem(Orderable, HeaderItem):
     parent = ParentalKey('meinberlin_cms.HeaderMenu', related_name='items')
 
 

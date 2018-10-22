@@ -126,7 +126,7 @@ class NavigationMenuItem(Orderable, MenuItem):
     parent = ParentalKey('meinberlin_cms.NavigationMenu', related_name='items')
 
 
-class HeaderItem(models.Model):
+class StorefrontItem(models.Model):
     link_page = models.ForeignKey(
         'wagtailcore.Page',
         related_name='+',
@@ -158,7 +158,7 @@ class HeaderItem(models.Model):
     ]
 
 @register_snippet
-class HeaderMenu(ClusterableModel):
+class Storefront(ClusterableModel):
     title = models.CharField(max_length=255, null=False, blank=False)
 
 
@@ -171,8 +171,8 @@ class HeaderMenu(ClusterableModel):
     ]
 
 
-class HeaderMenuItem(Orderable, HeaderItem):
-    parent = ParentalKey('meinberlin_cms.HeaderMenu', related_name='items')
+class StorefrontItem(Orderable, StorefrontItem):
+    parent = ParentalKey('meinberlin_cms.Storefront', related_name='items')
 
 
 

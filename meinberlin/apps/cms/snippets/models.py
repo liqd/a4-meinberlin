@@ -2,8 +2,7 @@ from django.db import models
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.wagtailcore.fields import StreamField
-from wagtail.wagtailadmin.edit_handlers import (FieldPanel, InlinePanel,
-                                                PageChooserPanel)
+from wagtail.wagtailadmin.edit_handlers import (FieldPanel, InlinePanel, PageChooserPanel)
 from wagtail.wagtailcore.models import Orderable
 from wagtail.wagtailadmin import edit_handlers
 from wagtail.wagtailsnippets.models import register_snippet
@@ -11,7 +10,7 @@ from wagtail.wagtailsnippets.models import register_snippet
 from cms.snippets.blocks import LinkBlock
 
 
-class HeaderItem(models.Model):
+class StorefrontItem(models.Model):
     link_page = models.ForeignKey(
         'wagtailcore.Page',
         related_name='+',
@@ -44,7 +43,7 @@ class HeaderItem(models.Model):
 
 
 @register_snippet
-class HeaderMenu(ClusterableModel):
+class Storefront(ClusterableModel):
     menu_name = models.CharField(max_length=255, null=False, blank=False)
 
     def __str__(self):
@@ -56,5 +55,5 @@ class HeaderMenu(ClusterableModel):
     ]
 
 
-class HeaderMenuItem(Orderable, MenuItem):
-    parent = ParentalKey('meinberlin_cms.HeaderMenu', related_name='items')
+class StorefrontItem(Orderable, StorefrontItem):
+    parent = ParentalKey('meinberlin_cms.Storefront', related_name='items')

@@ -11,7 +11,7 @@ from wagtail.wagtailsnippets.models import register_snippet
 from cms.snippets.blocks import LinkBlock
 
 
-class MenuItem(models.Model):
+class HeaderItem(models.Model):
     link_page = models.ForeignKey(
         'wagtailcore.Page',
         related_name='+',
@@ -27,14 +27,6 @@ class MenuItem(models.Model):
         blank=False,
         on_delete=models.SET_NULL,
         related_name='+'
-    )
-
-    subpages = StreamField(
-        [('link', LinkBlock())],
-        blank=True,
-        null=True,
-        help_text='These Links will be displayed in as a dropdown menu',
-        verbose_name='Submenu'
     )
 
     @property
@@ -53,17 +45,16 @@ class MenuItem(models.Model):
 
 @register_snippet
 class HeaderMenu(ClusterableModel):
-
     menu_name = models.CharField(max_length=255, null=False, blank=False)
 
     def __str__(self):
         return self.menu_name
 
     panels = [
-        FieldPanel('menu_name', classname='full title'),
-        InlinePanel('menu_items', label="Menu Items")
+        edit_handlers.FieldPanel('title'),
+        edit_handlers.InlinePanel('items')
     ]
 
 
 class HeaderMenuItem(Orderable, MenuItem):
-parent = ParentalKey('cms_snippets.HeaderMenu', related_name='menu_items')
+    parent = ParentalKey('meinberlin_cms.HeaderMenu', related_name='items')

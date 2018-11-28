@@ -1,21 +1,21 @@
 from django.db import models
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
-from wagtail.wagtailadmin import edit_handlers
-from wagtail.wagtailadmin.edit_handlers import FieldPanel
-from wagtail.wagtailadmin.edit_handlers import PageChooserPanel
-from wagtail.wagtailcore import blocks
-from wagtail.wagtailcore import fields
-from wagtail.wagtailcore.models import Orderable
-from wagtail.wagtailcore.models import Page
-from wagtail.wagtailforms.models import AbstractEmailForm
-from wagtail.wagtailforms.models import AbstractFormField
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailimages.models import AbstractImage
-from wagtail.wagtailimages.models import AbstractRendition
-from wagtail.wagtailimages.models import Image
-from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
-from wagtail.wagtailsnippets.models import register_snippet
+from wagtail.admin import edit_handlers
+from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.edit_handlers import PageChooserPanel
+from wagtail.contrib.forms.models import AbstractEmailForm
+from wagtail.contrib.forms.models import AbstractFormField
+from wagtail.core import blocks
+from wagtail.core import fields
+from wagtail.core.models import Orderable
+from wagtail.core.models import Page
+from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.images.models import AbstractImage
+from wagtail.images.models import AbstractRendition
+from wagtail.images.models import Image
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
+from wagtail.snippets.models import register_snippet
 
 from meinberlin.apps.actions import blocks as actions_blocks
 

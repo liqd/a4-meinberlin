@@ -14,7 +14,7 @@ from django.utils.translation import ungettext
 from django.views import generic
 from rules.contrib.views import LoginRequiredMixin
 
-from adhocracy4.administrative_districts.models import AdministrativeDistrict
+# from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from adhocracy4.dashboard import signals as a4dashboard_signals
 from adhocracy4.filters import views as filter_views
@@ -114,15 +114,15 @@ class ProjectFilterSet(DefaultsFilterSet):
         widget=YearWidget,
     )
 
-    administrative_district = django_filters.ModelChoiceFilter(
-        queryset=AdministrativeDistrict.objects.all(),
-        widget=DistrictWidget
-    )
+    # administrative_district = django_filters.ModelChoiceFilter(
+    #     queryset=AdministrativeDistrict.objects.all(),
+    #     widget=DistrictWidget
+    # )
 
     class Meta:
         model = project_models.Project
         fields = ['search', 'organisation', 'is_archived',
-                  'created', 'administrative_district']
+                  'created']
 
 
 class ProjectListView(filter_views.FilteredListView):

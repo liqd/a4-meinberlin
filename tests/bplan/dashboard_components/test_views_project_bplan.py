@@ -33,6 +33,7 @@ def test_edit_view(client, phase_factory, bplan, module_factory):
         'start_date_1': '18:00',
         'end_date_0': '2013-01-10',
         'end_date_1': '18:00',
+        'topics': 'BUI'
 
     }
     response = client.post(url, data)

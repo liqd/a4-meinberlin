@@ -16,6 +16,8 @@
 
 {% include 'a4dashboard/includes/form_field.html' with field=form.office_worker_email %}
 
+{% include 'meinberlin_contrib/includes/form_field.html' with field=form.topics %}
+
 {% include 'meinberlin_embed/includes/project_embed_code.html' with project=view.object %}
 
 {% if project.has_finished %}

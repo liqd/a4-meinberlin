@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 from django.utils.translation import ugettext as _
 from easy_thumbnails.files import get_thumbnailer
 from rest_framework import serializers
@@ -51,6 +53,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
     active_phase = serializers.SerializerMethodField()
     past_phase = serializers.SerializerMethodField()
     tile_image = serializers.SerializerMethodField()
+    tile_image_copyright = serializers.SerializerMethodField()
     plan_url = serializers.SerializerMethodField()
     plan_title = serializers.SerializerMethodField()
     published_projects_count = serializers.SerializerMethodField()
@@ -62,7 +65,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
                   'organisation', 'tile_image',
                   'tile_image_copyright',
                   'point', 'point_label', 'cost',
-                  'district', 'topics',
+                  'district', 'topics', 'is_public',
                   'status',
                   'participation_string',
                   'participation_active',
@@ -71,6 +74,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
                   'past_phase', 'plan_url', 'plan_title',
                   'published_projects_count', 'created_or_modified']
 
+    @lru_cache(maxsize=1)
     def _get_participation_status_project(self, instance):
         if hasattr(instance, 'projectcontainer') and instance.projectcontainer:
             if instance.projectcontainer.active_project_count > 0:
@@ -120,7 +124,18 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
         if instance.tile_image:
             image = get_thumbnailer(instance.tile_image)['project_tile']
             image_url = image.url
+        elif instance.image:
+            image = get_thumbnailer(instance.image)['project_tile']
+            image_url = image.url
         return image_url
+
+    def get_tile_image_copyright(self, instance):
+        if instance.tile_image:
+            return instance.tile_image_copyright
+        elif instance.image:
+            return instance.image_copyright
+        else:
+            return None
 
     def get_status(self, instance):
         project_phases = instance.phases
@@ -214,6 +229,7 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
     def get_subtype(self, instance):
         return 'plan'
 
+    @lru_cache(maxsize=1)
     def _get_participation_status_plan(self, item):
         projects = item.published_projects
         if not projects:

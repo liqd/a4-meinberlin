@@ -53,7 +53,11 @@ class ListMapBox extends React.Component {
       district: props.selectedDistrict,
       topic: props.selectedTopic,
       organisation: '-1',
-      titleSearch: '-1'
+      titleSearch: '-1',
+      participationCount: 0,
+      statusCount: 0,
+      organisationCount: 0,
+      titleSearchCount: 0
     }
   }
 
@@ -164,9 +168,26 @@ class ListMapBox extends React.Component {
 
   updateList () {
     let items = []
+    let participationCount = 0
+    let statusCount = 0
+    let organisationCount = 0
+    let titleSearchCount = 0
+
     this.sortedItems.forEach((item, i) => {
       if (this.isInFilter(item)) {
         items.push(item)
+        if (item.participation === this.state.participation) {
+          participationCount++
+        }
+        if (item.status === this.state.status) {
+          statusCount++
+        }
+        if (item.organisation === this.state.organisation) {
+          organisationCount++
+        }
+        if (this.isInTitle(item.title)) {
+          titleSearchCount++
+        }
       }
     })
     let showListMap = this.state.showListMap
@@ -176,7 +197,11 @@ class ListMapBox extends React.Component {
     this.setState({
       items: items,
       filterChanged: false,
-      showListMap: showListMap
+      showListMap: showListMap,
+      participationCount: participationCount,
+      statusCount: statusCount,
+      organisationCount: organisationCount,
+      titleSearchCount: titleSearchCount
     })
   }
 
@@ -310,6 +335,11 @@ class ListMapBox extends React.Component {
         displayButtons={!this.state.filterOpen}
         displayMap={this.state.showListMap}
         projectCount={this.state.items.length}
+        participationCount={this.state.participationCount}
+        statusCount={this.state.statusCount}
+        organisationCount={this.state.organisationCount}
+        titleSearchCount={this.state.titleSearchCount}
+
       />
     )
   }

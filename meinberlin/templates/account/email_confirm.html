@@ -14,12 +14,12 @@
 
         <form method="post">
             {% csrf_token %}
-            <button class="btn btn--primary" type="submit">{% trans 'Confirm' %}</button>
+            <button class="btn btn--primary" type="submit" onclick="javascript:_paq.push(['trackEvent', 'User', 'Confirm-email']);">{% trans 'Confirm' %}</button>
         </form>
     {% else %}
         {% url 'account_email' as email_url %}
         <p>{% blocktrans %}This email confirmation link expired or is invalid.
-            Please <a href="{{ email_url }}">issue a new email confirmation
+            Please <a href="{{ email_url }}" onclick="javascript:_paq.push(['trackEvent', 'User', 'New-confirm-email']);">issue a new email confirmation
                 request</a>.{% endblocktrans %}</p>
 
     {% endif %}

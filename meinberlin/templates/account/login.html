@@ -6,7 +6,7 @@
 {% block content %}
     <h1>{% trans "Login" %}</h1>
 
-    <p>{% blocktrans %}If you have not created an account yet, then please <a href="{{ signup_url }}" onclick="javascript:_paq.push(['trackEvent', 'User', 'Register']);">register</a> first.{% endblocktrans %}</p>
+    <p>{% blocktrans %}If you have not created an account yet, then please <a href="{{ signup_url }}" onclick="javascript:_paq.push(['trackEvent', 'User', 'Register-link']);">register</a> first.{% endblocktrans %}</p>
 
     <form method="POST" action="{% url 'account_login' %}" class="u-spacer-bottom-double">
         {{ form.non_field_errors }}
@@ -24,7 +24,7 @@
 
         <div class="u-spacer-bottom">
             <button class="btn btn--primary" type="submit" onclick="javascript:_paq.push(['trackEvent', 'User', 'Login']);">{% trans "Login" %}</button>
-            <a class="btn btn--link" href="{% url 'account_reset_password' %}" onclick="javascript:_paq.push(['trackEvent', 'User', 'Reset-password']);">{% trans "Forgot Password?" %}</a>
+            <a class="btn btn--link" href="{% url 'account_reset_password' %}" onclick="javascript:_paq.push(['trackEvent', 'User', 'Reset-password-link']);">{% trans "Forgot Password?" %}</a>
         </div>
     </form>
 

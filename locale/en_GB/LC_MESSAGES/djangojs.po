@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-11 15:16+0100\n"
+"POT-Creation-Date: 2019-03-27 16:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -598,22 +598,22 @@ msgid "done"
 msgstr "done"
 
 #: meinberlin/apps/plans/assets/PlansList.jsx:78
-#: meinberlin/apps/plans/assets/PopUp.jsx:72
+#: meinberlin/apps/plans/assets/PopUp.jsx:74
 msgid "Participation: "
 msgstr "Participation: "
 
 #: meinberlin/apps/plans/assets/PlansList.jsx:90
-#: meinberlin/apps/plans/assets/PopUp.jsx:42
+#: meinberlin/apps/plans/assets/PopUp.jsx:44
 msgid "remaining"
 msgstr "remaining"
 
 #: meinberlin/apps/plans/assets/PlansList.jsx:95
-#: meinberlin/apps/plans/assets/PopUp.jsx:47
+#: meinberlin/apps/plans/assets/PopUp.jsx:49
 msgid "Participation ended. Read result."
 msgstr "Participation ended. Read result."
 
 #: meinberlin/apps/plans/assets/PlansList.jsx:109
-#: meinberlin/apps/plans/assets/PopUp.jsx:69
+#: meinberlin/apps/plans/assets/PopUp.jsx:71
 msgid "Participation projects: "
 msgstr "Participation projects: "
 
@@ -647,21 +647,18 @@ msgstr ""
 "Projects without spacial reference are not shown on the map. Please have a "
 "look at the project list."
 
-#: meinberlin/apps/plans/assets/PopUp.jsx:52
+#: meinberlin/apps/plans/assets/PopUp.jsx:54
 msgid "Superordinate project: "
 msgstr "Superordinate project: "
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:40
-msgid " participation projects in Berlin"
-msgstr " Beteiligunsprojekte in Berlin"
+#: meinberlin/apps/plans/assets/Toggles.jsx:87
+msgid " search results"
+msgstr ""
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:70
 msgid "Show map"
 msgstr "Show map"
-
-#: meinberlin/apps/plans/assets/Toggles.jsx:87
-msgid " participation projects"
-msgstr " Beteiligunsprojekte"
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:117
 msgid "Show List"
@@ -698,6 +695,12 @@ msgstr "No matches found within the project area"
 #: meinberlin/assets/js/map-address.js:92
 msgid "Did you mean:"
 msgstr "Did you mean:"
+
+#~ msgid " participation projects in Berlin"
+#~ msgstr " Beteiligunsprojekte in Berlin"
+
+#~ msgid " participation projects"
+#~ msgstr " Beteiligunsprojekte"
 
 #~ msgid "Set filters"
 #~ msgstr "Set filters"

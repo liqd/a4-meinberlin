@@ -649,11 +649,11 @@ msgstr ""
 
 #: meinberlin/apps/plans/assets/PopUp.jsx:11
 msgid "Participation: from "
-msgstr ""
+msgstr "Participation: from "
 
 #: meinberlin/apps/plans/assets/PopUp.jsx:11
 msgid " possible"
-msgstr ""
+msgstr " possible"
 
 #: meinberlin/apps/plans/assets/PopUp.jsx:58
 msgid "Superordinate project: "

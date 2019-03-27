@@ -1734,7 +1734,7 @@ msgstr " noch %(time_left)s"
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:40
 #, python-format
 msgid " Participation: from %(date)s possible"
-msgstr "ab %(date)s möglich"
+msgstr "Beteiligung: ab %(date)s möglich"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:45
 msgid "Participation ended. Read result."

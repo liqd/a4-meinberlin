@@ -7,6 +7,10 @@ class PopUp extends React.Component {
     return $('<div>').text(unsafe).html()
   }
 
+  getTranslation () {
+    return django.gettext('Participation: from ') + this.props.item.future_phase + django.gettext(' possible')
+  }
+
   getWidth () {
     return { width: this.props.item.active_phase[0] + '%' }
   }
@@ -34,7 +38,7 @@ class PopUp extends React.Component {
           {this.props.item.future_phase && !this.props.item.active_phase &&
           <div className="status__future">
             <span className="maplist-item-popup__status"><i className="fas fa-clock" />
-              {django.gettext('Participation: from ') + this.props.item.future_phase + (' possible')}
+              {this.getTranslation()}
             </span>
           </div>
           }

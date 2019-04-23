@@ -85,7 +85,21 @@ module.exports = {
         exclude: /node_modules\/(?!(adhocracy4|bootstrap)\/).*/, // exclude most dependencies
         loader: 'babel-loader',
         options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'].map(require.resolve),
+          presets: [
+            [
+              '@babel/preset-env', {
+                'targets': {
+                  'browsers': [
+                    'last 2 versions',
+                    'ie >= 11'
+                  ]
+                }
+              }
+            ],
+            [
+              '@babel/preset-react'
+            ]
+          ],
           plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-transform-modules-commonjs']
         }
       },
@@ -103,7 +117,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               plugins: (loader) => [
-                autoprefixer({ browsers: ['last 3 versions', 'ie >= 11'] })
+                autoprefixer({ browsers: ['last 2 versions', 'ie >= 11'] })
               ]
             }
           },

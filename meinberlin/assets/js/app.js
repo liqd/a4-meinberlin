@@ -45,13 +45,10 @@ var initialiseWidget = function (namespace, name, fn) {
 }
 
 var init = function () {
-  var shariffs = $('.shariff')
-  if (shariffs.length > 0) {
-    new Shariff(shariffs, {
-      services: '[&quot;twitter&quot;,&quot;facebook&quot;,&quot;info&quot;]',
-      infoUrl: '/shariff'
-    })
-  }
+  new Shariff($('.shariff'), {
+    services: '[&quot;twitter&quot;,&quot;facebook&quot;,&quot;info&quot;]',
+    infoUrl: '/shariff'
+  })
 
   if ($.fn.select2) {
     $('.js-select2').select2()
@@ -69,7 +66,7 @@ var init = function () {
 }
 
 $(init)
-window.init_widgets = init
+$(document).on('a4.embed.ready', init)
 
 module.exports = {
   'getCurrentPath': getCurrentPath

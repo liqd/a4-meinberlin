@@ -3853,8 +3853,8 @@ msgstr ""
 "(Speicherung) meiner Daten und willige ausdrücklich in die Verarbeitung und "
 "Veröffentlichung meiner Ideen, Kommentare und Beiträge, wie in der "
 "Datenschutzerklärung beschrieben, ein. Zudem bestätige ich, dass ich die "
-""<a href=\"%(terms_of_use_url)s" "\" target=\"_blank\">Nutzungsbedingungen</a>"
-" und die <a href=\"%(terms_of_use_url)s" "\" target=\"_blank\">"
+"<a href=\"%(terms_of_use_url)s" "\" target=\"_blank\">Nutzungsbedingungen</a>"
+" und die <a href=\"%(privacy_policy)s\" target=\"_blank\"> "
 "Datenschutzerklärung</a> gelesen habe und akzeptiere."
 
 #: meinberlin/templates/base_errors.html:4

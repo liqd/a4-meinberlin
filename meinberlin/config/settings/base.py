@@ -67,7 +67,6 @@ INSTALLED_APPS = (
     'adhocracy4.comments',
     'adhocracy4.dashboard',
     'adhocracy4.filters',
-    'adhocracy4.follows',
     'adhocracy4.forms',
     'adhocracy4.images',
     'adhocracy4.labels',
@@ -84,6 +83,7 @@ INSTALLED_APPS = (
     'meinberlin.apps.actions',
     'meinberlin.apps.cms',
     'meinberlin.apps.contrib',
+    'meinberlin.apps.follows',
     'meinberlin.apps.maps',
     'meinberlin.apps.moderatorfeedback',
     'meinberlin.apps.moderatorremark',
@@ -116,8 +116,6 @@ INSTALLED_APPS = (
     'meinberlin.apps.polls',
     'meinberlin.apps.projectcontainers',
     'meinberlin.apps.topicprio',
-
-    'meinberlin.apps.follows',
 )
 
 MIDDLEWARE = (

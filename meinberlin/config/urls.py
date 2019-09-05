@@ -15,7 +15,6 @@ from wagtail.contrib.sitemaps.sitemap_generator import \
 
 from adhocracy4.api import routers as a4routers
 from adhocracy4.comments.api import CommentViewSet
-from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
 from meinberlin.apps.bplan.api import BplanViewSet
@@ -24,6 +23,7 @@ from meinberlin.apps.contrib.sitemaps.adhocracy4_sitemap import \
     Adhocracy4Sitemap
 from meinberlin.apps.contrib.sitemaps.static_sitemap import StaticSitemap
 from meinberlin.apps.documents.api import DocumentViewSet
+from meinberlin.apps.follows.api import FollowViewSet
 from meinberlin.apps.moderatorremark.api import ModeratorRemarkViewSet
 from meinberlin.apps.polls.api import PollViewSet
 from meinberlin.apps.polls.api import VoteViewSet

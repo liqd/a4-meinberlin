@@ -19,11 +19,11 @@ var django = require('django')
 var ReactComments = require('adhocracy4').comments
 var ReactRatings = require('adhocracy4').ratings
 var ReactReports = require('adhocracy4').reports
-var ReactFollows = require('adhocracy4').follows
 
 var ReactDocuments = require('../../apps/documents/assets/react_documents.jsx')
 var ReactPolls = require('../../apps/polls/assets/react_polls.jsx')
 var ReactMapTeaser = require('../../apps/plans/assets/react_map_teaser.jsx')
+var ReactFollows = require('../../apps/follows/static/follows/react_follows_btn.jsx').follows
 
 var relativeTimestamps = require('../../apps/actions/assets/timestamps.js')
 var mapAddress = require('./map-address.js')
@@ -60,11 +60,11 @@ var init = function () {
   }
 
   initialiseWidget('a4', 'comment', ReactComments.renderComment)
-  initialiseWidget('a4', 'follows', ReactFollows.renderFollow)
   initialiseWidget('a4', 'ratings', ReactRatings.renderRatings)
   initialiseWidget('a4', 'reports', ReactReports.renderReports)
 
   initialiseWidget('mb', 'document-management', ReactDocuments.renderDocumentManagement)
+  initialiseWidget('mb', 'follows', ReactFollows.renderFollow)
   initialiseWidget('mb', 'polls', ReactPolls.renderPolls)
   initialiseWidget('mb', 'mapTeaser', ReactMapTeaser.renderFilter)
   initialiseWidget('mb', 'poll-management', ReactPolls.renderPollManagement)

@@ -116,6 +116,8 @@ INSTALLED_APPS = (
     'meinberlin.apps.polls',
     'meinberlin.apps.projectcontainers',
     'meinberlin.apps.topicprio',
+
+    'meinberlin.apps.follows',
 )
 
 MIDDLEWARE = (

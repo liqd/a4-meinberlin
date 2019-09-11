@@ -10,3 +10,5 @@
 {% block cta_label %}Projekt anzeigen{% endblock %}
 
 {% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie einem Projekt folgen. Wenn Sie diese E-Mails nicht länger erhalten möchten, können Sie dem Projekt auf der Projektseite entfolgen oder Benachrichtigungen in Ihren Benutzerkonto Einstellungen komplett deaktivieren.{% endblock %}
+
+{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Sie haben die E-Mail erhalten, weil Sie oben genanntem Projekt folgen. Wenn Sie keine Benachrichtigungen mehr erhalten möchten, entfolgen Sie dem Projekt {{ email.get_host }}{{ action.obj.module.get_absolute_url }} oder ändern Sie die Einstellungen zu Ihrem Account {{ receiver.account.get_absolute_url }}.{% endblock %}

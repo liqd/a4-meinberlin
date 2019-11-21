@@ -12,11 +12,11 @@ class MapChoosePolygonWithPresetWidget(Widget):
 
     class Media:
         js = (
-            'a4maps_choose_polygon.js',
+            'leaflet.js',
         )
 
         css = {'all': [
-            'a4maps_choose_polygon.css'
+            'leaflet.css'
         ]}
 
     def get_presets(self, category):

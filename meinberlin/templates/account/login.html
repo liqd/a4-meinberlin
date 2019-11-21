@@ -23,13 +23,8 @@
         {% endif %}
 
         <div class="u-spacer-bottom">
-<<<<<<< HEAD
             <button class="btn btn--primary" type="submit" {% if tracking %}onclick="javascript:_paq.push(['trackEvent', 'User', 'Login']);"{% endif %}>{% trans "Login" %}</button>
             <a class="btn btn--link" href="{% url 'account_reset_password' %}" {% if tracking %}onclick="javascript:_paq.push(['trackEvent', 'User', 'Reset-password-link']);"{% endif %}>{% trans "Forgot Password?" %}</a>
-=======
-            <button class="btn btn--primary" type="submit" onclick="javascript:_paq.push(['trackEvent', 'User', 'Login']);">{% trans "Login" %}</button>
-            <a class="btn btn--link" href="{% url 'account_reset_password' %}" onclick="javascript:_paq.push(['trackEvent', 'User', 'Reset-password-link']);">{% trans "Forgot Password?" %}</a>
->>>>>>> 64128b91457d17452191409c2da38e7d5d0c36e5
         </div>
     </form>
 

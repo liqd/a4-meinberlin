@@ -1,5 +1,5 @@
 {% extends "account/base.html" %}
-{% load i18n account socialaccount %}
+{% load i18n account socialaccount contrib_tags %}
 
 {% block head_title %}{% trans "Login" %}{% endblock %}
 
@@ -23,8 +23,8 @@
         {% endif %}
 
         <div class="u-spacer-bottom">
-            <button class="btn btn--primary" type="submit" onclick="javascript:_paq.push(['trackEvent', 'User', 'Login']);">{% trans "Login" %}</button>
-            <a class="btn btn--link" href="{% url 'account_reset_password' %}" onclick="javascript:_paq.push(['trackEvent', 'User', 'Reset-password-link']);">{% trans "Forgot Password?" %}</a>
+            <button class="btn btn--primary" type="submit" {% if tracking %}onclick="javascript:_paq.push(['trackEvent', 'User', 'Login']);"{% endif %}>{% trans "Login" %}</button>
+            <a class="btn btn--link" href="{% url 'account_reset_password' %}" {% if tracking %}onclick="javascript:_paq.push(['trackEvent', 'User', 'Reset-password-link']);"{% endif %}>{% trans "Forgot Password?" %}</a>
         </div>
     </form>
 

@@ -40,7 +40,7 @@
                 <p>{% trans 'After saving the draft project you can further customize and edit your project and eventually publish it.' %}</p>
 
                 <div class="u-spacer-bottom">
-                    <input type="submit" class="btn btn--primary" name="send" value="{% trans 'Create draft' %}"/>
+                    <input type="submit" class="btn btn--primary" name="send" value="{% trans 'Save' %}"/>
                     <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
                        class="btn btn--light">{% trans 'Cancel' %}</a>
                 </div>

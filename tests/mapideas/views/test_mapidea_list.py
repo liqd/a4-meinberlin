@@ -7,6 +7,17 @@ from meinberlin.test.helpers import setup_phase
 
 
 @pytest.mark.django_db
+def test_list_view_0(client, phase_factory, map_idea_factory, organisation):
+    phase, module, project, item = setup_phase(
+        phase_factory, map_idea_factory, phases.FeedbackPhase)
+    url = project.get_absolute_url()
+    with freeze_phase(phase):
+        response = client.get(url)
+        assert_template_response(
+            response, 'meinberlin_mapideas/mapidea_list.html')
+
+
+@pytest.mark.django_db
 def test_list_view(client, phase_factory, map_idea_factory):
     phase, module, project, mapidea = setup_phase(
         phase_factory, map_idea_factory, phases.FeedbackPhase)

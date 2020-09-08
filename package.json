@@ -88,7 +88,10 @@
     "watch": "webpack --config webpack.dev.js --watch --mode development",
     "lint": "eslint meinberlin/apps meinberlin/assets --ext .js,.jsx && stylelint 'meinberlin/assets/scss/**/*.scss' --syntax scss"
   },
-  "browserslist": "last 3 versions, ie >= 11",
+  "overrideBrowserslist": [
+    "last 3 versions",
+    "ie >= 11"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "make lint && make check-migrations"

@@ -86,7 +86,7 @@ export function getCurrentPath () {
 }
 
 // This function adds required classes to iframes added by ckeditor
-$(document).ready(function () {
-  $('.rich-text iframe').addClass('ck_embed_iframe')
-  $('.ck_embed_iframe').parent('div').addClass('ck_embed_iframe__container')
-})
+// $(document).ready(function () {
+//   $('.rich-text iframe').addClass('ck_embed_iframe')
+//   $('.ck_embed_iframe').parent('div').addClass('ck_embed_iframe__container')
+// })

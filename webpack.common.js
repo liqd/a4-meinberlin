@@ -78,6 +78,9 @@ module.exports = {
     ],
     select_dropdown_init: [
       'adhocracy4/adhocracy4/categories/assets/select_dropdown_init.js'
+    ],
+    dsgvo_video_embed: [
+      './meinberlin/assets/js/dsgvo-video-embed.js'
     ]
   },
   output: {
@@ -110,7 +113,7 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-                url: url => !url.startsWith('/')
+              url: url => !url.startsWith('/')
             }
           },
           {

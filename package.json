@@ -23,7 +23,7 @@
     "adhocracy4": "liqd/adhocracy4#f9a7efc50cd7d1242fa99c540d349528efb18654",
     "autoprefixer": "10.0.2",
     "axios": "0.21.0",
-    "babel-loader": "8.2.1",
+    "babel-loader": "8.2.2",
     "bootstrap": "4.5.3",
     "copy-webpack-plugin": "6.3.2",
     "css-loader": "5.0.1",

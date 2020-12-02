@@ -78,7 +78,7 @@
         {% if filtered_projects|length > 0 %}
             <ul class="u-list-reset participation-tile__list">
                 {% for project in filtered_projects %}
-                    {% include "meinberlin_projects/includes/project_tile.html" with project=project %}
+                    {% include "meinberlin_projects/includes/project_module_tile.html.html" with project=project module=module %}
                 {% endfor %}
             </ul>
         {% else %}

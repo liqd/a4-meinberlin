@@ -4,7 +4,7 @@
     <ul class="l-tiles-4">
         {% for project in value.projects %}
             {% if project and not project.is_private and not project.is_draft %}
-                {% include "meinberlin_projects/includes/project_tile.html" with project=project %}
+                {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=module %}
             {% endif %}
         {% endfor %}
     </ul>

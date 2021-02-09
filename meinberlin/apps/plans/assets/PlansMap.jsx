@@ -124,9 +124,9 @@ class PlansMap extends Component {
     const districLayers = L.geoJSON(this.props.districts, { style: districtStyle }).addTo(map)
     const districtNames = this.props.districtnames
     this.disctrictLayerLookup = {}
-    districLayers.getLayers().map((layer, i) => {
+    districLayers.getLayers().map((layer, i) => (
       this.disctrictLayerLookup[districtNames[i].toString()] = layer
-    })
+    ))
     this.zoomToDistrict(this.props.currentDistrict)
   }
 
@@ -145,7 +145,7 @@ class PlansMap extends Component {
       />
     )
   }
-
+  /* eslint-disable */
   addMarkers (cluster) {
     this.props.items.map((item, i) => {
       if (item.point !== '' && item.point.geometry) {
@@ -156,6 +156,7 @@ class PlansMap extends Component {
       }
     })
   }
+  /* eslint-enable */
 
   displayResults (geojson) {
     this.setState(

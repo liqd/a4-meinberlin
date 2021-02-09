@@ -1,14 +1,15 @@
 const $ = require('jquery')
 const a4api = require('adhocracy4').api
 
+/* eslint-disable */
 $(function () {
   const dropdown = $('#idea-remark__dropdown')
   const attributes = dropdown.data('attributes')
   if (typeof attributes !== 'undefined') {
-    var objectPk = attributes.item_object_id
-    var contentTypeId = attributes.item_content_type
-    var remarkId = attributes.id
-    var remarkVal = attributes.remark
+    const objectPk = attributes.item_object_id
+    const contentTypeId = attributes.item_content_type
+    const remarkId = attributes.id
+    const remarkVal = attributes.remark
   }
 
   if (remarkId) {
@@ -29,7 +30,7 @@ $(function () {
         remark: newVal
       }
 
-      var response
+      let response
       if (remarkId) {
         response = a4api.moderatorremark.change(data, remarkId)
       } else {
@@ -51,3 +52,4 @@ $(function () {
     }
   })
 })
+/* eslint-enable */

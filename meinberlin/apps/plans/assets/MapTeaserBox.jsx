@@ -25,7 +25,7 @@ class MapTeaserBox extends React.Component {
     })
   }
 
-  componentWillMount () {
+  componentDidMount () {
     window.addEventListener('resize', this.windowSizeChange)
   }
 

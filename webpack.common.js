@@ -120,6 +120,7 @@ module.exports = {
     path: path.resolve('./meinberlin/static/'),
     publicPath: '/static/'
   },
+  target: ['web', 'es5'],
   externals: {
     django: 'django'
   },
@@ -131,7 +132,11 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           presets: ['@babel/preset-env', '@babel/preset-react'].map(require.resolve),
-          plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-transform-modules-commonjs']
+          plugins: [
+            '@babel/plugin-transform-runtime',
+            '@babel/plugin-transform-modules-commonjs',
+            '@babel/plugin-transform-object-assign'
+          ]
         }
       },
       {
@@ -178,7 +183,18 @@ module.exports = {
     ]
   },
   resolve: {
-    fallback: { path: require.resolve('path-browserify') },
+    fallback: {
+      assert: require.resolve('assert/'),
+      buffer: require.resolve('buffer/'),
+      http: require.resolve('stream-http'),
+      https: require.resolve('https-browserify'),
+      path: require.resolve('path-browserify'),
+      os: require.resolve('os-browserify/browser'),
+      stream: require.resolve('stream-browserify'),
+      tty: require.resolve('tty-browserify'),
+      url: require.resolve('url/'),
+      zlib: require.resolve('browserify-zlib')
+    },
     extensions: ['*', '.js', '.jsx', '.scss', '.css'],
     alias: {
       bootstrap$: 'bootstrap/dist/js/bootstrap.bundle.min.js',

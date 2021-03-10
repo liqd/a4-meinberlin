@@ -128,8 +128,12 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules\/((mapbox-gl)\/)/, // exclude most dependencies
         loader: 'babel-loader',
+        exclude: [
+          /node_modules\/((mapbox-gl)\/)/, // exclude most dependencies
+          /node_modules\/core-js/,
+          /node_modules\/webpack\/buildin/
+        ],
         options: {
           presets: [
             '@babel/preset-env',

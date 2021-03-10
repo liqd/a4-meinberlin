@@ -218,6 +218,7 @@ module.exports = {
       timeago: 'timeago.js',
       $: 'jquery',
       jQuery: 'jquery',
+      L: 'leaflet',
       Promise: ['es6-promise', 'Promise'],
       fetch: ['whatwg-fetch', 'fetch']
     }),

@@ -1,4 +1,4 @@
-import 'bootstrap' // load bootstrap components
+import 'bootstrap' // load bootstrap components FIXME do we need all of them?
 import 'django'
 import 'select2' // used to select projects in containers
 import 'shariff'

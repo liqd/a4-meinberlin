@@ -3,6 +3,8 @@
 }
 
 .widget--datetimeinput__date {
+    flex-wrap: nowrap;
+
     @extend .input-group;
 }
 

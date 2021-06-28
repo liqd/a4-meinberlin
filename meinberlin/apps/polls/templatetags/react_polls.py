@@ -8,19 +8,26 @@ from adhocracy4.polls import serializers
 
 register = template.Library()
 
+# @register.simple_tag(takes_context=True)
+# def react_polls(context, question):
+#     question_serializer = serializers.QuestionSerializer(
+#         question,
+#         context={'request': context['request']}
+#     )
 
-@register.simple_tag(takes_context=True)
-def react_polls(context, question):
-    question_serializer = serializers.QuestionSerializer(
-        question,
-        context={'request': context['request']}
-    )
+#     return format_html(
+#         '<div data-mb-widget="polls" data-question="{question}"></div>',
+#         question=JSONRenderer()
+#         .render(question_serializer.data)
+#         .decode("utf-8")
+#     )
 
+
+@register.simple_tag
+def react_polls(module_id):
     return format_html(
-        '<div data-mb-widget="polls" data-question="{question}"></div>',
-        question=JSONRenderer()
-        .render(question_serializer.data)
-        .decode("utf-8")
+        '<div data-mb-widget="polls" data-module="{moduleId}"></div>',
+        moduleId=module_id,
     )
 
 

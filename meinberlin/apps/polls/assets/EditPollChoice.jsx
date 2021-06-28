@@ -2,7 +2,7 @@ import React from 'react'
 import django from 'django'
 import ErrorList from '../../contrib/assets/ErrorList'
 
-export const ChoiceForm = (props) => {
+export const EditPollChoice = (props) => {
   return (
     <div className="form-group">
       <div className="input-group">

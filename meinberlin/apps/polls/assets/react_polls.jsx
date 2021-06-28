@@ -1,13 +1,12 @@
-import { PollManagement } from './PollManagement'
+import { EditPollQuestions } from './EditPollQuestions'
 const React = require('react')
 const ReactDOM = require('react-dom')
-const Question = require('./Question')
+const { PollQuestions } = require('./PollQuestions')
 
 module.exports.renderPolls = function (element) {
-  const question = JSON.parse(element.getAttribute('data-question'))
-  const module = element.getAttribute('data-module')
+  const moduleId = element.getAttribute('data-module')
 
-  ReactDOM.render(<Question module={module} question={question} />, element)
+  ReactDOM.render(<PollQuestions moduleId={moduleId} />, element)
 }
 
 module.exports.renderPollManagement = function (element) {
@@ -16,5 +15,5 @@ module.exports.renderPollManagement = function (element) {
 
   const reloadOnSuccess = JSON.parse(element.getAttribute('data-reloadOnSuccess'))
 
-  ReactDOM.render(<PollManagement module={module} poll={poll} reloadOnSuccess={reloadOnSuccess} />, element)
+  ReactDOM.render(<EditPollQuestions module={module} poll={poll} reloadOnSuccess={reloadOnSuccess} />, element)
 }

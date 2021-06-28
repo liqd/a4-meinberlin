@@ -6,7 +6,7 @@ const update = require('immutability-helper')
 const api = require('adhocracy4').api
 const config = require('adhocracy4').config
 
-class Question extends React.Component {
+class PollQuestion extends React.Component {
   constructor (props) {
     super(props)
 
@@ -261,4 +261,4 @@ class Question extends React.Component {
   }
 }
 
-module.exports = Question
+module.exports = PollQuestion

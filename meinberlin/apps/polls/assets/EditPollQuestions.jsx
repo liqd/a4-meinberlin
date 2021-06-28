@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from 'react'
 import django from 'django'
 import dashboard from 'adhocracy4/adhocracy4/dashboard/assets/dashboard'
 import update from 'immutability-helper'
-import { QuestionForm } from './QuestionForm'
-import { OpenQuestionForm } from './OpenQuestionForm'
+import { EditPollQuestion } from './EditPollQuestion'
+import { EditPollOpenQuestion } from './EditPollOpenQuestion'
 import Alert from '../../contrib/assets/Alert'
 import PopperMenu from './PopperMenu'
 
@@ -25,7 +25,7 @@ const getNextLocalKey = () => {
   return 'local_' + maxLocalKey++
 }
 
-export const PollManagement = (props) => {
+export const EditPollQuestions = (props) => {
   /*
   |--------------------------------------------------------------------------
   | Question state related handlers
@@ -228,7 +228,7 @@ export const PollManagement = (props) => {
             return question.is_open
               ? (
                 <div key={key}>
-                  <OpenQuestionForm
+                  <EditPollOpenQuestion
                     id={key}
                     question={question}
                     onLabelChange={(label) => handleQuestion('label', { index, label })}
@@ -242,7 +242,7 @@ export const PollManagement = (props) => {
                 )
               : (
                 <div key={key}>
-                  <QuestionForm
+                  <EditPollQuestion
                     id={key}
                     question={question}
                     onLabelChange={(label) => handleQuestion('label', { index, label })}

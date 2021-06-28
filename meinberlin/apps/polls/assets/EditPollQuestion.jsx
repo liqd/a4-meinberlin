@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { ChoiceForm } from './ChoiceForm'
+import { EditPollChoice } from './EditPollChoice'
 import django from 'django'
 import ErrorList from '../../contrib/assets/ErrorList'
 import { HelptextForm } from './HelptextForm'
 
 const FlipMove = require('react-flip-move').default
 
-export const QuestionForm = (props) => {
+export const EditPollQuestion = (props) => {
   const [hasHelptext, setHasHelptext] = useState(props.question.help_text)
   const hasOtherOption = props.question.choices.find(c => c.is_other_choice)
   return (
@@ -76,7 +76,7 @@ export const QuestionForm = (props) => {
               return !choice.is_other_choice
                 ? (
                   <div key={key}>
-                    <ChoiceForm
+                    <EditPollChoice
                       id={key}
                       label={label}
                       choice={choice}
@@ -89,7 +89,7 @@ export const QuestionForm = (props) => {
                   )
                 : (
                   <div key={key}>
-                    <ChoiceForm
+                    <EditPollChoice
                       id={key}
                       label={django.gettext('Other')}
                       choice={{ label: django.gettext('Other') }}

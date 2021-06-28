@@ -3,7 +3,7 @@ import django from 'django'
 import ErrorList from '../../contrib/assets/ErrorList'
 import { HelptextForm } from './HelptextForm'
 
-export const OpenQuestionForm = (props) => {
+export const EditPollOpenQuestion = (props) => {
   const [hasHelptext, setHasHelptext] = useState(props.question.help_text)
 
   return (

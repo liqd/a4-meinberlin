@@ -24,10 +24,10 @@ register = template.Library()
 
 
 @register.simple_tag
-def react_polls(module_id):
+def react_polls(poll_id):
     return format_html(
-        '<div data-mb-widget="polls" data-module="{moduleId}"></div>',
-        moduleId=module_id,
+        '<div data-mb-widget="polls" data-poll-id="{pollId}"></div>',
+        pollId=poll_id,
     )
 
 

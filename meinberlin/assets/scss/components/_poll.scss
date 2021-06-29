@@ -1,6 +1,5 @@
 .poll {
     padding: 1.5em;
-    margin-bottom: $em-spacer;
 
     background-color: $body-bg;
 
@@ -196,5 +195,10 @@
     .questionform-button-wrapper {
         margin: 0;
         margin-right: 0.5rem;
+    }
+
+    .questionform-divider {
+        border-top: 1px solid $border-color;
+        margin: 1.5em;
     }
 }

@@ -4,9 +4,9 @@ const ReactDOM = require('react-dom')
 const { PollQuestions } = require('./PollQuestions')
 
 module.exports.renderPolls = function (element) {
-  const moduleId = element.getAttribute('data-module')
+  const pollId = element.getAttribute('data-poll-id')
 
-  ReactDOM.render(<PollQuestions moduleId={moduleId} />, element)
+  ReactDOM.render(<PollQuestions pollId={pollId} />, element)
 }
 
 module.exports.renderPollManagement = function (element) {

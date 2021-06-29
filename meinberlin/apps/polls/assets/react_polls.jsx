@@ -10,10 +10,9 @@ module.exports.renderPolls = function (element) {
 }
 
 module.exports.renderPollManagement = function (element) {
-  const poll = JSON.parse(element.getAttribute('data-poll'))
-  const module = element.getAttribute('data-module')
+  const pollId = JSON.parse(element.getAttribute('data-poll-id'))
 
   const reloadOnSuccess = JSON.parse(element.getAttribute('data-reloadOnSuccess'))
 
-  ReactDOM.render(<EditPollQuestions module={module} poll={poll} reloadOnSuccess={reloadOnSuccess} />, element)
+  ReactDOM.render(<EditPollQuestions pollId={pollId} reloadOnSuccess={reloadOnSuccess} />, element)
 }

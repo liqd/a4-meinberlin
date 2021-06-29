@@ -209,7 +209,7 @@ export const EditPollQuestions = (props) => {
   }
 
   useEffect(() => {
-    api.poll.get(props.module).done(({ questions }) => {
+    api.poll.get(props.pollId).done(({ questions }) => {
       questions.length > 0
         ? setQuestions(questions)
         : setQuestions([getNewQuestion()])

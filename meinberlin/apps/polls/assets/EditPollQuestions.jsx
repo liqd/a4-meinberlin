@@ -154,7 +154,7 @@ export const EditPollQuestions = (props) => {
       questions: questions
     }
 
-    api.poll.change(data, props.poll.id)
+    api.poll.change(data, props.pollId)
       .done((data) => {
         setAlert({
           type: 'success',

@@ -311,3 +311,8 @@ $checkbox-size: 20px;
         right: 4*$spacer;
     }
 }
+
+.poll-slider__item--highlight {
+    padding: $spacer;
+    background-color: $brand-primary-tint;
+}

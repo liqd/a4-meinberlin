@@ -61,10 +61,6 @@ $timeline-carousel__top-space: 11px;
     }
 }
 
-.slick-track > div.slick-slide {
-    margin: 0 3*$em-spacer;
-}
-
 .timeline-carousel {
     position: relative;
     color: $brand-secondary;
@@ -104,6 +100,10 @@ $timeline-carousel__top-space: 11px;
 
     .slick-next:before {
         content: '\f105'; // angle-right
+    }
+
+    .slick-track > div.slick-slide {
+        margin: 0 3*$em-spacer;
     }
 }
 

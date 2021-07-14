@@ -296,6 +296,10 @@ $checkbox-size: 20px;
     padding: $spacer;
 }
 
+.poll-slider__answer {
+    padding-bottom: $spacer;
+}
+
 .poll-slider__count {
     color: $gray-lighter;
     position: absolute;
@@ -306,9 +310,4 @@ $checkbox-size: 20px;
         left: revert;
         right: 4*$spacer;
     }
-}
-
-.poll-slider__item--highlight {
-    padding: $spacer;
-    background-color: $brand-primary-tint;
 }

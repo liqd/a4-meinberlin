@@ -16,9 +16,10 @@ from adhocracy4.phases.models import Phase
 from adhocracy4.projects import models as project_models
 from adhocracy4.projects.enums import Access
 from adhocracy4.projects.fields import TopicField
+from adhocracy4.projects.models import ProjectContactDetailMixin
 
 
-class Plan(UserGeneratedContentModel):
+class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
 
     PARTICIPATION_YES = 0
     PARTICIPATION_NO = 1

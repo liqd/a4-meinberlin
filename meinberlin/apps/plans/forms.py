@@ -18,7 +18,6 @@ class PlanForm(forms.ModelForm):
             'title',
             'description_image',
             'description_image_copyright',
-            'contact',
             'point',
             'point_label',
             'district',

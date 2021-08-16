@@ -87,7 +87,7 @@ class Plan(UserGeneratedContentModel):
         blank=True,
         on_delete=models.CASCADE
     )
-    contact = models.TextField(
+    contact_address_text = models.TextField(
         max_length=1000,
         verbose_name=_('Contact for queries'),
         help_text=_('Please name a contact person so users know who '

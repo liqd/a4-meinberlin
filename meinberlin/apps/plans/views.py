@@ -35,7 +35,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
     permission_required = 'meinberlin_plans.list_plan'
 
     def get_queryset(self):
-        return super().get_queryset()\
+        return super().get_queryset() \
             .select_related()
 
     @cached_property
@@ -47,9 +47,9 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
             return []
 
     def get_organisations(self):
-        organisations = Organisation\
-            .objects\
-            .values_list('name', flat=True)\
+        organisations = Organisation \
+            .objects \
+            .values_list('name', flat=True) \
             .order_by('name')
         return json.dumps(list(organisations))
 

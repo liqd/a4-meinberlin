@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { BudgetingProposalListItem } from './BudgetingProposalListItem'
+import { VotingCodeForm } from './VotingCodeForm'
 
 export const BudgetingProposalList = (props) => {
   const [proposals, setProposals] = useState([])
@@ -9,16 +10,13 @@ export const BudgetingProposalList = (props) => {
       .then(json => setProposals(json))
   }, [])
   return (
-    <div className="l-wrapper">
-      <div className="l-center-8">
-        <ul className="u-list-reset">
-          {proposals.map((proposal, idx) =>
-            <BudgetingProposalListItem
-              key={`budgeting-proposal-${idx}`}
-              proposal={proposal}
-            />)}
-        </ul>
-      </div>
-    </div>
+    <ul className="u-list-reset">
+      <VotingCodeForm />
+      {proposals.map((proposal, idx) =>
+        <BudgetingProposalListItem
+          key={`budgeting-proposal-${idx}`}
+          proposal={proposal}
+        />)}
+    </ul>
   )
 }

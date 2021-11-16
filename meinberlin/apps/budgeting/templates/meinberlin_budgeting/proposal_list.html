@@ -1,5 +1,5 @@
 {% extends extends %}
-{% load i18n discovery_tags static maps_tags %}
+{% load i18n discovery_tags static maps_tags react_proposals %}
 
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'a4maps_display_points.js' %}"></script>
@@ -44,6 +44,7 @@
                 <div class="l-center-8">
                     {% if object_list.count > 0 %}
                         <ul class="u-list-reset">
+                          {% react_proposals view.module %}
                             {% for object in object_list %}
                                 {% include "meinberlin_contrib/includes/proposal_list_item.html" with object=object %}
                             {% endfor %}

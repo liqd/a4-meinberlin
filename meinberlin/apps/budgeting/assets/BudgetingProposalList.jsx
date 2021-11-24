@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { BudgetingProposalListItem } from './BudgetingProposalListItem'
 import { Pagination } from './Pagination'
+import { ModeSwitchButton } from './ModeSwitchButton'
 
 export const BudgetingProposalList = (props) => {
   const [data, setData] = useState([])
@@ -31,22 +32,27 @@ export const BudgetingProposalList = (props) => {
   useEffect(fetchProposals, [])
 
   return (
-    <div className="l-wrapper">
-      <div className="l-center-8">
-        <ul className="u-list-reset">
-          {data.map((proposal, idx) =>
-            <BudgetingProposalListItem
-              key={`budgeting-proposal-${idx}`}
-              proposal={proposal}
-            />)}
-        </ul>
-        {meta?.is_paginated &&
-          <Pagination
-            currPageIndex={meta.current_page}
-            pageCount={meta.page_count}
-            onPaginate={newUrl => onPaginate(newUrl)}
-          />}
+    <>
+      <ModeSwitchButton />
+      <div class="module-content--light">
+        <div className="l-wrapper">
+          <div className="l-center-8">
+            <ul className="u-list-reset">
+              {data.map((proposal, idx) =>
+                <BudgetingProposalListItem
+                  key={`budgeting-proposal-${idx}`}
+                  proposal={proposal}
+                />)}
+            </ul>
+            {meta?.is_paginated &&
+              <Pagination
+                currPageIndex={meta.current_page}
+                pageCount={meta.page_count}
+                onPaginate={newUrl => onPaginate(newUrl)}
+              />}
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   )
 }

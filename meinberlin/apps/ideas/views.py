@@ -3,11 +3,11 @@ from django.db import transaction
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
+from django_filters.views import FilterView
 
 from adhocracy4.categories import filters as category_filters
 from adhocracy4.exports.views import DashboardExportView
 from adhocracy4.filters import filters as a4_filters
-from adhocracy4.filters import views as filter_views
 from adhocracy4.filters import widgets as filters_widgets
 from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
@@ -29,15 +29,16 @@ class FreeTextFilterWidget(filters_widgets.FreeTextFilterWidget):
     label = _('Search')
 
 
-def get_ordering_choices(view):
+def get_ordering_choices(request):
     choices = (('-created', _('Most recent')),)
-    if view.module.has_feature('rate', models.Idea):
+    if request.module.has_feature('rate', models.Idea):
         choices += ('-positive_rating_count', _('Most popular')),
     choices += ('-comment_count', _('Most commented')),
     return choices
 
 
 class IdeaFilterSet(a4_filters.DefaultsFilterSet):
+
     defaults = {
         'ordering': '-created'
     }
@@ -52,11 +53,11 @@ class IdeaFilterSet(a4_filters.DefaultsFilterSet):
 
     class Meta:
         model = models.Idea
-        fields = ['search', 'category']
+        fields = ['category', 'search']
 
 
 class AbstractIdeaListView(ProjectMixin,
-                           filter_views.FilteredListView):
+                           FilterView):
     paginate_by = 15
 
 
@@ -64,7 +65,8 @@ class IdeaListView(AbstractIdeaListView,
                    DisplayProjectOrModuleMixin
                    ):
     model = models.Idea
-    filter_set = IdeaFilterSet
+    filterset_class = IdeaFilterSet
+    template_name = 'meinberlin_ideas/idea_list.html'
 
     def get_queryset(self):
         return super().get_queryset()\

@@ -13,27 +13,45 @@ class DynamicChoicesMixin(object):
 
     Add callable functionality to filters that support the ``choices``
     argument. If the ``choices`` is callable, then it **must** accept the
-    ``view`` object as a single argument.
-    The ``view`` object may be None if the parent FilterSet is not class based.
+    ``request`` object as a single argument.
+
+    FIXME: check!
+    The ``request`` object may be None if the parent FilterSet is not class
+    based.
 
     This is useful for dymanic ``choices`` determined properties on the
-    ``view`` object.
+    ``request`` object.
+
+    Like
+    https://github.com/carltongibson/django-filter/blob/
+    ab7978323ff092c0ccd2b95e9b190ba8522bde11/django_filters/filters.py#L295
+
+    Was changed from request to view in
+    https://github.com/liqd/a4-meinberlin/commit/
+    ea74f6ad5b04922a7c10477a9074b3047189c8db
     """
 
     def __init__(self, *args, **kwargs):
         self.choices = kwargs.pop('choices')
         super().__init__(*args, **kwargs)
 
-    def get_choices(self, view):
+    def get_request(self):
+        try:
+            return self.parent.request
+        except AttributeError:
+            return None
+
+    def get_choices(self, request):
         choices = self.choices
 
         if callable(choices):
-            return choices(view)
+            return choices(request)
         return choices
 
     @property
     def field(self):
-        choices = self.get_choices(getattr(self, 'view', None))
+        request = self.get_request()
+        choices = self.get_choices(request)
 
         if choices is not None:
             self.extra['choices'] = choices

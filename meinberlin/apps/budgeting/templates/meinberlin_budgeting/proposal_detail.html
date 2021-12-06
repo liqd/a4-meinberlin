@@ -1,5 +1,5 @@
 {% extends "meinberlin_mapideas/mapidea_detail.html" %}
-{% load rules i18n humanize contrib_tags static react_proposal_votes %}
+{% load rules i18n humanize contrib_tags %}
 
 {% block additional_labels %}
     {{ block.super }}
@@ -7,12 +7,5 @@
 {% endblock %}
 
 {% block vote_button %}
-  <div class="l-center-6">
-    {% react_proposal_votes view.module %}
-  </div>
-{% endblock %}
-
-{% block extra_js %}
-    <script type="text/javascript" src="{% static 'budget_proposal_votes.js' %}"></script>
-    {{ block.super }}
+  {% include "meinberlin_budgeting/includes/vote_button.html" %}
 {% endblock %}

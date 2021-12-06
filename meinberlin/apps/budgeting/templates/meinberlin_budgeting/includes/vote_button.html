@@ -1,0 +1,9 @@
+{% load static react_proposal_votes %}
+
+<div class="l-center-6">
+  {% react_proposal_votes view.module %}
+</div>
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'budget_proposal_votes.js' %}"></script>
+{% endblock %}

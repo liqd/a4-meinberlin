@@ -58,6 +58,9 @@ module.exports = {
     budget_proposals: {
       import: './meinberlin/apps/budgeting/assets/react_proposals_init.js'
     },
+    budget_proposal_votes: {
+      import: './meinberlin/apps/budgeting/assets/react_vote_button_init.js'
+    },
     unload_warning: {
       import: './meinberlin/assets/js/unload_warning.js'
     },

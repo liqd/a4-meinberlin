@@ -11,24 +11,7 @@ register = template.Library()
 
 
 @register.simple_tag(takes_context=True)
-def react_proposals(context, module):
-    proposals_api_url = reverse('proposals-list',
-                                kwargs={'module_pk': module.pk})
-    attributes = {'proposals_api_url': proposals_api_url,
-                  'is_voting_phase': has_feature_active(module,
-                                                        Proposal,
-                                                        'vote')
-                  }
-
-    return format_html(
-        '<div data-mb-widget="proposals" '
-        'data-attributes="{attributes}"></div>',
-        attributes=json.dumps(attributes)
-    )
-
-
-@register.simple_tag(takes_context=True)
-def react_votes(context, module):
+def react_proposal_votes(context, module):
     proposals_api_url = reverse('proposals-list',
                                 kwargs={'module_pk': module.pk})
     attributes = {'proposals_api_url': proposals_api_url,

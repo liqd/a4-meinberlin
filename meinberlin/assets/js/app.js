@@ -23,6 +23,7 @@ import {
 import * as ReactMapTeaser from '../../apps/plans/assets/react_map_teaser.jsx'
 import * as ReactQuestions from '../../apps/livequestions/assets/react_questions.jsx'
 import * as ReactQuestionsPresent from '../../apps/livequestions/assets/react_questions_present.jsx'
+import * as ReactVote from '../../apps/budgeting/assets/react_vote_button.jsx'
 
 import * as Tether from 'tether'
 
@@ -46,6 +47,7 @@ function init () {
   ReactWidget.initialise('a4', 'reports', ReactReports.renderReports)
 
   ReactWidget.initialise('mb', 'mapTeaser', ReactMapTeaser.renderFilter)
+  ReactWidget.initialise('mb', 'proposal_votes', ReactVote.renderVoteButton)
 
   ReactWidget.initialise('ie', 'questions', ReactQuestions.renderQuestions)
   ReactWidget.initialise('ie', 'present', ReactQuestionsPresent.renderData)

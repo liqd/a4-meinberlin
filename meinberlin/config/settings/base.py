@@ -324,7 +324,7 @@ CKEDITOR_CONFIGS = {
         'extraAllowedContent': 'iframe[*]',
         'extraPlugins': ','.join(['embed', 'embedbase']),
         'embed_provider':
-            '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}',
+            '//iframe.ly/api/oembed?url={url}&callback={callback}&api_key=24d87d1a0d77758096350e',
     },
     'image-editor': {
         'width': '100%',

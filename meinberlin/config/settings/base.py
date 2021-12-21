@@ -320,11 +320,6 @@ CKEDITOR_CONFIGS = {
             ['NumberedList', 'BulletedList'],
             ['Link', 'Unlink'],
         ],
-        'removePlugins': 'stylesheetparser',
-        'extraAllowedContent': 'iframe[*]',
-        'extraPlugins': ','.join(['embed', 'embedbase']),
-        'providerUrl':
-            'https//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}',
     },
     'image-editor': {
         'width': '100%',
@@ -361,6 +356,7 @@ CKEDITOR_CONFIGS = {
         ],
         'removePlugins': 'stylesheetparser',
         'extraAllowedContent': 'iframe[*]; div[*]',
+        'embed_provider': '//localhost:8061/oembed?url={url}&callback={callback}',
     }
 }
 

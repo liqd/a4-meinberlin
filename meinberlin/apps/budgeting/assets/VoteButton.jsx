@@ -1,64 +1,64 @@
 import React from 'react'
 import django from 'django'
-import { updateItem } from '../../contrib/assets/helpers.js'
+import { useApi } from '../../contrib/assets/ApiProvider'
 
-export default class VoteButton extends React.Component {
-  async addVote () {
+export const VoteButton = props => {
+  const api = useApi()
+
+  const addVote = async () => {
     const data = {
-      object_id: this.props.objectID
+      object_id: props.objectID
     }
-    await updateItem(data, this.props.tokenvoteApiUrl, 'POST')
+    await api.post(props.tokenvoteApiUrl, data)
   }
 
-  async deleteVote () {
-    const url = this.props.tokenvoteApiUrl + this.props.objectID + '/'
-    await updateItem({}, url, 'DELETE')
+  const deleteVote = async () => {
+    const url = props.tokenvoteApiUrl + props.objectID + '/'
+    await api.remove(url)
   }
 
-  triggerRender = () => {
-    // FIXME: this distuingishes between if
+  const triggerRender = () => {
+    // FIXME: distuingishes between if
     // it has a parent that handles onVoteChange
     // or if it is used as widget, and therefore page
     // has to be reloaded --> fix would be one asynchronous way
-    if (this.props.asWidget) {
+    if (props.asWidget) {
       window.location.reload()
     } else {
-      this.props.onVoteChange(this.props.currentPage)
+      props.onVoteChange(props.currentPage)
     }
   }
 
-  async handleOnChange () {
-    if (this.props.isChecked) {
-      await this.deleteVote()
+  const handleOnChange = async () => {
+    if (props.isChecked) {
+      await deleteVote()
     } else {
-      await this.addVote()
+      await addVote()
     }
-    this.triggerRender()
+    triggerRender()
   }
 
-  render () {
-    const checkedText = django.gettext('Voted')
-    const uncheckedText = django.gettext('Give my vote')
-    const checkedClass = 'btn btn--full'
-    const uncheckedClass = 'btn btn--full btn--light'
+  const checkedText = django.gettext('Voted')
+  const uncheckedText = django.gettext('Give my vote')
+  const checkedClass = 'btn btn--full'
+  const uncheckedClass = 'btn btn--full btn--light'
 
-    return (
-      <div>
-        <label
-          htmlFor={this.props.objectID}
-          className={this.props.isChecked ? checkedClass : uncheckedClass}
-        >
-          <input
-            id={this.props.objectID}
-            className="checkbox-btn__input"
-            type="checkbox"
-            disabled={this.props.disabled}
-            checked={this.props.isChecked}
-            onChange={e => this.handleOnChange(e)}
-          />
-          <span>{this.props.isChecked ? checkedText : uncheckedText}</span>
-        </label>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <label
+        htmlFor={props.objectID}
+        className={props.isChecked ? checkedClass : uncheckedClass}
+      >
+        <input
+          id={props.objectID}
+          className="checkbox-btn__input"
+          type="checkbox"
+          disabled={props.disabled}
+          checked={props.isChecked}
+          onChange={e => handleOnChange(e)}
+        />
+        <span>{props.isChecked ? checkedText : uncheckedText}</span>
+      </label>
+    </div>
+  )
 }

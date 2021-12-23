@@ -4,31 +4,30 @@ import { BudgetingProposalListItem } from './BudgetingProposalListItem'
 import { Pagination } from './Pagination'
 import { CountDown } from '../../contrib/assets/CountDown'
 import { FilterBar } from './FilterBar'
+import { useApi } from '../../contrib/assets/ApiProvider'
 
 export const BudgetingProposalList = (props) => {
   const [data, setData] = useState([])
   const [meta, setMeta] = useState()
   const [queryString, setQueryString] = useState('')
+  const api = useApi()
 
-  const fetchProposals = (newIndex) => {
+  const fetchProposals = async (newIndex) => {
     const pageNumber = newIndex || 1
     const url = `${props.proposals_api_url}?page=${pageNumber}${queryString}`
-    fetch(url)
-      .then(resp => resp.json())
-      .then(json => {
-        setData(json.results)
-        setMeta({
-          current_page: pageNumber,
-          page_count: json.page_count,
-          is_paginated: json.page_count > 1,
-          previous: json.previous,
-          next: json.next,
-          filters: json.filters,
-          locale: json.locale,
-          token_info: json.token_info
-        })
-      })
-      .catch(error => console.log(error))
+    const [result, error] = await api.get(url)
+    result && setData(result.results)
+    result && setMeta({
+      current_page: pageNumber,
+      page_count: result.page_count,
+      is_paginated: result.page_count > 1,
+      previous: result.previous,
+      next: result.next,
+      filters: result.filters,
+      locale: result.locale,
+      token_info: result.token_info
+    })
+    error && console.log(error)
   }
 
   const onPaginate = (selectedPage) => {

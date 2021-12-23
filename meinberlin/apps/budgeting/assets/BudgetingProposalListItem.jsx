@@ -1,11 +1,11 @@
 import React from 'react'
 import django from 'django'
 import { toLocaleDate } from './helpers'
-import VoteButton from './VoteButton'
+import { VoteButton } from './VoteButton'
 import { ListItemBadges } from './ListItemBadges'
 import { ListItemStats } from './ListItemStats'
 
-export const BudgetingProposalListItem = (props) => {
+export const BudgetingProposalListItem = props => {
   const { proposal, isVotingPhase, tokenvoteApiUrl } = props
   const safeLocale = props.locale ? props.locale : undefined
   const date = proposal.modified

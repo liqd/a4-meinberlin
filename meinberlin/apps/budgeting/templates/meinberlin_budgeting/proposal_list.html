@@ -1,5 +1,5 @@
 {% extends extends %}
-{% load i18n discovery_tags static maps_tags react_proposals widget_tweaks rules %}
+{% load i18n discovery_tags static maps_tags widget_tweaks rules %}
 
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'a4maps_display_points.js' %}"></script>
@@ -18,29 +18,6 @@
         <a href="{% url 'meinberlin_budgeting:proposal-create' module_slug=module.slug %}" class="btn btn--full u-spacer-bottom btn--huge">
             {% trans 'Submit proposal' %}
         </a>
-    {% endif %}
-    {% comment %}
-        FIXME: differentiating 2 and 3 phase buergerhaushalt by just counting the phases
-               should be changed once we have module types
-    {% endcomment %}
-    {% if module.phases.count == 3 %}
-        {% has_perm 'meinberlin_budgeting.add_vote' request.user module as vote_allowed %}
-        {% if vote_allowed %}
-            {% if request.session.voting_token %}
-                You are using token {{ request.session.voting_token }}
-            {% else %}
-                <form class="" action="{{ request.path }}" method="post">
-                    <div class="form-group">
-                        {% csrf_token %}
-                        <div class="widget--{{ token_form.token|widget_type }}">
-                            {{ token_form.token }}
-                            <button type="submit" class="btn">{% trans 'Enter code' %}</button>
-                        </div>
-                        {{ token_form.token.errors }}
-                    </div>
-                </form>
-            {% endif %}
-        {% endif %}
     {% endif %}
 {% endblock %}
 
@@ -63,11 +40,8 @@
             {% map_display_points object_list module.settings_instance.polygon %}
         </div>
     {% else %}
-        {% react_proposals view.module %}
-
         <div class="l-wrapper u-spacer-bottom u-spacer-top-double">
             <div class="l-center-8">
-                <div>This is the old list to compare the new list above to. And we will only deploy the old list when we do deploy.</div>
                 {% include "meinberlin_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
             </div>
         </div>

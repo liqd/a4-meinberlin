@@ -1,5 +1,5 @@
 {% extends extends %}
-{% load i18n discovery_tags static maps_tags react_proposals widget_tweaks rules %}
+{% load i18n discovery_tags static maps_tags widget_tweaks rules %}
 
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'a4maps_display_points.js' %}"></script>
@@ -18,28 +18,6 @@
         <a href="{% url 'meinberlin_budgeting:proposal-create' module_slug=module.slug %}" class="btn btn--primary btn--full u-spacer-bottom btn--huge">
             {% translate 'Submit proposal' %}
         </a>
-    {% endif %}
-    {% if module.blueprint_type == 'PB3' %}
-        {% has_perm 'meinberlin_budgeting.add_vote' request.user module as vote_allowed %}
-        {% if vote_allowed %}
-            {% if not valid_token_present %}
-                <form action="{{ request.path }}" method="post">
-                  {% csrf_token %}
-                    <div class="input-group input-group-lg">
-                        <label for="id_token" class="visually-hidden-focusable">{% translate 'Voting token form fields' %}</label>
-                        {{ token_form.token|add_error_attr:"aria-invalid:true" }}
-                        <button type="submit" class="btn btn--primary">{% translate 'Enter code' %}</button>
-                    </div>
-                    {% if token_form.token.errors %}
-                        <ul class="errorlist" aria-live="assertive" aria-atomic="true">
-                        {% for error in token_form.token.errors %}
-                            <li>{{ error|escape }}</li>
-                        {% endfor %}
-                        </ul>
-                    {% endif %}
-                </form>
-            {% endif %}
-        {% endif %}
     {% endif %}
 {% endblock %}
 
@@ -67,11 +45,8 @@
             {% endif %}
         </div>
     {% else %}
-        {% react_proposals view.module %}
-
         <div class="container u-spacer-bottom u-spacer-top-double">
             <div class="offset-lg-2 col-lg-8">
-                <div>This is the old list to compare the new list above to. And we will only deploy the old list when we do deploy.</div>
                 {% include "meinberlin_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
             </div>
         </div>

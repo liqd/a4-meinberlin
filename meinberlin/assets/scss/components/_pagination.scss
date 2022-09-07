@@ -9,6 +9,7 @@
 .pagination-item {
     float: left;
     display: inline-block;
+    border: 1px solid $border-color;
 
     a,
     button {
@@ -16,20 +17,36 @@
         min-width: 1.4em + 2 * 0.5em;
         margin-right: -1px;
         padding: 0.5em;
-        border: 1px solid $border-color;
         text-align: center;
         text-decoration: none;
 
         &:hover,
         &:focus {
             background-color: $bg-secondary;
+            color: $brand-primary;
+        }
+
+        &.disabled {
+            cursor: not-allowed;
+            pointer-events: none;
+            color: $border-color;
         }
     }
 
-    &.active a,
-    &.active button {
+    &.active {
         background-color: $link-color;
-        color: contrast-color($link-color);
         border-color: $link-color;
+
+        & a,
+        & button {
+            color: contrast-color($link-color);
+        }
+
+        & a:hover,
+        & a:focus,
+        & button:hover,
+        & button:focus {
+            color: $brand-primary;
+        }
     }
 }

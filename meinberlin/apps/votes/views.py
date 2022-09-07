@@ -57,10 +57,9 @@ class VotingDashboardView(ProjectMixin,
         return context
 
     def _generate_tokens(self, number_of_tokens):
-        for i in range(number_of_tokens):
-            VotingToken.objects.create(
-                module=self.module
-            )
+        VotingToken.objects.bulk_create(
+            [VotingToken(module=self.module) for i in range(number_of_tokens)]
+        )
 
     def _get_number_of_tokens(self):
         return len(VotingToken.objects.filter(

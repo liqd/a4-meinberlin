@@ -67,9 +67,7 @@ export const BudgetingProposalList = (props) => {
           </ul>
           {meta?.is_paginated &&
             <Pagination
-              currPageIndex={meta.current_page}
-              hasPrevPage={meta.previous}
-              hasNextPage={meta.next}
+              currentPage={meta.current_page}
               nextPage={meta.next}
               prevPage={meta.previous}
               pageCount={meta.page_count}

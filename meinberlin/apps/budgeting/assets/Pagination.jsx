@@ -8,11 +8,9 @@ const pagePrevStr = django.gettext('prev page')
 
 export const Pagination = (props) => {
   const {
-    currPageIndex,
+    currentPage,
     nextPage,
     prevPage,
-    hasPrevPage,
-    hasNextPage,
     pageCount,
   } = props
 
@@ -20,45 +18,77 @@ export const Pagination = (props) => {
   // and map to start by 1
   const pages = [...Array(pageCount).keys()].map(n => n + 1)
 
+  const PagesLink = () => {
+    let pages = []
+
+    // display previous pages links
+    let previousLinks = currentPage - 1
+    for (let num = previousLinks; num <= currentPage; num++) {
+        if (num < currentPage && num > 0) {
+            pages.push(
+              <li
+                key={`page-${num}`}
+                className={
+                  num === currentPage
+                    ? 'pagination-item active'
+                    : 'pagination-item'
+                  }
+              >
+                <button onClick={() => props.onPaginate(num)}>
+                  {num}
+                </button>
+              </li>
+            )
+        }
+    }
+
+    // display next pages links
+    let nextLinks = (currentPage < pageCount) ? (currentPage + 1) : currentPage
+    for (let num = currentPage; num <= nextLinks; num++) {
+        if (num <= pageCount) {
+            pages.push(
+              <li
+                key={`page-${num}`}
+                className={
+                  num === currentPage
+                    ? 'pagination-item active'
+                    : 'pagination-item'
+                  }
+              >
+                <button onClick={() => props.onPaginate(num)}>
+                  {num}
+                </button>
+              </li>
+            )
+        }
+    }
+
+    return pages
+}
+
+
   return (
     <nav aria-label={pageNavigationStr}>
       <ul className="pagination btn-group">
-        <li
-          className="pagination-item"
-        >
+        <li className="pagination-item">
           <button
-            className={!hasPrevPage ? 'disabled' : undefined}
+            className={!prevPage ? 'disabled' : undefined}
             onClick={() => props.onPaginate(prevPage)}
-            aria-label={pageNextStr}
+            aria-label={pagePrevStr}
           >
-              <i className="fa fa-chevron-left" aria-hidden="true"/>
+            <i className="fa fa-chevron-left" aria-hidden="true"/>
           </button>
         </li>
 
-        {pages.map(num => (
-          <li
-            key={`page-${num}`}
-            className={
-              num === currPageIndex
-                ? 'pagination-item active'
-                : 'pagination-item'
-              }
-          >
-            <button onClick={() => props.onPaginate(num)}>
-              {num}
-            </button>
-          </li>
-        ))}
+        <PagesLink />
 
-        <li
-          className={`pagination-item ${!hasNextPage && 'disabled'}`}
-        >
+        <li className="pagination-item">
           <button
-            className={!hasNextPage ? 'disabled' : undefined}
+            className={!nextPage ? 'disabled' : undefined}
             onClick={() => props.onPaginate(nextPage)}
-            aria-label={pagePrevStr}
+            aria-label={pageNextStr}
           >
-              <i className="fa fa-chevron-right" aria-hidden="true"/>
+            <i className="fa fa-chevron-right" aria-hidden="true"/>
           </button>
         </li>
       </ul>

@@ -18,6 +18,23 @@
         </tr>
         </thead>
         <tbody>
+        <tr>
+            <form method="POST">
+                {% csrf_token %}
+                {% if form.errors %}
+                    <div class="errorlist">{% translate 'An error occurred while evaluating your data. Please check the data you entered again.' %}</div>
+                {% endif %}
+
+                {% for error in form.non_field_errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+
+                <div class="form-group">
+                    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.number_of_tokens %}
+                    <input type="submit" class="btn btn--secondary" value="{% translate 'Generate codes' %}"/>
+                </div>
+            </form>
+        </tr>
         {% if token_export %}
             <tr>
                 <td class="export-table__txt-cell" id="id-export-tokens-hint">

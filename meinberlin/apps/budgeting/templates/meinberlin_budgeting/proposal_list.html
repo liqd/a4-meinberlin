@@ -27,6 +27,7 @@
                     <div class="form-group">
                         {% csrf_token %}
                         <div class="widget--{{ token_form.token|widget_type }}">
+                            <label class="visually-hidden-focusable">{% trans 'Voting token form fields' %}</label>
                             {{ token_form.token }}
                             <button type="submit" class="btn btn--primary">{% trans 'Enter code' %}</button>
                         </div>

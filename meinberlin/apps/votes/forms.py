@@ -8,8 +8,9 @@ from meinberlin.apps.votes.models import VotingToken
 class VotingTokenField(forms.CharField):
 
     def __init__(self, placeholder=None, *args, **kwargs):
-        widget = (TextInput(attrs={'minlength': 12,
-                                   'maxlength': 15,
+        widget = (TextInput(attrs={'class': 'form-control',
+                                   'minlength': 12,
+                                   'maxlength': 12,
                                    'placeholder': placeholder})
                   )
         super().__init__(widget=widget, *args, **kwargs)

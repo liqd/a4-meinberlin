@@ -73,6 +73,9 @@ module.exports = {
     vote_button: {
       import: './meinberlin/apps/budgeting/assets/react_vote_button_init.jsx'
     },
+    vote_token: {
+      import: './meinberlin/apps/votes/assets/token_input.js'
+    },
     // A4 dependencies - we want all of them to go through webpack
     mb_plans_map: {
       import: [

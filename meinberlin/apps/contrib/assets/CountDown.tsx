@@ -1,6 +1,13 @@
 import React from 'react'
 
-export const CountDown = (props) => {
+interface CountDownProps {
+  activeClass: string
+  inactiveClass: string
+  countText: string
+  counter: number
+}
+
+export const CountDown: React.FC<CountDownProps> = (props) => {
   const {
     activeClass,
     inactiveClass,

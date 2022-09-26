@@ -153,6 +153,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.tsx?$/,
+        loader: 'ts-loader'
+      },
+      {
         test: /\.jsx?$/,
         exclude: /node_modules\/(?!(adhocracy4)\/).*/, // exclude most dependencies
         loader: 'babel-loader',
@@ -215,7 +219,7 @@ module.exports = {
   },
   resolve: {
     fallback: { path: require.resolve('path-browserify') },
-    extensions: ['*', '.js', '.jsx', '.scss', '.css'],
+    extensions: ['*', '.ts', '.tsx', '.js', '.jsx', '.scss', '.css'],
     alias: {
       bootstrap$: 'bootstrap/dist/js/bootstrap.bundle.min.js',
       jquery$: 'jquery/dist/jquery.min.js',

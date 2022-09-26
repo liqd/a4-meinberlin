@@ -1,33 +1,35 @@
 {
-  "parser": "@babel/eslint-parser",
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "requireConfigFile": false,
-    "babelOptions": {
-      "presets": ["@babel/preset-react"]
-    },
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true
-    }
-  },
+  "root": true,
+  "extends": [
+    "plugin:jsx-a11y/recommended",
+    "plugin:react/recommended",
+    "standard",
+    "standard-jsx"
+  ],
   "env": {
     "browser": true,
-    "commonjs": true,
     "es6": true,
     "jquery": true
   },
-  "extends": [
-    "standard",
-    "standard-jsx",
-    "plugin:jsx-a11y/recommended"
-  ],
-  "rules": {
-    "jsx-quotes": [2, "prefer-double"],
-    "jsx-a11y/no-onchange": "off",
+  "parserOptions": {
+    "ecmaVersion": 13,
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module"
   },
   "plugins": [
     "jsx-a11y",
+    "react"
   ],
+  "rules": {
+    "jsx-quotes": [
+      2,
+      "prefer-double"
+    ],
+    "jsx-a11y/no-onchange": "off",
+    "react/prop-types": "off"
+  },
   "overrides": [
     {
       "files": [
@@ -36,6 +38,25 @@
       ],
       "env": {
         "jest": true
+      }
+    },
+    {
+      "files": [
+        "**/*.ts",
+        "**/*.tsx"
+      ],
+      "plugins": [
+        "@typescript-eslint"
+      ],
+      "extends": [
+        "standard-with-typescript",
+        "plugin:@typescript-eslint/recommended"
+      ],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": [
+          "./tsconfig.json"
+        ]
       }
     }
   ]

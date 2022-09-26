@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "module": "es6",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "outDir": "./meinberlin/static/",
+    "strict": true,
+    "skipLibCheck": true,
+    "target": "es6"
+  },
+  "exclude": ["venv"]
+}

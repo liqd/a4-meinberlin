@@ -7,7 +7,13 @@ import ChapterForm from '../ChapterForm'
 // FIXME: Because of mocking ParagraphForm, some things cannot be tested
 // E.g. not able to reach 100% coverage for this component at the moment.
 // Note: () => () => {} to unwrap it properly.
-jest.mock('../ParagraphForm', () => () => <div>MockedParagraphForm</div>)
+function mockParagraphForm () {
+  return (
+    <div>MockedParagraphForm</div>
+  )
+}
+
+jest.mock('../ParagraphForm', () => mockParagraphForm)
 
 test('Chapter Form without paragraphs', () => {
   const mockedChapter = {

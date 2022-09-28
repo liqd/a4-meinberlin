@@ -4,7 +4,7 @@ import 'select2' // used to select projects in containers
 import 'shariff'
 import 'slick-carousel'
 
-import '../../apps/actions/assets/timestamps.js'
+import '../../apps/actions/assets/timestamps.ts'
 import '../../apps/moderatorremark/assets/idea_remarks.js'
 import '../../apps/newsletters/assets/dynamic_fields.js'
 import '../../apps/dashboard/assets/init_accordeons_cookie.js'

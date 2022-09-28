@@ -7,7 +7,7 @@ interface CountDownProps {
   counter: number
 }
 
-export const CountDown: React.FC<CountDownProps> = (props) => {
+export const CountDown = (props: CountDownProps): JSX.Element => {
   const {
     activeClass,
     inactiveClass,

@@ -4,10 +4,15 @@ import React, { useEffect } from 'react'
 const affiliationStr = django.gettext('Affiliation')
 const answeredQuestionsStr = django.gettext('Answered questions will be displayed in the statistics according to the chosen affiliation.')
 
-export const CategorySelect = (props) => {
+interface CategorySelectProps {
+  category_dict: { [key: string]: string }
+  onSelect: (e: Event) => void
+}
+
+export const CategorySelect = (props: CategorySelectProps): JSX.Element => {
   useEffect(() => {
     const select = document.getElementById('categorySelect')
-    select.addEventListener('change', props.onSelect)
+    select?.addEventListener('change', props.onSelect)
   }, [])
 
   return (
@@ -22,7 +27,7 @@ export const CategorySelect = (props) => {
             name="categorySelect"
             id="categorySelect"
             className="js-select2"
-            required="required"
+            required
             data-minimum-results-for-search="Infinity"
           >
             <option value="">--------</option>

@@ -10,7 +10,10 @@
     "outDir": "./meinberlin/static/",
     "strict": true,
     "skipLibCheck": true,
-    "target": "es6"
+    "target": "es6",
+    "paths": {
+      "django": ["./@types/django/index.d.ts"]
+    }
   },
   "exclude": ["venv"]
 }

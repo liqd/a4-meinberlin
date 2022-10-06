@@ -1,9 +1,9 @@
 import { format } from 'timeago.js'
 
 const formatTime = (): void => {
-  const times = document.querySelectorAll<HTMLTimeElement>('time.relative')
+  const times: NodeListOf<HTMLTimeElement> = document.querySelectorAll('time.relative')
 
-  times.forEach((element, index) => {
+  times.forEach((element) => {
     const sevenDays = 60 * 60 * 24 * 7 * 1000
     const datetime = new Date(element.dateTime)
 

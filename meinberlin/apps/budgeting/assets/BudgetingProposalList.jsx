@@ -10,7 +10,7 @@ const nothingStr = django.gettext('Nothing to show')
 export const BudgetingProposalList = (props) => {
   const [data, setData] = useState([])
   const [meta, setMeta] = useState()
-  const [queryString, setQueryString] = useState('')
+  const [queryString, setQueryString] = useState(props.initialQueryString)
 
   const fetchProposals = (newIndex) => {
     const pageNumber = newIndex || 1

@@ -23,13 +23,23 @@ def react_proposals(context, module):
                                     'content_type': proposal_ct.id
                                 })
 
+    initial_query_string = ''
+    initial_query_dict = {}
+    for param in context['request'].GET:
+        if param != 'mode':
+            value = context['request'].GET[param]
+            initial_query_string += '&' + param + '=' + value
+            initial_query_dict[param] = value
+
     attributes = {'proposals_api_url': proposals_api_url,
                   'tokenvote_api_url': tokenvote_api_url,
                   'is_voting_phase': has_feature_active(module,
                                                         Proposal,
-                                                        'vote')
+                                                        'vote'),
+                  'initialQueryString': initial_query_string,
+                  'initialQueryDict': initial_query_dict
                   }
-
+    print(attributes)
     return format_html(
         '<div data-mb-widget="proposals" '
         'data-attributes="{attributes}"></div>',

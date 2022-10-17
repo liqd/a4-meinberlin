@@ -6,16 +6,31 @@ import { ControlBarSearchTerm } from './ControlBarSearchTerm'
 import { SpacedSpan } from './SpacedSpan'
 import django from 'django'
 
+const STATIC_FILTERS = ['ordering', 'search']
+
 const translated = {
   toggleFilters: django.gettext('Toggle filters'),
   filters: django.gettext('Filters'),
   results: django.gettext('results found.')
 }
 
+// FIXME: reduce complexity?
+// this checks if at least one of the hidden filters (not expanded
+// filters) are used initially (querystring in url). If yes then it shows
+// these filters expanded.
+const hasHiddenFilter = (queryObject) => {
+  for (const filterType of Object.keys(queryObject)) {
+    if (!STATIC_FILTERS.includes(filterType)) {
+      return true
+    }
+  }
+}
+
 export const ControlBar = props => {
   const [filterString, setFilterString] = useState('')
   const [filterObject, setFilterObject] = useState({})
-  const [expandFilters, setExpandFilters] = useState()
+  const [expandFilters, setExpandFilters] =
+    useState(hasHiddenFilter(props.initialQueryObject))
   const [term, setTerm] = useState('')
 
   // Creating an object with all used filters.
@@ -48,8 +63,10 @@ export const ControlBar = props => {
     encodeFilterString(filterObject)
   }
 
-  const prepareFilter = (filter, filterType) => {
-    filter.current = selectedFilter(filterType)
+  const getCurrentFilter = (filter, filterType) => {
+    if (!filter.current) {
+      filter.current = selectedFilter(filterType)
+    }
     return filter
   }
 
@@ -62,6 +79,9 @@ export const ControlBar = props => {
   }
 
   useEffect(() => {
+    // if (props.filters?.search?.current) {
+    //   handleSearch(props.filters.search.current)
+    // }
     props.onChangeFilters(filterString)
   }, [filterObject, filterString])
 
@@ -109,8 +129,8 @@ export const ControlBar = props => {
           <div className="control-bar">
             {Object.keys(props.filters).map((type, idx) => {
               const filterCopy = props.filters[type]
-              const filter = prepareFilter(filterCopy, type)
-              return type !== 'ordering' && (
+              const filter = getCurrentFilter(filterCopy, type)
+              return !STATIC_FILTERS.includes(type) && (
                 <ControlBarDropdown
                   key={`filter_${idx}`}
                   filter={filter}

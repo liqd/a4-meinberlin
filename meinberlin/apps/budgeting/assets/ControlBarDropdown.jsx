@@ -23,6 +23,10 @@ export const ControlBarDropdown = props => {
         setCurrentChoiceName(filter.choices[0])
         onSelectFilter(filter.choices[0])
       }
+    } else {
+      const filterChoice = getFilterByValue(filter.current)
+      setCurrentChoiceName(filterChoice[1])
+      onSelectFilter(filterChoice)
     }
   }, [])
 

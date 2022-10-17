@@ -10,7 +10,7 @@ const nothingStr = django.gettext('Nothing to show')
 export const BudgetingProposalList = (props) => {
   const [data, setData] = useState([])
   const [meta, setMeta] = useState()
-  const [queryString, setQueryString] = useState(props.initialQueryString)
+  const [queryString, setQueryString] = useState('')
 
   const fetchProposals = (newIndex) => {
     const pageNumber = newIndex || 1
@@ -25,13 +25,29 @@ export const BudgetingProposalList = (props) => {
           is_paginated: json.page_count > 1,
           previous: json.previous,
           next: json.next,
-          filters: json.filters,
+          filters: mergeCurrentFilters(json.filters, props.initialQueryDict),
           locale: json.locale,
           token_info: json.token_info,
           page_elided_range: json.page_elided_range
         })
       })
       .catch(error => console.log(error))
+  }
+
+  // FIXME: would react-router solve this?
+  // merging initialQueryObject into filters
+  // the rendering is triggered by grandchild -> child -> parent,
+  // instead of: parent -> child -> grandchild
+  const mergeCurrentFilters = (filters, currentQuery) => {
+    const mergedFilters = { ...filters }
+    for (const filterName of Object.keys(currentQuery)) {
+      if (mergedFilters[filterName]) {
+        mergedFilters[filterName].current = currentQuery[filterName]
+      } else {
+        mergedFilters[filterName] = { current: currentQuery[filterName] }
+      }
+    }
+    return mergedFilters
   }
 
   const onPaginate = (selectedPage) => {
@@ -111,6 +127,7 @@ export const BudgetingProposalList = (props) => {
         </div>}
       <ControlBar
         filters={meta?.filters}
+        initialQueryObject={props.initialQueryDict}
         numOfResults={data?.length}
         onChangeFilters={filterString => onChangeFilters(filterString)}
       />

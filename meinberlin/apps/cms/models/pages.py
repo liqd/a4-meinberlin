@@ -23,7 +23,7 @@ class StreamfieldSimplePage(Page):
     body = fields.StreamField([
         ('paragraph', blocks.RichTextBlock()),
         ('html', blocks.RawHTMLBlock())
-    ], blank=True)
+    ], use_json_field=True, blank=True)
 
     content_panels = [
         panels.FieldPanel('title'),
@@ -45,7 +45,7 @@ class HomePage(Page):
         ('accordion', cms_blocks.DocsBlock()),
         ('infographic', cms_blocks.InfographicBlock()),
         ('map_teaser', cms_blocks.MapTeaserBlock())
-    ])
+    ], use_json_field=True)
 
     subtitle = models.CharField(max_length=120)
 
@@ -76,7 +76,7 @@ class DocsPage(Page):
         ('documents_list', cms_blocks.DocsBlock()),
         ('header', blocks.CharBlock(
             template='meinberlin_cms/blocks/header.html'))
-    ])
+    ], use_json_field=True)
 
     description = fields.RichTextField(blank=True)
 

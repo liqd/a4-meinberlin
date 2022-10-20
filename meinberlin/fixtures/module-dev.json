@@ -10,5 +10,137 @@
             "weight": 1,
             "project": 1
         }
-    }
+    },
+    {
+        "model": "a4modules.module",
+        "pk": 2,
+        "fields": {
+            "slug": "map-brainstorming",
+            "name": "Brainstorming with Map",
+            "description":
+            "liqd project description",
+            "weight": 2,
+            "project": 1
+        }
+    },
+    {
+        "model": "a4modules.module",
+        "pk": 3,
+        "fields": {
+            "slug": "idea-collection",
+            "name": "Idea Collection",
+            "description":
+            "liqd project description",
+            "weight": 3,
+            "project": 1
+        }
+    },
+    {
+        "model": "a4modules.module",
+        "pk": 4,
+        "fields": {
+            "slug": "map-idea-collection",
+            "name": "Map idea collection",
+            "description":
+            "liqd project description",
+            "weight": 4,
+            "project": 1
+        }
+    },
+    {
+        "model": "a4modules.module",
+        "pk": 5,
+        "fields": {
+            "slug": "participatory-budgeting",
+            "name": "Participatory Budgeting",
+            "description":
+            "liqd project description",
+            "weight": 5,
+            "project": 1
+        }
+    },
+    {
+        "model": "a4modules.module",
+        "pk": 6,
+        "fields": {
+            "slug": "participatory-budgeting-3",
+            "name": "Participatory Budgeting (3 phase)",
+            "description":
+            "liqd project description",
+            "weight": 6,
+            "project": 1
+        }
+    },
+    {
+        "model": "a4modules.module",
+        "pk": 9,
+        "fields": {
+            "slug": "kiezkasse",
+            "name": "Kiezkasse",
+            "description":
+            "liqd project description",
+            "weight": 7,
+            "project": 1
+        }
+    },
+    {
+        "model": "a4modules.module",
+        "pk": 10,
+        "fields": {
+            "slug": "topic-prioritization",
+            "name": "Topic Prioritization",
+            "description":
+            "liqd project description",
+            "weight": 8,
+            "project": 1
+        }
+    },
+    {
+        "model": "a4modules.module",
+        "pk": 11,
+        "fields": {
+            "slug": "map-topic-prioritization",
+            "name": "Map Topic Prioritization",
+            "description":
+            "liqd project description",
+            "weight": 9,
+            "project": 1
+        }
+    },
+    {
+        "model": "a4modules.module",
+        "pk": 12,
+        "fields": {
+            "slug": "text-review",
+            "name": "Text Review",
+            "description":
+            "liqd project description",
+            "weight": 10,
+            "project": 1
+        }
+    },
+    {
+        "model": "a4modules.module",
+        "pk": 13,
+        "fields": {
+            "slug": "poll",
+            "name": "Poll",
+            "description":
+            "liqd project description",
+            "weight": 11,
+            "project": 1
+        }
+    },
+    {
+        "model": "a4modules.module",
+        "pk": 14,
+        "fields": {
+            "slug": "interactive-event",
+            "name": "Interactive event",
+            "description":
+            "liqd project description",
+            "weight": 12,
+            "project": 1
+        }
+    },
 ]

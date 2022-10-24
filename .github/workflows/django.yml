@@ -64,6 +64,7 @@ jobs:
         run: |
           npm install
           npm run build
+          pip install --upgrade pip
           pip install -r requirements/dev.txt
           pip install coveralls
       - name: Run Tests

@@ -1,3 +1,4 @@
+import { Alert } from '../../contrib/assets/Alert'
 const api = require('adhocracy4').api
 const React = require('react')
 const django = require('django')
@@ -5,7 +6,6 @@ const dashboard = require('adhocracy4/adhocracy4/dashboard/assets/dashboard')
 const update = require('immutability-helper')
 const ChapterNav = require('./ChapterNav')
 const ChapterForm = require('./ChapterForm')
-const Alert = require('../../contrib/assets/Alert')
 const firstChapterStr = django.gettext('first chapter')
 const newChapterStr = django.gettext('new chapter')
 const documentUpdatedStr = django.gettext('The document has been updated.')

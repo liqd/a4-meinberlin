@@ -19,7 +19,15 @@
         <h1>{% trans 'Submit a new idea for this project'%}</h1>
 
         {% if form.errors %}
-            <div class="errorlist">{% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}</div>
+        <ul class="errorlist" role="alert">{% trans 'An error occurred while evaluating your data. Please check the data you entered in following fields.' %}
+          {% for error in form.errors %}
+            <li>
+                <a href="#{{ error.id }}" id="{{ error.title }}_error">
+                  {% trans 'An error occurred in' %}{{ error.title }}
+                </a>
+            </li>
+          {% endfor %}
+        </ul>
         {% endif %}
 
         <div class="u-bottom-divider">

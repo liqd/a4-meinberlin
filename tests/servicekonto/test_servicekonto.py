@@ -1,3 +1,4 @@
+import sys
 from urllib.parse import urlparse
 
 import pytest
@@ -11,10 +12,17 @@ from django.test import RequestFactory
 from django.urls import reverse
 
 from adhocracy4.test.helpers import assert_template_response
-from meinberlin.apps.servicekonto.provider import ServiceKontoProvider
-from meinberlin.apps.servicekonto.views import ServiceKontoApiError
 
 User = get_user_model()
+
+#  to be able to skip the tests when zeep isn't installed
+try:
+    import zeep  # noqa: F401
+
+    from meinberlin.apps.servicekonto.provider import ServiceKontoProvider
+    from meinberlin.apps.servicekonto.views import ServiceKontoApiError
+except ModuleNotFoundError:
+    pass
 
 
 def _mock_servicekonto_response(monkeypatch, response):
@@ -95,6 +103,8 @@ class ServiceKontoResponse:
                '<AUTHENTICATION {authentication} /></USERDATA>'.format(**ctx)
 
 
+@pytest.mark.skipif('zeep' not in sys.modules,
+                    reason="requires the zeep library")
 @pytest.mark.django_db
 def test_connect_account(monkeypatch, client, user):
     client.login(email=user.email, password='password')
@@ -116,6 +126,8 @@ def test_connect_account(monkeypatch, client, user):
     assert account.uid == service_konto.hhgw['userid']
 
 
+@pytest.mark.skipif('zeep' not in sys.modules,
+                    reason="requires the zeep library")
 @pytest.mark.django_db
 def test_login(monkeypatch, client, social_account):
     _session_state(client, {'process': AuthProcess.LOGIN,
@@ -139,6 +151,8 @@ def test_login(monkeypatch, client, social_account):
     assert user.last_login is not None
 
 
+@pytest.mark.skipif('zeep' not in sys.modules,
+                    reason="requires the zeep library")
 @pytest.mark.django_db
 def test_login_without_session(monkeypatch, client, social_account, settings):
     settings.LOGIN_REDIRECT_URL = '/login_successful'
@@ -161,6 +175,8 @@ def test_login_without_session(monkeypatch, client, social_account, settings):
     assert user.last_login is not None
 
 
+@pytest.mark.skipif('zeep' not in sys.modules,
+                    reason="requires the zeep library")
 @pytest.mark.django_db
 def test_create_account_on_login(monkeypatch, client, settings):
     settings.LOGIN_REDIRECT_URL = '/login_successful'
@@ -196,6 +212,8 @@ def test_create_account_on_login(monkeypatch, client, settings):
     assert email.verified
 
 
+@pytest.mark.skipif('zeep' not in sys.modules,
+                    reason="requires the zeep library")
 @pytest.mark.django_db
 def test_error_on_login_with_existing_username(monkeypatch,
                                                client,
@@ -226,6 +244,8 @@ def test_error_on_login_with_existing_username(monkeypatch,
     assert not User.objects.filter(email=service_konto.hhgw['email']).exists()
 
 
+@pytest.mark.skipif('zeep' not in sys.modules,
+                    reason="requires the zeep library")
 @pytest.mark.django_db
 def test_error_on_login_with_existing_email(monkeypatch,
                                             client,
@@ -260,6 +280,8 @@ def test_error_on_login_with_existing_email(monkeypatch,
         )
 
 
+@pytest.mark.skipif('zeep' not in sys.modules,
+                    reason="requires the zeep library")
 @pytest.mark.django_db
 def test_on_on_login_no_terms_of_use(monkeypatch,
                                      client,
@@ -288,6 +310,8 @@ def test_on_on_login_no_terms_of_use(monkeypatch,
     assert not User.objects.filter(email=service_konto.hhgw['email']).exists()
 
 
+@pytest.mark.skipif('zeep' not in sys.modules,
+                    reason="requires the zeep library")
 @pytest.mark.django_db
 def test_invalid_token(monkeypatch, client, user):
     def auth_denied(request, token):
@@ -307,6 +331,8 @@ def test_invalid_token(monkeypatch, client, user):
     assert 'auth_error' in response.context
 
 
+@pytest.mark.skipif('zeep' not in sys.modules,
+                    reason="requires the zeep library")
 @pytest.mark.django_db
 def test_invalid_response(monkeypatch, client):
     _mock_servicekonto_response(monkeypatch, '<invalid>xml response')

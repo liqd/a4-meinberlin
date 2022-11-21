@@ -55,7 +55,7 @@ class IdeaFilterSet(a4_filters.DefaultsFilterSet):
 
     class Meta:
         model = models.Idea
-        fields = ['search', 'labels', 'category']
+        fields = ['search', 'category', 'labels']
 
 
 class AbstractIdeaListView(ProjectMixin,

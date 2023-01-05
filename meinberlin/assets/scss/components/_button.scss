@@ -125,6 +125,12 @@
     padding: 0.8em 2em;
 }
 
+.btn--wide {
+    @extend .btn--small;
+    padding-left: $spacer;
+    padding-right: $spacer;
+}
+
 .btn--full {
     display: block;
     width: 100%;

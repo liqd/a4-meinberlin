@@ -30,7 +30,7 @@ export const BudgetingProposalListItem = (props) => {
         commentCount={proposal.comment_count}
       />
       <h2 className="list-item__title">
-        <a href={proposal.url.slice(0, -1) + '?id=' + idx + '&' + queryParams}>{proposal.name}</a>
+        <a href={proposal.url.slice(0, -1) + '?id=' + (idx + 1 + (15 * queryParams.get('page', 0))) + '&' + queryParams}>{proposal.name}</a>
       </h2>
       <ListItemBadges
         badges={proposal.item_badges_for_list}

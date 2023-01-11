@@ -9,7 +9,7 @@ const updatedOnStr = django.gettext('updated on')
 const createdOnStr = django.gettext('created on')
 
 export const BudgetingProposalListItem = (props) => {
-  const { proposal, permissions, tokenvoteApiUrl } = props
+  const { idx, proposal, permissions, queryParams, tokenvoteApiUrl } = props
   const safeLocale = props.locale ? props.locale : undefined
   const date = proposal.modified
     ? updatedOnStr + ' ' + toLocaleDate(
@@ -30,7 +30,7 @@ export const BudgetingProposalListItem = (props) => {
         commentCount={proposal.comment_count}
       />
       <h2 className="list-item__title">
-        <a href={proposal.url}>{proposal.name}</a>
+        <a href={proposal.url.slice(0, -1) + '?id=' + idx + '&' + queryParams}>{proposal.name}</a>
       </h2>
       <ListItemBadges
         badges={proposal.item_badges_for_list}

@@ -63,6 +63,8 @@ export const BudgetingProposalList = (props) => {
             <BudgetingProposalListItem
               key={'budgeting-proposal-' + idx}
               proposal={proposal}
+              queryParams={queryParams}
+              idx={idx}
               locale={meta?.locale}
               permissions={meta?.permissions}
               tokenvoteApiUrl={props.tokenvote_api_url}

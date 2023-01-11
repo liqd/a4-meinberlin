@@ -42,6 +42,10 @@ class ProposalPagination(PageNumberPagination):
         return response
 
 
+class SingleProposalPagination(ProposalPagination):
+    page_size = 1
+
+
 class LocaleInfoMixin:
     def list(self, request, *args, **kwargs):
         response = super().list(request, args, kwargs)
@@ -266,3 +270,7 @@ class ProposalViewSet(ModuleMixin,
             .annotate_reference_number() \
             .order_by('-created')
         return proposals
+
+
+class SingleProposalViewSet(ProposalViewSet):
+    pagination_class = SingleProposalPagination

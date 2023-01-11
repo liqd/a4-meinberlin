@@ -1,6 +1,7 @@
 from urllib.parse import urlparse
 
 import django_filters
+import requests
 from django.urls import resolve
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -125,6 +126,33 @@ class ProposalDetailView(idea_views.AbstractIdeaDetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['back'] = self.get_back()
+        page = int(self.request.GET.get('page', 0))
+        id = int(self.request.GET.get('id', -1))
+        id = page * 15 + id
+        # TODO: if no page/params: find page with default filter
+        if id >= 0:
+            params = self.request.GET.copy()
+            params['page'] = id + 1
+            # TODO: get actual port + get module url
+            req = requests.get(
+                'http://localhost:8003/api/modules/2/singleproposal/?'
+                + params.urlencode())
+            if req.ok:
+                data = req.json()
+                next_idea = data['results'][0]['url']
+                if next_idea:
+                    context['next'] = next_idea + "?" + params.urlencode()
+            # there is no previous on the first item
+            if id > 0:
+                params['page'] = id - 1
+                req = requests.get(
+                    'http://localhost:8003/api/modules/2/singleproposal/?'
+                    + params.urlencode())
+                if req.ok:
+                    data = req.json()
+                    prev_idea = data['results'][0]['url']
+                    if prev_idea:
+                        context['prev'] = prev_idea + "?" + params.urlencode()
         return context
 
 

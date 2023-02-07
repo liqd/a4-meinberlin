@@ -1,5 +1,6 @@
 import pytest
 from dateutil.parser import parse
+from django.conf import settings
 from django.core import mail
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -60,7 +61,6 @@ def test_list_view_ordering_choices(client, phase_factory, proposal_factory):
 
 @pytest.mark.django_db
 def test_list_view_default_filters(client, module, phase_factory, proposal_factory):
-
     support_phase = phase_factory(
         phase_content=phases.SupportPhase(),
         module=module,
@@ -124,6 +124,7 @@ def test_list_view_token_form(
         assert response.status_code == 200
         assert "voting_tokens" in client.session
         assert "token_form" in response.context
+        assert client.session.get_expiry_age() == views.SESSION_EXPIRY_AGE
 
         response = client.get(url)
         assert response.context["valid_token_present"]
@@ -146,6 +147,23 @@ def test_list_view_token_form(
         msg = _("This token is not valid")
         assert msg in response.context_data["token_form"].errors["token"]
         assert "voting_tokens" not in client.session
+
+    # if user logs in with "remember" checked, session stays long
+    client.login(username=user.email, password="password", remember=True)
+    data = {"token": str(token)}
+
+    with freeze_phase(phase):
+        response = client.get(url)
+        assert_template_response(response, "meinberlin_budgeting/proposal_list.html")
+
+        response = client.post(url, data)
+        assert response.status_code == 200
+        assert "voting_tokens" in client.session
+        assert "token_form" in response.context
+        assert client.session.get_expiry_age() == settings.SESSION_COOKIE_AGE
+
+        response = client.get(url)
+        assert response.context["valid_token_present"]
 
 
 @pytest.mark.django_db

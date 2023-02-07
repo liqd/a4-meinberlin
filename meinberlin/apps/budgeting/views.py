@@ -21,6 +21,8 @@ from meinberlin.apps.votes.models import VotingToken
 from . import forms
 from . import models
 
+SESSION_EXPIRY_AGE = 10 * 60  # 10 minutes
+
 
 def get_ordering_choices(view):
     choices = (("-created", _("Most recent")),)
@@ -116,6 +118,13 @@ class ProposalListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMi
                 request.session["voting_tokens"] = {
                     str(self.module.id): token_form.cleaned_data["token"]
                 }
+            # true for unauthenticated users or
+            # if the 'remember' wasn't checked during login
+            if (
+                not request.user.is_authenticated
+                or request.session.get_expire_at_browser_close()
+            ):
+                request.session.set_expiry(SESSION_EXPIRY_AGE)
             kwargs["valid_token_present"] = True
             self.mode = "list"
         kwargs["token_form"] = token_form

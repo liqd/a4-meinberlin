@@ -21,6 +21,7 @@ export const toLocaleDate = (
   locale = 'de-DE',
   formatStyle = { dateStyle: 'long' }
 ) => {
-  const date = new Date(isodate)
+  const normalizedDate = isodate.replace(/ /g, 'T')
+  const date = new Date(normalizedDate)
   return new Intl.DateTimeFormat(locale, formatStyle).format(date)
 }

@@ -1,5 +1,7 @@
+from django.core.cache import cache
 from rest_framework import mixins
 from rest_framework import viewsets
+from rest_framework.response import Response
 
 from adhocracy4.api.mixins import OrganisationMixin
 from adhocracy4.api.permissions import ViewSetRulesPermission
@@ -31,3 +33,13 @@ class BplanViewSet(
             }
         )
         return context
+
+    def list(self, request, *args, **kwargs):
+        data = cache.get("bplans_" + self.organisation.slug)
+        if data is None:
+            queryset = self.filter_queryset(self.get_queryset())
+            serializer = self.get_serializer(queryset, many=True)
+            cache.set("bplans_" + self.organisation.slug, data, 300)
+            data = serializer.data
+
+        return Response(data)

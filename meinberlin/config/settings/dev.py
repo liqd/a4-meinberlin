@@ -62,7 +62,12 @@ if os.getenv("DATABASE") == "postgresql":
             "USER": "django",
             "PASSWORD": "",
             "HOST": "",
-            "PORT": "5555",
+            "PORT": "",
             "OPTIONS": {},
         }
     }
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+    }
+}

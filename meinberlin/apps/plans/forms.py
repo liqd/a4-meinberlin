@@ -16,6 +16,7 @@ class PlanForm(forms.ModelForm):
         fields = [
             "title",
             "description_image",
+            "description_image_alt_text",
             "description_image_copyright",
             "point",
             "point_label",
@@ -33,6 +34,7 @@ class PlanForm(forms.ModelForm):
             "participation_explanation",
             "duration",
             "tile_image",
+            "tile_image_alt_text",
             "tile_image_copyright",
         ]
         widgets = {

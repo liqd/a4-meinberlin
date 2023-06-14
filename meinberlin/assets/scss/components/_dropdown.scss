@@ -1,6 +1,5 @@
 .dropdown {
     width: fit-content; // ensure dropdowns are not super wide
-    position: relative;
     text-align: left;
     margin-bottom: $em-spacer * 0.5;
 }
@@ -21,6 +20,7 @@
     padding: 0;
     border: 1px solid $text-color;
     border-radius: 2px;
+    background-color: $body-bg;
     box-shadow: $spacer $spacer 40px $shadow, -$spacer $spacer 40px $shadow;
 
     a,

@@ -78,6 +78,9 @@ $enable-caret: false;
 $idea-remark-bg: #faf5d1 !default;
 $idea-remark-color: #999 !default;
 
+$border-width:  1px !default;
+$input-border-width:  $border-width !default;
+
 $border-radius: 0.375 * $spacer !default;
 
 $btn-border-radius: $border-radius !default;

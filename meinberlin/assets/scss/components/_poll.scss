@@ -97,7 +97,7 @@ $checkbox-size: 20px;
     top: 0;
     bottom: 0;
     left: 0;
-    border-radius: 0.3em;
+    border-radius: $border-radius;
     z-index: -1;
     width: 0;
     min-width: 0.4em;
@@ -170,7 +170,7 @@ $checkbox-size: 20px;
 }
 
 .editpoll__dropdown .dropdown-menu {
-    border-radius: 0.3em;
+    border-radius: $border-radius;
     box-shadow: none;
 }
 

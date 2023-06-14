@@ -164,15 +164,15 @@
     }
 
     > :first-child {
-        border-top-left-radius: 0.3em;
-        border-bottom-left-radius: 0.3em;
+        border-top-left-radius: $border-radius;
+        border-bottom-left-radius: $border-radius;
         margin-left: 0;
     }
 
     > :last-child,
     > :last-child .dropdown-toggle {
-        border-top-right-radius: 0.3em;
-        border-bottom-right-radius: 0.3em;
+        border-top-right-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
     }
 }
 

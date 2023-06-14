@@ -19,7 +19,7 @@
     margin-top: 0;
     padding: $padding;
     border: 1px solid $border-color;
-    border-radius: ($padding * 0.5);
+    border-radius: $border-radius;
 }
 
 .commenting--toc__button {

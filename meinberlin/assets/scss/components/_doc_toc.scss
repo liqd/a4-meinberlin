@@ -4,7 +4,7 @@
     padding: 0;
     font-size: $font-size-lg;
     border: 1px solid $border-color;
-    border-radius: 0.3em;
+    border-radius: $border-radius;
 }
 
 .doc-toc__toggle {

@@ -18,6 +18,7 @@ from rest_framework import serializers
 from adhocracy4.dashboard import components
 from adhocracy4.dashboard import signals as a4dashboard_signals
 from adhocracy4.images.validators import validate_image
+from adhocracy4.images.fields import ImageAltTextField
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
@@ -42,6 +43,7 @@ class BplanSerializer(serializers.ModelSerializer):
         required=False,
         write_only=True,
     )
+    image_alt_text = ImageAltTextField(image_name=_("Tile image"))
     image_copyright = serializers.CharField(
         required=False,
         write_only=True,
@@ -66,6 +68,7 @@ class BplanSerializer(serializers.ModelSerializer):
             "start_date",
             "end_date",
             "image_url",
+            "image_alt_text",
             "image_copyright",
             "embed_code",
         )

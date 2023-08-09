@@ -41,7 +41,7 @@
                 <div class="chapter">
                     <h2 class="chapter-title">{{ object.name }}</h2>
 
-                    {% for paragraph in object.paragraphs.all %}
+                    {% for paragraph in object.paragraphs.all.annotate_comment_count %}
 
                         <section class="paragraph" id="paragraph-{{ object.pk }}-{{ paragraph.pk }}">
                             <div class="paragraph__content">
@@ -56,7 +56,7 @@
                                         href="{{ paragraph.get_absolute_url }}"
                                 >
                                     <i class="far fa-comment" aria-hidden="true"></i>
-                                    {% blocktranslate count count=paragraph.comments.all|length %}{{ count }} Comment{% plural %}{{ count }} Comments{% endblocktranslate %}
+                                    {% blocktranslate count count=paragraph.comment_count %}{{ count }} Comment{% plural %}{{ count }} Comments{% endblocktranslate %}
                                 </a>
                             </div>
                         </section>

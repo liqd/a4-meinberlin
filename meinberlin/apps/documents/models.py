@@ -7,6 +7,7 @@ from django.utils.functional import cached_property
 from adhocracy4 import transforms
 from adhocracy4.comments import models as comment_models
 from adhocracy4.models import base
+from adhocracy4.models.query import CommentableQuerySet
 from adhocracy4.modules import models as module_models
 
 
@@ -52,6 +53,10 @@ class Chapter(module_models.Item):
         )
 
 
+class ParagraphQueryset(CommentableQuerySet):
+    pass
+
+
 class Paragraph(base.TimeStampedModel):
     name = models.CharField(max_length=120, blank=True)
     text = RichTextUploadingField(config_name="image-editor")
@@ -64,6 +69,7 @@ class Paragraph(base.TimeStampedModel):
         related_query_name="paragraph",
         object_id_field="object_pk",
     )
+    objects = ParagraphQueryset.as_manager()
 
     class Meta:
         ordering = ("weight",)

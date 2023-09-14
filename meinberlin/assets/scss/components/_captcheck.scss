@@ -1,5 +1,4 @@
 .captcheck_box {
-  font-family: $font-family-base;
   color: $text-color;
   border: 1px solid $border-color;
   display: inline-block;
@@ -11,7 +10,6 @@
 .captcheck_label_message,
 .captcheck_label_message b {
   color: $text-color;
-  font-family: $font-family-base;
 }
 
 .captcheck_answer_label {

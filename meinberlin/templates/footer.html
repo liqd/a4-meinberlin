@@ -1,11 +1,11 @@
-{% load menu static i18n %}
+{% load menu static i18n contrib_tags %}
 
 <div id="layout-grid__area--contentfooter">
     <div class="content-footer" id="content-footer" role="contentinfo">
         <div class="content-footer__brand">
         </div>
-        <a class="to-top" href="#top">{% trans 'To the top of the page' %}</a>
-        <nav class="content-footer__links" aria-label="{% trans 'Related Links' %}">
+        <a class="to-top" href="#top">{% translate 'To the top of the page' %}</a>
+        <nav class="content-footer__links" aria-label="{% translate 'Related Links' %}">
             <ul class="js-collapse-palm">
             {% get_menu "footer-nav" as footer_nav %}
               {% for menuitem in footer_nav %}
@@ -15,3 +15,5 @@
         </nav>
     </div>
 </div>
+
+{% get_external_footer %}

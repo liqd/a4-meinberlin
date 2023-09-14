@@ -1,8 +1,11 @@
+import os
 import re
 import unicodedata
 
 from django import template
 from django.conf import settings
+from django.core import management
+from django.core.cache import cache
 from django.core.exceptions import ImproperlyConfigured
 from django.core.paginator import Paginator
 from django.forms.utils import flatatt
@@ -115,3 +118,24 @@ def get_proper_elided_page_range(p, number, on_each_side=1, on_ends=1):
     return paginator.get_elided_page_range(
         number=number, on_each_side=on_each_side, on_ends=on_ends
     )
+
+
+@register.simple_tag
+def get_external_footer():
+    # The BO footer needs to be included here as we can't include external
+    # html in the browser. Add a cron job to update the file periodically via
+    # the get_footer management command.
+    if hasattr(settings, "BERLIN_FOOTER_URL") and settings.BERLIN_FOOTER_URL:
+        footer = cache.get("footer")
+        if footer:
+            return footer
+        filepath = settings.MEDIA_ROOT + "/landesfooter.inc"
+        if not os.path.isfile(filepath):
+            has_error = management.call_command("get_footer")
+            if has_error:
+                return ""
+        with open(filepath, "r") as f:
+            footer = mark_safe(f.read())
+            cache.set("footer", footer)
+            return footer
+    return ""

@@ -1,13 +1,18 @@
-{% load menu static %}
+{% load menu static i18n contrib_tags %}
 
-<footer class="main-footer">
-    <div class="container">
-        <div class="shariff" data-theme="white"></div>
-        <nav class="footer-nav u-spacer-bottom-double">
+<div id="layout-grid__area--contentfooter">
+    <div class="content-footer" id="content-footer" role="contentinfo">
+        <div class="content-footer__brand">
+        </div>
+        <a class="to-top" href="#top">{% translate 'To the top of the page' %}</a>
+        <nav class="content-footer__links" aria-label="{% translate 'Related Links' %}">
+            <ul class="js-collapse-palm">
             {% get_menu "footer-nav" as footer_nav %}
             {% for item in footer_nav %}
                 <a class="footer-nav__link" href="{{ item.url }}">{{ item.title }}</a>
             {% endfor %}
         </nav>
     </div>
-</footer>
+</div>
+
+{% get_external_footer %}

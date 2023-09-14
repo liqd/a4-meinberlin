@@ -1,6 +1,7 @@
 from django import forms
 from django.db.models import Q
 from django.utils.functional import cached_property
+from django.utils.translation import gettext_lazy as _
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
 
@@ -115,3 +116,25 @@ class MapTeaserBlock(blocks.StructBlock):
     class Meta:
         template = "meinberlin_cms/blocks/map_teaser_block.html"
         icon = "view"
+
+
+class LinkBlock(blocks.StructBlock):
+    link_text = blocks.CharBlock(required=True)
+    link = blocks.PageChooserBlock(
+        required=True,
+    )
+
+    class Meta:
+        icon = "link"
+
+
+class ExternalLinkBlock(blocks.StructBlock):
+    link_text = blocks.CharBlock(required=True)
+    link = blocks.URLBlock(
+        required=True,
+        help_text=_("Please enter a full url which starts with https:// " "or http://"),
+        max_length=500,
+    )
+
+    class Meta:
+        icon = "link-external"

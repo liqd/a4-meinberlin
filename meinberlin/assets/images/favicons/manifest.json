@@ -1,0 +1,14 @@
+{
+	"icons": [
+		{
+			"src": "/static/images/Berlin_de-192x192.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "/static/images/Berlin_de-512x512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	]
+}

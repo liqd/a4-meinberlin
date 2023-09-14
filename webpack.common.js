@@ -5,13 +5,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: {
+    berlin_css: [
+      './meinberlin/assets/berlin_css/berlin_marketing.css',
+      './meinberlin/assets/berlin_css/shariff.min.css',
+      './meinberlin/assets/berlin_css/fontawesome.all.min.css'
+    ],
     adhocracy4: {
       import: [
-        '@fortawesome/fontawesome-free/scss/fontawesome.scss',
-        '@fortawesome/fontawesome-free/scss/brands.scss',
-        '@fortawesome/fontawesome-free/scss/regular.scss',
-        '@fortawesome/fontawesome-free/scss/solid.scss',
-        'shariff/dist/shariff.min.css',
         'select2/dist/css/select2.min.css',
         'slick-carousel/slick/slick.css',
         'swiper/swiper-bundle.min.css',

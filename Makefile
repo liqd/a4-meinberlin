@@ -1,4 +1,5 @@
 VIRTUAL_ENV ?= venv
+MEDIA_ROOT = media
 NODE_BIN = node_modules/.bin
 SOURCE_DIRS = meinberlin tests
 ARGUMENTS=$(filter-out $(firstword $(MAKECMDGOALS)), $(MAKECMDGOALS))
@@ -78,6 +79,7 @@ install:
 	if [ ! -f $(VIRTUAL_ENV)/bin/python3 ]; then python3 -m venv $(VIRTUAL_ENV); fi
 	$(VIRTUAL_ENV)/bin/python3 -m pip install --upgrade -r requirements/dev.txt
 	$(VIRTUAL_ENV)/bin/python3 manage.py migrate
+	mkdir -p $(MEDIA_ROOT)
 
 .PHONY: clean
 clean:

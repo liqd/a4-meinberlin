@@ -1,4 +1,4 @@
-{% load i18n menu static %}
+{% load i18n menu static contrib_tags %}
 
 <div id="layout-grid__area--contentfooter">
   <div class="content-footer" id="content-footer" role="contentinfo">
@@ -26,3 +26,5 @@
       </nav>
   </div>
 </div>
+
+{% get_external_footer %}

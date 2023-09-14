@@ -84,6 +84,7 @@ jobs:
           PGHOSTADDR: 127.0.0.1
         run: |
           python manage.py collectstatic > /dev/null
+          mkdir -p media
           DJANGO_SETTINGS_MODULE='meinberlin.config.settings.travis' py.test --cov
           isort --diff -c meinberlin tests
           python manage.py makemigrations --dry-run --check --noinput

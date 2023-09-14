@@ -567,3 +567,7 @@ A4_DASHBOARD = {
 }
 
 A4_ACTIONS_PHASE_ENDS_HOURS = 48
+
+BERLIN_FOOTER_URL = (
+    "https://www.berlin.de/rbmskzl/aktuelles/__i9/std/landesfooter.inc?js=0"
+)

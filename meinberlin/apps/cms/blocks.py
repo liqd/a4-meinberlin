@@ -115,3 +115,12 @@ class MapTeaserBlock(blocks.StructBlock):
     class Meta:
         template = "meinberlin_cms/blocks/map_teaser_block.html"
         icon = "view"
+
+class LinkBlock(blocks.StructBlock):
+    link_text = blocks.CharBlock(required=True)
+    link = blocks.PageChooserBlock(
+        required=True,
+    )
+
+    class Meta:
+        icon = 'link'

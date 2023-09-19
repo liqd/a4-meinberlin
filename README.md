@@ -34,3 +34,8 @@ export DATABASE=postgresql
 make start-postgres
 make watch
 ```
+
+### Style Library
+*   currently all js and css incl fontawesome files are downloaded due to DOS attacks on berlin.de causing difficulties with development
+    *   img and font resouce paths within the berlin css have been updated to include the local version
+*   prefered solution would be to have js downloaded once per day and cached, css should only be updated before release due to issues of breaking changes not being versioned or announced.

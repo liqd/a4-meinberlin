@@ -86,3 +86,9 @@ Stop celery beat with ctr+C
 ### To add scheduled tasks (same for all environments) check the [docs](./docs/celerybeat.md)
 
 In case of settings.TIME_ZONE change, tasks need to be synced with the new time. [See HOWTO](https://django-celery-beat.readthedocs.io/en/latest/#important-warning-about-time-zones)
+
+### Style Library
+
+-   currently all js and css incl fontawesome files are downloaded due to difficulties serving files and slowing development
+    -   img and font resouce paths within the berlin css have been updated to include the local version
+-   Until versioning of libraries implemented prefered solution would be to have js downloaded once per day and cached, css should only be updated before release due to issues of breaking changes not being versioned or announced.

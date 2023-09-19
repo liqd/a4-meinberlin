@@ -1,69 +1,235 @@
 {% load menu userindicator static i18n %}
 
-<header class="main-header">
-    <div class="container">
-        <nav class="main-nav">
-            <div class="main-nav__nav-item">
-                <button
-                    class="btn btn--light main-nav__toggle"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#menu-collapse"
-                    aria-expanded="false"
-                    aria-controls="menu-collapse"
-                    aria-label="{% translate 'Menu' %}">
-                    <i class="fas fa-bars" aria-hidden="true"></i>
-                </button>
-                <div class="main-nav__menu-wrapper collapse" id="menu-collapse">
-                    <ul class="main-nav__list">
-                        <li class="main-nav__item">
-                            <a class="main-nav__link {% if request.path == '/' %}is-active{% else %}not-active{% endif %}" href="/" aria-label="{% translate 'Home' %}"><i class="fas fa-home"></i><span class="main-nav__link-home">{% translate 'Home' %}</span></a>
-                        </li>
-                        <li class="main-nav__item">
-                            {% url 'meinberlin_plans:plan-list' as project_list %}
-                            <a class="main-nav__link {% if request.path == project_list %}is-active{% else %}not-active{% endif %}" href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project overview' %}</a>
-                        </li>
-                        {% get_menu "topnav" as topnav %}
-                        {% for item in topnav %}
-                            <li class="main-nav__item">
-                                <a class="main-nav__link {% if request.path == item.url %}is-active{% else %}not-active{% endif %}" href="{{ item.url }}">{{ item.title }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-            <div class="main-nav__logo-item">
-                <a href="/" class="main-nav__logo" rel="home">
-                    <img src="{% static 'images/LOGO.png' %}" alt="mein.berlin"/>
+<header id="header">
+
+    <!-- Portallogo Berlin Brand -->
+    <div class="header__row-portalbrand">
+        <div class="logo">
+            <a href="https://www.berlin.de/">
+                <img class="logo" title="{% translate 'To the home page of Berlin.de' %}" src="{% static 'images/logo_berlin.svg' %}" alt="Berlin.de" />
+            </a>
+        </div>
+    </div>
+
+    <div class="header__row-pageheader">
+
+        <!-- Vertical Logo -->
+        <div class="pageheader__logo">
+            <p class="textlogo">
+                <a href="/"
+                   title="{% trans 'To the home page' %}">
+                    <img class="logo" src="{% static 'images/logo.png' %}" alt="{% trans 'meinBerlin' %}">
+                    <!-- <span class="institution">mein.Berlin.de</span>
+                    <span class="title">title</span> -->
                 </a>
-            </div>
-            <div class="main-nav__nav-item main-nav__nav-item--right">
-                <button
-                    class="btn btn--secondary main-nav__toggle"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#user-menu-collapse"
-                    aria-expanded="false"
-                    aria-controls="user-menu-collapse"
-                    aria-label="{% translate 'User Menu' %}">
-                    <i class="fas fa-user"></i>
-                </button>
-                <div class="main-nav__menu-wrapper collapse" id="user-menu-collapse">
-                    <div class="main-header__user">
-                        {% userindicator %}
-                    </div>
-                    <ul class="main-nav__list">
-                        {% if settings.meinberlin_cms.HeaderPages.help_page %}
-                        <li class="main-nav__item">
-                            <a class="main-nav__link {% if request.path == settings.meinberlin_cms.HeaderPages.help_page.get_url %}is-active{% else %}not-active{% endif %}" href="{{ settings.meinberlin_cms.HeaderPages.help_page.get_url }}">{% translate 'Help' %}</a>
-                        </li>
-                        {% endif %}
-                        {% if settings.meinberlin_cms.HeaderPages.feedback_page %}
-                        <li class="main-nav__item">
-                            <a class="main-nav__link {% if request.path == settings.meinberlin_cms.HeaderPages.feedback_page.get_url %}is-active{% else %}not-active{% endif %}" href="{{ settings.meinberlin_cms.HeaderPages.feedback_page.get_url }}">{% translate 'Give Feedback' %}</a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </div>
-            </div>
+            </p>
+        </div>
+
+        <!-- Quicklinks -->
+        <nav class="pageheader__quicklinks" aria-label="{% trans 'Page navigation' %}">
+            <ul>
+                <li class="{% if request.path == project_list %}active{% endif %}">
+                    {% url 'meinberlin_plans:plan-list' as project_list %}
+                    <a href="{% url 'meinberlin_plans:plan-list' %}">{% trans 'Project Overview' %}</a>
+                </li>
+                {% get_menu "topnav" as topnav %}
+                {% for item in topnav %}
+                <li class="{% if request.path == item.url %}active{% endif %}">
+                    <a href="{{ item.url }}">{{ item.title}}</a>
+                </li>
+                {% endfor %}
+                {% if settings.meinberlin_cms.HeaderPages.help_page %}
+                <li class="{% if request.path == settings.meinberlin_cms.HeaderPages.help_page.get_url %}active{% endif %}">
+                    <a href="{{ settings.meinberlin_cms.HeaderPages.help_page.get_url }}">{% translate 'Help' %}</a>
+                </li>
+                {% endif %}
+                {% if settings.meinberlin_cms.HeaderPages.feedback_page %}
+                <li class="{% if request.path == settings.meinberlin_cms.HeaderPages.feedback_page.get_url %}active{% endif %}">
+                    <a href="{{ settings.meinberlin_cms.HeaderPages.feedback_page.get_url }}">{% translate 'Give Feedback' %}</a>
+                </li>
+                {% endif %}
+            </ul>
         </nav>
+
+        <!-- ### Service button area with different overlays ## -->
+
+        <div class="pageheader__services">
+
+            <!-- Accessability button and overlay -->
+
+            <div id="servicebuttonAccessibility"
+                 class="service-button-overlay js-service-button-overlay accessibility">
+                <div class="service-button-overlay__button">
+                    <button type="button" class="icon-button js-button-overlay-open" aria-haspopup="true" aria-label="{% trans 'Open overlay: Accessibility' %}">
+                        <i class="icon fas fa-universal-access" aria-hidden="true"></i>
+                        <span class="text">{% trans 'Accessible' %}</span>
+                    </button>
+                </div>
+                <!--noindex--><!--googleoff: index-->
+                <div class="service-button-overlay__overlay overlay js-overlay-container robots-nocontent" role="dialog" aria-modal="true" hidden="hidden">
+                    <div class="overlay__header">
+                        <h2 class="heading"><span>{% trans 'Accessibility' %}</span></h2>
+                        <button type="button" class="close-button js-button-overlay-close" aria-label="{% trans 'Close overlay: Accessibility' %}">
+                            <i class="fas fa-times" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="overlay__body">
+                        <h3>{% trans 'Settings' %}</h3>
+                        <ul class="wcag-linklist">
+                            <li>
+                                <a href="#">
+                                    <img aria-hidden="true" src="https://www.berlin.de/i9f/v4/css/images/misc/leichtesprache.svg" alt="{% trans 'Symbol for easy german' %}">
+                                    {% trans 'Easy language' %}
+                                    <span class="aural">{% trans 'show for this page' %}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img aria-hidden="true" src="https://www.berlin.de/i9f/v4/css/images/misc/dgs.svg" alt="{% trans 'Sign language icon' %}">
+                                    {% trans 'Sign language' %}
+                                    <span class="aural">{% trans 'show for this page' %}</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <h3>{% trans 'How accessible is this website?' %}</h3>
+                        <p>
+                            <a href="{{ settings.meinberlin_cms.Accessibility.accessibility_declaration.url }}">{{ settings.meinberlin_cms.Accessibility.accessibility_declaration_title }}</a>
+                        </p>
+                        {% if settings.meinberlin_cms.Accessibility.feedback_name %}
+                            <h3>{% trans 'Whom to contact with comments or questions about digital accessibility (feedback option)?' %}</h3>
+                            <p>
+                            {% trans 'Name' %}: {{ settings.meinberlin_cms.Accessibility.feedback_name }}<br>
+                            {% endif %}
+                            {% if settings.meinberlin_cms.Accessibility.feedback_email %}
+                            {% trans 'Email' %}: <a href="mailto:{{ settings.meinberlin_cms.Accessibility.feedback_email }}">{{ settings.meinberlin_cms.Accessibility.feedback_email }}</a><br>
+                            {% endif %}
+                            {% if settings.meinberlin_cms.Accessibility.feedback_phone %}
+                            {% trans 'Phone' %}: {{ settings.meinberlin_cms.Accessibility.feedback_phone }}
+                            </p>
+                        {% endif %}
+
+                        {% if settings.meinberlin_cms.Accessibility.additional_external_info and settings.meinberlin_cms.Accessibility.additional_external_info_title%}
+                            <h3>{% trans 'Where can I find additional information on accessibility in the state of Berlin?' %}</h3>
+                            <p>
+                                <a href="{{ settings.meinberlin_cms.Accessibility.additional_external_info }}" class="extern" target="_blank">{{ settings.meinberlin_cms.Accessibility.additional_external_info_title }}</a>
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+                <!--googleon: index--><!--/noindex-->
+            </div>
+
+            <!-- Search button and overlay -->
+
+            <!-- <div id="servicebuttonSearch"
+                 class="service-button-overlay js-service-button-overlay search fullwidth">
+                <div class="service-button-overlay__button">
+                    <button type="button"
+                            class="icon-button js-button-overlay-open"
+                            aria-haspopup="true"
+                            aria-label="{% trans 'Open: Search' %}">
+                        <i class="icon fas fa-search"
+                           aria-hidden="true"></i>
+                        <span class="text">{% trans 'Search' %}</span>
+                    </button>
+                </div>
+                noindex--><!--googleoff: index
+                <div class="service-button-overlay__overlay overlay js-overlay-container robots-nocontent"
+                     role="dialog"
+                     aria-modal="true"
+                     hidden="hidden">
+                    <div class="overlay__header">
+                        <h2 class="heading"><span class="aural">{% trans 'Search' %}</span></h2>
+                        <button type="button" class="close-button js-button-overlay-close" aria-label="{% trans 'Open: Search' %}">
+                            <i class="fas fa-times" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="overlay__body">
+
+                        <div class="search-container">
+                            <form>
+                                <div class="searchform-slot ">
+                                    <div class="form-group">
+                                        <label class="notaural" for="searchFormInput_q">{% trans 'Search on the website "mein.Berlin"' %}</label>
+                                        <div class="searchterm">
+                                            <div class="input-wrapper">
+                                                <i class="fas fa-search lens"
+                                                   aria-hidden="true"></i>
+                                                <input type="search"
+                                                       class="form-control search"
+                                                       value=""
+                                                       placeholder="Suchbegriff"
+                                                       name="q"
+                                                       id="searchFormInput_q"
+                                                       title="Hier können Sie einen Text eingeben, um die Internetseite &quot;Die Regierende Bürgermeisterin von Berlin – Senatskanzlei Informationen zum Coronavirus (Covid-19)&quot; zu durchsuchen" />
+                                            </div>
+                                            <button class="button button--clean submit " type="submit" title="Suchen">
+                                                <span class="aural">Suchen</span><i class="fas fa-arrow-right icon" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+               // googleon: index--><!--/noindex
+            </div> -->
+
+            <!-- Hamburger navigation button and overlay -->
+
+            <div id="servicebuttonMenu" class="service-button-overlay js-service-button-overlay menu">
+                <div class="service-button-overlay__button">
+                    <button type="button" class="icon-button js-button-overlay-open" aria-haspopup="true" aria-label="{% trans 'Open overlay: Menu' %}">
+                        <i class="icon fas fa-bars" aria-hidden="true"></i>
+                        <span class="text">{% trans 'Menu' %}</span>
+                    </button>
+                </div>
+                <!--noindex--><!--googleoff: index-->
+                <div class="service-button-overlay__overlay overlay js-overlay-container robots-nocontent" role="dialog" aria-modal="true" hidden="hidden">
+                    <div class="overlay__header">
+                        <h2 class="heading"><span>{% trans 'Menu' %}</span></h2>
+                        <button type="button" class="close-button js-button-overlay-close" aria-label="{% trans 'Close overlay: Menu' %}">
+                            <i class="fas fa-times" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="overlay__body">
+                        <nav id="navigation-primary" class="js-navigation-primary">
+                            <div class="tree-wrapper js-navigation-tree-wrapper">
+                                <h3 class="aural">{% trans 'Page navigation' %}</h3>
+                                <ul class="navigation-tree">
+                                    <li class="{% if request.path == project_list %}active{% endif %}">
+                                        <a href="{% url 'meinberlin_plans:plan-list' %}">{% trans 'Project Overview' %}</a>
+                                    </li>
+                                    {% for item in topnav %}
+                                    <li class="{% if request.path == item.url %}active{% endif %}">
+                                        <a href="{{ item.url }}">{{ item.title}}</a>
+                                    </li>
+                                    {% endfor %}
+                                    {% if settings.meinberlin_cms.HeaderPages.help_page %}
+                                    <li class="{% if request.path == settings.meinberlin_cms.HeaderPages.help_page.get_url %}active{% endif %}">
+                                        <a href="{{ settings.meinberlin_cms.HeaderPages.help_page.get_url }}">{% translate 'Help' %}</a>
+                                    </li>
+                                    {% endif %}
+                                    {% if settings.meinberlin_cms.HeaderPages.feedback_page %}
+                                    <li class="{% if request.path == settings.meinberlin_cms.HeaderPages.feedback_page.get_url %}active{% endif %}">
+                                        <a href="{{ settings.meinberlin_cms.HeaderPages.feedback_page.get_url }}">{% translate 'Give Feedback' %}</a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+
+                        </nav>
+                    </div>
+                </div>
+                <!--googleon: index--><!--/noindex-->
+            </div>
+        </div>
+
+        <!-- User menu -->
+        {% userindicator %}
+
     </div>
 </header>

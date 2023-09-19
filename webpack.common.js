@@ -10,6 +10,14 @@ module.exports = {
       './meinberlin/assets/berlin_css/shariff.min.css',
       './meinberlin/assets/berlin_css/fontawesome.all.min.css'
     ],
+    berlin_js: [
+      './meinberlin/assets/berlin_js/berlin_marketing.js',
+      './meinberlin/assets/berlin_js/bo-foot-rebrush.js',
+      './meinberlin/assets/berlin_js/jquery.min.js',
+      './meinberlin/assets/berlin_js/shariff.min.js',
+      './meinberlin/assets/berlin_js/swiper.min.js'
+
+    ],
     adhocracy4: {
       import: [
         'select2/dist/css/select2.min.css',

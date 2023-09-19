@@ -2,7 +2,6 @@
 {% load react_questions static i18n %}
 
 
-{% block portal_header %}{% endblock %}
 {% block header %}{% endblock %}
 {% block content %}
     {% react_questions_present view.module %}
@@ -11,7 +10,7 @@
     <div class="live_questions_infographic__logo-container">
         <div class="live_questions_infographic__logo">
             <a href="/" rel="home">
-                <img src="{% static 'images/LOGO.png' %}" alt="mein.berlin"/>
+                <img src="{% static 'images/logo.png' %}" alt="mein.berlin"/>
             </a>
         </div>
     </div>

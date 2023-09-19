@@ -65,3 +65,9 @@ To send a dummy task to the queue and report the result, call:
 ```
 make celery-worker-dummy-task
 ```
+
+### Style Library
+
+*   currently all js and css incl fontawesome files are downloaded due to difficulties serving files and slowing development
+    *   img and font resouce paths within the berlin css have been updated to include the local version
+*   Until versioning of libraries implemented prefered solution would be to have js downloaded once per day and cached, css should only be updated before release due to issues of breaking changes not being versioned or announced.

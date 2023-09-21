@@ -49,7 +49,11 @@
     {% block header %}
       {% include 'header.html' %}
     {% endblock %}
-    <main id="main">
+    <!-- FIXME we don't currently want their grid in dashboard however this does not work if someone names wagtail, project or plan page 'dashboard' -->
+    <main role="main" {% if '/dashboard' not in request.path %} id="layout-grid" {% endif %}>
+        {% block breadcrumbs %}
+            {% include 'breadcrumb.html' %}
+        {% endblock %}
 
         {% if messages %}
         <ul class="messages">

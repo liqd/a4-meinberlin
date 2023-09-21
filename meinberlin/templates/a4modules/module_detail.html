@@ -28,6 +28,25 @@
     {% endif %}
 {% endblock %}
 
+<!-- Breadcrumbs are only necessary for multimodule projects with simultaneously running modules since the project detail
+     template correctly displays breadcrumbs for other project -->
+{% if module.is_in_module_cluster  %}
+    {% block breadcrumbs %}
+    <div id="layout-grid__area--contentheader">
+        <div id="content-header">
+            <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
+                <ol>
+                    {% url 'meinberlin_plans:plan-list' as project_list %}
+                    <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% trans 'Project Overview' %}</a></li>
+                    <li><a href="{% url 'project-detail' project.slug %}">{% if project.name|truncatechars:50 %}{{ project.name|truncatechars:50 }}{% else %}{{ project.name }}{% endif %}</a></li>
+                    <li class=”active” aria-current="page">{% if module.name|truncatechars:50 %}{{ module.name|truncatechars:50 }}{% else %}{{ module.name }}{% endif %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    {% endblock %}
+{% endif %}
+
 {% block content %}
     <div class="container">
         {% if module.is_in_module_cluster  %}

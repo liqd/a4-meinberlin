@@ -27,6 +27,19 @@
     {% endif %}
 {% endblock %}
 
+{% block breadcrumbs %}
+    <div id="layout-grid__area--contentheader">
+        <div id="content-header">
+            <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
+                <ol>
+                    <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% trans 'Project Overview' %}</a></li>
+                    <li class=”active” aria-current="page">{{ project.name|truncatechars:50 }}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+{% endblock %}
+
 {% block content %}
     <div
         class="project-header{% if project.image %} project-header--image{% endif %}"
@@ -193,13 +206,19 @@
                     {% include "meinberlin_projects/includes/project_timeline-carousel.html" with dates=project.participation_dates project=project %}
                 </div>
             {% endif %}
+
             {% if event %}
                 <article class="offset-lg-3 col-lg-6">
-                    <h2>{{ event.name }}</h2>
-                    <div class="phase-info__item__subtitle">
-                    {% html_date event.date 'DATETIME_FORMAT' %}
+                    <div class="item-detail">
+                        <h2 class="item-detail__title">{{ event.name }}</h2>
+                        <div class="item-detail__meta">
+                            {% html_date event.date 'DATETIME_FORMAT' %}
+                        </div>
+                        <div class="item-detail__content">
+                            {{ event.description | safe | transform_collapsibles | richtext }}
+                            {% block additional_content %}{% endblock %}
+                        </div>
                     </div>
-                    <p>{{ event.description | safe | transform_collapsibles | richtext }}</p>
                 </article>
             {% elif view.is_project_view %}
                 <div class="participation-tile__wrapper">
@@ -212,7 +231,7 @@
                     </div>
                 </div>
             {% else %} <!-- if just one module and no phase view to dispatch to -->
-            {% include "a4modules/includes/module_detail_phase.html" %}
+                {% include "a4modules/includes/module_detail_phase.html" %}
             {% endif %}
             <!-- these blocks are only filled when in phase view -->
                 <div class="offset-lg-3 col-lg-6">

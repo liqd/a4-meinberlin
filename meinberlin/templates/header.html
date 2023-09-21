@@ -74,7 +74,7 @@
                         </button>
                     </div>
                     <div class="overlay__body">
-                        <h3>{% trans 'Settings' %}</h3>
+                        <!-- <h3>{% trans 'Settings' %}</h3>
                         <ul class="wcag-linklist">
                             <li>
                                 <a href="#">
@@ -90,31 +90,36 @@
                                     <span class="aural">{% trans 'show for this page' %}</span>
                                 </a>
                             </li>
-                        </ul>
-
-                        <h3>{% trans 'How accessible is this website?' %}</h3>
-                        <p>
-                            <a href="{{ settings.meinberlin_cms.Accessibility.accessibility_declaration.url }}">{{ settings.meinberlin_cms.Accessibility.accessibility_declaration_title }}</a>
-                        </p>
-                        {% if settings.meinberlin_cms.Accessibility.feedback_name %}
-                            <h3>{% trans 'Whom to contact with comments or questions about digital accessibility (feedback option)?' %}</h3>
-                            <p>
-                            {% trans 'Name' %}: {{ settings.meinberlin_cms.Accessibility.feedback_name }}<br>
+                        </ul> -->
+                        {% with accessibility=accessibility %}
+                            {% if accessibility.accessibility_declaration %}
+                                <h3>{% trans 'How accessible is this website?' %}</h3>
+                                <p>
+                                    <a href="{{ accessibility.accessibility_declaration.url }}">{{ accessibility.accessibility_declaration_title }}</a>
+                                </p>
                             {% endif %}
-                            {% if settings.meinberlin_cms.Accessibility.feedback_email %}
-                            {% trans 'Email' %}: <a href="mailto:{{ settings.meinberlin_cms.Accessibility.feedback_email }}">{{ settings.meinberlin_cms.Accessibility.feedback_email }}</a><br>
+                            {% if accessibility.feedback_name or accessibility.feedback_email or accessibility.feedback_phone %}
+                                <h3>{% trans 'Whom to contact with comments or questions about digital accessibility (feedback option)?' %}</h3>
+                                <p>
+                                    {% if accessibility.feedback_name %}
+                                        {% trans 'Name' %}: {{ accessibility.feedback_name }}<br>
+                                    {% endif %}
+                                    {% if accessibility.feedback_email %}
+                                        {% trans 'Email' %}: <a href="mailto:{{ accessibility.feedback_email }}">{{ accessibility.feedback_email }}</a><br>
+                                    {% endif %}
+                                    {% if accessibility.feedback_phone %}
+                                        {% trans 'Phone' %}: {{ accessibility.feedback_phone }}
+                                    {% endif %}
+                                </p>
                             {% endif %}
-                            {% if settings.meinberlin_cms.Accessibility.feedback_phone %}
-                            {% trans 'Phone' %}: {{ settings.meinberlin_cms.Accessibility.feedback_phone }}
-                            </p>
-                        {% endif %}
 
-                        {% if settings.meinberlin_cms.Accessibility.additional_external_info and settings.meinberlin_cms.Accessibility.additional_external_info_title%}
-                            <h3>{% trans 'Where can I find additional information on accessibility in the state of Berlin?' %}</h3>
-                            <p>
-                                <a href="{{ settings.meinberlin_cms.Accessibility.additional_external_info }}" class="extern" target="_blank">{{ settings.meinberlin_cms.Accessibility.additional_external_info_title }}</a>
-                            </p>
-                        {% endif %}
+                            {% if accessibility.additional_external_info and accessibility.additional_external_info_title%}
+                                <h3>{% trans 'Where can I find additional information on accessibility in the state of Berlin?' %}</h3>
+                                <p>
+                                    <a href="{{ accessibility.additional_external_info }}" class="extern" target="_blank">{{ accessibility.additional_external_info_title }}</a>
+                                </p>
+                            {% endif %}
+                        {% endwith %}
                     </div>
                 </div>
                 <!--googleon: index--><!--/noindex-->

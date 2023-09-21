@@ -3,6 +3,10 @@
 
 {% block title %}{{ page.title }} &mdash; {{ block.super }}{% endblock %}
 
+{% block breadcrumbs %}
+    {% include 'meinberlin_cms/includes/cms_breadcrumb.html' %}
+{% endblock %}
+
 {% block content %}
     <div class="container">
         <div class="offset-lg-3 col-lg-6">

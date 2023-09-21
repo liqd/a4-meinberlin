@@ -3,6 +3,24 @@
 
 {% block title %}{% blocktranslate with title=object.name %}Edit {{ title }}{% endblocktranslate %} &mdash; {{ block.super }}{% endblock %}
 
+{% block breadcrumbs %}
+    <div id="layout-grid__area--contentheader">
+        <div id="content-header">
+            <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
+                <ol>
+                    <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% trans 'Project Overview' %}</a></li>
+                    <li><a href="{% url 'project-detail' project.slug %}">{{ project.name|truncatechars:50 }}</a></li>
+                    {% if module.is_in_module_cluster  %}
+                        <li><a href="{{ module.get_detail_url }}">{{ module.name|truncatechars:50 }}</a></li>
+                    {% endif %}
+                    <li><a href="{{ object.get_absolute_url }}">{% translate 'Idea' %}</a></li>
+                    <li class=”active” aria-current="page">{% translate 'Edit idea' %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+{% endblock %}
+
 {% block content %}
 <div class="container">
     <div class="offset-lg-3 col-lg-6">

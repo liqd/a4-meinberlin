@@ -1,7 +1,26 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n meinberlin_project_tags %}
 
 {% block title %}{% translate 'Create a new proposal' %} &mdash; {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+    <div id="layout-grid__area--contentheader">
+        <div id="content-header">
+            <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
+                <ol>
+                    {% url 'meinberlin_plans:plan-list' as project_list %}
+                    <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% trans 'Project Overview' %}</a></li>
+                    <li><a href="{{ page.url }}">{% if project.name|truncatechars:50 %}{{ project.name|truncatechars:50 }}{% else %}{{ project.name }}{% endif %}</a></li>
+                    {% if module.is_in_module_cluster  %}
+                    <li><a href="{{ module.get_detail_url }}">{% if module.name|truncatechars:50 %}{{ module.name|truncatechars:50 }}{% else %}{{ module.name }}{% endif %}</a></li>
+                    {% endif %}
+                    <li class=”active” aria-current="page">{% translate 'Submit a new idea for this project'%}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+{% endblock %}
+
 {% block content %}
 <div class="container">
     <div class="offset-lg-3 col-lg-6">

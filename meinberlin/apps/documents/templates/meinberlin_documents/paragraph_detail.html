@@ -1,7 +1,26 @@
 {% extends "base.html" %}
-{% load i18n react_comments_async react_ratings wagtailcore_tags %}
+{% load i18n react_comments_async react_ratings wagtailcore_tags meinberlin_project_tags %}
 
 {% block title %}{{ paragraph.name }} &mdash; {{ paragraph.chapter.project.name }} &mdash; {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+    <div id="layout-grid__area--contentheader">
+        <div id="content-header">
+            <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
+                <ol>
+                    {% url 'meinberlin_plans:plan-list' as project_list %}
+                    <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% trans 'Project Overview' %}</a></li>
+                    <li><a href="{{ paragraph.chapter.project.get_absolute_url }}">{% if paragraph.chapter.project.name|truncatechars:50 %}{{ paragraph.chapter.project.name|truncatechars:50 }}{% else %}{{ paragraph.chapter.project.name }}{% endif %}</a></li>
+                    <!-- FIXME this doesn't work, it doesn't know it's in a cluster -->
+                    {% if module.is_in_module_cluster  %}
+                        <li><a href="{{ paragraph.chapter.get_absolute_url }}">{% if paragraph.chapter.name|truncatechars:50 %}{{ paragraph.chapter.name|truncatechars:50 }}{% else %}{{ paragraph.chapter.name }}{% endif %}</a></li>
+                    {% endif %}
+                    <li class=”active” aria-current="page">{% if paragraph.name|truncatechars:50 %}{{ paragraph.name|truncatechars:50 }}{% else %}{{ paragraph.name }}{% endif %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+{% endblock %}
 
 {% block content %}
 <div class="container">

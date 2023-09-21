@@ -1,7 +1,25 @@
 {% extends "base.html" %}
-{% load i18n react_comments_async react_ratings wagtailcore_tags %}
+{% load i18n react_comments_async react_ratings wagtailcore_tags meinberlin_project_tags %}
 
 {% block title %}{{ paragraph.name }} &mdash; {{ paragraph.chapter.project.name }} &mdash; {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+    <div id="layout-grid__area--contentheader">
+        <div id="content-header">
+            <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
+                <ol>
+                    <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a></li>
+                    <li><a href="{{ project.get_absolute_url }}">{{ project.name|truncatechars:50 }}</a></li>
+                    <!-- FIXME this doesn't work, it doesn't know it's in a cluster -->
+                    {% if module.is_in_module_cluster  %}
+                        <li><a href="{{ chapter.get_absolute_url }}">{{ chapter.name|truncatechars:50 }}</a></li>
+                    {% endif %}
+                    <li class=”active” aria-current="page">{{ paragraph.name|truncatechars:50 }}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+{% endblock %}
 
 {% block content %}
 <div class="container">

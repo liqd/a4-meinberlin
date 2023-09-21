@@ -1,0 +1,19 @@
+{% load wagtailcore_tags i18n %}
+
+<!-- FIXME only works on wagtail pages -->
+<div id="layout-grid__area--contentheader">
+    <div id="content-header">
+        {% if self.get_ancestors|length > 1 %}
+        <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
+            <ol>
+                {% for page in self.get_ancestors.specific %}
+                {% if page.is_root == False %}
+                <li><a href="{{ page.url }}">{% if page.title|truncatechars:50 %}{{ page.title|truncatechars:50 }}{% else %}{{ page.title }}{% endif %}</a></li>
+                {% endif %}
+                {% endfor %}
+                <li class=”active” aria-current="page">{% if self.page_title %}{{ self.page_title|truncatechars:50 }}{% else %}{{ self.title|truncatechars:50 }}{% endif %}</li>
+            </ol>
+        </nav>
+        {% endif %}
+    </div>
+</div>

@@ -48,8 +48,11 @@
     <a href="#main" class="visually-hidden-focusable">{% translate "Skip to content " %}</a>
     {% block header %}
       {% include "header.html" %}
-    {% endblock header %}
-    <main id="main">
+    {% endblock %}
+    <!-- FIXME we don't currently want their grid in dashboard however this does not work if someone names wagtail, project or plan page 'dashboard' -->
+    <main role="main" {% if '/dashboard' not in request.path %} id="layout-grid" {% endif %}>
+
+        {% block breadcrumbs %}{% endblock %}
 
         {% if messages %}
         <ul class="messages">

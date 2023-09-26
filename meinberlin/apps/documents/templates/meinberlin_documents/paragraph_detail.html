@@ -3,6 +3,20 @@
 
 {% block title %}{{ paragraph.name }} &mdash; {{ paragraph.chapter.project.name }} &mdash; {{ block.super }}{% endblock %}
 
+{% block breadcrumbs %}
+    <div id="layout-grid__area--contentheader">
+        <div id="content-header">
+            <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
+                <ol>
+                    <!-- FIXME would make more sens to have project name maybe although chapters are loaded in tab like manner -->
+                    <li><a href="{{ paragraph.chapter.get_absolute_url }}">{% if paragraph.chapter.name|truncatechars:50 %}{{ paragraph.chapter.name|truncatechars:50 }}{% else %}{{ paragraph.chapter.name }}{% endif %}</a></li>
+                    <li class=”active” aria-current="page">{% if paragraph.name|truncatechars:50 %}{{ paragraph.name|truncatechars:50 }}{% else %}{{ paragraph.name }}{% endif %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+{% endblock %}
+
 {% block content %}
 <div class="container">
     <div class="offset-lg-3 col-lg-6">

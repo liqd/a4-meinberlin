@@ -33,9 +33,10 @@
     <div id="content-header">
         <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
             <ol>
-                <li><a href="{{ page.url }}">{% if project.name|truncatechars:50 %}{{ project.name|truncatechars:50 }}{% else %}{{ project.name }}{% endif %}</a></li>
-                <li class=”active” aria-current="page">{% if self.page_title %}{{ self.page_title|truncatechars:50 }}{% else %}{{ self.title|truncatechars:50 }}{% endif %}</li>
-                {{ module.name }}
+                <li class="test"><a href="{{ page.url }}">{% if project.name|truncatechars:50 %}{{ project.name|truncatechars:50 }}{% else %}{{ project.name }}{% endif %}</a></li>
+                {% if module.is_in_module_cluster  %}
+                <li class=”active” aria-current="page">{% if module.name|truncatechars:50 %}{{ module.name|truncatechars:50 }}{% else %}{{ module.name }}{% endif %}</li>
+                {% endif %}
             </ol>
         </nav>
     </div>

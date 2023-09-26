@@ -2,6 +2,19 @@
 {% load i18n %}
 
 {% block title %}{% translate 'Create a new proposal' %} &mdash; {{ block.super }}{% endblock %}
+{% block breadcrumbs %}
+    <div id="layout-grid__area--contentheader">
+        <div id="content-header">
+            <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
+                <ol>
+                    <li><a href="{{ project.get_url }}">{% if project.name|truncatechars:50 %}{{ project.name|truncatechars:50 }}{% else %}{{ project.name }}{% endif %}</a></li>
+                    <li><a href="{{ module.get_detail_url }}">{% if module.name|truncatechars:50 %}{{ module.name|truncatechars:50 }}{% else %}{{ module.name }}{% endif %}</a></li>
+                    <li class=”active” aria-current="page">{% if self.page_title %}{{ self.page_title|truncatechars:50 }}{% else %}{{ self.title|truncatechars:50 }}{% endif %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+{% endblock %}
 {% block content %}
 <div class="container">
     <div class="offset-lg-3 col-lg-6">

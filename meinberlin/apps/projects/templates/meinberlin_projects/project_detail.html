@@ -27,6 +27,20 @@
     {% endif %}
 {% endblock %}
 
+{% block breadcrumbs %}
+    <div id="layout-grid__area--contentheader">
+        <div id="content-header">
+            <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
+                <ol>
+                    <li><a href="{{ project.get_url }}">{% if project.name|truncatechars:50 %}{{ project.name|truncatechars:50 }}{% else %}{{ project.name }}{% endif %}</a></li>
+                    <li><a href="{{ module.get_detail_url }}">{% if module.name|truncatechars:50 %}{{ module.name|truncatechars:50 }}{% else %}{{ module.name }}{% endif %}</a></li>
+                    <li class=”active” aria-current="page">{% if self.page_title %}{{ self.page_title|truncatechars:50 }}{% else %}{{ self.title|truncatechars:50 }}{% endif %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+{% endblock %}
+
 {% block content %}
     <div
         class="project-header{% if project.image %} project-header--image{% endif %}"

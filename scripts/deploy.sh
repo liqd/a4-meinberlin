@@ -2,6 +2,9 @@
 
 set -e -v
 
+project="${1:-meinberlin}"
+version="${2:-main}"
+
 if [ -n ${TRAVIS_SSH_SECRET} ]; then
     SSH_ID_ARG="-i ${HOME}/id_rsa"
     cat <<EOF | openssl enc -d -aes-256-cbc -pbkdf2 -pass env:TRAVIS_SSH_SECRET -a -out ~/id_rsa
@@ -19,4 +22,4 @@ EOF
     chmod 600 ~/id_rsa
 fi
 
-ssh ${SSH_ID_ARG} -oServerAliveInterval=15 -oServerAliveCountMax=2 -oStrictHostKeyChecking=no build@build.liqd.net deploy meinberlin main
+ssh ${SSH_ID_ARG} -oServerAliveInterval=15 -oServerAliveCountMax=2 -oStrictHostKeyChecking=no build@build.liqd.net deploy ${project} ${version}

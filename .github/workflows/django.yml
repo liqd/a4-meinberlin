@@ -2,9 +2,9 @@ name: Django CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, dev ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, dev ]
 
 jobs:
   build:
@@ -97,7 +97,15 @@ jobs:
         run: |
           npm test
           npm run lint
-      - name: Deploy
+      - name: Deploy dev
+        if: github.ref == 'refs/heads/dev'
+        env:
+          TRAVIS_SSH_SECRET: ${{ secrets.DEPLOY }}
+          PROJECT_BUILD: 'meinberlin-restyle'
+          VERSION_BUILD: 'dev'
+        run: |
+          ./scripts/deploy.sh $PROJECT_BUILD ${VERSION_BUILD##*/}
+      - name: Deploy main
         if: github.ref == 'refs/heads/main'
         env:
           TRAVIS_SSH_SECRET: ${{ secrets.DEPLOY }}

@@ -67,6 +67,13 @@ class ParagraphDetailView(
     model = models.Paragraph
     permission_required = "meinberlin_documents.view_paragraph"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        chapter = self.get_object().chapter
+        context["chapter"] = chapter
+        context["project"] = chapter.project
+        return context
+
 
 class DocumentDashboardExportView(DashboardExportView):
     template_name = "a4exports/export_dashboard.html"

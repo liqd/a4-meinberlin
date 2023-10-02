@@ -1,28 +1,24 @@
-from django.core.cache import cache
+from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from adhocracy4.dashboard import signals as a4dashboard_signals
-
-
-@receiver(a4dashboard_signals.project_created)
-def log_project_created(sender, project, user, **kwargs):
-    cache.delete("projects_active")
-    cache.delete("projects_future")
-    cache.delete("projects_past")
-    cache.delete("private_projects")
-
-
-@receiver(a4dashboard_signals.project_published)
-def log_project_published(sender, project, user, **kwargs):
-    cache.delete("projects_active")
-    cache.delete("projects_future")
-    cache.delete("projects_past")
-    cache.delete("private_projects")
+from adhocracy4.projects.models import Project
+from meinberlin.apps.contrib import caching
 
 
 @receiver(a4dashboard_signals.project_unpublished)
-def log_project_unpublished(sender, project, user, **kwargs):
-    cache.delete("projects_active")
-    cache.delete("projects_future")
-    cache.delete("projects_past")
-    cache.delete("private_projects")
+@receiver(a4dashboard_signals.project_published)
+@receiver(a4dashboard_signals.project_created)
+def post_dashboard_signal_delete(sender, project, user, **kwargs):
+    delete_projects_cache(project=project)
+
+
+@receiver(post_save, sender=Project)
+def post_save_delete(sender, instance, update_fields, **kwargs):
+    delete_projects_cache(project=instance)
+
+
+def delete_projects_cache(project: Project):
+    context = {"trigger": "signal", "project_id": project.id}
+    caching.delete(namespace="projects", context=context)
+    caching.delete(namespace="privateprojects", context=context)

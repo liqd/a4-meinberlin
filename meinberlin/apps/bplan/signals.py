@@ -1,4 +1,3 @@
-from django.core.cache import cache
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -32,8 +31,3 @@ def send_update(sender, instance, update_fields, **kwargs):
         "point" not in update_fields and "is_archived" not in update_fields
     ):
         emails.OfficeWorkerUpdateConfirmation.send(instance)
-
-
-@receiver(post_save, sender=Bplan)
-def reset_cache(sender, instance, update_fields, **kwargs):
-    cache.delete("bplans")

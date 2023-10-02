@@ -690,3 +690,16 @@ def test_initiator_can_update_and_create_paragraph(apiclient, module):
 
     paragraphs_all_count = document_models.Paragraph.objects.all().count()
     assert paragraphs_all_count == 2
+
+
+@pytest.mark.django_db
+def test_initiator_retreive_paragraph(apiclient, module, paragraph):
+    project = module.project
+    paragraph = document_models.Paragraph.objects.first()
+    initiator = project.organisation.initiators.first()
+    apiclient.force_authenticate(user=initiator)
+    url = reverse("meinberlin_documents:paragraph-detail", kwargs={"pk": paragraph.pk})
+    response = apiclient.get(url, format="json")
+    assert response.status_code == status.HTTP_200_OK
+    assert response.context["project"] == project
+    assert response.context["chapter"] == paragraph.chapter

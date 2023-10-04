@@ -33,7 +33,7 @@
             <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
                 <ol>
                     <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a></li>
-                    <li class=”active” aria-current="page">{{ project.name|truncatechars:50 }}</li>
+                    <li class="active" aria-current="page">{{ project.name|truncatechars:50 }}</li>
                 </ol>
             </nav>
         </div>
@@ -126,66 +126,63 @@ assume this will may be updated at somepoint  -->
             </nav>
         </div>
     </div>
-
     <div
-    class="tabpanel"
-    id="tabpanel-project-{{ project.pk }}-information"
-    role="tabpanel"
-    aria-labelledby="tab-project-{{ project.pk }}-information"
-    aria-expanded="false">
-        <section class="container">
-            <div class="offset-lg-2 col-lg-8">
-                <div class="ck-content">
-                    {{ project.information | transform_collapsibles | disable_iframes | richtext }}
-                </div>
-                {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url or project.organisation.address or project.organisation.url %}
-                    <div class="l-tiles-2 u-top-divider">
-                    {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url %}
-                        <div>
-                            <h3>{% translate 'Contact for questions' %}</h3>
-                            <address>
-                                {% if project.contact_name %}
-                                <p>{{ project.contact_name }}</p>
-                                {% endif %}
-                                {% if project.contact_address_text %}
-                                <p>{{ project.contact_address_text|linebreaks }}</p>
-                                {% endif %}
-                                {% if project.contact_phone %}
-                                <p><strong>{% translate 'Telephone' %}: </strong>{{ project.contact_phone }}</p>
-                                {% endif %}
-                                {% if project.contact_email %}
-                                <a class="btn btn--secondary" href="mailto:{{ project.contact_email }}">
-                                    {% translate 'Email' %}
-                                </a>
-                                {% endif %}
-                                {% if project.contact_url %}
-                                <a class="btn btn--secondary" target="_blank" href="{{ project.contact_url }}">
-                                    {% translate 'Website' %}
-                                </a>
-                                {% endif %}
-                            </address>
-                        </div>
-                    {% endif %}
-
-                    {% if project.organisation.address or project.organisation.url %}
-                        <div>
-                            <h3>{% translate 'Responsible body' %}</h3>
-                            <address>
-                                {% if project.organisation.address %}
-                                <p>{{ project.organisation.name }}</p>
-                                <p>{{ project.organisation.address|linebreaks }}</p>
-                                {% endif %}
-                                {% if project.organisation.url %}
-                                <a class="btn btn--secondary" target="_blank" href="{{ project.organisation.url }}">
-                                    {% translate 'Website' %}
-                                </a>
-                                {% endif %}
-                            </address>
-                        </div>
-                    {% endif %}
+        class="tabpanel"
+        id="tabpanel-project-{{ project.pk }}-information"
+        role="tabpanel"
+        aria-labelledby="tab-project-{{ project.pk }}-information"
+        aria-expanded="false">
+        <section class="offset-lg-2 col-lg-8">
+            <div class="ck-content">
+                {{ project.information | transform_collapsibles | disable_iframes | richtext }}
+            </div>
+            {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url or project.organisation.address or project.organisation.url %}
+                <div class="l-tiles-2 u-top-divider">
+                {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url %}
+                    <div>
+                        <h3>{% translate 'Contact for questions' %}</h3>
+                        <address>
+                            {% if project.contact_name %}
+                            <p>{{ project.contact_name }}</p>
+                            {% endif %}
+                            {% if project.contact_address_text %}
+                            <p>{{ project.contact_address_text|linebreaks }}</p>
+                            {% endif %}
+                            {% if project.contact_phone %}
+                            <p><strong>{% translate 'Telephone' %}: </strong>{{ project.contact_phone }}</p>
+                            {% endif %}
+                            {% if project.contact_email %}
+                            <a class="btn btn--secondary" href="mailto:{{ project.contact_email }}">
+                                {% translate 'Email' %}
+                            </a>
+                            {% endif %}
+                            {% if project.contact_url %}
+                            <a class="btn btn--secondary" target="_blank" href="{{ project.contact_url }}">
+                                {% translate 'Website' %}
+                            </a>
+                            {% endif %}
+                        </address>
                     </div>
                 {% endif %}
-            </div>
+
+                {% if project.organisation.address or project.organisation.url %}
+                    <div>
+                        <h3>{% translate 'Responsible body' %}</h3>
+                        <address>
+                            {% if project.organisation.address %}
+                            <p>{{ project.organisation.name }}</p>
+                            <p>{{ project.organisation.address|linebreaks }}</p>
+                            {% endif %}
+                            {% if project.organisation.url %}
+                            <a class="btn btn--secondary" target="_blank" href="{{ project.organisation.url }}">
+                                {% translate 'Website' %}
+                            </a>
+                            {% endif %}
+                        </address>
+                    </div>
+                {% endif %}
+                </div>
+            {% endif %}
         </section>
     </div>
     <div
@@ -201,19 +198,13 @@ assume this will may be updated at somepoint  -->
                     {% include "meinberlin_projects/includes/project_timeline-carousel.html" with dates=project.participation_dates project=project %}
                 </div>
             {% endif %}
-
             {% if event %}
                 <article class="offset-lg-3 col-lg-6">
-                    <div class="item-detail">
-                        <h2 class="item-detail__title">{{ event.name }}</h2>
-                        <div class="item-detail__meta">
-                            {% html_date event.date 'DATETIME_FORMAT' %}
-                        </div>
-                        <div class="item-detail__content">
-                            {{ event.description | safe | transform_collapsibles | richtext }}
-                            {% block additional_content %}{% endblock %}
-                        </div>
+                    <h2>{{ event.name }}</h2>
+                    <div class="phase-info__item__subtitle">
+                    {% html_date event.date 'DATETIME_FORMAT' %}
                     </div>
+                    <p>{{ event.description | safe | transform_collapsibles | richtext }}</p>
                 </article>
             {% elif view.is_project_view %}
                 <div class="participation-tile__wrapper">
@@ -226,14 +217,14 @@ assume this will may be updated at somepoint  -->
                     </div>
                 </div>
             {% else %} <!-- if just one module and no phase view to dispatch to -->
-                {% include "a4modules/includes/module_detail_phase.html" %}
+            {% include "a4modules/includes/module_detail_phase.html" %}
             {% endif %}
             <!-- these blocks are only filled when in phase view -->
                 <div class="offset-lg-3 col-lg-6">
                     {% block project_action %}{% endblock %}
                 </div>
+                {% block phase_content %}{% endblock %}
             </div>
-            {% block phase_content %}{% endblock %}
         </section>
     </div>
     <div
@@ -252,5 +243,5 @@ assume this will may be updated at somepoint  -->
             </div>
         </section>
     </div>
-<!-- </div> -->
+</div>
 {% endblock %}

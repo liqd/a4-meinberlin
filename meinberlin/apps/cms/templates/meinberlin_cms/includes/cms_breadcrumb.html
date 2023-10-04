@@ -10,7 +10,7 @@
                 <li><a href="{{ page.url }}">{{ page.title|truncatechars:50 }}</a></li>
                 {% endif %}
                 {% endfor %}
-                <li class=”active” aria-current="page">{% if self.page_title %}{{ self.page_title|truncatechars:50 }}{% else %}{{ self.title|truncatechars:50 }}{% endif %}</li>
+                <li class="active" aria-current="page">{% if self.page_title %}{{ self.page_title|truncatechars:50 }}{% else %}{{ self.title|truncatechars:50 }}{% endif %}</li>
             </ol>
         </nav>
         {% endif %}

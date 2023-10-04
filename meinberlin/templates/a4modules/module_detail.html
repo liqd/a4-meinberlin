@@ -38,7 +38,7 @@
                 <ol>
                     <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a></li>
                     <li><a href="{% url 'project-detail' project.slug %}">{{ project.name|truncatechars:50 }}</a></li>
-                    <li class=”active” aria-current="page">{{ module.name|truncatechars:50 }}</li>
+                    <li class="active" aria-current="page">{{ module.name|truncatechars:50 }}</li>
                 </ol>
             </nav>
         </div>
@@ -47,7 +47,8 @@
 {% endif %}
 
 {% block content %}
-    <div class="container">
+
+    <div id="layout-grid__area--herounit">
         {% if module.is_in_module_cluster  %}
             <div class="u-align-right u-spacer-bottom-double">
             {% if module.previous_module_in_cluster %}
@@ -76,47 +77,39 @@
                     </li>
                 </ul>
             </nav>
+            <!-- Live stream -->
+            {% for phase in module.phases %}
+                {% if phase == module.active_phase and live_stream %}
+                    {{ live_stream.live_stream | disable_iframes | richtext }}
+                    <span class="label label--active">•{% translate ' Live now' %}</span>
+                {% endif %}
+            {% endfor %}
+
+            <h1 class="project-header__title">{{ module.name }}</h1>
+            <p class="project-header__description">{{ module.description }}</p>
         </div>
     </div>
-    <section>
-        <div class="container">
-            <div class="offset-lg-3 col-lg-6 project-header">
 
-                <!-- Live stream -->
-                {% for phase in module.phases %}
-                  {% if phase == module.active_phase and live_stream %}
-                      {{ live_stream.live_stream | disable_iframes | richtext }}
-                      <span class="label label--active">•{% translate ' Live now' %}</span>
-                  {% endif %}
-                {% endfor %}
-
-                <h1 class="project-header__title">{{ module.name }}</h1>
-                <p class="project-header__description">{{ module.description }}</p>
-            </div>
+    <div id="layout-grid__area--maincontent">
             {% include "a4modules/includes/module_detail_phase.html" %}
             <div class="offset-lg-3 col-lg-6">
                 {% block project_action %}{% endblock %}
             </div>
-
+            {% block phase_content %}{% endblock %}
+            {% if module.is_in_module_cluster %}
+            <section class="participation-tile__wrapper">
+                <div class="participation-tile__list-container">
+                    <ul class="u-list-reset participation-tile__list">
+                        <h2 class="participation-tile__list-header">{% translate 'More from this online participation:' %}</h2>
+                        {% for other_module in module.module_cluster %}
+                            {% if not other_module == module %}
+                                {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=other_module %}
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </section>
+            {% endif %}
         </div>
-
-        {% block phase_content %}{% endblock %}
-    </section>
-
-    {% if module.is_in_module_cluster %}
-    <section class="container">
-        <div class="participation-tile__wrapper">
-            <div class="participation-tile__list-container">
-                <ul class="u-list-reset participation-tile__list">
-                    <h2 class="participation-tile__list-header">{% translate 'More from this online participation:' %}</h2>
-                    {% for other_module in module.module_cluster %}
-                        {% if not other_module == module %}
-                            {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=other_module %}
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-    </section>
-    {% endif %}
+    </div>
 {% endblock %}

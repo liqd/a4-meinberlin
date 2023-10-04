@@ -15,16 +15,16 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="offset-lg-2 col-lg-8">
-            <h1>{{ self.title }}</h1>
+<div id="layout-grid__area--maincontent">
+    <div class="offset-lg-2 col-lg-8">
+        <h1>{{ self.title }}</h1>
 
-            {% if self.description %}
-            {{ self.description|richtext }}
-            {% endif %}
-            {% for block in self.body %}
-                {% include_block block with index=forloop.counter %}
-            {% endfor %}
-        </div>
+        {% if self.description %}
+        {{ self.description|richtext }}
+        {% endif %}
+        {% for block in self.body %}
+            {% include_block block with index=forloop.counter %}
+        {% endfor %}
     </div>
+</div>
 {% endblock %}

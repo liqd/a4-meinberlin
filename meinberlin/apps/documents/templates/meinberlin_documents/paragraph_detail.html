@@ -14,7 +14,7 @@
                     {% if module.is_in_module_cluster  %}
                         <li><a href="{{ chapter.get_absolute_url }}">{{ chapter.name|truncatechars:50 }}</a></li>
                     {% endif %}
-                    <li class=”active” aria-current="page">{{ paragraph.name|truncatechars:50 }}</li>
+                    <li class="active" aria-current="page">{{ paragraph.name|truncatechars:50 }}</li>
                 </ol>
             </nav>
         </div>
@@ -22,7 +22,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div id="layout-grid__area--maincontent">
     <div class="offset-lg-3 col-lg-6">
         <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
             <ul>
@@ -42,9 +42,7 @@
                 {{ paragraph.text | richtext }}
             </div>
         </article>
-    </div>
 
-    <div class="offset-lg-3 col-lg-6">
         {% react_comments_async paragraph %}
     </div>
 </div>

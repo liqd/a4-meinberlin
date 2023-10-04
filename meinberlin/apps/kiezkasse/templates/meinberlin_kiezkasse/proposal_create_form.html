@@ -12,34 +12,32 @@
                     {% if module.is_in_module_cluster  %}
                         <li><a href="{{ module.get_detail_url }}">{{ module.name|truncatechars:50 }}</a></li>
                     {% endif %}
-                    <li class=”active” aria-current="page">{% translate 'Submit a new proposal for this project' %}</li>
+                    <li class="active" aria-current="page">{% translate 'Submit a new proposal for this project' %}</li>
                 </ol>
             </nav>
         </div>
     </div>
 {% endblock %}
 {% block content %}
-<div class="container">
-    <div class="offset-lg-3 col-lg-6">
-        <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
-            <ul>
-                <li>
-                    <a href="{{ module.get_detail_url }}">
-                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% translate 'go back' %}</a>
-                </li>
-            </ul>
-        </nav>
+<div id="layout-grid__area--maincontent">
+    <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
+        <ul>
+            <li>
+                <a href="{{ module.get_detail_url }}">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    {% translate 'go back' %}</a>
+            </li>
+        </ul>
+    </nav>
 
-        <h1>{% translate 'Submit a new proposal for this project'%}</h1>
+    <h1>{% translate 'Submit a new proposal for this project' %}</h1>
 
-        {% if form.errors %}
-        <div class="alert alert--danger" aria-live="assertive" aria-atomic="true" id="alert">
-          {% translate 'An error occurred while evaluating your data. Please check the data you entered again.' %}
-        </div>
-        {% endif %}
-
-        {% include "meinberlin_kiezkasse/includes/proposal_form.html" with proposal=proposal cancel=module.get_detail_url %}
+    {% if form.errors %}
+    <div class="alert alert--danger" aria-live="assertive" aria-atomic="true" id="alert">
+        {% translate 'An error occurred while evaluating your data. Please check the data you entered again.' %}
     </div>
+    {% endif %}
+
+    {% include "meinberlin_kiezkasse/includes/proposal_form.html" with proposal=proposal cancel=module.get_detail_url %}
 </div>
 {% endblock %}

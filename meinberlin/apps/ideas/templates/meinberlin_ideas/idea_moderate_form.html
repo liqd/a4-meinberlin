@@ -2,7 +2,6 @@
 {% load i18n %}
 
 {% block title %}{{ object.name }} &mdash; {% translate 'Give feedback' %}{% endblock %}
-
 {% block breadcrumbs %}
     <div id="layout-grid__area--contentheader">
         <div id="content-header">
@@ -11,18 +10,17 @@
                     <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a></li>
                     <li><a href="{% url 'project-detail' project.slug %}">{{ project.name|truncatechars:50 }}</a></li>
                     {% if module.is_in_module_cluster  %}
-                    <li><a href="{{ module.get_detail_url }}">{{ module.name|truncatechars:50 }}</a></li>
+                        <li><a href="{{ module.get_detail_url }}">{{ module.name|truncatechars:50 }}</a></li>
                     {% endif %}
                     <li><a href="{{ object.get_absolute_url }}">{% translate 'Idea' %}</a></li>
-                    <li class=”active” aria-current="page">{{ object.name }}</li>
+                    <li class="active" aria-current="page">{% translate 'Moderate idea' %}</li>
                 </ol>
             </nav>
         </div>
     </div>
 {% endblock %}
-
 {% block content %}
-<div class="container">
+<div id="layout-grid__area--maincontent">
     <div class="offset-lg-3 col-lg-6">
         <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
             <ul>

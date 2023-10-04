@@ -9,7 +9,7 @@
             <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
                 <ol>
                     <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a></li>
-                    <li class=”active” aria-current="page">{{ project.name|truncatechars:50 }}</li>
+                    <li class="active" aria-current="page">{{ project.name|truncatechars:50 }}</li>
                 </ol>
             </nav>
         </div>
@@ -17,15 +17,16 @@
 {% endblock %}
 
 {% block content %}
+<div id="layout-grid__area--maincontent">
+    <div class="offset-lg-3 col-lg-6">
         {# As bplan projects don't set the information and the result field, the default project detail, which is shown prior to the first phase, looks bad. #}
         {# This replaces the default project detail by a simple notice that the participation has not started yet. #}
-        <div class="container">
-            <div class="offset-lg-3 col-lg-6">
-                <h1 class="u-first-heading">{% translate 'Participation is not possible at the moment.' %}</h1>
-                <p>
-                    {% html_date project.modules.first.future_phases.first.start_date 'DATE_FORMAT' as start_date %}
-                    {% blocktranslate with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
-                </p>
-            </div>
-        </div>
+
+        <h1 class="u-first-heading">{% translate 'Participation is not possible at the moment.' %}</h1>
+        <p>
+            {% html_date project.modules.first.future_phases.first.start_date 'DATE_FORMAT' as start_date %}
+            {% blocktranslate with date=start_date %}It starts on {{ date }}.{% endblocktrans %}
+        </p>
+    </div>
+</div>
 {% endblock %}

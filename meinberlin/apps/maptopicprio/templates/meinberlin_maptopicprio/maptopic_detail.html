@@ -23,7 +23,7 @@
                     {% if module.is_in_module_cluster  %}
                     <li><a href="{{ module.get_detail_url }}">{{ module.name|truncatechars:50 }}</a></li>
                     {% endif %}
-                    <li class=”active” aria-current="page">{{ object.name }}</li>
+                    <li class="active" aria-current="page">{{ object.name }}</li>
                 </ol>
             </nav>
         </div>
@@ -31,7 +31,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div id="layout-grid__area--maincontent">
     <div class="offset-lg-3 col-lg-6">
         <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
             <ul>
@@ -43,9 +43,7 @@
                 </li>
             </ul>
         </nav>
-    </div>
-    <article class="offset-lg-3 col-lg-6">
-        <div class="item-detail">
+        <article class="item-detail">
             <h1 class="item-detail__title">{{ object.name }}</h1>
 
             {% include "meinberlin_contrib/includes/item_detail_labels.html" with object=object %}
@@ -79,11 +77,11 @@
                     </div>
                 {% endif %}
             </div>
-        </div>
-    </article>
-    <section class="offset-lg-3 col-lg-6">
-        <h2 class="visually-hidden">{% translate 'Comments' %}</h2>
-        {% react_comments_async object %}
-    </section>
+        </article>
+        <section>
+            <h2 class="visually-hidden">{% translate 'Comments' %}</h2>
+            {% react_comments_async object %}
+        </section>
+    </div>
 </div>
 {% endblock %}

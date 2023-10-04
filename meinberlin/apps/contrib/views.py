@@ -6,6 +6,10 @@ class ComponentLibraryView(generic.base.TemplateView):
     template_name = "meinberlin_contrib/component_library.html"
 
 
+class BoComponentLibraryView(generic.base.TemplateView):
+    template_name = "meinberlin_contrib/bo_component_library.html"
+
+
 class CanonicalURLDetailView(generic.DetailView):
     """DetailView redirecting to the canonical absolute url of an object."""
 

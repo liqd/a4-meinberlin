@@ -198,6 +198,7 @@ urlpatterns = [
         name="robots_file",
     ),
     path("components/", contrib_views.ComponentLibraryView.as_view()),
+    path("bo_components/", contrib_views.BoComponentLibraryView.as_view()),
     path("jsi18n/", JavaScriptCatalog.as_view(), name="javascript-catalog"),
     path("", include("wagtail.urls")),
 ]

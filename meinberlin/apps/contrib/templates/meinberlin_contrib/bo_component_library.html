@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Component Library &mdash; {{ block.super }}{% endblock %}
+
+{% block content %}
+  <div id="layout-grid__area--leftcolumn">
+    <!-- LEFT COLUMN not used -->
+  </div>
+  <div id="layout-grid__area--maincontent">
+    {% include 'meinberlin_contrib/components/breadcrumb.html' %}
+  </div>
+  <!-- Component list and links -->
+  <div id="layout-grid__area--marginal" role="complementary" class="marginal">
+    <a href="#layout-grid__area--contentheader" class="">Breadcrumb</a>
+  </div>
+{% endblock %}

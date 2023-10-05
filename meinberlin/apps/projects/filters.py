@@ -15,10 +15,10 @@ class StatusFilter(filters.BaseFilterBackend):
             has_active_module = Q(
                 module__phase__start_date__lte=now, module__phase__end_date__gt=now
             )
+            has_future_module = Q(module__phase__start_date__gt=now)
             active_modules = Module.objects.filter(
                 phase__start_date__lte=now, phase__end_date__gt=now
             )
-            has_future_module = Q(module__phase__start_date__gt=now)
 
             if status == "activeParticipation":
                 return queryset.filter(has_active_module).distinct()

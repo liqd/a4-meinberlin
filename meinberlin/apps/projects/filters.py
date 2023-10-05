@@ -1,43 +1,41 @@
+from django.db.models import Q
 from rest_framework import filters
+
+from adhocracy4.modules.models import Module
 
 
 class StatusFilter(filters.BaseFilterBackend):
     def filter_queryset(self, request, queryset, view):
-
         now = view.now
 
         if "status" in request.GET:
-            statustype = request.GET["status"]
+            status = request.GET["status"]
 
-            active_projects = queryset.filter(
-                module__phase__start_date__lte=now,
-                module__phase__end_date__gt=now,
-                module__is_draft=False,
-            ).distinct()
-
-            future_projects = (
-                queryset.filter(
-                    module__phase__start_date__gt=now, module__is_draft=False
-                )
-                .distinct()
-                .exclude(id__in=active_projects.values("id"))
+            has_past_module = Q(module__phase__end_date__lt=now)
+            has_active_module = Q(
+                module__phase__start_date__lte=now, module__phase__end_date__gt=now
             )
+            active_modules = Module.objects.filter(
+                phase__start_date__lte=now, phase__end_date__gt=now
+            )
+            has_future_module = Q(module__phase__start_date__gt=now)
 
-            if statustype == "activeParticipation":
-                return active_projects
+            if status == "activeParticipation":
+                return queryset.filter(has_active_module).distinct()
 
-            if statustype == "futureParticipation":
-                return future_projects
-
-            if statustype == "pastParticipation":
-                past_projects = (
-                    queryset.filter(
-                        module__phase__end_date__lt=now, module__is_draft=False
-                    )
+            elif status == "futureParticipation":
+                return (
+                    queryset.exclude(module__in=active_modules)
+                    .filter(has_future_module)
                     .distinct()
-                    .exclude(id__in=active_projects.values("id"))
-                    .exclude(id__in=future_projects.values("id"))
                 )
-                return past_projects
+
+            elif status == "pastParticipation":
+                return (
+                    queryset.exclude(module__in=active_modules)
+                    .exclude(has_future_module)
+                    .filter(has_past_module)
+                    .distinct()
+                )
 
         return queryset

@@ -66,6 +66,25 @@ To send a dummy task to the queue and report the result, run:
 ```
 make celery-worker-dummy-task
 ```
+See more info about Celery in the [docs](./docs/celery.md)
+
+### Use Celery beat for scheduled tasks in development
+
+For celery to run scheduled tasks you need to make sure that:
+
+- the redis server is running
+- the celery worker is running (see previous step)
+
+To start celery beat in the foreground, run:
+
+```
+make celery-beat
+```
+Stop celery beat with ctr+C
+
+### To add scheduled tasks (same for all environments) check the [docs](./docs/celerybeat.md)
+
+In case of settings.TIME_ZONE change, tasks need to be synced with the new time. [See HOWTO](https://django-celery-beat.readthedocs.io/en/latest/#important-warning-about-time-zones)
 
 See more info about Celery in the [docs](./docs/celery.md)
 

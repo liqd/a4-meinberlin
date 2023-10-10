@@ -1,14 +1,22 @@
-.follow__notification {
-    .alert {
-        margin-top: $spacer;
-        font-size: inherit;
+// BO overwrites
+.btn.btn--follow,
+.btn.btn--following {
+    @extend .button;
+
+    &:after {
+        background-color: $primary;
     }
 }
 
-.btn--follow {
-    @extend .btn--secondary;
+.btn.btn--follow:after {
+    content: "\f067";
 }
 
-.btn--following {
-    @extend .btn--light;
+.btn.btn--following:after {
+    content: "\f00c";
+}
+
+// FIXME should be displayed or read out, might require refactor
+.follow__notification {
+    display: none;
 }

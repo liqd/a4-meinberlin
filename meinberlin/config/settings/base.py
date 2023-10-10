@@ -57,6 +57,7 @@ INSTALLED_APPS = (
     "ckeditor",
     "ckeditor_uploader",
     "django_filters",
+    "django_celery_beat",
     "easy_thumbnails",
     "rest_framework",
     "rules.apps.AutodiscoverRulesConfig",
@@ -578,6 +579,7 @@ CELERY_BROKER_URL = "redis://localhost:6379"
 CELERY_RESULT_BACKEND = "redis://localhost:6379"
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 CELERY_RESULT_EXTENDED = True
+CELERY_TIMEZONE = "Europe/Berlin"
 
 # BO external footer
 BERLIN_FOOTER_FILENAME = "landesfooter.inc"

@@ -25,15 +25,15 @@ from meinberlin.apps.contrib import views as contrib_views
 from meinberlin.apps.contrib.sitemaps.adhocracy4_sitemap import Adhocracy4Sitemap
 from meinberlin.apps.contrib.sitemaps.static_sitemap import StaticSitemap
 from meinberlin.apps.documents.api import DocumentViewSet
-from meinberlin.apps.extprojects.api import ExternalProjectListViewSet
+from meinberlin.apps.extprojects.api import ExternalProjectViewSet
 from meinberlin.apps.likes.api import LikesViewSet
 from meinberlin.apps.likes.routers import LikesDefaultRouter
 from meinberlin.apps.livequestions.api import LiveQuestionViewSet
 from meinberlin.apps.moderatorremark.api import ModeratorRemarkViewSet
-from meinberlin.apps.plans.api import PlansListViewSet
-from meinberlin.apps.projectcontainers.api import ProjectContainerListViewSet
-from meinberlin.apps.projects.api import PrivateProjectListViewSet
-from meinberlin.apps.projects.api import ProjectListViewSet
+from meinberlin.apps.plans.api import PlansViewSet
+from meinberlin.apps.projectcontainers.api import ProjectContainerViewSet
+from meinberlin.apps.projects.api import PrivateProjectViewSet
+from meinberlin.apps.projects.api import ProjectViewSet
 from meinberlin.apps.users.decorators import user_is_project_admin
 from meinberlin.apps.votes.api import TokenVoteViewSet
 from meinberlin.apps.votes.routers import TokenVoteDefaultRouter
@@ -46,13 +46,11 @@ router = routers.DefaultRouter()
 router.register(r"follows", FollowViewSet, basename="follows")
 router.register(r"reports", ReportViewSet, basename="reports")
 router.register(r"polls", PollViewSet, basename="polls")
-router.register(r"projects", ProjectListViewSet, basename="projects")
-router.register(
-    r"privateprojects", PrivateProjectListViewSet, basename="privateprojects"
-)
-router.register(r"plans", PlansListViewSet, basename="plans")
-router.register(r"extprojects", ExternalProjectListViewSet, basename="extprojects")
-router.register(r"containers", ProjectContainerListViewSet, basename="containers")
+router.register(r"projects", ProjectViewSet, basename="projects")
+router.register(r"privateprojects", PrivateProjectViewSet, basename="privateprojects")
+router.register(r"plans", PlansViewSet, basename="plans")
+router.register(r"extprojects", ExternalProjectViewSet, basename="extprojects")
+router.register(r"containers", ProjectContainerViewSet, basename="containers")
 
 module_router = a4routers.ModuleDefaultRouter()
 # FIXME: rename to 'chapters'

@@ -6,7 +6,7 @@ from meinberlin.apps.projectcontainers.models import ProjectContainer
 from meinberlin.apps.projectcontainers.serializers import ProjectContainerSerializer
 
 
-class ProjectContainerListViewSet(viewsets.ReadOnlyModelViewSet):
+class ProjectContainerViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         containers = ProjectContainer.objects.filter(
             is_draft=False, access=Access.PUBLIC, is_archived=False

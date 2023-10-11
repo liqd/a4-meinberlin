@@ -4,7 +4,7 @@ from meinberlin.apps.plans.models import Plan
 from meinberlin.apps.plans.serializers import PlanSerializer
 
 
-class PlansListViewSet(viewsets.ReadOnlyModelViewSet):
+class PlansViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = PlanSerializer
 
     def get_queryset(self):

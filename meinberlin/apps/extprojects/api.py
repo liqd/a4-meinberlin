@@ -6,7 +6,7 @@ from meinberlin.apps.extprojects.models import ExternalProject
 from meinberlin.apps.extprojects.serializers import ExternalProjectSerializer
 
 
-class ExternalProjectListViewSet(viewsets.ReadOnlyModelViewSet):
+class ExternalProjectViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         return ExternalProject.objects.filter(
             project_type="meinberlin_extprojects.ExternalProject",

@@ -9,7 +9,7 @@ from meinberlin.apps.projects import serializers as project_serializers
 from meinberlin.apps.projects.filters import StatusFilter
 
 
-class ProjectListViewSet(viewsets.ReadOnlyModelViewSet):
+class ProjectViewSet(viewsets.ReadOnlyModelViewSet):
     filter_backends = (DjangoFilterBackend, StatusFilter)
 
     def __init__(self, *args, **kwargs):
@@ -57,7 +57,7 @@ class ProjectListViewSet(viewsets.ReadOnlyModelViewSet):
         return project_serializers.ProjectSerializer(now=self.now, *args, **kwargs)
 
 
-class PrivateProjectListViewSet(viewsets.ReadOnlyModelViewSet):
+class PrivateProjectViewSet(viewsets.ReadOnlyModelViewSet):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         now = timezone.now()

@@ -17,7 +17,7 @@ from meinberlin.test.factories.projectcontainers import ProjectContainerFactory
 def test_delete_namespace():
     namespace = "test"
     value = "test_value"
-    key = caching.get_key(namespace=namespace)
+    key = caching.create_key(namespace=namespace)
     cache.set(key=key, value=value, timeout=None)
     cache_value_before = cache.get(key)
     caching.delete(namespace=namespace)
@@ -25,8 +25,6 @@ def test_delete_namespace():
 
     assert cache_value_before == value
     assert cache_value_after is None
-
-    cache.clear()
 
 
 @pytest.mark.skipif(not caching.REDIS_IS_ENABLED, reason="requires redis")
@@ -45,19 +43,17 @@ def test_delete_keys():
     assert cache_value_after is None
     assert deleted_keys == keys
 
-    cache.clear()
-
 
 @pytest.mark.django_db
 @pytest.mark.skipif(not caching.REDIS_IS_ENABLED, reason="requires redis")
 def test_add_or_query(project_factory):
-    n_ideas = 3
+    n_projects = 3
     namespace = "test_projects"
     information = "test_information"
     filter_kwargs = {"information": information}
-    project_factory.create_batch(size=n_ideas, information=information)
+    project_factory.create_batch(size=n_projects, information=information)
     cache_value_expected = Project.objects.filter(**filter_kwargs)
-    key = caching.get_key(namespace=namespace)
+    key = caching.create_key(namespace=namespace)
 
     cache_value_before = cache.get(key=key)
     caching.add_or_query(
@@ -68,14 +64,14 @@ def test_add_or_query(project_factory):
     assert cache_value_before is None
     assert list(cache_value_after) == list(cache_value_expected)
 
-    cache.clear()
+    caching.delete(namespace=namespace)
 
 
 @pytest.mark.django_db
 @pytest.mark.skipif(not caching.REDIS_IS_ENABLED, reason="requires redis")
 def test_add_or_serialize():
     namespace = "test"
-    key = caching.get_key(namespace=namespace)
+    key = caching.create_key(namespace=namespace)
     view_set = ProjectViewSet()
     view_set.request = HttpRequest()
 
@@ -86,7 +82,7 @@ def test_add_or_serialize():
     assert cache_value_before is None
     assert cache_value_after == []
 
-    cache.clear()
+    caching.delete(namespace=namespace)
 
 
 @pytest.mark.django_db
@@ -110,7 +106,7 @@ def test_calling_list_api_creates_cached_value(
 ):
     n_objects = 3
     url = reverse(url_name)
-    cache_key = caching.get_key(namespace=namespace)
+    cache_key = caching.create_key(namespace=namespace)
     cache_value_before = cache.get(cache_key)
 
     objects = factory.create_batch(size=n_objects, **factory_kwargs)
@@ -122,7 +118,7 @@ def test_calling_list_api_creates_cached_value(
     assert response.status_code == 200
     assert response.data == cache_value_after
 
-    cache.clear()
+    caching.delete(namespace=namespace)
 
 
 @pytest.mark.django_db
@@ -144,7 +140,7 @@ def test_signal_triggers_cache_delete(
 ):
     n_objects = 3
     url = reverse(url_name)
-    cache_key = caching.get_key(namespace=namespace)
+    cache_key = caching.create_key(namespace=namespace)
 
     objects = factory.create_batch(size=n_objects, **factory_kwargs)
     response = client.get(url)
@@ -154,7 +150,7 @@ def test_signal_triggers_cache_delete(
     cache_value_after = cache.get(cache_key)
 
     assert response.status_code == 200
-    assert len(cache_value_before) == len(objects) == n_objects
+    assert len(cache_value_before) == len(objects) == len(response.data) == n_objects
     assert cache_value_after is None
 
-    cache.clear()
+    caching.delete(namespace=namespace)

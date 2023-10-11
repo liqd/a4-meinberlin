@@ -10,3 +10,4 @@ class ExternalProjectFactory(factory.django.DjangoModelFactory):
 
     name = factory.Faker("sentence", nb_words=4)
     organisation = factory.SubFactory(a4_factories.ORGANISATION_FACTORY)
+    is_draft = False

@@ -42,8 +42,16 @@ The name space for each API endpoint is hard-coded and prefixed by a global cach
 - `api_cache_projectcontainers`
 - `api_cache_plans`
 
-In production, we use redis as cache backend (`django_redis.cache.RedisCache`, see `settings/production.py::CACHES`). For development the cache backend is disabled (see `settings/base.py::CACHES`). If you want to enable it locally, then copy the production settings to your `settings/local.py`.
+If you want to delete all keys of a namespace use `caching.delete(namespace=..)`.
+
+There is one rule for naming namespace: make sure that they are not continuations of each other. So `projects` and `privateprojects` is fine, but `projects` and `projects_private` would be problematic because `caching.delete(namespace="projects")` would wipe both name spaces.
+
+In production, we use redis as cache backend (`django_redis.cache.RedisCache`, see `settings/production.py::CACHES`). For development the cache backend is disabled (undefined). If you want to enable it locally, then copy the production settings to your `settings/local.py`.
+
+All tests that relate to caching are conditional. If the redis caching backend is not detected (see `caching.py::REDIS_IS_ENABLED`) then tests are skipped.
 
 Some more notes about the caching module:
-- it is indented to be imported as a module instead of importing individual methods so that you call `caching.add_or_query(..)` instead of `add_or_query(..)`, for example
+- it is intended to be imported as a module instead of importing individual methods (e.g. you call `caching.add_or_query(..)` instead of `add_or_query(..)`)
 - `caching.delete(..)` can either be given a namespace or an explicit list of keys to be deleted and returns all keys that were deleted
+- careful: if you call `cache.clear()` (of Django's `cache` object) you will delete all keys currently in redis, including any keys related to celery, for example
+- whenever a management command is called (more precisely when the caching module is imported, e.g. also when running pytest) you will now see the cache startup message

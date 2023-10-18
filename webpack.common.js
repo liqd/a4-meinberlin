@@ -5,10 +5,14 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: {
+    common_css: [
+      './meinberlin/assets/berlin_css/fontawesome.all.min.css',
+      'slick-carousel/slick/slick.css',
+      './meinberlin/assets/extra_css/_slick-theme.css'
+    ],
     berlin_css: [
-      './meinberlin/assets/berlin_css/berlin_marketing.css',
       './meinberlin/assets/berlin_css/shariff.min.css',
-      './meinberlin/assets/berlin_css/fontawesome.all.min.css'
+      './meinberlin/assets/scss/style_bo.scss'
     ],
     berlin_js: [
       './meinberlin/assets/berlin_js/berlin_marketing.js',
@@ -21,9 +25,7 @@ module.exports = {
     adhocracy4: {
       import: [
         'select2/dist/css/select2.min.css',
-        'slick-carousel/slick/slick.css',
         'swiper/swiper-bundle.css',
-        './meinberlin/assets/extra_css/_slick-theme.css',
         './meinberlin/assets/scss/style.scss',
         './meinberlin/assets/js/app.js'
       ],

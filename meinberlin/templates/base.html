@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load i18n static contrib_tags wagtailuserbar %}
+{% load i18n userindicator static contrib_tags wagtailuserbar %}
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
@@ -20,19 +20,16 @@
     <link rel="manifest" href="{% static 'images/manifest.json' %}">
 
     <!-- <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}?v=2" /> -->
+
+    <link rel="stylesheet" type="text/css" href="{% static 'common_css.css' %}" />
+
     {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
+        <link rel="stylesheet" type="text/css" href="{% static 'berlin_css.css' %}" />
     {% endblock extra_css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'berlin_css.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}" />
 
     <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'adhocracy4.js' %}"></script>
-
-    <!-- Berlin.de js imports needed due to dynamic loading of additional libraries within code -->
-    <script src="{% static 'berlin_js.js' %}"></script>
-
-
 
     <title>{% block title %}{% translate "meinBerlin" %}{% endblock title %}</title>
 
@@ -40,7 +37,10 @@
 
     {% block extra_js %}
         {# Override this in templates to add extra javascript #}
+        <!-- Berlin.de js imports needed due to dynamic loading of additional libraries within code -->
+        <script src="{% static 'berlin_js.js' %}"></script>
     {% endblock extra_js %}
+
     {% tracking_enabled as tracking %}
     {% if tracking %} {% tracking_code %} {% endif %}
 </head>

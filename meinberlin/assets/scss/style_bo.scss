@@ -1,3 +1,9 @@
+// The plan is, as development continue to slowely seperate the dashboard styling from the BO styling and
+// eventually have seperate stylsheet and load totally seperate styles for the user side (just BO styles
+// and our overwrites for a4 components) and dashboard styles (bootstrap and our component styles) some
+// files maybe shared like the colour variables but most will be seperated
+// FIXME how to load header and footer styling?
+
 @import "~bootstrap/scss/functions";
 
 @import "mixins";
@@ -14,16 +20,19 @@
 @import "~bootstrap/scss/transitions";
 @import "~bootstrap/scss/dropdown";
 @import "~bootstrap/scss/close";
+
 @import "~bootstrap/scss/modal";
 @import "~bootstrap/scss/spinners";
 
 @import "~bootstrap/scss/helpers/visually-hidden";
 
+@import "../berlin_css/berlin_marketing";
+
 @import "base";
 @import "layout";
 @import "form";
 
-// @import "components/a4-comments";
+@import "components/a4-comments";
 @import "components/action";
 @import "components/accordion";
 @import "components/alert";
@@ -31,8 +40,7 @@
 @import "components/breadcrumbs";
 @import "components/button";
 @import "components/category_formset";
-
-// @import "components/captcheck";
+@import "components/captcheck";
 @import "components/commenting";
 @import "components/complete";
 @import "components/component_library";
@@ -52,32 +60,26 @@
 @import "components/embed_status";
 @import "components/export_dashboard";
 @import "components/filter_bar";
-
-// @import "components/follow";
-// @import "components/hero_unit";
+@import "components/follow";
+@import "components/hero_unit";
 @import "components/input_group";
-
-// @import "components/item_detail";
-// @import "components/item_detail_2";
+@import "components/item_detail";
+@import "components/item_detail_2";
 @import "components/label";
 @import "components/list_item";
-
-// @import "components/live_questions";
+@import "components/live_questions";
 @import "components/lr_bar";
-
-// @import "components/map";
-// @import "components/maplist";
+@import "components/map";
+@import "components/maplist";
 @import "components/module";
 @import "components/multiform";
 @import "components/pagination";
-
-// @import "components/timeline";
+@import "components/timeline";
 @import "components/poll";
 @import "components/idea_remark";
 @import "components/participation_tile";
 @import "components/progress";
-
-// @import "components/project_header";
+@import "components/project_header";
 @import "components/radio";
 @import "components/rating";
 @import "components/select2";
@@ -85,15 +87,13 @@
 @import "components/select_dropdown";
 @import "components/simple_page";
 @import "components/status_bar";
-
-// @import "components/storefront";
+@import "components/storefront";
 @import "components/switch";
 @import "components/table";
 @import "components/tabs";
 @import "components/tile";
-
-// @import "components/timeline-carousel";
-// @import "components/typeahead";
+@import "components/timeline-carousel";
+@import "components/typeahead";
 @import "components/upload";
 
 @import "print";

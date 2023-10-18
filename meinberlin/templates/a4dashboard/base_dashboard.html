@@ -1,5 +1,13 @@
 {% extends "base.html" %}
-{% load i18n rules %}
+{% load static i18n rules userindicator %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}" />
+{% endblock %}
+
+{% block header %}
+    {% userindicator %}
+{% endblock %}
 
 {% block content %}
 
@@ -67,4 +75,7 @@
     {% block dashboard_content %}{% endblock %}
 </div>
 
+{% endblock %}
+
+{% block footer %}
 {% endblock %}

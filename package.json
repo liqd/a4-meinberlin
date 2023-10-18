@@ -105,7 +105,7 @@
     "*.{js,jsx}": [
       "eslint"
     ],
-    "*.scss": [
+    "meinberlin/assets/scss/**/*.scss": [
       "stylelint"
     ],
     "*.py": [

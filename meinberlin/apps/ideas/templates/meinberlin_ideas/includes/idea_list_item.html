@@ -1,13 +1,75 @@
 {% load i18n module_tags contrib_tags %}
 
+<li>
+    <article class="modul-card" data-add-clickable-area="smart">
+        <header class="card__header">
+            <h3 class="title">             
+                {{ object.name }}
+            </h3>
+            <div class="card__status status"> 
+                <p class="pill pill--success">
+                    Reserviert
+                </p>
+            </div>
+            <div class="card__meta subtitle text--meta">
+                {% block creator_info %}
+                <span class="list-item__author">
+                    {{ object.creator.username }}
+                </span>
+                {% if object.modified %}
+                    {% translate 'updated on ' %}{% html_date object.modified class='list-item__date' %}
+                {% else %}
+                    {% translate 'created on ' %}{% html_date object.created class='list-item__date' %}
+                {% endif %}
+            {% endblock %}
+            </div>
+        </header>
+
+        <div class="card__body">      
+            <p>Yoga ist ein natürlicher Weg zu körperlicher und seelischer Gesundheit, Beweglichkeit und Gelassenheit. Die in Jahrtausenden entwickelten Praktiken des Yoga wirken präventiv, sorgen für eine tiefe Entspannung und helfen Stressreaktionen auszugleichen. </p>
+                    
+            <div class="" style="display:flex;">
+                {% spaceless %}
+                {% if object|has_feature:"rate" %}
+                    <span
+                        class="list-item__icon u-success"
+                        title="{% translate 'Positive Ratings' %}">
+                        <i class="fa fa-chevron-up u-icon-spacing" aria-hidden="true"></i>
+                        {{ object.positive_rating_count }}
+                        <span class="visually-hidden">{% translate 'Positive Ratings' %}</span>
+                    </span>
+                    <span
+                        class="list-item__icon u-danger"
+                        title="{% translate 'Negative Ratings' %}">
+                        <i class="fa fa-chevron-down u-icon-spacing" aria-hidden="true"></i>
+                        {{ object.negative_rating_count }}
+                        <span class="visually-hidden">{% translate 'Negative Ratings' %}</span>
+                    </span>
+                {% endif %}
+                    <span
+                        class="list-item__icon"
+                        title="{% translate 'Comments' %}">
+                        <i class="far fa-comment u-icon-spacing" aria-hidden="true"></i>
+                        {{ object.comment_count }}
+                        <span class="visually-hidden">{% translate 'Comments' %}</span>
+                    </span>
+                {% endspaceless %}
+
+                <a href="#" class="more" data-mainlink="true">Kursdetails</a>
+            </div>   
+
+        </div>
+    </article>
+<li>
+
 <li class="list-item">
     <div class="list-item__header">
         <h3 class="list-item__title">
             <a href="{{ object.get_absolute_url }}">
-            {{ object.name }}
+                {{ object.name }}
             </a>
-        </h3>
-        <div class="list-item__stats">
+        </h3> 
+        {% comment %} <div class="list-item__stats">
             {% spaceless %}
             {% if object|has_feature:"rate" %}
                 <span
@@ -33,7 +95,7 @@
                 <span class="visually-hidden">{% translate 'Comments' %}</span>
             </span>
             {% endspaceless %}
-        </div>
+        </div> {% endcomment %}
     </div>
 
     <div class="list-item__labels">
@@ -53,15 +115,4 @@
             </span>
         {% endif %}
     </div>
-
-    {% block creator_info %}
-        <span class="list-item__author">
-            {{ object.creator.username }}
-        </span>
-        {% if object.modified %}
-            {% translate 'updated on ' %}{% html_date object.modified class='list-item__date' %}
-        {% else %}
-            {% translate 'created on ' %}{% html_date object.created class='list-item__date' %}
-        {% endif %}
-    {% endblock %}
 </li>

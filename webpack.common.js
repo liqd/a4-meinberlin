@@ -70,6 +70,9 @@ module.exports = {
     documents: {
       import: './meinberlin/apps/documents/assets/react_documents_init.js'
     },
+    ideas: {
+      import: './meinberlin/apps/ideas/assets/react_ideas_init.jsx'
+    },
     budget_proposals: {
       import: './meinberlin/apps/budgeting/assets/react_proposals_init.jsx'
     },

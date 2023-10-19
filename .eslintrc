@@ -39,7 +39,8 @@
   "ignorePatterns": [
     "node_modules/",
     "venv/",
-    "static/"
+    "static/",
+    "meinberlin/assets/berlin_js/"
   ],
   "settings": {
     "import/core-modules": [ django ],

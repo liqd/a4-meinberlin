@@ -3,7 +3,8 @@
     "stylelint-config-standard-scss"
   ],
   "ignoreFiles": [
-    "**/_variables.scss"
+    "**/_variables.scss",
+    "meinberlin/assets/berlin_css/"
   ],
   "plugins": [
     "stylelint-declaration-strict-value"

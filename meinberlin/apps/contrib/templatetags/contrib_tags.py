@@ -1,10 +1,11 @@
-import os
+import logging
 import re
 import unicodedata
+from pathlib import Path
+from typing import Optional
 
 from django import template
 from django.conf import settings
-from django.core import management
 from django.core.cache import cache
 from django.core.exceptions import ImproperlyConfigured
 from django.core.paginator import Paginator
@@ -15,6 +16,9 @@ from django.utils import timezone
 from django.utils.encoding import force_str
 from django.utils.safestring import mark_safe
 
+from meinberlin.apps.contrib.tasks import periodic_footer_update
+
+logger = logging.getLogger(__name__)
 register = template.Library()
 
 
@@ -121,21 +125,24 @@ def get_proper_elided_page_range(p, number, on_each_side=1, on_ends=1):
 
 
 @register.simple_tag
-def get_external_footer():
-    # The BO footer needs to be included here as we can't include external
-    # html in the browser. Add a cron job to update the file periodically via
-    # the get_footer management command.
-    if hasattr(settings, "BERLIN_FOOTER_URL") and settings.BERLIN_FOOTER_URL:
-        footer = cache.get("footer")
-        if footer:
-            return footer
-        filepath = settings.MEDIA_ROOT + "/" + settings.BERLIN_FOOTER_PATH
-        if not os.path.isfile(filepath):
-            has_error = management.call_command("get_footer")
-            if has_error:
-                return ""
-        with open(filepath, "r") as f:
-            footer = mark_safe(f.read())
+def get_external_footer() -> Optional[str]:
+    """The BO footer needs to be included here as we can't include external
+    html in the browser.
+
+    If the footer is not saved in the media path it calls the celery task
+    'periodic_footer_update' inline.
+
+    Returns:
+        An html block with footer content or empty if errors occured.
+    """
+    footer = cache.get("footer", "")
+    if not footer:
+        filepath = Path(settings.MEDIA_ROOT, settings.BERLIN_FOOTER_FILENAME)
+        if filepath.exists():
+            footer = filepath.read_text()
             cache.set("footer", footer)
-            return footer
-    return ""
+        else:
+            succeeded = periodic_footer_update()
+            if succeeded:
+                footer = cache.get("footer")
+    return mark_safe(footer)

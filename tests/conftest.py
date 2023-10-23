@@ -1,6 +1,8 @@
 import factory
 import pytest
 from celery import Celery
+from django.conf import settings
+from django.core.cache import cache
 from django.urls import reverse
 from pytest_factoryboy import register
 from rest_framework.test import APIClient
@@ -93,3 +95,12 @@ def logout_url():
 @pytest.fixture
 def signup_url():
     return reverse("account_signup")
+
+
+@pytest.fixture
+def clear_cache_footer():
+    assert (
+        settings.CACHES["default"]["BACKEND"]
+        == "django.core.cache.backends.locmem.LocMemCache"
+    )
+    cache.delete("footer")

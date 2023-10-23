@@ -582,7 +582,13 @@ CELERY_RESULT_EXTENDED = True
 CELERY_TIMEZONE = "Europe/Berlin"
 
 # BO external footer
-BERLIN_FOOTER_PATH = "landesfooter.inc"
+BERLIN_FOOTER_FILENAME = "landesfooter.inc"
 BERLIN_FOOTER_URL = (
     "https://www.berlin.de/rbmskzl/aktuelles/__i9/std/landesfooter.inc?js=0?css=0"
 )
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+    }
+}

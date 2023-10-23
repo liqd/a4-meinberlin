@@ -1,6 +1,6 @@
 // BO overwrites
-.btn.btn--follow,
-.btn.btn--following {
+.a4-btn--follow,
+.a4-btn--following {
     @extend .button;
 
     &:after {
@@ -8,15 +8,15 @@
     }
 }
 
-.btn.btn--follow:after {
-    content: "\f067";
+.a4-btn--follow:after {
+    content: "\f067"; // plus sign
 }
 
-.btn.btn--following:after {
-    content: "\f00c";
+.a4-btn--following:after {
+    content: "\f00c"; // check mark
 }
 
-// FIXME should be displayed or read out, might require refactor
-.follow__notification {
+// we do not display alert in mB
+.a4-follow__notification {
     display: none;
 }

@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import requests
 from django.conf import settings
 from django.core.cache import cache
@@ -6,18 +8,26 @@ from django.core.management import BaseCommand
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        if hasattr(settings, "BERLIN_FOOTER_URL") and settings.BERLIN_FOOTER_URL:
-            filepath = settings.MEDIA_ROOT + "/landesfooter.inc"
+        footer_url = hasattr(settings, "BERLIN_FOOTER_URL")
+        footer_filename = hasattr(settings, "BERLIN_FOOTER_FILENAME")
+        if footer_url and footer_filename:
+            filepath = Path(settings.MEDIA_ROOT) / settings.BERLIN_FOOTER_FILENAME
             try:
                 response = requests.get(settings.BERLIN_FOOTER_URL, timeout=2.0)
-                with open(filepath, "wb") as f:
-                    f.write(response.content)
-                # clear cache
-                cache.delete("footer")
-                return False
+                filepath.write_bytes(response.content)
+                # update cache
+                footer = filepath.read_text()
+                cache.set("footer", footer)
+                self.stdout.write(
+                    "Succeeded downloading footer: '%s'." % footer_filename
+                )
             except (requests.ConnectTimeout, requests.HTTPError, requests.Timeout) as e:
                 self.stdout.write(
-                    self.style.ERROR('Error downloading footer: "%s".' % e)
+                    self.style.ERROR("Connection error downloading footer: '%s'." % e)
+                )
+            except Exception as e:
+                self.stdout.write(
+                    self.style.ERROR("Error downloading footer: '%s'." % e)
                 )
         else:
             self.stdout.write(
@@ -26,5 +36,3 @@ class Command(BaseCommand):
                     " is not set. Add it to your settings."
                 )
             )
-        # indicate error
-        return True

@@ -1,8 +1,8 @@
 import React from 'react'
 import django from 'django'
-import { IconSwitch } from '../../contrib/assets/IconSwitch'
-import { ToggleSwitch } from '../../contrib/assets/ToggleSwitch'
-import { PillBtn } from '../../contrib/assets/PillBtn'
+import { IconSwitch } from '../contrib/IconSwitch'
+import { ToggleSwitch } from '../contrib/ToggleSwitch'
+import { PillBtn } from '../contrib//PillBtn'
 
 const filterProjectListStr = django.gettext('Filtered list of projects')
 const searchResultsStr = django.gettext(' search results')

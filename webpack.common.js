@@ -70,28 +70,28 @@ module.exports = {
     // these do not rely on adhocracy and adding the depend causes console error
     // error possibly due to needing to be loaded at specific time
     documents: {
-      import: './meinberlin/apps/documents/assets/react_documents_init.js'
+      import: './meinberlin/react/documents/react_documents_init.js'
     },
     budget_proposals: {
-      import: './meinberlin/apps/budgeting/assets/react_proposals_init.jsx'
+      import: './meinberlin/react/budgeting/react_proposals_init.jsx'
     },
     budget_support: {
-      import: './meinberlin/apps/budgeting/assets/react_support_init.jsx'
+      import: './meinberlin/react/budgeting/react_support_init.jsx'
     },
     unload_warning: {
       import: './meinberlin/assets/js/unload_warning.js'
     },
     budgeting_disable_contact: {
-      import: './meinberlin/apps/budgeting/assets/disable_contact.js'
+      import: './meinberlin/assets/js/disable_contact.js'
     },
     vote_button: {
-      import: './meinberlin/apps/budgeting/assets/react_vote_button_init.jsx'
+      import: './meinberlin/react/budgeting/react_vote_button_init.jsx'
     },
     live_questions: {
-      import: './meinberlin/apps/livequestions/assets/react_questions_init.jsx'
+      import: './meinberlin/react/livequestions/react_questions_init.jsx'
     },
     live_questions_presents: {
-      import: './meinberlin/apps/livequestions/assets/react_questions_present_init.jsx'
+      import: './meinberlin/react/livequestions/react_questions_present_init.jsx'
     },
     swiper_phases: {
       import: './meinberlin/assets/js/swiper_phases.js'
@@ -102,8 +102,11 @@ module.exports = {
     init_dashboard_accordion: {
       import: './meinberlin/apps/dashboard/assets/init_dashboard_accordion.js'
     },
+    react_map_teaser: {
+      import: './meinberlin/react/plans/react_map_teaser.jsx'
+    },
     wagtail: {
-      import: './meinberlin/apps/contrib/assets/wagtail.js'
+      import: './meinberlin/assets/js/wagtail.js'
     },
 
     // A4 dependencies - we want all of them to go through webpack
@@ -113,7 +116,7 @@ module.exports = {
         'maplibre-gl/dist/maplibre-gl.css',
         'leaflet.markercluster/dist/MarkerCluster.css',
         'react-bootstrap-typeahead/css/Typeahead.css',
-        './meinberlin/apps/plans/assets/react_plans_map.jsx'
+        './meinberlin/react/plans/react_plans_map.jsx'
       ],
       dependOn: 'adhocracy4'
     },

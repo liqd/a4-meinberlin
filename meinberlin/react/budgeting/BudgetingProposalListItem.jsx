@@ -1,9 +1,9 @@
 import React from 'react'
 import django from 'django'
-import { toLocaleDate } from '../../contrib/assets/helpers'
+import { toLocaleDate } from '../contrib/helpers'
+import { ListItemBadges } from '../contrib/ListItemBadges'
+import { ListItemStats } from '../contrib/ListItemStats'
 import VoteButton from './VoteButton'
-import { ListItemBadges } from './ListItemBadges'
-import { ListItemStats } from './ListItemStats'
 
 const updatedOnStr = django.gettext('updated on')
 const createdOnStr = django.gettext('created on')

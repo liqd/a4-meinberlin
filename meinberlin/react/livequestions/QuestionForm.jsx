@@ -1,6 +1,6 @@
 import django from 'django'
 import React from 'react'
-import { updateItem } from '../../contrib/assets/helpers.js'
+import { updateItem } from '../contrib/helpers.js'
 import { CategorySelect } from './CategorySelect'
 
 const askQuestionStr = django.gettext('Here you can ask your question')

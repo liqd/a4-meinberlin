@@ -3,7 +3,7 @@ import { ControlBarDropdown } from './ControlBarDropdown'
 import { ControlBarListMapSwitch } from './ControlBarListMapSwitch'
 import { ControlBarSearch } from './ControlBarSearch'
 import { ControlBarSearchTerm } from './ControlBarSearchTerm'
-import { FilterToggle } from '../../contrib/assets/FilterToggle'
+import { FilterToggle } from '../contrib/FilterToggle'
 import django from 'django'
 import { useSearchParams } from 'react-router-dom'
 

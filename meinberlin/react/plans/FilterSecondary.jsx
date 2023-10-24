@@ -1,6 +1,6 @@
 /* global django */
 import React from 'react'
-import { TypeaheadField } from '../../contrib/assets/TypeaheadField'
+import { TypeaheadField } from '../contrib/TypeaheadField'
 const FilterRadio = require('./FilterRadio')
 
 const searchTitleStr = django.gettext('Search title')

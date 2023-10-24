@@ -3,7 +3,7 @@ import django from 'django'
 import { BudgetingProposalListItem } from './BudgetingProposalListItem'
 import { EndSessionLink } from './EndSessionLink'
 import { Pagination } from './Pagination'
-import { CountDown } from '../../contrib/assets/CountDown'
+import { CountDown } from '../contrib/CountDown'
 import { ControlBar } from './ControlBar'
 import { useLocation, useSearchParams } from 'react-router-dom'
 

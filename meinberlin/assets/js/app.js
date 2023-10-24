@@ -20,8 +20,6 @@ import {
   widget as ReactWidget
 } from 'adhocracy4'
 
-import * as ReactMapTeaser from '../../apps/plans/assets/react_map_teaser.jsx'
-
 function init () {
   const shariffs = $('.shariff')
   if (shariffs.length > 0) {
@@ -36,8 +34,6 @@ function init () {
   ReactWidget.initialise('a4', 'follows', ReactFollows.renderFollow)
   ReactWidget.initialise('a4', 'ratings', ReactRatings.renderRatings)
   ReactWidget.initialise('a4', 'reports', ReactReports.renderReports)
-
-  ReactWidget.initialise('mb', 'mapTeaser', ReactMapTeaser.renderFilter)
 
   $('.timeline-carousel__item').slick({
     initialSlide: parseInt($('#timeline-carousel').attr('data-initial-slide')),

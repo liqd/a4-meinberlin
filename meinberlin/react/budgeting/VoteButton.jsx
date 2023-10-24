@@ -1,6 +1,6 @@
 import React from 'react'
 import django from 'django'
-import { updateItem } from '../../contrib/assets/helpers.js'
+import { updateItem } from '../contrib/helpers.js'
 
 export default class VoteButton extends React.Component {
   async addVote () {

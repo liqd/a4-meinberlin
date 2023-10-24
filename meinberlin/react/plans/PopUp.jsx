@@ -1,5 +1,5 @@
 /* global django */
-import { toLocaleDate } from '../../contrib/assets/helpers'
+import { toLocaleDate } from '../contrib/helpers'
 const React = require('react')
 const $ = require('jquery')
 

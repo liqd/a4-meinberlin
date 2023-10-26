@@ -1,3 +1,5 @@
+from celery.schedules import crontab
+
 from .base import *
 
 DEBUG = False
@@ -23,3 +25,11 @@ try:
     CKEDITOR_CONFIGS["video-editor"]["embed_provider"] = CKEDITOR_URL
 except NameError:
     pass
+
+CELERY_BEAT_SCHEDULE = {
+    "hourly-footer-update": {
+        "task": "periodic_footer_update",
+        "schedule": crontab(minute=0),
+        "args": (),
+    },
+}

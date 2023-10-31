@@ -5,17 +5,19 @@ const translated = {
   status: django.gettext('Status: ')
 }
 
-export const ListItemAmpel = props => {
+export const ListItemAmpel = ({ badges }) => {
+  const [, , modType] = badges // Destructuring to get the third element
+  const modTypeClass = 'label--' + modType.toLowerCase()
+
   return (
     <div className="list-item__ampel">
-      <strong>
-        {translated.status}
-      </strong>
-      {props.badges.length > 1 && (
-        <span>
-          {props.badges[1]}
-        </span>
-      )}
+      <span className={'list-item__ampel-indicator ' + modTypeClass} />
+      <span>
+        <strong>
+          {translated.status}
+        </strong>
+        {badges.length > 1 && (badges[1])}
+      </span>
     </div>
   )
 }

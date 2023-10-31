@@ -46,6 +46,10 @@ CELERY_BEAT_SCHEDULE = {
     "update-cache-for-projects-every-10-mim": {
         "task": "schedule_reset_cache_for_projects",
         "schedule": crontab(minute="*/10"),
+    },
+    "hourly-footer-update": {
+        "task": "periodic_footer_update",
+        "schedule": crontab(minute=0),
         "args": (),
     },
 }

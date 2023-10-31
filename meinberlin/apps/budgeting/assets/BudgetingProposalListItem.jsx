@@ -3,6 +3,7 @@ import django from 'django'
 import { toLocaleDate } from '../../contrib/assets/helpers'
 import VoteButton from './VoteButton'
 import { ListItemBadges } from './ListItemBadges'
+import { ListItemAmpel } from './ListItemAmpel'
 import { ListItemStats } from './ListItemStats'
 
 const updatedOnStr = django.gettext('updated on')
@@ -43,6 +44,7 @@ export const BudgetingProposalListItem = (props) => {
         numOfMoreBadges={proposal.additional_item_badges_for_list_count}
         proposalUrl={proposal.url}
       />
+      <ListItemAmpel badges={proposal.item_badges_for_list[0]} />
       <div className="list-item__vote">
         <div>
           <span className="list-item__author">{proposal.creator}</span>

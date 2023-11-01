@@ -28,7 +28,7 @@ def download_footer(footer_url, filepath) -> bool:
         return True
 
 
-@shared_task
+@shared_task(name="periodic_footer_update")
 def periodic_footer_update() -> bool:
     """The task is called inline by contrib templatetag
     'get_external_footer'.

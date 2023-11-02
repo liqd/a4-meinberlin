@@ -8,7 +8,6 @@ from .models import Proposal
 
 
 class ProposalSerializer(serializers.ModelSerializer):
-
     comment_count = serializers.SerializerMethodField()
     creator = serializers.SerializerMethodField()
     negative_rating_count = serializers.SerializerMethodField()
@@ -28,6 +27,8 @@ class ProposalSerializer(serializers.ModelSerializer):
             "is_archived",
             "item_badges_for_list",
             "modified",
+            "moderator_status",
+            "get_moderator_status_display",
             "name",
             "negative_rating_count",
             "pk",
@@ -46,6 +47,8 @@ class ProposalSerializer(serializers.ModelSerializer):
             "is_archived",
             "item_badges_for_list",
             "modified",
+            "moderator_status",
+            "get_moderator_status_display",
             "name",
             "negative_rating_count",
             "pk",
@@ -93,21 +96,24 @@ class ProposalSerializer(serializers.ModelSerializer):
                 module_key = str(module.id)
                 if module_key in self.context["request"].session["voting_tokens"]:
                     token = VotingToken.get_voting_token_by_hash(
-                        token_hash=self.context["request"].session["voting_tokens"][module_key],
-                        module=module
+                        token_hash=self.context["request"].session["voting_tokens"][
+                            module_key
+                        ],
+                        module=module,
                     )
                     if not token:
                         return False
                     vote = TokenVote.objects.filter(
                         token=token,
-                        content_type=ContentType.objects.get_for_model(proposal.__class__),
+                        content_type=ContentType.objects.get_for_model(
+                            proposal.__class__
+                        ),
                         object_pk=proposal.pk,
                     )
                     return vote.exists()
         return False
 
     def get_vote_allowed(self, proposal):
-
         if "request" in self.context:
             user = self.context["request"].user
             has_voting_permission = user.has_perm(

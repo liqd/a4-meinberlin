@@ -6,15 +6,8 @@ const translated = {
 }
 
 export const ListItemBadges = props => {
-  // combine css class names to match different styling, depending
-  // on if it is moderator_status or on of the others (category, label etc.)
-  const getClass = (badge) => {
-    const labelClass = 'label label--big'
-    if (badge[0] !== 'moderator_status') {
-      return labelClass
-    }
-    const modTypeClass = 'label--' + badge[2].toLowerCase()
-    return labelClass + ' ' + modTypeClass
+  const getClass = () => {
+    return 'label label--big' // Apply the same class for all badges
   }
 
   // only return icon for pointLabels
@@ -28,6 +21,10 @@ export const ListItemBadges = props => {
   return (
     <div className="list-item__labels">
       {props.badges.map((badge, idx) => {
+        // Hide the label if it's 'moderator_status'
+        if (badge[0] === 'moderator_status') {
+          return null
+        }
         return (
           <div
             key={'badge_' + idx}

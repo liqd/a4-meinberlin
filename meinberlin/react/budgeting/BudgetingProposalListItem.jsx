@@ -44,7 +44,7 @@ export const BudgetingProposalListItem = (props) => {
         numOfMoreBadges={proposal.additional_item_badges_for_list_count}
         proposalUrl={proposal.url}
       />
-      <ModeratorStatus badges={proposal.item_badges_for_list[0]} />
+      <ModeratorStatus modStatus={proposal.moderator_status} modStatusDisplay={proposal.get_moderator_status_display} />
       <div className="list-item__vote">
         <div>
           <span className="list-item__author">{proposal.creator}</span>

@@ -1,0 +1,18 @@
+.card__stats {
+    display: flex;
+    margin-right: 2 * $spacer;
+}
+
+.card__stat {
+    display: flex;
+    margin-left: 0.75 * $spacer;
+    margin-bottom: 0;
+
+    &:first-child {
+        margin-left: 0;
+    }
+}
+
+.card__footer--light {
+    display: inline-flex;
+}

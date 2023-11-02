@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import { ListItemStats } from '../ListItemStats'
+import { ListCardStats } from '../ListCardStats'
 
 test('2 phase: rating phase - can view comments and ratings count', () => {
   const permissions = {
@@ -11,7 +11,7 @@ test('2 phase: rating phase - can view comments and ratings count', () => {
   }
 
   render(
-    <ListItemStats
+    <ListCardStats
       permissions={permissions}
       positiveCount="4"
       negativeCount="1"
@@ -38,7 +38,7 @@ test('3 phase: support phase - can view comments and support count', () => {
   }
 
   render(
-    <ListItemStats
+    <ListCardStats
       permissions={permissions}
       positiveCount="4"
       negativeCount="1"
@@ -65,7 +65,7 @@ test('3 phase: finished - can view comments and vote count', () => {
   }
 
   render(
-    <ListItemStats
+    <ListCardStats
       permissions={permissions}
       positiveCount="4"
       negativeCount="1"

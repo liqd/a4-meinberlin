@@ -1,0 +1,15 @@
+/* ModeratorStatus.jsx - Berlin Online Redesign */
+.moderator-status {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5em 0;
+    gap: 0.5em;
+}
+
+.moderator-status__color-indicator {
+    display: inline-block;
+    position: relative;
+    width: 0.8em;
+    height: 0.8em;
+    border-radius: 50%;
+}

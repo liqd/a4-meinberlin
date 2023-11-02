@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import { ListItemBadges } from '../ListItemBadges'
+import { ListCardPill } from '../ListCardPill'
 
 // testing data:
 const someBadges = [
@@ -15,7 +15,7 @@ const pointLabelBadge = [
 
 test('displaying 3 labels', () => {
   render(
-    <ListItemBadges
+    <ListCardPill
       badges={someBadges}
     />
   )
@@ -26,7 +26,7 @@ test('displaying 3 labels', () => {
 
 test('displaying point label badge', () => {
   render(
-    <ListItemBadges
+    <ListCardPill
       badges={pointLabelBadge}
     />
   )
@@ -35,7 +35,7 @@ test('displaying point label badge', () => {
 
 test('displaying first 3 badges and add more link', () => {
   render(
-    <ListItemBadges
+    <ListCardPill
       badges={someBadges}
       numOfMoreBadges={1}
     />

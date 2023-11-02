@@ -103,23 +103,12 @@
     }
 }
 
-.list-item__stats {
-    display: flex;
-    justify-content: flex-end;
-    margin-left: 0.5 * $spacer;
-}
-
 .list-item__action {
     display: inline;
 }
 
 .list-item .is-read-only {
     padding: 0;
-}
-
-.list-item__icon {
-    display: flex;
-    margin-left: 0.75 * $spacer;
 }
 
 .list-item-empty {

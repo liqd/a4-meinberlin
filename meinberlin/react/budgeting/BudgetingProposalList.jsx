@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react'
 import django from 'django'
-import { BudgetingProposalListItem } from './BudgetingProposalListItem'
+import { useLocation, useSearchParams } from 'react-router-dom'
 import { EndSessionLink } from './EndSessionLink'
 import { Pagination } from './Pagination'
+import { Card } from '../contrib/Card'
+import { CardMeta } from '../contrib/CardMeta'
+import { CardStatus } from '../contrib/CardStatus'
 import { CountDown } from '../contrib/CountDown'
-import { ControlBar } from './ControlBar'
-import { useLocation, useSearchParams } from 'react-router-dom'
+import { ControlBar } from '../contrib/ControlBar'
 
 export const BudgetingProposalList = (props) => {
   const [data, setData] = useState([])
@@ -19,7 +21,8 @@ export const BudgetingProposalList = (props) => {
 
   const translations = {
     list: django.gettext('Proposals list'),
-    noResults: django.gettext('Nothing to show')
+    noResults: django.gettext('Nothing to show'),
+    pillList: django.gettext('Proposal tags')
   }
 
   const scrolledRef = useRef(false)
@@ -66,21 +69,27 @@ export const BudgetingProposalList = (props) => {
       <>
         <h2 className="visually-hidden">{translations.list}</h2>
         <ul className="u-list-reset">
+
           {data.map((proposal, idx) =>
-            <BudgetingProposalListItem
-              key={'budgeting-proposal-' + idx}
-              proposal={proposal}
-              locale={meta?.locale}
-              permissions={meta?.permissions}
-              tokenvoteApiUrl={props.tokenvote_api_url}
-              onVoteChange={selectedPage => fetchProposals(selectedPage)}
-              currentPage={meta?.current_page}
-              votesLeft={
-                meta?.token_info
-                  ? meta?.token_info.votes_left
-                  : false
-              }
-            />)}
+            <li id={'item_' + proposal.pk} key={'budgeting-proposal-' + idx}>
+              <Card
+                item={proposal}
+                permissions={meta?.permissions}
+                currentPage={meta?.current_page}
+              >
+                <CardStatus
+                  pills={proposal.item_badges_for_list}
+                  proposal={proposal}
+                  numOfMorePills={proposal.additional_item_badges_for_list_count}
+                  itemUrl={proposal.url}
+                  pillHeader={translations.pillList}
+                />
+                <CardMeta
+                  item={proposal}
+                  locale={meta?.locale}
+                />
+              </Card>
+            </li>)}
         </ul>
         {meta?.is_paginated &&
           <Pagination

@@ -6,9 +6,8 @@ const translated = {
   ariaLabel: django.gettext('Status Indicator')
 }
 
-export const ModeratorStatus = ({ badges }) => {
-  const [, modStatus, modType] = badges
-  const modTypeClass = 'label--' + modType.toLowerCase()
+export const ModeratorStatus = ({ modStatus, modStatusDisplay }) => {
+  const modTypeClass = 'label--' + modStatus.toLowerCase()
 
   return (
     <div className="moderator-status" aria-label={translated.ariaLabel}>
@@ -17,7 +16,7 @@ export const ModeratorStatus = ({ badges }) => {
         <strong>
           {translated.status}
         </strong>
-        {badges.length > 1 && modStatus}
+        {modStatusDisplay.length > 1 && modStatusDisplay}
       </span>
     </div>
   )

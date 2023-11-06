@@ -14,6 +14,11 @@
     {% include 'meinberlin_cms/includes/cms_breadcrumb.html' %}
 {% endblock %}
 
+{% block extra_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'react_map_teaser.js' %}" defer></script>
+{% endblock %}
+
 {% block content %}
     {% image self.header_image max-1920x560 as header_image %}
 

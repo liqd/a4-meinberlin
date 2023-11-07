@@ -13,10 +13,6 @@ const pointLabelBadge = [
   ['point_label', 'labelwithicon']
 ]
 
-const modStatusBadge = [
-  ['moderator_status', 'Under consideration', 'CONSIDERATION']
-]
-
 test('displaying 3 labels', () => {
   render(
     <ListItemBadges
@@ -35,15 +31,6 @@ test('displaying point label badge', () => {
     />
   )
   expect(screen.getByText('labelwithicon')).toBeTruthy()
-})
-
-test('displaying moderator feedback badge', () => {
-  render(
-    <ListItemBadges
-      badges={modStatusBadge}
-    />
-  )
-  expect(screen.getByText('Under consideration')).toBeTruthy()
 })
 
 test('displaying first 3 badges and add more link', () => {

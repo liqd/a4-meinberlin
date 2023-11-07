@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import { ListCardStats } from '../ListCardStats'
+import { CardStats } from '../CardStats'
 
 test('2 phase: rating phase - can view comments and ratings count', () => {
   const permissions = {
@@ -11,7 +11,7 @@ test('2 phase: rating phase - can view comments and ratings count', () => {
   }
 
   render(
-    <ListCardStats
+    <CardStats
       permissions={permissions}
       positiveCount="4"
       negativeCount="1"
@@ -19,14 +19,10 @@ test('2 phase: rating phase - can view comments and ratings count', () => {
       voteCount="7"
     />
   )
-  const pCount = screen.getByText('4')
-  expect(pCount).toBeTruthy()
-  const nCount = screen.getByText('1')
-  expect(nCount).toBeTruthy()
-  const cCount = screen.getByText('18')
-  expect(cCount).toBeTruthy()
-  const vCount = screen.queryByText('7')
-  expect(vCount).toBeNull()
+  expect(screen.getByText('4 Likes')).toBeTruthy()
+  expect(screen.getByText('1 Dislikes')).toBeTruthy()
+  expect(screen.getByText('18 Comments')).toBeTruthy()
+  expect(screen.queryByText('7 Votes')).toBeNull()
 })
 
 test('3 phase: support phase - can view comments and support count', () => {
@@ -38,7 +34,7 @@ test('3 phase: support phase - can view comments and support count', () => {
   }
 
   render(
-    <ListCardStats
+    <CardStats
       permissions={permissions}
       positiveCount="4"
       negativeCount="1"
@@ -46,14 +42,10 @@ test('3 phase: support phase - can view comments and support count', () => {
       voteCount="7"
     />
   )
-  const pCount = screen.getByText('4')
-  expect(pCount).toBeTruthy()
-  const nCount = screen.queryByText('1')
-  expect(nCount).toBeNull()
-  const cCount = screen.getByText('18')
-  expect(cCount).toBeTruthy()
-  const vCount = screen.queryByText('7')
-  expect(vCount).toBeNull()
+  expect(screen.getByText('4 Support')).toBeTruthy()
+  expect(screen.queryByText('1 Dislikes')).toBeNull()
+  expect(screen.getByText('18 Comments')).toBeTruthy()
+  expect(screen.queryByText('7 Votes')).toBeNull()
 })
 
 test('3 phase: finished - can view comments and vote count', () => {
@@ -65,7 +57,7 @@ test('3 phase: finished - can view comments and vote count', () => {
   }
 
   render(
-    <ListCardStats
+    <CardStats
       permissions={permissions}
       positiveCount="4"
       negativeCount="1"
@@ -73,12 +65,8 @@ test('3 phase: finished - can view comments and vote count', () => {
       voteCount="7"
     />
   )
-  const pCount = screen.queryByText('4')
-  expect(pCount).toBeNull()
-  const nCount = screen.queryByText('1')
-  expect(nCount).toBeNull()
-  const cCount = screen.getByText('18')
-  expect(cCount).toBeTruthy()
-  const vCount = screen.getByText('7')
-  expect(vCount).toBeTruthy()
+  expect(screen.queryByText('4 Likes')).toBeNull()
+  expect(screen.queryByText('1 Dislikes')).toBeNull()
+  expect(screen.getByText('18 Comments')).toBeTruthy()
+  expect(screen.getByText('7 Votes')).toBeTruthy()
 })

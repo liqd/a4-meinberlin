@@ -1,26 +1,14 @@
 {% load wagtailcore_tags %}
 
-<div class="accordion">
-    <a
-        id="{{ id }}-title"
-        href="#{{ id }}-body"
-        aria-haspopup="true"
-        aria-expanded="false"
-        aria-controls="{{ id }}-body"
-        data-bs-toggle="collapse"
-        data-bs-target="#{{ id }}-body"
-        class="accordion__title collapsed"
-        >
-        <h2>
-            {{ title|safe }}
-            <i class="fa fa-chevron-down" aria-hidden="true"></i>
-        </h2>
-    </a>
-
-    <div
-        class="accordion__body collapse"
-        id="{{ id }}-body"
-        aria-labelledby="{{ id }}-title">
-        {{ body|richtext }}
+<div class="modul-accordion js-accordion" id="accordion_{{ id }}" data-allow-multiple="false">
+    <strong class="js-accordion__heading" id="accordion-header_{{ id }}">
+        {{ title|safe }}
+    </strong>
+    <div class="js-accordion__panel" role="region" aria-labelledby="accordion-header_{{ id }}">
+        <div class="text">
+            <div class="textile">
+                <p>{{ body|richtext }}</p>
+            </div>
+        </div>
     </div>
 </div>

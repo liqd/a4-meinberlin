@@ -4,14 +4,14 @@ import '@testing-library/jest-dom'
 import { ModeratorStatus } from '../ModeratorStatus'
 
 describe('ModeratorStatus component', () => {
-  test('renders without errors', () => {
-    const badges = ['moderator_status', 'Accepted', 'ACCEPTED']
-    render(<ModeratorStatus badges={badges} />)
+  test('renders without errors when modStatus is present', () => {
+    render(<ModeratorStatus modStatus="ACCEPTED" modStatusDisplay="Accepted" />)
   })
 
   test('displays the correct moderator status', () => {
-    const badges = ['moderator_status', 'Accepted', 'ACCEPTED']
-    const { getByText } = render(<ModeratorStatus badges={badges} />)
+    const modStatus = 'STATUS'
+    const modStatusDisplay = 'Accepted'
+    const { getByText } = render(<ModeratorStatus modStatus={modStatus} modStatusDisplay={modStatusDisplay} />)
     const statusTextElement = getByText('Accepted')
     const statusText = statusTextElement.textContent
     // Check if "Accepted" is present

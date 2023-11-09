@@ -1,5 +1,5 @@
 # A4
-git+https://github.com/liqd/adhocracy4.git@010fbcd7135fcc8531e502f6e9b8f5a4c60d04b0#egg=adhocracy4
+git+https://github.com/liqd/adhocracy4.git@dbe2d4e143459b053b84d7be68ec40a301ee3b34#egg=adhocracy4
 
 # Additional requirements
 brotli==1.0.9
@@ -20,7 +20,7 @@ django-allauth==0.54.0
 django-ckeditor==6.6.1
 django-filter==22.1
 django-widget-tweaks==1.4.12
-Django==3.2.20
+Django==4.0
 djangorestframework==3.14.0
 easy-thumbnails[svg]==2.8.5
 git+https://github.com/liqd/django-autoslug.git@liqd2212#egg=django-autoslug

@@ -15,19 +15,19 @@ export const CardStats = (props) => {
       {/* ratings visible to admins in 1 and 2 phase budgeting due to `has_perm`  */}
       {permissions.view_rate_count && (
         <>
-          <p className="card__stat">{props.positiveCount} {positiveRatingsStr}</p>
-          <p className="card__stat">{props.negativeCount} {negativeRatingsStr}</p>
+          <p className="card__stat"><b>{props.positiveCount}</b>{positiveRatingsStr}</p>
+          <p className="card__stat"><b>{props.negativeCount}</b>{negativeRatingsStr}</p>
         </>
       )}
 
       {permissions.view_support_count && (
-        <p className="card__stat">{props.positiveCount} {supportStr}</p>
+        <p className="card__stat"><b>{props.positiveCount}</b>{supportStr}</p>
       )}
       {permissions.view_vote_count && (
-        <p className="card__stat">{props.voteCount} {votesStr}</p>
+        <p className="card__stat"><b>{props.voteCount}</b>{votesStr}</p>
       )}
       {permissions.view_comment_count && (
-        <p className="card__stat">{props.commentCount} {commentsStr}</p>
+        <p className="card__stat"><b>{props.commentCount}</b>{commentsStr}</p>
       )}
     </div>
   )

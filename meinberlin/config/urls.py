@@ -33,6 +33,7 @@ from meinberlin.apps.moderatorremark.api import ModeratorRemarkViewSet
 from meinberlin.apps.plans.api import PlansListViewSet
 from meinberlin.apps.projects.api import PrivateProjectListViewSet
 from meinberlin.apps.projects.api import ProjectListViewSet
+from meinberlin.apps.topicprio.api import TopicViewSet
 from meinberlin.apps.users.decorators import user_is_project_admin
 from meinberlin.apps.votes.api import TokenVoteViewSet
 from meinberlin.apps.votes.routers import TokenVoteDefaultRouter
@@ -58,6 +59,7 @@ module_router.register(r"documents", DocumentViewSet, basename="chapters")
 module_router.register(r"questions", LiveQuestionViewSet, basename="questions")
 module_router.register(r"proposals", ProposalViewSet, basename="proposals")
 module_router.register(r"ideas", IdeaViewSet, basename="ideas")
+module_router.register(r"topics", TopicViewSet, basename="topics")
 
 likes_router = LikesDefaultRouter()
 likes_router.register(r"likes", LikesViewSet, basename="likes")

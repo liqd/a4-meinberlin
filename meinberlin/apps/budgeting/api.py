@@ -1,61 +1,26 @@
-from django.utils.translation import get_language
+from typing import List
+
+from django.db.models import QuerySet
 from django.utils.translation import gettext_lazy as _
-from rest_framework import mixins
-from rest_framework import viewsets
 from rest_framework.filters import SearchFilter
-from rest_framework.pagination import PageNumberPagination
 
 from adhocracy4.api.mixins import ModuleMixin
-from adhocracy4.api.permissions import ViewSetRulesPermission
-from adhocracy4.categories import get_category_icon_url
-from adhocracy4.categories import has_icons
-from adhocracy4.categories.models import Category
-from adhocracy4.categories.models import CategoryAlias
-from adhocracy4.labels.models import Label
-from adhocracy4.labels.models import LabelAlias
-from adhocracy4.modules.predicates import is_allowed_moderate_project
 from adhocracy4.modules.predicates import module_is_between_phases
 from adhocracy4.phases.predicates import has_feature_active
+from meinberlin.apps.contrib.filters import NoExceptionFilterBackend
 from meinberlin.apps.contrib.filters import OrderingFilterWithDailyRandom
-from meinberlin.apps.contrib.templatetags.contrib_tags import (
-    get_proper_elided_page_range,
-)
-from meinberlin.apps.moderationtasks.models import ModerationTask
-from meinberlin.apps.moderatorfeedback.models import (
-    DEFAULT_CHOICES as moderator_status_default_choices,
-)
-from meinberlin.apps.votes.api import VotingTokenInfoMixin
 from meinberlin.apps.votes.filters import OwnVotesFilterBackend
 
-from .filters import ProposalFilterBackend
+from ..ideas.api import BaseIdeaViewSet
+from ..ideas.api import IdeaFilterInfoMixin
+from ..ideas.api import PermissionInfoMixin
+from ..votes.api import VotingTokenInfoMixin
 from .filters import ProposalFilterSet
 from .models import Proposal
 from .serializers import ProposalSerializer
 
 
-# To be changed to a more general IdeaPagination, when using
-# pagination via rest api for more idea lists
-class ProposalPagination(PageNumberPagination):
-    page_size = 15
-
-    def get_paginated_response(self, data):
-        response = super(ProposalPagination, self).get_paginated_response(data)
-        response.data["page_size"] = self.page_size
-        response.data["page_count"] = self.page.paginator.num_pages
-        response.data["page_elided_range"] = get_proper_elided_page_range(
-            self.page.paginator, self.page.number
-        )
-        return response
-
-
-class LocaleInfoMixin:
-    def list(self, request, *args, **kwargs):
-        response = super().list(request, args, kwargs)
-        response.data["locale"] = get_language()
-        return response
-
-
-class ProposalFilterInfoMixin:
+class ProposalFilterInfoMixin(IdeaFilterInfoMixin):
     def list(self, request, *args, **kwargs):
         """Add the filter information to the data of the Proposal API.
 
@@ -63,25 +28,8 @@ class ProposalFilterInfoMixin:
         and adhocracy4.api.mixins.ModuleMixin or some other mixin that
         fetches the module
         """
+        response = super().list(request, args, kwargs)
         filters = {}
-
-        # category filter
-        category_choices, category_icons = self.get_category_choices_and_icons()
-        if category_choices:
-            filters["category"] = {
-                "label": self.get_category_label(),
-                "choices": category_choices,
-            }
-            if category_icons:
-                filters["category"]["icons"] = category_icons
-
-        # label filter
-        label_choices = self.get_label_choices()
-        if label_choices:
-            filters["labels"] = {
-                "label": self.get_label_label(),
-                "choices": label_choices,
-            }
 
         # archived filter
         filters["is_archived"] = {
@@ -92,16 +40,6 @@ class ProposalFilterInfoMixin:
                 ("true", _("Yes")),
             ],
             "default": "false",
-        }
-
-        # moderator feedback filter
-        moderator_status_choices = [("", _("All"))] + [
-            choice for choice in moderator_status_default_choices
-        ]
-
-        filters["moderator_status"] = {
-            "label": _("Status"),
-            "choices": moderator_status_choices,
         }
 
         # own votes filter
@@ -119,15 +57,6 @@ class ProposalFilterInfoMixin:
                 ],
             }
 
-        # moderation task filter, only show to moderators
-        if is_allowed_moderate_project(request.user, self.module):
-            moderation_task_choices = self.get_moderation_task_choices()
-            if moderation_task_choices:
-                filters["open_task"] = {
-                    "label": _("Open tasks"),
-                    "choices": moderation_task_choices,
-                }
-
         # ordering filter
         ordering_choices = self.get_ordering_choices(request)
         default_ordering = self.get_default_ordering()
@@ -137,62 +66,8 @@ class ProposalFilterInfoMixin:
             "default": default_ordering,
         }
 
-        response = super().list(request, args, kwargs)
-        response.data["filters"] = filters
+        response.data["filters"].update(filters)
         return response
-
-    def get_category_choices_and_icons(self):
-        category_choices = category_icons = None
-        categories = Category.objects.filter(module=self.module)
-        if categories:
-            category_choices = [
-                ("", _("All")),
-            ]
-            if has_icons(self.module):
-                category_icons = []
-            for category in categories:
-                category_choices += ((str(category.pk), category.name),)
-                if has_icons(self.module):
-                    icon_name = getattr(category, "icon", None)
-                    icon_url = get_category_icon_url(icon_name)
-                    category_icons += ((str(category.pk), icon_url),)
-        return category_choices, category_icons
-
-    def get_category_label(self):
-        category_alias = CategoryAlias.get_category_alias(self.module)
-        if category_alias:
-            return category_alias.title
-        return _("Category")
-
-    def get_label_choices(self):
-        label_choices = None
-        labels = Label.objects.filter(module=self.module)
-        if labels:
-            label_choices = [
-                ("", _("All")),
-            ]
-            for label in labels:
-                label_choices += ((str(label.pk), label.name),)
-
-        return label_choices
-
-    def get_label_label(self):
-        label_alias = LabelAlias.get_label_alias(self.module)
-        if label_alias:
-            return label_alias.title
-        return _("Label")
-
-    def get_moderation_task_choices(self):
-        moderation_task_choices = None
-        moderation_tasks = ModerationTask.objects.filter(module=self.module)
-        if moderation_tasks:
-            moderation_task_choices = [
-                ("", _("All")),
-            ]
-            for task in moderation_tasks:
-                moderation_task_choices += ((str(task.pk), task.name),)
-
-        return moderation_task_choices
 
     def get_ordering_choices(self, request):
         ordering_choices = [
@@ -241,7 +116,7 @@ class ProposalFilterInfoMixin:
         return "dailyrandom"
 
 
-class PermissionInfoMixin:
+class ProposalPermissionInfoMixin(PermissionInfoMixin):
     def list(self, request, *args, **kwargs):
         """Add the permission information to the data of the Proposal API.
 
@@ -252,8 +127,6 @@ class PermissionInfoMixin:
         response = super().list(request, args, kwargs)
         permissions = {}
         user = request.user
-        permissions["view_comment_count"] = self.module.has_feature("comment", Proposal)
-        permissions["view_rate_count"] = self.module.has_feature("rate", Proposal)
         permissions["view_support_count"] = user.has_perm(
             "meinberlin_budgeting.view_support", self.module
         )
@@ -266,7 +139,7 @@ class PermissionInfoMixin:
             "meinberlin_budgeting.add_vote", self.module
         )
 
-        response.data["permissions"] = permissions
+        response.data["permissions"].update(permissions)
         return response
 
     def _has_valid_token_in_session(self, response):
@@ -278,23 +151,18 @@ class PermissionInfoMixin:
 class ProposalViewSet(
     ModuleMixin,
     ProposalFilterInfoMixin,
-    PermissionInfoMixin,
-    LocaleInfoMixin,
+    ProposalPermissionInfoMixin,
     VotingTokenInfoMixin,
-    mixins.ListModelMixin,
-    viewsets.GenericViewSet,
+    BaseIdeaViewSet,
 ):
-    pagination_class = ProposalPagination
+    model = Proposal
     serializer_class = ProposalSerializer
-    permission_classes = (ViewSetRulesPermission,)
     filter_backends = (
-        ProposalFilterBackend,
+        NoExceptionFilterBackend,
         OrderingFilterWithDailyRandom,
         SearchFilter,
         OwnVotesFilterBackend,
     )
-
-    # this is used by ProposalFilterBackend
     filterset_class = ProposalFilterSet
 
     ordering_fields = (
@@ -307,7 +175,7 @@ class ProposalViewSet(
     search_fields = ("name", "ref_number")
 
     @property
-    def ordering(self):
+    def ordering(self) -> List[str]:
         if module_is_between_phases(
             "meinberlin_budgeting:support", "meinberlin_budgeting:voting", self.module
         ):
@@ -319,17 +187,6 @@ class ProposalViewSet(
             return "-token_vote_count"
         return ["dailyrandom"]
 
-    def get_permission_object(self):
-        return self.module
-
-    def get_queryset(self):
-        proposals = (
-            Proposal.objects.filter(module=self.module)
-            .annotate_comment_count()
-            .annotate_positive_rating_count()
-            .annotate_negative_rating_count()
-            .annotate_reference_number()
-            .annotate_token_vote_count()
-            .order_by("-created")
-        )
+    def get_queryset(self) -> QuerySet:
+        proposals = super().get_queryset().annotate_token_vote_count()
         return proposals

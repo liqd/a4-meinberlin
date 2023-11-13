@@ -26,6 +26,7 @@ from meinberlin.apps.contrib.sitemaps.adhocracy4_sitemap import Adhocracy4Sitema
 from meinberlin.apps.contrib.sitemaps.static_sitemap import StaticSitemap
 from meinberlin.apps.documents.api import DocumentViewSet
 from meinberlin.apps.extprojects.api import ExternalProjectListViewSet
+from meinberlin.apps.ideas.api import IdeaViewSet
 from meinberlin.apps.likes.api import LikesViewSet
 from meinberlin.apps.likes.routers import LikesDefaultRouter
 from meinberlin.apps.livequestions.api import LiveQuestionViewSet
@@ -59,6 +60,7 @@ module_router = a4routers.ModuleDefaultRouter()
 module_router.register(r"documents", DocumentViewSet, basename="chapters")
 module_router.register(r"questions", LiveQuestionViewSet, basename="questions")
 module_router.register(r"proposals", ProposalViewSet, basename="proposals")
+module_router.register(r"ideas", IdeaViewSet, basename="ideas")
 
 likes_router = LikesDefaultRouter()
 likes_router.register(r"likes", LikesViewSet, basename="likes")

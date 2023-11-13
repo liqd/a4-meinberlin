@@ -11,6 +11,10 @@
     &:first-child {
         margin-left: 0;
     }
+
+    b {
+        margin-right: 0.25 * $spacer;
+    }
 }
 
 .card__footer--light {

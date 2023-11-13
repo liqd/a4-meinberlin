@@ -19,6 +19,7 @@ export const Card = (props) => {
       </header>
       <section className="card__footer--light">
         <CardStats
+          item={item}
           permissions={permissions}
           positiveCount={item.positive_rating_count}
           negativeCount={item.negative_rating_count}

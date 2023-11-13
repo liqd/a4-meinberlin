@@ -4,87 +4,31 @@ from rest_framework import serializers
 from meinberlin.apps.votes.models import TokenVote
 from meinberlin.apps.votes.models import VotingToken
 
+from ..ideas.serializers import IdeaSerializer
 from .models import Proposal
 
 
-class ProposalSerializer(serializers.ModelSerializer):
-    comment_count = serializers.SerializerMethodField()
-    creator = serializers.SerializerMethodField()
-    negative_rating_count = serializers.SerializerMethodField()
-    positive_rating_count = serializers.SerializerMethodField()
+class ProposalSerializer(IdeaSerializer):
     session_token_voted = serializers.SerializerMethodField()
-    url = serializers.SerializerMethodField()
     vote_allowed = serializers.SerializerMethodField()
     vote_count = serializers.SerializerMethodField()
 
-    class Meta:
+    class Meta(IdeaSerializer.Meta):
         model = Proposal
-        fields = (
-            "additional_item_badges_for_list_count",
-            "comment_count",
-            "created",
-            "creator",
+        fields = IdeaSerializer.Meta.fields + (
             "is_archived",
-            "item_badges_for_list",
-            "modified",
-            "moderator_status",
-            "get_moderator_status_display",
-            "name",
-            "negative_rating_count",
-            "pk",
-            "positive_rating_count",
-            "reference_number",
             "session_token_voted",
-            "url",
             "vote_allowed",
             "vote_count",
         )
-        read_only_fields = (
-            "additional_item_badges_for_list_count",
-            "comment_count",
-            "created",
-            "creator",
+        read_only_fields = IdeaSerializer.Meta.read_only_fields + (
             "is_archived",
-            "item_badges_for_list",
-            "modified",
-            "moderator_status",
-            "get_moderator_status_display",
-            "name",
-            "negative_rating_count",
-            "pk",
-            "positive_rating_count",
-            "reference_number",
             "session_token_voted",
-            "url",
             "vote_allowed",
             "vote_count",
         )
 
-    def get_creator(self, proposal):
-        return proposal.creator.username
-
-    def get_comment_count(self, proposal):
-        if hasattr(proposal, "comment_count"):
-            return proposal.comment_count
-        else:
-            return 0
-
-    def get_positive_rating_count(self, proposal):
-        if hasattr(proposal, "positive_rating_count"):
-            return proposal.positive_rating_count
-        else:
-            return 0
-
-    def get_negative_rating_count(self, proposal):
-        if hasattr(proposal, "negative_rating_count"):
-            return proposal.negative_rating_count
-        else:
-            return 0
-
-    def get_url(self, proposal):
-        return proposal.get_absolute_url()
-
-    def get_session_token_voted(self, proposal):
+    def get_session_token_voted(self, proposal: Proposal) -> bool:
         """Serialize if proposal has been voted.
 
         Returns bool that indicates whether the proposal has
@@ -113,7 +57,7 @@ class ProposalSerializer(serializers.ModelSerializer):
                     return vote.exists()
         return False
 
-    def get_vote_allowed(self, proposal):
+    def get_vote_allowed(self, proposal: Proposal) -> bool:
         if "request" in self.context:
             user = self.context["request"].user
             has_voting_permission = user.has_perm(
@@ -124,14 +68,8 @@ class ProposalSerializer(serializers.ModelSerializer):
 
         return False
 
-    def get_vote_count(self, proposal):
+    def get_vote_count(self, proposal: Proposal) -> int:
         if hasattr(proposal, "token_vote_count"):
             return proposal.token_vote_count
         else:
             return 0
-
-    def reference_number(self, proposal):
-        if hasattr(proposal, "ref_number"):
-            return proposal.ref_number
-        else:
-            return ""

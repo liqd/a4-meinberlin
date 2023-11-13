@@ -1,5 +1,10 @@
 {% extends extends %}
-{% load i18n discovery_tags %}
+{% load i18n static discovery_tags react_ideas %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'ideas.js' %}"></script>
+    {{ block.super }}
+{% endblock %}
 
 {% block project_action %}
     {% has_or_would_have_perm 'meinberlin_ideas.add_idea' request.user module as propose_allowed %}
@@ -19,18 +24,7 @@
     <div class="module-content--light">
         <div class="container">
             <div class="offset-lg-2 col-lg-8">
-                {% if object_list.count > 0 %}
-                    <h2 class="visually-hidden">{% translate "Idea list" %}</h2>
-                    <ul class="u-list-reset">
-                        {% for object in object_list %}
-                            {% include "meinberlin_ideas/includes/idea_list_item.html" with object=object %}
-                        {% endfor %}
-                    </ul>
-                {% else %}
-                    {% translate "Nothing to show" %}
-                {% endif %}
-
-                {% include "meinberlin_contrib/includes/pagination.html" %}
+                {% react_ideas view.module %}
             </div>
         </div>
     </div>

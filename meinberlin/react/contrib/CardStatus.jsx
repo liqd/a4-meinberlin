@@ -20,7 +20,7 @@ export const CardStatus = props => {
     if (type !== 'point_label') {
       return
     }
-    return <i className="fas fa-map-marker-alt u-icon-spacing" aria-hidden="true" />
+    return <span className="fas fa-map-marker-alt" aria-hidden="true" />
   }
 
   return (

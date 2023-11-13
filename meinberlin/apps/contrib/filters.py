@@ -44,3 +44,14 @@ class DefaultsRestFilterSet(rest_filters.FilterSet):
             if key not in data:
                 data[key] = value
         super().__init__(data, *args, **kwargs)
+
+
+class NoExceptionFilterBackend(rest_filters.DjangoFilterBackend):
+    """Use with your custom FilterSet.
+
+    Set filterset_class = CustomFilterSet in the view that uses this
+    filter backend.
+    """
+
+    # do not raise exceptions for invalid filter values
+    raise_exception = False

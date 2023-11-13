@@ -45,12 +45,14 @@
     {% if tracking %} {% tracking_code %} {% endif %}
 </head>
 <body>
-    <a href="#main" class="visually-hidden-focusable">{% translate "Skip to content " %}</a>
+    <div class="visually-hidden-focusable">
+        <a href="#main">{% translate "Skip to content " %}</a>
+    </div>
     {% block header %}
       {% include "header.html" %}
     {% endblock %}
     <!-- FIXME we don't currently want their grid in dashboard however this does not work if someone names wagtail, project or plan page 'dashboard' -->
-    <main role="main" {% if '/dashboard' not in request.path %} id="layout-grid" {% endif %}>
+    <main role="main" tabindex="-1" {% if '/dashboard' not in request.path %} id="layout-grid" {% endif %}>
 
         {% block breadcrumbs %}{% endblock %}
 

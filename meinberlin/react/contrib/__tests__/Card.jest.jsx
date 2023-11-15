@@ -23,9 +23,14 @@ test('Card component with item name and link and comment count', () => {
   render(
     <Card item={proposal} permissions={permissions} />
   )
+
+  const comments = screen.getByText('Comments', { exact: false })
+
+  expect(comments.textContent).toEqual('7Comments')
   expect(screen.getByText('My idea')).toBeTruthy()
   expect(screen.getByText('Item details')).toBeTruthy()
-  expect(screen.getByText('7 Comments')).toBeTruthy()
+  expect(screen.queryByText('Likes')).toBeNull()
+  expect(screen.queryByText('Votes')).toBeNull()
 })
 
 test('Renders a link to item details', () => {
@@ -49,9 +54,13 @@ test('Renders a link to item details', () => {
   render(
     <Card item={proposal} permissions={permissions} />
   )
+
+  const comments = screen.getByText('Comments', { exact: false })
+  const dislikes = screen.getByText('Dislikes', { exact: false })
+
+  expect(comments.textContent).toEqual('7Comments')
+  expect(dislikes.textContent).toEqual('1Dislikes')
+  expect(screen.getByText('Likes')).toBeTruthy()
   expect(screen.getByText('My idea')).toBeTruthy()
   expect(screen.getByText('Item details')).toBeTruthy()
-  expect(screen.getByText('7 Comments')).toBeTruthy()
-  expect(screen.getByText('2 Likes')).toBeTruthy()
-  expect(screen.getByText('1 Dislikes')).toBeTruthy()
 })

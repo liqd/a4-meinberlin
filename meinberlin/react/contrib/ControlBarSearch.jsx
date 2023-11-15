@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import django from 'django'
+import { Input } from './forms/Input'
 
 export const ControlBarSearch = (props) => {
   const translated = {
+    search: django.gettext('Search'),
     startSearch: django.gettext('Start search'),
     searchFor: django.gettext('Search for Proposals')
   }
@@ -27,29 +29,18 @@ export const ControlBarSearch = (props) => {
       onSubmit={handleSubmit}
       className="input-group"
     >
-      <label
-        htmlFor="id-filter-search"
-        className="visually-hidden"
-      >
-        {translated.searchFor}
-      </label>
-      <input
-        className="form-control"
-        type="search"
-        id="id-filter-search"
-        placeholder={translated.searchFor}
+      <Input
+        label={translated.search} id="id-filter-search"
         onChange={handleChange}
-        value={value}
-      />
-      <button
-        className="btn btn--light input-group__after"
-        type="submit"
+        before={<i className="fa fa-search" aria-hidden="true" />}
       >
-        <i className="fa fa-search" aria-hidden="true" />
-        <span className="visually-hidden">
-          {translated.startSearch}
-        </span>
-      </button>
+        <button type="submit" title={translated.startSearch}>
+          <i className="fa fa-arrow-right" aria-hidden="true" />
+          <span className="visually-hidden">
+            {translated.startSearch}
+          </span>
+        </button>
+      </Input>
     </form>
   )
 }

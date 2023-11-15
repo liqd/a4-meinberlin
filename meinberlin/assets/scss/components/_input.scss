@@ -1,0 +1,47 @@
+.input {
+    position: relative;
+
+    .fa {
+        font-size: 1.25em;
+    }
+
+    .input__element {
+        line-height: normal;
+        padding-top: 0.3125em;
+        padding-bottom: 0.3125em;
+        min-height: 2.5em;
+    }
+
+    .input__element--before {
+        padding-left: 2em;
+    }
+
+    .input__element--after {
+        padding-right: 2em;
+    }
+}
+
+
+
+.input__before,
+.input__after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 1.25em;
+    margin: auto;
+    pointer-events: none;
+
+    button {
+        padding: 0;
+        pointer-events: all;
+    }
+}
+
+.input__before {
+    left: 0.625em;
+}
+
+.input__after {
+    right: 0.625em;
+}

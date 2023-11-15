@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { Select } from './forms/Select'
 
 // FIXME: maybe more elegant way?
 // this is only relevant for the first page load,
@@ -19,55 +20,25 @@ const getDefaultName = (f, curr) => {
       ? f.choices[emptyStringIndex]
       : f.choices[0]
   }
-  return filterChoice[1]
+  return filterChoice[0]
 }
 
 export const ControlBarDropdown = props => {
   const { filter } = props
-  const [currentChoiceName, setCurrentChoiceName] =
-    useState(getDefaultName(filter, props.current))
 
   const onSelectFilter = filterChoice => {
-    setCurrentChoiceName(filterChoice[1])
     props.onSelectFilter(filterChoice)
-  }
-
-  const getIcon = choiceIndex => {
-    return filter.icons.find(icon => icon[0] === choiceIndex)
   }
 
   return (
     <div className="dropdown control-bar__item">
-      <button
-        type="button"
-        className="dropdown-toggle btn btn--light btn--select"
-        data-bs-toggle="dropdown"
-        data-flip="false"
-        aria-haspopup="true"
-        aria-expanded="false"
+      <Select
+        label={filter.label}
+        choices={filter.choices}
+        onSelect={(choice) => onSelectFilter(choice)}
         id={props.filterId}
-      >
-        {filter.label + ':' + ' ' + currentChoiceName}
-        <i className="fa fa-caret-down" aria-hidden />
-      </button>
-      <ul aria-labelledby={props.filterId} className="dropdown-menu">
-        {filter.choices.map((choice, idx) => {
-          const icon = filter.icons && getIcon(choice[0])
-          return (
-            <li key={'filter-choice_' + idx}>
-              <button
-                className="dropdown-item"
-                onClick={() => onSelectFilter(choice)}
-              >
-                {icon && (
-                  <img className="dropdown-item__icon" src={icon[1]} alt="" />
-                )}
-                {choice[1]}
-              </button>
-            </li>
-          )
-        })}
-      </ul>
+        defaultValue={getDefaultName(filter, props.current)}
+      />
     </div>
   )
 }

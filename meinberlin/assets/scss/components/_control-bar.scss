@@ -1,6 +1,4 @@
 .control-bar {
-    @include clearfix;
-
     select,
     .control-bar__item,
     .btn-group__container,
@@ -14,20 +12,9 @@
         & > form {
             @extend .u-spacer-bottom-half;
         }
-
-        & .dropdown-menu {
-            max-height: 400px; // same as 10 items
-            overflow-y: auto;
-        }
-    }
-
-    // ensure long entries wrap
-    .dropdown-item {
-        white-space: inherit;
     }
 
     @media (max-width: $breakpoint) {
-        .dropdown-toggle,
         .control-bar__item,
         .control-bar__item button {
             width: 100%;

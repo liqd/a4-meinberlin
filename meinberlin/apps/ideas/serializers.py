@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Idea
+from meinberlin.apps.ideas.models import Idea
 
 
 class IdeaSerializer(serializers.ModelSerializer):

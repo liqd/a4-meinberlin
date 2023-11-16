@@ -26,18 +26,17 @@ from adhocracy4.labels.models import Label
 from adhocracy4.labels.models import LabelAlias
 from adhocracy4.modules.models import Module
 from adhocracy4.modules.predicates import is_allowed_moderate_project
+from meinberlin.apps.contrib.api import APIPagination
 from meinberlin.apps.contrib.filters import DefaultsRestFilterSet
 from meinberlin.apps.contrib.filters import NoExceptionFilterBackend
 from meinberlin.apps.contrib.filters import OrderingFilterWithDailyRandom
+from meinberlin.apps.ideas.filters import IdeaFilterSet
+from meinberlin.apps.ideas.models import Idea
+from meinberlin.apps.ideas.serializers import IdeaSerializer
 from meinberlin.apps.moderationtasks.models import ModerationTask
 from meinberlin.apps.moderatorfeedback.models import (
     DEFAULT_CHOICES as moderator_status_default_choices,
 )
-
-from ..contrib.api import APIPagination
-from .filters import IdeaFilterSet
-from .models import Idea
-from .serializers import IdeaSerializer
 
 
 class LocaleInfoMixin:

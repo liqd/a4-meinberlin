@@ -19,7 +19,7 @@ export function updateItem (data, url, method) {
 export const toLocaleDate = (
   isodate,
   locale = 'de-DE',
-  formatStyle = { dateStyle: 'long' }
+  formatStyle = { month: 'short', day: 'numeric', year: 'numeric' }
 ) => {
   const date = new Date(isodate)
   return new Intl.DateTimeFormat(locale, formatStyle).format(date)

@@ -7,8 +7,8 @@ export const CardStats = (props) => {
   const positiveRatingsStr = django.gettext('Likes')
   const negativeRatingsStr = django.gettext('Dislikes')
   const supportStr = django.gettext('Support')
-  const commentsStr = django.gettext('Comments')
-  const votesStr = django.gettext('Votes')
+  const commentsStr = django.ngettext('Comment', 'Comments', props.commentCount)
+  const votesStr = django.ngettext('Vote', 'Votes', props.voteCount)
 
   return (
     <div className="card__stats">

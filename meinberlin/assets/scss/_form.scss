@@ -1,3 +1,12 @@
+%control-base {
+    border: 1px solid $input-border-color;
+    border-radius: 0.3em;
+    padding: 0.4em 0.6em;
+    line-height: 1.6;
+    font-family: inherit;
+    font-size: inherit;
+}
+
 input,
 textarea,
 select {
@@ -24,6 +33,16 @@ select {
     &::placeholder {
         opacity: 0.5;
     }
+}
+
+// FIXME ensure auto added buttons look inline with rest of UI eg:close on alerts
+button {
+    appearance: none;
+    color: inherit;
+    background: none;
+    font-size: inherit;
+    border: 0;
+    cursor: pointer;
 }
 
 input[type="checkbox"],

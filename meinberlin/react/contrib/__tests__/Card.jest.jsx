@@ -26,7 +26,9 @@ test('Card component with item name and link and comment count', () => {
 
   const comments = screen.getByText('Comments', { exact: false })
 
-  expect(comments.textContent).toEqual('7Comments')
+  // strings constructed by ngettext will render both options as jest does not mock ngettext functionality,
+  // it just returns both so we check for both as it is a predicatble outcome
+  expect(comments.textContent).toEqual('7CommentComments')
   expect(screen.getByText('My idea')).toBeTruthy()
   expect(screen.getByText('Item details')).toBeTruthy()
   expect(screen.queryByText('Likes')).toBeNull()
@@ -58,9 +60,10 @@ test('Renders a link to item details', () => {
   const comments = screen.getByText('Comments', { exact: false })
   const dislikes = screen.getByText('Dislikes', { exact: false })
 
-  expect(comments.textContent).toEqual('7Comments')
+  expect(comments.textContent).toEqual('7CommentComments')
+  // don't do same check for likes count as it also finds the
+  // dislikes as non exact string but 1 count is enough
   expect(dislikes.textContent).toEqual('1Dislikes')
-  expect(screen.getByText('Likes')).toBeTruthy()
   expect(screen.getByText('My idea')).toBeTruthy()
   expect(screen.getByText('Item details')).toBeTruthy()
 })

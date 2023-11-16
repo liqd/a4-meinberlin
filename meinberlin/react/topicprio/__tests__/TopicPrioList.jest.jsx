@@ -46,7 +46,7 @@ test('Topic Prioritisation list - check render with required stats',
 
     expect(screen.getByText('This is a topic')).toBeTruthy()
     expect(screen.getByText('Likes')).toBeTruthy()
-    expect(comments.textContent).toEqual('6Comments')
+    expect(comments.textContent).toEqual('6CommentComments')
     expect(dislikes.textContent).toEqual('1Dislikes')
 
     // reverse overwrite of global.fetch

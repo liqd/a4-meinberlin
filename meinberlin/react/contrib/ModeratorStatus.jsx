@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import django from 'django'
 
 const translated = {
@@ -7,12 +7,6 @@ const translated = {
 }
 
 export const ModeratorStatus = ({ modStatus, modStatusDisplay }) => {
-  useEffect(() => {
-    if (!modStatus || !modStatusDisplay) {
-      console.warn('ModeratorStatus component: Both modStatus and modStatusDisplay props are required.')
-    }
-  }, [modStatus, modStatusDisplay])
-
   if (!modStatus || !modStatusDisplay) {
     return null // Don't render the component if either prop is missing
   }

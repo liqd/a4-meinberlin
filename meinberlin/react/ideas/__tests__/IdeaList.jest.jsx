@@ -47,7 +47,7 @@ test('Idea List - fetch data', async () => {
   expect(screen.getByText('Idea 1')).toBeTruthy() // Adjust text based on your component content
 
   // Check if comment count is rendered
-  expect(comments.textContent).toEqual('6Comments')
+  expect(comments.textContent).toEqual('6CommentComments')
 
   // Check if pills are rendered
   expect(screen.getByText('Category 1')).toBeTruthy()

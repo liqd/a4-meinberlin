@@ -21,11 +21,10 @@ test('2 phase: rating phase - can view comments and ratings count', () => {
   )
   const comments = screen.getByText('Comments', { exact: false })
   const dislikes = screen.getByText('Dislikes', { exact: false })
-  // don't do same check for likes count as it also finds the
-  // dislikes as non exact string but 1 count is enough
-  expect(comments.textContent).toEqual('18Comments')
+  // strings constructed by ngettext will render both options as jest does not mock ngettext functionality,
+  // it just returns both so we check for both as it is a predicatble outcome
+  expect(comments.textContent).toEqual('18CommentComments')
   expect(dislikes.textContent).toEqual('1Dislikes')
-  expect(screen.getByText('Likes')).toBeTruthy()
   expect(screen.queryByText('Votes')).toBeNull()
 })
 
@@ -49,11 +48,13 @@ test('3 phase: support phase - can view comments and support count', () => {
   const comments = screen.getByText('Comments', { exact: false })
   const likes = screen.getByText('Support', { exact: false })
 
-  expect(comments.textContent).toEqual('18Comments')
+  expect(comments.textContent).toEqual('18CommentComments')
   expect(likes.textContent).toEqual('4Support')
   expect(screen.queryByText('Dislikes')).toBeNull()
   expect(screen.queryByText('Likes')).toBeNull()
   expect(screen.queryByText('Votes')).toBeNull()
+  expect(screen.queryByText('1 Dislikes')).toBeNull()
+  expect(screen.queryByText('7 VoteVotes')).toBeNull()
 })
 
 test('3 phase: finished - can view comments and vote count', () => {
@@ -76,9 +77,10 @@ test('3 phase: finished - can view comments and vote count', () => {
   const comments = screen.getByText('Comments', { exact: false })
   const votes = screen.getByText('Votes', { exact: false })
 
-  expect(comments.textContent).toEqual('18Comments')
-  expect(votes.textContent).toEqual('7Votes')
-
+  expect(comments.textContent).toEqual('18CommentComments')
+  expect(votes.textContent).toEqual('7VoteVotes')
   expect(screen.queryByText('Likes')).toBeNull()
   expect(screen.queryByText('Dislikes')).toBeNull()
+  expect(screen.queryByText('4 Likes')).toBeNull()
+  expect(screen.queryByText('1 Dislikes')).toBeNull()
 })

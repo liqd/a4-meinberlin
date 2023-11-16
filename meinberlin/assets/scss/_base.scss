@@ -132,21 +132,4 @@ dt {
     margin-top: $em-spacer;
 }
 
-// FIXME ensure auto added buttons look inline with rest of UI eg:close on alerts
-button {
-    appearance: none;
-    color: inherit;
-    background: none;
-    font-size: inherit;
-    border: 0;
-    cursor: pointer;
-}
 
-%control-base {
-    border: 1px solid $input-border-color;
-    border-radius: 0.3em;
-    padding: 0.4em 0.6em;
-    line-height: 1.6;
-    font-family: inherit;
-    font-size: inherit;
-}

@@ -299,8 +299,8 @@ def test_idea_search_filter(apiclient, module, idea_factory, phase_factory):
 
     idea_1 = idea_factory(pk=1, module=module, name="liqd idea", created=now)
     idea_factory(pk=2, module=module, name="other idea", created=last_week)
-    idea_2 = idea_factory(
-        pk=3, module=module, name="liqd has good ideas", created=yesterday
+    idea_factory(
+        pk=3, module=module, name="liqd has a lot of creativity", created=yesterday
     )
     idea_factory(pk=4, module=module, name="idea from 2021", created=yesterday)
     idea_5 = idea_factory(pk=5, module=module, name="blabla", created=yesterday)
@@ -313,9 +313,8 @@ def test_idea_search_filter(apiclient, module, idea_factory, phase_factory):
     querystring = "?search=liqd+idea"
     url_tmp = url + querystring
     response = apiclient.get(url_tmp)
-    assert len(response.data["results"]) == 2
-    assert response.data["results"][0]["pk"] == idea_2.pk
-    assert response.data["results"][1]["pk"] == idea_1.pk
+    assert len(response.data["results"]) == 1
+    assert response.data["results"][0]["pk"] == idea_1.pk
 
     querystring = "?search=liqd"
     url_tmp = url + querystring

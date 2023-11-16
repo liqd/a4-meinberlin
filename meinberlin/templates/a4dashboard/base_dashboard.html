@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block header %}
-    {% userindicator %}
 {% endblock %}
 
 {% block content %}
@@ -18,7 +17,7 @@
     {% block dashboard_nav %}
         <div class="tablist tablist--right u--bg-secondary">
             <div class="container">
-                <div class="tablist--left">
+                <div class="u-space-between">
                     {% if view.other_organisations_of_user %}
                         <div class="dropdown">
                             <button
@@ -47,8 +46,11 @@
                             </ul>
                         </div>
                     {% else %}
-                        <span class="btn--light btn--small u-bold">{{ view.organisation.name }}</span>
+                        <div>
+                            <p class="u-bold">{% translate 'Dashboard: ' %}{{ view.organisation.name }}</p>
+                        </div>
                     {% endif %}
+                    {% userindicator %}
                 </div>
                 <nav class="u-inline-flex" aria-label="{% translate 'Dashboard' %}">
                     <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"

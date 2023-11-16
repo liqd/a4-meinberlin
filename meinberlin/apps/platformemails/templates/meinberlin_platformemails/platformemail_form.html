@@ -1,9 +1,11 @@
-{% extends "base.html" %}
-{% load i18n %}
+{% extends "a4dashboard/base_dashboard.html" %}
+{% load i18n userindicator %}
 
 {% block title %}{% translate 'Create platform email' %}{% endblock %}
+
 {% block content %}
 <div class="container">
+    {% userindicator %}
     <div class="offset-lg-3 col-lg-6">
         <h1>{% translate 'Create platform email'%}</h1>
         <p class="form-hint">{% blocktranslate %}This email will be sent to all registered and verified users of mein.berlin.de.{% endblocktranslate %}</p>

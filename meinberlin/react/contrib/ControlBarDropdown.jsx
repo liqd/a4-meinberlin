@@ -31,13 +31,13 @@ export const ControlBarDropdown = props => {
   }
 
   return (
-    <div className="dropdown control-bar__item">
+    <div className="control-bar__item control-bar__sorting">
       <Select
         label={filter.label}
         choices={filter.choices}
         onSelect={(choice) => onSelectFilter(choice)}
         id={props.filterId}
-        defaultValue={getDefaultName(filter, props.current)}
+        value={getDefaultName(filter, props.current)}
       />
     </div>
   )

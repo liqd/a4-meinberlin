@@ -1,5 +1,8 @@
 from django import forms
+from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
+from rest_framework.request import Request
+from rest_framework.response import Response
 
 from adhocracy4.categories.models import CategoryAlias
 from adhocracy4.labels.models import LabelAlias
@@ -72,3 +75,21 @@ class CategoryAndLabelAliasMixin:
         if label_alias:
             self.fields["labels"].help_text = label_alias.description
             self.fields["labels"].label = label_alias.title
+
+
+class LocaleInfoMixin:
+    """Add the current locale of the user to the API response"""
+
+    def list(self, request: Request, *args, **kwargs) -> Response:
+        response = super().list(request, args, kwargs)
+        response.data["locale"] = get_language()
+        return response
+
+
+class MapPolygonMixin:
+    """Add the map polygon to the API response"""
+
+    def list(self, request: Request, *args, **kwargs) -> Response:
+        response = super().list(request, args, kwargs)
+        response.data["polygon"] = self.module.settings_instance.polygon
+        return response

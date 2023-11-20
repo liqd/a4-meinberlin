@@ -1,50 +1,6 @@
 .control-bar {
-    select,
-    .control-bar__item,
-    .btn-group__container,
-    .control-bar__item input {
-        display: inline-block;
-        vertical-align: top;
-        margin-bottom: 0;
-
-        & > button,
-        & > div.btn-group,
-        & > form {
-            @extend .u-spacer-bottom-half;
-        }
-    }
-
-    @media (max-width: $breakpoint) {
-        .control-bar__item,
-        .control-bar__item button {
-            width: 100%;
-            max-width: none;
-        }
-    }
-
-    @media (min-width: $breakpoint) {
-        select,
-        .control-bar__item,
-        .btn-group__container {
-            margin-right: 0.5 * $spacer;
-        }
-
-        .control-bar__item:last-child {
-            margin-right: 0;
-        }
-    }
-
-    .control-bar__right {
-        margin-left: 0;
-
-        @media (min-width: $breakpoint) {
-            float: right;
-        }
-    }
-
-    // firfox workaround for not shrinking flex item
-    .input-group__input {
-        min-width: 0;
+    .facet-title {
+        font-size: 1.0625rem;
     }
 }
 
@@ -52,4 +8,25 @@
     position: relative;
     z-index: 1;
     top: -1em;
+}
+
+.control-bar__results {
+    font-weight: 700;
+}
+
+.control-bar__list-map-switch {
+    display: flex;
+    align-items: center;
+
+    .button {
+        margin-left: 0;
+    }
+
+    @media screen and (max-width: var(--breakpoint-tablet)) {
+        width: 100%;
+
+        .button {
+            flex: 1 1 100%;
+        }
+    }
 }

@@ -1,3 +1,4 @@
+// FIXME: remove if not needed anymore
 .input {
     position: relative;
 
@@ -7,28 +8,26 @@
 
     .input__element {
         line-height: normal;
-        padding-top: 0.3125em;
-        padding-bottom: 0.3125em;
-        min-height: 2.5em;
+        padding-top: 0.3125 * $em-spacer;
+        padding-bottom: 0.3125 * $em-spacer;
+        min-height: 2.5 * $em-spacer;
     }
 
     .input__element--before {
-        padding-left: 2em;
+        padding-left: 2 * $em-spacer;
     }
 
     .input__element--after {
-        padding-right: 2em;
+        padding-right: 2 * $em-spacer;
     }
 }
-
-
 
 .input__before,
 .input__after {
     position: absolute;
     top: 0;
     bottom: 0;
-    height: 1.25em;
+    height: 1.25 * $em-spacer;
     margin: auto;
     pointer-events: none;
 
@@ -39,9 +38,9 @@
 }
 
 .input__before {
-    left: 0.625em;
+    left: 0.625 * $em-spacer;
 }
 
 .input__after {
-    right: 0.625em;
+    right: 0.625 * $em-spacer;
 }

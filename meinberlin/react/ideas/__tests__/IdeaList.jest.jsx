@@ -42,10 +42,12 @@ test('Idea List - fetch data', async () => {
   // Waiting for async fetching ends --> without this, the
   // act(...) console.error will appear
   await act(async () => await mockedFetch)
+  const comments = screen.getByText('Comments', { exact: false })
+
   expect(screen.getByText('Idea 1')).toBeTruthy() // Adjust text based on your component content
 
   // Check if comment count is rendered
-  expect(screen.getByText('6 Comments')).toBeTruthy()
+  expect(comments.textContent).toEqual('6Comments')
 
   // Check if pills are rendered
   expect(screen.getByText('Category 1')).toBeTruthy()

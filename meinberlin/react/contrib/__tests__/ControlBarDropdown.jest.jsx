@@ -1,86 +1,44 @@
 import React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, fireEvent, screen } from '@testing-library/react'
 import { ControlBarDropdown } from '../ControlBarDropdown'
 
-test('ControlBarDropdown is displaying with icons', () => {
-  render(
-    <ControlBarDropdown
-      filter={{
-        label: 'categories',
-        current: 'all',
-        icons: [['1', 'some/url']],
-        choices: [['1', 'all'], ['2', 'category1']]
-      }}
-    />
-  )
-  const allChoiceElement = screen.getByText('all')
-  expect(allChoiceElement).toBeTruthy()
-  const iconElement = screen.getByAltText('')
-  expect(iconElement).toBeTruthy()
-})
+describe('ControlBarDropdown', () => {
+  const mockOnSelectFilter = jest.fn()
 
-test('ControlBarDropdown on filter change', () => {
-  const onFilterChangeFn = jest.fn()
-  render(
-    <ControlBarDropdown
-      filter={{
-        label: 'categories',
-        current: 'all',
-        icons: [['1', 'some/url']],
-        choices: [['1', 'all'], ['2', 'category1']]
-      }}
-      onSelectFilter={() => onFilterChangeFn()}
-    />
-  )
-  const category1Element = screen.getByText(/(category1)/)
-  fireEvent.click(category1Element)
-  expect(onFilterChangeFn).toHaveBeenCalledTimes(1)
-})
+  const props = {
+    onSelectFilter: mockOnSelectFilter,
+    filter: {
+      label: 'Test Filter',
+      choices: [['choice1', 'Choice 1'], ['choice2', 'Choice 2']],
+      default: 'choice1'
+    },
+    filterId: 'testFilter',
+    current: 'choice1'
+  }
 
-test('ControlBarDropdown is positioned right', () => {
-  render(
-    <ControlBarDropdown
-      filter={{
-        position: 'right',
-        label: 'categories',
-        current: 'all',
-        icons: [['1', 'some/url']],
-        choices: [['1', 'all'], ['2', 'category1']]
-      }}
-    />
-  )
-  const allChoiceElement = screen.getByText('all')
-  expect(allChoiceElement).toBeTruthy()
-})
+  test('renders the correct default value', () => {
+    render(<ControlBarDropdown {...props} />)
+    expect(screen.getByLabelText('Test Filter').value).toBe('choice1')
+  })
 
-test('ControlBarDropdown with current', () => {
-  render(
-    <ControlBarDropdown
-      filter={{
-        position: 'right',
-        label: 'categories',
-        icons: [['1', 'some/url']],
-        choices: [['1', 'all'], ['2', 'category1'], ['curr', 'current']],
-        current: 'curr'
-      }}
-    />
-  )
-  const currSelection = screen.getByText('current')
-  expect(currSelection).toBeTruthy()
-})
+  test('calls onSelectFilter when a new option is selected', () => {
+    render(<ControlBarDropdown {...props} />)
+    fireEvent.change(screen.getByLabelText('Test Filter'), {
+      target: { value: 'choice2' }
+    })
+    expect(mockOnSelectFilter).toHaveBeenCalledWith(['choice2', 'Choice 2'])
+  })
 
-test('ControlBarDropdown with default selection', () => {
-  render(
-    <ControlBarDropdown
-      filter={{
-        position: 'right',
-        default: 'def',
-        label: 'categories',
-        icons: [['1', 'some/url']],
-        choices: [['all', 'All'], ['1', 'category1'], ['def', 'default']]
-      }}
-    />
-  )
-  const defaultSelection = screen.getByText('default')
-  expect(defaultSelection).toBeTruthy()
+  test('handles empty choices correctly', () => {
+    const newProps = {
+      ...props,
+      filter: {
+        ...props.filter,
+        choices: [['', 'None'], ['choice1', 'Choice 1'], ['choice2', 'Choice 2']]
+      },
+      current: ''
+    }
+    render(<ControlBarDropdown {...newProps} />)
+    expect(screen.getByLabelText('Test Filter').value).toBe('')
+  })
 })

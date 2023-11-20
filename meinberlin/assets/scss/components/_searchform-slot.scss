@@ -1,0 +1,17 @@
+.searchform-slot {
+    .searchterm .input-wrapper {
+        // FIXME: styleguide adds borders on this wrapper instead of the input
+        //  element, which makes it have a different height than any other input
+        height: 2.6875 * $spacer;
+    }
+
+    .searchterm .submit i.icon {
+        // FIXME: currently icon is way too big
+        font-size: 1.25rem;
+    }
+
+    .bicon {
+        // FIXME: icons currently not centered perfectly vertical due to added lineheight
+        line-height: 0;
+    }
+}

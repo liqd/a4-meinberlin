@@ -14,24 +14,22 @@ export const ControlBarListMapSwitch = () => {
   }
 
   return (
-    <div className="btn-group__container">
-      <div className="btn-group">
-        <div
-          className="btn switch--btn btn--icon active"
-          aria-label={django.gettext('View as list')}
-        >
-          <i className="fa fa-list" aria-hidden="true" />
-          {django.gettext('List')}
-        </div>
-        <button
-          className="btn btn--light btn--icon"
-          onClick={handleClick}
-          aria-label={django.gettext('View as map')}
-        >
-          <i className="fa fa-map" aria-hidden="true" />
-          {django.gettext('Map')}
-        </button>
+    <div className="control-bar__list-map-switch">
+      <div
+        className="button button--light button--fulltone"
+        aria-label={django.gettext('View as list')}
+      >
+        <span className="fa fa-list" aria-hidden="true" />&nbsp;
+        {django.gettext('List')}
       </div>
+      <button
+        className="button button--light"
+        onClick={handleClick}
+        aria-label={django.gettext('View as map')}
+      >
+        <span className="fa fa-map" aria-hidden="true" />&nbsp;
+        {django.gettext('Map')}
+      </button>
     </div>
   )
 }

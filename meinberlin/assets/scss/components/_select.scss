@@ -4,21 +4,22 @@
     &:after {
         position: absolute;
         z-index: 1;
-        right: 0.5em;
+        right: 0.5 * $spacer;
         bottom: 0;
         top: 0;
         margin: auto;
         pointer-events: none;
-        font-family: "Font Awesome 5 Free Solid", sans-serif;
+        font-family: "Font Awesome 5 Free", sans-serif;
+        font-weight: 900;
         content: "\f078";
-        height: 1.25em;
-        font-size: 1.25em;
+        height: 1.5 * $spacer;
+        font-size: 1.25rem;
     }
 }
 
 .select__input {
-    padding-top: 0.3125em;
-    padding-bottom: 0.3125em;
-    min-height: 2.5em;
-    padding-right: 2em;
+    padding-top: 0.3125 * $spacer;
+    padding-bottom: 0.3125 * $spacer;
+    width: 100%;
+    padding-right: 2 * $spacer;
 }

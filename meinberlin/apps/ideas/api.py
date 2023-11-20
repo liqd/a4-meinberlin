@@ -4,7 +4,6 @@ from typing import Tuple
 
 from django.db.models import Model
 from django.db.models import QuerySet
-from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 from rest_framework import mixins
 from rest_framework import viewsets
@@ -30,6 +29,7 @@ from meinberlin.apps.contrib.api import APIPagination
 from meinberlin.apps.contrib.filters import DefaultsRestFilterSet
 from meinberlin.apps.contrib.filters import NoExceptionFilterBackend
 from meinberlin.apps.contrib.filters import OrderingFilterWithDailyRandom
+from meinberlin.apps.contrib.mixins import LocaleInfoMixin
 from meinberlin.apps.ideas.filters import IdeaFilterSet
 from meinberlin.apps.ideas.models import Idea
 from meinberlin.apps.ideas.serializers import IdeaSerializer
@@ -37,15 +37,6 @@ from meinberlin.apps.moderationtasks.models import ModerationTask
 from meinberlin.apps.moderatorfeedback.models import (
     DEFAULT_CHOICES as moderator_status_default_choices,
 )
-
-
-class LocaleInfoMixin:
-    """Add the current locale of the user to the API response"""
-
-    def list(self, request: Request, *args, **kwargs) -> Response:
-        response = super().list(request, args, kwargs)
-        response.data["locale"] = get_language()
-        return response
 
 
 class IdeaFilterInfoMixin:

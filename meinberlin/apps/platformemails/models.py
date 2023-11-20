@@ -11,7 +11,6 @@ from adhocracy4.models.base import UserGeneratedContentModel
 
 
 class PlatformEmail(UserGeneratedContentModel):
-
     sender_name = models.CharField(max_length=254, verbose_name=_("Name"))
     sender = models.EmailField(blank=True, verbose_name=_("Sender"))
     subject = models.CharField(max_length=254, verbose_name=_("Subject"))
@@ -51,6 +50,8 @@ class PlatformEmail(UserGeneratedContentModel):
         text = re.sub(pattern, r"\1%s\2" % settings.WAGTAILADMIN_BASE_URL, text)
         return text
 
-    def save(self, *args, **kwargs):
+    def save(self, update_fields=None, *args, **kwargs):
         self.body = transforms.clean_html_field(self.body, "image-editor")
-        super().save(*args, **kwargs)
+        if update_fields:
+            update_fields = {"body"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)

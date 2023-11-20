@@ -1,5 +1,5 @@
 # A4
-git+https://github.com/liqd/adhocracy4.git@e22c76a0089c36727b1d4d3a84e42106fffb397a#egg=adhocracy4
+git+https://github.com/liqd/adhocracy4.git@1aa189f4950d697372d9181564eac68600d20e7e#egg=adhocracy4
 
 # Additional requirements
 brotli==1.0.9
@@ -16,11 +16,11 @@ zeep==4.2.1
 
 # Inherited a4-core requirements
 celery==5.3.1
-django-allauth==0.54.0
+django-allauth==0.55.0
 django-ckeditor==6.6.1
 django-filter==22.1
 django-widget-tweaks==1.4.12
-Django==4.1
+Django==4.2
 djangorestframework==3.14.0
 easy-thumbnails[svg]==2.8.5
 git+https://github.com/liqd/django-autoslug.git@liqd2212#egg=django-autoslug

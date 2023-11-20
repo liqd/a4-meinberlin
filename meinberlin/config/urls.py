@@ -30,6 +30,7 @@ from meinberlin.apps.likes.api import LikesViewSet
 from meinberlin.apps.likes.routers import LikesDefaultRouter
 from meinberlin.apps.livequestions.api import LiveQuestionViewSet
 from meinberlin.apps.mapideas.api import MapIdeaViewSet
+from meinberlin.apps.maptopicprio.api import MapTopicViewSet
 from meinberlin.apps.moderatorremark.api import ModeratorRemarkViewSet
 from meinberlin.apps.plans.api import PlansListViewSet
 from meinberlin.apps.projects.api import PrivateProjectListViewSet
@@ -62,6 +63,7 @@ module_router.register(r"proposals", ProposalViewSet, basename="proposals")
 module_router.register(r"ideas", IdeaViewSet, basename="ideas")
 module_router.register(r"mapideas", MapIdeaViewSet, basename="mapideas")
 module_router.register(r"topics", TopicViewSet, basename="topics")
+module_router.register(r"map-topics", MapTopicViewSet, basename="map-topics")
 
 likes_router = LikesDefaultRouter()
 likes_router.register(r"likes", LikesViewSet, basename="likes")

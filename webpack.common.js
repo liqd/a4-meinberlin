@@ -12,7 +12,7 @@ module.exports = {
     ],
     berlin_css: [
       './meinberlin/assets/berlin_css/shariff.min.css',
-      './meinberlin/assets/scss/style_bo.scss'
+      './meinberlin/assets/scss/style_user_facing.scss'
     ],
     berlin_js: [
       './meinberlin/assets/berlin_js/berlin_marketing.js',
@@ -26,7 +26,7 @@ module.exports = {
       import: [
         'select2/dist/css/select2.min.css',
         'swiper/swiper-bundle.min.css',
-        './meinberlin/assets/scss/style.scss',
+        './meinberlin/assets/scss/style_dashboard.scss',
         './meinberlin/assets/js/app.js'
       ],
       library: {

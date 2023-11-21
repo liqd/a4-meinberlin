@@ -67,8 +67,8 @@ export const BudgetingProposalList = (props) => {
   const renderList = (data) => {
     return (
       <>
-        <h2 className="visually-hidden">{translations.list}</h2>
-        <ul className="u-list-reset">
+        <h2 className="aural">{translations.list}</h2>
+        <ul className="list--clean">
 
           {data.map((proposal, idx) =>
             <li id={'item_' + proposal.pk} key={'budgeting-proposal-' + idx}>

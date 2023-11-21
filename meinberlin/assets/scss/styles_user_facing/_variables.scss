@@ -1,0 +1,101 @@
+// all ols variablesto be deleted as we convert to BO styles, only extra variables
+// required for our custome BO styles should remain after rebuild is complete will be added
+$gray: #464a4c !default;
+$gray-lighter: #636c72 !default;
+$gray-lightest: #f9f9f9 !default;
+
+$primary: #00a982 !default;
+$primary-tint: #f5ccdd !default;
+$secondary: #253276 !default;
+$secondary-darker: #1c2659 !default;
+$success: #0a820a !default;
+$info: $secondary !default;
+$warning: #f49e00 !default;
+$danger: #a72b1e !default;
+
+$body-bg: #fff !default;
+$bg-secondary: #f2f2f2 !default;
+$bg-tertiary: #e6e6e6 !default;
+$text-color: #333 !default;
+$text-color-inverted: $body-bg !default;
+$text-color-gray: #666;
+$shadow: rgba(#000, 0.25) !default;
+$white-shadow: rgba(255, 255, 255, 0.8) !default;
+$blue-light: #bfd3ff !default;
+
+$print-black: #000 !default;
+$print-link: #005cb4 !default;
+
+$link-color: $secondary !default;
+$link-hover-color: $primary !default;
+
+$link-color-btn: $primary !default;
+$link-hover-color-btn: darken($link-color-btn, 15%) !default;
+
+$border-color: #ccc !default;
+$input-border-color: $border-color !default;
+
+$feedback-color-accepted: #0a820a !default;
+$feedback-color-rejected: #dc3818 !default;
+$feedback-color-consideration: #ffae00 !default;
+
+$em-spacer: 1em !default;
+$spacer: 1rem !default;
+$padding: 1rem !default;
+
+$font-family-base: "Arial", "Helvetica", sans-serif !default;
+$font-family-sans-serif: "Arial", "Helvetica", sans-serif !default;
+
+$font-size-xxxl: 2.25rem !default; // 36px
+$font-size-xxl: 1.95rem !default; // 31.2px
+$font-size-xl: 1.56rem !default; // 24.96px
+$font-size-lg: 1.25rem !default; // 20px
+$font-size-md: 1.125rem !default; // 18px
+$font-size-base: 1rem !default;
+$font-size-sm: 0.9rem !default; // 14.44px
+$font-size-xs: 0.8rem !default; // 12.8px
+
+// use for min-width media-queries
+$breakpoint-xs: 32rem !default;
+$breakpoint: 50rem !default;  // sm 800px
+$breakpoint-md: 65rem !default; // 1040px
+$breakpoint-lg: 90rem !default; // 1440px
+
+// use for max-width media queries
+$breakpoint-xs-down: $breakpoint-xs - 0.1rem !default;
+$breakpoint-down: $breakpoint - 0.1rem !default;  // sm
+$breakpoint-md-down: $breakpoint-md - 0.1rem !default;
+$breakpoint-lg-down: $breakpoint-lg - 0.1rem !default;
+
+$wrapper-width: 81rem !default;
+$mobile-headline-size: 0.75 !default;
+
+$hero-height: 41rem !default;
+$hero-height-secondary: 30rem !default;
+$hero-height-mobile: 10.4rem !default;
+
+$enable-caret: false;
+
+$idea-remark-bg: #faf5d1 !default;
+$idea-remark-color: #999 !default;
+
+$input-border-radius: 0 !default;
+$input-placeholder-color: $border-color !default;
+$input-line-height: 1.6 !default;
+$input-padding-y: 0.4rem !default;
+$input-padding-x: 0.6rem !default;
+
+$form-select-border-radius: (0.3 * $spacer) !default;
+
+// set bootstrap modal variables
+$modal-inner-padding: 1.5 * $spacer !default;
+$modal-content-border-radius: 0 !default;
+$modal-header-padding-y: 0 !default;
+$modal-footer-margin-between: .5rem !default;
+
+$enable-dark-mode: false !default;
+
+//Berlin Online variables
+
+$purple: #9185be !default;
+$pink: #f6b4cc !default;

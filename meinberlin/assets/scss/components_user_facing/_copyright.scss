@@ -1,15 +1,6 @@
-.mb-herounit-image-with-aside {
-    .image__copyright {
-        position: relative;
-        right: revert;
-        bottom: revert;
-        color: $text-color;
-    }
-
-    .form-actions {
-        align-items: end;
-
-        // FIXME should be a spaced but until we know what sizes make sense will leave it as px
-        margin-bottom: 35px;
-    }
+.image__copyright--aside {
+    position: relative;
+    right: revert;
+    bottom: revert;
+    color: $text-color;
 }

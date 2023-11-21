@@ -4,10 +4,10 @@
 {% combined_url_parameter request.GET mode='list' as url_par %}
 <div class="btn-group__container control-bar__item">
     <div class="btn-group" role="group">
-        <a class="btn btn--light" href="{{ url_par }}" aria-label="{% translate 'View as list' %}">
+        <a class="button button--light" href="{{ url_par }}" aria-label="{% translate 'View as list' %}">
           <i class="fa fa-list" aria-hidden="true"></i>
           <span>{% translate 'List' %}</span>
-        </a><div class="btn switch--btn active" aria-label="{% translate 'View as map' %}">
+        </a><div class="button button--light" aria-label="{% translate 'View as map' %}">
           <i class="fa fa-map" aria-hidden="true"></i>
           <span>{% translate 'Map' %}</span>
         </div>
@@ -17,10 +17,10 @@
 {% combined_url_parameter request.GET mode='map' as url_par %}
 <div class="btn-group__container control-bar__item">
     <div class="btn-group" role="group">
-        <div class="btn switch--btn active" aria-label="{% translate 'View as list' %}">
+        <div class="button button--light" aria-label="{% translate 'View as list' %}">
           <i class="fa fa-list" aria-hidden="true"></i>
           <span>{% translate 'List' %}</span>
-        </div><a class="btn btn--light" href="{{ url_par }}" aria-label="{% translate 'View as map' %}">
+        </div><a class="button button--light" href="{{ url_par }}" aria-label="{% translate 'View as map' %}">
           <i class="fa fa-map" aria-hidden="true"></i>
           <span>{% translate 'Map' %}</span>
         </a>

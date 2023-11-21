@@ -1,0 +1,75 @@
+// The plan is, as development continue to slowely seperate the dashboard styling from the BO styling and
+// eventually have seperate stylsheet and load totally seperate styles for the public pages (just BO styles
+// and our additional styles and overwrites) and dashboard styles (bootstrap and our component styles)
+// FIXME how to load header and footer styling?
+@import "~bootstrap/scss/functions"; // to be deleted after menues changes
+
+@import "styles_user_facing/variables";
+
+@import "~bootstrap/scss/variables"; // to be deleted after menues changes
+@import "~bootstrap/scss/maps"; // to be deleted after menues changes
+@import "~bootstrap/scss/mixins"; // to be deleted after menues changes
+@import "~bootstrap/scss/dropdown"; // to be deleted after menues changes
+
+@import "components/a4-comments";
+@import "components/action";
+@import "components/accordion";
+@import "components/alert";
+@import "components/blocks";
+@import "components/breadcrumbs";
+@import "components/captcheck";
+@import "components/complete";
+@import "components/ck_embed";
+@import "components/dashboard_nav";
+@import "components/detail_info";
+@import "components/details";
+@import "components/dialogue_box";
+@import "components/doc_toc";
+@import "components/document";
+@import "components/dropdown";
+@import "components/dsgvo_video_embed";
+@import "components/embed_layout";
+@import "components/embed_status";
+@import "components/export_dashboard";
+@import "components/hero_unit";
+@import "components/item_detail_2";
+@import "components/label";
+@import "components/map";
+@import "components/maplist";
+@import "components/module";
+@import "components/multiform";
+@import "components/timeline";
+@import "components/poll";
+@import "components/participation_tile";
+@import "components/progress";
+@import "components/project_header";
+@import "components/radio";
+@import "components/rating";
+@import "components/select2";
+@import "components/select-item";
+@import "components/simple_page";
+@import "components/status_bar";
+@import "components/switch";
+@import "components/table";
+@import "components/tabs";
+@import "components/tile";
+@import "components/timeline-carousel";
+
+@import "../extra_css/swiper";
+
+
+// New styles begin
+@import "../berlin_css/berlin_marketing";
+
+@import "styles_user_facing/form";
+@import "styles_user_facing/utility";
+
+@import "components_user_facing/card";
+@import "components_user_facing/control-bar";
+@import "components_user_facing/copyright";
+@import "components_user_facing/follow";
+@import "components_user_facing/input";
+@import "components_user_facing/moderator_status";
+@import "components_user_facing/pill";
+@import "components_user_facing/searchform-slot";
+@import "components_user_facing/select";

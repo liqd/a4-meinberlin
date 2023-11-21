@@ -15,6 +15,8 @@ from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer
 
 from adhocracy4.api.mixins import ModuleMixin
+from adhocracy4.api.permissions import RulesPermission
+from adhocracy4.api.permissions import ViewSetRulesPermission
 from adhocracy4.categories import get_category_icon_url
 from adhocracy4.categories import has_icons
 from adhocracy4.categories.models import Category
@@ -190,6 +192,7 @@ class BaseTopicViewSet(
     # pagination converts list into dict which is needed for permissions mixin
     pagination_class: BasePagination = APIPagination
     serializer_class: ModelSerializer = TopicSerializer
+    permission_classes: List[RulesPermission] = (ViewSetRulesPermission,)
     filter_backends: List[BaseFilterBackend] = (
         NoExceptionFilterBackend,
         OrderingFilterWithDailyRandom,

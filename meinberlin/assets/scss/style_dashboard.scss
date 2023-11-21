@@ -1,7 +1,7 @@
 @import "~bootstrap/scss/functions";
 
-@import "mixins";
-@import "variables";
+@import "styles_dashboard/mixins";
+@import "styles_dashboard/variables";
 
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/maps";
@@ -19,9 +19,9 @@
 
 @import "~bootstrap/scss/helpers/visually-hidden";
 
-@import "base";
-@import "layout";
-@import "form";
+@import "styles_dashboard/base";
+@import "styles_dashboard/layout";
+@import "styles_dashboard/form";
 
 // @import "components/a4-comments";
 @import "components/action";
@@ -36,9 +36,10 @@
 // @import "components/captcheck";
 @import "components/commenting";
 @import "components/complete";
-@import "components/component_library";
-@import "components/control-bar";
-@import "components/copyright";
+@import "components_dashboard/component_library";
+@import "components_dashboard/control-bar";
+
+// @import "components/copyright";
 @import "components/ck_embed_iframe";
 @import "components/dashboard_nav";
 @import "components/datepicker";
@@ -97,9 +98,9 @@
 // @import "components/typeahead";
 @import "components/upload";
 
-@import "print";
-@import "utility";
-@import "shame";
+@import "styles_dashboard/print";
+@import "styles_dashboard/utility";
+@import "styles_dashboard/shame";
 
 @import "../extra_css/swiper";
 @import "../extra_css/ckeditor";

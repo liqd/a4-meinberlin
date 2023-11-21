@@ -94,10 +94,6 @@
         background-color: $secondary;
         border-color: $secondary;
     }
-
-    &:focus-within {
-        @include fake-focus-shadow;
-    }
 }
 
 .btn-group > div:first-child > .switch--btn {

@@ -5,7 +5,6 @@ import 'shariff'
 import 'slick-carousel'
 
 import '../../apps/actions/assets/timestamps.js'
-import '../../apps/moderatorremark/assets/idea_remarks.js'
 import '../../apps/newsletters/assets/dynamic_fields.js'
 
 // map search function

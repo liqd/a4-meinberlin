@@ -12,14 +12,13 @@
         font-family: "Font Awesome 5 Free", sans-serif;
         font-weight: 900;
         content: "\f078";
-        height: 1.5 * $spacer;
+        height: 1.75 * $spacer;
         font-size: 1.25rem;
     }
 }
 
 .select__input {
-    padding-top: 0.3125 * $spacer;
-    padding-bottom: 0.3125 * $spacer;
+    appearance: none;
     width: 100%;
     padding-right: 2 * $spacer;
 }

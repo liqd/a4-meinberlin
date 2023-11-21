@@ -20,10 +20,10 @@ def test_map_idea_api(
 
     url = reverse("mapideas-list", kwargs={"module_pk": module.pk})
 
-    response = apiclient.get(url)
+    response = apiclient.get(url + "?ordering=created")
     assert len(response.data["results"]) == 3
-    assert response.data["results"][2]["pk"] == idea.pk
-    assert response.data["results"][2]["point"] == str(idea.point)
+    assert response.data["results"][0]["pk"] == idea.pk
+    assert response.data["results"][0]["point"] == str(idea.point)
 
 
 @pytest.mark.django_db

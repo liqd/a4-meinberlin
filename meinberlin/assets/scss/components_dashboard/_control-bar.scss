@@ -1,0 +1,68 @@
+.control-bar {
+  @include clearfix;
+
+  select,
+  .control-bar__item,
+  .btn-group__container,
+  .control-bar__item input {
+      display: inline-block;
+      vertical-align: top;
+      margin-bottom: 0;
+
+      & > button,
+      & > div.btn-group,
+      & > form {
+          @extend .u-spacer-bottom-half;
+      }
+
+      & .dropdown-menu {
+          max-height: 400px; // same as 10 items
+          overflow-y: auto;
+      }
+  }
+
+  // ensure long entries wrap
+  .dropdown-item {
+      white-space: inherit;
+  }
+
+  @media (max-width: $breakpoint) {
+      .dropdown-toggle,
+      .control-bar__item,
+      .control-bar__item button {
+          width: 100%;
+          max-width: none;
+      }
+  }
+
+  @media (min-width: $breakpoint) {
+      select,
+      .control-bar__item,
+      .btn-group__container {
+          margin-right: 0.5 * $spacer;
+      }
+
+      .control-bar__item:last-child {
+          margin-right: 0;
+      }
+  }
+
+  .control-bar__right {
+      margin-left: 0;
+
+      @media (min-width: $breakpoint) {
+          float: right;
+      }
+  }
+
+  // firfox workaround for not shrinking flex item
+  .input-group__input {
+      min-width: 0;
+  }
+}
+
+.control-bar__bottom-overlap {
+  position: relative;
+  z-index: 1;
+  top: -1em;
+}

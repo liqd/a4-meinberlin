@@ -26,8 +26,6 @@ $checkbox-size: 20px;
     padding: 0.2 * $spacer 0;
     margin-bottom: 0.5 * $spacer;
 
-    @include clearfix;
-
     &--answered {
         left: 2 * $spacer;
     }
@@ -72,14 +70,6 @@ $checkbox-size: 20px;
     display: inline-block;
     margin: 0;
     margin-right: 0.2 * $spacer;
-}
-
-.poll-row__radio {
-    @extend .radio__input;
-}
-
-.poll__btn--link {
-    @extend .btn--link;
 }
 
 .poll-row__container {
@@ -134,19 +124,8 @@ $checkbox-size: 20px;
     font-weight: bold;
 }
 
-.poll__btn--light,
-.editpoll__btn--question,
-.editpoll__btn--delete {
-    @extend .btn--light;
-}
-
 .editpoll__btn--question {
     margin: 0.5 * $spacer 0;
-}
-
-.poll__btn--dark,
-.editpoll__btn--dark {
-    @extend .btn--primary;
 }
 
 .poll__btn--wrapper {
@@ -229,8 +208,6 @@ $checkbox-size: 20px;
 
     .slick-prev,
     .slick-next {
-        @extend .btn;
-        @extend .btn--primary;
         position: absolute;
         top: revert;
         bottom: 0;

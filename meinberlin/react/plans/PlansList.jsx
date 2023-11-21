@@ -264,7 +264,7 @@ class PlansList extends React.Component {
 
     if (list.length > 0) {
       return (
-        <ul className="u-list-reset participation-tile__list">
+        <ul className="list--clean participation-tile__list">
           {list}
         </ul>
       )

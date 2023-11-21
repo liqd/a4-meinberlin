@@ -44,7 +44,7 @@
 <!-- FIXME according to the marketing verticle the herounit should be before the maincontent however the styling for this here is nested within maincontent
 assume this will may be updated at somepoint  -->
 <div id="layout-grid__area--maincontent">
-    <section class="herounit-image-with-aside mb-herounit-image-with-aside fullwidth">
+    <section class="herounit-image-with-aside fullwidth">
         <div class="mainbar">
             <div class="mainbar__left">
                 <div class="image">
@@ -58,7 +58,7 @@ assume this will may be updated at somepoint  -->
                     <h1 class="title">{{ project.name }}</h1>
                     <div class="block">
                         <p>{{ project.description }}</p>
-                        <p class="image__copyright">
+                        <p class="image__copyright image__copyright--aside">
                             {% if project.image_copyright %}
                                 {{ project.image_copyright }}
                             {% else %}
@@ -67,10 +67,8 @@ assume this will may be updated at somepoint  -->
                         </p>
                     </div>
                     <!-- Follow btn -->
-                    <div class="form-actions">
-                        <div class="form-actions__left">
-                            {% react_follows project %}
-                        </div>
+                    <div class="follow__container">
+                        {% react_follows project %}
                     </div>
                 </div>
             </div>

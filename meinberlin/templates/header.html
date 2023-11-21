@@ -223,6 +223,10 @@
                                         <a href="{{ settings.meinberlin_cms.HeaderPages.feedback_page.get_url }}">{% translate 'Give Feedback' %}</a>
                                     </li>
                                     {% endif %}
+                                    <li>
+                                        <!-- User menu -->
+                                        {% userindicator %}
+                                    </li>
                                 </ul>
                             </div>
 
@@ -233,6 +237,4 @@
             </div>
         </div>
     </div>
-    <!-- User menu -->
-    {% userindicator %}
 </header>

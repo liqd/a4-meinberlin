@@ -20,3 +20,9 @@
 .a4-follow__notification {
     display: none;
 }
+
+.follow__container {
+    display: flex;
+    align-items: end;
+    margin-bottom: 2 * $spacer;
+}

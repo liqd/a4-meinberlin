@@ -1,9 +1,10 @@
 {% extends extends %}
-{% load i18n module_tags rules static maps_tags %}
+{% load i18n module_tags react_map_topics rules static maps_tags %}
 
 {% block extra_js %}
     {{ block.super }}
     <script type="text/javascript" src="{% static 'a4maps_display_points.js' %}"></script>
+    <script type="text/javascript" src="{% static 'map_topics.js' %}"></script>
 {% endblock %}
 
 {% block extra_css %}
@@ -49,20 +50,15 @@
             {% map_display_points object_list module.settings_instance.polygon %}
         </div>
     {% else %}
+
         <div class="module-content--light">
             <div class="container">
                 <div class="offset-lg-2 col-lg-8">
                     {% if object_list.count > 0 %}
-                        <ul class="u-list-reset">
-                            {% for object in object_list %}
-                                {% include "meinberlin_topicprio/includes/topic_list_item.html" with object=object %}
-                            {% endfor %}
-                        </ul>
+                        {% react_map_topics view.module %}
                     {% else %}
                         {% translate "Nothing to show" %}
                     {% endif %}
-
-                    {% include "meinberlin_contrib/includes/pagination.html" %}
                 </div>
             </div>
         </div>

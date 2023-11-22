@@ -108,6 +108,9 @@ module.exports = {
     react_map_teaser: {
       import: './meinberlin/react/plans/react_map_teaser.jsx'
     },
+    map_topics: {
+      import: './meinberlin/react/maptopicprio/react_map_topics_init.jsx'
+    },
     topics: {
       import: './meinberlin/react/topicprio/react_topics_init.jsx'
     },

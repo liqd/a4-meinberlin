@@ -92,9 +92,6 @@
 
 
                     <div class="lr-bar__right">
-                    {% if is_moderator and not module.blueprint_type in 'PB3,PB2,PB' %}
-                        {% popover_remark object %}
-                    {% endif %}
 
                     {% if request.user.is_authenticated %}
                         <div class="dropdown">

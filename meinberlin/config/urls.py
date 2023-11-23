@@ -25,6 +25,7 @@ from meinberlin.apps.contrib.sitemaps.static_sitemap import StaticSitemap
 from meinberlin.apps.documents.api import DocumentViewSet
 from meinberlin.apps.extprojects.api import ExternalProjectListViewSet
 from meinberlin.apps.ideas.api import IdeaViewSet
+from meinberlin.apps.kiezkasse.api import KiezkasseViewSet
 from meinberlin.apps.likes.api import LikesViewSet
 from meinberlin.apps.likes.routers import LikesDefaultRouter
 from meinberlin.apps.livequestions.api import LiveQuestionViewSet
@@ -62,6 +63,7 @@ module_router.register(r"ideas", IdeaViewSet, basename="ideas")
 module_router.register(r"mapideas", MapIdeaViewSet, basename="mapideas")
 module_router.register(r"topics", TopicViewSet, basename="topics")
 module_router.register(r"map-topics", MapTopicViewSet, basename="map-topics")
+module_router.register(r"kiezkasse-proposals", KiezkasseViewSet, basename="map-topics")
 
 likes_router = LikesDefaultRouter()
 likes_router.register(r"likes", LikesViewSet, basename="likes")

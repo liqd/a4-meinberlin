@@ -65,7 +65,9 @@ module_router.register(r"ideas", IdeaViewSet, basename="ideas")
 module_router.register(r"mapideas", MapIdeaViewSet, basename="mapideas")
 module_router.register(r"topics", TopicViewSet, basename="topics")
 module_router.register(r"map-topics", MapTopicViewSet, basename="map-topics")
-module_router.register(r"kiezkasse-proposals", KiezkasseViewSet, basename="map-topics")
+module_router.register(
+    r"kiezkasse-proposals", KiezkasseViewSet, basename="kiezkasse-proposals"
+)
 
 likes_router = LikesDefaultRouter()
 likes_router.register(r"likes", LikesViewSet, basename="likes")

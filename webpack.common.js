@@ -114,6 +114,9 @@ module.exports = {
     topics: {
       import: './meinberlin/react/topicprio/react_topics_init.jsx'
     },
+    kiezkasse_proposals: {
+      import: './meinberlin/react/kiezkasse/react_kiezkasse_proposals_init.jsx'
+    },
     wagtail: {
       import: './meinberlin/assets/js/wagtail.js'
     },

@@ -35,10 +35,10 @@ export const CardList = (props) => {
 
   return (
     <>
-      <h2 className="visually-hidden">{props.listStr}</h2>
+      <h2 className="aural">{props.listStr}</h2>
       {data?.results && data.results.length > 0
         ? (
-          <ul className="u-list-reset">
+          <ul className="list--clean">
             {data.results.map((item, idx) => (
               <li key={idx}>
                 <Card item={item} permissions={data?.permissions} currentPage={currentPage}>

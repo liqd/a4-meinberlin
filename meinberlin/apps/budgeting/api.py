@@ -9,11 +9,11 @@ from adhocracy4.modules.predicates import module_is_between_phases
 from adhocracy4.phases.predicates import has_feature_active
 from meinberlin.apps.contrib.filters import NoExceptionFilterBackend
 from meinberlin.apps.contrib.filters import OrderingFilterWithDailyRandom
+from meinberlin.apps.ideas.api import BaseIdeaViewSet
+from meinberlin.apps.ideas.api import IdeaFilterInfoMixin
+from meinberlin.apps.ideas.api import PermissionInfoMixin
 from meinberlin.apps.votes.filters import OwnVotesFilterBackend
 
-from ..ideas.api import BaseIdeaViewSet
-from ..ideas.api import IdeaFilterInfoMixin
-from ..ideas.api import PermissionInfoMixin
 from ..votes.api import VotingTokenInfoMixin
 from .filters import ProposalFilterSet
 from .models import Proposal

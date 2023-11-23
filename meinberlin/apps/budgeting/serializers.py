@@ -1,11 +1,10 @@
 from django.contrib.contenttypes.models import ContentType
 from rest_framework import serializers
 
+from meinberlin.apps.budgeting.models import Proposal
+from meinberlin.apps.ideas.serializers import IdeaSerializer
 from meinberlin.apps.votes.models import TokenVote
 from meinberlin.apps.votes.models import VotingToken
-
-from ..ideas.serializers import IdeaSerializer
-from .models import Proposal
 
 
 class ProposalSerializer(IdeaSerializer):

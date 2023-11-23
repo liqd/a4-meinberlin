@@ -1,8 +1,9 @@
 {% extends extends %}
-{% load i18n discovery_tags static maps_tags %}
+{% load i18n discovery_tags static maps_tags react_kiezkasse_proposals %}
 
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'a4maps_display_points.js' %}"></script>
+    <script type="text/javascript" src="{% static 'kiezkasse_proposals.js' %}"></script>
     {{ block.super }}
 {% endblock %}
 
@@ -58,23 +59,6 @@
             {% map_display_points object_list module.settings_instance.polygon %}
         </div>
     {% else %}
-        <div class="module-content--light">
-            <div class="container">
-                <div class="offset-lg-2 col-lg-8">
-                    {% if object_list.count > 0 %}
-                        <h2 class="visually-hidden">{% translate "Proposal list" %}</h2>
-                        <ul class="u-list-reset">
-                            {% for object in object_list %}
-                                {% include "meinberlin_ideas/includes/idea_list_item.html" with object=object %}
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        {% translate "Nothing to show" %}
-                    {% endif %}
-
-                    {% include "meinberlin_contrib/includes/pagination.html" %}
-                </div>
-            </div>
-        </div>
+        {% react_kiezkasse_proposals view.module %}
     {% endif %}
 {% endblock %}

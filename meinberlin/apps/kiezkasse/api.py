@@ -7,13 +7,12 @@ from adhocracy4.api.mixins import ModuleMixin
 from adhocracy4.modules.models import Module
 from meinberlin.apps.contrib.filters import NoExceptionFilterBackend
 from meinberlin.apps.contrib.filters import OrderingFilterWithDailyRandom
+from meinberlin.apps.ideas.api import BaseIdeaViewSet
+from meinberlin.apps.ideas.api import IdeaFilterInfoMixin
+from meinberlin.apps.ideas.api import PermissionInfoMixin
 from meinberlin.apps.ideas.filters import IdeaFilterSet
-
-from ..ideas.api import BaseIdeaViewSet
-from ..ideas.api import IdeaFilterInfoMixin
-from ..ideas.api import PermissionInfoMixin
-from .models import Proposal
-from .serializers import ProposalSerializer
+from meinberlin.apps.kiezkasse.models import Proposal
+from meinberlin.apps.kiezkasse.serializers import ProposalSerializer
 
 
 class KiezkasseViewSet(

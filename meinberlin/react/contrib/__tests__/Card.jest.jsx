@@ -1,5 +1,6 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
+import '@testing-library/jest-dom'
 import { Card } from '../Card'
 
 test('Card component with item name and link and comment count', () => {
@@ -66,4 +67,23 @@ test('Renders a link to item details', () => {
   expect(dislikes.textContent).toEqual('1Dislikes')
   expect(screen.getByText('My idea')).toBeTruthy()
   expect(screen.getByText('Item details')).toBeTruthy()
+})
+
+test('clicking on the title triggers the click event on the link', () => {
+  const idx = 123
+  const item = { name: 'Example Item', url: 'https://example.com' }
+
+  render(<Card idx={idx} item={item} permissions={[]} />)
+
+  // Spy on the click method to check if it's called
+  const clickSpy = jest.spyOn(document.getElementById('card-link-' + idx), 'click')
+
+  const title = screen.getByText(item.name)
+  fireEvent.click(title)
+
+  // Assert that the click event on the link has been triggered
+  expect(clickSpy).toHaveBeenCalled()
+
+  // Clean up the spy
+  clickSpy.mockRestore()
 })

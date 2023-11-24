@@ -20,3 +20,13 @@
 .card__footer--light {
     display: inline-flex;
 }
+
+// Needed for due to Bo js not working
+.card__header .title:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.card__link--hover {
+    text-decoration: underline !important; // BO overide
+}

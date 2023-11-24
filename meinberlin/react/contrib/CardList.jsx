@@ -41,7 +41,7 @@ export const CardList = (props) => {
           <ul className="u-list-reset">
             {data.results.map((item, idx) => (
               <li key={idx}>
-                <Card item={item} permissions={data?.permissions} currentPage={currentPage}>
+                <Card item={item} idx={idx} permissions={data?.permissions} currentPage={currentPage}>
                   {props.cardStatus &&
                     <CardStatus
                       pills={item.item_badges_for_list}

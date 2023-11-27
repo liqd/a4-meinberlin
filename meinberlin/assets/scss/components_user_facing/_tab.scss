@@ -1,0 +1,21 @@
+// Styling taken from BO button styling with some small adjustments
+.tab__button {
+    min-height: 43px;
+    width: auto;
+    padding: 10px 6px;
+    font-size: $em-spacer;
+    line-height: 1.2;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    overflow: visible;
+
+    margin-inline-end: $spacer;
+    letter-spacing: 0.5px; // added to reduce button width change on selected
+
+    &[aria-selected="true"] {
+        font-weight: bold;
+        letter-spacing: 0;
+        border-bottom: 3px solid $primary;
+    }
+}

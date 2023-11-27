@@ -1,28 +1,39 @@
-.swiper-phases {
-    .swiper-pagination-clickable {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+//style overwrites for detail phase component
+.swiper-navigation {
+    display: flex;
+    align-items: center;
+    background-color: $blue-dark;
+    color: $white;
+    padding-bottom: $spacer;
+}
 
-        .swiper-pagination-bullet {
-            width: 12px;
-            height: 12px;
-            margin: 0 $spacer * 0.75 !important;
-        }
+.swiper-pagination-clickable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: inherit !important;
 
-        .swiper-pagination-bullet-active {
-            background-color: $primary;
-            width: 16px;
-            height: 16px;
-            margin: 0 $spacer * 0.75 !important;
-        }
+    .swiper-pagination-bullet {
+        background: transparent !important;
+        color: $white !important;
+        font-size: small;
+        width: 20px !important;
+        height: 20px !important;
+        border: 1.5px solid $white;
+        opacity: 1;
     }
 
-    .swiper-pagination {
-        position: relative !important;
+    .swiper-pagination-bullet-active {
+        background: $white !important;
+        color: $blue-dark !important;
     }
+}
 
-    .swiper-pagination-bullets {
-        bottom: 0 !important;
-    }
+.swiper-button-prev {
+    padding-left: 0 !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    color: $white !important;
 }

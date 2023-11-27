@@ -75,6 +75,9 @@ module.exports = {
     ideas: {
       import: './meinberlin/react/ideas/react_ideas_init.jsx'
     },
+    map_ideas: {
+      import: './meinberlin/react/mapideas/react_mapideas_init.jsx'
+    },
     budget_proposals: {
       import: './meinberlin/react/budgeting/react_proposals_init.jsx'
     },

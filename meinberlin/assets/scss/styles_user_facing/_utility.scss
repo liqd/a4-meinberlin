@@ -1,4 +1,16 @@
 // styling of a4 utility classes
 .a4-sr-only {
-  @extend .aural;
+    @extend .aural;
+}
+
+// BO uses middle-space
+hr.no-space {
+    margin: 0;
+}
+
+// BO use of classes media query altered to suit linting
+@media print, (width >= 37.501rem) {
+    .row--reverse-palm {
+        flex-direction: row-reverse;
+    }
 }

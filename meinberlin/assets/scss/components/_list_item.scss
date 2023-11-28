@@ -9,15 +9,6 @@
     scroll-margin-top: 2 * $spacer;
 }
 
-.list-item--squashed {
-    border: 0;
-    margin-bottom: 8px;
-
-    @media print {
-        border: 1px solid $border-color;
-    }
-}
-
 .list-item--has-image {
     padding: 0;
 }
@@ -63,77 +54,11 @@
     font-size: $font-size-lg;
 }
 
-.list-item__subtitle {
-    margin-bottom: 0.3em;
-    font-size: $font-size-sm;
-}
-
-.list-item__link {
-    font-size: $font-size-sm;
-}
-
-.list-item__labels {
-    @include clearfix;
-    margin: 0 0 0.4rem;
-
-    > div.label,
-    > span.label {
-        margin-left: 0.2 * $spacer;
-        overflow: hidden;
-        max-width: 25ch; // cuts label text after approx 30char
-        text-overflow: ellipsis;
-        white-space: nowrap;
-
-        &.label--consideration,
-        &.label--qualified,
-        &.label--rejected,
-        &.label--accepted {
-            max-width: none;
-        }
-    }
-}   
-
-.list-item__author {
-    margin-right: 0.3em;
-    font-weight: bold;
-    display: block;
-
-    @media screen and (min-width: $breakpoint-xs) {
-        display: inline-block;
-    }
-}
-
 .list-item__action {
     display: inline;
-}
-
-.list-item .is-read-only {
-    padding: 0;
 }
 
 .list-item-empty {
     padding: 0.7em $padding;
     text-align: center;
-}
-
-.list-item__status--active {
-    color: $primary;
-}
-
-.list-item__header {
-    display: flex;
-    flex-direction: column-reverse;
-}
-
-@media screen and (min-width: $breakpoint-xs) {
-    .list-item__vote {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .list-item__header {
-        flex-direction: row;
-        justify-content: space-between;
-    }
 }

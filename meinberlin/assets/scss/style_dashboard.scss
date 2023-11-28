@@ -29,20 +29,20 @@
 // @import "components/accordion";
 @import "components/alert";
 @import "components/blocks";
-@import "components/breadcrumbs";
-@import "components/button";
+@import "components_dashboard/breadcrumbs";
+@import "components_dashboard/button";
 @import "components/category_formset";
 
 // @import "components/captcheck";
-@import "components/commenting";
-@import "components/complete";
+@import "components_dashboard/commenting";
+@import "components_dashboard/complete";
 @import "components_dashboard/component_library";
 @import "components_dashboard/control-bar";
 
 // @import "components/copyright";
 @import "components/ck_embed";
-@import "components/dashboard_nav";
-@import "components/datepicker";
+@import "components_dashboard/dashboard_nav";
+@import "components_dashboard/datepicker";
 @import "components/detail_info";
 @import "components/details";
 @import "components/dialogue_box";
@@ -52,7 +52,7 @@
 @import "components/dsgvo_video_embed";
 @import "components/embed_layout";
 @import "components/embed_status";
-@import "components/export_dashboard";
+@import "components_dashboard/export_dashboard";
 @import "components/filter_bar";
 
 // @import "components/follow";

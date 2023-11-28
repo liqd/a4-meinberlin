@@ -22,8 +22,8 @@ export const Pagination = (props) => {
   }
 
   return (
-    <nav aria-label={pageNavigationStr}>
-      <ul className="pagination btn-group">
+    <nav className="pagination" aria-label={pageNavigationStr}>
+      <ul>
         <PaginationButton
           type="prev"
           key="pagination-item-prev"

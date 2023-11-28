@@ -6,14 +6,19 @@ export const PaginationButton = (props) => {
     : undefined
 
   const itemClass = props.isActive
-    ? 'pagination__item active'
-    : 'pagination__item'
+    ? 'active'
+    : ''
 
   const getLabel = () => {
     if (props.type === 'num') {
       return props.pageIndex
     } else if (props.type === 'prev') {
-      return <i className="fa fa-chevron-left" aria-hidden="true" />
+      return (
+        <>
+          <i className="fa fa-chevron-left" aria-hidden="true" />
+          <span className="aural">{props.prevString}</span>
+        </>
+      )
     } else if (props.type === 'next') {
       return <i className="fa fa-chevron-right" aria-hidden="true" />
     }

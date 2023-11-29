@@ -13,12 +13,8 @@
 {% endblock %}
 
 {% block phase_content %}
-    <div class="container u-spacer-bottom u-spacer-top-double">
-        <div class="offset-lg-2 col-lg-8">
-            {% include "meinberlin_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
-        </div>
-    </div>
     {% if view.mode == 'map' %}
+    {% include "meinberlin_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
         <div class="map-list">
             <h2 class="visually-hidden">{% translate "Map of topics" %}</h2>
             <div class="map-list__controls">
@@ -50,17 +46,6 @@
             {% map_display_points object_list module.settings_instance.polygon %}
         </div>
     {% else %}
-
-        <div class="module-content--light">
-            <div class="container">
-                <div class="offset-lg-2 col-lg-8">
-                    {% if object_list.count > 0 %}
-                        {% react_map_topics view.module %}
-                    {% else %}
-                        {% translate "Nothing to show" %}
-                    {% endif %}
-                </div>
-            </div>
-        </div>
+        {% react_map_topics view.module %}
     {% endif %}
 {% endblock %}

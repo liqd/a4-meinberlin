@@ -16,16 +16,5 @@
 {% endblock %}
 
 {% block phase_content %}
-    <div class="container u-spacer-top-double">
-        <div class="offset-lg-2 col-lg-8">
-            {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
-        </div>
-    </div>
-    <div class="module-content--light">
-        <div class="container">
-            <div class="offset-lg-2 col-lg-8">
-                {% react_ideas view.module %}
-            </div>
-        </div>
-    </div>
+    {% react_ideas view.module %}
 {% endblock %}

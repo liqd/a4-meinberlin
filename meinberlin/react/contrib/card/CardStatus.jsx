@@ -1,8 +1,8 @@
 import React from 'react'
 import django from 'django'
 
-import { ModeratorStatus } from './ModeratorStatus'
-import { Pill } from './Pill'
+import { ModeratorStatus } from '../ModeratorStatus'
+import { Pill } from '../Pill'
 
 const translated = {
   more: django.gettext('More')

@@ -10,12 +10,14 @@
     top: -1em;
 }
 
-.control-bar__results {
-    font-weight: 700;
+.control-bar__list-map-switch-container {
+    display: inline-block;
+    text-align: left;
 }
 
 .control-bar__list-map-switch {
     display: flex;
+    justify-content: end;
     align-items: center;
 
     .button {

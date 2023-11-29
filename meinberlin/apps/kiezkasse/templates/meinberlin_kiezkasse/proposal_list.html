@@ -22,11 +22,6 @@
 {% endblock %}
 
 {% block phase_content %}
-    <div class="container u-spacer-bottom u-spacer-top-double">
-        <div class="offset-lg-2 col-lg-8">
-            {% include "meinberlin_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
-        </div>
-    </div>
     {% if view.mode == 'map' %}
         <div class="map-list">
             <h2 class="visually-hidden">{% translate "Map of proposals" %}</h2>

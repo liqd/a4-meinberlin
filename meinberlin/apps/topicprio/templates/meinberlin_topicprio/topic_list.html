@@ -7,20 +7,5 @@
 {% endblock %}
 
 {% block phase_content %}
-    <div class="container u-spacer-top-double">
-        <div class="offset-lg-2 col-lg-8">
-            {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
-        </div>
-    </div>
-    <div class="module-content--light">
-        <div class="container">
-            <div class="offset-lg-2 col-lg-8">
-                {% if object_list.count > 0 %}
-                    {% react_topics view.module %}
-                {% else %}
-                    {% translate "Nothing to show" %}
-                {% endif %}
-            </div>
-        </div>
-    </div>
+    {% react_topics view.module %}
 {% endblock %}

@@ -5,6 +5,7 @@ import { Card } from './Card'
 import { CardMeta } from './CardMeta'
 import { CardStatus } from './CardStatus'
 import { Pagination } from '../Pagination'
+import { ControlBar } from '../ControlBar'
 
 export const CardList = (props) => {
   const location = useLocation()
@@ -35,6 +36,10 @@ export const CardList = (props) => {
 
   return (
     <>
+      <ControlBar
+        filters={data?.filters}
+        numOfResults={data?.total_count}
+      />
       <h2 className="aural">{props.listStr}</h2>
       {data?.results && data.results.length > 0
         ? (

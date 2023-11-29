@@ -1,5 +1,5 @@
 import React from 'react'
-import { toLocaleDate } from './helpers'
+import { toLocaleDate } from '../helpers'
 
 export const CardMeta = (props) => {
   const { item } = props

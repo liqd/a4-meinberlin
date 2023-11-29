@@ -22,12 +22,9 @@
 {% endblock %}
 
 {% block phase_content %}
-    <div class="container u-spacer-bottom u-spacer-top-double">
-        <div class="offset-lg-2 col-lg-8">
-            {% include "meinberlin_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
-        </div>
-    </div>
+
     {% if view.mode == 'map' %}
+    {% include "meinberlin_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
         <h2 class="visually-hidden">{% translate "Map of ideas" %}</h2>
         <div class="map-list">
             <div class="map-list__controls">
@@ -67,14 +64,6 @@
             {% endif %}
         </div>
     {% else %}
-        <div class="module-content--light">
-            <div class="container">
-                <div class="offset-lg-2 col-lg-8">
-                    {% react_mapideas view.module %}
-
-                    {% include "meinberlin_contrib/includes/pagination.html" %}
-                </div>
-            </div>
-        </div>
+        {% react_mapideas view.module %}
     {% endif %}
 {% endblock %}

@@ -19,6 +19,7 @@ const pageHeader = django.gettext('Project overview')
 class PlansListMapBox extends Component {
   constructor (props) {
     super(props)
+    console.log(props)
 
     this.sortedItems = []
 
@@ -75,6 +76,7 @@ class PlansListMapBox extends Component {
         .then(response => response.json())
     ))
       .then(data => {
+      console.log(this.sortedItems)
         const mergedData = [].concat.apply([], data)
         const allItemsSorted = this.sortedItems.concat(this.sortItems(mergedData))
         this.sortedItems = allItemsSorted

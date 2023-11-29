@@ -157,12 +157,12 @@ export const ControlBar = (props) => {
         </div>
       </div>
 
-      <div className="form-actions">
-        <div className="form-actions__left">
+      <div className="row my-1">
+        <div className="span6">
           <div>
             {/* only show result string if list filtered or searched not just ordered */}
             {appliedFilters.length > 0 && (
-              <div className="control-bar__results">
+              <div className="text--strong">
                 {props.numOfResults >= 0 && getResultCountText(props.numOfResults)}
               </div>
             )}
@@ -172,7 +172,7 @@ export const ControlBar = (props) => {
             />
           </div>
         </div>
-        <div className="form-actions__right">
+        <div className="span6 align--right">
           <ControlBarListMapSwitch query={queryParams} />
         </div>
       </div>

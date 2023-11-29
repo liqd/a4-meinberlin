@@ -4,7 +4,7 @@ import django from 'django'
 import { Card } from './Card'
 import { CardMeta } from './CardMeta'
 import { CardStatus } from './CardStatus'
-import { Pagination } from './Pagination'
+import { Pagination } from '../Pagination'
 
 export const CardList = (props) => {
   const location = useLocation()

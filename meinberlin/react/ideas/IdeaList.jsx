@@ -1,6 +1,6 @@
 import React from 'react'
 import django from 'django'
-import { CardList } from '../contrib/CardList'
+import { CardList } from '../contrib/card/CardList'
 
 export const IdeaList = (props) => {
   const translations = {

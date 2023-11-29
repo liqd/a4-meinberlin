@@ -18,7 +18,7 @@ export const ControlBarFilterPills = ({ filters: _filters, onRemove }) => {
     <ul className="pill__list">
       {
         filters.map((filter) => {
-          const label = filter.label || filter.choices.find(c => c[0] === filter.value)[1]
+          const label = filter.label || filter.choices.find(choice => choice[0] === filter.value)[1]
           return (
             <Pill
               key={'pill_' + filter.type}

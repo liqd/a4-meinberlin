@@ -19,6 +19,8 @@ class APIPagination(PageNumberPagination):
     """
 
     page_size = 15
+    # Allow fetching of all items for the map view
+    page_size_query_param = "page_size"
 
     def get_paginated_response(self, data: Dict[str, Any]) -> Response:
         response = super(APIPagination, self).get_paginated_response(data)

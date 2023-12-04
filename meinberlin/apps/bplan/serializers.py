@@ -1,9 +1,10 @@
 import datetime
-import imghdr
+import mimetypes
 import posixpath
 import tempfile
 from urllib.parse import urlparse
 
+import magic
 import requests
 from django.apps import apps
 from django.conf import settings
@@ -91,8 +92,6 @@ class BplanSerializer(serializers.ModelSerializer):
         }
 
     def create(self, validated_data):
-        # FIXME: remove once debugged
-        print(validated_data)
         orga_pk = self._context.get("organisation_pk", None)
         orga_model = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
         orga = orga_model.objects.get(pk=orga_pk)
@@ -222,14 +221,15 @@ class BplanSerializer(serializers.ModelSerializer):
 
         root_path, extension = posixpath.splitext(url_path)
         if file:
-            # Workaround: imghdr expects the files position on 0
+            # Workaround: python-magic expects the files position on 0
             file.seek(0)
-            extension = imghdr.what(file) or "jpeg"
+            mimetype = magic.from_buffer(file.read(2048), mime=True)
+            extension = mimetypes.guess_extension(mimetype) or ".jpeg"
 
         basename = "bplan_%s" % (timezone.now().strftime("%Y%m%dT%H%M%S"))
 
         dirname = datetime.datetime.now().strftime(self._image_upload_to)
-        filename = posixpath.join(dirname, basename + "." + extension)
+        filename = posixpath.join(dirname, basename + extension)
 
         return self._image_storage.get_available_name(filename)
 

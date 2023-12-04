@@ -21,8 +21,5 @@ def test_list_view(client, phase_factory, map_idea_factory, area_settings_factor
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(response, "meinberlin_mapideas/mapidea_list.html")
-        assert mapidea in response.context_data["mapidea_list"]
-        assert mapidea_2 not in response.context_data["mapidea_list"]
-        assert response.context_data["mapidea_list"][0].comment_count == 0
-        assert response.context_data["mapidea_list"][0].positive_rating_count == 0
-        assert response.context_data["mapidea_list"][0].negative_rating_count == 0
+        assert response.context["project"] == project
+        assert response.context["module"] == module

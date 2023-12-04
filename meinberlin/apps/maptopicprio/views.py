@@ -7,38 +7,15 @@ from adhocracy4.exports.views import DashboardExportView
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
 from adhocracy4.labels import filters as label_filters
-from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.ideas import views as idea_views
-
-from . import forms
-from . import models
-
-
-def get_ordering_choices(view):
-    choices = (("-created", _("Most recent")),)
-    if view.module.has_feature("rate", models.MapTopic):
-        choices += (("-positive_rating_count", _("Most popular")),)
-    choices += (("-comment_count", _("Most commented")),)
-    return choices
+from meinberlin.apps.ideas.views import IdeaListView
+from meinberlin.apps.maptopicprio import forms
+from meinberlin.apps.maptopicprio import models
 
 
-class MapTopicFilterSet(a4_filters.DefaultsFilterSet):
-    defaults = {"ordering": "-created"}
-    ordering = a4_filters.DynamicChoicesOrderingFilter(choices=get_ordering_choices)
-
-    class Meta:
-        model = models.MapTopic
-        fields = ["category", "labels"]
-
-    def __init__(self, data, *args, **kwargs):
-        self.base_filters["category"] = category_filters.CategoryAliasFilter(
-            module=kwargs["view"].module, field_name="category"
-        )
-        self.base_filters["labels"] = label_filters.LabelAliasFilter(
-            module=kwargs["view"].module, field_name="labels"
-        )
-        super().__init__(data, *args, **kwargs)
+class MapTopicListView(IdeaListView):
+    template_name = "meinberlin_maptopicprio/maptopic_list.html"
 
 
 class MapTopicCreateFilterSet(a4_filters.DefaultsFilterSet):
@@ -62,20 +39,6 @@ class MapTopicDetailView(idea_views.AbstractIdeaDetailView):
         models.MapTopic.objects.annotate_positive_rating_count().annotate_negative_rating_count()
     )
     permission_required = "meinberlin_maptopicprio.view_maptopic"
-
-
-class MapTopicListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMixin):
-    model = models.MapTopic
-    filter_set = MapTopicFilterSet
-
-    def dispatch(self, request, **kwargs):
-        self.mode = request.GET.get("mode", "map")
-        if self.mode == "map":
-            self.paginate_by = 0
-        return super().dispatch(request, **kwargs)
-
-    def get_queryset(self):
-        return super().get_queryset().filter(module=self.module)
 
 
 class MapTopicListDashboardView(

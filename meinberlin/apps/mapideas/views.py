@@ -1,55 +1,15 @@
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
-from adhocracy4.categories import filters as category_filters
 from adhocracy4.exports.views import DashboardExportView
-from adhocracy4.filters import filters as a4_filters
-from adhocracy4.labels import filters as label_filters
-from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from meinberlin.apps.ideas import views as idea_views
-
-from . import forms
-from . import models
-
-
-def get_ordering_choices(view):
-    choices = (("-created", _("Most recent")),)
-    if view.module.has_feature("rate", models.MapIdea):
-        choices += (("-positive_rating_count", _("Most popular")),)
-    choices += (("-comment_count", _("Most commented")),)
-    return choices
+from meinberlin.apps.ideas.views import IdeaListView
+from meinberlin.apps.mapideas import forms
+from meinberlin.apps.mapideas import models
 
 
-class MapIdeaFilterSet(a4_filters.DefaultsFilterSet):
-    defaults = {"ordering": "-created"}
-    ordering = a4_filters.DynamicChoicesOrderingFilter(choices=get_ordering_choices)
-
-    class Meta:
-        model = models.MapIdea
-        fields = ["category", "labels"]
-
-    def __init__(self, data, *args, **kwargs):
-        self.base_filters["category"] = category_filters.CategoryAliasFilter(
-            module=kwargs["view"].module, field_name="category"
-        )
-        self.base_filters["labels"] = label_filters.LabelAliasFilter(
-            module=kwargs["view"].module, field_name="labels"
-        )
-        super().__init__(data, *args, **kwargs)
-
-
-class MapIdeaListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMixin):
-    model = models.MapIdea
-    filter_set = MapIdeaFilterSet
-
-    def dispatch(self, request, **kwargs):
-        self.mode = request.GET.get("mode", "map")
-        if self.mode == "map":
-            self.paginate_by = 0
-        return super().dispatch(request, **kwargs)
-
-    def get_queryset(self):
-        return super().get_queryset().filter(module=self.module)
+class MapIdeaListView(IdeaListView):
+    template_name = "meinberlin_mapideas/mapidea_list.html"
 
 
 class MapIdeaDetailView(idea_views.AbstractIdeaDetailView):

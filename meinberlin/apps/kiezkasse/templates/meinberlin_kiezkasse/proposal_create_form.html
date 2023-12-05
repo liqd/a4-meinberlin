@@ -20,16 +20,6 @@
 {% endblock %}
 {% block content %}
 <div id="layout-grid__area--maincontent">
-    <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
-        <ul>
-            <li>
-                <a href="{{ module.get_detail_url }}">
-                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                    {% translate 'go back' %}</a>
-            </li>
-        </ul>
-    </nav>
-
     <h1>{% translate 'Submit a new proposal for this project' %}</h1>
 
     {% if form.errors %}

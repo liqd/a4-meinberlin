@@ -23,27 +23,26 @@
 
 {% block content %}
 <div id="layout-grid__area--maincontent">
-    <div class="offset-lg-3 col-lg-6">
-        <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
-            <ul>
-                <li>
-                    <a href="{{ paragraph.chapter.get_absolute_url }}">
-                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% translate 'back to chapter' %}</a>
-                </li>
-            </ul>
-        </nav>
+    <!-- FIXME left in as template tag maybe useful, to be removed before release if not -->
+    <!-- <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
+        <ul>
+            <li>
+                <a href="{{ paragraph.chapter.get_absolute_url }}">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    {% translate 'back to chapter' %}</a>
+            </li>
+        </ul>
+    </nav> -->
 
-        <article class="item-detail">
-            <h1 class="item-detail__title">
-                {{ paragraph.name }}
-            </h1>
-            <div class="item-detail__content ck-content">
-                {{ paragraph.text | richtext }}
-            </div>
-        </article>
+    <article class="item-detail">
+        <h1 class="item-detail__title">
+            {{ paragraph.name }}
+        </h1>
+        <div class="item-detail__content ck-content">
+            {{ paragraph.text | richtext }}
+        </div>
+    </article>
 
-        {% react_comments_async paragraph %}
-    </div>
+    {% react_comments_async paragraph %}
 </div>
 {% endblock %}

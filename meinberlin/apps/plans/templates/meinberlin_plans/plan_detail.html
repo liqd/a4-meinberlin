@@ -35,6 +35,7 @@
         <div id="content-header">
             <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
                 <ol>
+                    <li><a href="/">meinBerlin</a></li>
                     <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a></li>
                     <li class="active" aria-current="page">{{ object.title|truncatechars:50 }}</li>
                 </ol>

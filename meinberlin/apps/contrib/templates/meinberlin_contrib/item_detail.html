@@ -22,242 +22,241 @@
 
 {% block content %}
 <div id="layout-grid__area--maincontent">
-    <div class="offset-lg-3 col-lg-6">
-        <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
-            <ul>
-                <li>
-                    {% if back %}
-                    <a href="{{ back }}">
-                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% if back_string %}
-                            {{ back_string }}
-                        {% else %}
-                            {% translate 'map' %}
-                        {% endif %}
-                    </a>
+    <!-- FIXME left in as the back template tag maybe useful but not sure yet, to be removed before release if not used -->
+    <!-- <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
+        <ul>
+            <li>
+                {% if back %}
+                <a href="{{ back }}">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    {% if back_string %}
+                        {{ back_string }}
                     {% else %}
-                    <a href="{{ module.get_detail_url }}">
-                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% translate 'back' %}
-                    </a>
+                        {% translate 'map' %}
                     {% endif %}
-                </li>
-            </ul>
-        </nav>
-        <article >
-            <div class="item-detail">
-                <h1 class="item-detail__title">{{ object.name }}</h1>
+                </a>
+                {% else %}
+                <a href="{{ module.get_detail_url }}">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    {% translate 'back' %}
+                </a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav> -->
+    <article >
+        <div class="item-detail">
+            <h1 class="item-detail__title">{{ object.name }}</h1>
 
-                {% include "meinberlin_contrib/includes/item_detail_labels.html" with object=object %}
+            {% include "meinberlin_contrib/includes/item_detail_labels.html" with object=object %}
 
-                <div class="item-detail__content">
-                    <div class="item-detail__basic-content">
-                        <img class="item-detail__hero-image" src="{% thumbnail object.image 'item_image' %}" alt="">
-                        {{ object.description | richtext }}
-                    </div>
-
-                    {% block additional_content %}{% endblock %}
+            <div class="item-detail__content">
+                <div class="item-detail__basic-content">
+                    <img class="item-detail__hero-image" src="{% thumbnail object.image 'item_image' %}" alt="">
+                    {{ object.description | richtext }}
                 </div>
 
-                <div class="item-detail__meta lr-bar">
-                    <div class="lr-bar__left">
-                        <strong class="item-detail__creator">{{ object.creator.username }}</strong>
-                        {% if object.modified %}
-                            {% translate 'updated on ' %}{% html_date object.modified class='list-item__date' %}
-                        {% else %}
-                            {% translate 'created on ' %}{% html_date object.created class='list-item__date' %}
-                        {% endif %}
-                    </div>
-                    <div class="lr-bar__right item-detail__ref">
-                        <strong>{% translate 'Reference No.' %}:</strong>
-                        {{ object.reference_number }}
-                    </div>
-                </div>
+                {% block additional_content %}{% endblock %}
+            </div>
 
-                <div class="item-detail__actions lr-bar">
-                    {% block ratings %}
-                        {% if object|has_feature:"rate" %}
-                            <div class="lr-bar__left">
-                                {% react_ratings object %}
-                            </div>
-                        {% endif %}
-                    {% endblock %}
-
-                    {% get_item_change_permission object as change_perm %}
-                    {% has_perm change_perm request.user object as user_may_change %}
-                    {% get_item_permission object 'moderate' as moderate_perm %}
-                    {% has_perm moderate_perm request.user object as is_moderator %}
-
-
-                    <div class="lr-bar__right">
-
-                    {% if request.user.is_authenticated %}
-                        <div class="dropdown">
-                            <button
-                                    title="{% translate 'Actions' %}"
-                                    type="button"
-                                    class="dropdown-toggle btn btn--light btn--small"
-                                    data-bs-toggle="dropdown"
-                                    data-flip="false"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                    id="idea-{{ object.pk }}-actions"
-                            >
-                                <i class="fa fa-ellipsis-h" aria-label="{% translate 'Actions' %}"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="idea-{{ object.pk }}-actions">
-                                {% if user_may_change %}
-                                    {% get_item_update_url object as change_url %}
-                                    <a class="dropdown-item" href="{{ change_url }}">{% translate 'edit' %}</a>
-                                    {% get_item_delete_url object as delete_url %}
-                                    <a class="dropdown-item" href="{{ delete_url }}">{% translate 'delete' %}</a>
-                                {% endif %}
-                                {% get_item_url object 'moderate' False as moderate_url %}
-                                {% if is_moderator and moderate_url %}
-                                    <a class="dropdown-item" href="{{ moderate_url }}">{% translate 'moderate' %}</a>
-                                {% endif %}
-
-                                {% block dropdown_items %}{% endblock %}
-                                <li>
-                                    {% translate 'report' as report_text %}
-                                    {% react_reports object text=report_text class='dropdown-item' %}
-                                </li>
-                            </div>
-                        </div>
+            <div class="item-detail__meta lr-bar">
+                <div class="lr-bar__left">
+                    <strong class="item-detail__creator">{{ object.creator.username }}</strong>
+                    {% if object.modified %}
+                        {% translate 'updated on ' %}{% html_date object.modified class='list-item__date' %}
+                    {% else %}
+                        {% translate 'created on ' %}{% html_date object.created class='list-item__date' %}
                     {% endif %}
-                    </div>
+                </div>
+                <div class="lr-bar__right item-detail__ref">
+                    <strong>{% translate 'Reference No.' %}:</strong>
+                    {{ object.reference_number }}
                 </div>
             </div>
-            {% block vote_button %}{% endblock %}
 
-            {% block moderator_feedback %}
-            {% if object.moderator_feedback_text.feedback_text or object.moderator_status or is_moderator  %}
-                    <section class="detail-info__accordion">
-                        <details class="accordion" open>
-                            <summary class="detail-info__accordion-title">
-                                <h2 class="detail-info__title">{% translate 'Feedback' %}</h2>
-                                    {% if is_moderator %}
-                                        {% get_item_url object 'moderate' False as moderate_url %}
-                                        {% if moderate_url %}
-                                        <div class="detail-info__edit-btn">
-                                            <a
-                                                href="{{ moderate_url }}"
-                                                class="btn btn--small detail-info__btn"
-                                                data-embed-target="external">
-                                                    <i class="fas fa-pencil" aria-hidden="true"></i>
-                                                    {% translate 'Edit' %}
-                                            </a>
-                                        </div>
-                                        {% endif %}
-                                    {% endif %}
-                                {% if object.moderator_feedback_text.feedback_text or object.moderator_status %}
-                                    <i class="fa fa-chevron-down detail-info__collapse-btn" aria-hidden="true"></i>
-                                {% endif %}
-                            </summary>
-                            {% if object.moderator_feedback_text.feedback_text or object.moderator_status %}
-                            <div class="detail-info__accordion-body">
-                                {% if object.moderator_status %}
-                                    {% with feedback_classification=object.moderator_status|classify|lower %}
-                                        <h3 class="detail-info__section-title">{% translate 'Status' %}</h3>
-                                        <div class="detail-info__status-line--{{ feedback_classification }}"></div>
-                                        <div class="detail-info__status-icon--{{ feedback_classification }}">
-                                            {% if feedback_classification == 'consideration' or feedback_classification == 'qualified' %}
-                                                <i class="fa-solid fa-circle-half-stroke fa-rotate-270"></i>
-                                            {% elif feedback_classification == 'rejected' %}
-                                                <i class="fa-solid fa-circle-xmark"></i>
-                                            {% elif feedback_classification == 'accepted' %}
-                                                <i class="fas fa-check-circle"></i>
-                                            {% endif%}
-                                            <span class="detail-info__status-label">
-                                                {{ object.get_moderator_status_display }}
-                                            </span>
-                                        </div>
-                                    {% endwith %}
-                                {% endif %}
-                                {% if object.moderator_feedback_text.feedback_text %}
-                                <div class="detail-info__section--no-border">
-                                    <strong class="u-spacer-right">
-                                        {{ object.module.project.organisation.name }}
-                                    </strong>
-                                    {% if object.moderator_feedback_text.modified %}
-                                    {% translate 'updated on ' %}{% html_date object.moderator_feedback_text.modified %}
-                                    {% else %}
-                                    {% translate 'created on ' %}{% html_date object.moderator_feedback_text.created %}
-                                    {% endif %}
-                                </div>
-                                {% endif %}
-                                <p class="u-spacer-top-half">
-                                    {{ object.moderator_feedback_text.feedback_text | safe }}
-                                </p>
-                            </div>
+            <div class="item-detail__actions lr-bar">
+                {% block ratings %}
+                    {% if object|has_feature:"rate" %}
+                        <div class="lr-bar__left">
+                            {% react_ratings object %}
+                        </div>
+                    {% endif %}
+                {% endblock %}
+
+                {% get_item_change_permission object as change_perm %}
+                {% has_perm change_perm request.user object as user_may_change %}
+                {% get_item_permission object 'moderate' as moderate_perm %}
+                {% has_perm moderate_perm request.user object as is_moderator %}
+
+
+                <div class="lr-bar__right">
+
+                {% if request.user.is_authenticated %}
+                    <div class="dropdown">
+                        <button
+                                title="{% translate 'Actions' %}"
+                                type="button"
+                                class="dropdown-toggle btn btn--light btn--small"
+                                data-bs-toggle="dropdown"
+                                data-flip="false"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                id="idea-{{ object.pk }}-actions"
+                        >
+                            <i class="fa fa-ellipsis-h" aria-label="{% translate 'Actions' %}"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="idea-{{ object.pk }}-actions">
+                            {% if user_may_change %}
+                                {% get_item_update_url object as change_url %}
+                                <a class="dropdown-item" href="{{ change_url }}">{% translate 'edit' %}</a>
+                                {% get_item_delete_url object as delete_url %}
+                                <a class="dropdown-item" href="{{ delete_url }}">{% translate 'delete' %}</a>
                             {% endif %}
-                        </details>
-                    </section>
-            {% endif %}
-        {% endblock %}
+                            {% get_item_url object 'moderate' False as moderate_url %}
+                            {% if is_moderator and moderate_url %}
+                                <a class="dropdown-item" href="{{ moderate_url }}">{% translate 'moderate' %}</a>
+                            {% endif %}
 
-        {% block moderation_info %}
-            {% if is_moderator and module.blueprint_type in 'PB3,PB2,PB' %}
+                            {% block dropdown_items %}{% endblock %}
+                            <li>
+                                {% translate 'report' as report_text %}
+                                {% react_reports object text=report_text class='dropdown-item' %}
+                            </li>
+                        </div>
+                    </div>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+        {% block vote_button %}{% endblock %}
+
+        {% block moderator_feedback %}
+        {% if object.moderator_feedback_text.feedback_text or object.moderator_status or is_moderator  %}
                 <section class="detail-info__accordion">
                     <details class="accordion" open>
                         <summary class="detail-info__accordion-title">
-                            <h2 class="detail-info__title">{% translate 'Moderation' %}</h2>
-                            {% get_item_url object 'moderate' False as moderate_url %}
-                            {% if moderate_url %}
-                            <div class="detail-info__edit-btn">
-                                <a
-                                    href="{{ moderate_url }}"
-                                    class="btn btn--small detail-info__btn"
-                                    data-embed-target="external">
-                                        <i class="fas fa-pencil" aria-hidden="true"></i>
-                                        {% translate 'Edit' %}
-                                </a>
+                            <h2 class="detail-info__title">{% translate 'Feedback' %}</h2>
+                                {% if is_moderator %}
+                                    {% get_item_url object 'moderate' False as moderate_url %}
+                                    {% if moderate_url %}
+                                    <div class="detail-info__edit-btn">
+                                        <a
+                                            href="{{ moderate_url }}"
+                                            class="btn btn--small detail-info__btn"
+                                            data-embed-target="external">
+                                                <i class="fas fa-pencil" aria-hidden="true"></i>
+                                                {% translate 'Edit' %}
+                                        </a>
+                                    </div>
+                                    {% endif %}
+                                {% endif %}
+                            {% if object.moderator_feedback_text.feedback_text or object.moderator_status %}
+                                <i class="fa fa-chevron-down detail-info__collapse-btn" aria-hidden="true"></i>
+                            {% endif %}
+                        </summary>
+                        {% if object.moderator_feedback_text.feedback_text or object.moderator_status %}
+                        <div class="detail-info__accordion-body">
+                            {% if object.moderator_status %}
+                                {% with feedback_classification=object.moderator_status|classify|lower %}
+                                    <h3 class="detail-info__section-title">{% translate 'Status' %}</h3>
+                                    <div class="detail-info__status-line--{{ feedback_classification }}"></div>
+                                    <div class="detail-info__status-icon--{{ feedback_classification }}">
+                                        {% if feedback_classification == 'consideration' or feedback_classification == 'qualified' %}
+                                            <i class="fa-solid fa-circle-half-stroke fa-rotate-270"></i>
+                                        {% elif feedback_classification == 'rejected' %}
+                                            <i class="fa-solid fa-circle-xmark"></i>
+                                        {% elif feedback_classification == 'accepted' %}
+                                            <i class="fas fa-check-circle"></i>
+                                        {% endif%}
+                                        <span class="detail-info__status-label">
+                                            {{ object.get_moderator_status_display }}
+                                        </span>
+                                    </div>
+                                {% endwith %}
+                            {% endif %}
+                            {% if object.moderator_feedback_text.feedback_text %}
+                            <div class="detail-info__section--no-border">
+                                <strong class="u-spacer-right">
+                                    {{ object.module.project.organisation.name }}
+                                </strong>
+                                {% if object.moderator_feedback_text.modified %}
+                                {% translate 'updated on ' %}{% html_date object.moderator_feedback_text.modified %}
+                                {% else %}
+                                {% translate 'created on ' %}{% html_date object.moderator_feedback_text.created %}
+                                {% endif %}
                             </div>
                             {% endif %}
-                            <i class="fa fa-chevron-down detail-info__collapse-btn" aria-hidden="true"></i>
-                        </summary>
-                        {% if object.module.moderationtask_set or object.remark.remark %}
-                        <div class="detail-info__accordion-body">
-                            <h3 class="detail-info__section-title">{% translate 'Moderation tasks' %}</h3>
-                            {% if object.module.moderationtask_set.count > 0 %}
-                                <ul class="u-list-reset">
-                                {% for task in object.module.moderationtask_set.all %}
-                                    <li class="detail-info__list-item">
-                                    {% if task in object.completed_tasks.all %}
-                                        <i class="fas fa-circle-check u-success" aria-role="img" aria-label="{% translate 'Done' %}"></i>
-                                        {{ task.name }}
-                                    {% else %}
-                                        <span class="u-muted">{{ task.name }}</span>
-                                    {% endif %}
-                                    </li>
-                                {% endfor %}
-                                </ul>
-                            {% else %}
-                                <p class="u-muted">
-                                    {% translate 'If you want to add moderation tasks here, you can do so in the module settings.' %}
-                                </p>
-                            {% endif %}
-                            <h3 class="detail-info__section-title">{% translate 'Remark' %}</h3>
-                            {% if object.remark.remark %}
-                                <p>
-                                    {{ object.remark.remark }}
-                                </p>
-                            {% else %}
-                                <p class="u-muted">
-                                    {% translate 'No moderation remark has been filled yet.' %}
-                                </p>
-                            {% endif %}
+                            <p class="u-spacer-top-half">
+                                {{ object.moderator_feedback_text.feedback_text | safe }}
+                            </p>
                         </div>
                         {% endif %}
                     </details>
                 </section>
-            {% endif %}
-        {% endblock %}
-            <section>
-                <h2 class="visually-hidden">{% translate 'Comments' %}</h2>
-                {% react_comments_async object %}
+        {% endif %}
+    {% endblock %}
+
+    {% block moderation_info %}
+        {% if is_moderator and module.blueprint_type in 'PB3,PB2,PB' %}
+            <section class="detail-info__accordion">
+                <details class="accordion" open>
+                    <summary class="detail-info__accordion-title">
+                        <h2 class="detail-info__title">{% translate 'Moderation' %}</h2>
+                        {% get_item_url object 'moderate' False as moderate_url %}
+                        {% if moderate_url %}
+                        <div class="detail-info__edit-btn">
+                            <a
+                                href="{{ moderate_url }}"
+                                class="btn btn--small detail-info__btn"
+                                data-embed-target="external">
+                                    <i class="fas fa-pencil" aria-hidden="true"></i>
+                                    {% translate 'Edit' %}
+                            </a>
+                        </div>
+                        {% endif %}
+                        <i class="fa fa-chevron-down detail-info__collapse-btn" aria-hidden="true"></i>
+                    </summary>
+                    {% if object.module.moderationtask_set or object.remark.remark %}
+                    <div class="detail-info__accordion-body">
+                        <h3 class="detail-info__section-title">{% translate 'Moderation tasks' %}</h3>
+                        {% if object.module.moderationtask_set.count > 0 %}
+                            <ul class="u-list-reset">
+                            {% for task in object.module.moderationtask_set.all %}
+                                <li class="detail-info__list-item">
+                                {% if task in object.completed_tasks.all %}
+                                    <i class="fas fa-circle-check u-success" aria-role="img" aria-label="{% translate 'Done' %}"></i>
+                                    {{ task.name }}
+                                {% else %}
+                                    <span class="u-muted">{{ task.name }}</span>
+                                {% endif %}
+                                </li>
+                            {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p class="u-muted">
+                                {% translate 'If you want to add moderation tasks here, you can do so in the module settings.' %}
+                            </p>
+                        {% endif %}
+                        <h3 class="detail-info__section-title">{% translate 'Remark' %}</h3>
+                        {% if object.remark.remark %}
+                            <p>
+                                {{ object.remark.remark }}
+                            </p>
+                        {% else %}
+                            <p class="u-muted">
+                                {% translate 'No moderation remark has been filled yet.' %}
+                            </p>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </details>
             </section>
-        </article>
-    </div>
+        {% endif %}
+    {% endblock %}
+        <section>
+            <h2 class="visually-hidden">{% translate 'Comments' %}</h2>
+            {% react_comments_async object %}
+        </section>
+    </article>
 </div>
 {% endblock %}

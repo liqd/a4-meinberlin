@@ -23,31 +23,14 @@
 
 {% block content %}
 <div id="layout-grid__area--maincontent">
-    <div class="offset-lg-3 col-lg-6">
-        <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
-            <ul>
-                <li>
-                    <a href="{{ module.get_detail_url }}">
-                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% translate 'map' %}</a>
-                </li>
-                <li>
-                    <a href="{{ object.get_absolute_url }}">
-                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% translate 'proposal' %}</a>
-                </li>
-            </ul>
-        </nav>
+    <h1>{% translate 'Edit proposal' %}</h1>
 
-        <h1>{% translate 'Edit proposal' %}</h1>
-
-        {% if form.errors %}
-        <div class="alert alert--danger" aria-live="assertive" aria-atomic="true" id="alert">
-            {% translate 'An error occurred while evaluating your data. Please check the data you entered again.' %}
-        </div>
-        {% endif %}
-
-        {% include "meinberlin_budgeting/includes/proposal_form.html" with proposal=proposal cancel=object.get_absolute_url %}
+    {% if form.errors %}
+    <div class="alert alert--danger" aria-live="assertive" aria-atomic="true" id="alert">
+        {% translate 'An error occurred while evaluating your data. Please check the data you entered again.' %}
     </div>
+    {% endif %}
+
+    {% include "meinberlin_budgeting/includes/proposal_form.html" with proposal=proposal cancel=object.get_absolute_url %}
 </div>
 {% endblock %}

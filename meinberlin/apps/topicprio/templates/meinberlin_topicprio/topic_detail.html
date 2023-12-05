@@ -22,48 +22,36 @@
 
 {% block content %}
 <div id="layout-grid__area--maincontent">
-    <div class="offset-lg-3 col-lg-6">
-        <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
-            <ul>
-                <li>
-                    <a href="{{ module.get_detail_url }}">
-                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% translate 'back' %}
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <article class="item-detail">
-            <h1 class="item-detail__title">{{ object.name }}</h1>
+    <article class="item-detail">
+        <h1 class="item-detail__title">{{ object.name }}</h1>
 
-            {% include "meinberlin_contrib/includes/item_detail_labels.html" with object=object %}
+        {% include "meinberlin_contrib/includes/item_detail_labels.html" with object=object %}
 
-            <div class="item-detail__content">
-                <div class="item-detail__basic-content">
-                    <img class="item-detail__hero-image" src="{% thumbnail object.image 'item_image' %}" alt="">
-                    {{ object.description | richtext }}
+        <div class="item-detail__content">
+            <div class="item-detail__basic-content">
+                <img class="item-detail__hero-image" src="{% thumbnail object.image 'item_image' %}" alt="">
+                {{ object.description | richtext }}
+            </div>
+        </div>
+
+        <div class="item-detail__meta lr-bar">
+            <div class="lr-bar__right">
+                <strong>{% translate 'Reference No.' %}:</strong>
+                {{ object.reference_number }}
+            </div>
+        </div>
+
+        <div class="item-detail__actions lr-bar">
+            {% if object|has_feature:"rate" %}
+                <div class="lr-bar__left">
+                    {% react_ratings object %}
                 </div>
-            </div>
-
-            <div class="item-detail__meta lr-bar">
-                <div class="lr-bar__right">
-                    <strong>{% translate 'Reference No.' %}:</strong>
-                    {{ object.reference_number }}
-                </div>
-            </div>
-
-            <div class="item-detail__actions lr-bar">
-                {% if object|has_feature:"rate" %}
-                    <div class="lr-bar__left">
-                        {% react_ratings object %}
-                    </div>
-                {% endif %}
-            </div>
-        </article>
-        <section class="offset-lg-3 col-lg-6">
-            <h2 class="visually-hidden">{% translate 'Comments' %}</h2>
-            {% react_comments_async object %}
-        </section>
-    </div>
+            {% endif %}
+        </div>
+    </article>
+    <section class="offset-lg-3 col-lg-6">
+        <h2 class="visually-hidden">{% translate 'Comments' %}</h2>
+        {% react_comments_async object %}
+    </section>
 </div>
 {% endblock %}

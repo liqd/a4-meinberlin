@@ -12,7 +12,6 @@ def add_topics_to_m2m_table(apps, schema_editor):
             for topic_code in plan.topics:
                 plan.m2mtopics.create(
                     code=topic_code,
-                    name=[item[1] for item in topicsenum if item[0] == topic_code][0],
                 )
     else:
         pass

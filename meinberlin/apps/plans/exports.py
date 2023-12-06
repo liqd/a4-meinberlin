@@ -79,9 +79,7 @@ class DashboardPlanExportView(
         return ""
 
     def get_topics_data(self, item):
-        if item.topics.all():
-            return ", \n".join([topic.name for topic in item.topics.all()])
-        return ""
+        return ", \n".join([str(topic) for topic in item.topics.all()])
 
     def get_projects_links_data(self, item):
         if item.projects.all():

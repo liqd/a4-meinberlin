@@ -89,8 +89,8 @@ class PlanListView(rules_mixins.PermissionRequiredMixin, generic.ListView):
     def get_topics(self):
         topics = getattr(settings, "A4_PROJECT_TOPICS", None)
         if topics:
-            topic_dict = dict((x, str(y)) for x, y in topics)
-            return json.dumps(topic_dict)
+            # default=str needed to force gettext_lazy evaluation
+            return json.dumps(topics, default=str)
         else:
             raise ImproperlyConfigured("set A4_PROJECT_TOPICS in settings")
 

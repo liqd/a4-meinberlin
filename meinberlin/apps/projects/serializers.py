@@ -8,7 +8,6 @@ from rest_framework import serializers
 
 from adhocracy4.phases.models import Phase
 from adhocracy4.projects.models import Project
-from adhocracy4.projects.models import Topic
 from meinberlin.apps.plans.models import Plan
 
 
@@ -39,12 +38,6 @@ class CommonFields:
         return fields.DateTimeField().to_representation(instance.created)
 
 
-class TopicSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Topic
-        fields = ["code", "name"]
-
-
 class ProjectSerializer(serializers.ModelSerializer, CommonFields):
     active_phase = serializers.SerializerMethodField()
     cost = serializers.SerializerMethodField()
@@ -69,7 +62,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
     title = serializers.SerializerMethodField()
     type = serializers.SerializerMethodField()
     url = serializers.SerializerMethodField()
-    topics = TopicSerializer(many=True)
+    topics = serializers.SerializerMethodField()
 
     def __init__(self, *args, **kwargs):
         self.now = kwargs.pop("now")
@@ -105,6 +98,9 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
             "type",
             "url",
         ]
+
+    def get_topics(self, instance):
+        return [topic.code for topic in instance.topics.all()]
 
     @lru_cache(maxsize=1)
     def _get_participation_status_project(self, instance):

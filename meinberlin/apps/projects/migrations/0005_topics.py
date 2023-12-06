@@ -7,8 +7,8 @@ from django.db import migrations
 def add_topics(apps, schema_editor):
     if hasattr(settings, "A4_PROJECT_TOPICS"):
         Topic = apps.get_model("a4projects", "Topic")
-        for topic in settings.A4_PROJECT_TOPICS:
-            Topic.objects.get_or_create(code=topic[0], name=topic[1])
+        for code, _ in settings.A4_PROJECT_TOPICS.items():
+            Topic.objects.get_or_create(code=code)
 
 
 def reverse_func(apps, schema_editor):

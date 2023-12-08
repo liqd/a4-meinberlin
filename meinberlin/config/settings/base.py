@@ -519,14 +519,7 @@ CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 CELERY_RESULT_EXTENDED = True
 CELERY_TIMEZONE = "Europe/Berlin"
 
-customColorPalette = [
-    {"color": "hsl(4, 90%, 58%)", "label": "Red"},
-    {"color": "hsl(340, 82%, 52%)", "label": "Pink"},
-    {"color": "hsl(291, 64%, 42%)", "label": "Purple"},
-    {"color": "hsl(262, 52%, 47%)", "label": "Deep Purple"},
-    {"color": "hsl(231, 48%, 48%)", "label": "Indigo"},
-    {"color": "hsl(207, 90%, 54%)", "label": "Blue"},
-]
+# CKEditor config
 CKEDITOR_5_FILE_STORAGE = "adhocracy4.ckeditor.storage.CustomStorage"
 CKEDITOR_5_PATH_FROM_USERNAME = True
 CKEDITOR_5_ALLOW_ALL_FILE_TYPES = True
@@ -543,6 +536,13 @@ CKEDITOR_5_CONFIGS = {
             "numberedList",
             "blockQuote",
         ],
+        "list": {
+            "properties": {
+                "styles": "true",
+                "startIndex": "true",
+                "reversed": "true",
+            }
+        },
         "link": {"defaultProtocol": "https://"},
     },
     "image-editor": {
@@ -554,7 +554,6 @@ CKEDITOR_5_CONFIGS = {
                 "bulletedList",
                 "numberedList",
                 "link",
-                "blockQuote",
                 "imageUpload",
                 "fileUpload",
             ],
@@ -570,7 +569,15 @@ CKEDITOR_5_CONFIGS = {
                 "imageStyle:breakText",
                 "imageStyle:alignLeft",
                 "imageStyle:alignRight",
-            ]
+            ],
+            "insert": {"type": "auto"},
+        },
+        "list": {
+            "properties": {
+                "styles": "true",
+                "startIndex": "true",
+                "reversed": "true",
+            }
         },
         "link": {"defaultProtocol": "https://"},
     },
@@ -582,7 +589,6 @@ CKEDITOR_5_CONFIGS = {
             "bulletedList",
             "numberedList",
             "link",
-            "blockQuote",
             "imageUpload",
             "fileUpload",
             "mediaEmbed",
@@ -599,7 +605,15 @@ CKEDITOR_5_CONFIGS = {
                 "imageStyle:breakText",
                 "imageStyle:alignLeft",
                 "imageStyle:alignRight",
-            ]
+            ],
+            "insert": {"type": "auto"},
+        },
+        "list": {
+            "properties": {
+                "styles": "true",
+                "startIndex": "true",
+                "reversed": "true",
+            }
         },
         "link": {"defaultProtocol": "https://"},
         "mediaEmbed": {
@@ -614,20 +628,6 @@ CKEDITOR_5_CONFIGS = {
             ],
             "previewsInData": True,
         },
-        "styles": [
-            "full",
-            "side",
-            "alignLeft",
-            "alignRight",
-            "alignCenter",
-        ],
-    },
-    "list": {
-        "properties": {
-            "styles": "true",
-            "startIndex": "true",
-            "reversed": "true",
-        }
     },
     "video-editor": {
         "toolbar": ["mediaEmbed"],

@@ -52,9 +52,10 @@
     {% endblock %}
     <!-- FIXME we don't currently want their grid in dashboard however this does not work if someone names wagtail, project or plan page 'dashboard' -->
     <main role="main" tabindex="-1" {% if '/dashboard' not in request.path or '/components' not in request.path %} id="layout-grid" {% endif %}>
-
-        {% block breadcrumbs %}{% endblock %}
-        {% block menu %}{% userindicator %}{% endblock %}
+        <div id="layout-grid__area--contentheader">
+            {% block breadcrumbs %}{% endblock %}
+            {% block menu %}{% userindicator %}{% endblock %}
+        </div>
 
         {% if messages %}
         <ul class="messages">

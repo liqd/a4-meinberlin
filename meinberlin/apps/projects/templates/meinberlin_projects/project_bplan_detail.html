@@ -4,16 +4,14 @@
 {% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}{
 
 {% block breadcrumbs %}
-    <div id="layout-grid__area--contentheader">
-        <div id="content-header">
-            <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
-                <ol>
-                    <li><a href="/">meinBerlin</a></li>
-                    <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a></li>
-                    <li class="active" aria-current="page">{{ project.name|truncatechars:50 }}</li>
-                </ol>
-            </nav>
-        </div>
+    <div id="content-header">
+        <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
+            <ol>
+                <li><a href="/">meinBerlin</a></li>
+                <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a></li>
+                <li class="active" aria-current="page">{{ project.name|truncatechars:50 }}</li>
+            </ol>
+        </nav>
     </div>
 {% endblock %}
 

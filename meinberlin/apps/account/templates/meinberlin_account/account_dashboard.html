@@ -4,15 +4,13 @@
 {% block title %}{% translate "User Dashboard" %} &mdash; {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
-    <div id="layout-grid__area--contentheader">
-        <div id="content-header">
-            <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
-                <ol>
-                    <li><a href="/">{% translate 'meinBerlin Homepage' %}</a></li>
-                    <li class="active" aria-current="page">{% translate 'Account Settings' %}</li>
-                </ol>
-            </nav>
-        </div>
+    <div id="content-header">
+        <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
+            <ol>
+                <li><a href="/">{% translate 'meinBerlin Homepage' %}</a></li>
+                <li class="active" aria-current="page">{% translate 'Account Settings' %}</li>
+            </ol>
+        </nav>
     </div>
 {% endblock %}
 {% block content %}

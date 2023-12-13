@@ -19,6 +19,10 @@
      background-position: bottom;
      background-attachment: fixed;
 
+     h1 {
+        color: $text-color-inverted;
+     }
+
      @media (min-width: $breakpoint) {
          min-height: ($hero-height-mobile + $hero-height-secondary) * 0.5;
      }

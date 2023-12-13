@@ -1,24 +1,21 @@
 {% load i18n static %}
 
-{% block extra_js %}
-    <script defer src="{% static 'user_menu.js' %}"></script>
-{% endblock %}
-
-<div class="usermenu__container">
-    <div class="usermenu__wrapper">
+<div class="user-indicator__container">
+    <div id="js-user-indicator" class="user-indicator__wrapper">
         {% if request.user.is_authenticated %}
         <button
-            class="js-usermenu-btn"
+            id="js-user-indicator-trigger"
             type="button"
             aria-haspopup="menu"
-            aria-controls="user-actions"
+            aria-controls="js-user-indicator-dropdown"
             tabindex="0">
             <i class="fas fa-user text--color-primary" aria-hidden="true"></i>
             {{ request.user.username }}
         </button>
-        <div role="menu" class="dropdown js-usermenu" id="user-actions" aria-label="Login of Register" tabindex="-1">
+        <div role="menu" class="dropdown" id="js-user-indicator-dropdown" aria-label="Login of Register" tabindex="-1">
             <ul class="list--clean">
-                <li ><a href="{% url 'account' %}" role="menuitem">{% translate "Account Settings" %}</a></li>
+                <li><button id="js-user-indicator-close" type="button" class="button button--close user-indicator__close" title="{% translate 'close' %}" aria-label="{% translate 'menu close' %}"></button></li>
+                <li><a href="{% url 'account' %}" role="menuitem">{% translate "Account Settings" %}</a></li>
                 {% for organisation in request.user.organisations %}
                     <li><a href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}" role="menuitem">{{ organisation.name }}</a></li>
                 {% endfor %}
@@ -26,7 +23,7 @@
                     <li><a href="{% url 'meinberlin_platformemails:create' %}" role="menuitem">{% translate "Platform Email" %}</a></li>
                 {% endif %}
                 <li>
-                    <form class="u-inline" action="{% url 'account_logout' %}" method="post" aria-label="{% translate 'Logout' %}" role="menuitem">
+                    <form class="block--nogap text--color-dark" action="{% url 'account_logout' %}" method="post" aria-label="{% translate 'Logout' %}" role="menuitem">
                         {% csrf_token %}
                         <input type="hidden" name="next" value="{{ redirect_field_value }}">
                         <button type="submit">{% translate "Logout" %}</button>
@@ -36,19 +33,19 @@
         </div>
     {% else %}
         <button
-            class="js-usermenu-btn"
+            id="js-user-indicator-trigger"
             type="button"
             aria-haspopup="menu"
-            aria-controls="login-register-menu"
+            aria-controls="js-user-indicator-dropdown"
             tabindex="0">
             <i class="fas fa-user text--color-primary" aria-hidden="true"></i>
             {% translate "Login" %}
         </button>
-        <div role="menu" class="dropdown js-usermenu" id="login-register-menu" aria-label="Login of Register" tabindex="-1">
+        <div role="menu" class="dropdown" id="js-user-indicator-dropdown" aria-label="Login of Register" tabindex="-1">
             <ul class="list--clean">
-                <li><button type="button" class="button button--close user-indicator__close" title="{% translate 'close' %}" aria-label="{% translate 'menu close' %}"></button></li>
+                <li><button id="js-user-indicator-close" type="button" class="button button--close user-indicator__close" title="{% translate 'close' %}" aria-label="{% translate 'menu close' %}"></button></li>
                 <li>
-                    <a href="{% url 'account_login' %}?next={{ redirect_field_value|urlencode }}" role="menuitem">{% translate "Login" %}</a>
+                    <a class="button button--light" href="{% url 'account_login' %}?next={{ redirect_field_value|urlencode }}" role="menuitem">{% translate "Login" %}</a>
                 </li>
                 <li>
                     <a href="{% url 'account_signup' %}?next={{ redirect_field_value|urlencode }}" role="menuitem">{% translate "Register" %}</a>

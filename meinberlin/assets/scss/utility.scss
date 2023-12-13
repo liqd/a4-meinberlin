@@ -253,3 +253,12 @@
 .a4-sr-only {
     @extend .visually-hidden;
 }
+
+// BO defines this as black so overwritting
+.text--color-primary {
+    color: $primary;
+}
+
+.text--color-dark {
+    color: var(--color-black);
+}

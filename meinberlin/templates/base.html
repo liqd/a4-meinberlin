@@ -54,8 +54,10 @@
     <main role="main">
 
         <div id="layout-grid">
-            {% block breadcrumbs %}{% endblock %}
-            {% block menu %}{% userindicator %}{% endblock %}
+            <div id="layout-grid__area--contentheader">
+                {% block breadcrumbs %}{% endblock %}
+                {% block menu %}{% userindicator %}{% endblock %}
+            </div>
         </div>
 
         {% if messages %}

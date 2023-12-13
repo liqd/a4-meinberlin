@@ -9,22 +9,27 @@
 
 {% block extra_css %}
     {{ block.super }}
-    <link type="text/css" href="{% static 'a4maps_display_points.css'%}" rel="stylesheet" />
+    <link type="text/css" href="{% static 'a4maps_display_points.css' %}" rel="stylesheet"/>
 {% endblock %}
 
 {% block project_action %}
     {% has_or_would_have_perm 'meinberlin_budgeting.add_proposal' request.user module as propose_allowed %}
     {% if propose_allowed %}
-        <a href="{% url 'meinberlin_budgeting:proposal-create' module_slug=module.slug %}" class="button button--light">
-            {% translate 'Submit proposal' %}
-        </a>
+        <div>
+            <a href="{% url 'meinberlin_budgeting:proposal-create' module_slug=module.slug %}" class="button button--light">
+                {% translate 'Submit proposal' %}
+            </a>
+        </div>
     {% endif %}
+{% endblock %}
+
+{% block voting_token_field %}
     {% if module.blueprint_type == 'PB3' %}
         {% has_perm 'meinberlin_budgeting.add_vote' request.user module as vote_allowed %}
         {% if vote_allowed %}
             {% if not valid_token_present %}
                 <form autocomplete="off" method="post">
-                  {% csrf_token %}
+                    {% csrf_token %}
                     <div class="input-group input-group-lg">
                         <label for="id_token" class="visually-hidden-focusable">{% translate 'Voting token form fields' %}</label>
                         {{ token_form.token|add_error_attr:"aria-invalid:true" }}
@@ -32,9 +37,9 @@
                     </div>
                     {% if token_form.token.errors %}
                         <ul class="errorlist" aria-live="assertive" aria-atomic="true">
-                        {% for error in token_form.token.errors %}
-                            <li>{{ error|escape }}</li>
-                        {% endfor %}
+                            {% for error in token_form.token.errors %}
+                                <li>{{ error|escape }}</li>
+                            {% endfor %}
                         </ul>
                     {% endif %}
                 </form>
@@ -42,6 +47,7 @@
         {% endif %}
     {% endif %}
 {% endblock %}
+
 
 {% block phase_content %}
     {% if view.mode == 'map' %}
@@ -55,24 +61,10 @@
             <div class="map-list__controls">
                 <div class="container">
                     <div class="leaflet-control-zoom leaflet-bar leaflet-control">
-                        <a
-                            class="leaflet-control-zoom-in"
-                            id="zoom-in"
-                            href="#"
-                            title="{% translate 'Zoom in' %}"
-                            role="button"
-                            aria-label="{% translate 'Zoom in' %}"
-                        >
+                        <a class="leaflet-control-zoom-in" id="zoom-in" href="#" title="{% translate 'Zoom in' %}" role="button" aria-label="{% translate 'Zoom in' %}">
                             +
                         </a>
-                        <a
-                            class="leaflet-control-zoom-out leaflet-disabled"
-                            id="zoom-out"
-                            href="#"
-                            title="{% translate 'Zoom out' %}"
-                            role="button"
-                            aria-label="{% translate 'Zoom out' %}"
-                        >
+                        <a class="leaflet-control-zoom-out leaflet-disabled" id="zoom-out" href="#" title="{% translate 'Zoom out' %}" role="button" aria-label="{% translate 'Zoom out' %}">
                             -
                         </a>
                     </div>

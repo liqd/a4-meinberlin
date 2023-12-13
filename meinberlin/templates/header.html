@@ -1,4 +1,4 @@
-{% load menu userindicator static i18n %}
+{% load menu static i18n %}
 
 <header id="header">
 
@@ -218,6 +218,8 @@
                                         <a href="{{ settings.meinberlin_cms.HeaderPages.feedback_page.get_url }}">{% translate 'Give Feedback' %}</a>
                                     </li>
                                     {% endif %}
+                                    <li>
+                                    </li>
                                 </ul>
                             </div>
 
@@ -228,6 +230,4 @@
             </div>
         </div>
     </div>
-    <!-- User menu -->
-    {% userindicator %}
 </header>

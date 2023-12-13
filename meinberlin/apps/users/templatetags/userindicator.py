@@ -24,8 +24,15 @@ def get_next_url(request):
         return request.get_full_path()
 
 
-@register.inclusion_tag("meinberlin_users/indicator.html", takes_context=True)
+@register.inclusion_tag("meinberlin_users/user_indicator.html", takes_context=True)
 def userindicator(context):
+    if hasattr(context, "request"):
+        context["redirect_field_value"] = get_next_url(context["request"])
+    return context
+
+
+@register.inclusion_tag("meinberlin_users/initiator_indicator.html", takes_context=True)
+def initiatorindicator(context):
     if hasattr(context, "request"):
         context["redirect_field_value"] = get_next_url(context["request"])
     return context

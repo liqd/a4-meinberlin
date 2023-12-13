@@ -205,9 +205,10 @@ assume this will may be updated at somepoint  -->
             {% include "a4modules/includes/module_detail_phase.html" %}
             {% endif %}
             <!-- these blocks are only filled when in phase view -->
-            <div>
-                {% block project_action %}{% endblock %}
-            </div>
+            {% block project_action %}{% endblock %}
+            
+            <!-- is the voting token field necessary here? -->
+            {% block voting_token_field %}{% endblock %}
             {% block phase_content %}{% endblock %}
         </section>
         <section

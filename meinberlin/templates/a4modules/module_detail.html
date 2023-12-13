@@ -81,10 +81,13 @@
     </div>
 
     <div id="layout-grid__area--maincontent">
-            {% include "a4modules/includes/module_detail_phase.html" %}
-           
-            {% block project_action %}{% endblock %}
-            
+        <div class="u-full-bleed">
+            <div class="phase-info">
+                {% include "a4modules/includes/module_detail_phase.html" %}
+                {% block project_action %}{% endblock %}
+            </div>
+        </div>
+            {% block voting_token_field %}{% endblock %}
             {% block phase_content %}{% endblock %}
             {% if module.is_in_module_cluster %}
             <section class="participation-tile__wrapper">

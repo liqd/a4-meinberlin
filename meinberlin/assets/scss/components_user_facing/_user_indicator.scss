@@ -1,0 +1,62 @@
+// styles copied from their stylguide from #layout-grid__area--contentheader
+.user-indicator__container {
+    grid-area: contentheader;
+    grid-column: mainbar;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+
+    &:before {
+        position: absolute;
+        background-color: $secondary;
+        inset: 0 0 0 -9999px;
+        display: block;
+        content: "";
+        z-index: -1;
+        box-shadow: 9999px 0 0 $secondary;
+        border-left: 9999px solid $secondary;
+    }
+
+    button {
+        padding: .5em 0;
+    }
+
+    [role="menu"] {
+      display: none;
+    }
+
+    [aria-expanded="true"] + [role="menu"] {
+      display: block;
+    }
+
+    // end of copied styling
+
+    .user-indicator__wrapper {
+        @extend .content-language-select;
+
+        color: var(--color-white);
+
+        > .dropdown .button {
+            width: 100%;
+        }
+
+        // copied styles
+        @media print, (width <= 73.8125rem) {
+            margin-left: -12px;
+            margin-right: -12px;
+            width: auto;
+            padding-left: 12px;
+            padding-right: 12px
+        }
+    }
+}
+
+.button--close.user-indicator__close {
+    text-align: end;
+    min-height: auto;
+
+    &:after {
+        font-size: 1em;
+    }
+}

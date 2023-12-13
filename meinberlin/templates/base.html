@@ -44,7 +44,7 @@
     {% if tracking %} {% tracking_code %} {% endif %}
 </head>
 <body>
-    <div class="aural visually-hidden">
+    <div class="aural visually-hidden-focusable">
         <a href="#main">{% translate "Skip to content " %}</a>
     </div>
     {% block header %}
@@ -54,6 +54,7 @@
     <main role="main" tabindex="-1" {% if '/dashboard' not in request.path or '/components' not in request.path %} id="layout-grid" {% endif %}>
 
         {% block breadcrumbs %}{% endblock %}
+        {% block menu %}{% userindicator %}{% endblock %}
 
         {% if messages %}
         <ul class="messages">

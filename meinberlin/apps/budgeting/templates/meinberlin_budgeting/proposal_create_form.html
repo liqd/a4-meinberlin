@@ -3,20 +3,18 @@
 
 {% block title %}{% translate 'Create a new proposal' %} &mdash; {{ block.super }}{% endblock %}
 {% block breadcrumbs %}
-    <div id="layout-grid__area--contentheader">
-        <div id="content-header">
-            <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
-                <ol>
-                    <li><a href="/">meinBerlin</a></li>
-                    <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a></li>
-                    <li><a href="{% url 'project-detail' project.slug %}">{{ project.name|truncatechars:50 }}</a></li>
-                    {% if module.is_in_module_cluster  %}
-                        <li><a href="{{ module.get_detail_url }}">{{ module.name|truncatechars:50 }}</a></li>
-                    {% endif %}
-                    <li class="active" aria-current="page">{% translate 'Submit a new proposal for this project' %}</li>
-                </ol>
-            </nav>
-        </div>
+    <div id="content-header">
+        <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
+            <ol>
+                <li><a href="/">meinBerlin</a></li>
+                <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a></li>
+                <li><a href="{% url 'project-detail' project.slug %}">{{ project.name|truncatechars:50 }}</a></li>
+                {% if module.is_in_module_cluster  %}
+                    <li><a href="{{ module.get_detail_url }}">{{ module.name|truncatechars:50 }}</a></li>
+                {% endif %}
+                <li class="active" aria-current="page">{% translate 'Submit a new proposal for this project' %}</li>
+            </ol>
+        </nav>
     </div>
 {% endblock %}
 {% block content %}

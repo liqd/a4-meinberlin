@@ -10,7 +10,6 @@ from adhocracy4.test.factories import categories as a4_category_factories
 from adhocracy4.test.factories import labels as a4_label_factories
 from adhocracy4.test.factories.maps import AreaSettingsFactory
 from meinberlin.test import factories
-from meinberlin.test.factories.activities import ActivityFactory
 from meinberlin.test.factories.bplan import BplanFactory
 from meinberlin.test.factories.extprojects import ExternalProjectFactory
 from meinberlin.test.factories.likes import LikeFactory
@@ -35,7 +34,6 @@ register(factories.AdministrativeDistrictFactory)
 register(factories.LiveStreamFactory)
 register(a4_label_factories.LabelFactory)
 register(a4_label_factories.LabelAliasFactory)
-register(ActivityFactory)
 register(PlanFactory)
 register(ExternalProjectFactory)
 register(BplanFactory)

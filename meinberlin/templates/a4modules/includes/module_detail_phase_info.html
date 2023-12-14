@@ -1,6 +1,6 @@
 {% load i18n contrib_tags %}
 
-<article class="phase-info__item">
+<article>
     <section>
         <h2 class="phase-info__title">{{ phase.name }}</h2>
         <p>{{ phase.description }}</p>
@@ -10,21 +10,21 @@
 
         {% if phase == module.active_phase %}
             <span
-                class="phase-info__highlight u-bold"
+                class="u-bold"
                 id="active-phase"
             >
                 {% translate 'active' %}
             </span>
         {% elif phase in module.future_phases %}
             <span
-                class="phase-info__highlight u-secondary u-bold"
+                class="u-secondary u-bold"
                 id="upcoming-phase"
             >
                 {% translate 'upcoming' %}
             </span>
         {% else %}
             <span
-                class="phase-info__highlight u-secondary u-bold"
+                class="u-secondary u-bold"
                 id="finished"
             >
                 {% translate 'finished' %}

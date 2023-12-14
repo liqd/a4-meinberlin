@@ -1,13 +1,13 @@
-{% load static %}
+{% load static i18n %}
 <!-- Start Swiper Template -->
-<div role="region" aria-label="Carousel" class="swiper-container swiper">
-    <div role="group" aria-label="Slide controls" class="swiper-navigation">
+<div role="region" aria-label="Slider" class="swiper-container swiper">
+    <div role="group" aria-label="{% trans 'Slide controls' %}" class="swiper-navigation">
         <button
-            aria-label="Show previous slide"
+            aria-label="{% trans 'Show previous slide' %}"
             class="swiper-button-prev"
         ></button>
         <button
-            aria-label="Show next slide"
+            aria-label="{% trans 'Show next slide' %}"
             class="swiper-button-next"
         ></button>
         <div class="swiper-pagination"></div>
@@ -24,6 +24,9 @@
 <!-- End Swiper Template -->
 
 {% block extra_js %}
-    <script src="{% static 'swiper_phases.js' %}"></script>
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<!-- Your Swiper initialization script -->
+<script src="{% static 'swiper_phases.js' %}"></script>
 {% endblock %}
 

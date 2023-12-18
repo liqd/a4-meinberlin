@@ -7,13 +7,15 @@ from meinberlin.apps.mapideas import phases
 
 
 @pytest.mark.django_db
-def test_list_view(client, phase_factory, map_idea_factory):
+def test_list_view(client, phase_factory, map_idea_factory, area_settings_factory):
     phase, module, project, mapidea = setup_phase(
         phase_factory, map_idea_factory, phases.FeedbackPhase
     )
+    area_settings_factory(module=module)
     phase_2, module_2, project_2, mapidea_2 = setup_phase(
         phase_factory, map_idea_factory, phases.FeedbackPhase
     )
+    area_settings_factory(module=module_2)
     url = project.get_absolute_url()
 
     with freeze_phase(phase):

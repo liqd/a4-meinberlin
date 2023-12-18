@@ -1,45 +1,23 @@
-import React, { useState, useEffect } from 'react'
-import { useLocation, useSearchParams } from 'react-router-dom'
+import React from 'react'
 import django from 'django'
 import { Card } from './Card'
 import { CardMeta } from './CardMeta'
 import { CardStatus } from './CardStatus'
 import { Pagination } from '../Pagination'
+import { useFetchedItems } from '../contexts/FetchItemsProvider'
 import { ControlBar } from '../ControlBar'
 
 export const CardList = (props) => {
-  const location = useLocation()
-  const [queryParams] = useSearchParams()
-  const [data, setData] = useState(null)
-  const [currentPage, setCurrentPage] = useState(1)
-
+  const { results, currentPage, isMapAndList } = useFetchedItems()
+  const data = results.list
   const translations = {
     noResults: django.gettext('Nothing to show'),
     pillList: django.gettext('Pill List')
   }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const url = props.apiUrl + location.search
-        const response = await fetch(url)
-        const json = await response.json()
-        setData(json)
-        setCurrentPage(queryParams.get('page') || 1)
-      } catch (error) {
-        console.error(error)
-      }
-    }
-
-    fetchData()
-  }, [props.apiUrl, location.search])
-
   return (
     <>
-      <ControlBar
-        filters={data?.filters}
-        numOfResults={data?.total_count}
-      />
+      {!isMapAndList && <ControlBar />}
       <h2 className="aural">{props.listStr}</h2>
       {data?.results && data.results.length > 0
         ? (

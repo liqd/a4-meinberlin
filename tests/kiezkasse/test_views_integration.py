@@ -10,10 +10,11 @@ from meinberlin.apps.kiezkasse import phases
 
 
 @pytest.mark.django_db
-def test_list_view(client, phase_factory, proposal_factory):
+def test_list_view(client, phase_factory, proposal_factory, area_settings_factory):
     phase, module, project, item = setup_phase(
         phase_factory, proposal_factory, phases.RequestPhase
     )
+    area_settings_factory(module=module)
     url = project.get_absolute_url()
     with freeze_phase(phase):
         response = client.get(url)
@@ -21,10 +22,11 @@ def test_list_view(client, phase_factory, proposal_factory):
 
 
 @pytest.mark.django_db
-def test_detail_view(client, phase_factory, proposal_factory):
+def test_detail_view(client, phase_factory, proposal_factory, area_settings_factory):
     phase, module, project, item = setup_phase(
         phase_factory, proposal_factory, phases.RequestPhase
     )
+    area_settings_factory(module=module)
     url = item.get_absolute_url()
     with freeze_phase(phase):
         response = client.get(url)

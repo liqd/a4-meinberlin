@@ -11,10 +11,11 @@ from meinberlin.apps.maptopicprio import phases
 
 
 @pytest.mark.django_db
-def test_detail_view(client, phase_factory, maptopic_factory):
+def test_detail_view(client, phase_factory, maptopic_factory, area_settings_factory):
     phase, module, project, maptopic = setup_phase(
         phase_factory, maptopic_factory, phases.PrioritizePhase
     )
+    area_settings_factory(module=module)
     url = maptopic.get_absolute_url()
     with freeze_phase(phase):
         response = client.get(url)
@@ -56,11 +57,12 @@ def test_detail_view_private_not_visible_normal_user(
 
 @pytest.mark.django_db
 def test_detail_view_private_visible_to_participant(
-    client, user, phase_factory, maptopic_factory
+    client, user, phase_factory, maptopic_factory, area_settings_factory
 ):
     phase, module, project, maptopic = setup_phase(
         phase_factory, maptopic_factory, phases.PrioritizePhase
     )
+    area_settings_factory(module=module)
     maptopic.module.project.access = Access.PRIVATE
     maptopic.module.project.save()
     url = maptopic.get_absolute_url()
@@ -73,11 +75,12 @@ def test_detail_view_private_visible_to_participant(
 
 @pytest.mark.django_db
 def test_detail_view_private_visible_to_moderator(
-    client, phase_factory, maptopic_factory
+    client, phase_factory, maptopic_factory, area_settings_factory
 ):
     phase, module, project, maptopic = setup_phase(
         phase_factory, maptopic_factory, phases.PrioritizePhase
     )
+    area_settings_factory(module=module)
     maptopic.module.project.access = Access.PRIVATE
     maptopic.module.project.save()
     url = maptopic.get_absolute_url()
@@ -89,11 +92,12 @@ def test_detail_view_private_visible_to_moderator(
 
 @pytest.mark.django_db
 def test_detail_view_private_visible_to_initiator(
-    client, phase_factory, maptopic_factory
+    client, phase_factory, maptopic_factory, area_settings_factory
 ):
     phase, module, project, maptopic = setup_phase(
         phase_factory, maptopic_factory, phases.PrioritizePhase
     )
+    area_settings_factory(module=module)
     maptopic.module.project.access = Access.PRIVATE
     maptopic.module.project.save()
     url = maptopic.get_absolute_url()
@@ -105,11 +109,12 @@ def test_detail_view_private_visible_to_initiator(
 
 @pytest.mark.django_db
 def test_detail_view_semipublic_participation_only_participant(
-    client, user, phase_factory, maptopic_factory
+    client, user, phase_factory, maptopic_factory, area_settings_factory
 ):
     phase, module, project, maptopic = setup_phase(
         phase_factory, maptopic_factory, phases.PrioritizePhase
     )
+    area_settings_factory(module=module)
     maptopic.module.project.access = Access.SEMIPUBLIC
     maptopic.module.project.save()
 

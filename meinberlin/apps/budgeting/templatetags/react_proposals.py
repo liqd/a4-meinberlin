@@ -1,29 +1,23 @@
 import json
 
 from django import template
-from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
 from django.utils.html import format_html
+
+from adhocracy4.maps_react.utils import get_map_settings
 
 register = template.Library()
 
 
-@register.simple_tag(takes_context=True)
-def react_proposals(context, module):
+@register.simple_tag()
+def react_proposals(module):
     proposals_api_url = reverse("proposals-list", kwargs={"module_pk": module.pk})
-    proposal_ct = ContentType.objects.get(
-        app_label="meinberlin_budgeting", model="proposal"
-    )
-    tokenvote_api_url = reverse(
-        "tokenvotes-list",
-        kwargs={"module_pk": module.pk, "content_type": proposal_ct.id},
-    )
     end_session_url = reverse("end_session")
 
     attributes = {
-        "proposals_api_url": proposals_api_url,
-        "tokenvote_api_url": tokenvote_api_url,
-        "end_session_url": end_session_url,
+        "apiUrl": proposals_api_url,
+        "endSessionUrl": end_session_url,
+        "map": get_map_settings(polygon=module.settings_instance.polygon)
     }
 
     return format_html(

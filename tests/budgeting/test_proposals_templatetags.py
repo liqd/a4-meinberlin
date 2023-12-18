@@ -8,6 +8,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.urls import reverse
 
+from adhocracy4.maps_react.utils import get_map_settings
 from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import freeze_post_phase
 from adhocracy4.test.helpers import render_template
@@ -18,10 +19,10 @@ from tests.votes.test_token_vote_api import add_token_to_session
 
 
 @pytest.mark.django_db
-def test_react_proposals(module, rf):
+def test_react_proposals(module, rf, area_settings_factory):
+    area_settings_factory(module=module)
     request = rf.get("/")
     template = "{% load react_proposals %}{% react_proposals module %}"
-    contenttype = ContentType.objects.get_for_model(Proposal)
     expected = (
         r"^<div data-mb-widget=\"proposals\" data-attributes="
         r"\"(?P<props>{.+})\"><\/div>$"
@@ -31,12 +32,9 @@ def test_react_proposals(module, rf):
         {"request": request, "module": module}, expected, template
     )
     assert props == {
-        "proposals_api_url": reverse("proposals-list", kwargs={"module_pk": module.pk}),
-        "tokenvote_api_url": reverse(
-            "tokenvotes-list",
-            kwargs={"module_pk": module.pk, "content_type": contenttype.id},
-        ),
-        "end_session_url": reverse("end_session"),
+        "apiUrl": reverse("proposals-list", kwargs={"module_pk": module.pk}),
+        "endSessionUrl": reverse("end_session"),
+        "map": get_map_settings(polygon=module.settings_instance.polygon)
     }
 
 

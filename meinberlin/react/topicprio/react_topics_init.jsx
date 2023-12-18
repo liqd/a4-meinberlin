@@ -1,8 +1,10 @@
 import React from 'react'
+import django from 'django'
 import { createRoot } from 'react-dom/client'
 import { widget as ReactWidget } from 'adhocracy4'
-import { TopicPrioList } from './TopicPrioList.jsx'
 import { BrowserRouter } from 'react-router-dom'
+import { FetchItemsProvider } from '../contrib/contexts/FetchItemsProvider'
+import { CardList } from '../contrib/card/CardList'
 
 function init () {
   ReactWidget.initialise('mb', 'topics',
@@ -12,7 +14,9 @@ function init () {
       root.render(
         <React.StrictMode>
           <BrowserRouter>
-            <TopicPrioList {...props} />
+            <FetchItemsProvider {...props}>
+              <CardList {...props} listStr={django.gettext('Map topics list')} />
+            </FetchItemsProvider>
           </BrowserRouter>
         </React.StrictMode>
       )

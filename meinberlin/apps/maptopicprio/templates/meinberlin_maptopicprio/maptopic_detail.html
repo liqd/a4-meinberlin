@@ -1,14 +1,14 @@
 {% extends "meinberlin_contrib/item_detail.html" %}
-{% load i18n rules react_comments_async module_tags react_ratings wagtailcore_tags maps_tags categories_tags static thumbnail %}
+{% load i18n rules react_comments_async module_tags react_ratings wagtailcore_tags react_map_tags categories_tags static thumbnail %}
 
 {% block extra_js %}
     {{ block.super }}
-    <script type="text/javascript" src="{% static 'a4maps_display_point.js' %}"></script>
+    <script type="text/javascript" src="{% static 'map_display_point.js' %}"></script>
 {% endblock %}
 
 {% block extra_css %}
     {{ block.super }}
-    <link type="text/css" href="{% static 'a4maps_display_point.css'%}" rel="stylesheet" />
+    <link type="text/css" href="{% static 'map_display_point.css'%}" rel="stylesheet" />
 {% endblock %}
 
 {% block title %}{{object.name}} &mdash; {{ block.super }}{% endblock %}
@@ -42,10 +42,9 @@
                 {{ object.description | richtext }}
             </div>
 
-            {% if object.point %}
-                {% get_category_pin_url object as pin_url %}
-                {% map_display_point object.point object.module.areasettings_settings.polygon pin_url %}
-            {% endif %}
+                {% if object.point %}
+                    {% react_display_point object.module object.point %}
+                {% endif %}
         </div>
 
         <div class="item-detail__meta lr-bar">

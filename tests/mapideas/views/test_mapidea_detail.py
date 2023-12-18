@@ -11,10 +11,11 @@ from meinberlin.apps.mapideas import phases
 
 
 @pytest.mark.django_db
-def test_detail_view(client, phase_factory, map_idea_factory):
+def test_detail_view(client, phase_factory, map_idea_factory, area_settings_factory):
     phase, module, project, mapidea = setup_phase(
         phase_factory, map_idea_factory, phases.FeedbackPhase
     )
+    area_settings_factory(module=module)
     url = mapidea.get_absolute_url()
     with freeze_phase(phase):
         response = client.get(url)
@@ -54,11 +55,12 @@ def test_detail_view_private_not_visible_normal_user(
 
 @pytest.mark.django_db
 def test_detail_view_private_visible_to_participant(
-    client, user, phase_factory, map_idea_factory
+    client, user, phase_factory, map_idea_factory, area_settings_factory
 ):
     phase, module, project, mapidea = setup_phase(
         phase_factory, map_idea_factory, phases.FeedbackPhase
     )
+    area_settings_factory(module=module)
     mapidea.module.project.access = Access.PRIVATE
     mapidea.module.project.save()
     url = mapidea.get_absolute_url()
@@ -71,11 +73,12 @@ def test_detail_view_private_visible_to_participant(
 
 @pytest.mark.django_db
 def test_detail_view_private_visible_to_moderator(
-    client, phase_factory, map_idea_factory
+    client, phase_factory, map_idea_factory, area_settings_factory
 ):
     phase, module, project, mapidea = setup_phase(
         phase_factory, map_idea_factory, phases.FeedbackPhase
     )
+    area_settings_factory(module=module)
     mapidea.module.project.access = Access.PRIVATE
     mapidea.module.project.save()
     url = mapidea.get_absolute_url()
@@ -87,11 +90,12 @@ def test_detail_view_private_visible_to_moderator(
 
 @pytest.mark.django_db
 def test_detail_view_private_visible_to_initiator(
-    client, phase_factory, map_idea_factory
+    client, phase_factory, map_idea_factory, area_settings_factory
 ):
     phase, module, project, mapidea = setup_phase(
         phase_factory, map_idea_factory, phases.FeedbackPhase
     )
+    area_settings_factory(module=module)
     mapidea.module.project.access = Access.PRIVATE
     mapidea.module.project.save()
     url = mapidea.get_absolute_url()
@@ -103,11 +107,12 @@ def test_detail_view_private_visible_to_initiator(
 
 @pytest.mark.django_db
 def test_detail_view_semipublic_participation_only_participant(
-    client, user, phase_factory, map_idea_factory
+    client, user, phase_factory, map_idea_factory, area_settings_factory
 ):
     phase, module, project, mapidea = setup_phase(
         phase_factory, map_idea_factory, phases.FeedbackPhase
     )
+    area_settings_factory(module=module)
     mapidea.module.project.access = Access.SEMIPUBLIC
     mapidea.module.project.save()
 

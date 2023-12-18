@@ -12,7 +12,7 @@ def react_ideas(context, module):
     ideas_api_url = reverse("ideas-list", kwargs={"module_pk": module.pk})
 
     attributes = {
-        "ideas_api_url": ideas_api_url,
+        "apiUrl": ideas_api_url,
     }
 
     return format_html(

@@ -12,7 +12,7 @@ def react_topics(context, module):
     topics_api_url = reverse("topics-list", kwargs={"module_pk": module.pk})
 
     attributes = {
-        "topics_api_url": topics_api_url,
+        "apiUrl": topics_api_url,
     }
 
     return format_html(

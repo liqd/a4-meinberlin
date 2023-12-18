@@ -9,7 +9,11 @@ from meinberlin.apps.mapideas import phases
 
 @pytest.mark.django_db
 def test_map_idea_api(
-    apiclient, area_settings_factory, module, map_idea_factory, phase_factory
+    apiclient,
+    area_settings_factory,
+    module,
+    map_idea_factory,
+    phase_factory,
 ):
     phase_factory(phase_content=phases.CollectPhase(), module=module)
     area_settings_factory(module=module)
@@ -23,7 +27,7 @@ def test_map_idea_api(
     response = apiclient.get(url + "?ordering=created")
     assert len(response.data["results"]) == 3
     assert response.data["results"][0]["pk"] == idea.pk
-    assert response.data["results"][0]["point"] == str(idea.point)
+    assert response.data["results"][0]["point"] == idea.point
 
 
 @pytest.mark.django_db

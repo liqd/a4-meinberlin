@@ -1,8 +1,15 @@
 import React from 'react'
+import django from 'django'
 import { createRoot } from 'react-dom/client'
 import { widget as ReactWidget } from 'adhocracy4'
-import { BudgetingProposalList } from './BudgetingProposalList.jsx'
+// import { BudgetingProposalList } from './BudgetingProposalList.jsx'
 import { BrowserRouter } from 'react-router-dom'
+import { FetchItemsProvider } from '../contrib/contexts/FetchItemsProvider'
+import { ListMapView } from '../contrib/map/ListMapView'
+
+const translations = {
+  list: django.gettext('Proposals list')
+}
 
 function init () {
   ReactWidget.initialise('mb', 'proposals',
@@ -12,7 +19,10 @@ function init () {
       root.render(
         <React.StrictMode>
           <BrowserRouter>
-            <BudgetingProposalList {...props} />
+            <FetchItemsProvider {...props} isMapAndList>
+              <ListMapView {...props} listStr={translations.list} />
+            </FetchItemsProvider>
+            {/* <BudgetingProposalList {...props} /> */}
           </BrowserRouter>
         </React.StrictMode>
       )

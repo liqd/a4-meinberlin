@@ -63,9 +63,6 @@ module.exports = {
     ideas: {
       import: './meinberlin/react/ideas/react_ideas_init.jsx'
     },
-    map_ideas: {
-      import: './meinberlin/react/mapideas/react_mapideas_init.jsx'
-    },
     budget_proposals: {
       import: './meinberlin/react/budgeting/react_proposals_init.jsx'
     },
@@ -99,20 +96,48 @@ module.exports = {
     react_map_teaser: {
       import: './meinberlin/react/plans/react_map_teaser.jsx'
     },
-    map_topics: {
-      import: './meinberlin/react/maptopicprio/react_map_topics_init.jsx'
-    },
     topics: {
       import: './meinberlin/react/topicprio/react_topics_init.jsx'
-    },
-    kiezkasse_proposals: {
-      import: './meinberlin/react/kiezkasse/react_kiezkasse_proposals_init.jsx'
     },
     wagtail: {
       import: './meinberlin/assets/js/wagtail.js'
     },
 
     // A4 dependencies - we want all of them to go through webpack
+    map_topics: {
+      import: [
+        'leaflet/dist/leaflet.css',
+        'maplibre-gl/dist/maplibre-gl.css',
+        'leaflet.markercluster/dist/MarkerCluster.css',
+        './meinberlin/react/maptopicprio/react_map_topics_init.jsx'
+      ],
+      dependOn: 'adhocracy4'
+    },
+    map_ideas: {
+      import: [
+        'leaflet/dist/leaflet.css',
+        'maplibre-gl/dist/maplibre-gl.css',
+        'leaflet.markercluster/dist/MarkerCluster.css',
+        './meinberlin/react/mapideas/react_mapideas_init.jsx'
+      ],
+      dependOn: 'adhocracy4'
+    },
+    kiezkasse_proposals: {
+      import: [
+        'leaflet/dist/leaflet.css',
+        'maplibre-gl/dist/maplibre-gl.css',
+        'leaflet.markercluster/dist/MarkerCluster.css',
+        './meinberlin/react/kiezkasse/react_kiezkasse_proposals_init.jsx'
+      ]
+    },
+    map_display_point: {
+      import: [
+        'leaflet/dist/leaflet.css',
+        'maplibre-gl/dist/maplibre-gl.css',
+        './meinberlin/react/contrib/map/react_display_point_init.jsx'
+      ],
+      dependOn: 'adhocracy4'
+    },
     mb_plans_map: {
       import: [
         'leaflet/dist/leaflet.css',
@@ -123,28 +148,11 @@ module.exports = {
       ],
       dependOn: 'adhocracy4'
     },
-    a4maps_display_point: {
-      import: [
-        'leaflet/dist/leaflet.css',
-        'maplibre-gl/dist/maplibre-gl.css',
-        'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_display_point.js'
-      ],
-      dependOn: 'adhocracy4'
-    },
-    a4maps_display_points: {
-      import: [
-        'leaflet/dist/leaflet.css',
-        'maplibre-gl/dist/maplibre-gl.css',
-        'leaflet.markercluster/dist/MarkerCluster.css',
-        'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_display_points.js'
-      ],
-      dependOn: 'adhocracy4'
-    },
     a4maps_choose_point: {
       import: [
         'leaflet/dist/leaflet.css',
         'maplibre-gl/dist/maplibre-gl.css',
-        'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_choose_point.js'
+        './meinberlin/react/contrib/map/react_choose_point_init.jsx'
       ],
       dependOn: 'adhocracy4'
     },

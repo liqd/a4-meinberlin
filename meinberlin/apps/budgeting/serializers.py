@@ -11,6 +11,7 @@ class ProposalSerializer(IdeaSerializer):
     session_token_voted = serializers.SerializerMethodField()
     vote_allowed = serializers.SerializerMethodField()
     vote_count = serializers.SerializerMethodField()
+    point = serializers.SerializerMethodField()
 
     class Meta(IdeaSerializer.Meta):
         model = Proposal
@@ -19,12 +20,14 @@ class ProposalSerializer(IdeaSerializer):
             "session_token_voted",
             "vote_allowed",
             "vote_count",
+            "point",
         )
         read_only_fields = IdeaSerializer.Meta.read_only_fields + (
             "is_archived",
             "session_token_voted",
             "vote_allowed",
             "vote_count",
+            "point",
         )
 
     def get_session_token_voted(self, proposal: Proposal) -> bool:
@@ -72,3 +75,6 @@ class ProposalSerializer(IdeaSerializer):
             return proposal.token_vote_count
         else:
             return 0
+
+    def get_point(self, instance):
+        return instance.point

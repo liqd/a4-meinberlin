@@ -2,14 +2,13 @@
 {% load i18n discovery_tags static maps_tags module_tags react_mapideas %}
 
 {% block extra_js %}
-    <script type="text/javascript" src="{% static 'a4maps_display_points.js' %}"></script>
     <script type="text/javascript" src="{% static 'map_ideas.js' %}"></script>
     {{ block.super }}
 {% endblock %}
 
 {% block extra_css %}
     {{ block.super }}
-    <link type="text/css" href="{% static 'a4maps_display_points.css'%}" rel="stylesheet" />
+    <link type="text/css" href="{% static 'map_ideas.css'%}" rel="stylesheet" />
 {% endblock %}
 
 {% block project_action %}
@@ -22,48 +21,5 @@
 {% endblock %}
 
 {% block phase_content %}
-
-    {% if view.mode == 'map' %}
-    {% include "meinberlin_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
-        <h2 class="visually-hidden">{% translate "Map of ideas" %}</h2>
-        <div class="map-list">
-            <div class="map-list__controls">
-                <div class="container">
-                    <div class="leaflet-control-zoom leaflet-bar leaflet-control">
-                        <a
-                            class="leaflet-control-zoom-in"
-                            id="zoom-in"
-                            href="#"
-                            title="{% translate 'Zoom in' %}"
-                            role="button"
-                            aria-label="{% translate 'Zoom in' %}"
-                        >
-                            +
-                        </a>
-                        <a
-                            class="leaflet-control-zoom-out leaflet-disabled"
-                            id="zoom-out"
-                            href="#"
-                            title="{% translate 'Zoom out' %}"
-                            role="button"
-                            aria-label="{% translate 'Zoom out' %}"
-                        >
-                            -
-                        </a>
-                    </div>
-                </div>
-            </div>
-            {% if object_list %}
-            {% if object_list.0|has_feature:"rate" %}
-                {% map_display_points object_list module.settings_instance.polygon %}
-            {% else %}
-                {% map_display_points object_list module.settings_instance.polygon 'true' %}
-            {% endif %}
-            {% else %}
-            {% map_display_points object_list module.settings_instance.polygon %}
-            {% endif %}
-        </div>
-    {% else %}
-        {% react_mapideas view.module %}
-    {% endif %}
+    {% react_mapideas module=view.module %}
 {% endblock %}

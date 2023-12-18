@@ -5,6 +5,7 @@ import { ControlBarSearch } from './ControlBarSearch'
 import django from 'django'
 import { useSearchParams } from 'react-router-dom'
 import { ControlBarFilterPills } from './ControlBarFilterPills'
+import { useFetchedItems } from './contexts/FetchItemsProvider'
 
 const translated = {
   reset: django.gettext('Reset'),
@@ -24,7 +25,9 @@ const getResultCountText = (count) => {
   return django.interpolate(foundProposalsText, [count])
 }
 
-export const ControlBar = (props) => {
+export const ControlBar = () => {
+  // grab the results for the list from the useFetchedItems hook
+  const { results: { list }, isMapAndList } = useFetchedItems()
   const [expandFilters, setExpandFilters] = useState(true)
   const [queryParams, setQueryParams] = useSearchParams()
   const [filters, setFilters] = useState([])
@@ -38,13 +41,13 @@ export const ControlBar = (props) => {
 
   useEffect(() => {
     // initialize filters object
-    if (props.filters) {
-      const updatedFilters = Object.keys(props.filters)
-        .map((type) => ({ ...props.filters[type], type, value: queryParams.get(type) }))
+    if (list.filters) {
+      const updatedFilters = Object.keys(list.filters)
+        .map((type) => ({ ...list.filters[type], type, value: queryParams.get(type) }))
 
       setFilters(updatedFilters)
     }
-  }, [props.filters])
+  }, [list.filters])
 
   const applyQuery = (type, value) => {
     if (value && value !== '') {
@@ -102,10 +105,10 @@ export const ControlBar = (props) => {
                       <ControlBarSearch onSearch={(value) => handleSearch(value)} term={term} />
                     </div>
                     <div className="span1">
-                      {props.filters?.ordering && (
+                      {list.filters?.ordering && (
                         <ControlBarDropdown
                           key="ordering_dropdown"
-                          filter={props.filters.ordering}
+                          filter={list.filters.ordering}
                           current={queryParams.get('ordering')}
                           filterId="id_ordering"
                           onSelectFilter={(choice) => handleFilterChange('ordering', choice[0])}
@@ -163,7 +166,7 @@ export const ControlBar = (props) => {
             {/* only show result string if list filtered or searched not just ordered */}
             {appliedFilters.length > 0 && (
               <div className="text--strong">
-                {props.numOfResults >= 0 && getResultCountText(props.numOfResults)}
+                {list.total_count >= 0 && getResultCountText(list.total_count)}
               </div>
             )}
             <ControlBarFilterPills
@@ -172,9 +175,10 @@ export const ControlBar = (props) => {
             />
           </div>
         </div>
-        <div className="span6 align--right">
-          <ControlBarListMapSwitch query={queryParams} />
-        </div>
+        {isMapAndList &&
+          <div className="span6 align--right">
+            <ControlBarListMapSwitch query={queryParams} />
+          </div>}
       </div>
     </nav>
   )

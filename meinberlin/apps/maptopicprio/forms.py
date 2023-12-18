@@ -4,7 +4,7 @@ from django_ckeditor_5.fields import CKEditor5Field
 
 from adhocracy4.categories.forms import CategorizableFieldMixin
 from adhocracy4.labels.mixins import LabelsAddableFieldMixin
-from adhocracy4.maps import widgets as maps_widgets
+from adhocracy4.maps_react import widgets as maps_widgets
 from meinberlin.apps.contrib.mixins import CategoryAndLabelAliasMixin
 
 from . import models

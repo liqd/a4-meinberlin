@@ -1,8 +1,10 @@
 import React from 'react'
+import django from 'django'
 import { createRoot } from 'react-dom/client'
 import { widget as ReactWidget } from 'adhocracy4'
-import { KiezkasseProposalsList } from './KiezkasseProposalsList.jsx'
 import { BrowserRouter } from 'react-router-dom'
+import { FetchItemsProvider } from '../contrib/contexts/FetchItemsProvider'
+import { ListMapView } from '../contrib/map/ListMapView'
 
 function init () {
   ReactWidget.initialise('mb', 'kiezkasse-proposals',
@@ -12,7 +14,9 @@ function init () {
       root.render(
         <React.StrictMode>
           <BrowserRouter>
-            <KiezkasseProposalsList {...props} />
+            <FetchItemsProvider {...props} isMapAndList>
+              <ListMapView {...props} listStr={django.gettext('Proposals list')} />
+            </FetchItemsProvider>
           </BrowserRouter>
         </React.StrictMode>
       )

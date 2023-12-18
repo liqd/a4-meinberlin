@@ -274,10 +274,11 @@ def test_list_view_tokens_for_different_modules(
 
 
 @pytest.mark.django_db
-def test_detail_view(client, phase_factory, proposal_factory):
+def test_detail_view(client, phase_factory, proposal_factory, area_settings_factory):
     phase, module, project, item = setup_phase(
         phase_factory, proposal_factory, phases.RequestPhase
     )
+    area_settings_factory(module=module)
     url = item.get_absolute_url()
     with freeze_phase(phase):
         response = client.get(url)
@@ -285,10 +286,11 @@ def test_detail_view(client, phase_factory, proposal_factory):
 
 
 @pytest.mark.django_db
-def test_detail_view_back_link(client, phase_factory, proposal_factory):
+def test_detail_view_back_link(client, phase_factory, proposal_factory, area_settings_factory):
     phase, module, project, item = setup_phase(
         phase_factory, proposal_factory, phases.RequestPhase
     )
+    area_settings_factory(module=module)
     url = item.get_absolute_url()
     project_referer = reverse("project-detail", kwargs={"slug": item.project.slug})
     module_referer = reverse("module-detail", kwargs={"module_slug": item.module.slug})
@@ -328,15 +330,19 @@ def test_detail_view_back_link(client, phase_factory, proposal_factory):
 
 @pytest.mark.django_db
 def test_detail_view_token_in_session(
-    client, phase_factory, proposal_factory, voting_token_factory
+    client, phase_factory, proposal_factory, voting_token_factory,
+    area_settings_factory
 ):
     phase_1, module_1, project_1, proposal_1 = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
+    area_settings_factory(module=module_1)
+
 
     phase_2, module_2, project_2, proposal_2 = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
+    area_settings_factory(module=module_2)
 
     token_1 = voting_token_factory(module=module_1)
     project_url = project_1.get_absolute_url()

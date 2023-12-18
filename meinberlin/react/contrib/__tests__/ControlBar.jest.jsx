@@ -39,15 +39,18 @@ const filters = {
   }
 }
 
+jest.mock('../contexts/FetchItemsProvider', () => ({
+  useFetchedItems: jest.fn(() => ({
+    results: { map: { filters }, list: { filters } },
+    currentPage: 1,
+    isMapAndList: true
+  }))
+}))
+
 test('ControlBar shown when list is empty', () => {
-  const onChangeFiltersFn = jest.fn()
   render(
     <BrowserRouter>
-      <ControlBar
-        filters={filters}
-        onChangeFilters={() => onChangeFiltersFn()}
-        numOfResults={0}
-      />
+      <ControlBar />
     </BrowserRouter>
   )
   const numOfResultsElement = screen.queryByText(/found/)
@@ -57,14 +60,9 @@ test('ControlBar shown when list is empty', () => {
 })
 
 test('ControlBar expanded by default', async () => {
-  const onChangeFiltersFn = jest.fn()
   render(
     <BrowserRouter>
-      <ControlBar
-        filters={filters}
-        onChangeFilters={() => onChangeFiltersFn()}
-        numOfResults={2}
-      />
+      <ControlBar />
     </BrowserRouter>
   )
   const categories = screen.getByText(/categories/)
@@ -82,14 +80,9 @@ test('ControlBar expanded by default', async () => {
 })
 
 test('ControlBar filters create pills', async () => {
-  const onChangeFiltersFn = jest.fn()
   render(
     <BrowserRouter>
-      <ControlBar
-        filters={filters}
-        onChangeFilters={() => onChangeFiltersFn()}
-        numOfResults={2}
-      />
+      <ControlBar />
     </BrowserRouter>
   )
   const categories = screen.getByLabelText(/categories/)

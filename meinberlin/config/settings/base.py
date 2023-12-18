@@ -75,6 +75,7 @@ INSTALLED_APPS = (
     "adhocracy4.images",
     "adhocracy4.labels",
     "adhocracy4.maps",
+    "adhocracy4.maps_react",
     "adhocracy4.modules",
     "adhocracy4.organisations",
     "adhocracy4.phases",

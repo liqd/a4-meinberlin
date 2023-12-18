@@ -2,14 +2,13 @@
 {% load i18n discovery_tags static maps_tags react_kiezkasse_proposals %}
 
 {% block extra_js %}
-    <script type="text/javascript" src="{% static 'a4maps_display_points.js' %}"></script>
     <script type="text/javascript" src="{% static 'kiezkasse_proposals.js' %}"></script>
     {{ block.super }}
 {% endblock %}
 
 {% block extra_css %}
     {{ block.super }}
-    <link type="text/css" href="{% static 'a4maps_display_points.css'%}" rel="stylesheet" />
+    <link type="text/css" href="{% static 'kiezkasse_proposals.css'%}" rel="stylesheet" />
 {% endblock %}
 
 {% block project_action %}
@@ -22,38 +21,5 @@
 {% endblock %}
 
 {% block phase_content %}
-    {% if view.mode == 'map' %}
-        <div class="map-list">
-            <h2 class="visually-hidden">{% translate "Map of proposals" %}</h2>
-            <div class="map-list__controls">
-                <div class="container">
-                    <div class="leaflet-control-zoom leaflet-bar leaflet-control">
-                        <a
-                            class="leaflet-control-zoom-in"
-                            id="zoom-in"
-                            href="#"
-                            title="{% translate 'Zoom in' %}"
-                            role="button"
-                            aria-label="{% translate 'Zoom in' %}"
-                        >
-                            +
-                        </a>
-                        <a
-                            class="leaflet-control-zoom-out leaflet-disabled"
-                            id="zoom-out"
-                            href="#"
-                            title="{% translate 'Zoom out' %}"
-                            role="button"
-                            aria-label="{% translate 'Zoom out' %}"
-                        >
-                            -
-                        </a>
-                    </div>
-                </div>
-            </div>
-            {% map_display_points object_list module.settings_instance.polygon %}
-        </div>
-    {% else %}
-        {% react_kiezkasse_proposals view.module %}
-    {% endif %}
+    {% react_kiezkasse_proposals module=view.module %}
 {% endblock %}

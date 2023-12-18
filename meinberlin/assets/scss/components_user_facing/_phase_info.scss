@@ -11,15 +11,26 @@
 .phase-info__cta {
     // enforce button to stick to bottom of container
     margin-top: auto;
+
+    .button:after {
+        background-color: $primary;
+        color: inherit;
+    }
 }
 
 .phase-info .modul-servicepanel .fa, .modul-servicepanel .far, .modul-servicepanel .fas {
     // overwrite icon color
-    color: inherit;
+    color: inherit; 
 }
 
 @media print, (width <= 37.501rem) {
     .phase-info .modul-buehne {
         margin: 0;
+    }
+}
+
+@media print, (width >= 37.501rem) and (width <= 73.813rem) {
+    .phase-info .modul-buehne {
+        margin: $spacer auto;
     }
 }

@@ -6,26 +6,14 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 module.exports = {
   entry: {
     common_css: [
-      './meinberlin/assets/berlin_css/fontawesome.all.min.css',
-      'slick-carousel/slick/slick.css',
-      './meinberlin/assets/extra_css/_slick-theme.css'
+      './meinberlin/assets/berlin_css/fontawesome.all.min.css'
     ],
     berlin_css: [
-      './meinberlin/assets/berlin_css/shariff.min.css',
       './meinberlin/assets/scss/style_user_facing.scss'
-    ],
-    berlin_js: [
-      './meinberlin/assets/berlin_js/berlin_marketing.js',
-      './meinberlin/assets/berlin_js/bo-foot-rebrush.js',
-      './meinberlin/assets/berlin_js/jquery.min.js',
-      './meinberlin/assets/berlin_js/shariff.min.js',
-      './meinberlin/assets/berlin_js/swiper.min.js'
-
     ],
     adhocracy4: {
       import: [
         'select2/dist/css/select2.min.css',
-        'swiper/swiper-bundle.min.css',
         './meinberlin/assets/scss/style_dashboard.scss',
         './meinberlin/assets/js/app.js'
       ],
@@ -277,9 +265,7 @@ module.exports = {
       bootstrap$: 'bootstrap/dist/js/bootstrap.bundle.min.js',
       jquery$: 'jquery/dist/jquery.min.js',
       select2$: 'select2/dist/js/select2.min.js',
-      shariff$: 'shariff/dist/shariff.min.js',
-      shpjs$: 'shpjs/dist/shp.min.js',
-      'slick-carousel$': 'slick-carousel/slick/slick.min.js'
+      shpjs$: 'shpjs/dist/shp.min.js'
     },
     // when using `npm link`, dependencies are resolved against the linked
     // folder by default. This may result in dependencies being included twice.

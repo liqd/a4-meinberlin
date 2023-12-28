@@ -1,8 +1,6 @@
 import 'bootstrap' // load bootstrap components
 import 'django'
 import 'select2' // used to select projects in containers
-import 'shariff'
-import 'slick-carousel'
 
 import '../../apps/actions/assets/timestamps.js'
 import '../../apps/newsletters/assets/dynamic_fields.js'
@@ -20,33 +18,10 @@ import {
 } from 'adhocracy4'
 
 function init () {
-  const shariffs = $('.shariff')
-  if (shariffs.length > 0) {
-    /* eslint-disable no-new */
-    new window.Shariff(shariffs, {
-      services: '[&quot;twitter&quot;,&quot;facebook&quot;,&quot;info&quot;]',
-      infoUrl: '/shariff'
-    })
-  }
-
   ReactWidget.initialise('a4', 'comment_async', ReactCommentsAsync.renderComment)
   ReactWidget.initialise('a4', 'follows', ReactFollows.renderFollow)
   ReactWidget.initialise('a4', 'ratings', ReactRatings.renderRatings)
   ReactWidget.initialise('a4', 'reports', ReactReports.renderReports)
-
-  $('.timeline-carousel__item').slick({
-    initialSlide: parseInt($('#timeline-carousel').attr('data-initial-slide')),
-    focusOnSelect: false,
-    centerMode: true,
-    dots: false,
-    arrows: true,
-    centerPadding: 30,
-    mobileFirst: true,
-    infinite: false,
-    variableWidth: true,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  })
 
   if ($.fn.select2) {
     $('.js-select2').select2()

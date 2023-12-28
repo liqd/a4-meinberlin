@@ -51,11 +51,7 @@
     "sass": "1.77.6",
     "sass-loader": "14.2.1",
     "select2": "4.0.13",
-    "shariff": "3.3.0",
-    "shpjs": "5.0.1",
-    "slick-carousel": "github:liqd/slick#pm-2019-07-overwrites",
-    "swiper": "11.1.4",
-    "timeago.js": "4.0.2"
+    "shpjs": "5.0.1"
   },
   "devDependencies": {
     "@babel/core": "7.24.7",
@@ -94,7 +90,6 @@
     "build": "webpack --config webpack.dev.js --mode development",
     "watch": "webpack --config webpack.dev.js --watch --mode development",
     "lint": "eslint meinberlin/apps meinberlin/react meinberlin/assets/js --ext .js,.jsx && stylelint 'meinberlin/assets/scss/**/*.scss'",
-    "lint-staged": "lint-staged",
     "lint-fix": "eslint meinberlin/apps meinberlin/react meinberlin/assets --fix --ext .js,.jsx",
     "postinstall": "husky",
     "test": "jest",

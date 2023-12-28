@@ -19,8 +19,5 @@ def test_list_view(client, phase_factory, topic_factory):
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(response, "meinberlin_topicprio/topic_list.html")
-        assert topic in response.context_data["topic_list"]
-        assert topic_2 not in response.context_data["topic_list"]
-        assert response.context_data["topic_list"][0].comment_count == 0
-        assert response.context_data["topic_list"][0].positive_rating_count == 0
-        assert response.context_data["topic_list"][0].negative_rating_count == 0
+        assert response.context["project"] == project
+        assert response.context["module"] == module

@@ -6,52 +6,16 @@ from adhocracy4.dashboard import mixins
 from adhocracy4.exports.views import DashboardExportView
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
-from adhocracy4.filters import widgets as filters_widgets
-from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.labels import filters as label_filters
-from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.ideas import views as idea_views
-
-from . import forms
-from . import models
-
-
-class FreeTextFilterWidget(filters_widgets.FreeTextFilterWidget):
-    label = _("Search")
+from meinberlin.apps.ideas.views import IdeaListView
+from meinberlin.apps.topicprio import forms
+from meinberlin.apps.topicprio import models
 
 
-class TopicFilterSet(a4_filters.DefaultsFilterSet):
-    defaults = {"ordering": "name"}
-    ordering = a4_filters.DynamicChoicesOrderingFilter(
-        choices=(
-            ("name", _("Alphabetical")),
-            ("-positive_rating_count", _("Most popular")),
-            ("-comment_count", _("Most commented")),
-        )
-    )
-    search = FreeTextFilter(widget=FreeTextFilterWidget, fields=["name"])
-
-    class Meta:
-        model = models.Topic
-        fields = ["search", "category", "labels"]
-
-    def __init__(self, data, *args, **kwargs):
-        self.base_filters["category"] = category_filters.CategoryAliasFilter(
-            module=kwargs["view"].module, field_name="category"
-        )
-        self.base_filters["labels"] = label_filters.LabelAliasFilter(
-            module=kwargs["view"].module, field_name="labels"
-        )
-        super().__init__(data, *args, **kwargs)
-
-
-class TopicListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMixin):
-    model = models.Topic
-    filter_set = TopicFilterSet
-
-    def get_queryset(self):
-        return super().get_queryset().filter(module=self.module)
+class TopicListView(IdeaListView):
+    template_name = "meinberlin_topicprio/topic_list.html"
 
 
 class TopicDetailView(idea_views.AbstractIdeaDetailView):

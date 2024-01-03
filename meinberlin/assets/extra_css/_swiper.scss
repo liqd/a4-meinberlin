@@ -1,0 +1,39 @@
+//style overwrites for detail phase component
+.swiper-navigation {
+    display: flex;
+    align-items: center;
+    background-color: $blue-dark;
+    color: $white;
+    padding-bottom: $spacer;
+}
+
+.swiper-pagination-clickable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: inherit !important;
+
+    .swiper-pagination-bullet {
+        background: transparent !important;
+        color: $white !important;
+        font-size: small;
+        width: 20px !important;
+        height: 20px !important;
+        border: 1.5px solid $white;
+        opacity: 1;
+    }
+
+    .swiper-pagination-bullet-active {
+        background: $white !important;
+        color: $blue-dark !important;
+    }
+}
+
+.swiper-button-prev {
+    padding-left: 0 !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    color: $white !important;
+}

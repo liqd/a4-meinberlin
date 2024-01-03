@@ -1,7 +1,13 @@
 {% load i18n contrib_tags %}
 
-<div class="phase-info__item u-spacer-top">
-    <div class="u-align-right">
+<article class="phase-info__item">
+    <section>
+        <h2 class="phase-info__title">{{ phase.name }}</h2>
+        <p>{{ phase.description }}</p>
+    </section>
+    <section role="status" aria-label="{% translate 'Phase status' %}">
+        <span class="fas fa-clock" aria-hidden="true"></span>
+
         {% if phase == module.active_phase %}
             <span
                 class="phase-info__highlight u-bold"
@@ -19,19 +25,13 @@
         {% else %}
             <span
                 class="phase-info__highlight u-secondary u-bold"
+                id="finished"
             >
                 {% translate 'finished' %}
             </span>
-        {% endif %}
-    </div>
-    <div class="phase-info__item__title">
-        <span class="lr-bar__left">{{ phase.name }}</span>
-    </div>
-    <div class="phase-info__item__subtitle">
+        {% endif %} 
+
         {% html_date phase.start_date 'DATETIME_FORMAT' %}
         &ndash; {% html_date phase.end_date 'DATETIME_FORMAT' %}
-    </div>
-    <div class="phase-info__item__description">
-        {{ phase.description }}
-    </div>
-</div>
+    </section>
+</article>

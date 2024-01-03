@@ -3,11 +3,6 @@
     @extend .aural;
 }
 
-// BO uses middle-space
-hr.no-space {
-    margin: 0;
-}
-
 // BO use of classes media query altered to suit linting
 @media print, (width >= 37.501rem) {
     .row--reverse-palm {
@@ -26,4 +21,9 @@ hr.no-space {
 
 .text--color-dark {
     color: var(--color-black);
+}
+
+// BO mimic of my-0
+.mt-0 {
+    margin-top: 0 !important;
 }

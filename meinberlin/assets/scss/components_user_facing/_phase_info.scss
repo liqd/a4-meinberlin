@@ -1,14 +1,25 @@
 .phase-info {
     background-color: $blue-dark;
     color: $white;
-    padding: 1.8em 0;
-}
-
-.phase-info .modul-buehne {
-    margin: 0;
 }
 
 .phase-info__title {
     color: inherit;
     margin: 0;
+}
+
+.phase-info__cta {
+    // enforce button to stick to bottom of container
+    margin-top: auto;
+}
+
+.phase-info .modul-servicepanel .fa, .modul-servicepanel .far, .modul-servicepanel .fas {
+    // overwrite icon color
+    color: inherit;
+}
+
+@media print, (width <= 37.501rem) {
+    .phase-info .modul-buehne {
+        margin: 0;
+    }
 }

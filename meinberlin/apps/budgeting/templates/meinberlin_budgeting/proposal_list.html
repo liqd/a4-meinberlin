@@ -15,11 +15,9 @@
 {% block project_action %}
     {% has_or_would_have_perm 'meinberlin_budgeting.add_proposal' request.user module as propose_allowed %}
     {% if propose_allowed %}
-        <div>
-            <a href="{% url 'meinberlin_budgeting:proposal-create' module_slug=module.slug %}" class="button button--light">
-                {% translate 'Submit proposal' %}
-            </a>
-        </div>
+        <a href="{% url 'meinberlin_budgeting:proposal-create' module_slug=module.slug %}" class="button button--negative">
+            {% translate 'Submit proposal' %}
+        </a>
     {% endif %}
 {% endblock %}
 

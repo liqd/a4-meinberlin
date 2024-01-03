@@ -3,16 +3,20 @@
 
 <!-- Extra blocks to ensure cookie banner for live stream -->
 {% block extra_css %}
-  {{ block.super }}
-    <link rel="stylesheet" href="{% static 'dsgvo_video_embed.css' %}" />
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'dsgvo_video_embed.css' %}"/>
 {% endblock %}
 
 {% block extra_js %}
-  {{ block.super }}
+    {{ block.super }}
     <script type="text/javascript" src="{% static 'dsgvo_video_embed.js' %}"></script>
 {% endblock %}
 
-{% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}
+{% block title %}
+    {{ project.name }}
+    &mdash;
+    {{ block.super }}
+{% endblock %}
 
 {% block extra_messages %}
     {{ block.super }}
@@ -30,42 +34,50 @@
 
 <!-- Breadcrumbs are only necessary for multimodule projects with simultaneously running modules since the project detail
      template correctly displays breadcrumbs for other project -->
-{% if module.is_in_module_cluster  %}
+{% if module.is_in_module_cluster %}
     {% block breadcrumbs %}
-    <div id="content-header">
-        <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
-            <ol>
-                <li><a href="/">meinBerlin</a></li>
-                <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a></li>
-                <li><a href="{% url 'project-detail' project.slug %}">{{ project.name|truncatechars:50 }}</a></li>
-                <li class="active" aria-current="page">{{ module.name|truncatechars:50 }}</li>
-            </ol>
-        </nav>
-    </div>
+        <div id="layout-grid__area--contentheader">
+            <div id="content-header">
+                <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
+                    <ol>
+                        <li>
+                            <a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'project-detail' project.slug %}">{{ project.name|truncatechars:50 }}</a>
+                        </li>
+                        <li class="active" aria-current="page">{{ module.name|truncatechars:50 }}</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
     {% endblock %}
 {% endif %}
 
 {% block content %}
 
     <div id="layout-grid__area--herounit">
-        {% if module.is_in_module_cluster  %}
+        {% if module.is_in_module_cluster %}
             <div class="u-align-right u-spacer-bottom-double">
-            {% if module.previous_module_in_cluster %}
-                <a class="button button--light" href="{% url 'module-detail' module.previous_module_in_cluster.slug %}">
-                    <i class="fa fa-chevron-left u-md-up-display-none"></i>
-                    <span class="u-md-down-display-none">{% translate 'Previous' %}</span>
-                </a>
-            {% endif %}
-            <span class="u-spacer-left u-spacer-right">{{ module.readable_index_in_cluster }} {% translate 'of' %} {{ module.module_cluster|length }}</span>
-            {% if module.next_module_in_cluster %}
-                <a class="button button--light" href="{% url 'module-detail' module.next_module_in_cluster.slug %}">
-                    <i class="fa fa-chevron-right u-md-up-display-none"></i>
-                    <span class="u-md-down-display-none">{% translate 'Next' %}</span>
-                </a>
-            {% endif %}
+                {% if module.previous_module_in_cluster %}
+                    <a class="button button--light" href="{% url 'module-detail' module.previous_module_in_cluster.slug %}">
+                        <i class="fa fa-chevron-left u-md-up-display-none"></i>
+                        <span class="u-md-down-display-none">{% translate 'Previous' %}</span>
+                    </a>
+                {% endif %}
+                <span class="u-spacer-left u-spacer-right">{{ module.readable_index_in_cluster }}
+                    {% translate 'of' %}
+                    {{ module.module_cluster|length }}</span>
+                {% if module.next_module_in_cluster %}
+                    <a class="button button--light" href="{% url 'module-detail' module.next_module_in_cluster.slug %}">
+                        <i class="fa fa-chevron-right u-md-up-display-none"></i>
+                        <span class="u-md-down-display-none">{% translate 'Next' %}</span>
+                    </a>
+                {% endif %}
             </div>
         {% endif %}
-        <div class="offset-lg-3 col-lg-6">
+        <div
+            class="offset-lg-3 col-lg-6">
             <!-- Live stream -->
             {% for phase in module.phases %}
                 {% if phase == module.active_phase and live_stream %}
@@ -81,16 +93,20 @@
         </div>
     </div>
 
-    <div id="layout-grid__area--maincontent">
-        <div class="u-full-bleed">
-            <div class="phase-info">
+
+    <section id="layout-grid__area--maincontent">
+        <div class="modul-servicepanel fullwidth panel--heavy phase-info">
+            <div class="servicepanel__main">
                 {% include "a4modules/includes/module_detail_phase.html" %}
+            </div>
+            <div class="servicepanel__right phase-info__cta">
                 {% block project_action %}{% endblock %}
             </div>
         </div>
-            {% block voting_token_field %}{% endblock %}
-            {% block phase_content %}{% endblock %}
-            {% if module.is_in_module_cluster %}
+
+        {% block voting_token_field %}{% endblock %}
+        {% block phase_content %}{% endblock %}
+        {% if module.is_in_module_cluster %}
             <section class="participation-tile__wrapper">
                 <div class="participation-tile__list-container">
                     <h2 class="participation-tile__list-header">{% translate 'More from this online participation:' %}</h2>
@@ -103,7 +119,6 @@
                     </ul>
                 </div>
             </section>
-            {% endif %}
-        </div>
-    </div>
-{% endblock %}
+        {% endif %}
+    </section>
+</div>{% endblock %}

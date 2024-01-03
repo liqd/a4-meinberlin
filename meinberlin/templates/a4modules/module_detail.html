@@ -83,9 +83,9 @@
 
     <div id="layout-grid__area--maincontent">
             {% include "a4modules/includes/module_detail_phase.html" %}
-            <div class="offset-lg-3 col-lg-6">
-                {% block project_action %}{% endblock %}
-            </div>
+           
+            {% block project_action %}{% endblock %}
+            
             {% block phase_content %}{% endblock %}
             {% if module.is_in_module_cluster %}
             <section class="participation-tile__wrapper">

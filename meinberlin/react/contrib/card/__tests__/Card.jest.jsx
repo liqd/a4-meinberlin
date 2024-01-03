@@ -64,7 +64,7 @@ test('Renders a link to item details', () => {
   expect(comments.textContent).toEqual('7CommentComments')
   // don't do same check for likes count as it also finds the
   // dislikes as non exact string but 1 count is enough
-  expect(dislikes.textContent).toEqual('1Dislikes')
+  expect(dislikes.textContent).toEqual('1DislikeDislikes')
   expect(screen.getByText('My idea')).toBeTruthy()
   expect(screen.getByText('Item details')).toBeTruthy()
 })

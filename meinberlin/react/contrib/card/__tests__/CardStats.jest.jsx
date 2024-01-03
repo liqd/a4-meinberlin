@@ -24,7 +24,7 @@ test('2 phase: rating phase - can view comments and ratings count', () => {
   // strings constructed by ngettext will render both options as jest does not mock ngettext functionality,
   // it just returns both so we check for both as it is a predicatble outcome
   expect(comments.textContent).toEqual('18CommentComments')
-  expect(dislikes.textContent).toEqual('1Dislikes')
+  expect(dislikes.textContent).toEqual('1DislikeDislikes')
   expect(screen.queryByText('Votes')).toBeNull()
 })
 
@@ -49,7 +49,7 @@ test('3 phase: support phase - can view comments and support count', () => {
   const likes = screen.getByText('Support', { exact: false })
 
   expect(comments.textContent).toEqual('18CommentComments')
-  expect(likes.textContent).toEqual('4Support')
+  expect(likes.textContent).toEqual('4SupporterSupporters')
   expect(screen.queryByText('Dislikes')).toBeNull()
   expect(screen.queryByText('Likes')).toBeNull()
   expect(screen.queryByText('Votes')).toBeNull()

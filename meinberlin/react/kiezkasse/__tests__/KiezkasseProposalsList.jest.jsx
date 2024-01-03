@@ -52,9 +52,9 @@ test('Kiezkasse list - check render with required stats',
     expect(screen.getByText('This is a topic')).toBeTruthy()
     expect(screen.getByText('Category 1')).toBeTruthy()
     expect(screen.getByText('Label 2')).toBeTruthy()
-    expect(screen.getByText('Likes')).toBeTruthy()
+    expect(screen.getByText('LikeLikes')).toBeTruthy()
     expect(comments.textContent).toEqual('6CommentComments')
-    expect(dislikes.textContent).toEqual('1Dislikes')
+    expect(dislikes.textContent).toEqual('1DislikeDislikes')
 
     // reverse overwrite of global.fetch
     await global.fetch.mockClear()

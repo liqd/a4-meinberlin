@@ -125,6 +125,7 @@ assume this will may be updated at somepoint  -->
             aria-expanded="false"
             aria-hidden="true"
             aria-labelledby="tab-project-{{ project.pk }}-information">
+            <h2>{% translate 'Information' %}</h2>
             <div class="ck-content">
                 {{ project.information | transform_collapsibles | disable_iframes | richtext }}
             </div>
@@ -181,6 +182,7 @@ assume this will may be updated at somepoint  -->
             aria-expanded="true"
             aria-hidden="false"
             aria-labelledby="tab-project-{{ project.pk }}-participation">
+            <h2>{% translate 'Participate' %}</h2>
             {% if event %}
                 <article>
                     <h2>{{ event.name }}</h2>
@@ -215,6 +217,7 @@ assume this will may be updated at somepoint  -->
             aria-expanded="false"
             aria-hidden="true"
             aria-labelledby="tab-project-{{ project.pk }}-result">
+            <h2>{% translate 'Result' %}</h2>
                 {% if project.result %}
                     <div class="ck-content">
                         {{ project.result | transform_collapsibles | disable_iframes | richtext }}

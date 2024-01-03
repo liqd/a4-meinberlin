@@ -1,27 +1,26 @@
 {% load i18n %}
 
+
 {% with phase_count=module.phases.count %}
-<div class="phase-info">
-    {% if phase_count == 1 %}
-        {% with phase=module.phases.first %}
-            {% include "a4modules/includes/module_detail_phase_info.html" %}
-        {% endwith %}
-    {% else %}
+{% if phase_count == 1 %}
+    {% with phase=module.phases.first %}
+    {% include "a4modules/includes/module_detail_phase_info.html" %}
+    {% endwith %}
+{% else %}
     <div class="modul-buehne">
         {% include "a4modules/includes/module_detail_phase_swiper.html" %}
     </div>
-    {% endif %}
-</div>
+{% endif %}
 {% endwith %}
 
-<div class="offset-lg-3 col-lg-6 u-spacer-bottom-double">
 {% if project.is_private %}
     <div>
-        <i class="fas fa-lock u-spacer-right" aria-hidden="true"></i>{% translate 'This project is not publicly visible. Only invited users can see content and actively participate.' %}
+        <span class="fas fa-lock u-spacer-right" aria-hidden="true"></span>
+        {% translate 'This project is not publicly visible. Only invited users can see content and actively participate.' %}
     </div>
 {% elif project.is_semipublic %}
     <div>
-        <i class="fas fa-eye u-spacer-right" aria-hidden="true"></i>{% translate 'This project is publicly visible. Invited users can actively participate.' %}
+        <span class="fas fa-eye u-spacer-right" aria-hidden="true"></span>
+        {% translate 'This project is publicly visible. Invited users can actively participate.' %}
     </div>
 {% endif %}
-</div>

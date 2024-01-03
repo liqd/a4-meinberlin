@@ -4,9 +4,9 @@ import django from 'django'
 export const CardStats = (props) => {
   const { permissions } = props
 
-  const positiveRatingsStr = django.gettext('Likes')
-  const negativeRatingsStr = django.gettext('Dislikes')
-  const supportStr = django.gettext('Support')
+  const positiveRatingsStr = django.ngettext('Like', 'Likes', props.positiveCount)
+  const negativeRatingsStr = django.ngettext('Dislike', 'Dislikes', props.negativeCount)
+  const supportStr = django.ngettext('Supporter', 'Supporters', props.positiveCount)
   const commentsStr = django.ngettext('Comment', 'Comments', props.commentCount)
   const votesStr = django.ngettext('Vote', 'Votes', props.voteCount)
 

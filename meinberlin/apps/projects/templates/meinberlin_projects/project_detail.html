@@ -4,14 +4,14 @@
 {% block extra_css %}
   {{ block.super }}
     <link rel="stylesheet" href="{% static 'dsgvo_video_embed.css' %}" />
-{% endblock %}
+{% endblock extra_css %}
 
 {% block extra_js %}
   {{ block.super }}
     <script type="text/javascript" src="{% static 'dsgvo_video_embed.js' %}"></script>
-{% endblock %}
+{% endblock extra_js %}
 
-{% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{{ project.name }} — {{ block.super }}{% endblock title %}
 
 {% block extra_messages %}
     {{ block.super }}
@@ -20,24 +20,24 @@
         <ul class="messages">
             <li class="alert alert--warning" role="alert">
                 <div class="container">
-                    {% translate 'This project is not published yet.' %}
+                    {% translate "This project is not published yet." %}
                 </div>
             </li>
         </ul>
     {% endif %}
-{% endblock %}
+{% endblock extra_messages %}
 
 {% block breadcrumbs %}
     <div id="content-header">
-        <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
+        <nav class="breadcrumb" aria-label='{% translate "You are here:" %}'>
             <ol>
                 <li><a href="/">meinBerlin</a></li>
-                <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a></li>
+                <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate "Project Overview" %}</a></li>
                 <li class="active" aria-current="page">{{ project.name|truncatechars:50 }}</li>
             </ol>
         </nav>
     </div>
-{% endblock %}
+{% endblock breadcrumbs %}
 
 {% block content %}
 <!-- FIXME according to the marketing verticle the herounit should be before the maincontent however the styling for this here is nested within maincontent
@@ -48,7 +48,7 @@ assume this will may be updated at somepoint  -->
             <div class="mainbar__left">
                 <div class="image">
                     <div class="image__image">
-                        <img src="{{ project.image |thumbnail_url:'heroimage' }}" alt="{% if project.image_alt_text %}{{ project.image_alt_text }}{% else %}{% translate 'Here you can find a decorative picture.' %}{% endif %}" />
+                        <img src="{{ project.image | thumbnail_url:"heroimage" }}" alt='{% if project.image_alt_text %}{{ project.image_alt_text }}{% else %}{% translate "Here you can find a decorative picture." %}{% endif %}' width="100%" height="auto" loading="lazy"/>
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@ assume this will may be updated at somepoint  -->
                             {% if project.image_copyright %}
                                 {{ project.image_copyright }}
                             {% else %}
-                                {% translate 'copyright missing' %}
+                                {% translate "copyright missing" %}
                             {% endif %}
                         </p>
                     </div>
@@ -73,50 +73,60 @@ assume this will may be updated at somepoint  -->
             </div>
         </div>
     </section>
-    <div class="js-tabs">
+    <div class="tabnavigation js-tabs">
         <div class="row row--reverse-palm">
             {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
-            {% if user_may_change %}
-            <div class="span4 align--right">
-                <a class="link--edit" href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}">
-                    {% translate 'Edit' %}
-                </a>
-            </div>
-            {% endif %}
-            <div class="span8">
-                <div role="tablist"
-                    aria-label="{% translate 'Project Details Navigation' %}">
-                    <button id="tab-project-{{ project.pk }}-information"
-                        class="tab__button"
-                        type="button"
-                        role="tab"
-                        aria-selected="false"
-                        aria-controls="tabpanel-project-{{ project.pk }}-information"
-                        tabindex="-1">
-                            {% translate 'Information' %}
-                    </button>
-                    <button
-                        id="tab-project-{{ project.pk }}-participation"
-                        class="tab__button"
-                        type="button"
-                        role="tab"
-                        aria-selected="true"
-                        aria-controls="tabpanel-project-{{ project.pk }}-participation">
-                            {% translate 'Participation' %}
-                    </button>
-                    <button
-                        id="tab-project-{{ project.pk }}-result"
-                        class="tab__button"
-                        type="button"
-                        role="tab"
-                        aria-selected="false"
-                        aria-controls="tabpanel-project-{{ project.pk }}-result"
-                        tabindex="-1">
-                            {% translate 'Results' %}
-                    </button>
+            <div>
+                {% if user_may_change %}
+                <div class="tabnavigation--right">
+                    <a class="tabnavigation__link" href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}">
+                        {% translate "Edit" %}
+                    </a>
                 </div>
+                {% endif %}
+                <ul
+                    class="tabnavigation--left"
+                    role="tablist"
+                    aria-label='{% translate "Project Details Navigation" %}'
+                >
+                    <li>
+                        <button
+                            id="tab-project-{{ project.pk }}-information"
+                            class="tabnavigation__button"
+                            type="button"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="tabpanel-project-{{ project.pk }}-information"
+                            tabindex="-1">
+                                {% translate "Information" %}
+                        </button>
+                    </li>
+
+                    <li>
+                        <button
+                            id="tab-project-{{ project.pk }}-participation"
+                            class="tabnavigation__button"
+                            type="button"
+                            role="tab"
+                            aria-selected="true"
+                            aria-controls="tabpanel-project-{{ project.pk }}-participation">
+                                {% translate "Participation" %}
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            id="tab-project-{{ project.pk }}-result"
+                            class="tabnavigation__button"
+                            type="button"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="tabpanel-project-{{ project.pk }}-result"
+                            tabindex="-1">
+                                {% translate "Results" %}
+                        </button>
+                    </li>
+                </ul>
             </div>
-            <hr class="no-space"/>
         </div>
         <section
             id="tabpanel-project-{{ project.pk }}-information"
@@ -125,14 +135,14 @@ assume this will may be updated at somepoint  -->
             aria-expanded="false"
             aria-hidden="true"
             aria-labelledby="tab-project-{{ project.pk }}-information">
-            <h2>{% translate 'Information' %}</h2>
+            <h2 class="mt-0">{% translate "Information" %}</h2>
             <div class="ck-content">
                 {{ project.information | transform_collapsibles | disable_iframes | richtext }}
             </div>
             {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url or project.organisation.address or project.organisation.url %}
                 {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url %}
                     <div>
-                        <h3>{% translate 'Contact for questions' %}</h3>
+                        <h3>{% translate "Contact for questions" %}</h3>
                         <address>
                             {% if project.contact_name %}
                             <p>{{ project.contact_name }}</p>
@@ -141,16 +151,16 @@ assume this will may be updated at somepoint  -->
                             <p>{{ project.contact_address_text|linebreaks }}</p>
                             {% endif %}
                             {% if project.contact_phone %}
-                            <p><strong>{% translate 'Telephone' %}: </strong>{{ project.contact_phone }}</p>
+                            <p><strong>{% translate "Telephone" %}: </strong>{{ project.contact_phone }}</p>
                             {% endif %}
                             {% if project.contact_email %}
                             <a class="btn btn--secondary" href="mailto:{{ project.contact_email }}">
-                                {% translate 'Email' %}
+                                {% translate "Email" %}
                             </a>
                             {% endif %}
                             {% if project.contact_url %}
                             <a class="btn btn--secondary" target="_blank" href="{{ project.contact_url }}">
-                                {% translate 'Website' %}
+                                {% translate "Website" %}
                             </a>
                             {% endif %}
                         </address>
@@ -159,7 +169,7 @@ assume this will may be updated at somepoint  -->
 
                 {% if project.organisation.address or project.organisation.url %}
                     <div>
-                        <h3>{% translate 'Responsible body' %}</h3>
+                        <h3>{% translate "Responsible body" %}</h3>
                         <address>
                             {% if project.organisation.address %}
                             <p>{{ project.organisation.name }}</p>
@@ -167,7 +177,7 @@ assume this will may be updated at somepoint  -->
                             {% endif %}
                             {% if project.organisation.url %}
                             <a class="btn btn--secondary" target="_blank" href="{{ project.organisation.url }}">
-                                {% translate 'Website' %}
+                                {% translate "Website" %}
                             </a>
                             {% endif %}
                         </address>
@@ -182,7 +192,7 @@ assume this will may be updated at somepoint  -->
             aria-expanded="true"
             aria-hidden="false"
             aria-labelledby="tab-project-{{ project.pk }}-participation">
-            <h2>{% translate 'Participate' %}</h2>
+            <h2 class="mt-0">{% translate "Participate" %}</h2>
             {% if event %}
                 <article>
                     <h2>{{ event.name }}</h2>
@@ -201,7 +211,7 @@ assume this will may be updated at somepoint  -->
                         </ul>
                     </div>
                 </div>
-            {% else %} 
+            {% else %}
                 <!-- if just one module and no phase view to dispatch to -->
                 <div class="modul-servicepanel fullwidth panel--heavy phase-info">
                     <div class="servicepanel__main">
@@ -209,14 +219,13 @@ assume this will may be updated at somepoint  -->
                     </div>
                     <!-- these blocks are only filled when in phase view -->
                     <div class="servicepanel__right phase-info__cta">
-                        {% block project_action %}{% endblock %}
+                        {% block project_action %}{% endblock project_action %}
                     </div>
                 </div>
             {% endif %}
 
-            
-            {% block voting_token_field %}{% endblock %}
-            {% block phase_content %}{% endblock %}
+            {% block voting_token_field %}{% endblock voting_token_field %}
+            {% block phase_content %}{% endblock phase_content %}
         </section>
         <section
             id="tabpanel-project-{{ project.pk }}-result"
@@ -225,15 +234,15 @@ assume this will may be updated at somepoint  -->
             aria-expanded="false"
             aria-hidden="true"
             aria-labelledby="tab-project-{{ project.pk }}-result">
-            <h2>{% translate 'Result' %}</h2>
+            <h2 class="mt-0">{% translate "Result" %}</h2>
                 {% if project.result %}
                     <div class="ck-content">
                         {{ project.result | transform_collapsibles | disable_iframes | richtext }}
                     </div>
                 {% else %}
-                    {% translate 'No results yet.' %}
+                    <p>{% translate "No results yet." %}</p>
                 {% endif %}
         </section>
     </div>
 </div>
-{% endblock %}
+{% endblock content %}

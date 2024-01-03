@@ -1,0 +1,88 @@
+// Styling taken from BO button element styling with some small adjustments
+.tabnavigation__button {
+    min-height: 43px;
+    width: auto;
+    padding: 10px 6px;
+    font-size: $em-spacer;
+    line-height: 1.2;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    overflow: visible;
+}
+
+.tabnavigation__link {
+    min-height: 43px;
+    width: auto;
+    padding: 10px 6px;
+    font-size: $em-spacer;
+    line-height: 1.2;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    overflow: visible;
+    color: var(--color-black);
+
+    &:before {
+        content: "\f303";
+        font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands", sans-serif;
+        font-weight: 700;
+        margin-right: .5em;
+        display: inline-block;
+        vertical-align: baseline;
+    }
+}
+
+.tabnavigation {
+    position: relative;
+}
+
+.tabnavigation--right {
+    text-align: end;
+    margin-bottom: $spacer;
+}
+
+@media (width >= 37.501rem) {
+    .tabnavigation--right{
+        position: absolute;
+        right: 0;
+    }
+}
+
+// Styling taken from BO searchpage-tabnavigation styling (not available in current library) with some small adjustments
+.tabnavigation--left {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px;
+    box-shadow: 0 -1px 0 var(--color-grey-dark) inset
+}
+
+.tabnavigation--left li {
+    margin-bottom: 0;
+    margin-right: 20px
+}
+
+.tabnavigation--left li:last-child {
+    margin-right: 0
+}
+
+.tabnavigation--left li button {
+    padding: 4px;
+    display: inline-block;
+    color: var(--color-grey-darkest);
+}
+
+@media (width <= 37.5rem) {
+    .tabnavigation--left li {
+        flex-grow: 1;
+        text-align: center;
+    }
+}
+
+.tabnavigation--left li button[aria-selected="true"] {
+    border-bottom: 4px solid $primary;
+    font-weight: bold;
+    color: var(--color-black);
+    text-decoration: none
+}

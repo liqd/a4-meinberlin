@@ -1,13 +1,15 @@
 {% load i18n %}
 
 {% with phase_count=module.phases.count %}
-<div class="offset-lg-3 col-lg-6">
+<div class="phase-info">
     {% if phase_count == 1 %}
         {% with phase=module.phases.first %}
             {% include "a4modules/includes/module_detail_phase_info.html" %}
         {% endwith %}
     {% else %}
+    <div class="modul-buehne">
         {% include "a4modules/includes/module_detail_phase_swiper.html" %}
+    </div>
     {% endif %}
 </div>
 {% endwith %}

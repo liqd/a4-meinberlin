@@ -1,17 +1,29 @@
 {% load static %}
 <!-- Start Swiper Template -->
-<div class="swiper-phases swiper">
-    <div class="swiper-wrapper">
-        {% for phase in module.phases %}
-            <div class="swiper-slide">
-                {% include "a4modules/includes/module_detail_phase_info.html" %}
-            </div>
-        {% endfor %}
+<div role="region" aria-label="Carousel" class="swiper-container swiper">
+    <div role="group" aria-label="Slide controls" class="swiper-navigation">
+        <button
+            aria-label="Show previous slide"
+            class="swiper-button-prev"
+        ></button>
+        <button
+            aria-label="Show next slide"
+            class="swiper-button-next"
+        ></button>
+        <div class="swiper-pagination"></div>
     </div>
-    <div class="swiper-pagination"></div>
+
+    <ul class="swiper-wrapper">
+        {% for phase in module.phases %}
+        <li class="swiper-slide">
+            {% include "a4modules/includes/module_detail_phase_info.html" %}
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 <!-- End Swiper Template -->
 
 {% block extra_js %}
     <script src="{% static 'swiper_phases.js' %}"></script>
 {% endblock %}
+

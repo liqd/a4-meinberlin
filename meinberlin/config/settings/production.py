@@ -1,6 +1,7 @@
 from .base import *
 
 DEBUG = False
+WHITENOISE_KEEP_ONLY_HASHED_FILES = True
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",

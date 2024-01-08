@@ -1,4 +1,7 @@
-//Swiper modul-buehne - style overwrites for detail phase component
+.swiper-container {
+    background-color: inherit;
+}
+
 .swiper-navigation {
     display: flex;
     align-items: center;
@@ -14,6 +17,8 @@
     background: inherit !important;
 
     .swiper-pagination-bullet {
+        display: flex;
+        justify-content: center;
         background: transparent !important;
         color: $white !important;
         font-size: small;
@@ -33,7 +38,16 @@
     padding-left: 0 !important;
 }
 
+.swiper-button-prev,
+.swiper-button-next {
+    background-color: inherit !important;
+    height: 0 !important;
+    display: flex;
+    align-items: center;
+}
+
 .swiper-button-next::after,
 .swiper-button-prev::after {
     color: $white !important;
+    font-size: 1.5em !important;
 }

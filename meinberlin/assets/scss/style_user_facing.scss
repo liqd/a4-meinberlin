@@ -49,6 +49,9 @@
 // New styles begin
 @import "../berlin_css/berlin_marketing";
 
+// extra scss / overwrites
+@import "../extra_css/swiper.scss";
+
 @import "styles_user_facing/form";
 @import "styles_user_facing/utility";
 

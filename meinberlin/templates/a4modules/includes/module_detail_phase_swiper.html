@@ -24,9 +24,6 @@
 <!-- End Swiper Template -->
 
 {% block extra_js %}
-<!-- Swiper JS -->
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<!-- Your Swiper initialization script -->
-<script src="{% static 'swiper_phases.js' %}"></script>
+    <script src="{% static 'swiper_phases.js' %}" defer></script>
 {% endblock %}
 

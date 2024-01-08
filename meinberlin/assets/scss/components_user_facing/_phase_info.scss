@@ -24,13 +24,13 @@
 }
 
 @media print, (width <= 37.501rem) {
-    .phase-info .modul-buehne {
+    .phase-info {
         margin: 0;
     }
 }
 
 @media print, (width >= 37.501rem) and (width <= 73.813rem) {
-    .phase-info .modul-buehne {
+    .phase-info {
         margin: $spacer auto;
     }
 }

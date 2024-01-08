@@ -199,11 +199,19 @@ assume this will may be updated at somepoint  -->
                         </ul>
                     </div>
                 </div>
-            {% else %} <!-- if just one module and no phase view to dispatch to -->
-            {% include "a4modules/includes/module_detail_phase.html" %}
+            {% else %} 
+                <!-- if just one module and no phase view to dispatch to -->
+                <div class="modul-servicepanel fullwidth panel--heavy phase-info">
+                    <div class="servicepanel__main">
+                        {% include "a4modules/includes/module_detail_phase.html" %}
+                    </div>
+                    <!-- these blocks are only filled when in phase view -->
+                    <div class="servicepanel__right phase-info__cta">
+                        {% block project_action %}{% endblock %}
+                    </div>
+                </div>
             {% endif %}
-            <!-- these blocks are only filled when in phase view -->
-            {% block project_action %}{% endblock %}
+
             
             {% block voting_token_field %}{% endblock %}
             {% block phase_content %}{% endblock %}

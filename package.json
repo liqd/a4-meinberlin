@@ -50,6 +50,7 @@
     "sass-loader": "13.3.2",
     "select2": "4.0.13",
     "shpjs": "4.0.4",
+    "swiper": "11.0.5",
     "timeago.js": "4.0.2"
   },
   "devDependencies": {

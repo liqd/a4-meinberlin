@@ -1,8 +1,9 @@
+import Swiper from 'swiper/bundle'
+import 'swiper/css/bundle'
+
 const createSwiper = ({ rootElement, options }) =>
-// eslint-disable-next-line no-undef
   new Swiper(rootElement, options)
 
-// Initialize Swiper directly with the configuration
 const initSwiper = () => {
   const config = {
     rootElement: '.swiper-container',
@@ -16,13 +17,11 @@ const initSwiper = () => {
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
+        bulletElement: 'button',
         renderBullet: function (index, className) {
-          return (
-            '<button class="' + className + '">' + (index + 1) + '</button>'
-          )
+          return '<button class="' + className + '">' + (index + 1) + '</button>'
         }
-      },
-      a11y: true
+      }
     }
   }
 

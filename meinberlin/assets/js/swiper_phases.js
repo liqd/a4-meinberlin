@@ -1,5 +1,12 @@
-import Swiper from 'swiper/bundle'
-import 'swiper/css/bundle'
+import Swiper from 'swiper'
+
+// Needed due to issue with Swiper, issue link: https://github.com/import-js/eslint-plugin-import/issues/2266
+/* eslint-disable import/no-unresolved */
+import { Navigation, Pagination } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+/* eslint-enable import/no-unresolved */
 
 const createSwiper = ({ rootElement, options }) =>
   new Swiper(rootElement, options)
@@ -10,6 +17,7 @@ const initSwiper = () => {
     options: {
       direction: 'horizontal',
       loop: true,
+      modules: [Navigation, Pagination],
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
@@ -26,7 +34,7 @@ const initSwiper = () => {
   }
 
   createSwiper(config)
-};
+}
 
 (function () {
   // Check if Swiper is already available globally

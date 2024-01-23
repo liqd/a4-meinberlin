@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% load i18n static %}
 
-{% block header %}{% endblock %}
+{% block header %}{% endblock header %}
 
-{% block title %}{% translate "New Module" %} &mdash; {{ block.super }}{% endblock%}
+{% block title %}{% translate "New Module" %} — {{ block.super }}{% endblock title %}
 
 {% block content %}
+{% block menu %}{% endblock menu %}
 <div id="module-blueprint-list">
     <ul class="l-tiles-3">
         {% for blueprint_slug, blueprint in view.blueprints %}
@@ -13,7 +14,7 @@
         {% endfor %}
     </ul>
 </div>
-{% endblock %}
+{% endblock content %}
 
 {% block footer %}
-{% endblock %}
+{% endblock footer %}

@@ -35,7 +35,9 @@
     .user-indicator__wrapper {
         @extend .content-language-select;
 
-        color: var(--color-white);
+        button:first-child {
+            color: var(--color-white);
+        }
 
         > .dropdown .button {
             width: 100%;

@@ -13,8 +13,9 @@
             {{ request.user.username }}
         </button>
         <div role="menu" class="dropdown" id="js-user-indicator-dropdown" aria-label="Login of Register" tabindex="-1">
+            <button id="js-user-indicator-close" type="button" class="button button--close user-indicator__close" title="{% translate 'close' %}" aria-label="{% translate 'menu close' %}"></button>
             <ul class="list--clean">
-                <li><button id="js-user-indicator-close" type="button" class="button button--close user-indicator__close" title="{% translate 'close' %}" aria-label="{% translate 'menu close' %}"></button></li>
+                <li><b>{% translate "My account" %}</b></li>
                 <li><a href="{% url 'account' %}" role="menuitem">{% translate "Account Settings" %}</a></li>
                 {% for organisation in request.user.organisations %}
                     <li><a href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}" role="menuitem">{{ organisation.name }}</a></li>
@@ -42,8 +43,8 @@
             {% translate "Login" %}
         </button>
         <div role="menu" class="dropdown" id="js-user-indicator-dropdown" aria-label="Login of Register" tabindex="-1">
+            <button id="js-user-indicator-close" type="button" class="button button--close user-indicator__close" title="{% translate 'close' %}" aria-label="{% translate 'menu close' %}"></button>
             <ul class="list--clean">
-                <li><button id="js-user-indicator-close" type="button" class="button button--close user-indicator__close" title="{% translate 'close' %}" aria-label="{% translate 'menu close' %}"></button></li>
                 <li>
                     <a class="button button--light" href="{% url 'account_login' %}?next={{ redirect_field_value|urlencode }}" role="menuitem">{% translate "Login" %}</a>
                 </li>

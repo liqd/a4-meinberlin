@@ -40,7 +40,7 @@ def test_task_schedule_reset_cache_for_projects_becoming_active(
             end_date=next_week,
             module__project=proj,
         )
-        count += 2
+        count += 2  # give 2 mins lag between start dates
 
     # check function get_next_projects_start
     with django_assert_num_queries(1):
@@ -62,6 +62,10 @@ def test_task_schedule_reset_cache_for_projects_becoming_active(
 
         next_projects_start = cache.get("next_projects_start")
         assert next_projects_start is None
+
+        project_queryset = cache.get("project_queryset")
+        assert project_queryset is not None
+        assert project_queryset.count() == 6
 
 
 @pytest.mark.django_db
@@ -114,3 +118,7 @@ def test_task_schedule_reset_cache_for_projects_becoming_past(
 
         next_projects_end = cache.get("next_projects_end")
         assert next_projects_end is None
+
+        project_queryset = cache.get("project_queryset")
+        assert project_queryset is not None
+        assert project_queryset.count() == 6

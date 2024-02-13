@@ -1,11 +1,16 @@
+import logging
 from datetime import datetime
 from datetime import timedelta
 from datetime import timezone
 
 from celery import shared_task
 from django.core.cache import cache
+from django.db.models import Q
+from django.db.models.query import QuerySet
 
 from adhocracy4.phases.models import Phase
+from adhocracy4.projects.enums import Access
+from adhocracy4.projects.models import Project
 from meinberlin.apps import logger
 
 
@@ -80,6 +85,29 @@ def get_next_projects_end() -> list:
     return list_format_phases
 
 
+def get_project_queryset() -> "QuerySet[Project]":
+    projects = (
+        Project.objects.filter(
+            Q(project_type="a4projects.Project")
+            | Q(project_type="meinberlin_bplan.Bplan")
+        )
+        .filter(
+            Q(access=Access.PUBLIC) | Q(access=Access.SEMIPUBLIC),
+            is_draft=False,
+            is_archived=False,
+        )
+        .order_by("created")
+        .select_related("administrative_district", "organisation")
+        .prefetch_related(
+            "moderators",
+            "plans",
+            "organisation__initiators",
+            "module_set__phase_set",
+        )
+    )
+    return projects
+
+
 @shared_task(name="schedule_reset_cache_for_projects")
 def schedule_reset_cache_for_projects() -> bool:
     """The task is set via celery beat every 10 minutes in
@@ -122,7 +150,7 @@ def schedule_reset_cache_for_projects() -> bool:
                 ends = True
             # schedule cache clear for the seconds between now and next end
             reset_cache_for_projects.apply_async([starts, ends], countdown=remain_time)
-            msg = f"""
+            msg += f"""
                     {project_status} {project_phase} in {remain_time/60} minutes
                     """
         success = True
@@ -134,7 +162,7 @@ def schedule_reset_cache_for_projects() -> bool:
 
 
 @shared_task
-def reset_cache_for_projects(starts: bool, ends: bool) -> str:
+def reset_cache_for_projects(starts: bool, ends: bool) -> logging.Logger:
     """
     Task called by schedule_reset_cache_for_projects
     and clears cache for projects.
@@ -146,7 +174,7 @@ def reset_cache_for_projects(starts: bool, ends: bool) -> str:
         other relevant type of projects.
     """
 
-    msg = "Clear cache "
+    msg = "Reset cache "
     if starts:
         # remove redis key next_project_start
         cache.delete("next_projects_start")
@@ -166,9 +194,10 @@ def reset_cache_for_projects(starts: bool, ends: bool) -> str:
                 "extprojects",
             ]
         ):
-            msg += "failed for future projects becoming active"
+            msg += "failed for future projects becoming active."
         else:
             msg += "succeeded for future projects becoming active"
+
     if ends:
         # remove redis key next_projects_end
         cache.delete("next_projects_end")
@@ -190,6 +219,12 @@ def reset_cache_for_projects(starts: bool, ends: bool) -> str:
         ):
             msg += "failed for active projects becoming past"
         else:
-            msg += "succeeded for active projects becoming past"
-    logger.info(msg)
-    return msg
+            msg += "succeeded for future projects becoming active"
+
+    # set the redis key: value for project's queryset
+    try:
+        cache.set("project_queryset", get_project_queryset())
+        msg += "Set QuerySet for Projects succeeded."
+    except Exception as e:
+        msg += f"Set QuerySet for Projects failed: {e}."
+    return logger.info(msg)

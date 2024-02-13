@@ -1,5 +1,4 @@
 from django.core.cache import cache
-from django.db.models import Q
 from django.utils import timezone
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
@@ -9,6 +8,7 @@ from adhocracy4.projects.enums import Access
 from adhocracy4.projects.models import Project
 from meinberlin.apps.projects import serializers as project_serializers
 from meinberlin.apps.projects.filters import StatusFilter
+from meinberlin.apps.projects.tasks import get_project_queryset
 
 
 class ProjectListViewSet(viewsets.ReadOnlyModelViewSet):
@@ -20,26 +20,7 @@ class ProjectListViewSet(viewsets.ReadOnlyModelViewSet):
         self.now = now
 
     def get_queryset(self):
-        projects = (
-            Project.objects.filter(
-                Q(project_type="a4projects.Project")
-                | Q(project_type="meinberlin_bplan.Bplan")
-            )
-            .filter(
-                Q(access=Access.PUBLIC) | Q(access=Access.SEMIPUBLIC),
-                is_draft=False,
-                is_archived=False,
-            )
-            .order_by("created")
-            .select_related("administrative_district", "organisation")
-            .prefetch_related(
-                "moderators",
-                "plans",
-                "organisation__initiators",
-                "module_set__phase_set",
-            )
-        )
-        return projects
+        return get_project_queryset()
 
     def list(self, request, *args, **kwargs):
         statustype = ""
@@ -47,7 +28,9 @@ class ProjectListViewSet(viewsets.ReadOnlyModelViewSet):
             statustype = self.request.GET["status"]
         data = cache.get("projects_" + statustype)
         if data is None:
-            queryset = self.filter_queryset(self.get_queryset())
+            queryset = cache.get("project_queryset")
+            if not queryset:
+                queryset = self.filter_queryset(self.get_queryset())
             serializer = self.get_serializer(queryset, many=True)
             data = serializer.data
             cache.set("projects_" + statustype, data)

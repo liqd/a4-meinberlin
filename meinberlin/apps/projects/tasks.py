@@ -4,9 +4,11 @@ from datetime import timezone
 
 from celery import shared_task
 from django.core.cache import cache
+from django.http import HttpRequest
 
 from adhocracy4.phases.models import Phase
 from meinberlin.apps import logger
+from meinberlin.apps.projects.api import ProjectListViewSet
 
 
 def get_next_projects_start() -> list:
@@ -145,51 +147,18 @@ def reset_cache_for_projects(starts: bool, ends: bool) -> str:
         succeeded or failed to clear along with
         other relevant type of projects.
     """
-
+    stati = ["activeParticipation", "pastParticipation", "futureParticipation"]
+    request = HttpRequest()
+    request.method = "GET"
+    for status in stati:
+        request.GET["status"] = status
+        ProjectListViewSet.as_view({"get": "list"})(request=request, use_cache=False)
     msg = "Clear cache "
     if starts:
         # remove redis key next_project_start
         cache.delete("next_projects_start")
-        cache.delete_many(
-            [
-                "projects_activeParticipation",
-                "projects_futureParticipation",
-                "private_projects",
-                "extprojects",
-            ]
-        )
-        if cache.get_many(
-            [
-                "projects_activeParticipation",
-                "projects_futureParticipation",
-                "private_projects",
-                "extprojects",
-            ]
-        ):
-            msg += "failed for future projects becoming active"
-        else:
-            msg += "succeeded for future projects becoming active"
     if ends:
         # remove redis key next_projects_end
         cache.delete("next_projects_end")
-        cache.delete_many(
-            [
-                "projects_activeParticipation",
-                "projects_pastParticipation",
-                "private_projects",
-                "extprojects",
-            ]
-        )
-        if cache.get_many(
-            [
-                "projects_activeParticipation",
-                "projects_pastParticipation",
-                "private_projects",
-                "extprojects",
-            ]
-        ):
-            msg += "failed for active projects becoming past"
-        else:
-            msg += "succeeded for active projects becoming past"
     logger.info(msg)
     return msg

@@ -41,12 +41,12 @@ class ProjectListViewSet(viewsets.ReadOnlyModelViewSet):
         )
         return projects
 
-    def list(self, request, *args, **kwargs):
+    def list(self, request, use_cache=True, *args, **kwargs):
         statustype = ""
         if "status" in self.request.GET:
             statustype = self.request.GET["status"]
         data = cache.get("projects_" + statustype)
-        if data is None:
+        if not use_cache or data is None:
             queryset = self.filter_queryset(self.get_queryset())
             serializer = self.get_serializer(queryset, many=True)
             data = serializer.data

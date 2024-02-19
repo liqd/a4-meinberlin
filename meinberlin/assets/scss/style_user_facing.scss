@@ -10,7 +10,6 @@
 @import "~bootstrap/scss/maps"; // to be deleted after menues changes
 @import "~bootstrap/scss/mixins"; // to be deleted after menues changes
 
-@import "components/a4-comments";
 @import "components/action";
 @import "components/accordion";
 @import "components/alert";
@@ -68,3 +67,4 @@
 @import "components_user_facing/select";
 @import "components_user_facing/tabnavigation";
 @import "components_user_facing/user_indicator";
+@import "components_user_facing/a4-comments";

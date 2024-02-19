@@ -1,0 +1,71 @@
+.a4-comments__anchor {
+  display: block;
+  position: relative;
+  top: -100px;
+  visibility: hidden;
+  height: 1px;
+}
+
+.a4-comments__submit-input {
+  @extend .button;
+  @extend .button--fullwidth-palm;
+
+  &:after {
+    background-color: $primary;
+    color: inherit;
+  }
+}
+
+.a4-comments__cancel-edit-input {
+  @extend .button;
+  @extend .button--light;
+
+  @media screen and (max-width: $breakpoint-palm) {
+    margin-bottom: 0 !important;
+  }
+}
+
+.a4-comments__comment-form__heading-comments-allowed {
+    @extend h2;
+    margin-bottom: 0.75 * $spacer;
+}
+
+.a4-comments__comment-form__actions {
+  @extend .form-actions;
+  margin-top: 0.25 * $spacer;
+}
+
+.a4-comments__comment-form__actions__left {
+  @extend .form-actions__left;
+
+  @media screen and (max-width: $breakpoint-palm) {
+    margin-bottom: 0 !important;
+  }
+}
+
+.a4-comments__comment-form__actions__right {
+  @extend .form-actions__right;
+
+  @media screen and (max-width: $breakpoint-palm) {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+.a4-comments__comment-form__form {
+  @extend .panel--heavy;
+
+  .form-group {
+    margin-bottom: 0;
+  }
+
+  .a4-comments__char-count {
+    @extend .formgroup__help;
+    color: var(--color-black);
+    margin-top: 0.25 * $spacer;
+
+    .a4-comments__char-count-word {
+      display: none;
+    }
+  }
+}

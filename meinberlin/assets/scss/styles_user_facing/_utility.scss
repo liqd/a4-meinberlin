@@ -14,6 +14,10 @@
     display: none;
 }
 
+.u-spacer-top {
+    margin-top: $spacer;
+}
+
 // BO defines this as black so overwritting
 .text--color-primary {
     color: $primary;

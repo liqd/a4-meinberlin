@@ -1,44 +1,43 @@
 {% extends "account/base.html" %}
 {% load i18n account socialaccount %}
 
-{% block head_title %}{% translate "Login" %}{% endblock %}
+{% block head_title %}
+    {% translate "Login" %}
+{% endblock head_title %}
 
 {% block content %}
-    <h1>{% translate "Login" %}</h1>
+    <div class="account__wrapper">
+        <h1>{% translate "Login" %}</h1>
 
-    <p>{% blocktranslate %}If you have not created an account yet, then please <a href="{{ signup_url }}">register</a> first.{% endblocktranslate %}</p>
+        <form method="post" action="{% url 'account_login' %}" class="form--base">
+            {% if form.non_field_errors %}
+                <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+                    {% for error in form.non_field_errors %}
+                        <li class="message message--error">{{ error|escape }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% csrf_token %}
 
-    <form method="POST" action="{% url 'account_login' %}" class="u-spacer-bottom-double">
-        {% if form.non_field_errors %}
-            <ul class="errorlist" aria-live="assertive" aria-atomic="true">
-            {% for error in form.non_field_errors %}
-                <li>{{ error|escape }}</li>
-            {% endfor %}
-            </ul>
-        {% endif %}
-        {% csrf_token %}
+            {% include "meinberlin_contrib/includes/form_field.html" with field=form.login %}
+            {% include "meinberlin_contrib/includes/form_field.html" with field=form.password %}
+            {% include "meinberlin_contrib/includes/form_checkbox_field.html" with field=form.remember %}
 
-        <div class="form-group form-group--narrow">
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.login %}
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.password %}
-            {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.remember %}
-        </div>
+            {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+            {% endif %}
 
-        {% if redirect_field_value %}
-            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-        {% endif %}
+            <div class="account__password-reminder">
+                <a href="{% url 'account_reset_password' %}">{% translate "Forgot Password?" %}</a>
+            </div>
 
-        <div class="u-spacer-bottom">
-            <button class="btn btn--primary" type="submit">{% translate "Login" %}</button>
-            <a class="btn btn--link" href="{% url 'account_reset_password' %}">{% translate "Forgot Password?" %}</a>
-        </div>
-    </form>
-
-    {% get_providers as socialaccount_providers %}
-    {% if socialaccount_providers %}
-        <p class="u-spacer-bottom-half">
-            {% translate 'Or use your Service-Konto:' %}
-        </p>
-        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-    {% endif %}
-{% endblock %}
+            <button class="button account__button" type="submit">{% translate "Login" %}</button>
+        </form>
+      
+        <section class="account__footer">
+            <span class="account__footer--decoration" aria-hidden="true"></span>
+            <h2>{% translate "Don't have an account yet?" %}</h2>
+            <a class="button button--light account__button" href="{{ signup_url }}">{% translate "Register" %}</a>
+        </section>
+    </div>
+{% endblock content %}

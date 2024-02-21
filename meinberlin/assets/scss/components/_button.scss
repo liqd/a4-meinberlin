@@ -208,3 +208,10 @@
     opacity: 0.5;
     margin-left: auto;
 }
+
+.button {
+    &:after {
+        background-color: $primary;
+        color: inherit;
+    }
+}

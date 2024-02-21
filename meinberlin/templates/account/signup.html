@@ -1,63 +1,71 @@
 {% extends "account/base.html" %}
 {% load i18n widget_tweaks %}
 
-{% block head_title %}{% translate "Register" %}{% endblock %}
+{% block head_title %}
+    {% translate "Register" %}
+{% endblock head_title %}
 
 {% block content %}
-    <h1>{% translate "Register" %}</h1>
+    <div class="account__wrapper">
 
-    <p>{% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}">login</a>.{% endblocktranslate %}</p>
+        <h1>{% translate "Register" %}</h1>
 
-    <p>{% translate "If you register on mein.berlin.de, you can write ideas and comments for ongoing participation processes and rate the contributors of other users." %}</p>
-
-    <form id="signup_form" method="post" action="{% url 'account_signup' %}">
-        {% if form.non_field_errors %}
-            <ul class="errorlist" aria-live="assertive" aria-atomic="true">
-            {% for error in form.non_field_errors %}
-                <li>{{ error|escape }}</li>
-            {% endfor %}
-            </ul>
-        {% endif %}
-
-        {{ form.media }}
-        {% csrf_token %}
-
-        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.email %}
-        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.username %}
-        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.password1 %}
-        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.password2 %}
-
-        {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_notifications %}
-        {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_newsletters %}
-
-
-        <div class="form-check">
-            <label class="form-check__label">
-                {{ form.terms_of_use|add_error_attr:"aria-invalid:true" }}
-                {% blocktranslate with terms_of_use_url="/terms-of-use" privacy_policy="/datenschutz" %}I hereby expressly consent to the collection and processing (storage) of my data and expressly consent to the processing and publication of my ideas, comments and contributions as described in the privacy policy. I also confirm that I have read and accept the <a href="{{terms_of_use_url}}" target="_blank">terms of use</a> and the <a href="{{privacy_policy}}" target="_blank">privacy policy</a>.{% endblocktranslate %}
-            </label>
-            {% if form.terms_of_use.errors %}
+         <form id="signup_form" method="post" action="{% url 'account_signup' %}" class="form--base">
+            {% if form.non_field_errors %}
                 <ul class="errorlist" aria-live="assertive" aria-atomic="true">
-                {% for error in form.terms_of_use.errors %}
-                    <li>{{ error|escape }}</li>
-                {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error|escape }}</li>
+                    {% endfor %}
                 </ul>
             {% endif %}
-        </div>
 
-        {% if form.captcha %}
-            {% with tabindex="0" %}
+            {{ form.media }}
+            {% csrf_token %}
+
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.email %}
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.username %}
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.password1 %}
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.password2 %}
+
+            {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_notifications %}
+            {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_newsletters %}
+
+            <div class="form-check">
+                <label class="form-check-label">
+                    {{ form.terms_of_use|add_error_attr:"aria-invalid:true" }}
+                    {% blocktranslate with terms_of_use_url="/terms-of-use" privacy_policy="/datenschutz" %}I hereby expressly consent to the collection and processing (storage) of my data and expressly consent to the processing and publication of my ideas, comments and contributions as described in the privacy policy. I also confirm that I have read and accept the
+                    <a href="{{ terms_of_use_url }}" target="_blank">terms of use</a>
+                    and the
+                    <a href="{{ privacy_policy }}" target="_blank">privacy policy</a>.{% endblocktranslate %}
+                </label>
+                {% if form.terms_of_use.errors %}
+                    <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+                        {% for error in form.terms_of_use.errors %}
+                            <li>{{ error|escape }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            {% if form.captcha %}
+                {% with tabindex="0" %}
                 {% include 'meinberlin_contrib/includes/form_field.html' with field=form.captcha %}
-            {% endwith %}
-        {% endif %}
+                {% endwith %}
+            {% endif %}
 
-        {% if redirect_field_value %}
-            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-        {% endif %}
+            {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+            {% endif %}
 
-        <div class="u-spacer-bottom">
-            <button class="btn btn--primary" type="submit">{% translate "Register" %}</button>
-        </div>
+            <div class="u-spacer-top">
+                <button class="button account__button" type="submit">{% translate "Register" %}</button>
+            </div>
+        </form>
 
-    </form>
-{% endblock %}
+        <section class="account__footer">
+            <span class="account__footer--decoration" aria-hidden="true"></span>
+            <h2>{% translate "Already have an account?" %}</h2>
+            <a class="button button--light account__button" href="{{ login_url }}">{% translate "Login" %}</a>
+        </section>
+    </div>
+{% endblock content %}

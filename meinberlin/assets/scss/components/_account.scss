@@ -1,0 +1,35 @@
+.account__wrapper {
+    max-width: 30rem;
+    margin: 0 auto;
+}
+
+.account__password-reminder {
+    padding: 1.5em 0 2em;
+    text-align: center;
+
+    @media (min-width: $breakpoint-md) {
+        padding: 0.8em 0;
+        text-align: right;
+    }
+}
+
+.account__button {
+    width: 100%;
+}
+
+.account__footer {
+    padding: 1em 0 3em;
+
+    &--decoration {
+        display: block;
+        position: absolute;
+        height: 8px;
+        box-shadow: 0 0 0 100vmax $primary;
+        clip-path: inset(0 -100vmax);
+    }
+
+    @media (min-width: $breakpoint-md) {
+        padding: 1.2em 0 4.6em;
+    }
+
+}

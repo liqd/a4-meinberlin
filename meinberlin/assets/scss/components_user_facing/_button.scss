@@ -1,0 +1,6 @@
+.button {
+    &:after {
+        background-color: $primary;
+        color: inherit;
+    }
+}

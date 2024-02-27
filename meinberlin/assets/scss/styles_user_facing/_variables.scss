@@ -67,6 +67,13 @@ $breakpoint-down: $breakpoint - 0.1rem !default;  // sm
 $breakpoint-md-down: $breakpoint-md - 0.1rem !default;
 $breakpoint-lg-down: $breakpoint-lg - 0.1rem !default;
 
+// BO breakpoints
+$breakpoint-smallest: 26.875rem !default;
+$breakpoint-palm: 37.5rem !default; // 600px
+$breakpoint-tablet: 57.5rem !default; // 920px
+$breakpoint-tablet-landscape: 73.813rem !default; // 1181px
+$breakpoint-desktop: 92.5rem !default; // 1480px
+
 $wrapper-width: 81rem !default;
 $mobile-headline-size: 0.75 !default;
 

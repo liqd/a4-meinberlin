@@ -23,12 +23,4 @@
     .button {
         margin-left: 0;
     }
-
-    @media screen and (max-width: var(--breakpoint-tablet)) {
-        width: 100%;
-
-        .button {
-            flex: 1 1 100%;
-        }
-    }
 }

@@ -1,0 +1,58 @@
+{% load i18n item_tags contrib_tags moderatorremark_tags %}
+
+{% with feedback_classification=object.moderator_status|classify|lower %}
+    <section class="moderator-feedback
+                            moderator-feedback__bg
+                            {% if object.moderator_feedback_text.feedback_text or object.moderator_status %}
+                            moderator-feedback__bg--{{ feedback_classification }}
+                            {% endif %}
+                            ">
+        <h2 class="moderator-feedback__title">{% translate 'Feedback' %}</h2>
+
+        {% if object.moderator_status %}
+            <!-- This div could be replaced by ModeratorStatus.jsx since it's exactly the same thing: -->
+            <div class="moderator-status" aria-label="Status Indicator">
+                <span class="moderator-status__color-indicator moderator-status__label--{{ feedback_classification }}" aria-hidden="true"/></span>
+                <span>
+                    <strong>
+                        {% translate 'Status: ' %}
+                    </strong>
+                    {{ object.get_moderator_status_display }}
+                </span>
+             </div>
+        {% endif %}
+
+        {% if object.moderator_feedback_text.feedback_text or object.moderator_status %}
+            <div class="ck-content moderator-feedback__content">
+                {{ object.moderator_feedback_text.feedback_text | safe }}
+            </div>
+        {% else %}
+            <div class="ck-content moderator-feedback__content">
+                {% translate 'To add a feedback, please click edit.' %}
+            </div>
+        {% endif %}
+
+        {% if object.moderator_feedback_text.feedback_text %}
+            <div class="moderator-feedback__meta">
+                {{ object.module.project.organisation.name }}
+
+                {% if object.moderator_feedback_text.modified %}
+                    {% translate 'updated on ' %}{% html_date object.moderator_feedback_text.modified %}
+                {% else %}
+                    {% translate 'created on ' %}{% html_date object.moderator_feedback_text.created %}
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {% if is_moderator %}
+            {% get_item_url object 'moderate' False as moderate_url %}
+            {% if moderate_url %}
+                <div>
+                    <a href="{{ moderate_url }}" data-embed-target="external">
+                        {% translate 'Edit' %}
+                    </a>
+                </div>
+            {% endif %}
+        {% endif %}
+    </section>
+{% endwith %}

@@ -1,0 +1,43 @@
+.moderator-feedback {
+    padding: $spacer;
+    margin: 1.2em 0;
+    background-color: $bg-secondary;
+    color: $text-color;
+}
+
+.moderator-feedback__title {
+    font-size: 18px;
+    padding: 0;
+    margin: 0.3em 0;
+}
+
+.moderator-feedback__content { 
+    p {
+        margin-bottom: 0.7em;
+    }
+}
+
+.moderator-feedback__bg {
+    &--consideration,
+    &--qualified {
+        background-color: $message-light-yellow;
+    }
+
+    &--rejected {
+        background-color: $message-light-red;
+    }
+
+    &--accepted {
+        background-color: $message-light-green;
+    }
+
+    &--none {
+        background-color: $message-light-blue;
+    }
+}
+
+.moderator-feedback__meta {
+    font-size: 14px;
+    color: $gray;
+    margin-bottom: 0.7em;
+}

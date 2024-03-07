@@ -13,3 +13,19 @@
     height: 0.8em;
     border-radius: 50%;
 }
+
+.moderator-status__label {
+        &--consideration,
+        &--qualified {
+            background-color: $feedback-color-consideration;
+            
+        }
+    
+        &--rejected {
+            background-color: $feedback-color-rejected;
+        }
+    
+        &--accepted {
+            background-color: $feedback-color-accepted;
+        }
+}

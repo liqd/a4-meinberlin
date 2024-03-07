@@ -11,7 +11,7 @@ export const ModeratorStatus = ({ modStatus, modStatusDisplay }) => {
     return null // Don't render the component if either prop is missing
   }
 
-  const modTypeClass = 'label--' + modStatus.toLowerCase()
+  const modTypeClass = 'moderator-status__label--' + modStatus.toLowerCase()
 
   return (
     <div className="moderator-status" aria-label={translated.ariaLabel}>

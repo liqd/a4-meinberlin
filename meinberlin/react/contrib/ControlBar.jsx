@@ -52,7 +52,7 @@ export const ControlBar = () => {
   }, [list?.filters])
 
   const applyQuery = (type, value) => {
-    if (value && value !== '') {
+    if (value || type === 'is_archived') {
       queryParams.set(type, value)
     } else {
       queryParams.delete(type)
@@ -75,7 +75,7 @@ export const ControlBar = () => {
 
   const applyAllFilters = () => {
     filters.forEach(f => {
-      if (f.value && f.value !== '') {
+      if (f.value || f.type === 'is_archived') {
         queryParams.set(f.type, f.value)
       } else {
         queryParams.delete(f.type)

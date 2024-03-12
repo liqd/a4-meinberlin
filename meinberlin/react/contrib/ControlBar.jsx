@@ -13,7 +13,7 @@ const translated = {
   showFilters: django.gettext('Show more'),
   hideFilters: django.gettext('Show less'),
   filters: django.gettext('Filters'),
-  filter: django.gettext('filter'),
+  filter: django.gettext('Filter'),
   nav: django.gettext('Search, filter and sort the ideas list')
 }
 
@@ -31,8 +31,9 @@ export const ControlBar = () => {
   const { results: { list }, isMapAndList, viewMode } = useFetchedItems()
   const [expandFilters, setExpandFilters] = useState(true)
   const [queryParams, setQueryParams] = useSearchParams()
-  const [filters, setFilters] = useState([])
   const term = queryParams.get('search') || ''
+
+  const [filters, setFilters] = useState([])
   const appliedFilters = filters
     .concat([{ type: 'search', label: term, value: term }])
     .filter((f) =>
@@ -40,6 +41,7 @@ export const ControlBar = () => {
     queryParams?.has(f.type)
     )
     .map((f) => ({ ...f, value: queryParams.get(f.type) || f.value }))
+  const nonOrderingFilters = filters.filter((f) => f.type !== 'ordering')
 
   useEffect(() => {
     // initialize filters object
@@ -130,10 +132,9 @@ export const ControlBar = () => {
                 </legend>
                 <div className="facet__body">
                   <div className="flexgrid grid--3" id="filters">
-                    {filters.length > 0 && (
-                      filters
-                        .filter((f) => f.type !== 'ordering')
-                        .slice(0, expandFilters ? filters.length : 3).map((filter) => (
+                    {nonOrderingFilters.length > 0 && (
+                      nonOrderingFilters
+                        .slice(0, expandFilters ? nonOrderingFilters.length : 3).map((filter) => (
                           <ControlBarDropdown
                             key={filter.type}
                             filter={filter}
@@ -144,7 +145,7 @@ export const ControlBar = () => {
                         ))
                     )}
                   </div>
-                  {filters.length > 3 && (
+                  {nonOrderingFilters.length > 3 && (
                     <button
                       onClick={() => setExpandFilters(!expandFilters)}
                       className="control-bar__filter-btn"
@@ -159,30 +160,27 @@ export const ControlBar = () => {
               </fieldset>
               <div className="form-actions">
                 <button className="link form-actions__left" onClick={clearFilters}>{translated.reset}</button>
-                <button className="button button--light form-actions__right" onClick={applyAllFilters}>{translated.filter}</button>
+                <button className="button button--light form-actions__right control-bar__action-btn" onClick={applyAllFilters}>{translated.filter}</button>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="row my-1">
-        <div className="span6">
-          <div>
-            {/* only show result string if list filtered or searched not just ordered */}
-            {appliedFilters.length > 0 && (
-              <div className="text--strong">
-                {list.total_count >= 0 && getResultCountText(list.total_count)}
-              </div>
-            )}
-            <ControlBarFilterPills
-              filters={appliedFilters}
-              onRemove={(type) => {
-                handleFilterChange(type, '')
-                applyQuery(type, '')
-              }}
-            />
-          </div>
+      <div className="flexgrid grid grid--2 my-1 control-bar__bottom">
+        <div>
+          {list.count >= 0 && (
+            <div className="text--strong">
+              {getResultCountText(list.count)}
+            </div>
+          )}
+          <ControlBarFilterPills
+            filters={appliedFilters}
+            onRemove={(type) => {
+              handleFilterChange(type, '')
+              applyQuery(type, '')
+            }}
+          />
         </div>
         {isMapAndList &&
           <div className="span6 align--right">

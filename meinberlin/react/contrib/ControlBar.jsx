@@ -38,7 +38,7 @@ export const ControlBar = () => {
     .concat([{ type: 'search', label: term, value: term }])
     .filter((f) =>
       f.type !== 'ordering' &&
-    queryParams?.has(f.type)
+      queryParams?.has(f.type)
     )
     .map((f) => ({ ...f, value: queryParams.get(f.type) || f.value }))
   const nonOrderingFilters = filters.filter((f) => f.type !== 'ordering')
@@ -126,13 +126,13 @@ export const ControlBar = () => {
                   </div>
                 </div>
               </fieldset>
-              <fieldset className="facet">
-                <legend className="facet__head">
-                  <span className="facet-title">{translated.filters}</span>
-                </legend>
-                <div className="facet__body">
-                  <div className="flexgrid grid--3" id="filters">
-                    {nonOrderingFilters.length > 0 && (
+              {nonOrderingFilters.length > 0 && (
+                <fieldset className="facet">
+                  <legend className="facet__head">
+                    <span className="facet-title">{translated.filters}</span>
+                  </legend>
+                  <div className="facet__body">
+                    <div className="flexgrid grid--3" id="filters">{
                       nonOrderingFilters
                         .slice(0, expandFilters ? nonOrderingFilters.length : 3).map((filter) => (
                           <ControlBarDropdown
@@ -143,21 +143,22 @@ export const ControlBar = () => {
                             onSelectFilter={(choice) => handleFilterChange(filter.type, choice[0])}
                           />
                         ))
+                    }
+                    </div>
+                    {nonOrderingFilters.length > 3 && (
+                      <button
+                        onClick={() => setExpandFilters(!expandFilters)}
+                        className="control-bar__filter-btn"
+                        aria-controls="filters"
+                        aria-expanded={expandFilters}
+                      >
+                        <span className={'fa fa-chevron-' + (expandFilters ? 'up' : 'down')} aria-hidden="true" />&nbsp;
+                        {expandFilters ? translated.hideFilters : translated.showFilters}
+                      </button>
                     )}
                   </div>
-                  {nonOrderingFilters.length > 3 && (
-                    <button
-                      onClick={() => setExpandFilters(!expandFilters)}
-                      className="control-bar__filter-btn"
-                      aria-controls="filters"
-                      aria-expanded={expandFilters}
-                    >
-                      <span className={'fa fa-chevron-' + (expandFilters ? 'up' : 'down')} aria-hidden="true" />&nbsp;
-                      {expandFilters ? translated.hideFilters : translated.showFilters}
-                    </button>
-                  )}
-                </div>
-              </fieldset>
+                </fieldset>
+              )}
               <div className="form-actions">
                 <button className="link form-actions__left" onClick={clearFilters}>{translated.reset}</button>
                 <button className="button button--light form-actions__right control-bar__action-btn" onClick={applyAllFilters}>{translated.filter}</button>

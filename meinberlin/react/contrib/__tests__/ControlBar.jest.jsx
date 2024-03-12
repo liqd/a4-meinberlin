@@ -6,6 +6,7 @@ import {
 } from '@testing-library/react'
 import { ControlBar } from '../ControlBar'
 import { BrowserRouter } from 'react-router-dom'
+import { useFetchedItems } from '../contexts/FetchItemsProvider'
 
 const filters = {
   category: {
@@ -89,7 +90,23 @@ test('ControlBar filters create pills', async () => {
   const categories = screen.getByLabelText(/categories/)
   expect(categories).toBeTruthy()
   fireEvent.change(categories, { target: { value: '2' } })
-  fireEvent.click(screen.getByRole('button', { name: /filter/ }))
+  fireEvent.click(screen.getByRole('button', { name: /Filter/ }))
   const category = screen.getAllByText('categories')
   expect(category).toHaveLength(2)
+})
+
+test('ControlBar hides map button when there is no map', async () => {
+  useFetchedItems.mockReturnValue({
+    results: { map: { filters }, list: { filters } },
+    currentPage: 1,
+    isMapAndList: false,
+    viewMode: 'list'
+  })
+  render(
+    <BrowserRouter>
+      <ControlBar />
+    </BrowserRouter>
+  )
+  const mapSwitch = screen.queryByRole('link', { name: /map/i })
+  expect(mapSwitch).not.toBeTruthy()
 })

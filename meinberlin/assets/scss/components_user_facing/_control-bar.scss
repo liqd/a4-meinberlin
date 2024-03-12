@@ -10,6 +10,11 @@
     top: -1em;
 }
 
+.control-bar__filter-btn:focus,
+.control-bar__action-btn:focus {
+    outline-offset: -3px;
+}
+
 .control-bar__list-map-switch-container {
     display: inline-block;
     text-align: left;
@@ -23,4 +28,8 @@
     .button {
         margin-left: 0;
     }
+}
+
+.control-bar__bottom {
+    align-items: center;
 }

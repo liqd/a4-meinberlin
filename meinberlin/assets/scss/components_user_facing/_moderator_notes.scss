@@ -1,0 +1,72 @@
+.moderator-notes {
+    background-color: $bg-secondary;
+    padding: $spacer;
+
+    details summary::marker {
+        display: none;
+        content: "";
+    }
+
+    details summary::after {
+        content: url("data:image/svg+xml;charset=utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M256 396.7L86.6 227.4c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L256 306.1l124.1-124.1c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3L256 396.7z'/></svg>");
+        display: inline-block;
+        width: 1.5em; 
+        height: 1.5em; 
+        margin-right: 5px;
+        align-self: center;
+      }
+
+      details[open] summary::after {
+        transform: rotate(180deg);
+      }
+}
+
+.moderator-notes__summary {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.moderator-notes__title {
+    font-size: 1.375em;
+    line-height: 1.5em;
+    margin: 0;
+}
+
+.moderator-notes__content {
+    p {
+        margin-bottom: 0.7em;
+    }
+}
+
+.moderator-notes__meta {
+    font-size: 14px;
+    color: $gray;
+    margin-bottom: 0.7em;
+}
+
+.moderator-notes__list {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.moderator-notes__list-item {
+    &::marker {
+        display: none;
+        content: "";
+    }
+
+    span {
+        font-size: 18px;
+    }
+
+    &--done {
+        color: $icon-green;
+    }
+
+    &--pending {
+        color: #ddd;
+        background-color: white;
+        border-radius: 50%;
+    }
+}

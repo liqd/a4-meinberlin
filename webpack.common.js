@@ -148,6 +148,25 @@ module.exports = {
       ],
       dependOn: 'adhocracy4'
     },
+    // to be kept until everything uses the new maps
+    a4maps_display_point: {
+      import: [
+        'leaflet/dist/leaflet.css',
+        'maplibre-gl/dist/maplibre-gl.css',
+        'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_display_point.js'
+      ],
+      dependOn: 'adhocracy4'
+    },
+    // to be kept until everything uses the new maps
+    a4maps_display_points: {
+      import: [
+        'leaflet/dist/leaflet.css',
+        'maplibre-gl/dist/maplibre-gl.css',
+        'leaflet.markercluster/dist/MarkerCluster.css',
+        'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_display_points.js'
+      ],
+      dependOn: 'adhocracy4'
+    },
     a4maps_choose_point: {
       import: [
         'leaflet/dist/leaflet.css',

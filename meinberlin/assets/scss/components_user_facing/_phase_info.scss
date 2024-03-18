@@ -11,11 +11,6 @@
 .phase-info__cta {
     // enforce button to stick to bottom of container
     margin-top: auto;
-
-    .button:after {
-        background-color: $primary;
-        color: inherit;
-    }
 }
 
 .phase-info .modul-servicepanel .fa, .modul-servicepanel .far, .modul-servicepanel .fas {

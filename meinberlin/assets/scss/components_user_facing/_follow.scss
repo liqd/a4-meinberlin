@@ -7,11 +7,6 @@
 .a4-btn--following {
     @extend .button;
     @extend .button--fullwidth-palm;
-
-    &:after {
-        background-color: $primary;
-        color: inherit;
-    }
 }
 
 .a4-btn--follow:after {

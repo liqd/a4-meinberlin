@@ -35,10 +35,6 @@ $link-hover-color-btn: darken($link-color-btn, 15%) !default;
 $border-color: #ccc !default;
 $input-border-color: $border-color !default;
 
-$feedback-color-accepted: #00A982 !default;
-$feedback-color-rejected: #E40622 !default;
-$feedback-color-consideration: #FFE60C !default;
-
 $em-spacer: 1em !default;
 $spacer: 1rem !default;
 $padding: 1rem !default;
@@ -112,3 +108,10 @@ $message-light-blue: #ebf1f7;
 $message-light-green: #e2f1eb;
 $message-light-red: #fdecee;
 $message-light-yellow: #f9f4e4;
+
+$feedback-color-accepted: #00A982 !default;
+$feedback-color-rejected: #E40622 !default;
+$feedback-color-consideration: #FFE60C !default;
+
+$icon-green: #00765b !default;
+$icon-light-grey: #dddddd !default;

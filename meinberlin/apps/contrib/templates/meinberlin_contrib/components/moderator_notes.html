@@ -1,0 +1,71 @@
+{% load i18n item_tags contrib_tags moderatorremark_tags %}
+
+{% if is_moderator and module.blueprint_type in 'PB3,PB2,PB' %}
+    <section class="moderator-notes">
+        <details class="details" open>
+            <summary>
+                <h2 class="moderator-notes__title">{% translate 'Moderation' %}</h2>
+                <span class="fas fa-chevron-down moderator-notes__summary-icon" aria-hidden="true"></span>
+            </summary>
+
+            {% if object.module.moderationtask_set or object.remark.remark %}
+                <section>
+                    <h3>{% translate 'Moderation tasks' %}</h3>
+                    {% if object.module.moderationtask_set.count > 0 %}
+                        <ul class="moderator-notes__list">
+                            {% for task in object.module.moderationtask_set.all %}
+                                <li class="moderator-notes__list-item">
+                                    {% if task in object.completed_tasks.all %}
+                                        <span class="fas fa-check-circle moderator-notes__list-item--done" aria-label="{% translate 'Done' %}"></span>
+                                        {{ task.name }}
+                                    {% else %}
+                                        <span class="far fa-check-circle moderator-notes__list-item--pending" aria-label="{% translate 'Pending' %}"></span>
+                                        {{ task.name }}
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>
+                            {% translate 'If you want to add moderation tasks here, you can do so in the module settings.' %}
+                        </p>
+                    {% endif %}
+                </section>
+
+                <section>
+                    <h3>{% translate 'Remark' %}</h3>
+                    {% if object.remark.remark %}
+                        <div class="moderator-notes__content">
+                            <p>
+                                {{ object.remark.remark }}
+                            </p>
+                        </div>
+
+                        <div class="moderator-notes__meta">
+                            {% if object.remark.modified %}
+                                {% translate 'updated on ' %}{% html_date object.remark.modified %}
+                            {% else %}
+                                {% translate 'created on ' %}{% html_date object.remark.created %}
+                            {% endif %}
+                        </div>
+                    {% else %}
+                        <div class="moderator-notes__content">
+                            <p>
+                                {% translate 'No moderation remark has been filled yet.' %}
+                            </p>
+                        </div>
+                    {% endif %}
+                </section>
+
+            {% endif %}
+
+            {% get_item_url object 'moderate' False as moderate_url %}
+            {% if moderate_url %}
+                <a href="{{ moderate_url }}" data-embed-target="external">
+                    {% translate 'Edit' %}
+                </a>
+            {% endif %}
+
+        </details>
+    </section>
+{% endif %}

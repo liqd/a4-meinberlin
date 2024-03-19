@@ -1,20 +1,34 @@
-details summary {
+.details summary {
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+
+.details summary::marker {
+    display: none;
+    content: "";
 }
 
 // Hides the default arrow on safari
-details summary::-webkit-details-marker {
+.details summary::-webkit-details-marker {
     display: none;
 }
 
-details summary > * {
-    display: inline;
-}
-
-details summary > i {
+.details summary > span {
     transition: transform 0.3s;
+    display: flex;
 }
 
-details[open] summary > i {
+.details summary > span:before {
+    font-size: 22px;
+    align-self: center;
+}
+
+.details[open] summary > span {
     transform: rotate(180deg);
 }
+
+
+
+
+

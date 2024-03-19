@@ -1,0 +1,49 @@
+.moderator-notes {
+    background-color: $bg-secondary;
+    padding: $spacer;
+}
+
+.moderator-notes__title {
+    font-size: 1.375em;
+    line-height: 1.5em;
+    margin: 0;
+}
+
+.moderator-notes__content {
+    p {
+        margin-bottom: 0.7em;
+    }
+}
+
+.moderator-notes__meta {
+    font-size: 14px;
+    color: $gray;
+    margin-bottom: 0.7em;
+}
+
+.moderator-notes__list {
+    margin-left: 0;
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.moderator-notes__list-item {
+    &::marker {
+        display: none;
+        content: "";
+    }
+
+    span {
+        font-size: 18px;
+    }
+
+    &--done {
+        color: $icon-green;
+    }
+
+    &--pending {
+        color: $icon-light-grey;
+        background-color: $white;
+        border-radius: 50%;
+    }
+}

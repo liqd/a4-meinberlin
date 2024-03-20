@@ -1,3 +1,29 @@
+.a4-comments__commentbox__title-comments {
+  display: none;
+}
+
+.a4-comments__commentbox__subtitle {
+  margin-top: 2 * $spacer;
+  margin-bottom: 0.5 * $spacer;
+}
+
+.a4-comments__comment-control-bar {
+  @extend .panel--heavy;
+
+  .form-group--inline {
+    @extend .fullspace;
+    margin-bottom: 0.5 * $spacer;
+  }
+
+  .a4-control-bar__search__term {
+    @extend .my-0;
+  }
+
+  .a4-forms__select {
+    @extend .my-0;
+  }
+}
+
 .a4-comments__anchor {
   display: block;
   position: relative;
@@ -9,11 +35,6 @@
 .a4-comments__submit-input {
   @extend .button;
   @extend .button--fullwidth-palm;
-
-  &:after {
-    background-color: $primary;
-    color: inherit;
-  }
 }
 
 .a4-comments__cancel-edit-input {
@@ -26,8 +47,8 @@
 }
 
 .a4-comments__comment-form__heading-comments-allowed {
-    @extend h2;
-    margin-bottom: 0.75 * $spacer;
+  @extend h2;
+  margin-bottom: 0.75 * $spacer;
 }
 
 .a4-comments__comment-form__actions {
@@ -54,6 +75,7 @@
 
 .a4-comments__comment-form__form {
   @extend .panel--heavy;
+  margin-bottom: $spacer;
 
   .form-group {
     margin-bottom: 0;

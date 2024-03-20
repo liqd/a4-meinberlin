@@ -1,0 +1,37 @@
+.a4-control-bar__search__form {
+  @extend .searchform-slot;
+  @extend .my-0;
+}
+
+.a4-control-bar__search__term {
+  @extend .searchterm;
+}
+
+.a4-control-bar__search__input {
+  @extend .search;
+}
+
+.a4-control-bar__search__input-submit {
+  @extend .button;
+  @extend .button--clean;
+  @extend .submit;
+}
+
+.a4-control-bar__search__logo-start {
+  @extend .bicon;
+  @extend .bicon-search;
+  @extend .lens;
+}
+
+.a4-control-bar__search__logo-end {
+  @extend .bicon;
+  @extend .bicon-arrow-right;
+  @extend .icon;
+
+  // extracted from BOs css as extending doesn't work
+  &:before {
+    // stylelint-disable-next-line
+    -webkit-mask-image: var(--bicon-arrow-right);
+    mask-image: var(--bicon-arrow-right);
+  }
+}

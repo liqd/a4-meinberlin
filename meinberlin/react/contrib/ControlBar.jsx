@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { ControlBarDropdown } from './ControlBarDropdown'
+import { ControlBarDropdown, ControlBarSearch } from 'adhocracy4'
 import { ControlBarListMapSwitch } from './ControlBarListMapSwitch'
-import { ControlBarSearch } from './ControlBarSearch'
 import django from 'django'
 import { useSearchParams } from 'react-router-dom'
 import { ControlBarFilterPills } from './ControlBarFilterPills'
@@ -14,7 +13,8 @@ const translated = {
   hideFilters: django.gettext('Show less'),
   filters: django.gettext('Filters'),
   filter: django.gettext('Filter'),
-  nav: django.gettext('Search, filter and sort the ideas list')
+  nav: django.gettext('Search, filter and sort the ideas list'),
+  searchFor: django.gettext('Search for Proposals')
 }
 
 const getResultCountText = (count) => {
@@ -110,7 +110,11 @@ export const ControlBar = () => {
                 <div className="facet__body">
                   <div className="flexgrid grid--3">
                     <div className="span2">
-                      <ControlBarSearch onSearch={(value) => handleSearch(value)} term={term} />
+                      <ControlBarSearch
+                        onSearch={(value) => handleSearch(value)}
+                        placeholder={translated.searchPlaceholder}
+                        term={term}
+                      />
                     </div>
                     <div className="span1">
                       {viewMode === 'list' && list.filters?.ordering && (

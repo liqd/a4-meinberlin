@@ -1,17 +1,15 @@
 {% load i18n %}
-<form novalidate enctype="multipart/form-data" action="{{ request.path }}" method="post">
+<form novalidate
+      enctype="multipart/form-data"
+      action="{{ request.path }}"
+      method="post">
     {% csrf_token %}
-
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.event_type %}
-
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.name %}
-
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.date %}
-
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
-
+    {% include 'a4forms/includes/form_field.html' with field=form.event_type %}
+    {% include 'a4forms/includes/form_field.html' with field=form.name %}
+    {% include 'a4forms/includes/form_field.html' with field=form.date %}
+    {% include 'a4forms/includes/form_field.html' with field=form.description %}
     <div class="u-spacer-bottom">
-        <input type="submit" class="btn btn--primary" value="{% translate 'Save'%}" />
-        <a href="{{ cancel }}" class="btn btn--light">{% translate 'Cancel'%}</a>
+        <input type="submit" class="btn btn--primary" value="{% translate 'Save' %}" />
+        <a href="{{ cancel }}" class="btn btn--light">{% translate 'Cancel' %}</a>
     </div>
 </form>

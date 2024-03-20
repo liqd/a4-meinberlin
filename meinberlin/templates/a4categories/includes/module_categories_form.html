@@ -16,9 +16,9 @@
 <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
     {% csrf_token %}
 
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.title %}
+    {% include 'a4forms/includes/form_field.html' with field=form.title %}
 
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
+    {% include 'a4forms/includes/form_field.html' with field=form.description %}
 
     <p class="form-hint">{% blocktranslate %}If you define categories, participants must assign their ideas accordingly (single choice, mandatory). Categories automatically appear in the display of ideas. In addition, the list of all ideas can be filtered by category.{% endblocktranslate %}</p>
 

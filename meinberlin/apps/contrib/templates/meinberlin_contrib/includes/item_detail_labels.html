@@ -1,12 +1,20 @@
 {% load contrib_tags %}
 
-<div class="item-detail__labels">
-    {% for badge in object.item_badges_for_detail  %}
-        <span class="label label--big">
+<ul class="pill__list">
+    {% for badge in object.item_badges_for_detail %}
+        <li class="pill
+                        {% if badge.0 == 'category' %}
+                        pill--category
+                        {% endif %}
+                        {% if badge.0 == 'label' %}
+                        pill--label
+                        {% endif %}
+                        ">
             {% if badge.0 == 'point_label' %}
                 <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
             {% endif %}
+            
             {{ badge.1 }}
-        </span>
+        </li>
     {% endfor %}
-</div>
+</ul>

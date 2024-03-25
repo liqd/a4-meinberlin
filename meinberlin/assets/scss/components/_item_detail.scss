@@ -1,81 +1,30 @@
-.item-detail {
-    margin-bottom: $em-spacer;
-}
-
 .item-detail__title {
-    font-size: $font-size-xl;
+    padding: $spacer 0;
+    margin: 0;
 }
 
-.item-detail__labels {
-    margin-bottom: 1em;
+.item-detail__image {
+    margin-top: -40px;
+    
+    img {
+        aspect-ratio: 2/1;
+    }
 }
 
-.item-detail__labels .label {
-    display: inline-block;
-    margin-bottom: 0.4em;
+.item-detail__user {
+    padding-bottom: $spacer;
 }
 
-.item-detail__meta {
-    padding-bottom: 0.5 * $padding;
-    font-size: $font-size-sm;
+.item-detail .pill__list {
+    margin-bottom: 0.8em;
 }
 
 .item-detail__actions {
-    padding-top: $padding;
-    border-top: 1px solid $border-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.item-detail__creator {
-    margin-right: 0.5em;
-}
-
-.item-detail__ref {
-    @media screen and (max-width: $breakpoint-xs-down) {
-        float: left !important; // overwrite the l-bar-right for mobile
-        margin-left: 0 !important;
-    }
-}
-
-.item-detail__content {
-    position: relative;
-    z-index: 0;
-    margin-bottom: 1em;
-}
-
-.item-detail__basic-content {
-    @include clearfix;
-    position: relative;
-    margin-bottom: 1.5em;
-
-    overflow-wrap: break-word;
-}
-
-.item-detail__hero-image {
-    width: 100%;
-
-    @media screen and (min-width: $breakpoint-xs) {
-        display: inline-block;
-        float: right;
-        margin-left: 0.5em;
-        width: auto;
-    }
-}
-
-.item-detail__background-image {
-    position: relative;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    padding-top: 60%; // this creates an aspect ratio in css, 100% = 1:1 ratio
-
-    @media screen and (min-width: $breakpoint-xs) {
-        margin: 3 * $spacer 0 2 * $spacer;
-    }
-}
-
-.item-detail__copyright {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+.item-detail__reference {
+    margin-bottom: $spacer;
 }

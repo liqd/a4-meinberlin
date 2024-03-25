@@ -1,17 +1,29 @@
 {% extends "base.html" %}
-{% load i18n module_tags rules react_comments_async react_comments_async react_reports react_ratings wagtailcore_tags item_tags contrib_tags thumbnail moderatorremark_tags %}
+{% load i18n module_tags rules react_comments_async react_comments_async react_reports react_ratings wagtailcore_tags item_tags contrib_tags moderatorremark_tags %}
 
-{% block title %}{{ object.name }} — {{ block.super }}{% endblock title %}
+{% block title %}
+    {{ object.name }}
+    —
+    {{ block.super }}
+{% endblock title %}
 
 {% block breadcrumbs %}
     <div id="content-header">
         <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
             <ol>
-                <li><a href="/">meinBerlin</a></li>
-                <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a></li>
-                <li><a href="{% url 'project-detail' project.slug %}">{{ project.name|truncatechars:50 }}</a></li>
+                <li>
+                    <a href="/">meinBerlin</a>
+                </li>
+                <li>
+                    <a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a>
+                </li>
+                <li>
+                    <a href="{% url 'project-detail' project.slug %}">{{ project.name|truncatechars:50 }}</a>
+                </li>
                 {% if module.is_in_module_cluster %}
-                <li><a href="{{ module.get_detail_url }}">{{ module.name|truncatechars:50 }}</a></li>
+                    <li>
+                        <a href="{{ module.get_detail_url }}">{{ module.name|truncatechars:50 }}</a>
+                    </li>
                 {% endif %}
                 <li class="active" aria-current="page">{{ object.name }}</li>
             </ol>
@@ -20,102 +32,72 @@
 {% endblock breadcrumbs %}
 
 {% block content %}
-<div id="layout-grid__area--maincontent">
-    <article >
-        <div class="item-detail">
-            <h1 class="item-detail__title">{{ object.name }}</h1>
-
-            {% include "meinberlin_contrib/includes/item_detail_labels.html" with object=object %}
-
-            <div class="item-detail__content">
-                <div class="item-detail__basic-content ck-content">
-                    <img class="item-detail__hero-image" src="{% thumbnail object.image 'item_image' %}" alt="">
-                    <div class="ck-content">
-                        {{ object.description | richtext }}
+    <div id="layout-grid__area--maincontent">
+        <article class="item-detail">
+            <header>
+                {% if object.image %}
+                    <div class="item-detail__image">
+                        <img src="{{ object.image.url }}" alt="{{ object.image.alt }}"/>
                     </div>
+                {% endif %}
+
+                <div class="item-detail__actions">
+                    <h1 class="item-detail__title">
+                        {{ object.name }}
+                    </h1>
+
+                    {% get_item_change_permission object as change_perm %}
+                    {% has_perm change_perm request.user object as user_may_change %}
+                    {% get_item_permission object 'moderate' as moderate_perm %}
+                    {% has_perm moderate_perm request.user object as is_moderator %}
+
+                    {% if request.user.is_authenticated %}
+                        {% include "meinberlin_contrib/includes/item_detail_dropdown.html" with object=object %}
+                    {% endif %}
                 </div>
 
-                {% block additional_content %}{% endblock additional_content %}
-            </div>
-
-            <div class="item-detail__meta lr-bar">
-                <div class="lr-bar__left">
-                    <strong class="item-detail__creator">{{ object.creator.username }}</strong>
+                <div class="item-detail__user">
+                    <strong>{{ object.creator.username }}</strong>
                     {% if object.modified %}
                         {% translate 'updated on ' %}{% html_date object.modified class='list-item__date' %}
                     {% else %}
                         {% translate 'created on ' %}{% html_date object.created class='list-item__date' %}
                     {% endif %}
                 </div>
-                <div class="lr-bar__right item-detail__ref">
+
+                {% include "meinberlin_contrib/includes/item_detail_labels.html" with object=object %}
+            </header>
+
+            <section class="item-detail__content">
+                <div class="ck-content">
+                    {{ object.description | richtext }}
+                </div>
+                <div class="item-detail__reference">
                     <strong>{% translate 'Reference No.' %}:</strong>
                     {{ object.reference_number }}
                 </div>
-            </div>
+                {% block additional_content %}{% endblock additional_content %}
+            </section>
 
-            <div class="item-detail__actions lr-bar">
+            <section>
                 {% block ratings %}
                     {% if object|has_feature:"rate" %}
-                        <div class="lr-bar__left">
+                        <div>
                             {% react_ratings object %}
                         </div>
                     {% endif %}
                 {% endblock ratings %}
+            </section>
 
-                {% get_item_change_permission object as change_perm %}
-                {% has_perm change_perm request.user object as user_may_change %}
-                {% get_item_permission object 'moderate' as moderate_perm %}
-                {% has_perm moderate_perm request.user object as is_moderator %}
+            {% block vote_button %}{% endblock vote_button %}
 
-                <div class="lr-bar__right">
+            {% include "meinberlin_contrib/components/moderator_feedback.html" %}
 
-                {% if request.user.is_authenticated %}
-                    <div class="dropdown">
-                        <button
-                                title="{% translate 'Actions' %}"
-                                type="button"
-                                class="dropdown-toggle btn btn--light btn--small"
-                                data-bs-toggle="dropdown"
-                                data-flip="false"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                                id="idea-{{ object.pk }}-actions"
-                        >
-                            <i class="fa fa-ellipsis-h" aria-label="{% translate 'Actions' %}"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="idea-{{ object.pk }}-actions">
-                            {% if user_may_change %}
-                                {% get_item_update_url object as change_url %}
-                                <a class="dropdown-item" href="{{ change_url }}">{% translate 'edit' %}</a>
-                                {% get_item_delete_url object as delete_url %}
-                                <a class="dropdown-item" href="{{ delete_url }}">{% translate 'delete' %}</a>
-                            {% endif %}
-                            {% get_item_url object 'moderate' False as moderate_url %}
-                            {% if is_moderator and moderate_url %}
-                                <a class="dropdown-item" href="{{ moderate_url }}">{% translate 'moderate' %}</a>
-                            {% endif %}
+            {% include "meinberlin_contrib/components/moderator_notes.html" %}
 
-                            {% block dropdown_items %}{% endblock dropdown_items %}
-                            <li>
-                                {% translate 'report' as report_text %}
-                                {% react_reports object text=report_text class='dropdown-item' %}
-                            </li>
-                        </div>
-                    </div>
-                {% endif %}
-                </div>
-            </div>
-        </div>
-        {% block vote_button %}{% endblock vote_button %}
-
-    
-        {% include "meinberlin_contrib/components/moderator_feedback.html" %}
- 
-        {% include "meinberlin_contrib/components/moderator_notes.html" %}
-
-        <section>
-            {% react_comments_async object %}
-        </section>
-    </article>
-</div>
+            <section>
+                {% react_comments_async object %}
+            </section>
+        </article>
+    </div>
 {% endblock content %}

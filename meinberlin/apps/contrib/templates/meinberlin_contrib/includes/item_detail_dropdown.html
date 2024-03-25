@@ -1,0 +1,34 @@
+{% load i18n item_tags contrib_tags moderatorremark_tags react_reports %}
+
+<div class="dropdown js-dropdown">
+    <button title="{% translate 'Actions' %}" type="button" class="dropdown__toggle" aria-haspopup="true" aria-expanded="false" id="idea-{{ object.pk }}-actions">
+        <i class="fas fa-ellipsis-h" aria-label="{% translate 'Actions' %}"></i>
+    </button>
+    <nav class="dropdown__menu" aria-labelledby="idea-{{ object.pk }}-actions">
+        <ul class="list--clean">
+            {% if user_may_change %}
+                {% get_item_update_url object as change_url %}
+                <li class="dropdown__item">
+                    <a href="{{ change_url }}">{% translate 'Edit' %}</a>
+                </li>
+                {% get_item_delete_url object as delete_url %}
+                <li class="dropdown__item">
+                    <a href="{{ delete_url }}">{% translate 'Delete' %}</a>
+                </li>
+            {% endif %}
+            {% get_item_url object 'moderate' False as moderate_url %}
+            {% if is_moderator and moderate_url %}
+                <li class="dropdown__item">
+                    <a href="{{ moderate_url }}">{% translate 'Moderate' %}</a>
+                </li>
+            {% endif %}
+
+            {% block dropdown_items %}{% endblock dropdown_items %}
+
+            <li class="dropdown__item">
+                {% translate 'Report' as report_text %}
+                {% react_reports object text=report_text class='' %}
+            </li>
+        </ul>
+    </nav>
+</div>

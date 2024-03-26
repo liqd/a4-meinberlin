@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-26 14:00+0100\n"
-"PO-Revision-Date: 2024-02-08 08:57+0000\n"
-"Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main/de/"
-">\n"
+"PO-Revision-Date: 2024-03-18 13:50+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
+"main-design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.18.2\n"
+"X-Generator: Weblate 5.4.2\n"
 
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
@@ -623,8 +623,7 @@ msgstr "Alle Nutzerinnen und Nutzer können sich beteiligen (öffentlich)."
 
 #: adhocracy4/dashboard/forms.py:83
 msgid "Only invited users can participate (private)."
-msgstr ""
-"Nur eingeladene Nutzerinnen und Nutzer können sich beteiligen (privat)."
+msgstr "Nur eingeladene Nutzerinnen und Nutzer können sich beteiligen (privat)."
 
 #: adhocracy4/dashboard/forms.py:91
 #: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:36
@@ -856,8 +855,8 @@ msgid ""
 "The file size should be max. {max_size_mb} MB."
 msgstr ""
 "{help_prefix} Das Bild muss mindestens {min_resolution[0]} Pixel breit und "
-"{min_resolution[1]} Pixel hoch sein. Erlaubte Dateiformate: "
-"{fileformats_str}. Die maximale Dateigröße beträgt {max_size_mb} MB."
+"{min_resolution[1]} Pixel hoch sein. Erlaubte Dateiformate: {fileformats_str}"
+". Die maximale Dateigröße beträgt {max_size_mb} MB."
 
 #: adhocracy4/images/fields.py:87
 #, python-brace-format
@@ -1653,8 +1652,8 @@ msgid ""
 "\"{username}\" modified the component \"{component_label}\" in the module "
 "\"{module_name}\" of the project \"{project_name}\"."
 msgstr ""
-"\"{username}\" hat im Projekt \"{project_name}\" Änderungen am Modul "
-"\"{module_name}\" im Bereich \"{component_label}\" vorgenommen."
+"\"{username}\" hat im Projekt \"{project_name}\" Änderungen am Modul \""
+"{module_name}\" im Bereich \"{component_label}\" vorgenommen."
 
 #: meinberlin/apps/adminlog/signals.py:39
 #, python-brace-format
@@ -1662,8 +1661,8 @@ msgid ""
 "\"{username}\" modified the component \"{component_label}\" of the project "
 "\"{project_name}\"."
 msgstr ""
-"\"{username}\" hat im Projekt \"{project_name}\" Änderungen im Bereich "
-"\"{component_label}\" vorgenommen."
+"\"{username}\" hat im Projekt \"{project_name}\" Änderungen im Bereich \""
+"{component_label}\" vorgenommen."
 
 #: meinberlin/apps/adminlog/signals.py:60
 #, python-brace-format
@@ -1865,8 +1864,8 @@ msgid ""
 "Thanks! Your statement has been sent! An answer will be send to your email "
 "address."
 msgstr ""
-"Danke! Ihre Stellungnahme wurde versandt! Eine Antwort erhalten Sie per E-"
-"Mail."
+"Danke! Ihre Stellungnahme wurde versandt! Eine Antwort erhalten Sie per "
+"E-Mail."
 
 #: meinberlin/apps/bplan/views.py:47 meinberlin/apps/dashboard/views.py:269
 #: meinberlin/apps/extprojects/views.py:39
@@ -2077,8 +2076,8 @@ msgstr "Wie gefallen Ihnen die eingereichten Vorschläge?"
 msgid ""
 "Rate the submitted proposals for the participatory budget (for/against)."
 msgstr ""
-"Bewerten Sie die eingereichten Vorschläge für den Bürger*innenhaushalt "
-"(dafür/dagegen)."
+"Bewerten Sie die eingereichten Vorschläge für den Bürger*innenhaushalt (dafü"
+"r/dagegen)."
 
 #: meinberlin/apps/budgeting/phases.py:85
 #: meinberlin/apps/budgeting/phases.py:99
@@ -2134,9 +2133,8 @@ msgstr ""
 "eingetragenen Kontaktinformationen ein. Die Kontaktinformationen dürfen von "
 "der verantwortlichen Verwaltung ausschließlich für die Kontaktaufnahme in "
 "dem vorliegenden Projekt verwendet werden. Ich kann diese Einwilligung "
-"jederzeit widerrufen. Die <a href=\"%(privacy_policy)s\" "
-"target=\"_blank\">Datenschutzerklärung</a> habe ich gelesen und akzeptiere "
-"sie."
+"jederzeit widerrufen. Die <a href=\"%(privacy_policy)s\" target=\"_blank\""
+">Datenschutzerklärung</a> habe ich gelesen und akzeptiere sie."
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html:4
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_confirm_delete.html:4
@@ -2842,8 +2840,7 @@ msgstr "Modul ist bereits entfernt"
 
 #: meinberlin/apps/dashboard/views.py:177
 msgid "Module cannot be removed from a published project."
-msgstr ""
-"Module können nicht aus einem veröffentlichten Projekt entfernt werden."
+msgstr "Module können nicht aus einem veröffentlichten Projekt entfernt werden."
 
 #: meinberlin/apps/dashboard/views.py:184
 msgid "Module cannot be removed. It is the only module added to the project."
@@ -3350,8 +3347,8 @@ msgid ""
 msgstr ""
 "Hiermit willige ich ausdrücklich in die Speicherung und Veröffentlichung "
 "meiner Fragen, wie in der {}Datenschutzerklärung{} beschrieben, ein. Zudem "
-"bestätige ich, dass ich die {}Nutzungsbedingungen{} und die {}"
-"Datenschutzerklärung{} gelesen habe und akzeptiere."
+"bestätige ich, dass ich die {}Nutzungsbedingungen{} und die "
+"{}Datenschutzerklärung{} gelesen habe und akzeptiere."
 
 #: meinberlin/apps/mapideas/forms.py:28
 #: meinberlin/apps/maptopicprio/forms.py:31
@@ -4237,8 +4234,8 @@ msgid ""
 "No plan has been created yet. You can do that <a "
 "href=\"%(plan_create_url)s\">here</a>."
 msgstr ""
-"Es wurde noch kein Vorhaben angelegt, dies können Sie <a "
-"href=\"%(plan_create_url)s\">hier</a> tun."
+"Es wurde noch kein Vorhaben angelegt, dies können Sie <a href=\""
+"%(plan_create_url)s\">hier</a> tun."
 
 #: meinberlin/apps/plans/views.py:162
 msgid "The plan was created"
@@ -4550,10 +4547,10 @@ msgid ""
 "and follow the invitation link again. If you decline the invitation the link "
 "is not valid anymore."
 msgstr ""
-"Wenn Sie akzeptieren, treten Sie dem Projekt mit Ihrem Nutzernamen "
-"\"%(user)s\" bei. Wenn Sie dem Projekt mit einem anderen Profil beitreten "
-"möchten, melden Sie sich ab und folgen Sie dem Einladungslink erneut. Wenn "
-"Sie die Einladung ablehnen, verliert der Link seine Gültigkeit."
+"Wenn Sie akzeptieren, treten Sie dem Projekt mit Ihrem Nutzernamen \"%(user)"
+"s\" bei. Wenn Sie dem Projekt mit einem anderen Profil beitreten möchten, "
+"melden Sie sich ab und folgen Sie dem Einladungslink erneut. Wenn Sie die "
+"Einladung ablehnen, verliert der Link seine Gültigkeit."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:23
 #: meinberlin/templates/a4modules/module_detail.html:24
@@ -5217,8 +5214,7 @@ msgstr "Die Verlinkung wurde veröffentlicht."
 
 #: meinberlin/templates/a4dashboard/includes/progress_line_done.html:12
 msgid "The project has been published. You can add further modules."
-msgstr ""
-"Das Projekt wurde veröffentlicht. Sie können weitere Module hinzufügen."
+msgstr "Das Projekt wurde veröffentlicht. Sie können weitere Module hinzufügen."
 
 #: meinberlin/templates/a4dashboard/includes/project_list_item.html:34
 msgid "Semipublic"
@@ -5259,8 +5255,8 @@ msgid ""
 "This project is not publicly visible. Only invited users can see content and "
 "actively participate."
 msgstr ""
-"Diese Beteiligung ist nicht öffentlich sichtbar. Nur eingeladene "
-"Nutzer*innen können die Inhalte sehen und sich aktiv beteiligen."
+"Diese Beteiligung ist nicht öffentlich sichtbar. Nur eingeladene Nutzer*"
+"innen können die Inhalte sehen und sich aktiv beteiligen."
 
 #: meinberlin/templates/a4modules/includes/module_detail_phase.html:22
 msgid ""
@@ -5363,8 +5359,8 @@ msgid ""
 "If you have not created an account yet, then please <a "
 "href=\"%(signup_url)s\">register</a> first."
 msgstr ""
-"Wenn Sie noch kein Nutzerkonto haben, <a "
-"href=\"%(signup_url)s\">registrieren</a> Sie sich bitte zuerst."
+"Wenn Sie noch kein Nutzerkonto haben, <a href=\"%(signup_url)s\""
+">registrieren</a> Sie sich bitte zuerst."
 
 #: meinberlin/templates/account/login.html:33
 msgid "Forgot Password?"
@@ -5439,8 +5435,8 @@ msgid ""
 "a>."
 msgstr ""
 "Der Link zur Passwortzurücksetzung ist nicht mehr gültig, vermutlich weil "
-"dieser schon einmal genutzt wurde. Bitte fordern Sie die <a "
-"href=\"%(passwd_reset_url)s\">Zurücksetzung des Passwort</a> erneut an."
+"dieser schon einmal genutzt wurde. Bitte fordern Sie die <a href=\""
+"%(passwd_reset_url)s\">Zurücksetzung des Passwort</a> erneut an."
 
 #: meinberlin/templates/account/password_reset_from_key.html:30
 msgid "Your password is now changed."

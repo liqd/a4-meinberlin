@@ -4,16 +4,11 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
 
-from adhocracy4.categories import filters as category_filters
 from adhocracy4.categories import forms as category_forms
 from adhocracy4.categories import models as category_models
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from adhocracy4.exports.views import DashboardExportView
-from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
-from adhocracy4.filters import widgets as filters_widgets
-from adhocracy4.filters.filters import FreeTextFilter
-from adhocracy4.labels import filters as label_filters
 from adhocracy4.labels import forms as label_forms
 from adhocracy4.labels import models as label_models
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
@@ -21,6 +16,8 @@ from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib import forms as contrib_forms
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
+from meinberlin.apps.ideas import forms
+from meinberlin.apps.ideas import models
 from meinberlin.apps.moderatorfeedback.forms import ModeratorFeedbackForm
 from meinberlin.apps.moderatorfeedback.models import ModeratorFeedback
 from meinberlin.apps.moderatorremark.models import ModeratorRemark
@@ -28,42 +25,9 @@ from meinberlin.apps.notifications.emails import (
     NotifyCreatorOrContactOnModeratorFeedback,
 )
 
-from . import forms
-from . import models
-
-
-class FreeTextFilterWidget(filters_widgets.FreeTextFilterWidget):
-    label = _("Search")
-
-
-def get_ordering_choices(view):
-    choices = (("-created", _("Most recent")),)
-    if view.module.has_feature("rate", models.Idea):
-        choices += (("-positive_rating_count", _("Most popular")),)
-    choices += (("-comment_count", _("Most commented")),)
-    return choices
-
-
-class IdeaFilterSet(a4_filters.DefaultsFilterSet):
-    defaults = {"ordering": "-created"}
-    ordering = a4_filters.DynamicChoicesOrderingFilter(choices=get_ordering_choices)
-    search = FreeTextFilter(widget=FreeTextFilterWidget, fields=["name"])
-
-    class Meta:
-        model = models.Idea
-        fields = ["search", "category", "labels"]
-
-    def __init__(self, data, *args, **kwargs):
-        self.base_filters["category"] = category_filters.CategoryAliasFilter(
-            module=kwargs["view"].module, field_name="category"
-        )
-        self.base_filters["labels"] = label_filters.LabelAliasFilter(
-            module=kwargs["view"].module, field_name="labels"
-        )
-        super().__init__(data, *args, **kwargs)
-
 
 class AbstractIdeaListView(ProjectMixin, filter_views.FilteredListView):
+    #  Todo: only used by budgeting, remove once budgeting is fully in react
     paginate_by = 15
 
     def get_queryset(self):
@@ -89,12 +53,9 @@ class AbstractIdeaListView(ProjectMixin, filter_views.FilteredListView):
         return qs
 
 
-class IdeaListView(AbstractIdeaListView, DisplayProjectOrModuleMixin):
-    model = models.Idea
-    filter_set = IdeaFilterSet
-
-    def get_queryset(self):
-        return super().get_queryset().filter(module=self.module)
+class IdeaListView(ProjectMixin, DisplayProjectOrModuleMixin, generic.TemplateView):
+    template_name = "meinberlin_ideas/idea_list.html"
+    pass
 
 
 class AbstractIdeaDetailView(

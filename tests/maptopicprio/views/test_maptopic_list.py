@@ -21,8 +21,5 @@ def test_list_view(client, phase_factory, maptopic_factory, area_settings_factor
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(response, "meinberlin_maptopicprio/maptopic_list.html")
-        assert maptopic in response.context_data["maptopic_list"]
-        assert maptopic_2 not in response.context_data["maptopic_list"]
-        assert response.context_data["maptopic_list"][0].comment_count == 0
-        assert response.context_data["maptopic_list"][0].positive_rating_count == 0
-        assert response.context_data["maptopic_list"][0].negative_rating_count == 0
+        assert response.context["project"] == project
+        assert response.context["module"] == module

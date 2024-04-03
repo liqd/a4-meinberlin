@@ -107,9 +107,6 @@
     "*.scss": [
       "stylelint"
     ],
-    "*.html": [
-      "make lint-html-files"
-    ],
     "*.py": [
       "make lint-python-files"
     ]

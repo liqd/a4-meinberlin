@@ -37,8 +37,7 @@
 
     {% block extra_js %}
         {# Override this in templates to add extra javascript #}
-        <!-- Berlin.de js imports needed due to dynamic loading of additional libraries within code -->
-        <script src="{% static 'berlin_js.js' %}"></script>
+        <script defer src="//www.berlin.de/i9f/r1/bundle/berlin_marketing.js"></script>
     {% endblock extra_js %}
 
     {% tracking_enabled as tracking %}

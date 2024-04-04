@@ -1,6 +1,10 @@
 .account__wrapper {
     max-width: 30rem;
     margin: 0 auto;
+
+    input {
+      display: inline-block;
+    }
 }
 
 .account__password-reminder {

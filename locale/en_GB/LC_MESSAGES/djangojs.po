@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-26 13:52+0100\n"
+"POT-Creation-Date: 2024-04-08 11:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,8 +85,8 @@ msgstr "Do you really want to delete this comment?"
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:77
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:154
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:5
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:11
+#: meinberlin/react/documents/ChapterNavItem.jsx:5
+#: meinberlin/react/documents/ParagraphForm.jsx:11
 msgid "Delete"
 msgstr "Delete"
 
@@ -112,27 +112,25 @@ msgid "save changes"
 msgstr "save changes"
 
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:35
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:20
 msgid "cancel"
 msgstr "cancel"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:39
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:16
 msgid "post"
 msgstr "post"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:40
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:17
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:18
 msgid "Please login to comment"
 msgstr "Please login to comment"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:41
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:19
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:20
 msgid "The currently active phase doesn't allow to comment."
 msgstr "The currently active phase doesn't allow to comment."
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:42
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:18
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:19
 msgid "Only invited users can actively participate."
 msgstr "Only invited users can actively participate."
 
@@ -144,6 +142,47 @@ msgstr "Edit"
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
 msgid "Report"
 msgstr "Report"
+
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:6
+msgctxt "defakts"
+msgid ""
+"This comment contains disinformation. Defakts uses an Artificial "
+"Intelligence to scan content for disinformation. Disinformation often shows "
+"certain characteristics that allow for a reliable identification."
+msgstr ""
+"This comment contains disinformation. Defakts uses an Artificial "
+"Intelligence to scan content for disinformation. Disinformation often shows "
+"certain characteristics that allow for a reliable identification."
+
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:9
+msgctxt "defakts"
+msgid "Click to view the AI explanation for reporting this comment."
+msgstr "Click to view the AI explanation for reporting this comment."
+
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:10
+msgctxt "defakts"
+msgid "Click to hide the AI explanation for reporting this comment."
+msgstr "Click to hide the AI explanation for reporting this comment."
+
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:11
+msgctxt "defakts"
+msgid "Read more"
+msgstr "Read more"
+
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:12
+msgctxt "defakts"
+msgid "Show less"
+msgstr "Show less"
+
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:13
+msgctxt "defakts"
+msgid "Show info to users"
+msgstr "Show info to users"
+
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:14
+msgctxt "defakts"
+msgid "Hide info from users"
+msgstr "Hide info from users"
 
 #: adhocracy4/comments_async/static/comments_async/category_list.jsx:5
 msgid "Choose categories for your comment"
@@ -217,43 +256,44 @@ msgid_plural "%s replies"
 msgstr[0] "1 reply"
 msgstr[1] "%s replies"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:15
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:14
 msgid "Newest"
 msgstr "Newest"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:16
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:15
 msgid "Most up votes"
 msgstr "Most up votes"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:17
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:16
 msgid "Most down votes"
 msgstr "Most down votes"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:18
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:17
 msgid "Most answers"
 msgstr "Most answers"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:19
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:18
 msgid "Last discussed"
 msgstr "Last discussed"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:23
-#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:10
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:22
 msgid "Comments"
 msgstr "Comments"
 
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:23
+msgid "Discussion"
+msgstr "Discussion"
+
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:24
-#: meinberlin/apps/budgeting/assets/ControlBar.jsx:11
 msgid "Show filters"
 msgstr "Show filters"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:25
-#: meinberlin/apps/budgeting/assets/ControlBar.jsx:13
+#: meinberlin/react/contrib/ControlBar.jsx:14
 msgid "Filters"
 msgstr "Filters"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:26
-#: meinberlin/apps/budgeting/assets/ControlBar.jsx:12
 msgid "Hide filters"
 msgstr "Hide filters"
 
@@ -271,11 +311,11 @@ msgstr "display: "
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:30
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:49
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:283
-#: meinberlin/apps/livequestions/assets/Filters.jsx:20
-#: meinberlin/apps/plans/assets/FilterNav.jsx:6
-#: meinberlin/apps/plans/assets/FilterOptions.jsx:3
-#: meinberlin/apps/plans/assets/FilterRadio.jsx:3
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:287
+#: meinberlin/react/livequestions/Filters.jsx:20
+#: meinberlin/react/plans/FilterNav.jsx:6
+#: meinberlin/react/plans/FilterOptions.jsx:3
+#: meinberlin/react/plans/FilterRadio.jsx:3
 msgid "all"
 msgstr "all"
 
@@ -283,42 +323,74 @@ msgstr "all"
 msgid "sorted by: "
 msgstr "sorted by: "
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:69
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:70
 msgid "Highlighted"
 msgstr "Highlighted"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:413
+#: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:7
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:14
+#: meinberlin/react/contrib/ControlBar.jsx:12
+msgid "Show more"
+msgstr "Show more"
+
+#: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:8
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:15
+#: meinberlin/react/contrib/ControlBar.jsx:13
+msgid "Show less"
+msgstr "Show less"
+
+#: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:9
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:16
+msgid "Ordering"
+msgstr "Ordering"
+
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:20
 msgid "entry"
 msgid_plural "entries"
 msgstr[0] "entry"
 msgstr[1] "entries"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:420
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:24
 msgid "entry found for "
 msgid_plural "entries found for "
 msgstr[0] "entry found for "
 msgstr[1] "entries found for "
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:11
+msgid "Join the discussion"
+msgstr "Join the discussion"
+
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:12
 msgid "Your comment"
 msgstr "Your comment"
 
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:12
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:13
 msgid "Please add a comment."
 msgstr "Please add a comment."
 
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:13
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:14
 msgid "Something seems to have gone wrong, please try again."
 msgstr "Something seems to have gone wrong, please try again."
 
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:14
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:15
 msgid "Your reply"
 msgstr "Your reply"
 
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:15
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:9
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:16
+#: meinberlin/react/livequestions/QuestionForm.jsx:9
 msgid " characters"
 msgstr " characters"
+
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:17
+#: meinberlin/react/livequestions/QuestionForm.jsx:10
+msgid "Post"
+msgstr "Post"
+
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:21
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
+#: meinberlin/react/budgeting/EndSessionLink.jsx:12
+msgid "Cancel"
+msgstr "Cancel"
 
 #: adhocracy4/comments_async/static/modals/UrlModal.jsx:8
 msgid "Copy"
@@ -373,7 +445,7 @@ msgstr "Import polygon via file upload"
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:88
 #: adhocracy4/static/Alert.jsx:6 meinberlin/apps/embed/assets/embed.js:59
 #: meinberlin/apps/embed/assets/embed.js:60
-#: meinberlin/apps/plans/assets/FilterNav.jsx:15
+#: meinberlin/react/plans/FilterNav.jsx:15
 msgid "Close"
 msgstr "Close"
 
@@ -397,11 +469,6 @@ msgstr "Attention importing a file will delete the existing polygons."
 msgid "Upload"
 msgstr "Upload"
 
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
-#: meinberlin/apps/budgeting/assets/EndSessionLink.jsx:12
-msgid "Cancel"
-msgstr "Cancel"
-
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:145
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:148
 msgid "The uploaded file is not a valid shapefile."
@@ -424,8 +491,7 @@ msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr "Do you want to load this preset and delete all the existing polygons?"
 
 #: adhocracy4/maps/static/a4maps/a4maps_display_points.js:101
-#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:13
-#: meinberlin/apps/budgeting/assets/SupportBox.jsx:14
+#: meinberlin/react/budgeting/SupportBox.jsx:14
 msgid "person supports this proposal."
 msgid_plural "persons support this proposal."
 msgstr[0] "person supports this proposal."
@@ -476,13 +542,13 @@ msgstr ""
 "The poll could not be updated. Please check the data you entered again."
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:262
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:16
+#: meinberlin/react/documents/DocumentManagement.jsx:16
 msgid "Save"
 msgstr "Save"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:17
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:19
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:7
+#: meinberlin/react/livequestions/QuestionForm.jsx:7
 msgid "Question"
 msgstr "Question"
 
@@ -496,8 +562,8 @@ msgstr "Explanation"
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:54
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:3
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:9
+#: meinberlin/react/documents/ChapterNavItem.jsx:3
+#: meinberlin/react/documents/ParagraphForm.jsx:9
 msgid "Move up"
 msgstr "Move up"
 
@@ -505,8 +571,8 @@ msgstr "Move up"
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:66
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:4
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:10
+#: meinberlin/react/documents/ChapterNavItem.jsx:4
+#: meinberlin/react/documents/ParagraphForm.jsx:10
 msgid "Move down"
 msgstr "Move down"
 
@@ -657,145 +723,13 @@ msgstr ""
 msgid "You can still manage all your preferences on User Agreements."
 msgstr "You can still manage all your preferences on User Agreements."
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:16
-#, javascript-format
-msgid "you have 1 vote left."
-msgid_plural "you have %s votes left."
-msgstr[0] "you have 1 vote left."
-msgstr[1] "you have %s votes left."
+#: adhocracy4/static/control_bar/ControlBarSearch.jsx:5
+msgid "Search"
+msgstr "Search"
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:21
-msgid "Proposals list"
-msgstr "Proposals list"
-
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:22
-#: meinberlin/apps/plans/assets/PlansList.jsx:11
-#: meinberlin/apps/plans/assets/PlansMap.jsx:11
-msgid "Nothing to show"
-msgstr "Nothing to show"
-
-#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:8
-msgid "updated on"
-msgstr "updated on"
-
-#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:9
-msgid "created on"
-msgstr "created on"
-
-#: meinberlin/apps/budgeting/assets/ControlBar.jsx:14
-msgid "Search, filter and sort the ideas list"
-msgstr "Search, filter and sort the ideas list"
-
-#: meinberlin/apps/budgeting/assets/ControlBar.jsx:19
-#, javascript-format
-msgid "1 proposal found."
-msgid_plural "%s proposals found."
-msgstr[0] "1 proposal found."
-msgstr[1] "%s proposals found."
-
-#: meinberlin/apps/budgeting/assets/ControlBarListMapSwitch.jsx:21
-msgid "View as list"
-msgstr "View as list"
-
-#: meinberlin/apps/budgeting/assets/ControlBarListMapSwitch.jsx:24
-#: meinberlin/apps/plans/assets/Toggles.jsx:13
-msgid "List"
-msgstr "List"
-
-#: meinberlin/apps/budgeting/assets/ControlBarListMapSwitch.jsx:29
-msgid "View as map"
-msgstr "View as map"
-
-#: meinberlin/apps/budgeting/assets/ControlBarListMapSwitch.jsx:32
-#: meinberlin/apps/plans/assets/Toggles.jsx:14
-msgid "Map"
-msgstr "Map"
-
-#: meinberlin/apps/budgeting/assets/ControlBarSearch.jsx:6
+#: adhocracy4/static/control_bar/ControlBarSearch.jsx:6
 msgid "Start search"
 msgstr "Start search"
-
-#: meinberlin/apps/budgeting/assets/ControlBarSearch.jsx:7
-msgid "Search for Proposals"
-msgstr "Search for Proposals"
-
-#: meinberlin/apps/budgeting/assets/ControlBarSearchTerm.jsx:5
-msgid "Remove filters"
-msgstr "Remove filters"
-
-#: meinberlin/apps/budgeting/assets/EndSessionLink.jsx:8
-msgid "Are you finished?"
-msgstr "Are you finished?"
-
-#: meinberlin/apps/budgeting/assets/EndSessionLink.jsx:9
-msgid "End session"
-msgstr "End session"
-
-#: meinberlin/apps/budgeting/assets/EndSessionLink.jsx:10
-msgid ""
-"To save your votes you do not need to do anything else. End the session to "
-"enter a new code. If you want to change the votes you have already cast, you "
-"can re-enter your code as long as the voting phase is running. "
-msgstr ""
-"To save your votes you do not need to do anything else. End the session to "
-"enter a new code. If you want to change the votes you have already cast, you "
-"can re-enter your code as long as the voting phase is running. "
-
-#: meinberlin/apps/budgeting/assets/EndSessionLink.jsx:11
-msgid "Do you want to end the session?"
-msgstr "Do you want to end the session?"
-
-#: meinberlin/apps/budgeting/assets/ListItemBadges.jsx:5
-msgid "More"
-msgstr "More"
-
-#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:7
-msgid "Positive Ratings"
-msgstr "Positive Ratings"
-
-#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:8
-msgid "Negative Ratings"
-msgstr "Negative Ratings"
-
-#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:9
-msgid "Support"
-msgstr "Support"
-
-#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:11
-msgid "Total votes"
-msgstr "Total votes"
-
-#: meinberlin/apps/budgeting/assets/Pagination.jsx:6
-msgid "Page navigation"
-msgstr "Page navigation"
-
-#: meinberlin/apps/budgeting/assets/Pagination.jsx:7
-msgid "next page"
-msgstr "next page"
-
-#: meinberlin/apps/budgeting/assets/Pagination.jsx:8
-msgid "prev page"
-msgstr "prev page"
-
-#: meinberlin/apps/budgeting/assets/SupportBox.jsx:18
-msgid "Click to support."
-msgstr "Click to support."
-
-#: meinberlin/apps/budgeting/assets/SupportBox.jsx:19
-msgid "You support this proposal. Click to unsupport."
-msgstr "You support this proposal. Click to unsupport."
-
-#: meinberlin/apps/budgeting/assets/SupportBox.jsx:20
-msgid "Support button inactive."
-msgstr "Support button inactive."
-
-#: meinberlin/apps/budgeting/assets/VoteButton.jsx:46
-msgid "Voted"
-msgstr "Voted"
-
-#: meinberlin/apps/budgeting/assets/VoteButton.jsx:47
-msgid "Give my vote"
-msgstr "Give my vote"
 
 #: meinberlin/apps/captcha/assets/captcheck.js:29
 msgid "Click for image-based question"
@@ -812,66 +746,6 @@ msgstr "Image mode"
 #: meinberlin/apps/captcha/assets/captcheck.js:32
 msgid "Text mode"
 msgstr "Text mode"
-
-#: meinberlin/apps/documents/assets/ChapterForm.jsx:8
-msgid "Chapter title"
-msgstr "Chapter title"
-
-#: meinberlin/apps/documents/assets/ChapterForm.jsx:9
-msgid "Add a new paragraph"
-msgstr "Add a new paragraph"
-
-#: meinberlin/apps/documents/assets/ChapterNav.jsx:5
-msgid "Chapter navigation"
-msgstr "Chapter navigation"
-
-#: meinberlin/apps/documents/assets/ChapterNav.jsx:6
-msgid "Add a new chapter"
-msgstr "Add a new chapter"
-
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:10
-msgid "first chapter"
-msgstr "first chapter"
-
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:11
-msgid "new chapter"
-msgstr "new chapter"
-
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:12
-msgid "The document has been updated."
-msgstr "The document has been updated."
-
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:13
-msgid "The document could not be updated."
-msgstr "The document could not be updated."
-
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:14
-msgid "Contents"
-msgstr "Contents"
-
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:15
-msgid "Edit chapter"
-msgstr "Edit chapter"
-
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:7
-msgid "Headline"
-msgstr "Headline"
-
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:8
-msgid "Paragraph"
-msgstr "Paragraph"
-
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:13
-msgid ""
-"If you add an image, please provide an alternate text. It serves as a "
-"textual description of the image content and is read out by screen readers. "
-"Describe the image in approx. 80 characters. Example: A busy square with "
-"people in summer."
-msgstr ""
-"If you add an image, please provide an alternate text. It serves as a "
-"textual description of the image content and is read out by screen readers. "
-"Describe the image in approx. 80 characters. Example: A busy square with "
-"people in summer."
 
 #: meinberlin/apps/embed/assets/embed.js:123
 msgid "We couldn't find what you were looking for."
@@ -893,335 +767,602 @@ msgstr ""
 "You have third party cookies disabled. You can still view the content of "
 "this project but won't be able to login."
 
-#: meinberlin/apps/livequestions/assets/CategorySelect.jsx:4
-msgid "Affiliation"
-msgstr "Affiliation"
-
-#: meinberlin/apps/livequestions/assets/CategorySelect.jsx:5
-msgid ""
-"Answered questions will be displayed in the statistics according to the "
-"chosen affiliation."
-msgstr ""
-"Answered questions will be displayed in the statistics according to the "
-"chosen affiliation."
-
-#: meinberlin/apps/livequestions/assets/Filters.jsx:21
-msgid "only show marked questions"
-msgstr "only show marked questions"
-
-#: meinberlin/apps/livequestions/assets/Filters.jsx:22
-msgid "display only questions which are not hidden"
-msgstr "display only questions which are not hidden"
-
-#: meinberlin/apps/livequestions/assets/Filters.jsx:23
-msgid "order by likes"
-msgstr "order by likes"
-
-#: meinberlin/apps/livequestions/assets/InfoBox.jsx:4
-msgid "display question on screen"
-msgstr "display question on screen"
-
-#: meinberlin/apps/livequestions/assets/InfoBox.jsx:5
-msgid "add question to shortlist"
-msgstr "add question to shortlist"
-
-#: meinberlin/apps/livequestions/assets/InfoBox.jsx:6
-msgid "hide question from audience"
-msgstr "hide question from audience"
-
-#: meinberlin/apps/livequestions/assets/InfoBox.jsx:7
-msgid "mark question as answered"
-msgstr "mark question as answered"
-
-#: meinberlin/apps/livequestions/assets/InfoBox.jsx:8
-msgid "is shown in front of a question? It has been marked by the moderation."
-msgstr "is shown in front of a question? It has been marked by the moderation."
-
-#: meinberlin/apps/livequestions/assets/InfoBox.jsx:9
-msgid "Close information"
-msgstr "Close information"
-
-#: meinberlin/apps/livequestions/assets/InfoBox.jsx:10
-msgid "Open information"
-msgstr "Open information"
-
-#: meinberlin/apps/livequestions/assets/InfoBox.jsx:11
-msgid "Hide"
-msgstr "Hide"
-
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:10
-msgid "select affiliation"
-msgstr "select affiliation"
-
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:11
-msgid "Information"
-msgstr "Information"
-
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:12
-msgid "Questions"
-msgstr "Questions"
-
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:13
-msgid "Statistics"
-msgstr "Statistics"
-
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:14
-msgid "display on screen"
-msgstr "display on screen"
-
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:6
-msgid "Here you can ask your question"
-msgstr "Here you can ask your question"
-
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:8
-msgid "Your question"
-msgstr "Your question"
-
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:10
-msgid "Post"
-msgstr "Post"
-
-#: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:97
-msgid "mark as hidden"
-msgstr "mark as hidden"
-
-#: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:98
-msgid "undo mark as hidden"
-msgstr "undo mark as hidden"
-
-#: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:99
-msgid "mark as done"
-msgstr "mark as done"
-
-#: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:100
-msgid "added to live list"
-msgstr "added to live list"
-
-#: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:101
-msgid "remove from live list"
-msgstr "remove from live list"
-
-#: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:102
-msgid "added to shortlist"
-msgstr "added to shortlist"
-
-#: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:103
-msgid "remove from shortlist"
-msgstr "remove from shortlist"
-
-#: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:104
-msgid "Support count"
-msgstr "Support count"
-
-#: meinberlin/apps/livequestions/assets/QuestionPresent.jsx:29
-#: meinberlin/apps/livequestions/assets/QuestionUser.jsx:52
-msgid "likes"
-msgstr "likes"
-
-#: meinberlin/apps/livequestions/assets/QuestionUser.jsx:51
-msgid "on shortlist"
-msgstr "on shortlist"
-
-#: meinberlin/apps/livequestions/assets/QuestionUser.jsx:53
-msgid "add like"
-msgstr "add like"
-
-#: meinberlin/apps/livequestions/assets/QuestionUser.jsx:54
-msgid "undo like"
-msgstr "undo like"
-
-#: meinberlin/apps/livequestions/assets/StatisticsBox.jsx:44
-msgid "Questions Answered"
-msgstr "Questions Answered"
-
-#: meinberlin/apps/livequestions/assets/StatisticsBox.jsx:45
-msgid "Affiliation Of Answered Questions"
-msgstr "Affiliation Of Answered Questions"
-
-#: meinberlin/apps/plans/assets/FilterNav.jsx:7
-msgid "Filter bar for Project overview"
-msgstr "Filter bar for Project overview"
-
-#: meinberlin/apps/plans/assets/FilterNav.jsx:8
-msgid "I am interested in projects from"
-msgstr "I am interested in projects from"
-
-#: meinberlin/apps/plans/assets/FilterNav.jsx:9
-msgid "„ all Districts “"
-msgstr "„ all Districts “"
-
-#: meinberlin/apps/plans/assets/FilterNav.jsx:10
-msgid "Which district are you interested in?"
-msgstr "Which district are you interested in?"
-
-#: meinberlin/apps/plans/assets/FilterNav.jsx:11
-msgid "„ all Topics “"
-msgstr "„ all Topics “"
-
-#: meinberlin/apps/plans/assets/FilterNav.jsx:12
-msgid "Which topic are you interested in?"
-msgstr "Which topic are you interested in?"
-
-#: meinberlin/apps/plans/assets/FilterNav.jsx:13
-msgid "display projects"
-msgstr "display projects"
-
-#: meinberlin/apps/plans/assets/FilterNav.jsx:14
-msgid "more filters"
-msgstr "more filters"
-
-#: meinberlin/apps/plans/assets/FilterNav.jsx:16
-msgid "in the area of"
-msgstr "in the area of"
-
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:6
-msgid "Search title"
-msgstr "Search title"
-
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:7
-msgid "Perform search"
-msgstr "Perform search"
-
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:8
-msgid "Organisation"
-msgstr "Organisation"
-
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:9
-msgid "Enter the name of the organisation"
-msgstr "Enter the name of the organisation"
-
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:10
-msgid "Level of participation"
-msgstr "Level of participation"
-
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:11
-msgid "Project status"
-msgstr "Project status"
-
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:12
-msgid "show projects"
-msgstr "show projects"
-
-#: meinberlin/apps/plans/assets/PlansList.jsx:5
-#: meinberlin/apps/plans/assets/PopUp.jsx:7
-msgid "remaining"
-msgstr "remaining"
-
-#: meinberlin/apps/plans/assets/PlansList.jsx:6
-#: meinberlin/apps/plans/assets/PopUp.jsx:6
-msgid "More than 1 year remaining"
-msgstr "More than 1 year remaining"
-
-#: meinberlin/apps/plans/assets/PlansList.jsx:7
-#: meinberlin/apps/plans/assets/PopUp.jsx:11
-msgid "Participation projects: "
-msgstr "Participation projects: "
-
-#: meinberlin/apps/plans/assets/PlansList.jsx:8
-#: meinberlin/apps/plans/assets/PopUp.jsx:8
-msgid "Participation: from "
-msgstr "Participation: from "
-
-#: meinberlin/apps/plans/assets/PlansList.jsx:9
-#: meinberlin/apps/plans/assets/PopUp.jsx:9
-msgid "Participation ended. Read result."
-msgstr "Participation ended. Read result."
-
-#: meinberlin/apps/plans/assets/PlansList.jsx:10
-msgid "Status: "
-msgstr "Status: "
-
-#: meinberlin/apps/plans/assets/PlansList.jsx:12
-msgid "copyright missing"
-msgstr "copyright missing"
-
-#: meinberlin/apps/plans/assets/PlansList.jsx:13
-msgid "Here you can find a decorative picture."
-msgstr "Here you can find a decorative picture."
-
-#: meinberlin/apps/plans/assets/PlansListMapBox.jsx:13
-msgid "ongoing"
-msgstr "ongoing"
-
-#: meinberlin/apps/plans/assets/PlansListMapBox.jsx:14
-msgid "done"
-msgstr "done"
-
-#: meinberlin/apps/plans/assets/PlansListMapBox.jsx:17
-msgid "Project overview"
-msgstr "Project overview"
-
-#: meinberlin/apps/plans/assets/PlansMap.jsx:9
-msgid "Address search"
-msgstr "Address search"
-
-#: meinberlin/apps/plans/assets/PlansMap.jsx:10
-msgid "Address Search"
-msgstr "Address Search"
-
-#: meinberlin/apps/plans/assets/PlansMap.jsx:12
-msgid "Close information box"
-msgstr "Close information box"
-
-#: meinberlin/apps/plans/assets/PlansMap.jsx:13
-msgid ""
-"Projects without spacial reference are not shown on the map. Please have a "
-"look at the project list."
-msgstr ""
-"Projects without spacial reference are not shown on the map. Please have a "
-"look at the project list."
-
-#: meinberlin/apps/plans/assets/PopUp.jsx:10
-msgid "Superordinate project: "
-msgstr "Superordinate project: "
-
-#: meinberlin/apps/plans/assets/PopUp.jsx:12
-msgid "Participation: "
-msgstr "Participation: "
-
-#: meinberlin/apps/plans/assets/Toggles.jsx:7
-msgid "Filtered list of projects"
-msgstr "Filtered list of projects"
-
-#: meinberlin/apps/plans/assets/Toggles.jsx:8
-msgid " search results"
-msgstr " search results"
-
-#: meinberlin/apps/plans/assets/Toggles.jsx:9
-msgid " remove filter"
-msgstr " remove filter"
-
-#: meinberlin/apps/plans/assets/Toggles.jsx:10
-msgid "Show map"
-msgstr "Show map"
-
-#: meinberlin/apps/plans/assets/Toggles.jsx:11
-msgid "show map"
-msgstr "show map"
-
-#: meinberlin/apps/plans/assets/Toggles.jsx:12
-msgid "hide map"
-msgstr "hide map"
-
-#: meinberlin/apps/plans/assets/Toggles.jsx:15
-msgid "show list"
-msgstr "show list"
-
 #: meinberlin/apps/votes/assets/token_download_button.js:14
 msgid "Encrypted"
 msgstr "Encrypted"
 
-#: meinberlin/assets/js/swiper_phases.js:29
-msgid "Slider to go back and forth between phases."
-msgstr "Slider to go back and forth between phases."
-
-#: meinberlin/assets/js/swiper_phases.js:31
-msgid "Go to slide {{index}}"
-msgstr "Go to slide {{index}}"
-
 #: meinberlin/assets/js/unload_warning.js:16
 msgid "If you leave this page changes you made will not be saved."
 msgstr "If you leave this page changes you made will not be saved."
+
+#: meinberlin/react/budgeting/BudgetingProposalList.jsx:18
+#, javascript-format
+msgid "you have 1 vote left."
+msgid_plural "you have %s votes left."
+msgstr[0] "you have 1 vote left."
+msgstr[1] "you have %s votes left."
+
+#: meinberlin/react/budgeting/BudgetingProposalList.jsx:23
+#: meinberlin/react/budgeting/react_proposals_init.jsx:11
+#: meinberlin/react/kiezkasse/react_kiezkasse_proposals_init.jsx:18
+msgid "Proposals list"
+msgstr "Proposals list"
+
+#: meinberlin/react/budgeting/BudgetingProposalList.jsx:24
+#: meinberlin/react/contrib/card/CardList.jsx:14
+#: meinberlin/react/plans/PlansList.jsx:11
+#: meinberlin/react/plans/PlansMap.jsx:11
+msgid "Nothing to show"
+msgstr "Nothing to show"
+
+#: meinberlin/react/budgeting/BudgetingProposalList.jsx:25
+msgid "Proposal tags"
+msgstr "Proposal tags"
+
+#: meinberlin/react/budgeting/EndSessionLink.jsx:8
+msgid "Are you finished?"
+msgstr "Are you finished?"
+
+#: meinberlin/react/budgeting/EndSessionLink.jsx:9
+msgid "End session"
+msgstr "End session"
+
+#: meinberlin/react/budgeting/EndSessionLink.jsx:10
+msgid ""
+"To save your votes you do not need to do anything else. End the session to "
+"enter a new code. If you want to change the votes you have already cast, you "
+"can re-enter your code as long as the voting phase is running. "
+msgstr ""
+"To save your votes you do not need to do anything else. End the session to "
+"enter a new code. If you want to change the votes you have already cast, you "
+"can re-enter your code as long as the voting phase is running. "
+
+#: meinberlin/react/budgeting/EndSessionLink.jsx:11
+msgid "Do you want to end the session?"
+msgstr "Do you want to end the session?"
+
+#: meinberlin/react/budgeting/SupportBox.jsx:18
+msgid "Click to support."
+msgstr "Click to support."
+
+#: meinberlin/react/budgeting/SupportBox.jsx:19
+msgid "You support this proposal. Click to unsupport."
+msgstr "You support this proposal. Click to unsupport."
+
+#: meinberlin/react/budgeting/SupportBox.jsx:20
+msgid "Support button inactive."
+msgstr "Support button inactive."
+
+#: meinberlin/react/budgeting/VoteButton.jsx:46
+msgid "Voted"
+msgstr "Voted"
+
+#: meinberlin/react/budgeting/VoteButton.jsx:47
+msgid "Give my vote"
+msgstr "Give my vote"
+
+#: meinberlin/react/contrib/ControlBar.jsx:11
+msgid "Reset"
+msgstr "Reset"
+
+#: meinberlin/react/contrib/ControlBar.jsx:15
+msgid "Filter"
+msgstr "Filter"
+
+#: meinberlin/react/contrib/ControlBar.jsx:16
+msgid "Search, filter and sort the ideas list"
+msgstr "Search, filter and sort the ideas list"
+
+#: meinberlin/react/contrib/ControlBar.jsx:17
+msgid "Search for Proposals"
+msgstr "Search for Proposals"
+
+#: meinberlin/react/contrib/ControlBar.jsx:22
+#, javascript-format
+msgid "1 proposal found."
+msgid_plural "%s proposals found."
+msgstr[0] "1 proposal found."
+msgstr[1] "%s proposals found."
+
+#: meinberlin/react/contrib/ControlBarFilterPills.jsx:5
+#, javascript-format
+msgid "Remove filter %s"
+msgstr "Remove filter %s"
+
+#: meinberlin/react/contrib/ControlBarListMapSwitch.jsx:29
+msgid "View mode"
+msgstr "View mode"
+
+#: meinberlin/react/contrib/ControlBarListMapSwitch.jsx:30
+msgid "View as list"
+msgstr "View as list"
+
+#: meinberlin/react/contrib/ControlBarListMapSwitch.jsx:31
+#: meinberlin/react/plans/Toggles.jsx:13
+msgid "List"
+msgstr "List"
+
+#: meinberlin/react/contrib/ControlBarListMapSwitch.jsx:32
+msgid "View as map"
+msgstr "View as map"
+
+#: meinberlin/react/contrib/ControlBarListMapSwitch.jsx:33
+#: meinberlin/react/plans/Toggles.jsx:14
+msgid "Map"
+msgstr "Map"
+
+#: meinberlin/react/contrib/ModeratorStatus.jsx:5
+#: meinberlin/react/plans/PlansList.jsx:10
+msgid "Status: "
+msgstr "Status: "
+
+#: meinberlin/react/contrib/ModeratorStatus.jsx:6
+msgid "Status Indicator"
+msgstr "Status Indicator"
+
+#: meinberlin/react/contrib/Pagination.jsx:6
+msgid "Page navigation"
+msgstr "Page navigation"
+
+#: meinberlin/react/contrib/Pagination.jsx:7
+msgid "next page"
+msgstr "next page"
+
+#: meinberlin/react/contrib/Pagination.jsx:8
+msgid "prev page"
+msgstr "prev page"
+
+#: meinberlin/react/contrib/Spinner.jsx:4
+msgid "loading"
+msgstr "loading"
+
+#: meinberlin/react/contrib/card/Card.jsx:7
+#: meinberlin/react/contrib/map/ItemPopup.jsx:26
+msgid "Item details"
+msgstr "Item details"
+
+#: meinberlin/react/contrib/card/Card.jsx:8
+#: meinberlin/react/contrib/map/ItemPopup.jsx:27
+msgid "to:"
+msgstr "to:"
+
+#: meinberlin/react/contrib/card/CardList.jsx:15
+msgid "Pill List"
+msgstr "Pill List"
+
+#: meinberlin/react/contrib/card/CardStats.jsx:7
+#: meinberlin/react/contrib/map/ItemPopup.jsx:18
+msgid "Like"
+msgid_plural "Likes"
+msgstr[0] "Like"
+msgstr[1] "Likes"
+
+#: meinberlin/react/contrib/card/CardStats.jsx:8
+#: meinberlin/react/contrib/map/ItemPopup.jsx:22
+msgid "Dislike"
+msgid_plural "Dislikes"
+msgstr[0] "Dislike"
+msgstr[1] "Dislikes"
+
+#: meinberlin/react/contrib/card/CardStats.jsx:9
+msgid "Supporter"
+msgid_plural "Supporters"
+msgstr[0] "Supporter"
+msgstr[1] "Supporters"
+
+#: meinberlin/react/contrib/card/CardStats.jsx:10
+msgctxt "card"
+msgid "Comment"
+msgid_plural "Comments"
+msgstr[0] "Comment"
+msgstr[1] "Comments"
+
+#: meinberlin/react/contrib/card/CardStats.jsx:11
+#: meinberlin/react/contrib/map/ItemPopup.jsx:10
+msgid "Vote"
+msgid_plural "Votes"
+msgstr[0] "Vote"
+msgstr[1] "Votes"
+
+#: meinberlin/react/contrib/card/CardStatus.jsx:8
+msgid "More"
+msgstr "More"
+
+#: meinberlin/react/contrib/map/ItemPopup.jsx:14
+msgid "Comment"
+msgid_plural "Comments"
+msgstr[0] "Comment"
+msgstr[1] "Comments"
+
+#: meinberlin/react/contrib/map/ItemPopup.jsx:25
+msgid "Support"
+msgstr "Support"
+
+#: meinberlin/react/contrib/map/Map.jsx:11
+msgid "A map representation follows."
+msgstr "A map representation follows."
+
+#: meinberlin/react/contrib/map/Map.jsx:12
+msgid "End of map."
+msgstr "End of map."
+
+#: meinberlin/react/contrib/map/Map.jsx:13
+msgid "Skip map"
+msgstr "Skip map"
+
+#: meinberlin/react/documents/ChapterForm.jsx:8
+msgid "Chapter title"
+msgstr "Chapter title"
+
+#: meinberlin/react/documents/ChapterForm.jsx:9
+msgid "Add a new paragraph"
+msgstr "Add a new paragraph"
+
+#: meinberlin/react/documents/ChapterNav.jsx:5
+msgid "Chapter navigation"
+msgstr "Chapter navigation"
+
+#: meinberlin/react/documents/ChapterNav.jsx:6
+msgid "Add a new chapter"
+msgstr "Add a new chapter"
+
+#: meinberlin/react/documents/DocumentManagement.jsx:10
+msgid "first chapter"
+msgstr "first chapter"
+
+#: meinberlin/react/documents/DocumentManagement.jsx:11
+msgid "new chapter"
+msgstr "new chapter"
+
+#: meinberlin/react/documents/DocumentManagement.jsx:12
+msgid "The document has been updated."
+msgstr "The document has been updated."
+
+#: meinberlin/react/documents/DocumentManagement.jsx:13
+msgid "The document could not be updated."
+msgstr "The document could not be updated."
+
+#: meinberlin/react/documents/DocumentManagement.jsx:14
+msgid "Contents"
+msgstr "Contents"
+
+#: meinberlin/react/documents/DocumentManagement.jsx:15
+msgid "Edit chapter"
+msgstr "Edit chapter"
+
+#: meinberlin/react/documents/ParagraphForm.jsx:7
+msgid "Headline"
+msgstr "Headline"
+
+#: meinberlin/react/documents/ParagraphForm.jsx:8
+msgid "Paragraph"
+msgstr "Paragraph"
+
+#: meinberlin/react/documents/ParagraphForm.jsx:13
+msgid ""
+"If you add an image, please provide an alternate text. It serves as a "
+"textual description of the image content and is read out by screen readers. "
+"Describe the image in approx. 80 characters. Example: A busy square with "
+"people in summer."
+msgstr ""
+"If you add an image, please provide an alternate text. It serves as a "
+"textual description of the image content and is read out by screen readers. "
+"Describe the image in approx. 80 characters. Example: A busy square with "
+"people in summer."
+
+#: meinberlin/react/ideas/react_ideas_init.jsx:20
+msgid "Ideas list"
+msgstr "Ideas list"
+
+#: meinberlin/react/livequestions/CategorySelect.jsx:4
+msgid "Affiliation"
+msgstr "Affiliation"
+
+#: meinberlin/react/livequestions/CategorySelect.jsx:5
+msgid ""
+"Answered questions will be displayed in the statistics according to the "
+"chosen affiliation."
+msgstr ""
+"Answered questions will be displayed in the statistics according to the "
+"chosen affiliation."
+
+#: meinberlin/react/livequestions/Filters.jsx:21
+msgid "only show marked questions"
+msgstr "only show marked questions"
+
+#: meinberlin/react/livequestions/Filters.jsx:22
+msgid "display only questions which are not hidden"
+msgstr "display only questions which are not hidden"
+
+#: meinberlin/react/livequestions/Filters.jsx:23
+msgid "order by likes"
+msgstr "order by likes"
+
+#: meinberlin/react/livequestions/InfoBox.jsx:4
+msgid "display question on screen"
+msgstr "display question on screen"
+
+#: meinberlin/react/livequestions/InfoBox.jsx:5
+msgid "add question to shortlist"
+msgstr "add question to shortlist"
+
+#: meinberlin/react/livequestions/InfoBox.jsx:6
+msgid "hide question from audience"
+msgstr "hide question from audience"
+
+#: meinberlin/react/livequestions/InfoBox.jsx:7
+msgid "mark question as answered"
+msgstr "mark question as answered"
+
+#: meinberlin/react/livequestions/InfoBox.jsx:8
+msgid "is shown in front of a question? It has been marked by the moderation."
+msgstr "is shown in front of a question? It has been marked by the moderation."
+
+#: meinberlin/react/livequestions/InfoBox.jsx:9
+msgid "Close information"
+msgstr "Close information"
+
+#: meinberlin/react/livequestions/InfoBox.jsx:10
+msgid "Open information"
+msgstr "Open information"
+
+#: meinberlin/react/livequestions/InfoBox.jsx:11
+msgid "Hide"
+msgstr "Hide"
+
+#: meinberlin/react/livequestions/QuestionBox.jsx:10
+msgid "select affiliation"
+msgstr "select affiliation"
+
+#: meinberlin/react/livequestions/QuestionBox.jsx:11
+msgid "Information"
+msgstr "Information"
+
+#: meinberlin/react/livequestions/QuestionBox.jsx:12
+msgid "Questions"
+msgstr "Questions"
+
+#: meinberlin/react/livequestions/QuestionBox.jsx:13
+msgid "Statistics"
+msgstr "Statistics"
+
+#: meinberlin/react/livequestions/QuestionBox.jsx:14
+msgid "display on screen"
+msgstr "display on screen"
+
+#: meinberlin/react/livequestions/QuestionForm.jsx:6
+msgid "Here you can ask your question"
+msgstr "Here you can ask your question"
+
+#: meinberlin/react/livequestions/QuestionForm.jsx:8
+msgid "Your question"
+msgstr "Your question"
+
+#: meinberlin/react/livequestions/QuestionModerator.jsx:97
+msgid "mark as hidden"
+msgstr "mark as hidden"
+
+#: meinberlin/react/livequestions/QuestionModerator.jsx:98
+msgid "undo mark as hidden"
+msgstr "undo mark as hidden"
+
+#: meinberlin/react/livequestions/QuestionModerator.jsx:99
+msgid "mark as done"
+msgstr "mark as done"
+
+#: meinberlin/react/livequestions/QuestionModerator.jsx:100
+msgid "added to live list"
+msgstr "added to live list"
+
+#: meinberlin/react/livequestions/QuestionModerator.jsx:101
+msgid "remove from live list"
+msgstr "remove from live list"
+
+#: meinberlin/react/livequestions/QuestionModerator.jsx:102
+msgid "added to shortlist"
+msgstr "added to shortlist"
+
+#: meinberlin/react/livequestions/QuestionModerator.jsx:103
+msgid "remove from shortlist"
+msgstr "remove from shortlist"
+
+#: meinberlin/react/livequestions/QuestionModerator.jsx:104
+msgid "Support count"
+msgstr "Support count"
+
+#: meinberlin/react/livequestions/QuestionPresent.jsx:29
+#: meinberlin/react/livequestions/QuestionUser.jsx:52
+msgid "likes"
+msgstr "likes"
+
+#: meinberlin/react/livequestions/QuestionUser.jsx:51
+msgid "on shortlist"
+msgstr "on shortlist"
+
+#: meinberlin/react/livequestions/QuestionUser.jsx:53
+msgid "add like"
+msgstr "add like"
+
+#: meinberlin/react/livequestions/QuestionUser.jsx:54
+msgid "undo like"
+msgstr "undo like"
+
+#: meinberlin/react/livequestions/StatisticsBox.jsx:44
+msgid "Questions Answered"
+msgstr "Questions Answered"
+
+#: meinberlin/react/livequestions/StatisticsBox.jsx:45
+msgid "Affiliation Of Answered Questions"
+msgstr "Affiliation Of Answered Questions"
+
+#: meinberlin/react/mapideas/react_mapideas_init.jsx:18
+msgid "Map Ideas list"
+msgstr "Map Ideas list"
+
+#: meinberlin/react/maptopicprio/react_map_topics_init.jsx:18
+#: meinberlin/react/topicprio/react_topics_init.jsx:18
+msgid "Map topics list"
+msgstr "Map topics list"
+
+#: meinberlin/react/plans/FilterNav.jsx:7
+msgid "Filter bar for Project overview"
+msgstr "Filter bar for Project overview"
+
+#: meinberlin/react/plans/FilterNav.jsx:8
+msgid "I am interested in projects from"
+msgstr "I am interested in projects from"
+
+#: meinberlin/react/plans/FilterNav.jsx:9
+msgid "„ all Districts “"
+msgstr "„ all Districts “"
+
+#: meinberlin/react/plans/FilterNav.jsx:10
+msgid "Which district are you interested in?"
+msgstr "Which district are you interested in?"
+
+#: meinberlin/react/plans/FilterNav.jsx:11
+msgid "„ all Topics “"
+msgstr "„ all Topics “"
+
+#: meinberlin/react/plans/FilterNav.jsx:12
+msgid "Which topic are you interested in?"
+msgstr "Which topic are you interested in?"
+
+#: meinberlin/react/plans/FilterNav.jsx:13
+msgid "display projects"
+msgstr "display projects"
+
+#: meinberlin/react/plans/FilterNav.jsx:14
+msgid "more filters"
+msgstr "more filters"
+
+#: meinberlin/react/plans/FilterNav.jsx:16
+msgid "in the area of"
+msgstr "in the area of"
+
+#: meinberlin/react/plans/FilterSecondary.jsx:6
+msgid "Search title"
+msgstr "Search title"
+
+#: meinberlin/react/plans/FilterSecondary.jsx:7
+msgid "Perform search"
+msgstr "Perform search"
+
+#: meinberlin/react/plans/FilterSecondary.jsx:8
+msgid "Organisation"
+msgstr "Organisation"
+
+#: meinberlin/react/plans/FilterSecondary.jsx:9
+msgid "Enter the name of the organisation"
+msgstr "Enter the name of the organisation"
+
+#: meinberlin/react/plans/FilterSecondary.jsx:10
+msgid "Level of participation"
+msgstr "Level of participation"
+
+#: meinberlin/react/plans/FilterSecondary.jsx:11
+msgid "Project status"
+msgstr "Project status"
+
+#: meinberlin/react/plans/FilterSecondary.jsx:12
+msgid "show projects"
+msgstr "show projects"
+
+#: meinberlin/react/plans/PlansList.jsx:5 meinberlin/react/plans/PopUp.jsx:7
+msgid "remaining"
+msgstr "remaining"
+
+#: meinberlin/react/plans/PlansList.jsx:6 meinberlin/react/plans/PopUp.jsx:6
+msgid "More than 1 year remaining"
+msgstr "More than 1 year remaining"
+
+#: meinberlin/react/plans/PlansList.jsx:7 meinberlin/react/plans/PopUp.jsx:11
+msgid "Participation projects: "
+msgstr "Participation projects: "
+
+#: meinberlin/react/plans/PlansList.jsx:8 meinberlin/react/plans/PopUp.jsx:8
+msgid "Participation: from "
+msgstr "Participation: from "
+
+#: meinberlin/react/plans/PlansList.jsx:9 meinberlin/react/plans/PopUp.jsx:9
+msgid "Participation ended. Read result."
+msgstr "Participation ended. Read result."
+
+#: meinberlin/react/plans/PlansList.jsx:12
+msgid "copyright missing"
+msgstr "copyright missing"
+
+#: meinberlin/react/plans/PlansList.jsx:13
+msgid "Here you can find a decorative picture."
+msgstr "Here you can find a decorative picture."
+
+#: meinberlin/react/plans/PlansListMapBox.jsx:13
+msgid "ongoing"
+msgstr "ongoing"
+
+#: meinberlin/react/plans/PlansListMapBox.jsx:14
+msgid "done"
+msgstr "done"
+
+#: meinberlin/react/plans/PlansListMapBox.jsx:17
+msgid "Project overview"
+msgstr "Project overview"
+
+#: meinberlin/react/plans/PlansMap.jsx:9
+msgid "Address search"
+msgstr "Address search"
+
+#: meinberlin/react/plans/PlansMap.jsx:10
+msgid "Address Search"
+msgstr "Address Search"
+
+#: meinberlin/react/plans/PlansMap.jsx:12
+msgid "Close information box"
+msgstr "Close information box"
+
+#: meinberlin/react/plans/PlansMap.jsx:13
+msgid ""
+"Projects without spacial reference are not shown on the map. Please have a "
+"look at the project list."
+msgstr ""
+"Projects without spacial reference are not shown on the map. Please have a "
+"look at the project list."
+
+#: meinberlin/react/plans/PopUp.jsx:10
+msgid "Superordinate project: "
+msgstr "Superordinate project: "
+
+#: meinberlin/react/plans/PopUp.jsx:12
+msgid "Participation: "
+msgstr "Participation: "
+
+#: meinberlin/react/plans/Toggles.jsx:7
+msgid "Filtered list of projects"
+msgstr "Filtered list of projects"
+
+#: meinberlin/react/plans/Toggles.jsx:8
+msgid " search results"
+msgstr " search results"
+
+#: meinberlin/react/plans/Toggles.jsx:9
+msgid " remove filter"
+msgstr " remove filter"
+
+#: meinberlin/react/plans/Toggles.jsx:10
+msgid "Show map"
+msgstr "Show map"
+
+#: meinberlin/react/plans/Toggles.jsx:11
+msgid "show map"
+msgstr "show map"
+
+#: meinberlin/react/plans/Toggles.jsx:12
+msgid "hide map"
+msgstr "hide map"
+
+#: meinberlin/react/plans/Toggles.jsx:15
+msgid "show list"
+msgstr "show list"
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:11
 msgid "External Video"

@@ -7,23 +7,6 @@
   margin-bottom: 0.5 * $spacer;
 }
 
-.a4-comments__comment-control-bar {
-  @extend .panel--heavy;
-
-  .form-group--inline {
-    @extend .fullspace;
-    margin-bottom: 0.5 * $spacer;
-  }
-
-  .a4-control-bar__search__term {
-    @extend .my-0;
-  }
-
-  .a4-forms__select {
-    @extend .my-0;
-  }
-}
-
 .a4-comments__anchor {
   display: block;
   position: relative;
@@ -89,5 +72,23 @@
     .a4-comments__char-count-word {
       display: none;
     }
+  }
+}
+
+.a4-comments__comment-control-bar {
+  @extend .panel--heavy;
+
+  .form-group--inline {
+    @extend .fullspace;
+  }
+
+  @media screen and (max-width: $breakpoint-palm) {
+    .form-group {
+      margin-bottom: 0 !important;
+    }
+  }
+
+  .a4-control-bar__sorting .form-group {
+    margin-bottom: 0.8 * $spacer;
   }
 }

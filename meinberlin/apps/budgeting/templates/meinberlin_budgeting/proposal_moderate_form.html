@@ -1,49 +1,68 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% translate 'Moderate' %} {{ object.name }} &mdash; {{ block.super }}{% endblock %}
+{% block title %}
+    {% translate 'Moderate' %}
+    {{ object.name }}
+    —
+    {{ block.super }}
+{% endblock %}
 
 {% block breadcrumbs %}
     <div id="content-header">
         <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
             <ol>
-                <li><a href="/">meinBerlin</a></li>
-                <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a></li>
-                <li><a href="{% url 'project-detail' project.slug %}">{{ project.name|truncatechars:50 }}</a></li>
-                {% if module.is_in_module_cluster  %}
-                <li><a href="{{ module.get_detail_url }}">{{ module.name|truncatechars:50 }}</a></li>
+                <li>
+                    <a href="/">meinBerlin</a>
+                </li>
+                <li>
+                    <a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a>
+                </li>
+                <li>
+                    <a href="{% url 'project-detail' project.slug %}">{{ project.name|truncatechars:50 }}</a>
+                </li>
+                {% if module.is_in_module_cluster %}
+                    <li>
+                        <a href="{{ module.get_detail_url }}">{{ module.name|truncatechars:50 }}</a>
+                    </li>
                 {% endif %}
-                <li><a href="{{ object.get_absolute_url }}">{% translate 'Proposal' %}</a></li>
+                <li>
+                    <a href="{{ object.get_absolute_url }}">{% translate 'Proposal' %}</a>
+                </li>
                 <li class="active" aria-current="page">{% translate 'Moderate proposal' %}</li>
             </ol>
         </nav>
     </div>
-{% endblock %}
+{% endblock breadcrumbs %}
 
 {% block content %}
-<div id="layout-grid__area--maincontent">
-    <h1>{% translate 'Moderate proposal' %}</h1>
+    <div id="layout-grid__area--maincontent">
+        <h1>{% translate 'Moderate proposal' %}</h1>
 
-    <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
-        {% csrf_token %}
-        {% for form in forms.values %}
-            {{ form.media }}
-        {% endfor %}
+        <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+            {% csrf_token %}
+            {% for form in forms.values %}
+                {{ form.media }}
+            {% endfor %}
 
-        {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.moderateable.moderator_status %}
-        {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.feedback_text.feedback_text %}
-        {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=forms.moderateable.is_archived %}
-        {% if forms.moderateable.show_tasks %}
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.moderateable.completed_tasks add_class='u-top-divider' %}
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.remark.remark %}
-        {% else %}
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.remark.remark add_class='u-top-divider' %}
-        {% endif %}
+            {% include 'meinberlin_contrib/includes/form_field_select.html' with field=forms.moderateable.moderator_status %}
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.feedback_text.feedback_text %}
+            {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=forms.moderateable.is_archived %}
+            {% if forms.moderateable.show_tasks %}
+                {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.moderateable.completed_tasks add_class='u-top-divider' %}
+                {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.remark.remark %}
+            {% else %}
+                {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.remark.remark add_class='u-top-divider' %}
+            {% endif %}
 
-        <div class="u-spacer-bottom">
-            <input type="submit" class="btn btn--primary" value="{% translate 'Save' %}" />
-            <a href="{{ object.get_absolute_url }}" class="btn btn--light">{% translate 'Cancel' %}</a>
-        </div>
-    </form>
-</div>
-{% endblock %}
+            <div class="form-actions">
+                <div class="form-actions__left">
+                    <a href="{{ object.get_absolute_url }}" class="link--back">{% translate 'Cancel' %}</a>
+                </div>
+                <div class="form-actions__right">
+                    <button type="submit" class="button">{% translate 'Save' %}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

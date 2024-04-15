@@ -1,20 +1,22 @@
 {% load i18n widget_tweaks %}
 
-<div class="form-check">
-    <label class="form-check-label">
-        {{ field|add_error_attr:"aria-invalid:true" }}
-        {{ field.label }}
-        {% if field.help_text %}
-        <div class="form-hint">
-            {{ field.help_text }}
-        </div>
+<div class="form-group {% if add_class %}{{ add_class }}{% endif %} mb-2">
+    <div class="form-check">
+        <label class="form-check-label">
+            {{ field|add_error_attr:"aria-invalid:true" }}
+            {{ field.label }}
+            {% if field.help_text %}
+                <div class="formgroup__help mt-1">
+                    {{ field.help_text }}
+                </div>
+            {% endif %}
+        </label>
+        {% if field.errors %}
+            <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+                {% for error in field.errors %}
+                    <li>{{ error|escape }}</li>
+                {% endfor %}
+            </ul>
         {% endif %}
-    </label>
-    {% if field.errors %}
-        <ul class="errorlist" aria-live="assertive" aria-atomic="true">
-        {% for error in field.errors %}
-            <li>{{ error|escape }}</li>
-        {% endfor %}
-        </ul>
-    {% endif %}
+    </div>
 </div>

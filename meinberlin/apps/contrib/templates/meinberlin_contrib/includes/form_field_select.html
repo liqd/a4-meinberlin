@@ -1,0 +1,14 @@
+{% extends "meinberlin_contrib/includes/form_field.html" %}
+{% load widget_tweaks %}
+
+{% block field %}
+    <div class="widget widget--{{ field|widget_type }} input-group">
+        {% if before %}
+            <span class="input-group__before">{{ before }}</span>
+        {% endif %}
+        {{ field|add_class:'form-control'|add_error_attr:"aria-invalid:true" }}
+        {% if after %}
+            <span class="input-group__after">{{ after }}</span>
+        {% endif %}
+    </div>
+{% endblock field %}

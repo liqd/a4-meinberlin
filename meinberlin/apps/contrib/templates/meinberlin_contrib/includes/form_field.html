@@ -1,6 +1,6 @@
 {% load i18n widget_tweaks %}
 
-<div class="form-group {% if add_class %}{{ add_class }}{% endif %}">
+<div class="form-group {% if add_class %}{{ add_class }}{% endif %} mb-2">
     <label for="{{ field.id_for_label }}" {% if tabindex %} tabindex="{{ tabindex }}" {% endif %} class="form-label">
         {{ field.label }}
         {% if field.field.required %}

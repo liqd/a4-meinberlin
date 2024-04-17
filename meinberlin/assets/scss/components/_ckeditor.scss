@@ -12,3 +12,16 @@
     width: 100%;
   }
 }
+
+.ck-word-count {
+  @extend .formgroup__help !optional;
+}
+
+.ck .ck-toolbar {
+  border: 2px solid black !important;
+  border-bottom: none !important;
+}
+
+.ck .ck-editor__editable {
+  border: 2px solid black !important;
+}

@@ -15,7 +15,7 @@
 @import "components/alert";
 @import "components/blocks";
 @import "components/captcheck";
-@import "components/ck_embed_iframe";
+@import "components/ckeditor";
 @import "components/detail_info";
 @import "components/details";
 @import "components/dialogue_box";
@@ -50,6 +50,7 @@
 
 // extra scss / overwrites
 @import "../extra_css/swiper";
+@import "../extra_css/ckeditor";
 
 @import "styles_user_facing/form";
 @import "styles_user_facing/utility";

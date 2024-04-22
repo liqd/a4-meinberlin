@@ -4,7 +4,7 @@ git+https://github.com/liqd/adhocracy4.git@mB-v2402.1#egg=adhocracy4
 # Additional requirements
 beautifulsoup4==4.11.2
 brotli==1.1.0
-django-celery-beat==2.5.0
+django-celery-beat==2.6.0
 django-cloudflare-push==0.2.2
 django_csp==3.7
 redis==5.0.1

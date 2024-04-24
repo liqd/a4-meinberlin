@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-04-08 11:27+0200\n"
-"PO-Revision-Date: 2024-04-17 15:37+0000\n"
-"Last-Translator: Julian Dehm <j.dehm@liqd.net>\n"
+"PO-Revision-Date: 2024-04-25 10:56+0000\n"
+"Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "js-design-dev/de/>\n"
 "Language: de_DE\n"
@@ -195,42 +195,50 @@ msgid ""
 "Intelligence to scan content for disinformation. Disinformation often shows "
 "certain characteristics that allow for a reliable identification."
 msgstr ""
+"Dieser Kommentar enthält Desinformation. Defakts verwendet eine künstliche "
+"Intelligenz, um Inhalte auf Desinformation zu überprüfen. Desinformationen "
+"weisen oft bestimmte Merkmale auf, die eine zuverlässige Identifizierung "
+"ermöglichen."
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:9
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:9
 msgctxt "defakts"
 msgid "Click to view the AI explanation for reporting this comment."
 msgstr ""
+"Klicken Sie hier, um die AI-Erklärung für die Meldung dieses Kommentars "
+"anzuzeigen."
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:10
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:10
 msgctxt "defakts"
 msgid "Click to hide the AI explanation for reporting this comment."
 msgstr ""
+"Klicken Sie, um die AI-Erklärung für die Meldung dieses Kommentars "
+"auszublenden."
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:11
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:11
 msgctxt "defakts"
 msgid "Read more"
-msgstr ""
+msgstr "Mehr lesen"
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:12
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:12
 msgctxt "defakts"
 msgid "Show less"
-msgstr ""
+msgstr "Weniger anzeigen"
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:13
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:13
 msgctxt "defakts"
 msgid "Show info to users"
-msgstr ""
+msgstr "Informationen für Benutzer:innen anzeigen"
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:14
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:14
 msgctxt "defakts"
 msgid "Hide info from users"
-msgstr ""
+msgstr "Informationen für Benutzer:innen verbergen"
 
 #: adhocracy4/comments_async/static/comments_async/category_list.jsx:5
 #: adhocracy4/comments_async/static/comments_async/category_list.jsx:5
@@ -354,7 +362,7 @@ msgstr "Kommentare"
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:23
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:23
 msgid "Discussion"
-msgstr ""
+msgstr "Diskussion"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:24
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:24
@@ -416,7 +424,7 @@ msgstr "Hervorgehoben"
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:14
 #: meinberlin/react/contrib/ControlBar.jsx:12
 msgid "Show more"
-msgstr ""
+msgstr "Mehr zeigen"
 
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:8
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:15
@@ -424,14 +432,14 @@ msgstr ""
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:15
 #: meinberlin/react/contrib/ControlBar.jsx:13
 msgid "Show less"
-msgstr ""
+msgstr "Weniger zeigen"
 
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:9
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:16
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:9
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:16
 msgid "Ordering"
-msgstr ""
+msgstr "Reihenfolge"
 
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:20
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:20
@@ -450,7 +458,7 @@ msgstr[1] "Beiträge gefunden zu: "
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:11
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:11
 msgid "Join the discussion"
-msgstr ""
+msgstr "Beteiligen Sie sich an der Diskussion"
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:12
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:12
@@ -931,7 +939,7 @@ msgstr ""
 #: adhocracy4/static/control_bar/ControlBarSearch.jsx:5
 #: adhocracy4/static/control_bar/ControlBarSearch.jsx:5
 msgid "Search"
-msgstr ""
+msgstr "Suchen"
 
 #: adhocracy4/static/control_bar/ControlBarSearch.jsx:6
 #: adhocracy4/static/control_bar/ControlBarSearch.jsx:6
@@ -1006,7 +1014,7 @@ msgstr "Keine Ergebnisse"
 
 #: meinberlin/react/budgeting/BudgetingProposalList.jsx:25
 msgid "Proposal tags"
-msgstr ""
+msgstr "Vorschlag Tags"
 
 #: meinberlin/react/budgeting/EndSessionLink.jsx:8
 msgid "Are you finished?"
@@ -1053,11 +1061,11 @@ msgstr "Meine Stimme geben"
 
 #: meinberlin/react/contrib/ControlBar.jsx:11
 msgid "Reset"
-msgstr ""
+msgstr "Zurücksetzen"
 
 #: meinberlin/react/contrib/ControlBar.jsx:15
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 #: meinberlin/react/contrib/ControlBar.jsx:16
 msgid "Search, filter and sort the ideas list"
@@ -1077,11 +1085,11 @@ msgstr[1] "%s Vorschläge gefunden."
 #: meinberlin/react/contrib/ControlBarFilterPills.jsx:5
 #, javascript-format
 msgid "Remove filter %s"
-msgstr ""
+msgstr "Filter entfernen %s"
 
 #: meinberlin/react/contrib/ControlBarListMapSwitch.jsx:29
 msgid "View mode"
-msgstr ""
+msgstr "Ansichtsmodus"
 
 #: meinberlin/react/contrib/ControlBarListMapSwitch.jsx:30
 msgid "View as list"
@@ -1108,7 +1116,7 @@ msgstr "Status: "
 
 #: meinberlin/react/contrib/ModeratorStatus.jsx:6
 msgid "Status Indicator"
-msgstr ""
+msgstr "Statusanzeige"
 
 #: meinberlin/react/contrib/Pagination.jsx:6
 msgid "Page navigation"
@@ -1124,41 +1132,41 @@ msgstr "Vorherige Seite"
 
 #: meinberlin/react/contrib/Spinner.jsx:4
 msgid "loading"
-msgstr ""
+msgstr "lädt"
 
 #: meinberlin/react/contrib/card/Card.jsx:7
 #: meinberlin/react/contrib/map/ItemPopup.jsx:26
 msgid "Item details"
-msgstr ""
+msgstr "Itemdetails"
 
 #: meinberlin/react/contrib/card/Card.jsx:8
 #: meinberlin/react/contrib/map/ItemPopup.jsx:27
 msgid "to:"
-msgstr ""
+msgstr "zu:"
 
 #: meinberlin/react/contrib/card/CardList.jsx:15
 msgid "Pill List"
-msgstr ""
+msgstr "Pillenliste"
 
 #: meinberlin/react/contrib/card/CardStats.jsx:7
 #: meinberlin/react/contrib/map/ItemPopup.jsx:18
 msgid "Like"
 msgid_plural "Likes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Like"
+msgstr[1] "Likes"
 
 #: meinberlin/react/contrib/card/CardStats.jsx:8
 #: meinberlin/react/contrib/map/ItemPopup.jsx:22
 msgid "Dislike"
 msgid_plural "Dislikes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Dislike"
+msgstr[1] "Dislikes"
 
 #: meinberlin/react/contrib/card/CardStats.jsx:9
 msgid "Supporter"
 msgid_plural "Supporters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Unterstützer:in"
+msgstr[1] "Unterstützer:innen"
 
 #: meinberlin/react/contrib/card/CardStats.jsx:10
 msgctxt "card"
@@ -1171,8 +1179,8 @@ msgstr[1] "Kommentare"
 #: meinberlin/react/contrib/map/ItemPopup.jsx:10
 msgid "Vote"
 msgid_plural "Votes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Stimme"
+msgstr[1] "Stimmen"
 
 #: meinberlin/react/contrib/card/CardStatus.jsx:8
 msgid "More"
@@ -1181,8 +1189,8 @@ msgstr "Mehr"
 #: meinberlin/react/contrib/map/ItemPopup.jsx:14
 msgid "Comment"
 msgid_plural "Comments"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kommentar"
+msgstr[1] "Kommentare"
 
 #: meinberlin/react/contrib/map/ItemPopup.jsx:25
 msgid "Support"
@@ -1190,15 +1198,15 @@ msgstr "Unterstützung"
 
 #: meinberlin/react/contrib/map/Map.jsx:11
 msgid "A map representation follows."
-msgstr ""
+msgstr "Es folgt eine Kartendarstellung."
 
 #: meinberlin/react/contrib/map/Map.jsx:12
 msgid "End of map."
-msgstr ""
+msgstr "Ende der Karte."
 
 #: meinberlin/react/contrib/map/Map.jsx:13
 msgid "Skip map"
-msgstr ""
+msgstr "Karte überspringen"
 
 #: meinberlin/react/documents/ChapterForm.jsx:8
 msgid "Chapter title"
@@ -1262,7 +1270,7 @@ msgstr ""
 
 #: meinberlin/react/ideas/react_ideas_init.jsx:20
 msgid "Ideas list"
-msgstr ""
+msgstr "Ideenliste"
 
 #: meinberlin/react/livequestions/CategorySelect.jsx:4
 msgid "Affiliation"
@@ -1408,12 +1416,12 @@ msgstr "Zugehörigkeit der beantworteten Fragen"
 
 #: meinberlin/react/mapideas/react_mapideas_init.jsx:18
 msgid "Map Ideas list"
-msgstr ""
+msgstr "Karten-Ideenliste"
 
 #: meinberlin/react/maptopicprio/react_map_topics_init.jsx:18
 #: meinberlin/react/topicprio/react_topics_init.jsx:18
 msgid "Map topics list"
-msgstr ""
+msgstr "Karten-Themenliste"
 
 #: meinberlin/react/plans/FilterNav.jsx:7
 msgid "Filter bar for Project overview"

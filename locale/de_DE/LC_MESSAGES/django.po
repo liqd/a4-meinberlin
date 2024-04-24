@@ -1403,11 +1403,11 @@ msgstr "Nutzereinstellungen"
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_detail.html:8
 #: meinberlin/templates/a4modules/module_detail.html:41
 msgid "You are here:"
-msgstr ""
+msgstr "Sie befinden sich hier:"
 
 #: meinberlin/apps/account/templates/meinberlin_account/account_dashboard.html:10
 msgid "meinBerlin Homepage"
-msgstr ""
+msgstr "meinBerlin Homepage"
 
 #: meinberlin/apps/account/templates/meinberlin_account/account_dashboard.html:11
 #: meinberlin/apps/users/templates/meinberlin_users/initiator_indicator.html:20
@@ -2160,7 +2160,7 @@ msgstr "Anlegen eines neuen Vorschlags"
 #: meinberlin/templates/a4modules/module_detail.html:44
 #: meinberlin/templates/header.html:28 meinberlin/templates/header.html:204
 msgid "Project Overview"
-msgstr ""
+msgstr "Projektübersicht"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_create_form.html:15
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_create_form.html:22
@@ -2238,7 +2238,7 @@ msgstr "Moderieren"
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_update_form.html:16
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_update_form.html:16
 msgid "Proposal"
-msgstr ""
+msgstr "Vorschlag"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:17
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:25
@@ -2316,27 +2316,29 @@ msgstr "Ich bin kein Roboter"
 
 #: meinberlin/apps/cms/models/settings.py:18
 msgid "Please add a link to the help page."
-msgstr ""
+msgstr "Bitte fügen Sie einen Link zur Hilfsseite hinzu."
 
 #: meinberlin/apps/cms/models/settings.py:27
 msgid "Please add a link to the feedback form page."
-msgstr ""
+msgstr "Bitte fügen Sie einen Link zur Feedback-Formular-Seite hinzu."
 
 #: meinberlin/apps/cms/models/settings.py:34
 msgid "Add link for additional information"
-msgstr ""
+msgstr "Fügen Sie einen Link für weitere Informationen hinzu"
 
 #: meinberlin/apps/cms/models/settings.py:44
 msgid "Please add a link to your accesibility decleration page."
 msgstr ""
+"Bitte fügen Sie einen Link zu Ihrer Seite mit der Barrierefreiheits "
+"Erklärung hinzu."
 
 #: meinberlin/apps/cms/models/settings.py:57
 msgid "Accessibility Feedback Contact Information"
-msgstr ""
+msgstr "Barrierefreiheits Feedback Kontaktinformationen"
 
 #: meinberlin/apps/cms/models/settings.py:71
 msgid "Additional Information on Accessibility"
-msgstr ""
+msgstr "Zusätzliche Information über Barrierefreiheit"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/blocks/projects_block.html:12
 msgid "Show all projects"
@@ -2574,11 +2576,11 @@ msgstr "Bitte stimmen Sie der Speicherung Ihrer Kontaktinformationen zu."
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/components/moderator_feedback.html:18
 msgid "Status: "
-msgstr ""
+msgstr "Status: "
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/components/moderator_feedback.html:31
 msgid "To add a feedback, please click edit."
-msgstr ""
+msgstr "Um Feedback abzugeben, bitte klicken Sie auf bearbeiten."
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/components/moderator_feedback.html:40
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/components/moderator_notes.html:46
@@ -2620,7 +2622,7 @@ msgstr "Fertig"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/components/moderator_notes.html:22
 msgid "Pending"
-msgstr ""
+msgstr "ausstehend"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/components/moderator_notes.html:30
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:227
@@ -3171,7 +3173,7 @@ msgstr "Sind Sie sicher, dass Sie diese Idee löschen möchten?"
 
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_create_form.html:16
 msgid "Submit a new idea for this project "
-msgstr ""
+msgstr "Reichen Sie eine neue Idee für dieses Projekt ein "
 
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_create_form.html:24
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_create_form.html:15
@@ -3196,7 +3198,7 @@ msgstr "Rückmeldung geben"
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:15
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_update_form.html:16
 msgid "Idea"
-msgstr ""
+msgstr "Idee"
 
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:16
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:16
@@ -4605,15 +4607,15 @@ msgstr "Dieses Projekt ist noch nicht veröffentlicht."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:62
 msgid "Image"
-msgstr ""
+msgstr "Bild"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:66
 msgid "Image: copyright missing"
-msgstr ""
+msgstr "Bild: Copyright Informationen fehlen"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:91
 msgid "Project Details Navigation"
-msgstr ""
+msgstr "Projektdetails Navigation"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:114
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:92
@@ -4622,11 +4624,11 @@ msgstr "Beteiligung"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:126
 msgid "Results"
-msgstr ""
+msgstr "Ergebnisse"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:196
 msgid "Participate"
-msgstr ""
+msgstr "Teilnehmen"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:243
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:222
@@ -4862,20 +4864,20 @@ msgstr "Plattform-Mail"
 #: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:16
 #: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:46
 msgid "close"
-msgstr ""
+msgstr "schließen"
 
 #: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:16
 #: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:46
 msgid "menu close"
-msgstr ""
+msgstr "Menü schließen"
 
 #: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:18
 msgid "My account"
-msgstr ""
+msgstr "Mein Account"
 
 #: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:55
 msgid "Forgot password?"
-msgstr ""
+msgstr "Passwort vergessen?"
 
 #: meinberlin/apps/votes/api.py:79
 msgid "No token given or token not valid for module."
@@ -5160,7 +5162,7 @@ msgstr "Organisationen"
 
 #: meinberlin/templates/a4dashboard/base_dashboard.html:51
 msgid "Dashboard: "
-msgstr ""
+msgstr "Dashboard: "
 
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:23
 #: meinberlin/templates/a4dashboard/project_create_form.html:14
@@ -5379,7 +5381,7 @@ msgstr ""
 
 #: meinberlin/templates/a4modules/includes/module_detail_phase_info.html:8
 msgid "Phase status"
-msgstr ""
+msgstr "Status der Phase"
 
 #: meinberlin/templates/a4modules/includes/module_detail_phase_info.html:23
 #: meinberlin/templates/a4modules/includes/module_detail_phase_info.html:17
@@ -5393,15 +5395,15 @@ msgstr "abgeschlossen"
 
 #: meinberlin/templates/a4modules/includes/module_detail_phase_swiper.html:4
 msgid "Slide controls"
-msgstr ""
+msgstr "Schieberegler"
 
 #: meinberlin/templates/a4modules/includes/module_detail_phase_swiper.html:6
 msgid "Show previous slide"
-msgstr ""
+msgstr "Vorherige Folie anzeigen"
 
 #: meinberlin/templates/a4modules/includes/module_detail_phase_swiper.html:10
 msgid "Show next slide"
-msgstr ""
+msgstr "Nächste Folie anzeigen"
 
 #: meinberlin/templates/a4modules/module_detail.html:65
 #: meinberlin/templates/a4modules/module_detail.html:38
@@ -5495,7 +5497,7 @@ msgstr "Passwort vergessen?"
 
 #: meinberlin/templates/account/login.html:39
 msgid "Don't have an account yet?"
-msgstr ""
+msgstr "Sie haben noch kein Konto?"
 
 #: meinberlin/templates/account/logout.html:4
 #: meinberlin/templates/account/logout.html:7
@@ -5570,7 +5572,7 @@ msgid "Your password is now changed."
 msgstr "Ihr Passwort wurde geändert."
 
 #: meinberlin/templates/account/signup.html:36
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "I hereby expressly consent to the collection and processing (storage) of my "
 "data and expressly consent to the processing and publication of my ideas, "
@@ -5582,10 +5584,21 @@ msgid ""
 "                    <a href=\"%(privacy_policy)s\" target=\"_blank\">privacy "
 "policy</a>."
 msgstr ""
+"Ich willige hiermit ausdrücklich in die Erhebung und Verarbeitung "
+"(Speicherung) meiner Daten ein und stimme der Verarbeitung und "
+"Veröffentlichung meiner Ideen, Kommentare und Beiträge, wie in der "
+"Datenschutzerklärung beschrieben, ausdrücklich zu. Ich bestätige außerdem, "
+"dass ich die\n"
+"                    <a href=\"%(terms_of_use_url)s\" target=\"_blank\""
+">Benutzungsbedingungen</a>\n"
+"                    und die\n"
+"                    <a href=\"%(privacy_policy)s\" target=\"_blank\""
+">Datenschutzbestimmungen</a>\n"
+"                    gelesen habe und akzeptiere."
 
 #: meinberlin/templates/account/signup.html:67
 msgid "Already have an account?"
-msgstr ""
+msgstr "Sie haben bereits ein Konto?"
 
 #: meinberlin/templates/base_errors.html:4
 msgid "Error"
@@ -5601,23 +5614,23 @@ msgstr "meinBerlin ist die Plattform für Beteiligung, betrieben durch"
 
 #: meinberlin/templates/footer.html:8
 msgid "To the top of the page"
-msgstr ""
+msgstr "Zum Anfang der Seite"
 
 #: meinberlin/templates/footer.html:9
 msgid "Related Links"
-msgstr ""
+msgstr "Verwandte Links"
 
 #: meinberlin/templates/header.html:9
 msgid "To the home page of Berlin.de"
-msgstr ""
+msgstr "Zur Homepage von Berlin.de"
 
 #: meinberlin/templates/header.html:17
 msgid "To the home page"
-msgstr ""
+msgstr "Zur Home Page"
 
 #: meinberlin/templates/header.html:18
 msgid "meinBerlin logo"
-msgstr ""
+msgstr "meinBerlin Logo"
 
 #: meinberlin/templates/header.html:38 meinberlin/templates/header.html:213
 #: meinberlin/templates/header.html:56
@@ -5631,67 +5644,69 @@ msgstr "Feedback geben"
 
 #: meinberlin/templates/header.html:58
 msgid "Open overlay: Accessibility"
-msgstr ""
+msgstr "Overlay öffnen: Barrierefreiheit"
 
 #: meinberlin/templates/header.html:60
 msgid "Accessible"
-msgstr ""
+msgstr "barrierefrei"
 
 #: meinberlin/templates/header.html:66
 msgid "Accessibility"
-msgstr ""
+msgstr "Barrierefreiheit"
 
 #: meinberlin/templates/header.html:67
 msgid "Close overlay: Accessibility"
-msgstr ""
+msgstr "Overlay schließen: Barrierefreiheit"
 
 #: meinberlin/templates/header.html:76
 msgid "Symbol for easy german"
-msgstr ""
+msgstr "Symbol für Leichte Sprache"
 
 #: meinberlin/templates/header.html:77
 msgid "Easy language"
-msgstr ""
+msgstr "Leichte Sprache"
 
 #: meinberlin/templates/header.html:78 meinberlin/templates/header.html:85
 msgid "show for this page"
-msgstr ""
+msgstr "für diese Seite anzeigen"
 
 #: meinberlin/templates/header.html:83
 msgid "Sign language icon"
-msgstr ""
+msgstr "Symbol für Gebärdensprache"
 
 #: meinberlin/templates/header.html:84
 msgid "Sign language"
-msgstr ""
+msgstr "Gebärdensprache"
 
 #: meinberlin/templates/header.html:91
 msgid "How accessible is this website?"
-msgstr ""
+msgstr "Wie barrierefrei ist diese Webseite?"
 
 #: meinberlin/templates/header.html:97
 msgid ""
 "Whom to contact with comments or questions about digital accessibility "
 "(feedback option)?"
 msgstr ""
+"An wen kann man sich mit Kommentaren oder Fragen zur digitalen "
+"Barrierefreiheit wenden (Feedback-Option)?"
 
 #: meinberlin/templates/header.html:112
 msgid ""
 "Where can I find additional information on accessibility in the state of "
 "Berlin?"
-msgstr ""
+msgstr "Wo finde ich weitere Informationen zur Barrierefreiheit im Land Berlin?"
 
 #: meinberlin/templates/header.html:131 meinberlin/templates/header.html:144
 msgid "Open: Search"
-msgstr ""
+msgstr "Öffnen: Suche"
 
 #: meinberlin/templates/header.html:154
 msgid "Search on the website \"mein.Berlin\""
-msgstr ""
+msgstr "Auf der Website \"mein.Berlin\" suchen"
 
 #: meinberlin/templates/header.html:185
 msgid "Open overlay: Menu"
-msgstr ""
+msgstr "Overlay öffnen: Menü"
 
 #: meinberlin/templates/header.html:187 meinberlin/templates/header.html:193
 #: meinberlin/templates/header.html:13
@@ -5700,7 +5715,7 @@ msgstr "Menü"
 
 #: meinberlin/templates/header.html:194
 msgid "Close overlay: Menu"
-msgstr ""
+msgstr "Overlay schließen: Menü"
 
 #: meinberlin/templates/socialaccount/authentication_error.html:5
 #: meinberlin/templates/socialaccount/authentication_error.html:8

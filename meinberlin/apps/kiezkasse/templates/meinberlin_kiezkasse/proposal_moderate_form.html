@@ -1,41 +1,41 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% blocktranslate with name=object.name %}Moderate {{ name }}{% endblocktranslate %}{% endblock %}
+{% block title %}
+    {% blocktranslate with name=object.name %}
+        Moderate {{ name }}
+    {% endblocktranslate %}
+{% endblock title %}
+
 {% block breadcrumbs %}
     <div id="layout-grid__area--contentheader">
         <div id="content-header">
             <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
                 <ol>
-                    <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a></li>
-                    <li><a href="{% url 'project-detail' project.slug %}">{{ project.name|truncatechars:50 }}</a></li>
-                    {% if module.is_in_module_cluster  %}
-                        <li><a href="{{ module.get_detail_url }}">{{ module.name|truncatechars:50 }}</a></li>
+                    <li>
+                        <a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'project-detail' project.slug %}">{{ project.name|truncatechars:50 }}</a>
+                    </li>
+                    {% if module.is_in_module_cluster %}
+                        <li>
+                            <a href="{{ module.get_detail_url }}">{{ module.name|truncatechars:50 }}</a>
+                        </li>
                     {% endif %}
-                    <li><a href="{{ object.get_absolute_url }}">{% translate 'Idea' %}</a></li>
+                    <li>
+                        <a href="{{ object.get_absolute_url }}">{% translate 'Idea' %}</a>
+                    </li>
                     <li class="active" aria-current="page">{% translate 'Moderate proposal' %}</li>
                 </ol>
             </nav>
         </div>
     </div>
-{% endblock %}
+{% endblock breadcrumbs %}
+
 {% block content %}
-<div class="container">
-    <h1>{% translate 'Moderate proposal' %}</h1>
-    <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
-        {% csrf_token %}
-        {% for form in forms.values %}
-            {{ form.media }}
-        {% endfor %}
-
-        {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.moderateable.moderator_status %}
-        {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.feedback_text.feedback_text %}
-
-
-        <div class="u-spacer-bottom">
-            <input type="submit" class="btn btn--primary" value="{% translate 'Save' %}" />
-            <a href="{{ object.get_absolute_url }}" class="btn btn--light">{% translate 'Cancel' %}</a>
-        </div>
-    </form>
-</div>
-{% endblock %}
+    <div class="container">
+        <h1>{% translate 'Moderate proposal' %}</h1>
+        {% include "meinberlin_contrib/components/moderator_form.html" %}
+    </div>
+{% endblock content %}

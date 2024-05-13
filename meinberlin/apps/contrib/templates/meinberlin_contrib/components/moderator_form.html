@@ -1,0 +1,27 @@
+{% load i18n item_tags contrib_tags moderatorremark_tags %}
+
+<form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+    {% csrf_token %}
+    {% for form in forms.values %}
+        {{ form.media }}
+    {% endfor %}
+
+    {% include 'meinberlin_contrib/includes/form_field_select.html' with field=forms.moderateable.moderator_status %}
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.feedback_text.feedback_text %}
+    {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=forms.moderateable.is_archived %}
+    {% if forms.moderateable.show_tasks %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.moderateable.completed_tasks add_class='u-top-divider' %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.remark.remark %}
+    {% else %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.remark.remark add_class='u-top-divider' %}
+    {% endif %}
+
+    <div class="form-actions">
+        <div class="form-actions__left">
+            <a href="{{ object.get_absolute_url }}" class="link--back">{% translate 'Cancel' %}</a>
+        </div>
+        <div class="form-actions__right">
+            <button type="submit" class="button">{% translate 'Save' %}</button>
+        </div>
+    </div>
+</form>

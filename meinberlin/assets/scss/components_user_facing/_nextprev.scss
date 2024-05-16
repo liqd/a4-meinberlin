@@ -1,0 +1,16 @@
+.nextprev {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: space-between;
+
+    &__prev {
+        grid-column: 1;
+        justify-self: start;
+    }
+
+    &__next {
+        grid-column: 2;
+        justify-self: end;
+    }
+}

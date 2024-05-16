@@ -27,6 +27,10 @@
     color: var(--color-black);
 }
 
+.icon--color-link {
+    color: var(--color-text-link)!important;
+}
+
 // BO mimic of my-0
 .mt-0 {
     margin-top: 0 !important;
@@ -39,4 +43,9 @@
 
 .mb-2 {
     margin-bottom: 1em;
+}
+
+.u-flex-end {
+    display: flex;
+    justify-content: flex-end;
 }

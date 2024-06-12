@@ -12,7 +12,7 @@
         <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
             <ol>
                 <li>
-                    <a href="/">meinBerlin</a>
+                    <a href="{% url 'wagtail_serve' '' %}">meinBerlin</a>
                 </li>
                 <li>
                     <a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a>

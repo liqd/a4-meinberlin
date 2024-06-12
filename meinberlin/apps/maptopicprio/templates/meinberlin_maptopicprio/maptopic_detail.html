@@ -17,7 +17,7 @@
     <div id="content-header">
         <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
             <ol>
-                <li><a href="/">meinBerlin</a></li>
+                <li><a href="{% url 'wagtail_serve' '' %}">meinBerlin</a></li>
                 <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a></li>
                 <li><a href="{% url 'project-detail' project.slug %}">{{ project.name|truncatechars:50 }}</a></li>
                 {% if module.is_in_module_cluster  %}

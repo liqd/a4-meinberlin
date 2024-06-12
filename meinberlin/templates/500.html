@@ -34,7 +34,7 @@
                 <nav class="main-nav">
                     <div class="main-nav__nav-item">
                     </div>
-                    <a href="/" class="main-nav__logo" rel="home">
+                    <a href="{% url 'wagtail_serve' '' %}" class="main-nav__logo" rel="home">
                         <img src="{% static 'images/logo_mb.svg' %}" alt="mein.berlin"/>
                     </a>
                     <div class="main-nav__nav-item">
@@ -47,7 +47,7 @@
             <div class="offset-lg-3 col-lg-6">
                 <h1>500</h1>
                 <p>{% translate 'Internal server error.' %}</p>
-                <a href="/">{% translate 'Back to meinBerlin.' %}</a>
+                <a href="{% url 'wagtail_serve' '' %}">{% translate 'Back to meinBerlin.' %}</a>
             </div>
         </div>
 

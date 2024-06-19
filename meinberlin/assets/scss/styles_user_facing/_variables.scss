@@ -14,11 +14,11 @@ $warning: #f49e00 !default;
 $danger: #a72b1e !default;
 
 $body-bg: #fff !default;
-$bg-secondary: #f2f2f2 !default;
+$bg-secondary: #f5f5f5 !default; // updated
 $bg-tertiary: #e6e6e6 !default;
 $text-color: #333 !default;
 $text-color-inverted: $body-bg !default;
-$text-color-gray: #666;
+$text-color-gray: #454545;
 $shadow: rgba(#000, 0.25) !default;
 $white-shadow: rgba(255, 255, 255, 0.8) !default;
 $blue-light: #bfd3ff !default;
@@ -26,13 +26,13 @@ $blue-light: #bfd3ff !default;
 $print-black: #000 !default;
 $print-link: #005cb4 !default;
 
-$link-color: $secondary !default;
+$link-color: #0047d3 !default;
 $link-hover-color: $primary !default;
 
 $link-color-btn: $primary !default;
 $link-hover-color-btn: darken($link-color-btn, 15%) !default;
 
-$border-color: #ccc !default;
+$border-color: #ddd !default;
 $input-border-color: $border-color !default;
 
 $em-spacer: 1em !default;

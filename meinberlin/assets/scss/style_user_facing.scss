@@ -30,10 +30,8 @@
 @import "components/maplist";
 @import "components/module";
 @import "components/multiform";
-@import "components/poll";
 @import "components/participation_tile";
 @import "components/progress";
-@import "components/radio";
 @import "components/rating";
 @import "components/select2";
 @import "components/select-item";
@@ -54,6 +52,9 @@
 @import "styles_user_facing/form";
 @import "styles_user_facing/utility";
 
+@import "components_user_facing/a4-comments";
+@import "components_user_facing/a4-select";
+@import "components_user_facing/a4-poll";
 @import "components_user_facing/account";
 @import "components_user_facing/button";
 @import "components_user_facing/card";
@@ -70,7 +71,6 @@
 @import "components_user_facing/phase_info";
 @import "components_user_facing/pill";
 @import "components_user_facing/searchform-slot";
-@import "components_user_facing/a4-select";
 @import "components_user_facing/tabnavigation";
 @import "components_user_facing/user_indicator";
-@import "components_user_facing/a4-comments";
+

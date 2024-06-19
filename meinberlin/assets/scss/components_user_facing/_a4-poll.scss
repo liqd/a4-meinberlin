@@ -1,58 +1,63 @@
-// standard size from radio.scss
-$checkbox-size: 20px;
-
 .pollquestionlist-container {
-    border: 1px solid $border-color;
+    border: none;
+    background-color: $bg-secondary;
+    padding: 18px;
+    padding-bottom: 0;
 
-    .alert--success {
-        margin: 0 1.5 * $spacer;
+    form {
+        margin: 0;
+        padding: 0;
     }
 }
 
 .poll {
-    padding: 1.5 * $spacer;
-    background-color: $body-bg;
-
     h2 {
+        font-size: 1.0625em;
         margin-top: 0;
     }
 }
 
-// PollQuestion/s
+.poll:last-of-type {
+    padding: 1rem 0;
+}
+
+.poll--question {
+    border-bottom: 1px solid $border-color;
+}
+
+.poll--result {
+    border-bottom: 1px solid $border-color;
+    padding: 1em 0;
+
+    &:first-child {
+        padding-top: 0;
+    }
+}
+
+.poll__rows {
+    .a4-muted {
+        font-size: $font-size-sm;
+        color: $text-color-gray;
+    }
+}
+
 .poll-row {
     display: flex;
     position: relative;
     z-index: 1;
-    padding: 0.2 * $spacer 0;
     margin-bottom: 0.5 * $spacer;
+    font-weight: normal;
 
     &--answered {
         left: 2 * $spacer;
     }
-
-    // FIXME
-    .form-control {
-        margin-left: $checkbox-size + 7px !important;
-        margin-top: 0.5 * $spacer;
-        width: auto;
-    }
-}
-
-.poll-row.radio {
-    flex-direction: column;
-}
-
-.poll__rows {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: $spacer;
-    border-bottom: 1px solid $border-color;
 }
 
 .poll__char-counter {
     align-self: flex-end;
     font-size: $font-size-xs;
     color: $text-color-gray;
+    padding-bottom: 1em;
 }
 
 .poll__actions > :last-child {
@@ -64,25 +69,49 @@ $checkbox-size: 20px;
     }
 }
 
+.poll-row .radio {
+    @extend .form-check;
+    @extend .form-check-inline;
+}
+
+.poll-row__radio {
+    @extend .form-check-input;
+}
+
 .poll-row__number,
 .poll-row__label,
 .poll-row__radio {
-    display: inline-block;
-    margin: 0;
-    margin-right: 0.2 * $spacer;
+    @extend .form-check-label;
 }
 
 .poll-row__container {
     position: relative;
+}
 
-    .poll__btn--link {
-        margin: 0.1 * $spacer 0 0.6 * $spacer 0; // corrects spaceing for other answers
+.poll__btn--wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.poll__btn--link {
+    margin-right: $spacer;
+
+    color: $link-color;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        text-decoration: underline;
     }
 }
 
-// RESULTS
+.poll__btn--dark {
+    @extend .button;
+    @extend .button--fullwidth-palm;
+}
+
 .poll-row__bar {
-    background-color: $bg-secondary;
+    background-color: $icon-light-grey;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -90,7 +119,7 @@ $checkbox-size: 20px;
     border-radius: 0.3em;
     z-index: -1;
     width: 0;
-    min-width: 0.4em;
+    min-width: 0.2em;
 
     transition: width 0.3s;
 
@@ -101,19 +130,14 @@ $checkbox-size: 20px;
             max-width: 96%;
         }
     }
-
-    @media print {
-        border: 1px solid $border-color;
-    }
 }
 
-.poll-row > .poll__highlight {
-    background-color: $primary-tint;
+.poll__highlight {
+    background-color: $message-light-green;
 }
 
 .poll-row__chosen {
-    font-size: $font-size-lg;
-    color: $gray-lighter;
+    color: $primary;
     position: absolute;
     top: 0.25 * $spacer;
 }
@@ -128,18 +152,12 @@ $checkbox-size: 20px;
     margin: 0.5 * $spacer 0;
 }
 
-.poll__btn--wrapper {
-    display: flex;
-    align-items: center;
-}
-
-// EditPollQuestions/EditPollOpenQuestions
-
 .editpoll__help-text,
 .poll__help-text {
-    color: $gray-lighter;
+    color: $text-color-gray;
     margin-top: -0.7 * $spacer;
     margin-bottom: 0.8 * $spacer;
+    font-size: 14px;
 }
 
 .editpoll__help-text {
@@ -170,16 +188,17 @@ $checkbox-size: 20px;
 }
 
 // Open/Other answers
-
-.poll-slider__item {
-    padding: $spacer;
+.poll-slider__container {
+    overflow: hidden;
 }
 
 .poll-slider__answer {
+    margin-bottom: 1.5 * $spacer;
     padding-bottom: 2 * $spacer;
 
     i {
-        color: $gray-lighter;
+        color: $primary;
+
     }
 }
 
@@ -188,34 +207,32 @@ $checkbox-size: 20px;
     font-size: $font-size-xs;
     color: $gray-lighter;
     position: absolute;
-    bottom: 1.75 * $spacer; // to allign with arrows
-    left: $spacer;
+    bottom: 1 * $spacer; // to align with arrows
 }
 
 .poll-slider {
     position: relative;
-    margin-bottom: $spacer;
 
     // slick overwrites - nested for specificity
     .slick-prev {
         left: revert !important;
-        right: 5 * $spacer !important;
+        right: 2 * $spacer !important;
     }
 
     .slick-next {
-        right: 1.5 * $spacer !important;
+        right: 0;
     }
 
     .slick-prev,
     .slick-next {
         position: absolute;
-        top: revert;
         bottom: 0;
         text-align: center;
         width: 40px;
         height: 40px;
         border-radius: 100%;
-        z-index: 1; // for when tile links overlap
+        z-index: 4; // for when tile links overlap
+        color: transparent; // this instead of 'visibility: hidden' to keep keyboard navigation
 
         &.slick-disabled {
             opacity: 0.25;
@@ -225,21 +242,20 @@ $checkbox-size: 20px;
         }
 
         &:before {
-            color: $body-bg;
+            color: $text-color;
             opacity: 1;
             font-family: "Font Awesome 5 Free", sans-serif;
             font-weight: 900;
-            font-size: $font-size-xxl;
-            line-height: 1.6rem;
+            font-size: 1.2em;
         }
     }
 
     .slick-prev:before {
-        content: "\f104"; // angle-left
+        content: "\f053"; 
     }
 
     .slick-next:before {
-        content: "\f105"; // angle-right
+        content: "\f054"; 
     }
 
     // Ensure centermode works
@@ -258,9 +274,14 @@ $checkbox-size: 20px;
 }
 
 @media (min-width: $breakpoint) {
+    .poll-slider__answer {
+        margin-bottom: 0;
+    }
+
     .poll-slider__count--spaced {
         left: revert;
-        right: 8.5 * $spacer;
+        right: 5 * $spacer;
+        bottom: 1.5em;
     }
 
     .poll-slider__count {

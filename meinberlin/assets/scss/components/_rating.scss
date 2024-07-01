@@ -9,9 +9,7 @@
 }
 
 .rating-button {
-    border: 1px solid $border-color;
     font-weight: normal;
-    padding: 0 0.4em;
 
     &.is-read-only,
     &:disabled {
@@ -25,8 +23,6 @@
 
 @mixin rating-button($color) {
     color: $color;
-    padding: 0.5 * $padding $padding;
-    border-radius: 0.3em;
 
     &:hover,
     &:focus {

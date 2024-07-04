@@ -22,6 +22,7 @@
 }
 
 .poll--question {
+    padding: 1em 0;
     border-bottom: 1px solid $border-color;
 }
 
@@ -43,6 +44,7 @@
 
 .poll-row {
     display: flex;
+    align-items: center;
     position: relative;
     z-index: 1;
     margin-bottom: 0.5 * $spacer;
@@ -51,13 +53,20 @@
     &--answered {
         left: 2 * $spacer;
     }
+
+    .form-control {
+        margin-left: $spacer;
+    }
 }
 
 .poll__char-counter {
     align-self: flex-end;
     font-size: $font-size-xs;
     color: $text-color-gray;
-    padding-bottom: 1em;
+
+    span {
+        visibility: hidden;
+    }
 }
 
 .poll__actions > :last-child {
@@ -278,14 +287,10 @@
         margin-bottom: 0;
     }
 
-    .poll-slider__count--spaced {
+    .poll-slider__count--spaced,
+    .poll-slider__count {
         left: revert;
         right: 5 * $spacer;
         bottom: 1.5em;
-    }
-
-    .poll-slider__count {
-        left: revert;
-        right: 2 * $spacer;
     }
 }

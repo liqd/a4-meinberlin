@@ -9,6 +9,26 @@ from adhocracy4.projects.models import Project
 
 from . import emails
 
+from django.db import NotSupportedError
+
+
+class PublicProjectView(models.Model):
+    project = models.CharField(
+        max_length=120, primary_key=True, editable=False, blank=True
+        ),
+
+    start_date = models.DateTimeField(blank=True, null=True)
+    end_date = models.DateTimeField(blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        raise NotSupportedError('This model is tied to a view, it cannot be saved.')
+
+    class Meta:
+        managed = False
+        db_table = "public_project_view"
+        verbose_name = "PublicProject"
+        verbose_name_plural = "PublicProjects"
+
 
 class Invite(base.TimeStampedModel):
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

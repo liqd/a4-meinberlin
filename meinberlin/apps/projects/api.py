@@ -11,6 +11,28 @@ from meinberlin.apps.projects import serializers as project_serializers
 from meinberlin.apps.projects.filters import StatusFilter
 
 
+def get_public_semipublic_projects():
+    projects = (
+        Project.objects.filter(
+            Q(project_type="a4projects.Project")
+            | Q(project_type="meinberlin_bplan.Bplan")
+        )
+        .filter(
+            Q(access=Access.PUBLIC) | Q(access=Access.SEMIPUBLIC),
+            is_draft=False,
+            is_archived=False,
+        )
+        .order_by("created")
+        .select_related("administrative_district", "organisation")
+        .prefetch_related(
+            "moderators",
+            "plans",
+            "organisation__initiators",
+            "module_set__phase_set",
+        )
+    )
+    return projects
+
 class ProjectListViewSet(viewsets.ReadOnlyModelViewSet):
     filter_backends = (DjangoFilterBackend, StatusFilter)
 
@@ -20,25 +42,7 @@ class ProjectListViewSet(viewsets.ReadOnlyModelViewSet):
         self.now = now
 
     def get_queryset(self):
-        projects = (
-            Project.objects.filter(
-                Q(project_type="a4projects.Project")
-                | Q(project_type="meinberlin_bplan.Bplan")
-            )
-            .filter(
-                Q(access=Access.PUBLIC) | Q(access=Access.SEMIPUBLIC),
-                is_draft=False,
-                is_archived=False,
-            )
-            .order_by("created")
-            .select_related("administrative_district", "organisation")
-            .prefetch_related(
-                "moderators",
-                "plans",
-                "organisation__initiators",
-                "module_set__phase_set",
-            )
-        )
+        projects = PublicProjectView.objects.all()
         return projects
 
     def list(self, request, *args, **kwargs):

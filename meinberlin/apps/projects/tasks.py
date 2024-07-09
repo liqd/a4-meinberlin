@@ -7,6 +7,7 @@ from django.core.cache import cache
 
 from adhocracy4.phases.models import Phase
 from meinberlin.apps import logger
+from meinberlin.apps.projects.helpers import public_projects_exec_raw_query
 
 
 def get_next_projects_start() -> list:
@@ -191,5 +192,7 @@ def reset_cache_for_projects(starts: bool, ends: bool) -> str:
             msg += "failed for active projects becoming past"
         else:
             msg += "succeeded for active projects becoming past"
+    # update virtual table view
+    public_projects_exec_raw_query()
     logger.info(msg)
     return msg

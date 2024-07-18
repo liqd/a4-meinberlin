@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-04-08 11:27+0200\n"
-"PO-Revision-Date: 2024-04-25 10:56+0000\n"
-"Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
+"PO-Revision-Date: 2024-07-19 12:04+0000\n"
+"Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "js-design-dev/de/>\n"
 "Language: de_DE\n"
@@ -939,7 +939,7 @@ msgstr ""
 #: adhocracy4/static/control_bar/ControlBarSearch.jsx:5
 #: adhocracy4/static/control_bar/ControlBarSearch.jsx:5
 msgid "Search"
-msgstr "Suchen"
+msgstr "Suche"
 
 #: adhocracy4/static/control_bar/ControlBarSearch.jsx:6
 #: adhocracy4/static/control_bar/ControlBarSearch.jsx:6

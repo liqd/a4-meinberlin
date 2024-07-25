@@ -1,10 +1,10 @@
 {% load i18n item_tags contrib_tags moderatorremark_tags react_reports %}
 
-<div class="dropdown js-dropdown">
-    <button title="{% translate 'Actions' %}" type="button" class="dropdown__toggle" aria-haspopup="true" aria-expanded="false" id="idea-{{ object.pk }}-actions">
+<div class="dropdown" data-dropdown>
+    <button data-dropdown-trigger title="{% translate 'Actions' %}" type="button" class="dropdown__toggle" tabindex="0" aria-haspopup="menu" aria-controls="dropdown-menu" id="idea-{{ object.pk }}-actions">
         <i class="fas fa-ellipsis-h" aria-label="{% translate 'Actions' %}"></i>
     </button>
-    <nav class="dropdown__menu" aria-labelledby="idea-{{ object.pk }}-actions">
+    <nav class="dropdown__menu" aria-labelledby="idea-{{ object.pk }}-actions" tabindex="-1" data-dropdown-menu>
         <ul class="list--clean">
             {% if user_may_change %}
                 {% get_item_update_url object as change_url %}

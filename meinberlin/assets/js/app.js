@@ -4,8 +4,7 @@ import 'select2' // used to select projects in containers
 
 import '../../apps/actions/assets/timestamps.js'
 import '../../apps/newsletters/assets/dynamic_fields.js'
-import '../../apps/users/assets/user_indicator.js'
-import Dropdown from '../../apps/contrib/assets/dropdown.js'
+import '../../apps/contrib/assets/dropdown.js'
 
 // map search function
 import 'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_address.js'
@@ -31,8 +30,6 @@ function init () {
       minimumResultsForSearch: -1
     })
   }
-
-  Dropdown.init()
 }
 
 document.addEventListener('DOMContentLoaded', init, false)

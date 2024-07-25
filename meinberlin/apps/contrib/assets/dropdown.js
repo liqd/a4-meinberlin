@@ -1,41 +1,65 @@
-const Dropdown = {
-  toggleDropdown (event) {
-    const dropdown = event.currentTarget.parentNode
-    const isOpen = dropdown.getAttribute('aria-expanded') === 'true'
+class Dropdown {
+  constructor (container) {
+    this.container = container
+    this.trigger = container.querySelector('[data-dropdown-trigger]')
+    this.dropdown = container.querySelector('[data-dropdown-menu]')
+    this.closeTimeout = null
 
-    dropdown.setAttribute('aria-expanded', !isOpen)
-
-    const menu = dropdown.querySelector('.dropdown__menu')
-    menu.classList.toggle('dropdown__menu--show', !isOpen)
-
-    if (!isOpen) {
-      const menu = dropdown.querySelector('.dropdown__menu')
-      menu.firstElementChild.focus()
-    }
-  },
-
-  closeDropdown (event) {
-    const dropdowns = document.querySelectorAll('.js-dropdown')
-    dropdowns.forEach(function (dropdown) {
-      const isOpen = dropdown.getAttribute('aria-expanded') === 'true'
-      if (isOpen && !dropdown.contains(event.target)) {
-        dropdown.setAttribute('aria-expanded', 'false')
-        const menu = dropdown.querySelector('.dropdown__menu')
-        menu.classList.remove('dropdown__menu--show')
-      }
-    })
-  },
+    this.init()
+  }
 
   init () {
-    const dropdowns = document.querySelectorAll('.js-dropdown')
-    if (dropdowns.length > 0) {
-      dropdowns.forEach(function (button) {
-        button.addEventListener('click', Dropdown.toggleDropdown)
-      })
+    this.trigger.addEventListener('click', (event) => this.toggleDropdown(event))
+    this.dropdown.addEventListener('keyup', (event) => this.handleKeyup(event))
+    this.dropdown.addEventListener('focusout', (event) => this.handleFocusout(event))
+  }
 
-      document.addEventListener('click', Dropdown.closeDropdown)
+  toggleDropdown (event) {
+    event.preventDefault()
+    if (this.container.classList.contains('dropdown--open')) {
+      this.closeDropdown()
+    } else {
+      this.openDropdown()
+    }
+  }
+
+  openDropdown () {
+    this.container.classList.add('dropdown--open')
+    this.trigger.setAttribute('aria-expanded', true)
+    document.addEventListener('click', this.outsideClickListener)
+  }
+
+  closeDropdown (event) {
+    if (event) event.stopPropagation()
+    document.removeEventListener('click', this.outsideClickListener)
+    this.container.classList.remove('dropdown--open')
+    this.trigger.setAttribute('aria-expanded', false)
+    clearTimeout(this.closeTimeout)
+  }
+
+  handleKeyup (event) {
+    if (event.keyCode === 27) {
+      this.closeDropdown()
+      this.trigger.focus()
+    }
+  }
+
+  handleFocusout (event) {
+    this.closeTimeout = setTimeout(() => {
+      if (!this.dropdown.contains(event.relatedTarget)) {
+        this.closeDropdown()
+      }
+    }, 10)
+  }
+
+  outsideClickListener = (event) => {
+    if (!this.container.contains(event.target) && event.target !== this.close) {
+      this.closeDropdown()
     }
   }
 }
 
-export default Dropdown
+document.addEventListener('DOMContentLoaded', () => {
+  const dropdowns = document.querySelectorAll('[data-dropdown]')
+  dropdowns.forEach(dropdown => new Dropdown(dropdown))
+})

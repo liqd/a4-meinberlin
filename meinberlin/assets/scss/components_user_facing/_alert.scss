@@ -1,0 +1,63 @@
+@use "sass:color";
+
+$messages-margin-bottom: 25px;
+
+.messages {
+    margin: 0 0 $messages-margin-bottom;
+    padding: 0;
+
+    li {
+        display: block;
+    }
+
+    + .messages {
+        margin-top: -$messages-margin-bottom;
+    }
+}
+
+.alert {
+    margin: 0;
+    padding: $padding * 1.2 0;
+    background-color: $message-light-blue;
+    color: $text-base;
+    text-align: center;
+}
+
+.alert--success {
+    background-color: $message-light-green;
+    color: $text-base;
+}
+
+.alert--error,
+.alert--danger {
+    background-color: $message-light-red;
+    color: $text-error;
+}
+
+.alert--warning {
+    background-color: $message-light-yellow;
+    color: $text-base;
+}
+
+.alert__close {
+    float: right;
+    color: inherit;
+}
+
+.alert--small {
+    padding: 0.5em;
+}
+
+// If this directly follows the dialog box (see header.scss), add 16px
+// additional padding to the default value (see above).
+.messages:first-child > :first-child {
+    padding-top: calc(16px + #{$padding * 1.2});
+}
+
+// compensate for margin-bottom on messages
+.project-header,
+.hero-unit {
+    .messages + & {
+        margin-top: -$messages-margin-bottom;
+    }
+}

@@ -52,6 +52,11 @@
       "ignoreKeywords": ["inherit", "transparent"]
     }],
 
-    "declaration-empty-line-before": null
+    "declaration-empty-line-before": null,
+
+    "scss/dollar-variable-empty-line-before": ["always", {
+      "except": ["first-nested"],
+      "ignore": ["after-comment", "after-dollar-variable"]
+    }]
   }
 }

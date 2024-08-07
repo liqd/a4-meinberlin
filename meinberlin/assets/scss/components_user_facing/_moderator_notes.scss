@@ -1,5 +1,5 @@
 .moderator-notes {
-    background-color: $bg-secondary;
+    background-color: $gray-lightest;
     padding: $spacer;
 }
 
@@ -42,7 +42,7 @@
     }
 
     &--pending {
-        color: $icon-light-grey;
+        color: $gray-lighter;
         background-color: $white;
         border-radius: 50%;
     }

@@ -1,0 +1,43 @@
+$white: #fff !default;
+$black: #000 !default;
+
+// Grey Colors
+$gray-darkest: #454545 !default;
+$gray: #454545 !default;
+$gray-lightest: #f5f5f5 !default;
+$gray-lighter: #ddd !default;
+
+// Decorative Base Colors
+$primary: #00a982 !default;     
+$secondary: #002856 !default;
+$purple: #9185be !default;
+$pink: #f6b4cc !default;
+
+// Text
+$link-color: #0047d3 !default;
+$text-base: $black;
+$text-error: #9b0100;
+$text-light: $gray-darkest;
+
+// Panel Backgrounds
+$panel-heavy: $gray-lightest;
+$panel-light: $white;
+$panel-black: $black;
+$panel-colored: $pink;
+$panel-dark: $secondary;
+
+// Alerts and Messages
+$message-light-blue: #ebf1f7;
+$message-light-green: #e2f1eb;
+$message-light-red: #fdecee;
+$message-light-yellow: #f9f4e4 !default;
+
+$feedback-color-accepted: $primary !default;
+$feedback-color-rejected: #E40622 !default;
+$feedback-color-consideration: #FFE60C !default;
+
+// Borders and Lines:
+$border-color: $gray-lighter;
+
+// Icons
+$icon-green: #00765b !default;

@@ -1,6 +1,6 @@
 .pollquestionlist-container {
     border: none;
-    background-color: $bg-secondary;
+    background-color: $gray-lightest;
     padding: 18px;
     padding-bottom: 0;
 
@@ -38,7 +38,7 @@
 .poll__rows {
     .a4-muted {
         font-size: $font-size-sm;
-        color: $text-color-gray;
+        color: $gray;
     }
 }
 
@@ -62,7 +62,7 @@
 .poll__char-counter {
     align-self: flex-end;
     font-size: $font-size-xs;
-    color: $text-color-gray;
+    color: $gray;
 
     span {
         visibility: hidden;
@@ -120,7 +120,7 @@
 }
 
 .poll-row__bar {
-    background-color: $icon-light-grey;
+    background-color: $gray-lighter;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -163,7 +163,7 @@
 
 .editpoll__help-text,
 .poll__help-text {
-    color: $text-color-gray;
+    color: $gray;
     margin-top: -0.7 * $spacer;
     margin-bottom: 0.8 * $spacer;
     font-size: 14px;
@@ -251,7 +251,7 @@
         }
 
         &:before {
-            color: $text-color;
+            color: $text-light;
             opacity: 1;
             font-family: "Font Awesome 5 Free", sans-serif;
             font-weight: 900;
@@ -272,7 +272,7 @@
         height: auto;
         position: relative;
         border-radius: 0.3 * $spacer;
-        background-color: $bg-secondary;
+        background-color: $gray-lightest;
     }
 
     .slick-track {

@@ -52,7 +52,7 @@ in case of projects becoming past the cache is cleared for:
 
 In production, we use django's built-in [Redis](https://docs.djangoproject.com/en/4.2/topics/cache/#redis) as cache backend (see `settings/production.py::CACHES`). For development and testing the cache backend is the default, that is [local memory](https://docs.djangoproject.com/en/4.2/topics/cache/#local-memory-caching). If you want to enable redis cache for local development, then copy the production settings to your `settings/local.py`.
 
-files: 
+files:
 - `./meinberlin/apps/plans/api.py`
 - `./meinberlin/apps/extprojects/api.py`
 - `./meinberlin/apps/projects/api.py`
@@ -68,4 +68,52 @@ Usage examples:
        $ ./manage.py devtools --projects 0
        $ ./manage.py devtools --plans 550
        $ ./manage.py devtools --ext-projects 100
+```
+
+## Caching Graph
+```mermaid
+flowchart TD
+    H[[First Load]] ------> |Create cache| Cache
+    subgraph signals [Signal]
+    M[[External Project]]
+    N[[Plan]]
+    O[[Project]]
+    R[[Phase]]
+    P[[Dashboard Signal]]
+    end
+    subgraph beat [Celery Beat]
+    G[[update-cache-for-projects-every-10-min]]
+    I[[set-cache-for-projects-every-1-hr]]
+    end
+    subgraph tasks [Celery Tasks]
+    J(set_cache_for_projects)
+    L(schedule_reset_cache_for_projects)
+    K(reset_cache_for_projects)
+    end
+    subgraph project_start_end [Cache Next Project Start/End]
+    S(next_projects_start)
+    T(next_projects_end)
+    end
+    subgraph Cache
+    A(Projects Cache)
+    E(External Projects Cache)
+    F(Plans Cache)
+    end
+    X((API)) -.-> |Read or set cache if empty| Cache
+    %% Signal relations
+    M --------> |post_save/post_delete| E
+    N --> |post_save_post_delete| F
+    O --> |post_save/post_delete| A
+    O --> |post_save/post_delete| project_start_end
+    P --> |project_created/published/unpublished| Cache
+    R --> |post_save/post_delete| Cache
+    R --> |post_save/post_delete| project_start_end
+    %% Celery Beat relations
+    G --> |every 10min| L
+    I --> |every 1h| J
+    %% Celery Task relations
+    K --> J
+    J --> |reset cache| Cache
+    L -.-> |schedule to next phase starting/ending| K
+    L -..-> |read or set| project_start_end
 ```

@@ -1,0 +1,28 @@
+.rating {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.rating__label {
+    word-break: normal;
+    margin-left: 0.4em;
+}
+
+.rating-button {
+    color: $link-color;
+    margin-right: 1em;
+
+    i {
+        margin-right: 0.4em;
+    }
+
+    .fa-chevron-up:before {
+        content:"\f164"!important; // thumbs-up icon
+        font-weight: 400;
+    }
+    
+    .fa-chevron-down:before {
+        content:"\f165"!important; // thumbs-down icon
+        font-weight: 400;
+    }
+}

@@ -23,12 +23,14 @@ def set_ext_projects_cache(now: datetime) -> None:
     queryset = get_external_projects()
     data = ExternalProjectSerializer(queryset, now=now, many=True).data
     cache.set("extprojects", data)
+    print("set extprojects cache with " + str(len(data)) + "projects", flush=True)
 
 
 def set_plans_cache() -> None:
     queryset = get_plans()
     data = PlanSerializer(queryset, many=True).data
     cache.set("plans", data)
+    logger.info("set plans cache with " + str(len(data)) + "plans")
 
 
 def set_public_projects_cache(now: datetime) -> None:
@@ -64,6 +66,7 @@ def set_public_projects_cache(now: datetime) -> None:
 
     data = ProjectSerializer(projects_queryset, now=now, many=True).data
     cache.set("projects_", data)
+    logger.info("set project cache with " + str(len(data)) + "projects")
 
 
 @shared_task(name="set_cache_for_projects")
@@ -134,6 +137,7 @@ def get_next_projects_start() -> list:
 
         # set the redis key: value
         cache.set("next_projects_start", list_format_phases)
+        logger.info("next project starts at " + list_format_phases[0])
 
     return list_format_phases
 
@@ -170,6 +174,7 @@ def get_next_projects_end() -> list:
 
         # set the redis key: value
         cache.set("next_projects_end", list_format_phases)
+        logger.info("next project ends at " + list_format_phases[0])
 
     return list_format_phases
 

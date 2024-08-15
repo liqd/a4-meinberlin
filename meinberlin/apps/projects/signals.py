@@ -5,6 +5,7 @@ from django.dispatch import receiver
 from adhocracy4.dashboard import signals as a4dashboard_signals
 from adhocracy4.phases.models import Phase
 from adhocracy4.projects.models import Project
+from meinberlin.apps import logger
 from meinberlin.apps.projects.tasks import set_cache_for_projects
 
 
@@ -14,6 +15,7 @@ from meinberlin.apps.projects.tasks import set_cache_for_projects
 def post_dashboard_signal_delete(sender, project, user, **kwargs):
     """Refresh project, plan and extproject cache on dashboard signal"""
     set_cache_for_projects.delay_on_commit(get_next_projects=True)
+    logger.info("dashboard signal reset_cache")
 
 
 @receiver(post_save, sender=Phase)
@@ -21,6 +23,7 @@ def post_dashboard_signal_delete(sender, project, user, **kwargs):
 def post_phase_save_delete(sender, instance, **kwargs):
     """Refresh project, plan and extproject cache on phase save or delete"""
     set_cache_for_projects.delay_on_commit(get_next_projects=True)
+    logger.info("phase signal reset_cache")
 
 
 @receiver(post_save, sender=Project)
@@ -33,3 +36,4 @@ def post_save_delete(sender, instance, *args, **kwargs):
     set_cache_for_projects.delay_on_commit(
         projects=True, get_next_projects=True, ext_projects=False, plans=False
     )
+    logger.info("project signal reset_cache")

@@ -3,6 +3,7 @@ from django.db.models import QuerySet
 from rest_framework import viewsets
 from rest_framework.response import Response
 
+from meinberlin.apps import logger
 from meinberlin.apps.plans.models import Plan
 from meinberlin.apps.plans.serializers import PlanSerializer
 
@@ -32,5 +33,8 @@ class PlansListViewSet(viewsets.ReadOnlyModelViewSet):
             serializer = self.get_serializer(queryset, many=True)
             data = serializer.data
             cache.set("plans", data)
+            print("api: plans cache empty", flush=True)
+        else:
+            print("api: plans cache size " + str(len(data)), flush=True)
 
         return Response(data)

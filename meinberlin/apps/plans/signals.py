@@ -2,6 +2,7 @@ from django.db.models.signals import post_delete
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+from meinberlin.apps import logger
 from meinberlin.apps.plans.models import Plan
 from meinberlin.apps.projects.tasks import set_cache_for_projects
 
@@ -13,3 +14,4 @@ def reset_cache(sender, instance, *args, **kwargs):
     set_cache_for_projects.delay_on_commit(
         projects=False, get_next_projects=False, ext_projects=False, plans=True
     )
+    print("plan signal reset_cache", flush=True)

@@ -5,6 +5,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 
 from adhocracy4.projects.enums import Access
+from meinberlin.apps import logger
 from meinberlin.apps.extprojects.models import ExternalProject
 from meinberlin.apps.extprojects.serializers import ExternalProjectSerializer
 
@@ -41,5 +42,8 @@ class ExternalProjectListViewSet(viewsets.ReadOnlyModelViewSet):
             serializer = self.get_serializer(queryset, many=True)
             data = serializer.data
             cache.set("extprojects", data)
+            print("api: extprojects cache empty", flush=True)
+        else:
+            print("api: extprojects  cache size " + str(len(data)), flush=True)
 
         return Response(data)

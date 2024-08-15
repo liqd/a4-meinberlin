@@ -8,6 +8,7 @@ from rest_framework.response import Response
 
 from adhocracy4.projects.enums import Access
 from adhocracy4.projects.models import Project
+from meinberlin.apps import logger
 from meinberlin.apps.projects import serializers as project_serializers
 from meinberlin.apps.projects.filters import StatusFilter
 
@@ -63,6 +64,9 @@ class ProjectListViewSet(viewsets.ReadOnlyModelViewSet):
             serializer = self.get_serializer(queryset, many=True)
             data = serializer.data
             cache.set("projects_" + statustype, data)
+            print("api: projects " + statustype + " cache empty", flush=True)
+        else:
+            print("api: projects " + statustype + " cache size " + str(len(data)), flush=True)
         return Response(data)
 
     def get_serializer(self, *args, **kwargs):

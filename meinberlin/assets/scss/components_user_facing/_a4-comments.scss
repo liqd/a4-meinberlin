@@ -1,94 +1,234 @@
+.a4-comments {
+    @mixin pseudo-border {
+        content: "";
+        display: block;
+        border-bottom: 1px solid $border-color;
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+
+    > li {
+        margin-bottom: 0;
+
+        &:after {
+            @include pseudo-border;
+        }
+
+        &:first-child:before {
+            @include pseudo-border;
+        }
+    }
+
+    @media screen, (max-width: $breakpoint) {
+        width: calc(100% + 24px);
+        margin-left: -12px;
+        margin-right: -12px;
+    }  
+}
+
+.a4-comments__box {
+    padding-top: $em-spacer;
+
+    .row {
+        position: relative;
+    }
+
+    @media screen, (max-width: $breakpoint) {
+        padding-left: 12px;
+        padding-right: 12px;
+    }  
+}
+
 .a4-comments__commentbox__title-comments {
-  display: none;
+    display: none;
 }
 
 .a4-comments__commentbox__subtitle {
-  margin-top: 2 * $spacer;
-  margin-bottom: 0.5 * $spacer;
+    margin-top: 2 * $spacer;
+    margin-bottom: 0.5 * $spacer;
 }
 
 .a4-comments__anchor {
-  display: block;
-  position: relative;
-  top: -100px;
-  visibility: hidden;
-  height: 1px;
+    display: block;
+    position: relative;
+    top: -100px;
+    visibility: hidden;
+    height: 1px;
 }
 
 .a4-comments__submit-input {
-  @extend .button;
-  @extend .button--fullwidth-palm;
+    @extend .button;
+    @extend .button--fullwidth-palm;
 }
 
 .a4-comments__cancel-edit-input {
-  @extend .button;
-  @extend .button--light;
+    @extend .button;
+    @extend .button--light;
 
-  @media screen and (max-width: $breakpoint-palm) {
-    margin-bottom: 0 !important;
-  }
+    @media screen and (max-width: $breakpoint-palm) {
+        margin-bottom: 0 !important;
+    }
 }
 
 .a4-comments__comment-form__heading-comments-allowed {
-  @extend h2;
-  margin-bottom: 0.75 * $spacer;
+    @extend h2;
+    margin-bottom: 0.75 * $spacer;
 }
 
 .a4-comments__comment-form__actions {
-  @extend .form-actions;
-  margin-top: 0.25 * $spacer;
+    @extend .form-actions;
+    margin-top: 0.25 * $spacer;
 }
 
 .a4-comments__comment-form__actions__left {
-  @extend .form-actions__left;
+    @extend .form-actions__left;
 
-  @media screen and (max-width: $breakpoint-palm) {
-    margin-bottom: 0 !important;
-  }
+    @media screen and (max-width: $breakpoint-palm) {
+        margin-bottom: 0 !important;
+    }
 }
 
 .a4-comments__comment-form__actions__right {
-  @extend .form-actions__right;
+    @extend .form-actions__right;
 
-  @media screen and (max-width: $breakpoint-palm) {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-  }
+    @media screen and (max-width: $breakpoint-palm) {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
 }
 
 .a4-comments__comment-form__form {
-  @extend .panel--heavy;
-  margin-bottom: $spacer;
+    @extend .panel--heavy;
+    margin-bottom: $spacer;
 
-  .form-group {
-    margin-bottom: 0;
-  }
+    .form-group {
+        margin-bottom: 0;
+    }
+}
 
-  .a4-comments__char-count {
+.a4-comments__char-count {
     @extend .formgroup__help;
     color: var(--color-black);
     margin-top: 0.25 * $spacer;
-
-    .a4-comments__char-count-word {
-      display: none;
-    }
-  }
 }
 
 .a4-comments__comment-control-bar {
-  @extend .panel--heavy;
+    @extend .panel--heavy;
 
-  .form-group--inline {
-    @extend .fullspace;
-  }
-
-  @media screen and (max-width: $breakpoint-palm) {
-    .form-group {
-      margin-bottom: 0 !important;
+    .form-group--inline {
+        @extend .fullspace;
     }
-  }
 
-  .a4-control-bar__sorting .form-group {
-    margin-bottom: 0.8 * $spacer;
-  }
+    margin-bottom: $spacer * 1.8;
+
+    @media screen and (max-width: $breakpoint-palm) {
+        .form-group {
+            margin-bottom: 0 !important;
+        }
+    }
+
+    .a4-control-bar__sorting .form-group {
+        margin-bottom: 0.8 * $spacer;
+    }
+}
+
+.a4-comments__author {
+    font-weight: bold !important;
+    display: inline;
+    margin-right: 0.5 * $spacer;
+}
+
+.a4-comments__deleted-author {
+    font-weight: bold;
+}
+
+.a4-comments__moderator {
+    color: $purple;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.a4-comments__submission-date {
+    display: block;
+}
+
+.a4-comments__text {
+    margin-top: $spacer;
+}
+
+.a4-comments__action {
+    margin-left: 12px;
+}
+
+.a4-comments__action-bar-container {
+    display: inline-flex;
+    max-width: 100%;
+    padding: $em-spacer 0 1.5em 0;
+    overflow-x: scroll;
+    scrollbar-width: none;
+
+    @media screen and (min-width: $breakpoint) {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-left: 0;
+    }
+}
+
+.a4-comments__action-bar {
+    white-space: nowrap;
+}
+
+.a4-comments__action-bar__btn {
+    margin-right: $spacer;
+
+    .fa,
+    .far,
+    .fas {
+        color: $link-color; // overwrite icons default color
+    }
+}
+
+.a4-comments__login {
+    padding: $em-spacer;
+}
+
+.a4-comments__alert {
+    padding: $em-spacer;
+    background-color: $message-light-yellow;
+}
+
+.a4-comments__child--list {
+    margin-left: 2.5em;
+    padding-right: 12px;
+    margin-right: 0;
+
+    .a4-comments__box {
+        padding-right: 12px;
+    }
+
+    .a4-comments__comment-form__heading-comments-allowed {
+        margin-top: $spacer * 1.8;
+    }
+
+    form {
+        padding-top: $spacer;
+        border-top: solid 1px $gray-lightest;
+    }
+
+    &__text {
+        margin-top: $spacer;
+    }
+
+    &__box {
+        padding-top: 0;
+    }
+
+    &__comment {
+        margin-top: $spacer;
+    }
+
+    @media screen and (min-width: $breakpoint) {
+        margin-left: $spacer * 5;
+    }
 }

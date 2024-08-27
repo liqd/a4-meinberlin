@@ -1,8 +1,8 @@
 .pill {
     margin-right: 0.5 * $spacer;
+    color: $text-base;
 
     &--category {
-        color: $text-base;
         background-color: $purple;
     }
 

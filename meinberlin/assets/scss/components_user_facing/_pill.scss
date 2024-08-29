@@ -1,13 +1,15 @@
 .pill {
     margin-right: 0.5 * $spacer;
-    color: $text-base;
+    color: $white;
 
     &--category {
         background-color: $purple;
+        color: $text-base;
     }
 
     &--label {
         background-color: $pink;
+        color: $text-base;
     }
 }
 

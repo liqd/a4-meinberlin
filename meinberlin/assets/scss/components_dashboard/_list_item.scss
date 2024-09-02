@@ -40,6 +40,10 @@
 
 .list-item--has-image__copyright {
     position: absolute;
+    font-size: 11px;
+    color: $body-bg;
+    background-color: rgba($gray, 0.7);
+    padding: 0 0.2em;
     bottom: 0;
 }
 

@@ -2,6 +2,19 @@
     cursor: pointer;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.details summary > h2 {
+    font-size: 1.375em;
+    line-height: 1.5em;
+    margin: 0;
+}
+
+.details summary > h3 {
+    line-height: 1.5em;
+    margin: 0;
+    padding: 10px 0;
 }
 
 .details summary::marker {
@@ -15,7 +28,7 @@
 }
 
 .details summary > span {
-    transition: transform 0.3s;
+    transition: transform .2s;
     display: flex;
 }
 
@@ -25,10 +38,8 @@
 }
 
 .details[open] summary > span {
-    transform: rotate(180deg);
+    transform: rotate(-180deg);
 }
-
-
 
 
 

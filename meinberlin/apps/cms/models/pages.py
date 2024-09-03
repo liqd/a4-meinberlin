@@ -47,7 +47,7 @@ class HomePage(Page):
             ("image_call_to_action", cms_blocks.ImageCallToActionBlock()),
             ("columns_text", cms_blocks.ColumnsBlock()),
             ("activities", actions_blocks.PlatformActivityBlock()),
-            ("accordion", cms_blocks.DocsBlock()),
+            ("accordion_list", cms_blocks.AccordionListBlock()),
             ("infographic", cms_blocks.InfographicBlock()),
             ("map_teaser", cms_blocks.MapTeaserBlock()),
         ],
@@ -82,7 +82,7 @@ class HomePage(Page):
 class DocsPage(Page):
     body = fields.StreamField(
         [
-            ("documents_list", cms_blocks.DocsBlock()),
+            ("accordion_list", cms_blocks.AccordionListBlock()),
             ("header", blocks.CharBlock(template="meinberlin_cms/blocks/header.html")),
         ],
         use_json_field=True,

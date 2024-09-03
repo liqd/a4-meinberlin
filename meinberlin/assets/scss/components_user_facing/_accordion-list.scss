@@ -1,0 +1,12 @@
+.accordion-list {
+    margin-bottom: 25px;
+}
+
+.accordion-list__item {
+    border-top: 1px solid $gray-lighter;
+    margin-bottom: 0;
+
+    &:last-child {
+        border-bottom: 1px solid $gray-lighter;
+    }
+}

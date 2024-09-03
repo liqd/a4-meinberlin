@@ -1,0 +1,13 @@
+{% load wagtailimages_tags wagtailcore_tags block_tags %}
+
+{% get_identifier value as identifier %}
+
+<h2>{{ value.list_title }}</h2>
+
+<ul class="accordion-list u-list-reset">
+    {% for value in self.accordions %}
+        <li class="accordion-list__item">
+            {% include "./accordion_block.html" with value=value heading_level="h3" %}
+        </li>
+    {% endfor %}
+</ul>

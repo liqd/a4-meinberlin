@@ -90,13 +90,34 @@ class ColumnsBlock(blocks.StructBlock):
         icon = "grip"
 
 
-class DocsBlock(blocks.StructBlock):
+class AccordionBlock(blocks.StructBlock):
+    expand_accordion = blocks.BooleanBlock(
+        required=False,
+        help_text=_(
+            "The accordion is collapsed by default. Select this option to have it expanded when the page loads."
+        ),
+        label=_("Expand accordion?"),
+    )
     title = blocks.CharBlock()
     body = blocks.RichTextBlock(required=False)
 
     class Meta:
-        template = "meinberlin_cms/blocks/docs_block.html"
+        template = "meinberlin_cms/blocks/accordion_block.html"
         icon = "arrow-down"
+
+
+class AccordionListBlock(blocks.StructBlock):
+    list_title = blocks.CharBlock(
+        required=False, help_text=_("Optional title for the list of accordions.")
+    )
+    accordions = blocks.ListBlock(
+        AccordionBlock(), help_text=_("Add, remove, or reorder accordions.")
+    )
+
+    class Meta:
+        template = "meinberlin_cms/blocks/accordion_list_block.html"
+        icon = "list-ul"
+        label = _("Accordion List")
 
 
 class InfographicBlock(blocks.StructBlock):

@@ -1,18 +1,6 @@
-// use for min-width media-queries
-$breakpoint-xs: 32rem !default;
-$breakpoint: 50rem !default; // sm 800px
-$breakpoint-md: 65rem !default; // 1040px
-$breakpoint-lg: 90rem !default; // 1440px
-
-// use for max-width media queries
-$breakpoint-xs-down: $breakpoint-xs - 0.1rem !default;
-$breakpoint-down: $breakpoint - 0.1rem !default; // sm
-$breakpoint-md-down: $breakpoint-md - 0.1rem !default;
-$breakpoint-lg-down: $breakpoint-lg - 0.1rem !default;
-
-// BO breakpoints
-$breakpoint-smallest: 26.875rem !default;
-$breakpoint-palm: 37.5rem !default; // 600px
-$breakpoint-tablet: 57.5rem !default; // 920px
-$breakpoint-tablet-landscape: 73.813rem !default; // 1181px
-$breakpoint-desktop: 92.5rem !default; // 1480px
+// https://styleguide.berlin.de/patterns/09-vertical_marketing-page-global-landmarks/09-vertical_marketing-page-global-landmarks.html
+$breakpoint-smallest: 16em !default;
+$breakpoint-palm: 37.5em !default; // 600px
+$breakpoint-tablet: 57.5em !default; // 920px
+$breakpoint-tablet-landscape: 73.813em !default; // 1181px
+$breakpoint-desktop: 92.5em !default; // 1480px

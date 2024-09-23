@@ -6,7 +6,7 @@
   margin-bottom: 0.4em;
   max-width: 300px;
 
-  @media (min-width: $breakpoint-md) {
+  @media (min-width: $breakpoint-tablet) {
       margin-top: 0.6em !important;
   }
 }
@@ -19,7 +19,7 @@
       margin-bottom: 0.7em;
   }
 
-  @media (min-width: $breakpoint-md) {
+  @media (min-width: $breakpoint-tablet) {
       margin-bottom: 0;
   }
 }

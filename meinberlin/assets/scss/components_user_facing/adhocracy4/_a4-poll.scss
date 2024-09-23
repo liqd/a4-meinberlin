@@ -73,7 +73,7 @@
     margin-top: 0.5 * $spacer;
     display: block;
 
-    @media (min-width: $breakpoint) {
+    @media (min-width: $breakpoint-palm) {
         display: inline-block;
     }
 }
@@ -135,7 +135,7 @@
     &.poll__highlight {
         max-width: 90%;
 
-        @media (min-width: $breakpoint) {
+        @media (min-width: $breakpoint-palm) {
             max-width: 96%;
         }
     }
@@ -185,7 +185,7 @@
     flex-flow: column wrap;
 }
 
-@media (min-width: $breakpoint) {
+@media (min-width: $breakpoint-palm) {
     .editpoll__btns--question {
         flex-direction: row;
     }
@@ -282,7 +282,7 @@
     }
 }
 
-@media (min-width: $breakpoint) {
+@media (min-width: $breakpoint-palm) {
     .poll-slider__answer {
         margin-bottom: 0;
     }

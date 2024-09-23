@@ -44,11 +44,11 @@
 @import "components_user_facing/user_indicator";
 
 // a4 overwrites
-@import "components_user_facing/a4-comments";
-@import "components_user_facing/a4-control-bar-search";
-@import "components_user_facing/a4-modal";
-@import "components_user_facing/a4-select";
-@import "components_user_facing/a4-poll";
+@import "components_user_facing/adhocracy4/a4-comments";
+@import "components_user_facing/adhocracy4/a4-control-bar-search";
+@import "components_user_facing/adhocracy4/a4-modal";
+@import "components_user_facing/adhocracy4/a4-select";
+@import "components_user_facing/adhocracy4/a4-poll";
 
 // ck-editor 
 @import "components_user_facing/ck-editor/collapsible-fragment";

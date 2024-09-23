@@ -62,3 +62,6 @@ class RadioSelectWithTextInputWidget(forms.widgets.MultiWidget):
             return ["other", value]
         else:
             return [value, ""]
+
+    def id_for_label(self, id_):
+        return f"{id_}_1"

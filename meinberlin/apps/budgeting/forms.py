@@ -76,9 +76,7 @@ class ProposalForm(ContactStorageConsentMixin, MapIdeaForm):
             required=False,
             label=_("E-mail address"),
             choices=choices,
-            widget=widgets.RadioSelectWithTextInputWidget(
-                choices=choices, placeholder_textinput=_("new e-mail address")
-            ),
+            widget=widgets.RadioSelectWithTextInputWidget(choices=choices),
             validators_textinput=[validators.validate_email],
         )
 

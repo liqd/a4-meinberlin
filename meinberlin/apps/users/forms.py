@@ -1,6 +1,6 @@
 import collections
 
-from allauth.account.forms import SignupForm
+from allauth.account import forms as allauth_forms
 from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 from django import forms
 from django.conf import settings
@@ -78,7 +78,7 @@ class AddUserAdminForm(auth_forms.UserCreationForm):
         return username
 
 
-class TermsSignupForm(SignupForm):
+class TermsSignupForm(allauth_forms.SignupForm):
     terms_of_use = forms.BooleanField(label=_("Terms of use"))
     get_newsletters = forms.BooleanField(
         label=_("Newsletter"),
@@ -108,6 +108,8 @@ class TermsSignupForm(SignupForm):
             "Your username will appear publicly next to your posts."
         )
         self.fields["email"].widget.attrs["autofocus"] = True
+        for field in self.fields.values():
+            field.widget.attrs["placeholder"] = False
         if not (hasattr(settings, "CAPTCHA_URL") and settings.CAPTCHA_URL):
             del self.fields["captcha"]
 
@@ -118,6 +120,49 @@ class TermsSignupForm(SignupForm):
             user.get_notifications = self.cleaned_data["get_notifications"]
             user.save()
             return user
+
+
+class CustomLoginForm(allauth_forms.LoginForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs["placeholder"] = False
+        self.fields["login"].label = _("Username or email")
+
+
+class CustomResetPasswordForm(allauth_forms.ResetPasswordForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs["placeholder"] = False
+
+
+class CustomResetPasswordKeyForm(allauth_forms.ResetPasswordKeyForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs["placeholder"] = False
+
+
+class CustomSetPasswordForm(allauth_forms.SetPasswordForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs["placeholder"] = False
+
+
+class CustomChangePasswordForm(allauth_forms.ChangePasswordForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs["placeholder"] = False
+
+
+class CustomAddEmailForm(allauth_forms.AddEmailForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs["placeholder"] = False
 
 
 class SocialTermsSignupForm(SocialSignupForm):

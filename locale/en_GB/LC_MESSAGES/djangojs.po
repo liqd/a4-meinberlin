@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-08 11:27+0200\n"
+"POT-Creation-Date: 2024-09-23 20:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -176,13 +176,13 @@ msgstr "Show less"
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:13
 msgctxt "defakts"
-msgid "Show info to users"
-msgstr "Show info to users"
+msgid "Show AI info to users"
+msgstr "Show AI info to users"
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:14
 msgctxt "defakts"
-msgid "Hide info from users"
-msgstr "Hide info from users"
+msgid "Hide AI info from users"
+msgstr "Hide AI info from users"
 
 #: adhocracy4/comments_async/static/comments_async/category_list.jsx:5
 msgid "Choose categories for your comment"
@@ -277,41 +277,12 @@ msgid "Last discussed"
 msgstr "Last discussed"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:22
-msgid "Comments"
-msgstr "Comments"
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:23
 msgid "Discussion"
 msgstr "Discussion"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:24
-msgid "Show filters"
-msgstr "Show filters"
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:25
-#: meinberlin/react/contrib/ControlBar.jsx:14
-msgid "Filters"
-msgstr "Filters"
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:26
-msgid "Hide filters"
-msgstr "Hide filters"
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:27
-msgid "Search contributions"
-msgstr "Search contributions"
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:28
-msgid "Clear search"
-msgstr "Clear search"
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:29
-msgid "display: "
-msgstr "display: "
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:30
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:49
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:287
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:40
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:289
+#: adhocracy4/comments_async/static/comments_async/filter_category.jsx:6
 #: meinberlin/react/livequestions/Filters.jsx:20
 #: meinberlin/react/plans/FilterNav.jsx:6
 #: meinberlin/react/plans/FilterOptions.jsx:3
@@ -319,11 +290,7 @@ msgstr "display: "
 msgid "all"
 msgstr "all"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:31
-msgid "sorted by: "
-msgstr "sorted by: "
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:70
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:62
 msgid "Highlighted"
 msgstr "Highlighted"
 
@@ -340,17 +307,22 @@ msgid "Show less"
 msgstr "Show less"
 
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:9
-#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:16
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:17
 msgid "Ordering"
 msgstr "Ordering"
 
-#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:20
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:16
+#: meinberlin/react/contrib/ControlBar.jsx:14
+msgid "Filters"
+msgstr "Filters"
+
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:21
 msgid "entry"
 msgid_plural "entries"
 msgstr[0] "entry"
 msgstr[1] "entries"
 
-#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:24
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:25
 msgid "entry found for "
 msgid_plural "entries found for "
 msgstr[0] "entry found for "
@@ -391,6 +363,18 @@ msgstr "Post"
 #: meinberlin/react/budgeting/EndSessionLink.jsx:12
 msgid "Cancel"
 msgstr "Cancel"
+
+#: adhocracy4/comments_async/static/comments_async/filter_category.jsx:5
+msgid "display: "
+msgstr "display: "
+
+#: adhocracy4/comments_async/static/comments_async/filter_search.jsx:5
+msgid "Search contributions"
+msgstr "Search contributions"
+
+#: adhocracy4/comments_async/static/comments_async/filter_search.jsx:6
+msgid "Clear search"
+msgstr "Clear search"
 
 #: adhocracy4/comments_async/static/modals/UrlModal.jsx:8
 msgid "Copy"
@@ -694,6 +678,14 @@ msgstr "Click to vote up"
 #: adhocracy4/ratings/static/ratings/react_ratings.jsx:10
 msgid "Click to vote down"
 msgstr "Click to vote down"
+
+#: adhocracy4/ratings/static/ratings/react_ratings.jsx:11
+msgid "Likes"
+msgstr "Likes"
+
+#: adhocracy4/ratings/static/ratings/react_ratings.jsx:12
+msgid "Dislikes"
+msgstr "Dislikes"
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:7
 msgid "Report sent"
@@ -1383,31 +1375,34 @@ msgid "More information can be found in the privacy policy of Google under: "
 msgstr "More information can be found in the privacy policy of Google under: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
-#: dsgvo-video-embed/js/dsgvo-video-embed.js:20
-msgid "Link to video: "
-msgstr "Link to video: "
+msgid "Link to Video: "
+msgstr "Link to Video: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
 msgid "Play video"
 msgstr "Play video"
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:16
-msgid "External video"
-msgstr "External video"
+msgid "external video"
+msgstr "external video"
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:17
 msgid ""
-"Here you can find a video from Vimeo. To protect your data the content will "
-"only be loaded after you give your consent. Only then will Vimeo set cookies "
+"here you can find a video from vimeo. to protect your data the content will "
+"only be loaded after you give your consent. only then will vimeo set cookies "
 "that collect information on user behaviour."
 msgstr ""
-"Here you can find a video from Vimeo. To protect your data the content will "
-"only be loaded after you give your consent. Only then will Vimeo set cookies "
+"here you can find a video from vimeo. to protect your data the content will "
+"only be loaded after you give your consent. only then will vimeo set cookies "
 "that collect information on user behaviour."
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:18
-msgid "More information can be found in the privacy policy of Vimeo under: "
-msgstr "More information can be found in the privacy policy of Vimeo under: "
+msgid "more information can be found in the privacy policy of vimeo under: "
+msgstr "more information can be found in the privacy policy of vimeo under: "
+
+#: dsgvo-video-embed/js/dsgvo-video-embed.js:20
+msgid "link to video: "
+msgstr "link to video: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "play video"

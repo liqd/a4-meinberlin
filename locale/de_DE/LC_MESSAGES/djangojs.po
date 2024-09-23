@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-08 11:27+0200\n"
+"POT-Creation-Date: 2024-09-23 20:44+0200\n"
 "PO-Revision-Date: 2024-07-19 12:04+0000\n"
 "Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
-"js-design-dev/de/>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js-"
+"design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -231,14 +231,14 @@ msgstr "Weniger anzeigen"
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:13
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:13
 msgctxt "defakts"
-msgid "Show info to users"
-msgstr "Informationen für Benutzer:innen anzeigen"
+msgid "Show AI info to users"
+msgstr ""
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:14
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:14
 msgctxt "defakts"
-msgid "Hide info from users"
-msgstr "Informationen für Benutzer:innen verbergen"
+msgid "Hide AI info from users"
+msgstr ""
 
 #: adhocracy4/comments_async/static/comments_async/category_list.jsx:5
 #: adhocracy4/comments_async/static/comments_async/category_list.jsx:5
@@ -356,51 +356,15 @@ msgstr "Zuletzt diskutiert"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:22
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:22
-msgid "Comments"
-msgstr "Kommentare"
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:23
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:23
 msgid "Discussion"
 msgstr "Diskussion"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:24
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:24
-msgid "Show filters"
-msgstr "Filter anzeigen"
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:25
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:25
-#: meinberlin/react/contrib/ControlBar.jsx:14
-msgid "Filters"
-msgstr "Filter"
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:26
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:26
-msgid "Hide filters"
-msgstr "Filter ausblenden"
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:27
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:27
-msgid "Search contributions"
-msgstr "Beiträge durchsuchen"
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:28
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:28
-msgid "Clear search"
-msgstr "Suche aufheben"
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:29
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:29
-msgid "display: "
-msgstr "anzeigen: "
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:30
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:49
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:287
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:30
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:49
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:287
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:40
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:289
+#: adhocracy4/comments_async/static/comments_async/filter_category.jsx:6
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:40
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:289
+#: adhocracy4/comments_async/static/comments_async/filter_category.jsx:6
 #: meinberlin/react/livequestions/Filters.jsx:20
 #: meinberlin/react/plans/FilterNav.jsx:6
 #: meinberlin/react/plans/FilterOptions.jsx:3
@@ -408,13 +372,8 @@ msgstr "anzeigen: "
 msgid "all"
 msgstr "Alle"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:31
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:31
-msgid "sorted by: "
-msgstr "sortiert nach: "
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:70
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:70
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:62
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:62
 msgid "Highlighted"
 msgstr "Hervorgehoben"
 
@@ -435,21 +394,27 @@ msgid "Show less"
 msgstr "Weniger zeigen"
 
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:9
-#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:16
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:17
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:9
-#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:16
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:17
 msgid "Ordering"
 msgstr "Reihenfolge"
 
-#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:20
-#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:20
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:16
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:16
+#: meinberlin/react/contrib/ControlBar.jsx:14
+msgid "Filters"
+msgstr "Filter"
+
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:21
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:21
 msgid "entry"
 msgid_plural "entries"
 msgstr[0] "Beitrag"
 msgstr[1] "Beiträge"
 
-#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:24
-#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:24
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:25
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:25
 msgid "entry found for "
 msgid_plural "entries found for "
 msgstr[0] "Beitrag gefunden zu: "
@@ -501,6 +466,21 @@ msgstr "Senden"
 #: meinberlin/react/budgeting/EndSessionLink.jsx:12
 msgid "Cancel"
 msgstr "Abbrechen"
+
+#: adhocracy4/comments_async/static/comments_async/filter_category.jsx:5
+#: adhocracy4/comments_async/static/comments_async/filter_category.jsx:5
+msgid "display: "
+msgstr "anzeigen: "
+
+#: adhocracy4/comments_async/static/comments_async/filter_search.jsx:5
+#: adhocracy4/comments_async/static/comments_async/filter_search.jsx:5
+msgid "Search contributions"
+msgstr "Beiträge durchsuchen"
+
+#: adhocracy4/comments_async/static/comments_async/filter_search.jsx:6
+#: adhocracy4/comments_async/static/comments_async/filter_search.jsx:6
+msgid "Clear search"
+msgstr "Suche aufheben"
 
 #: adhocracy4/comments_async/static/modals/UrlModal.jsx:8
 #: adhocracy4/comments_async/static/modals/UrlModal.jsx:8
@@ -899,6 +879,16 @@ msgstr "Für eine positive Bewertung hier klicken"
 #: adhocracy4/ratings/static/ratings/react_ratings.jsx:10
 msgid "Click to vote down"
 msgstr "Für eine negative Bewertung hier klicken"
+
+#: adhocracy4/ratings/static/ratings/react_ratings.jsx:11
+#: adhocracy4/ratings/static/ratings/react_ratings.jsx:11
+msgid "Likes"
+msgstr ""
+
+#: adhocracy4/ratings/static/ratings/react_ratings.jsx:12
+#: adhocracy4/ratings/static/ratings/react_ratings.jsx:12
+msgid "Dislikes"
+msgstr ""
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:7
 #: adhocracy4/reports/static/reports/ReportModal.jsx:7
@@ -1605,33 +1595,31 @@ msgstr ""
 "unter: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
-#: dsgvo-video-embed/js/dsgvo-video-embed.js:20
-msgid "Link to video: "
-msgstr "Link zum Video: "
+msgid "Link to Video: "
+msgstr ""
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
 msgid "Play video"
 msgstr "Video abspielen"
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:16
-msgid "External video"
-msgstr "Externes Video"
+msgid "external video"
+msgstr ""
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:17
 msgid ""
-"Here you can find a video from Vimeo. To protect your data the content will "
-"only be loaded after you give your consent. Only then will Vimeo set cookies "
+"here you can find a video from vimeo. to protect your data the content will "
+"only be loaded after you give your consent. only then will vimeo set cookies "
 "that collect information on user behaviour."
 msgstr ""
-"Hier finden Sie ein Video von Vimeo. Um Ihre Daten zu schützen, wird der "
-"Inhalt erst geladen, wenn Sie Ihre Zustimmung gegeben haben. Erst dann setzt "
-"Vimeo Cookies, die Informationen über das Nutzerverhalten sammeln."
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:18
-msgid "More information can be found in the privacy policy of Vimeo under: "
+msgid "more information can be found in the privacy policy of vimeo under: "
 msgstr ""
-"Weitere Informationen finden Sie in den Datenschutzbestimmungen von Vimeo "
-"unter: "
+
+#: dsgvo-video-embed/js/dsgvo-video-embed.js:20
+msgid "link to video: "
+msgstr ""
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "play video"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-08 11:27+0200\n"
+"POT-Creation-Date: 2024-09-23 20:44+0200\n"
 "PO-Revision-Date: 2024-02-08 08:57+0000\n"
 "Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
 "Language-Team: English <https://weblate.liqd.net/projects/meinberlin/main/en/"
@@ -53,19 +53,16 @@ msgstr "Missing fields for publication"
 #: adhocracy4/dashboard/templates/a4dashboard/base_form_module.html:18
 #: adhocracy4/dashboard/templates/a4dashboard/base_form_project.html:18
 #: meinberlin/apps/activities/templates/meinberlin_activities/activities_dashboard.html:17
-#: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_create_dashboard.html:43
+#: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_create_dashboard.html:41
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:51
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:44
-#: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_dashboard.html:44
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:35
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/components/moderator_form.html:24
+#: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_dashboard.html:42
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_form.html:23
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/includes/proposal_form.html:31
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:36
-#: meinberlin/apps/livequestions/templates/meinberlin_livequestions/livestream_dashboard_form.html:22
+#: meinberlin/apps/livequestions/templates/meinberlin_livequestions/livestream_dashboard_form.html:17
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_form.html:27
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:35
-#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_form.html:25
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_form.html:14
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_form.html:20
+#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_form.html:12
 #: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:67
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_form.html:21
 #: meinberlin/templates/a4categories/includes/module_categories_form.html:44
@@ -166,31 +163,28 @@ msgid "Create draft"
 msgstr "Create draft"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
-#: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_create_dashboard.html:45
+#: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_create_dashboard.html:43
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:52
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html:16
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:45
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/components/moderator_form.html:21
 #: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:49
-#: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_dashboard.html:46
+#: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_dashboard.html:44
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_confirm_delete.html:18
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:36
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_form.html:24
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/includes/proposal_form.html:32
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_confirm_delete.html:14
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:37
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_form.html:28
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_confirm_delete.html:16
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:36
-#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_form.html:26
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_form.html:21
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_confirm_delete.html:15
-#: meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_dashboard_form.html:31
-#: meinberlin/apps/newsletters/templates/meinberlin_newsletters/restricted_newsletter_dashboard_form.html:25
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_form.html:15
+#: meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_dashboard_form.html:32
+#: meinberlin/apps/newsletters/templates/meinberlin_newsletters/restricted_newsletter_dashboard_form.html:32
+#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_form.html:13
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:15
 #: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:68
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:14
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:117
-#: meinberlin/apps/platformemails/templates/meinberlin_platformemails/platformemail_form.html:27
+#: meinberlin/apps/platformemails/templates/meinberlin_platformemails/platformemail_form.html:31
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_form.html:22
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_confirm_delete.html:15
 #: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:88
@@ -227,6 +221,7 @@ msgstr "private"
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/components/moderator_feedback.html:52
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/components/moderator_notes.html:65
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/item_detail_dropdown.html:12
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:19
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:20
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:65
@@ -420,13 +415,13 @@ msgstr ""
 "displayed to the participants as help text when they have to assign their "
 "ideas. The character limit is max. 300 characters (with spaces)."
 
-#: adhocracy4/comments/models.py:47 adhocracy4/polls/exports.py:39
+#: adhocracy4/comments/models.py:54 adhocracy4/polls/exports.py:39
 msgctxt "noun"
 msgid "Comment"
 msgstr "Comment"
 
-#: adhocracy4/comments/models.py:48 adhocracy4/exports/mixins/comments.py:48
-#: meinberlin/apps/documents/templates/meinberlin_documents/chapter_detail.html:89
+#: adhocracy4/comments/models.py:55 adhocracy4/exports/mixins/comments.py:48
+#: meinberlin/apps/documents/templates/meinberlin_documents/chapter_detail.html:51
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_detail.html:68
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_detail.html:54
 msgid "Comments"
@@ -441,7 +436,7 @@ msgstr "Please choose a category"
 msgid "unknown user"
 msgstr "unknown user"
 
-#: adhocracy4/comments_async/api.py:148 adhocracy4/polls/api.py:115
+#: adhocracy4/comments_async/api.py:149 adhocracy4/polls/api.py:115
 msgid "Please agree to the organisation's terms of use."
 msgstr "Please agree to the organisation's terms of use."
 
@@ -709,7 +704,7 @@ msgid "Labels"
 msgstr "Labels"
 
 #: adhocracy4/exports/mixins/items.py:61
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:51
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:78
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_detail.html:54
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:93
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_detail.html:40
@@ -909,11 +904,11 @@ msgstr "Please draw an area on the map."
 msgid "Modified"
 msgstr "Modified"
 
-#: adhocracy4/modules/models.py:72
+#: adhocracy4/modules/models.py:73
 msgid "Title of the module"
 msgstr "Title of the module"
 
-#: adhocracy4/modules/models.py:74
+#: adhocracy4/modules/models.py:75
 msgid ""
 "This title will appear in the timeline and the header on the module and "
 "project detail pages. It should be max. 512 characters long"
@@ -921,11 +916,11 @@ msgstr ""
 "This title will appear in the timeline and the header on the module and "
 "project detail pages. It should be max. 512 characters long"
 
-#: adhocracy4/modules/models.py:83
+#: adhocracy4/modules/models.py:84
 msgid "Short description of the module"
 msgstr "Short description of the module"
 
-#: adhocracy4/modules/models.py:85
+#: adhocracy4/modules/models.py:86
 msgid ""
 "This short description will appear on the header of the module and project "
 "detail pages. It should briefly state the goal of the module in max. 512 "
@@ -935,58 +930,58 @@ msgstr ""
 "detail pages. It should briefly state the goal of the module in max. 512 "
 "chars."
 
-#: adhocracy4/modules/models.py:222 meinberlin/apps/projects/serializers.py:254
+#: adhocracy4/modules/models.py:223 meinberlin/apps/projects/serializers.py:254
 msgid "day"
 msgstr "day"
 
-#: adhocracy4/modules/models.py:222 adhocracy4/modules/models.py:229
+#: adhocracy4/modules/models.py:223 adhocracy4/modules/models.py:230
 #: meinberlin/apps/projects/serializers.py:254
 msgid "days"
 msgstr "days"
 
-#: adhocracy4/modules/models.py:223 meinberlin/apps/projects/serializers.py:255
+#: adhocracy4/modules/models.py:224 meinberlin/apps/projects/serializers.py:255
 msgid "hour"
 msgstr "hour"
 
-#: adhocracy4/modules/models.py:223 adhocracy4/modules/models.py:230
+#: adhocracy4/modules/models.py:224 adhocracy4/modules/models.py:231
 #: meinberlin/apps/projects/serializers.py:255
 msgid "hours"
 msgstr "hours"
 
-#: adhocracy4/modules/models.py:224 meinberlin/apps/projects/serializers.py:256
+#: adhocracy4/modules/models.py:225 meinberlin/apps/projects/serializers.py:256
 msgid "minute"
 msgstr "minute"
 
-#: adhocracy4/modules/models.py:224 adhocracy4/modules/models.py:231
+#: adhocracy4/modules/models.py:225 adhocracy4/modules/models.py:232
 #: meinberlin/apps/projects/serializers.py:256
 msgid "minutes"
 msgstr "minutes"
 
-#: adhocracy4/modules/models.py:225 meinberlin/apps/projects/serializers.py:257
+#: adhocracy4/modules/models.py:226 meinberlin/apps/projects/serializers.py:257
 msgid "second"
 msgstr "second"
 
-#: adhocracy4/modules/models.py:225 adhocracy4/modules/models.py:232
+#: adhocracy4/modules/models.py:226 adhocracy4/modules/models.py:233
 #: meinberlin/apps/projects/serializers.py:257
 msgid "seconds"
 msgstr "seconds"
 
-#: adhocracy4/modules/models.py:229
+#: adhocracy4/modules/models.py:230
 msgctxt "abbreviation for day(s)"
 msgid "D"
 msgstr "D"
 
-#: adhocracy4/modules/models.py:230
+#: adhocracy4/modules/models.py:231
 msgctxt "abbreviation for hour(s)"
 msgid "H"
 msgstr "H"
 
-#: adhocracy4/modules/models.py:231
+#: adhocracy4/modules/models.py:232
 msgctxt "abbreviation for minute(s)"
 msgid "M"
 msgstr "M"
 
-#: adhocracy4/modules/models.py:232
+#: adhocracy4/modules/models.py:233
 msgctxt "abbreviation for second(s)"
 msgid "S"
 msgstr "S"
@@ -1305,6 +1300,7 @@ msgid "Online Participation"
 msgstr "Online Participation"
 
 #: adhocracy4/reports/templatetags/react_reports.py:28
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/item_detail_dropdown.html:29
 msgid "Report"
 msgstr "Report"
 
@@ -1314,19 +1310,19 @@ msgstr "User Dashboard"
 
 #: meinberlin/apps/account/templates/meinberlin_account/account_dashboard.html:8
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_create_form.html:7
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:8
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:13
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_update_form.html:8
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/cms_breadcrumb.html:5
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:8
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:12
 #: meinberlin/apps/documents/templates/meinberlin_documents/paragraph_detail.html:8
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_create_form.html:8
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:7
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:12
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_update_form.html:8
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_create_form.html:7
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:8
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:13
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_update_form.html:8
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_create_form.html:7
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:7
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:12
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_update_form.html:8
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_detail.html:18
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:35
@@ -1343,7 +1339,7 @@ msgstr "meinBerlin Homepage"
 
 #: meinberlin/apps/account/templates/meinberlin_account/account_dashboard.html:11
 #: meinberlin/apps/users/templates/meinberlin_users/initiator_indicator.html:20
-#: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:19
+#: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:14
 msgid "Account Settings"
 msgstr "Account Settings"
 
@@ -1395,7 +1391,7 @@ msgid "Your profile"
 msgstr "Your profile"
 
 #: meinberlin/apps/account/templates/meinberlin_account/profile.html:18
-#: meinberlin/apps/organisations/templates/meinberlin_organisations/organisation_form.html:17
+#: meinberlin/apps/organisations/templates/meinberlin_organisations/organisation_form.html:18
 msgid "Save changes"
 msgstr "Save changes"
 
@@ -1667,9 +1663,9 @@ msgid "Bplan statement phase"
 msgstr "Bplan statement phase"
 
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_create_dashboard.html:4
-#: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_create_dashboard.html:25
+#: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_create_dashboard.html:24
 #: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_dashboard.html:4
-#: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_dashboard.html:26
+#: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_dashboard.html:25
 #: meinberlin/templates/a4dashboard/includes/progress_line.html:6
 #: meinberlin/templates/a4dashboard/project_create_form.html:4
 #: meinberlin/templates/a4dashboard/project_create_form.html:26
@@ -1677,7 +1673,6 @@ msgid "Create project"
 msgstr "Create project"
 
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_create_dashboard.html:9
-#: meinberlin/apps/documents/templates/meinberlin_documents/paragraph_detail.html:27
 #: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_dashboard.html:9
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_create_dashboard.html:9
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:7
@@ -2033,18 +2028,18 @@ msgid "Create a new proposal"
 msgstr "Create a new proposal"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_create_form.html:10
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:11
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:19
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_update_form.html:11
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:11
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:18
 #: meinberlin/apps/documents/templates/meinberlin_documents/paragraph_detail.html:12
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_create_form.html:11
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:10
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:18
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_update_form.html:11
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_create_form.html:10
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:10
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:16
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_update_form.html:11
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_create_form.html:10
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:10
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:15
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_update_form.html:11
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_detail.html:21
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:38
@@ -2111,20 +2106,21 @@ msgstr "Voting token form fields"
 msgid "Enter code"
 msgstr "Enter code"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:4
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:5
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/item_detail_dropdown.html:22
 msgid "Moderate"
 msgstr "Moderate"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:16
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:30
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_update_form.html:16
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_update_form.html:16
 msgid "Proposal"
 msgstr "Proposal"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:17
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:25
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:16
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:24
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:32
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:40
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:29
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:38
 msgid "Moderate proposal"
 msgstr "Moderate proposal"
 
@@ -2167,7 +2163,31 @@ msgstr "Something about the answer to the captcha was wrong."
 msgid "Your answer to the captcha was wrong."
 msgstr "Your answer to the captcha was wrong."
 
-#: meinberlin/apps/cms/blocks.py:135 meinberlin/apps/dashboard/forms.py:15
+#: meinberlin/apps/cms/blocks.py:97
+msgid ""
+"The accordion is collapsed by default. Select this option to have it "
+"expanded when the page loads."
+msgstr ""
+"The accordion is collapsed by default. Select this option to have it "
+"expanded when the page loads."
+
+#: meinberlin/apps/cms/blocks.py:99
+msgid "Expand accordion?"
+msgstr "Expand accordion?"
+
+#: meinberlin/apps/cms/blocks.py:111
+msgid "Optional title for the list of accordions."
+msgstr "Optional title for the list of accordions."
+
+#: meinberlin/apps/cms/blocks.py:114
+msgid "Add, remove, or reorder accordions."
+msgstr "Add, remove, or reorder accordions."
+
+#: meinberlin/apps/cms/blocks.py:120
+msgid "Accordion List"
+msgstr "Accordion List"
+
+#: meinberlin/apps/cms/blocks.py:156 meinberlin/apps/dashboard/forms.py:15
 #: meinberlin/apps/extprojects/models.py:11
 msgid "Please enter a full url which starts with https:// or http://"
 msgstr "Please enter a full url which starts with https:// or http://"
@@ -2181,7 +2201,7 @@ msgid "Response"
 msgstr "Response"
 
 #: meinberlin/apps/cms/models/email_form.py:25
-#: meinberlin/apps/users/forms.py:103
+#: meinberlin/apps/users/forms.py:104
 msgid "I am not a robot"
 msgstr "I am not a robot"
 
@@ -2215,8 +2235,8 @@ msgstr "Show all projects"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/email_form_page.html:28
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_dashboard_form.html:30
-#: meinberlin/apps/newsletters/templates/meinberlin_newsletters/restricted_newsletter_dashboard_form.html:24
-#: meinberlin/apps/platformemails/templates/meinberlin_platformemails/platformemail_form.html:26
+#: meinberlin/apps/newsletters/templates/meinberlin_newsletters/restricted_newsletter_dashboard_form.html:30
+#: meinberlin/apps/platformemails/templates/meinberlin_platformemails/platformemail_form.html:30
 msgid "Send"
 msgstr "Send"
 
@@ -2443,14 +2463,14 @@ msgstr "To add a feedback, please click edit."
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/components/moderator_feedback.html:40
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/components/moderator_notes.html:46
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:45
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:64
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:96
 msgid "updated on "
 msgstr "updated on "
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/components/moderator_feedback.html:42
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/components/moderator_notes.html:48
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:47
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:66
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:98
 msgid "created on "
 msgstr "created on "
@@ -2488,6 +2508,24 @@ msgstr "No moderation remark has been filled yet."
 msgid "Filter bar "
 msgstr "Filter bar "
 
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/item_detail_dropdown.html:4
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/item_detail_dropdown.html:5
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:219
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:228
+msgid "Actions"
+msgstr "Actions"
+
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/item_detail_dropdown.html:16
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:24
+#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:25
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:85
+#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:24
+#: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:57
+#: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:68
+#: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:83
+msgid "Delete"
+msgstr "Delete"
+
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:7
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:20
 msgid "View as list"
@@ -2512,29 +2550,6 @@ msgstr "Map"
 #: meinberlin/templates/header.html:24 meinberlin/templates/header.html:201
 msgid "Page navigation"
 msgstr "Page navigation"
-
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:75
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:84
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:219
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:228
-msgid "Actions"
-msgstr "Actions"
-
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:89
-msgid "edit"
-msgstr "edit"
-
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:91
-msgid "delete"
-msgstr "delete"
-
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:95
-msgid "moderate"
-msgstr "moderate"
-
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:100
-msgid "report"
-msgstr "report"
 
 #: meinberlin/apps/dashboard/blueprints.py:17
 msgid "Brainstorming"
@@ -2770,19 +2785,19 @@ msgstr "commenting text"
 msgid "You can comment on the draft paragraph by paragraph or as a whole."
 msgstr "You can comment on the draft paragraph by paragraph or as a whole."
 
-#: meinberlin/apps/documents/templates/meinberlin_documents/chapter_detail.html:17
-#: meinberlin/apps/documents/templates/meinberlin_documents/chapter_detail.html:24
+#: meinberlin/apps/documents/templates/meinberlin_documents/chapter_detail.html:8
+#: meinberlin/apps/documents/templates/meinberlin_documents/chapter_detail.html:9
 msgid "Table of Contents"
 msgstr "Table of Contents"
 
-#: meinberlin/apps/documents/templates/meinberlin_documents/chapter_detail.html:61
+#: meinberlin/apps/documents/templates/meinberlin_documents/chapter_detail.html:34
 #, python-format
-msgid "%(count)s Comment"
-msgid_plural "%(count)s Comments"
-msgstr[0] "%(count)s Comment"
-msgstr[1] "%(count)s Comments"
+msgid "Comment (%(count)s)"
+msgid_plural "Comments (%(count)s)"
+msgstr[0] "Comment (%(count)s)"
+msgstr[1] "Comments (%(count)s)"
 
-#: meinberlin/apps/documents/templates/meinberlin_documents/chapter_detail.html:73
+#: meinberlin/apps/documents/templates/meinberlin_documents/chapter_detail.html:41
 msgid "A Document has not been added yet"
 msgstr "A Document has not been added yet"
 
@@ -2791,25 +2806,23 @@ msgid "Edit document"
 msgstr "Edit document"
 
 #: meinberlin/apps/documents/templates/meinberlin_documents/includes/nextprev.html:9
-#: meinberlin/apps/documents/templates/meinberlin_documents/includes/nextprev.html:14
 msgid "Previous Chapter"
 msgstr "Previous Chapter"
 
-#: meinberlin/apps/documents/templates/meinberlin_documents/includes/nextprev.html:20
-#: meinberlin/apps/documents/templates/meinberlin_documents/includes/nextprev.html:25
+#: meinberlin/apps/documents/templates/meinberlin_documents/includes/nextprev.html:15
 msgid "Next Chapter"
 msgstr "Next Chapter"
 
 #: meinberlin/apps/documents/templates/meinberlin_documents/paragraph_detail.html:32
-msgid "back to chapter"
-msgstr "back to chapter"
+msgid "Back to chapter"
+msgstr "Back to chapter"
 
 #: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:23
 #: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:48
 #: meinberlin/apps/users/templates/meinberlin_users/initiator_indicator.html:47
 #: meinberlin/apps/users/templates/meinberlin_users/initiator_indicator.html:52
+#: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:38
 #: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:43
-#: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:49
 #: meinberlin/templates/account/login.html:5
 #: meinberlin/templates/account/login.html:10
 #: meinberlin/templates/account/login.html:34
@@ -2994,25 +3007,25 @@ msgstr "Submit a new idea for this project"
 msgid "Submit idea"
 msgstr "Submit idea"
 
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:4
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:7
 msgid "Give feedback"
 msgstr "Give feedback"
 
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:15
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:29
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_update_form.html:16
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:15
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:15
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:27
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:20
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_update_form.html:16
 msgid "Idea"
 msgstr "Idea"
 
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:16
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:16
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:23
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:31
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:21
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:29
 msgid "Moderate idea"
 msgstr "Moderate idea"
 
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:23
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:39
 msgid "Feedback on this idea"
 msgstr "Feedback on this idea"
 
@@ -3090,11 +3103,17 @@ msgstr "kiezkasse"
 msgid "Get feedback for budgeting requests through rates and comments."
 msgstr "Get feedback for budgeting requests through rates and comments."
 
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:4
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:4
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:5
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:5
 #, python-format
-msgid "Moderate %(name)s"
-msgstr "Moderate %(name)s"
+msgid ""
+"\n"
+"        Moderate %(name)s\n"
+"    "
+msgstr ""
+"\n"
+"        Moderate %(name)s\n"
+"    "
 
 #: meinberlin/apps/livequestions/dashboard.py:15
 msgid "Livestream"
@@ -3166,7 +3185,7 @@ msgstr "Here you can ask your question"
 msgid "post"
 msgstr "post"
 
-#: meinberlin/apps/livequestions/templates/meinberlin_livequestions/livestream_dashboard_form.html:5
+#: meinberlin/apps/livequestions/templates/meinberlin_livequestions/livestream_dashboard_form.html:4
 msgid "Edit livestream"
 msgstr "Edit livestream"
 
@@ -3301,16 +3320,6 @@ msgstr "You can comment and rate the places/suggestions."
 #: meinberlin/apps/maptopicprio/phases.py:17
 msgid "place prioritization"
 msgstr "place prioritization"
-
-#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:24
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:25
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:85
-#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:24
-#: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:57
-#: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:68
-#: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:83
-msgid "Delete"
-msgstr "Delete"
 
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_confirm_delete.html:4
 msgid "Confirm Place Deletion"
@@ -3514,7 +3523,7 @@ msgstr "Sent"
 
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_dashboard_form.html:4
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/restricted_newsletter_dashboard_form.html:4
-#: meinberlin/apps/users/forms.py:84 meinberlin/apps/users/forms.py:126
+#: meinberlin/apps/users/forms.py:85 meinberlin/apps/users/forms.py:165
 #: meinberlin/apps/users/models.py:67
 #: meinberlin/templates/a4dashboard/base_dashboard.html:63
 msgid "Newsletter"
@@ -4095,7 +4104,7 @@ msgstr "The plan is unpublished."
 msgid "Create platform email"
 msgstr "Create platform email"
 
-#: meinberlin/apps/platformemails/templates/meinberlin_platformemails/platformemail_form.html:11
+#: meinberlin/apps/platformemails/templates/meinberlin_platformemails/platformemail_form.html:12
 msgid ""
 "This email will be sent to all registered and verified users of mein.berlin."
 "de."
@@ -4273,7 +4282,7 @@ msgstr "Proceed to login"
 #: meinberlin/apps/projects/templates/meinberlin_projects/participantinvite_detail.html:22
 #: meinberlin/apps/users/templates/meinberlin_users/initiator_indicator.html:47
 #: meinberlin/apps/users/templates/meinberlin_users/initiator_indicator.html:55
-#: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:52
+#: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:46
 #: meinberlin/templates/account/login.html:40
 #: meinberlin/templates/account/signup.html:5
 #: meinberlin/templates/account/signup.html:11
@@ -4505,7 +4514,7 @@ msgstr "Important dates"
 msgid "Please enter correct email addresses, separated by commas."
 msgstr "Please enter correct email addresses, separated by commas."
 
-#: meinberlin/apps/users/forms.py:32
+#: meinberlin/apps/users/forms.py:33
 #, python-format
 msgid ""
 "User is member in more than one group in this organisation: %(duplicates)s."
@@ -4516,12 +4525,12 @@ msgstr[0] ""
 msgstr[1] ""
 "User is member in more than one group in these organisations: %(duplicates)s."
 
-#: meinberlin/apps/users/forms.py:82 meinberlin/apps/users/forms.py:124
+#: meinberlin/apps/users/forms.py:83 meinberlin/apps/users/forms.py:163
 #: meinberlin/templates/email_base.html:82
 msgid "Terms of use"
 msgstr "Terms of use"
 
-#: meinberlin/apps/users/forms.py:86 meinberlin/apps/users/forms.py:128
+#: meinberlin/apps/users/forms.py:87 meinberlin/apps/users/forms.py:167
 #: meinberlin/apps/users/models.py:70
 msgid ""
 "Yes, I would like to receive e-mail newsletters about the projects I am "
@@ -4530,12 +4539,12 @@ msgstr ""
 "Yes, I would like to receive e-mail newsletters about the projects I am "
 "following."
 
-#: meinberlin/apps/users/forms.py:92 meinberlin/apps/users/forms.py:134
+#: meinberlin/apps/users/forms.py:93 meinberlin/apps/users/forms.py:173
 #: meinberlin/apps/users/models.py:56
 msgid "Notifications"
 msgstr "Notifications"
 
-#: meinberlin/apps/users/forms.py:94 meinberlin/apps/users/forms.py:136
+#: meinberlin/apps/users/forms.py:95 meinberlin/apps/users/forms.py:175
 #: meinberlin/apps/users/models.py:59
 msgid ""
 "Yes, I would like to be notified by e-mail about the start and end of "
@@ -4546,10 +4555,14 @@ msgstr ""
 "participation opportunities. This applies to all projects I follow. I also "
 "receive an e-mail when someone comments on one of my contributions."
 
-#: meinberlin/apps/users/forms.py:108 meinberlin/apps/users/forms.py:150
+#: meinberlin/apps/users/forms.py:109 meinberlin/apps/users/forms.py:189
 #: meinberlin/apps/users/models.py:18
 msgid "Your username will appear publicly next to your posts."
 msgstr "Your username will appear publicly next to your posts."
+
+#: meinberlin/apps/users/forms.py:131
+msgid "Username or email"
+msgstr "Username or email"
 
 #: meinberlin/apps/users/models.py:15
 msgid "username"
@@ -4589,25 +4602,23 @@ msgstr ""
 "instead of deleting accounts."
 
 #: meinberlin/apps/users/templates/meinberlin_users/initiator_indicator.html:27
-#: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:24
+#: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:23
 msgid "Platform Email"
 msgstr "Platform Email"
 
-#: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:16
-#: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:46
-msgid "close"
-msgstr "close"
+#: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:10
+msgid "Account"
+msgstr "Account"
 
-#: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:16
-#: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:46
-msgid "menu close"
-msgstr "menu close"
-
-#: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:18
+#: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:11
 msgid "My account"
 msgstr "My account"
 
-#: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:55
+#: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:40
+msgid "Login or Register"
+msgstr "Login or Register"
+
+#: meinberlin/apps/users/templates/meinberlin_users/user_indicator.html:49
 msgid "Forgot password?"
 msgstr "Forgot password?"
 
@@ -4760,63 +4771,63 @@ msgstr ""
 "Please adjust your number of codes. Per module you can generate up to {} "
 "codes."
 
-#: meinberlin/config/settings/base.py:470
+#: meinberlin/config/settings/base.py:477
 msgid "Pin without icon"
 msgstr "Pin without icon"
 
-#: meinberlin/config/settings/base.py:471
+#: meinberlin/config/settings/base.py:478
 msgid "Diamond"
 msgstr "Diamond"
 
-#: meinberlin/config/settings/base.py:472
+#: meinberlin/config/settings/base.py:479
 msgid "Triangle up"
 msgstr "Triangle up"
 
-#: meinberlin/config/settings/base.py:473
+#: meinberlin/config/settings/base.py:480
 msgid "Triangle down"
 msgstr "Triangle down"
 
-#: meinberlin/config/settings/base.py:474
+#: meinberlin/config/settings/base.py:481
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: meinberlin/config/settings/base.py:475
+#: meinberlin/config/settings/base.py:482
 msgid "Semi circle"
 msgstr "Semi circle"
 
-#: meinberlin/config/settings/base.py:476
+#: meinberlin/config/settings/base.py:483
 msgid "Hexagon"
 msgstr "Hexagon"
 
-#: meinberlin/config/settings/base.py:477
+#: meinberlin/config/settings/base.py:484
 msgid "Rhomboid"
 msgstr "Rhomboid"
 
-#: meinberlin/config/settings/base.py:478
+#: meinberlin/config/settings/base.py:485
 msgid "Star"
 msgstr "Star"
 
-#: meinberlin/config/settings/base.py:479
+#: meinberlin/config/settings/base.py:486
 msgid "Square"
 msgstr "Square"
 
-#: meinberlin/config/settings/base.py:480
+#: meinberlin/config/settings/base.py:487
 msgid "Octothorpe"
 msgstr "Octothorpe"
 
-#: meinberlin/config/settings/base.py:481
+#: meinberlin/config/settings/base.py:488
 msgid "Rectangle"
 msgstr "Rectangle"
 
-#: meinberlin/config/settings/base.py:482
+#: meinberlin/config/settings/base.py:489
 msgid "Circle"
 msgstr "Circle"
 
-#: meinberlin/config/settings/base.py:483
+#: meinberlin/config/settings/base.py:490
 msgid "Right triangle"
 msgstr "Right triangle"
 
-#: meinberlin/config/settings/base.py:484
+#: meinberlin/config/settings/base.py:491
 msgid "Zigzag"
 msgstr "Zigzag"
 
@@ -5211,13 +5222,16 @@ msgid "Change your password"
 msgstr "Change your password"
 
 #: meinberlin/templates/account/password_change.html:22
+msgid "Current Password"
+msgstr "Current Password"
+
 #: meinberlin/templates/account/password_change.html:34
-msgid "Password"
-msgstr "Password"
+msgid "New Password"
+msgstr "New Password"
 
 #: meinberlin/templates/account/password_change.html:46
-msgid "Repeat password"
-msgstr "Repeat password"
+msgid "New Password (again)"
+msgstr "New Password (again)"
 
 #: meinberlin/templates/account/password_reset.html:4
 #: meinberlin/templates/account/password_reset.html:7

@@ -268,7 +268,15 @@ ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-ACCOUNT_FORMS = {"signup": "meinberlin.apps.users.forms.TermsSignupForm"}
+ACCOUNT_FORMS = {
+    "signup": "meinberlin.apps.users.forms.TermsSignupForm",
+    "login": "meinberlin.apps.users.forms.CustomLoginForm",
+    "reset_password": "meinberlin.apps.users.forms.CustomResetPasswordForm",
+    "reset_password_from_key": "meinberlin.apps.users.forms.CustomResetPasswordKeyForm",
+    "set_password": "meinberlin.apps.users.forms.CustomSetPasswordForm",
+    "change_password": "meinberlin.apps.users.forms.CustomChangePasswordForm",
+    "add_email": "meinberlin.apps.users.forms.CustomAddEmailForm",
+}
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 ACCOUNT_USERNAME_REQUIRED = True

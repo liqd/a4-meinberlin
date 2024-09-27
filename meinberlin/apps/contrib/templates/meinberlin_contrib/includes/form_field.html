@@ -10,17 +10,17 @@
         {% block after_label %}{% endblock after_label %}
     </label>
 
-    {% block field %}
-        <div class="widget widget--{{ field|widget_type }}">
-            {{ field|add_error_attr:"aria-invalid:true" }}
-        </div>
-    {% endblock field %}
-
     {% if field.help_text and not field.name == "password" %}
         <span class="formgroup__help">
             {{ field.help_text }}
         </span>
     {% endif %}
+
+    {% block field %}
+        <div class="widget widget--{{ field|widget_type }}">
+            {{ field|add_error_attr:"aria-invalid:true" }}
+        </div>
+    {% endblock field %}
 
     {% if field.errors %}
         <ul class="errorlist" aria-live="assertive" aria-atomic="true">

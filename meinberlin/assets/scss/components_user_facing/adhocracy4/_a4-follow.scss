@@ -1,0 +1,29 @@
+.follow__container > span {
+    width: 100%;
+}
+
+// BO overwrites
+.a4-btn--follow,
+.a4-btn--following {
+    @extend .button;
+    @extend .button--fullwidth-palm;
+}
+
+.a4-btn--follow:after {
+    content: "\f067"; // plus sign
+}
+
+.a4-btn--following:after {
+    content: "\f00c"; // check mark
+}
+
+// we do not display alert in mB
+.a4-follow__notification {
+    display: none;
+}
+
+.follow__container {
+    display: flex;
+    align-items: end;
+    margin-bottom: 2 * $spacer;
+}

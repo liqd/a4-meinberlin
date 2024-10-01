@@ -1,23 +1,21 @@
-.account__wrapper {
+// narrow wrapper appears on login, signup, forgot password pages
+.narrow-wrapper {
     max-width: 30rem;
     margin: 0 auto;
 }
 
-.account__password-reminder {
+.narrow-wrapper__secondary-cta {
     padding: 1.5em 0 2em;
     text-align: center;
 
     @media (min-width: $breakpoint-tablet) {
         padding: 0.8em 0;
         text-align: right;
+        margin-left: 1em;
     }
 }
 
-.account__button {
-    width: 100%;
-}
-
-.account__footer {
+.narrow-wrapper__footer {
     padding: 1em 0 3em;
 
     &--decoration {

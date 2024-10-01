@@ -6,11 +6,10 @@
 {% endblock head_title %}
 
 {% block content %}
-    <div class="account__wrapper">
-
+    <div class="narrow-wrapper">
         <h1>{% translate "Register" %}</h1>
 
-         <form id="signup_form" method="post" action="{% url 'account_signup' %}" class="form--base">
+        <form id="signup_form" method="post" action="{% url 'account_signup' %}" class="form--base">
             {% if form.non_field_errors %}
                 <ul class="errorlist" aria-live="assertive" aria-atomic="true">
                     {% for error in form.non_field_errors %}
@@ -58,14 +57,14 @@
             {% endif %}
 
             <div class="u-spacer-top">
-                <button class="button account__button" type="submit">{% translate "Register" %}</button>
+                <button class="button button--full-width" type="submit">{% translate "Register" %}</button>
             </div>
         </form>
 
-        <section class="account__footer">
-            <span class="account__footer--decoration" aria-hidden="true"></span>
+        <section class="narrow-wrapper__footer">
+            <span class="narrow-wrapper__footer--decoration" aria-hidden="true"></span>
             <h2>{% translate "Already have an account?" %}</h2>
-            <a class="button button--light account__button" href="{{ login_url }}">{% translate "Login" %}</a>
+            <a class="button button--light button--full-width" href="{{ login_url }}">{% translate "Login" %}</a>
         </section>
     </div>
 {% endblock content %}

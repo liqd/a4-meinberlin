@@ -91,7 +91,11 @@ export function FetchItemsProvider ({ apiUrl, isMapAndList, children }) {
       if (viewMode === view) {
         fetchAndUpdate(apiUrl, view)
       } else {
-        requestIdleCallback(() => fetchAndUpdate(apiUrl, view), { timeout: 1000 })
+        if (typeof requestIdleCallback === 'function') {
+          requestIdleCallback(() => fetchAndUpdate(apiUrl, view), { timeout: 1000 })
+        } else {
+          setTimeout(() => fetchAndUpdate(apiUrl, view), 1000)
+        }
       }
     }
   }, [apiUrl, location.search])

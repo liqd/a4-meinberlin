@@ -6,7 +6,7 @@
 {% endblock head_title %}
 
 {% block content %}
-    <div class="account__wrapper">
+    <div class="narrow-wrapper">
         <h1>{% translate "Login" %}</h1>
 
         <form method="post" action="{% url 'account_login' %}" class="form--base">
@@ -27,17 +27,17 @@
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
             {% endif %}
 
-            <div class="account__password-reminder">
+            <div class="narrow-wrapper__secondary-cta">
                 <a href="{% url 'account_reset_password' %}">{% translate "Forgot Password?" %}</a>
             </div>
 
-            <button class="button account__button" type="submit">{% translate "Login" %}</button>
+            <button class="button button--full-width" type="submit">{% translate "Login" %}</button>
         </form>
-      
-        <section class="account__footer">
-            <span class="account__footer--decoration" aria-hidden="true"></span>
+
+        <section class="narrow-wrapper__footer">
+            <span class="narrow-wrapper__footer--decoration" aria-hidden="true"></span>
             <h2>{% translate "Don't have an account yet?" %}</h2>
-            <a class="button button--light account__button" href="{{ signup_url }}">{% translate "Register" %}</a>
+            <a class="button button--light button--full-width" href="{{ signup_url }}">{% translate "Register" %}</a>
         </section>
     </div>
 {% endblock content %}

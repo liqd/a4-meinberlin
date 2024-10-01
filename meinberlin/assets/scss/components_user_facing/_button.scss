@@ -1,10 +1,16 @@
 .button {
+    color: $text-base!important;
+
     &:before {
         background-color: $primary;
-        color: inherit;
+        color: $text-base;
     }
 
     &:after {
-        color: inherit;
+        color: $text-base;
     }
+}
+
+.button--full-width {
+    width: 100%; // enforce full-width on all viewports (used on narrow containers on desktop e.g. login page)
 }

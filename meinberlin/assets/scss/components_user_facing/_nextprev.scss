@@ -7,10 +7,20 @@
     &__prev {
         grid-column: 1;
         justify-self: start;
+        width: 100%;
+        display: inline-block;
     }
 
     &__next {
         grid-column: 2;
         justify-self: end;
+        width: 100%;
+        display: inline-block;
+        text-align: end;
+
+        .fa {
+            margin-left: .4em;
+            margin-right: 0;
+        }
     }
 }

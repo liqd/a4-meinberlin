@@ -9,7 +9,7 @@
                 <ol aria-label="{% translate 'Table of Contents' %}">
                     {% for chapter in chapter_list %}
                         <li>
-                            <a href="{{ chapter.get_absolute_url }}">
+                            <a href="{{ chapter.get_absolute_url }}" {% if chapter == object %}class="text--strong" aria-current="page"{% endif %}>
                                 {{ chapter.name }}
                             </a>
                         </li>

@@ -1,5 +1,6 @@
 {% load i18n %}
-<form novalidate enctype="multipart/form-data" action="{{ request.path }}" method="post">
+
+<form class="form--base panel--heavy" novalidate enctype="multipart/form-data" action="{{ request.path }}" method="post">
     {% csrf_token %}
     {{ form.media }}
 
@@ -23,8 +24,5 @@
 
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.point_label %}
 
-    <div class="u-spacer-bottom">
-        <input type="submit" class="btn btn--primary" value="{% translate 'Save'%}" />
-        <a href="{{ cancel }}" class="btn btn--light">{% translate 'Cancel'%}</a>
-    </div>
+    {% include 'meinberlin_contrib/includes/form_submit_actions.html' %}
 </form>

@@ -4,6 +4,8 @@ import 'select2' // used to select projects in containers
 import 'shariff'
 import 'slick-carousel'
 
+import 'core-js/actual/object/has-own' // required polyfill for older browsers
+
 import '../../apps/actions/assets/timestamps.js'
 import '../../apps/moderatorremark/assets/idea_remarks.js'
 import '../../apps/newsletters/assets/dynamic_fields.js'

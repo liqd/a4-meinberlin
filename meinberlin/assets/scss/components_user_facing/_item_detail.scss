@@ -8,11 +8,17 @@
     
     img {
         aspect-ratio: 2/1;
+        object-fit: cover;
     }
 }
 
 .item-detail__user {
     padding-bottom: $spacer;
+    color: $text-light;
+
+    strong {
+        color: $text-base;
+    }
 }
 
 .item-detail .pill__list {
@@ -27,4 +33,9 @@
 
 .item-detail__reference {
     margin-bottom: $spacer;
+    color: $text-light;
+
+    strong {
+        color: $text-base;
+    }
 }

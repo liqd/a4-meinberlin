@@ -1,11 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}{% block head_title %}{% endblock %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}
+    {% block head_title %}{% endblock head_title %} — {{ block.super }}
+{% endblock title %}
 
 {% block super_content %}
-<div class="container">
-    <div class="offset-lg-3 col-lg-6">
-        {% block content %}{% endblock %}
-    </div>
-</div>
-{% endblock %}
+    {% block content %}{% endblock content %}
+{% endblock super_content %}

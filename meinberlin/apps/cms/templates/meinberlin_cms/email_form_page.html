@@ -1,33 +1,30 @@
 {% extends "base.html" %}
 {% load i18n wagtailcore_tags widget_tweaks %}
 
-{% block title %}{{ page.title }} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{{ page.title }} — {{ block.super }}{% endblock title %}
 
 {% block breadcrumbs %}
     {% include 'meinberlin_cms/includes/cms_breadcrumb.html' %}
-{% endblock %}
+{% endblock breadcrumbs %}
 
 {% block content %}
-    <div class="container">
-        <div class="offset-lg-2 col-lg-8">
-            <h1>{{ page.title }}</h1>
-            {{ page.intro|richtext }}
-            <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
-                {% csrf_token %}
-                {{ form.media }}
+    <div class="layout-grid__area--maincontent">
+        <h1>{{ page.title }}</h1>
+        {{ page.intro|richtext }}
 
-                {% for field in form %}
-                    {% if field|field_type == 'booleanfield' %}
-                        {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=field %}
-                    {% else %}
-                        {% include 'meinberlin_contrib/includes/form_field.html' with field=field %}
-                    {% endif %}
-                {% endfor %}
+        <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+            {% csrf_token %}
+            {{ form.media }}
 
-                <div class="u-spacer-bottom">
-                    <input type="submit" class="btn btn--primary" value="{% translate 'Send'%}" />
-                </div>
-            </form>
-        </div>
+            {% for field in form %}
+                {% if field|field_type == 'booleanfield' %}
+                    {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=field %}
+                {% else %}
+                    {% include 'meinberlin_contrib/includes/form_field.html' with field=field %}
+                {% endif %}
+            {% endfor %}
+
+            {% include 'meinberlin_contrib/includes/form_submit_flex_end.html' with button_text='Send' %}
+        </form>
     </div>
-{% endblock %}
+{% endblock content %}

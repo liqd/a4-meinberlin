@@ -2,7 +2,7 @@
 
 {% load i18n widget_tweaks %}
 
-{% block title %}{% translate 'Email Addresses' %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate 'Email Addresses' %} — {{ block.super }}{% endblock title %}
 
 {% block dashboard_content %}
 <h1 class="u-first-heading">{% translate 'Email Addresses' %}</h1>
@@ -14,7 +14,7 @@
         <label class="form-check__label">
             <input type="radio" name="email"
                    {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked" {% endif %}
-                   value="{{emailaddress.email}}">
+                   value="{{ emailaddress.email }}">
             {{ emailaddress.email }}
             {% if emailaddress.primary %}
             <span class="label">{% translate "Primary" %}</span>
@@ -56,8 +56,7 @@
         {% endif %}
         {{ form.email|add_class:"form-control"|add_error_attr:"aria-invalid:true" }}
     </div>
-    <div class="u-spacer-bottom">
-        <input class="btn btn--primary" name="action_add" type="submit" value="{% translate 'Add Email' %}"/>
-    </div>
+
+    {% include 'meinberlin_contrib/includes/form_submit_flex_end.html' with button_text='Add Email' %}
 </form>
-{% endblock %}
+{% endblock dashboard_content %}

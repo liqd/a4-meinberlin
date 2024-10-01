@@ -28,7 +28,6 @@
 @import "components_user_facing/control-bar";
 @import "components_user_facing/details";
 @import "components_user_facing/dropdown";
-@import "components_user_facing/follow";
 @import "components_user_facing/herounit_image_with_aside";
 @import "components_user_facing/input";
 @import "components_user_facing/item_detail";
@@ -46,6 +45,7 @@
 // a4 overwrites
 @import "components_user_facing/adhocracy4/a4-comments";
 @import "components_user_facing/adhocracy4/a4-control-bar-search";
+@import "components_user_facing/adhocracy4/a4-follow";
 @import "components_user_facing/adhocracy4/a4-modal";
 @import "components_user_facing/adhocracy4/a4-select";
 @import "components_user_facing/adhocracy4/a4-poll";

@@ -545,6 +545,7 @@ CKEDITOR_5_ALLOW_ALL_FILE_TYPES = True
 CKEDITOR_5_UPLOAD_FILE_TYPES = ["jpg", "jpeg", "png", "gif", "pdf", "doc", "docx"]
 CKEDITOR_5_CONFIGS = {
     "default": {
+        "removePlugins": ["WordCount"],
         "language": "de",
         "toolbar": [
             "bold",
@@ -574,6 +575,7 @@ CKEDITOR_5_CONFIGS = {
         },
     },
     "image-editor": {
+        "removePlugins": ["WordCount"],
         "language": "de",
         "toolbar": {
             "items": [
@@ -620,6 +622,7 @@ CKEDITOR_5_CONFIGS = {
         },
     },
     "collapsible-image-editor": {
+        "removePlugins": ["WordCount"],
         "language": "de",
         "toolbar": [
             "bold",
@@ -678,6 +681,7 @@ CKEDITOR_5_CONFIGS = {
         },
     },
     "video-editor": {
+        "removePlugins": ["WordCount"],
         "language": "de",
         "toolbar": ["mediaEmbed"],
         "mediaEmbed": {

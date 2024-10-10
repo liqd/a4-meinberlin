@@ -5,6 +5,13 @@
         <a href="{{ cancel }}" class="link--back">{% translate 'Cancel' %}</a>
     </div>
     <div class="form-actions__right">
-        <button class="button" type="submit">{% translate 'Save' %}</button>
+        <button class="button" type="submit">
+            {% if button_text %}
+                {% translate button_text %}
+            {% else %}
+                {% translate 'Save' %}
+            {% endif %}
+        </button>
     </div>
 </div>
+

@@ -1,0 +1,19 @@
+.form-submit-flex-end {
+    display: flex;
+    flex-direction: column;
+    
+    @media (min-width: $breakpoint-tablet) {
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+}
+
+.form-submit-flex-end__link {
+    margin: 0 auto!important;
+    padding: $spacer!important;
+
+    @media (min-width: $breakpoint-tablet) {
+        margin-right: $spacer * 1.5!important;
+        padding: 0!important;
+    }
+}

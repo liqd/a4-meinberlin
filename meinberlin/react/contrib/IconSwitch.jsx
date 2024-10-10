@@ -1,58 +1,21 @@
 import React from 'react'
 
-export const IconSwitch = (props) => {
-  const {
-    activeClass,
-    inactiveClass,
-    startIconClass,
-    endIconClass,
-    startText,
-    endText,
-    startID,
-    endID,
-    startAria,
-    endAria,
-    showStartObject,
-    showEndObject,
-    displayStartObject
-  } = props
-
-  return (
-    <div className="switch-btn-group-container">
-      <div className="btn-group switch-btn-group" role="group">
-        <label
-          htmlFor={startID}
-          className={!displayStartObject ? activeClass : inactiveClass}
+export const IconSwitch = ({ buttons, viewModeStr, fullWidth }) => (
+  <div className={'icon-switch' + (fullWidth ? ' icon-switch--full-width' : '')}>
+    <span className="text--strong">{viewModeStr}</span>
+    <div className="icon-switch__group" role="group">
+      {buttons.map((button) => (
+        <button
+          className={'button button--light' + (button.isActive ? ' button--fulltone' : '')}
+          onClick={button.handleClick}
+          aria-label={button.ariaLabel}
+          aria-pressed={button.isActive ? 'true' : 'false'}
+          key={button.id}
         >
-          <input
-            className="radio__input"
-            type="radio"
-            value={startID}
-            id={startID}
-            aria-label={startAria}
-            onClick={showStartObject}
-            onKeyDown={showStartObject}
-          />
-          <i className={startIconClass} />
-          <span>{startText}</span>
-        </label>
-        <label
-          htmlFor={endID}
-          className={displayStartObject ? activeClass : inactiveClass}
-        >
-          <input
-            className="radio__input"
-            type="radio"
-            id={endID}
-            value={endID}
-            aria-label={endAria}
-            onClick={showEndObject}
-            onKeyDown={showEndObject}
-          />
-          <i className={endIconClass} />
-          <span>{endText}</span>
-        </label>
-      </div>
+          <span className={button.icon + ' mr-1'} aria-hidden="true" />
+          {button.label}
+        </button>
+      ))}
     </div>
-  )
-}
+  </div>
+)

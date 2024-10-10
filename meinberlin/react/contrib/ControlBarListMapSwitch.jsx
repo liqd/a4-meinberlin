@@ -1,29 +1,7 @@
 import React from 'react'
 import django from 'django'
 import { useSearchParams } from 'react-router-dom'
-
-const ViewModeButton = ({ active, handleClick, children, ...rest }) => {
-  if (active) {
-    return (
-      <div
-        className="button button--light button--fulltone"
-        {...rest}
-      >
-        {children}
-      </div>
-    )
-  } else {
-    return (
-      <button
-        className="button button--light"
-        onClick={handleClick}
-        {...rest}
-      >
-        {children}
-      </button>
-    )
-  }
-}
+import { IconSwitch } from './IconSwitch'
 
 const translated = {
   viewMode: django.gettext('View mode'),
@@ -43,26 +21,26 @@ export const ControlBarListMapSwitch = () => {
   }
 
   return (
-    <div className="control-bar__list-map-switch-container">
-      <span className="text--strong">{translated.viewMode}</span>
-      <div className="control-bar__list-map-switch">
-        <ViewModeButton
-          active={viewMode === 'list'}
-          handleClick={handleClick}
-          aria-label={translated.viewList}
-        >
-          <span className="fa fa-list" aria-hidden="true" />&nbsp;
-          {translated.list}
-        </ViewModeButton>
-        <ViewModeButton
-          active={viewMode === 'map'}
-          handleClick={handleClick}
-          aria-label={translated.viewMap}
-        >
-          <span className="fa fa-map" aria-hidden="true" />&nbsp;
-          {translated.map}
-        </ViewModeButton>
-      </div>
-    </div>
+    <IconSwitch
+      viewModeStr={translated.viewMode}
+      buttons={[
+        {
+          ariaLabel: translated.viewList,
+          label: translated.list,
+          icon: 'fa fa-list',
+          id: 'show_list',
+          isActive: viewMode === 'list',
+          handleClick
+        },
+        {
+          ariaLabel: translated.viewMap,
+          label: translated.map,
+          icon: 'fa fa-map',
+          id: 'show_map',
+          isActive: viewMode === 'map',
+          handleClick
+        }
+      ]}
+    />
   )
 }

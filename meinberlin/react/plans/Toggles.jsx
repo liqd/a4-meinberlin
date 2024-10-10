@@ -9,10 +9,10 @@ const searchResultsStr = django.gettext(' search results')
 const removeFilterStr = django.gettext(' remove filter')
 const showMapStr = django.gettext('Show map')
 const showMapAriaStr = django.gettext('show map')
-const hideMapStr = django.gettext('hide map')
 const listStr = django.gettext('List')
 const mapStr = django.gettext('Map')
 const showListStr = django.gettext('show list')
+const viewModeStr = django.gettext('View mode')
 
 class Toggles extends React.Component {
   clickStatusButton () {
@@ -117,7 +117,7 @@ class Toggles extends React.Component {
               uniqueId="map-switch"
               toggleSwitch={this.props.toggleSwitch}
               onSwitchStr={showMapStr}
-              offSwitchStr={hideMapStr}
+              defaultChecked
             />
           </div>
         </div>
@@ -134,19 +134,26 @@ class Toggles extends React.Component {
               {this.searchFilterBtn()}
             </div>
             <IconSwitch
-              activeClass="btn btn--icon switch--btn active"
-              inactiveClass="btn btn--icon btn--light"
-              startText={listStr}
-              endText={mapStr}
-              startAria={showListStr}
-              endAria={showMapAriaStr}
-              startIconClass="fa fa-list"
-              endIconClass="fa fa-map"
-              startID="show_list"
-              endID="show_map"
-              displayStartObject={this.props.displayMap}
-              showStartObject={this.props.showList}
-              showEndObject={this.props.showMap}
+              fullWidth
+              viewModeStr={viewModeStr}
+              buttons={[
+                {
+                  ariaLabel: showListStr,
+                  label: listStr,
+                  icon: 'fa fa-list',
+                  id: 'show_list',
+                  isActive: !this.props.displayMap,
+                  handleClick: this.props.showList
+                },
+                {
+                  ariaLabel: showMapAriaStr,
+                  label: mapStr,
+                  icon: 'fa fa-map',
+                  id: 'show_map',
+                  isActive: this.props.displayMap,
+                  handleClick: this.props.showMap
+                }
+              ]}
             />
           </div>
         </div>

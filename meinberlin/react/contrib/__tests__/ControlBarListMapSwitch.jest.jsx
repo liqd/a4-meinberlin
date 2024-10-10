@@ -9,6 +9,7 @@ test('Buttonlink to map with href', () => {
       <ControlBarListMapSwitch query="&ordering=-created" />
     </BrowserRouter>
   )
-  const buttonToMap = screen.getByRole('button')
+  const buttonToMap = screen.getAllByRole('button')
   expect(buttonToMap).toBeTruthy()
+  expect(buttonToMap.length).toEqual(2)
 })

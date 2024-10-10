@@ -1,29 +1,26 @@
 import React from 'react'
 
-export const ToggleSwitch = (props) => {
-  const {
-    onSwitchStr,
-    offSwitchStr,
-    uniqueId,
-    toggleSwitch
-  } = props
-
-  return (
-    <div className="switch__group">
-      <label htmlFor={uniqueId} className="switch__label">
-        <span className="switch__label-text" aria-hidden="true">{onSwitchStr}</span>
-        <input
-          className="switch__input"
-          type="checkbox"
-          data-check-switch=""
-          role="switch"
-          id={uniqueId}
-          name={uniqueId}
-          onChange={toggleSwitch}
-          aria-label={offSwitchStr}
-        />
-        <span className="switch__toggle" aria-hidden="true" />
-      </label>
-    </div>
-  )
-}
+export const ToggleSwitch = ({
+  onSwitchStr,
+  uniqueId,
+  toggleSwitch,
+  defaultChecked,
+  checked
+}) => (
+  <div className="toggle-switch form-check">
+    <label className="toggle-switch__label" htmlFor={uniqueId}>{onSwitchStr}</label>
+    <input
+      type="checkbox"
+      name={uniqueId}
+      id={uniqueId}
+      className="toggle-switch__input"
+      onChange={toggleSwitch}
+      defaultChecked={defaultChecked}
+      checked={checked}
+    />
+    <span className="toggle-switch__display" hidden>
+      <i className="bicon bicon-check toggle-switch__icon toggle-switch__icon--on" aria-hidden="true" />
+      <i className="bicon bicon-times toggle-switch__icon toggle-switch__icon--off" aria-hidden="true" />
+    </span>
+  </div>
+)

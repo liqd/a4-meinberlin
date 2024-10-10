@@ -1,0 +1,26 @@
+.icon-switch {
+    display: inline-block;
+    text-align: left;
+}
+
+.icon-switch--full-width {
+    width: 100%;
+
+    .button {
+        flex: 1;
+    }
+}
+
+.icon-switch__group {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+    .button {
+        margin-left: 0;
+    }
+
+    .button.button--fulltone {
+        border-width: 2px;
+    }
+}

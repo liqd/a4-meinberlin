@@ -106,16 +106,6 @@
     border-bottom-right-radius: ($spacer * 0.3);
 }
 
-.switch-btn-group-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-
-    @media screen and (max-width: $breakpoint-xs-down) {
-        width: 100%;
-    }
-}
-
 .switch-filter__label {
     width: 100%;
     padding-bottom: 0.5 * $padding;

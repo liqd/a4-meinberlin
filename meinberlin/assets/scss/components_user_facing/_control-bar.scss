@@ -15,21 +15,6 @@
     outline-offset: -3px;
 }
 
-.control-bar__list-map-switch-container {
-    display: inline-block;
-    text-align: left;
-}
-
-.control-bar__list-map-switch {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-
-    .button {
-        margin-left: 0;
-    }
-}
-
 .control-bar__bottom {
     align-items: center;
 }

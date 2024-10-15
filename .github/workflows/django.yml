@@ -88,6 +88,7 @@ jobs:
           isort --diff -c meinberlin tests
           python manage.py makemigrations --dry-run --check --noinput
           flake8 meinberlin tests --exclude migrations,settings
+          mypy -p meinberlin
       - name: Coveralls
         env:
           GITHUB_TOKEN: ${{ secrets.COV }}

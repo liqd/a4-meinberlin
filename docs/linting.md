@@ -88,6 +88,24 @@ make lint-python-files meinberlin
 
 For details on black see https://github.com/PyCQA/flake8
 
+#### Mypy
+
+We use mypy for static type checking of all our typed python code. It is
+run as part of the commit hook and checks all staged code. It can also be
+invoked manually as part of the`lint-python-files` command if you want to lint
+a specific file or folder or as part of the `lint` command to lint all files:
+
+```
+# lint all python files
+make lint
+# lint specific python file or folder
+make lint-python-files <path>
+# example for linting all python files for mb
+make lint-python-files meinberlin
+```
+
+For details on mypy see https://mypy-lang.org/
+
 ### JS / CSS
 
 #### Eslint

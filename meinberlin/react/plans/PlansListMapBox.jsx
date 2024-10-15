@@ -2,9 +2,9 @@
 import StickyBox from 'react-sticky-box'
 import React, { Component } from 'react'
 import PlansList from './PlansList'
-import PlansMap from './PlansMap'
 import FilterNav from './FilterNav'
 import Toggles from './Toggles'
+import ProjectsMap from '../projects/ProjectsMap'
 
 const breakpointXS = 512
 const breakpointMD = 1024
@@ -290,21 +290,20 @@ class PlansListMapBox extends Component {
 
   getPlansMap (draggingEnabled, zoomPosition) {
     return (
-      <PlansMap
+      <ProjectsMap
         key="content"
         attribution={this.props.attribution}
-        resize={this.state.resizeMap}
         items={this.state.items}
         bounds={this.props.bounds}
-        currentDistrict={this.state.district}
-        nonValue={this.props.districtnames[this.props.districtnames.length - 1]}
-        districts={this.props.districts}
-        baseurl={this.props.baseurl}
+        // currentDistrict={this.state.district}
+        // nonValue={this.props.districtnames[this.props.districtnames.length - 1]}
+        // districts={this.props.districts}
+        baseUrl={this.props.baseurl}
         mapboxToken={this.props.mapboxToken}
         omtToken={this.props.omtToken}
         useVectorMap={this.props.useVectorMap}
-        districtnames={this.props.districtnames}
-        topicChoices={this.props.topicChoices}
+        // districtnames={this.props.districtnames}
+        // topicChoices={this.props.topicChoices}
         draggingEnabled={draggingEnabled}
         zoomPosition={zoomPosition}
       />
@@ -401,16 +400,16 @@ class PlansListMapBox extends Component {
       )
     } else {
       return (
-        <div>
+        <div className="projects-list">
           {this.getFilterNav(3, false, isTablet)}
           {this.getToggles(true)}
           {this.state.showListMap
             ? (
-              <div className="map-list-combined">
-                <div id="list" className="list-container map-list-combined__list">
+              <div className="projects-list__wrapper projects-list__wrapper--combined">
+                <div id="list" className="projects-list__list">
                   {this.getPlansList(true)}
                 </div>
-                <div id="map" className="map-container map-list-combined__map">
+                <div id="map" className="projects-list__map">
                   <StickyBox offsetTop={0} offsetBottom={0}>
                     {this.getPlansMap(true, 'topright')}
                   </StickyBox>
@@ -418,11 +417,9 @@ class PlansListMapBox extends Component {
               </div>
               )
             : (
-              <div className="l-frame">
-                <div className="map-list-combined">
-                  <div className="list-container map-list-combined__list">
-                    {this.getPlansList(false)}
-                  </div>
+              <div className="projects-list__wrapper">
+                <div className="projects-list__list">
+                  {this.getPlansList(false)}
                 </div>
               </div>
               )}

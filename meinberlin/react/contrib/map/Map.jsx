@@ -53,9 +53,10 @@ export const Map = ({ id, title, ...props }) => {
  * @param {object} props - The properties to pass to the Map component.
  * @param {Array<object>} points - The array of points to create markers from.
  * @param {boolean} withoutPopup - Indicates whether to exclude the popup for each marker.
+ * @param {ReactNode} children - Any additional controls etc. to be added to the map
  * @returns {JSX.Element} - The rendered map component with markers.
  */
-export const MapWithMarkers = ({ points, withoutPopup, ...props }) => {
+export const MapWithMarkers = ({ points, withoutPopup, children, ...props }) => {
   const markers = points.map((feature, index) => (
     <GeoJsonMarker key={index} feature={feature}>
       {!withoutPopup && <ItemPopup feature={feature} />}
@@ -66,6 +67,7 @@ export const MapWithMarkers = ({ points, withoutPopup, ...props }) => {
       {...props}
     >
       {points.length > 1 ? <MarkerClusterLayer>{markers}</MarkerClusterLayer> : markers}
+      {children}
     </Map>
   )
 }

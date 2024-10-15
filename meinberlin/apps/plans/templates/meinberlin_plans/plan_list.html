@@ -1,20 +1,22 @@
 {% extends "base.html" %}
 {% load i18n static %}
 
-{% block title %}{% translate "Projects" %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate "Projects" %} — {{ block.super }}{% endblock title %}
 
 {% block extra_js %}
     {{ block.super }}
-    {{ block.super }}
-{% endblock %}
+{% endblock extra_js %}
 
 {% block extra_css %}
     {{ block.super }}
     <link rel="stylesheet" href="{% static 'mb_plans_map.css' %}" />
-{% endblock %}
+{% endblock extra_css %}
 
 {% block content %}
-    <div data-map="plans"
+    <div
+         id="layout-grid__area--herounit"
+         class="fullwidth"
+         data-map="plans"
          data-selected-district="{{ district }}"
          data-selected-topic="{{ topic }}"
          data-plans-url="{{ plans_api_url }}"
@@ -32,8 +34,8 @@
          data-baseurl="{{ baseurl }}"
          data-bounds="{{ bounds }}"
          data-participation-choices="{{ participation_choices }}"></div>
-{% endblock %}
+{% endblock content %}
 
 {% block extra_js_deferred %}
     <script src="{% static 'mb_plans_map.js' %}"></script>
-{% endblock %}
+{% endblock extra_js_deferred %}

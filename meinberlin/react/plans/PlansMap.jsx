@@ -1,3 +1,4 @@
+// TODO: Remove this once project overview is completed with redesign
 /* global django */
 import { renderToString } from 'react-dom/server'
 import React, { Component } from 'react'

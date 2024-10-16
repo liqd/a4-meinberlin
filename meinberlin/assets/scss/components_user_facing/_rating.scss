@@ -1,6 +1,10 @@
 .rating {
-    display: inline-block;
-    white-space: nowrap;
+    display: flex;
+
+    @media screen and (min-width: $breakpoint-palm) {
+        display: inline-block;
+        white-space: nowrap;
+    }
 }
 
 .rating__label {
@@ -11,9 +15,16 @@
 .rating-button {
     color: $link-color;
     margin-right: 1em;
+    padding: 0;
 
     i {
         margin-right: 0.4em;
+        margin-bottom: 0.4em;
+        display: block;
+
+        @media screen and (min-width: $breakpoint-palm) {
+            display: inline;
+        }
     }
 
     .fa-chevron-up:before {

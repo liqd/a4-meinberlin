@@ -125,7 +125,7 @@ class Toggles extends React.Component {
     } else {
       return (
         <div>
-          <div className="l-frame switch-container">
+          <div className="l-frame switch-container mb-2">
             <div className={this.props.displayButtons ? 'switch-filter__label' : 'd-none'}>{this.props.projectCount}{searchResultsStr}</div>
             <div className="switch-filter__btn-group">
               {this.statusFilterBtn()}

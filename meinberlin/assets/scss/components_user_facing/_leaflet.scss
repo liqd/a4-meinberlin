@@ -1,0 +1,34 @@
+.leaflet-marker-icon.marker-cluster {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.leaflet-marker-icon.marker-cluster > div {
+  background-color: $secondary;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:before {
+    content: "";
+    display: block;
+    width: 130%;
+    height: 130%;
+    border-radius: 50%;
+    position: absolute;
+    background-color: rgba($secondary, .5);
+  }
+
+  span {
+    position: relative;
+    z-index: 1;
+    color: $text-inverted;
+    font-weight: 700;
+    font-size: $font-size-sm;
+  }
+}

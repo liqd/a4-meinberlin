@@ -1,13 +1,15 @@
 import React from 'react'
+import { classNames } from './helpers'
 
 export const ToggleSwitch = ({
   onSwitchStr,
   uniqueId,
   toggleSwitch,
   defaultChecked,
-  checked
+  checked,
+  className
 }) => (
-  <div className="toggle-switch form-check">
+  <div className={classNames('toggle-switch form-check', className)}>
     <label className="toggle-switch__label" htmlFor={uniqueId}>{onSwitchStr}</label>
     <input
       type="checkbox"

@@ -44,9 +44,11 @@
 @import "components_user_facing/user_indicator";
 @import "components_user_facing/toggle_switch";
 @import "components_user_facing/icon_switch";
-@import "components_user_facing/projects_list";
+@import "components_user_facing/projects-list";
 @import "components_user_facing/projects_map";
 @import "components_user_facing/leaflet";
+@import "components_user_facing/project-tile";
+@import "components_user_facing/status-bar";
 
 // a4 overwrites
 @import "components_user_facing/adhocracy4/a4-comments";

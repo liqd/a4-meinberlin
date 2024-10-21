@@ -1,0 +1,96 @@
+.projects-list {
+    list-style: none;
+    margin: 0 0 1.5em;
+    padding: 0;
+
+    > li {
+        padding: .4em 0;
+        border-bottom: 1px solid $gray-lighter;
+
+        @media screen and (min-width: $breakpoint-palm) {
+            margin-bottom: 0;
+            padding: 0;
+            border-bottom: 0;
+        }
+    }
+}
+
+.projects-list--vertical {
+    @media screen and (min-width: $breakpoint-palm) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3em 1.5em;
+    }
+
+    @media screen and (min-width: $breakpoint-tablet) {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+.projects-list__list {
+    @media screen and (min-width: $breakpoint-tablet) {
+        padding: 1.5em 0.875em;
+    }
+}
+
+.projects-list__wrapper--combined {
+    height: 600px;
+
+    @media screen and (min-width: $breakpoint-tablet) {
+        height: 1100px;
+        display: flex;
+    }
+
+    .projects-list__list {
+        display: none;
+
+        @media screen and (min-width: $breakpoint-tablet) {
+            display: block;
+            overflow: auto;
+        }
+    }
+
+    .projects-list__list,
+    .projects-list__map {
+        flex: 1;
+    }
+
+    .modul-geomap,
+    .geomap-main,
+    .geomap-container,
+    .leaflet-container {
+        height: 100%;
+    }
+}
+
+.projects-list__icon-switch {
+    margin-bottom: 1em;
+
+    @media screen and (min-width: $breakpoint-tablet) {
+        display: none;
+    }
+}
+
+.projects-list__toggle-switch {
+    margin-left: auto;
+    margin-bottom: 0;
+}
+
+.projects-list__list-meta {
+    display: none;
+
+    @media screen and (min-width: $breakpoint-tablet) {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.projects-list__wrapper--combined .projects-list__list-meta:not(.projects-list__list-meta--no-results) {
+    border-bottom: 1px solid $gray-lighter;
+    padding-bottom: .8em;
+}
+
+.projects-list__list-meta--no-results div:first-child {
+    max-width: 50ch
+}
+

@@ -104,6 +104,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
             "topics",
             "type",
             "url",
+            "id"
         ]
 
     def get_topics(self, instance):

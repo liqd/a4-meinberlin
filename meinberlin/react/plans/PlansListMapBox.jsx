@@ -1,9 +1,9 @@
 /* global django */
 import StickyBox from 'react-sticky-box'
 import React, { Component } from 'react'
-import PlansList from './PlansList'
 import FilterNav from './FilterNav'
 import Toggles from './Toggles'
+import ProjectsList from '../projects/ProjectsList'
 import ProjectsMap from '../projects/ProjectsMap'
 
 const breakpointXS = 512
@@ -270,11 +270,10 @@ class PlansListMapBox extends Component {
   getPlansList (isHorizontal) {
     if (!this.state.loading) {
       return (
-        <PlansList
-          key="content"
-          items={this.state.items}
-          topicChoices={this.props.topicChoices}
+        <ProjectsList
+          projects={this.state.items}
           isHorizontal={isHorizontal}
+          topicChoices={this.props.topicChoices}
         />
       )
     } else {

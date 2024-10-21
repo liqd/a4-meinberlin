@@ -24,3 +24,14 @@ export const toLocaleDate = (
   const date = new Date(isodate)
   return new Intl.DateTimeFormat(locale, formatStyle).format(date)
 }
+
+/*
+ * creates a string for className attribute from an array of classnames
+ * while filtering out empty strings and undefined
+ *
+ * @param {...string} classes
+ * @returns {string}
+ */
+export const classNames = (...classes) => {
+  return classes.filter(Boolean).join(' ')
+}

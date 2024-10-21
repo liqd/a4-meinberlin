@@ -1,7 +1,7 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { CookiesProvider } from 'react-cookie'
-import PlansListMapBox from './PlansListMapBox'
+import ProjectsListMapBox from '../projects/ProjectsListMapBox'
 
 function init () {
   const plansMapBox = document.querySelectorAll('[data-map="plans"]')
@@ -11,7 +11,7 @@ function init () {
     const privateprojectApiUrl = el.getAttribute('data-privateprojects-url')
     const plansApiUrl = el.getAttribute('data-plans-url')
     const attribution = el.getAttribute('data-attribution')
-    const baseurl = el.getAttribute('data-baseurl')
+    const baseUrl = el.getAttribute('data-baseurl')
     const bounds = JSON.parse(el.getAttribute('data-bounds'))
     const selectedDistrict = el.getAttribute('data-selected-district')
     const selectedTopic = el.getAttribute('data-selected-topic')
@@ -27,7 +27,7 @@ function init () {
     root.render(
       <React.StrictMode>
         <CookiesProvider>
-          <PlansListMapBox
+          <ProjectsListMapBox
             selectedDistrict={selectedDistrict}
             selectedTopic={selectedTopic}
             projectApiUrl={projectApiUrl}
@@ -35,7 +35,7 @@ function init () {
             privateprojectApiUrl={privateprojectApiUrl}
             plansApiUrl={plansApiUrl}
             attribution={attribution}
-            baseurl={baseurl}
+            baseUrl={baseUrl}
             mapboxToken={mapboxToken}
             omtToken={omtToken}
             useVectorMap={useVectorMap}

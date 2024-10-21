@@ -1,0 +1,33 @@
+.status-item {
+    text-align: left;
+    width: 100%;
+}
+
+.status-item_spacer {
+    height: 3 * $spacer;
+}
+
+.status-bar__active {
+    height: 5px;
+    background-color: $message-light-green;
+    margin-bottom: 0.5 * $spacer;
+}
+
+
+.status-bar__active-fill {
+    background-color: $primary;
+    display: block;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.status-bar__status {
+    color: $text-base;
+
+    i {
+        padding-right: 0.5 * $padding;
+        color: $secondary;
+    }
+}
+

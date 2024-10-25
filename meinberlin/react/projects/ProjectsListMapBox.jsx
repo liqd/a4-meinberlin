@@ -155,7 +155,6 @@ const ProjectsListMapBox = ({
           </div>
           {showMap &&
             <div id="map" className="projects-list__map">
-              {/* <StickyBox offsetTop={0} offsetBottom={0}> */}
               <ProjectsMap
                 attribution={attribution}
                 items={items}
@@ -167,8 +166,8 @@ const ProjectsListMapBox = ({
                 mapboxToken={mapboxToken}
                 omtToken={omtToken}
                 useVectorMap={useVectorMap}
+                topicChoices={topicChoices}
               />
-              {/* </StickyBox> */}
             </div>}
         </div>
       </div>

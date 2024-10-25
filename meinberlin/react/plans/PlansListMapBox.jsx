@@ -1,5 +1,4 @@
 /* global django */
-import StickyBox from 'react-sticky-box'
 import React, { Component } from 'react'
 import FilterNav from './FilterNav'
 import Toggles from './Toggles'
@@ -409,9 +408,9 @@ class PlansListMapBox extends Component {
                   {this.getPlansList(true)}
                 </div>
                 <div id="map" className="projects-list__map">
-                  <StickyBox offsetTop={0} offsetBottom={0}>
-                    {this.getPlansMap(true, 'topright')}
-                  </StickyBox>
+                  {/* <StickyBox offsetTop={0} offsetBottom={0}> */}
+                  {this.getPlansMap(true, 'topright')}
+                  {/* </StickyBox> */}
                 </div>
               </div>
               )

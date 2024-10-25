@@ -1,3 +1,55 @@
 .projects-map {
-  height: 100%;
+    height: 100%;
+
+    .leaflet-bottom.leaflet-left {
+        position: static;
+    }
 }
+
+.project-overlay-control {
+    background: $white;
+    position: absolute;
+    bottom: 1.5em;
+    left: 1.5em;
+    right: 1.5em;
+    z-index: 1000;
+    padding: 0.5em;
+
+    @media screen and (min-width: $breakpoint-tablet) {
+        display: none;
+    }
+
+    .project-tile__image {
+        height: 175px;
+    }
+
+    a {
+        color: $text-base;
+    }
+}
+
+.projects-map__popup {
+    display: none;
+
+    @media screen and (min-width: $breakpoint-tablet) {
+        display: block;
+
+    }
+
+    .leaflet-popup-content-wrapper {
+        border-radius: 0;
+    }
+
+    .leaflet-popup-content {
+        margin: 1em;
+    }
+
+    .leaflet-popup-content a {
+        color: $text-base;
+    }
+
+    .leaflet-popup-tip-container {
+        display: none;
+    }
+}
+

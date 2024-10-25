@@ -22,7 +22,7 @@ function truncateText (item) {
   }
 }
 
-const ProjectTile = ({ project, isHorizontal, topicChoices }) => {
+const ProjectTile = ({ project, isHorizontal, topicChoices, isMapTile }) => {
   const labelId = useId()
   const describedById = useId()
   const statusId = useId()
@@ -36,7 +36,7 @@ const ProjectTile = ({ project, isHorizontal, topicChoices }) => {
       aria-labelledby={labelId}
       id={describedById}
       aria-describedby={describedById}
-      className={classNames('project-tile', isHorizontal ? 'project-tile--horizontal' : 'project-tile--vertical')}
+      className={classNames('project-tile', isHorizontal ? 'project-tile--horizontal' : 'project-tile--vertical', isMapTile && 'project-tile--map')}
     >
       <div className="project-tile__image-wrapper">
         <ImageWithPlaceholder
@@ -52,13 +52,13 @@ const ProjectTile = ({ project, isHorizontal, topicChoices }) => {
       </div>
 
       <div className="project-tile__body">
-        <span className="project-tile__head">{project.district}</span>
+        {!isMapTile && <span className="project-tile__head">{project.district}</span>}
         {project.topics?.length > 0 &&
           <div className="project-tile__topics">
             <ProjectTopics project={project} topicChoices={topicChoices} />
           </div>}
         <h3 className="project-tile__title" id={labelId}>{project.title}</h3>
-        {project.description && (
+        {project.description && !isMapTile && (
           <p className="project-tile__description">
             {truncateText(project.description)}
           </p>

@@ -6,6 +6,7 @@ import { IconSwitch } from '../contrib/IconSwitch'
 import { classNames } from '../contrib/helpers'
 import sortProjects from './sort-projects'
 import ProjectsMap from './ProjectsMap'
+import Spinner from '../contrib/Spinner'
 
 // const statusNames = [
 //   django.gettext('ongoing'),
@@ -44,7 +45,7 @@ const ProjectsListMapBox = ({
   useVectorMap
 }) => {
   const [showMap, setShowMap] = useState(true)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [projectState] = useState(['active', 'future'])
   const [items, setItems] = useState([])
 
@@ -54,7 +55,7 @@ const ProjectsListMapBox = ({
       plansApiUrl,
       extprojectApiUrl,
       privateprojectApiUrl,
-      ...projectState.map(state => projectApiUrl + '?status=' + state)
+      ...projectState.map(state => projectApiUrl + '?status=' + state + 'Participation')
     ]
     const tempItems = []
 
@@ -89,6 +90,16 @@ const ProjectsListMapBox = ({
     document.querySelector('.mb-project-overview').classList.toggle('fullwidth', !!showMap)
   }, [showMap])
 
+  let status = nothingStr
+
+  if (loading) {
+    status = (
+      <Spinner />
+    )
+  } else if (items.length > 0) {
+    status = getResultCountText(items.length)
+  }
+
   return (
     <div>
       <div className="projects-list">
@@ -121,8 +132,11 @@ const ProjectsListMapBox = ({
         >
           <div id="list" className="projects-list__list">
             <div className={classNames('projects-list__list-meta', items.length === 0 && 'projects-list__list-meta--no-results')}>
-              <div role="status">
-                {items.length > 0 ? getResultCountText(items.length) : nothingStr}
+              <div
+                role="status"
+                className="projects-list__status"
+              >
+                {status}
               </div>
               <ToggleSwitch
                 uniqueId="map-switch"

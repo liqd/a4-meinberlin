@@ -26,7 +26,7 @@ const ProjectTile = ({ project, isHorizontal, topicChoices }) => {
   const labelId = useId()
   const describedById = useId()
   const statusId = useId()
-  const statusBarProgress = project.active_phase[0] + '%'
+  const statusBarProgress = project.active_phase ? project.active_phase[0] + '%' : null
 
   return (
     <a

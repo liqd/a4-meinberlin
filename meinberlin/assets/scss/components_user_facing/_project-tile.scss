@@ -13,7 +13,7 @@ a.project-tile {
         height: 100%;
     }
 
-    &--horizontal {
+    &--horizontal:not(.project-tile--map) {
         border-bottom: 1px solid $gray-lighter;
         padding-bottom: 1.5em;
         padding-top: 1.5em;
@@ -21,12 +21,25 @@ a.project-tile {
 }
 
 .project-tile__image-wrapper {
-    flex: 1
+    flex: 1;
+    min-width: 0;
+
+    .project-tile--map & {
+        flex: 0 0 auto;
+
+        @media screen and (min-width: $breakpoint-tablet) {
+            flex: 3;
+        }
+    }
 }
 
 .project-tile__image {
     object-fit: cover;
-    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    width: auto;
+    aspect-ratio: 1 / 1;
 }
 
 .project-tile__body {
@@ -91,4 +104,5 @@ a.project-tile {
 
 .project-tile__timespan {
     font-size: $font-size-sm;
+    font-weight: 400;
 }

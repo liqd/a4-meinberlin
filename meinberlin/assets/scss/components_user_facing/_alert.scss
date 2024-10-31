@@ -1,26 +1,32 @@
-@use "sass:color";
-
-$messages-margin-bottom: 25px;
-
-.messages {
-    margin: 0 0 $messages-margin-bottom;
-    padding: 0;
-
-    li {
-        display: block;
-    }
-
-    + .messages {
-        margin-top: -$messages-margin-bottom;
-    }
+.alert { 
+    margin: $padding 0;
+    background-color: $message-light-blue;
 }
 
-.alert {
+.a4-alert__container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.a4-alert__content {
+    padding: $padding * 1.375 $padding * 1.125;
+}
+
+.alert__headline {
     margin: 0;
-    padding: $padding * 1.2 0;
-    background-color: $message-light-blue;
-    color: $text-base;
-    text-align: center;
+    padding: 0;
+    color: inherit;
+}
+
+.alert__text {
+    margin: 0;
+    padding: 0;
+}
+
+.alert__close {
+    padding: $padding * 0.625;
+    height: fit-content;
+    color: inherit;
 }
 
 .alert--success {
@@ -39,25 +45,16 @@ $messages-margin-bottom: 25px;
     color: $text-base;
 }
 
-.alert__close {
-    float: right;
-    color: inherit;
-}
-
 .alert--small {
     padding: 0.5em;
 }
 
-// If this directly follows the dialog box (see header.scss), add 16px
-// additional padding to the default value (see above).
-.messages:first-child > :first-child {
-    padding-top: calc(16px + #{$padding * 1.2});
+.alert:first-child { 
+    margin: 0;
+    margin-bottom: $padding;
 }
 
-// compensate for margin-bottom on messages
-.project-header,
-.hero-unit {
-    .messages + & {
-        margin-top: -$messages-margin-bottom;
-    }
+.alert:last-child { 
+    margin: 0;
+    margin-top: $padding;
 }

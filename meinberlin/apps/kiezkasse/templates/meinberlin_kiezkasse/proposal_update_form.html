@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% blocktranslate with title=object.name %}Edit {{ title }}{% endblocktranslate %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% blocktranslate with title=object.name %}Edit {{ title }}{% endblocktranslate %} - {{ block.super }}{% endblock title %}
 
 {% block breadcrumbs %}
     <div id="content-header">
@@ -10,7 +10,7 @@
                 <li><a href="{% url 'wagtail_serve' '' %}">meinBerlin</a></li>
                 <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a></li>
                 <li><a href="{% url 'project-detail' project.slug %}">{{ project.name|truncatechars:50 }}</a></li>
-                {% if module.is_in_module_cluster  %}
+                {% if module.is_in_module_cluster %}
                     <li><a href="{{ module.get_detail_url }}">{{ module.name|truncatechars:50 }}</a></li>
                 {% endif %}
                 <li><a href="{{ object.get_absolute_url }}">{% translate 'Proposal' %}</a></li>
@@ -18,18 +18,16 @@
             </ol>
         </nav>
     </div>
-{% endblock %}
+{% endblock breadcrumbs %}
 
 {% block content %}
 <div id="layout-grid__area--maincontent">
     <h1>{% translate 'Edit proposal' %}</h1>
 
     {% if form.errors %}
-    <div class="alert alert--danger" aria-live="assertive" aria-atomic="true" id="alert">
-        {% translate 'An error occurred while evaluating your data. Please check the data you entered again.' %}
-    </div>
+        {% include 'meinberlin_contrib/components/alert.html' with alert_message='Error during validation. Please check your entries.' alert_type='danger' %}
     {% endif %}
 
     {% include "meinberlin_kiezkasse/includes/proposal_form.html" with proposal=proposal cancel=object.get_absolute_url %}
 </div>
-{% endblock %}
+{% endblock content %}

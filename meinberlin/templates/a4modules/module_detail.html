@@ -17,13 +17,7 @@
   {{ block.super }}
 
   {% if project.is_draft %}
-    <ul class="messages">
-      <li class="alert alert--warning" role="alert">
-        <div class="container">
-          {% translate 'This project is not published yet.' %}
-        </div>
-      </li>
-    </ul>
+    {% include 'meinberlin_contrib/components/alert.html' with alert_message='This project has not yet been published.' alert_type='info' %}
   {% endif %}
 {% endblock extra_messages %}
 

@@ -1,7 +1,7 @@
 {% extends "a4dashboard/base_dashboard_project.html" %}
 {% load i18n %}
 
-{% block title %}{% translate 'Add a new place' %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate 'Add a new place' %} - {{ block.super }}{% endblock title %}
 
 {% block dashboard_project_content %}
 <div class="container">
@@ -16,4 +16,4 @@
     {% url 'a4dashboard:maptopic-list' module_slug=module.slug as cancel %}
     {% include "meinberlin_maptopicprio/includes/maptopic_form.html" with cancel=cancel %}
 </div>
-{% endblock %}
+{% endblock dashboard_project_content %}

@@ -1,0 +1,22 @@
+{% load i18n %}
+
+<div class="alert alert--{{ alert_type }}" 
+role="alert" 
+aria-live="{% if alert_type == 'danger' %}assertive{% else %}polite{% endif %}" 
+aria-describedby="{% if alert_headline %}alert__headline{% endif %} alert__text"
+aria-atomic="true"
+>
+  <div class="a4-alert__container">
+      <div class="a4-alert__content">
+        {% if alert_headline %}
+          <h3 class="alert__headline">
+            {% translate alert_headline %}
+          </h3>
+        {% endif %}
+        <p class="alert__text">
+          {% translate alert_message %}
+        </p>
+      </div>
+      <button type="button" class="alert__close" data-bs-dismiss="alert" aria-label="{% translate 'Close' %}"><i class="fa fa-times" aria-hidden="true"></i></button>
+  </div>
+</div>

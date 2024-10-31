@@ -23,11 +23,13 @@
              src="{% if has_image_set %}{{ file_url }}{% else %}data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs={% endif %}"
              data-upload-preview="{{ id }}"
              alt=""
+             width=""
+             height=""
         >
     </div>
     <div class="col-12">
         <div class="alert alert--info upload-wrapper__alert" aria-live="polite">
-            {% translate 'Your image will be uploaded/removed once you save your changes at the end of this page.' %}
+            {% include 'meinberlin_contrib/components/alert.html' with alert_message='Your image will be uploaded/removed once you save your changes at the end of this page.' alert_type='info' %}
         </div>
     </div>
 </div>

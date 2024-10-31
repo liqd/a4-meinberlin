@@ -49,24 +49,19 @@
     </div>
     {% block header %}
       {% include "header.html" %}
-    {% endblock %}
+    {% endblock header %}
     <!-- FIXME we don't currently want their grid in dashboard however this does not work if someone names wagtail, project or plan page 'dashboard' -->
     <main role="main" tabindex="-1" {% if '/dashboard' not in request.path or '/components' not in request.path %} id="layout-grid" {% endif %}>
         <div id="layout-grid__area--contentheader">
-            {% block breadcrumbs %}{% endblock %}
-            {% block menu %}{% userindicator %}{% endblock %}
+            {% block breadcrumbs %}{% endblock breadcrumbs %}
+            {% block menu %}{% userindicator %}{% endblock menu %}
         </div>
 
         {% if messages %}
-        <ul class="messages">
             {% for message in messages %}
-            <li class="alert alert--{{ message.level_tag }}" aria-live="polite" aria-atomic="true" id="alert">
-                <div class="container">
-                    {{ message }}
-                </div>
-            </li>
+                {% include 'meinberlin_contrib/components/alert.html' with alert_message=message|stringformat:"s" alert_headline=message.level_headline alert_type=message.level_tag %}
             {% endfor %}
-        </ul>
+
         {% endif %}
 
         {% block extra_messages %}{% endblock extra_messages %}

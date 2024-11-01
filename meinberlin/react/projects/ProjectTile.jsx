@@ -58,9 +58,11 @@ const ProjectTile = ({ project, isHorizontal, topicChoices }) => {
             <ProjectTopics project={project} topicChoices={topicChoices} />
           </div>}
         <h3 className="project-tile__title" id={labelId}>{project.title}</h3>
-        <p className="project-tile__description">
-          {truncateText(project.description)}
-        </p>
+        {project.description && (
+          <p className="project-tile__description">
+            {truncateText(project.description)}
+          </p>
+        )}
 
         {project.active_phase &&
           <>

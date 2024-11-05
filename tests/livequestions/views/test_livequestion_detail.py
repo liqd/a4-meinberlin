@@ -26,7 +26,7 @@ def test_detail_view(
         assert_template_response(
             response, "meinberlin_livequestions/question_module_detail.html"
         )
-        assert "• Live now" not in response.content.decode()
+        assert "Live" not in response.content.decode()
 
     live_stream = live_stream_factory(module=module, creator_id=user.id)
     live_stream.live_stream = (
@@ -37,9 +37,9 @@ def test_detail_view(
     with freeze_time(parse("2013-01-01 18:00:00 UTC")):
         with translation.override("en_GB"):
             response = client.get(url)
-            assert "• Live now" in response.content.decode()
+            assert "Live" in response.content.decode()
 
     with freeze_time(parse("2013-01-01 19:30:00 UTC")):
         with translation.override("en_GB"):
             response = client.get(url)
-            assert "• Live now" not in response.content.decode()
+            assert "Live" not in response.content.decode()

@@ -397,7 +397,7 @@ BLEACH_LIST = {
             "a": ["href", "rel", "target"],
             "img": ["src", "alt", "style"],
             "div": ["class", "data-oembed-url"],
-            "iframe": ["src", "alt"],
+            "iframe": ["src", "alt", "allow", "allowfullscreen"],
             "figure": ["class", "div", "iframe"],
         },
     },

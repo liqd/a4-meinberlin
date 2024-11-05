@@ -44,7 +44,6 @@ module.exports = {
     },
     dsgvo_video_embed: {
       import: [
-        'dsgvo-video-embed/css/dsgvo-video-embed.css',
         'dsgvo-video-embed/js/dsgvo-video-embed.js'
       ],
       dependOn: 'adhocracy4'

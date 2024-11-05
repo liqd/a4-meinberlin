@@ -17,6 +17,10 @@
         background-color: $primary-400;
         color: $text-base;
     }
+
+    &--live {
+        background-color: $feedback-color-rejected;
+    }
 }
 
 .pill__list {

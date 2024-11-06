@@ -85,11 +85,6 @@ const ProjectsListMapBox = ({
     fetchItems()
   }, [fetchItems])
 
-  useEffect(() => {
-    // toggle between full width (when map + list) and narrow (when list only)
-    document.querySelector('.mb-project-overview').classList.toggle('fullwidth', !!showMap)
-  }, [showMap])
-
   let status = nothingStr
 
   if (loading) {
@@ -104,6 +99,12 @@ const ProjectsListMapBox = ({
     <div>
       <div className="projects-list">
         <h1 className="aural">{pageHeader}</h1>
+        <div
+          role="status"
+          className="projects-list__status projects-list__status--mobile"
+        >
+          {status}
+        </div>
         <IconSwitch
           fullWidth
           className="projects-list__icon-switch"
@@ -115,7 +116,10 @@ const ProjectsListMapBox = ({
               icon: 'fa fa-list',
               id: 'show_list',
               isActive: !showMap,
-              handleClick: () => setShowMap(false)
+              handleClick: () => {
+                document.querySelector('.mb-project-overview').classList.remove('fullwidth')
+                setShowMap(false)
+              }
             },
             {
               ariaLabel: showMapAriaStr,
@@ -123,7 +127,10 @@ const ProjectsListMapBox = ({
               icon: 'fa fa-map',
               id: 'show_map',
               isActive: showMap,
-              handleClick: () => setShowMap(true)
+              handleClick: () => {
+                document.querySelector('.mb-project-overview').classList.add('fullwidth')
+                setShowMap(true)
+              }
             }
           ]}
         />
@@ -141,7 +148,10 @@ const ProjectsListMapBox = ({
               <ToggleSwitch
                 uniqueId="map-switch"
                 className="projects-list__toggle-switch"
-                toggleSwitch={() => setShowMap(!showMap)}
+                toggleSwitch={() => {
+                  document.querySelector('.mb-project-overview').classList.toggle('fullwidth', !showMap)
+                  setShowMap(!showMap)
+                }}
                 onSwitchStr={showMapStr}
                 checked={showMap}
               />
@@ -159,9 +169,9 @@ const ProjectsListMapBox = ({
                 attribution={attribution}
                 items={items}
                 bounds={bounds}
-                 // currentDistrict={this.state.district}
-                 // nonValue={districtnames[districtnames.length - 1]}
-                 // districts={districts}
+               // currentDistrict={this.state.district}
+               // nonValue={districtnames[districtnames.length - 1]}
+               // districts={districts}
                 baseUrl={baseUrl}
                 mapboxToken={mapboxToken}
                 omtToken={omtToken}

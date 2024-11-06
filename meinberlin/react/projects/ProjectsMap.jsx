@@ -20,7 +20,7 @@ const Markers = React.memo(({ items, topicChoices }) => {
           .map(item => ({ ...item.point, properties: item }))
           .map((project) => (
             <GeoJsonMarker
-              key={project.title}
+              key={project.properties.title}
               feature={project}
               eventHandlers={{
                 popupopen: () => setActiveProject(project),

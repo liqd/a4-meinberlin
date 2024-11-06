@@ -37,9 +37,11 @@ a.project-tile {
     object-fit: cover;
     max-width: 100%;
     height: auto;
-    max-height: 100%;
-    width: auto;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 4 / 3;
+
+    .project-tile--horizontal & {
+        aspect-ratio: 112 / 115;
+    }
 }
 
 .project-tile__body {

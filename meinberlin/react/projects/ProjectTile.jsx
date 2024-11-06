@@ -42,8 +42,8 @@ const ProjectTile = ({ project, isHorizontal, topicChoices, isMapTile }) => {
         <ImageWithPlaceholder
           src={project.tile_image}
           alt={project.tile_image_alt_text ?? altImgStr}
-          height={245}
-          width={isHorizontal ? 245 : 315}
+          height={490}
+          width={isHorizontal ? 490 : 630}
           className="project-tile__image"
         />
         <span className="project-tile__copyright">

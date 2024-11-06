@@ -83,12 +83,20 @@
     @media screen and (min-width: $breakpoint-tablet) {
         display: flex;
         align-items: center;
+        padding-bottom: .8em;
+    }
+}
+
+.projects-list__status--mobile {
+    margin-bottom: 1em;
+
+    @media screen and (min-width: $breakpoint-tablet) {
+        display: none;
     }
 }
 
 .projects-list__wrapper--combined .projects-list__list-meta:not(.projects-list__list-meta--no-results) {
     border-bottom: 1px solid $gray-lighter;
-    padding-bottom: .8em;
 }
 
 .projects-list__list-meta--no-results div:first-child {

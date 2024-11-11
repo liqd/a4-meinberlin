@@ -88,6 +88,7 @@ INSTALLED_APPS = (
     "meinberlin.apps.captcha",
     "meinberlin.apps.cms",
     "meinberlin.apps.contrib",
+    "meinberlin.apps.kiezradar",
     "meinberlin.apps.likes",
     "meinberlin.apps.livequestions",
     "meinberlin.apps.maps",

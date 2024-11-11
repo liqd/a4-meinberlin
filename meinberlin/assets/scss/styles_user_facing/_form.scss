@@ -23,6 +23,16 @@ button {
   }
 }
 
+.form-check:has(.form-check-input) {
+  display: flex;
+}
+
+.form-check-input {
+  flex: 0 0 auto;
+  float: none !important;
+  margin-left: 0 !important;
+}
+
 textarea.form-control {
   resize: vertical;
 }

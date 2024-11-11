@@ -21,7 +21,7 @@ export const CategorySelect = (props) => {
           <select
             name="categorySelect"
             id="categorySelect"
-            className="form-select"
+            className="form-control"
             required="required"
             data-minimum-results-for-search="Infinity"
           >

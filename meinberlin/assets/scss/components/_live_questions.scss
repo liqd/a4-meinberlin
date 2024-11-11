@@ -204,16 +204,3 @@
         min-width: 15rem;
     }
 }
-
-.live_questions__char-count {
-    color: $gray-lighter;
-    font-size: $font-size-sm;
-    margin-top: -0.75 * $spacer;
-    margin-bottom: $spacer;
-}
-
-.live_questions__anchor {
-    position: relative;
-    bottom: -7 * $spacer;
-    margin-bottom: 7 * $spacer;
-}

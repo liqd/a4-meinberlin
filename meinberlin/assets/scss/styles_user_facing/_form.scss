@@ -22,3 +22,7 @@ button {
     margin-bottom: 0.4em;
   }
 }
+
+textarea.form-control {
+  resize: vertical;
+}

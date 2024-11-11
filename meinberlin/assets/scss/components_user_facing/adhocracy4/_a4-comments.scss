@@ -104,6 +104,10 @@
     .form-group {
         margin-bottom: 0;
     }
+
+    textarea {
+        resize: vertical;
+    }
 }
 
 .a4-comments__char-count {

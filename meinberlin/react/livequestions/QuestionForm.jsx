@@ -65,36 +65,45 @@ export default class QuestionForm extends React.Component {
 
   render () {
     return (
-      <form id="id-comment-form" action="" onSubmit={this.addQuestion.bind(this)}>
-        <h2>{askQuestionStr}</h2>
-        {Object.keys(this.props.category_dict).length > 0
-          ? <CategorySelect
-              onSelect={this.selectCategory.bind(this)}
-              category_dict={this.props.category_dict}
+      <>
+        <h2 id="form-heading">{askQuestionStr}</h2>
+        <form id="id-comment-form" className="form--base panel--heavy" action="" onSubmit={this.addQuestion.bind(this)} aria-labelledby="form-heading">
+          <div className="form-group">
+            {Object.keys(this.props.category_dict).length > 0
+              ? <CategorySelect
+                  onSelect={this.selectCategory.bind(this)}
+                  category_dict={this.props.category_dict}
+                />
+              : ''}
+          </div>
+          <div className="form-group">
+            <label htmlFor="questionTextField">{questionStr}*</label>
+            <textarea
+              placeholder={yourQuestionStr}
+              id="questionTextField"
+              className="form-control"
+              name="questionTextFieldName"
+              rows="3"
+              onChange={this.handleTextChange.bind(this)}
+              required
+              value={this.state.question}
+              maxLength="1000"
             />
-          : ''}
-        <label htmlFor="questionTextField">{questionStr}*</label>
-        <textarea
-          placeholder={yourQuestionStr}
-          id="questionTextField"
-          className="form-control"
-          name="questionTextFieldName"
-          rows="3"
-          onChange={this.handleTextChange.bind(this)}
-          required="required"
-          value={this.state.question}
-          maxLength="1000"
-        />
-        <label htmlFor="id-comment-form" className="live_questions__char-count">{this.state.questionCharCount}/1000{charsStr}</label>
-
-        <div className="form-check">
-          <label className="form-check__label">
-            <input type="checkbox" name="data_protection" id="data_protection_check" required="required" />
-            {this.getPrivacyPolicyLabelWithLinks()}
-          </label>
-        </div>
-        <input type="submit" value={postStr} className="submit-button" />
-      </form>
+            <small htmlFor="id-comment-form">{this.state.questionCharCount}/1000{charsStr}</small>
+          </div>
+          <div className="form-check">
+            <input className="form-check-input" type="checkbox" name="data_protection" id="data_protection_check" required="required" />
+            <label className="form-check-label" htmlFor="data_protection_check">
+              {this.getPrivacyPolicyLabelWithLinks()}
+            </label>
+          </div>
+          <div className="form-actions">
+            <div className="form-actions__right">
+              <button type="submit" className="button">{postStr}</button>
+            </div>
+          </div>
+        </form>
+      </>
     )
   }
 }

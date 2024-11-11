@@ -42,7 +42,7 @@ class CommonFields:
 class TopicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Topic
-        fields = ["code", "name"]
+        fields = ["code"]
 
 
 class ProjectSerializer(serializers.ModelSerializer, CommonFields):
@@ -104,7 +104,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
             "topics",
             "type",
             "url",
-            "id"
+            "id",
         ]
 
     def get_topics(self, instance):

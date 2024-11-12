@@ -8,7 +8,6 @@ button {
   cursor: pointer;
 }
 
-.form-check,
 .errorlist {
   padding-left: 0;
 }
@@ -35,4 +34,8 @@ button {
 
 textarea.form-control {
   resize: vertical;
+}
+
+:not(.panel--heavy) .form-check {
+  padding: 0;
 }

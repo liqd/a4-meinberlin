@@ -75,23 +75,19 @@
 .projects-list__toggle-switch {
     margin-left: auto;
     margin-bottom: 0;
-}
-
-.projects-list__list-meta {
     display: none;
 
     @media screen and (min-width: $breakpoint-tablet) {
-        display: flex;
-        align-items: center;
-        padding-bottom: .8em;
+        display: block;
     }
 }
 
-.projects-list__status--mobile {
-    margin-bottom: 1em;
+.projects-list__list-meta {
+    display: flex;
 
     @media screen and (min-width: $breakpoint-tablet) {
-        display: none;
+        align-items: center;
+        padding: 0 0.875em 1em;
     }
 }
 

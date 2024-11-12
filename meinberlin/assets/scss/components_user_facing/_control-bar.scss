@@ -4,6 +4,14 @@
     }
 }
 
+.control-bar--no-spacing {
+    margin-bottom: 0;
+}
+
+.control-bar--spacing {
+    margin-bottom: 1.5em;
+}
+
 .control-bar__bottom-overlap {
     position: relative;
     z-index: 1;
@@ -17,4 +25,12 @@
 
 .control-bar__bottom {
     align-items: center;
+}
+
+.control-bar__bottom--projects {
+    padding: 1em 0 0;
+
+    @media screen and (min-width: $breakpoint-tablet) {
+        padding: 1em 0.875em 0;
+    }
 }

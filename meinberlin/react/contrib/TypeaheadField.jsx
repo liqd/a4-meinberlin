@@ -13,16 +13,9 @@ export const TypeaheadField = (props) => {
   } = props
 
   return (
-    <div className="form-group filter-bar__typeahead">
-      <label htmlFor={uniqueId} className="typeahead__input-label">
-        <h2 className="u-no-margin">{typeaheadHeading}</h2>
-      </label>
+    <div className="form-group typeahead">
+      <label htmlFor={uniqueId} className="label">{typeaheadHeading}</label>
       <span className="typeahead__input-group">
-        <span className="typeahead__input-group-prepend">
-          <span className="typeahead__input-group-text input-group__before">
-            <i className="fas fa-sort-alpha-down" />
-          </span>
-        </span>
         <Typeahead
           id={uniqueId}
           className="typeahead__input-group-append"

@@ -1,5 +1,5 @@
 /* global django */
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import ProjectsList from '../projects/ProjectsList'
 import { ToggleSwitch } from '../contrib/ToggleSwitch'
 import { IconSwitch } from '../contrib/IconSwitch'
@@ -7,11 +7,8 @@ import { classNames } from '../contrib/helpers'
 import sortProjects from './sort-projects'
 import ProjectsMap from './ProjectsMap'
 import Spinner from '../contrib/Spinner'
-
-// const statusNames = [
-//   django.gettext('ongoing'),
-//   django.gettext('done')
-// ]
+import { ProjectsControlBar } from './ProjectsControlBar'
+import { filterProjects } from './filter-projects'
 
 const pageHeader = django.gettext('Project overview')
 const showMapStr = django.gettext('Show map')
@@ -42,12 +39,27 @@ const ProjectsListMapBox = ({
   baseUrl,
   mapboxToken,
   omtToken,
-  useVectorMap
+  useVectorMap,
+  // for filtering:
+  districtNames,
+  districts,
+  participationChoices,
+  organisations
 }) => {
   const [showMap, setShowMap] = useState(true)
   const [loading, setLoading] = useState(true)
-  const [projectState] = useState(['active', 'future'])
+  const [projectState, setProjectState] = useState(['active', 'future'])
   const [items, setItems] = useState([])
+  const fetchCache = useRef({})
+  const [appliedFilters, setAppliedFilters] = useState({
+    search: '',
+    districts: [],
+    // organisation is a single select but its simpler to just work with an
+    // array because of the typeahead component
+    organisation: [],
+    participations: [],
+    topics: []
+  })
 
   const fetchItems = useCallback(async () => {
     setLoading(true)
@@ -62,8 +74,14 @@ const ProjectsListMapBox = ({
     Promise.all(
       urls.map(async (url) => {
         try {
-          const response = await fetch(url)
-          const data = await response.json()
+          let data
+          if (fetchCache.current[url]) {
+            data = fetchCache.current[url]
+          } else {
+            const response = await fetch(url)
+            data = await response.json()
+            fetchCache.current[url] = data
+          }
           tempItems.push(...data)
           setItems(
             // filter out duplicates by title (id is not unique as there are
@@ -87,24 +105,50 @@ const ProjectsListMapBox = ({
 
   let status = nothingStr
 
+  const filteredItems = useMemo(() => filterProjects(items, appliedFilters), [items, appliedFilters])
   if (loading) {
     status = (
       <Spinner />
     )
-  } else if (items.length > 0) {
-    status = getResultCountText(items.length)
+  } else if (filteredItems.length > 0) {
+    status = getResultCountText(filteredItems.length)
   }
 
   return (
     <div>
+      <ProjectsControlBar
+        districtNames={districtNames}
+        participationChoices={participationChoices}
+        organisations={organisations}
+        districts={districts}
+        topicChoices={topicChoices}
+        appliedFilters={{ ...appliedFilters, projectState }}
+        onFiltered={({ projectState, ...filters }) => {
+          setProjectState(projectState)
+          setAppliedFilters(filters)
+        }}
+      />
       <div className="projects-list">
         <h1 className="aural">{pageHeader}</h1>
-        <div
-          role="status"
-          className="projects-list__status projects-list__status--mobile"
-        >
-          {status}
+        <div className={classNames('projects-list__list-meta', filteredItems.length === 0 && 'projects-list__list-meta--no-results')}>
+          <div
+            role="status"
+            className="projects-list__status"
+          >
+            {status}
+          </div>
+          <ToggleSwitch
+            uniqueId="map-switch"
+            className="projects-list__toggle-switch"
+            toggleSwitch={() => {
+              document.querySelector('.mb-project-overview').classList.toggle('fullwidth', !showMap)
+              setShowMap(!showMap)
+            }}
+            onSwitchStr={showMapStr}
+            checked={showMap}
+          />
         </div>
+
         <IconSwitch
           fullWidth
           className="projects-list__icon-switch"
@@ -138,26 +182,8 @@ const ProjectsListMapBox = ({
           className={classNames('projects-list__wrapper', showMap && ' projects-list__wrapper--combined')}
         >
           <div id="list" className="projects-list__list">
-            <div className={classNames('projects-list__list-meta', items.length === 0 && 'projects-list__list-meta--no-results')}>
-              <div
-                role="status"
-                className="projects-list__status"
-              >
-                {status}
-              </div>
-              <ToggleSwitch
-                uniqueId="map-switch"
-                className="projects-list__toggle-switch"
-                toggleSwitch={() => {
-                  document.querySelector('.mb-project-overview').classList.toggle('fullwidth', !showMap)
-                  setShowMap(!showMap)
-                }}
-                onSwitchStr={showMapStr}
-                checked={showMap}
-              />
-            </div>
             <ProjectsList
-              projects={items}
+              projects={filteredItems}
               isHorizontal={showMap}
               topicChoices={topicChoices}
               loading={loading}
@@ -167,11 +193,8 @@ const ProjectsListMapBox = ({
             <div id="map" className="projects-list__map">
               <ProjectsMap
                 attribution={attribution}
-                items={items}
+                items={filteredItems}
                 bounds={bounds}
-               // currentDistrict={this.state.district}
-               // nonValue={districtnames[districtnames.length - 1]}
-               // districts={districts}
                 baseUrl={baseUrl}
                 mapboxToken={mapboxToken}
                 omtToken={omtToken}

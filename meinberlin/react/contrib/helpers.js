@@ -35,3 +35,24 @@ export const toLocaleDate = (
 export const classNames = (...classes) => {
   return classes.filter(Boolean).join(' ')
 }
+
+/*
+ * checks if two arrays are equal
+ *
+ * @param {array} a
+ * @param {array} b
+ * @returns {boolean}
+ */
+export const arraysEqual = (a, b) => {
+  if (a === b) return true
+  if (a == null || b == null) return false
+  if (a.length !== b.length) return false
+
+  const aSorted = [...a].sort()
+  const bSorted = [...b].sort()
+
+  for (let i = 0; i < aSorted.length; ++i) {
+    if (aSorted[i] !== bSorted[i]) return false
+  }
+  return true
+}

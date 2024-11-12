@@ -1,6 +1,5 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { CookiesProvider } from 'react-cookie'
 import ProjectsListMapBox from '../projects/ProjectsListMapBox'
 
 function init () {
@@ -17,7 +16,7 @@ function init () {
     const selectedTopic = el.getAttribute('data-selected-topic')
     const districts = JSON.parse(el.getAttribute('data-districts'))
     const organisations = JSON.parse(el.getAttribute('data-organisations'))
-    const districtnames = JSON.parse(el.getAttribute('data-district-names'))
+    const districtNames = JSON.parse(el.getAttribute('data-district-names'))
     const topicChoices = JSON.parse(el.getAttribute('data-topic-choices'))
     const mapboxToken = el.getAttribute('data-mapbox-token')
     const omtToken = el.getAttribute('data-omt-token')
@@ -26,27 +25,25 @@ function init () {
     const root = createRoot(el)
     root.render(
       <React.StrictMode>
-        <CookiesProvider>
-          <ProjectsListMapBox
-            selectedDistrict={selectedDistrict}
-            selectedTopic={selectedTopic}
-            projectApiUrl={projectApiUrl}
-            extprojectApiUrl={extprojectApiUrl}
-            privateprojectApiUrl={privateprojectApiUrl}
-            plansApiUrl={plansApiUrl}
-            attribution={attribution}
-            baseUrl={baseUrl}
-            mapboxToken={mapboxToken}
-            omtToken={omtToken}
-            useVectorMap={useVectorMap}
-            bounds={bounds}
-            organisations={organisations}
-            districts={districts}
-            districtnames={districtnames}
-            topicChoices={topicChoices}
-            participationChoices={participationChoices}
-          />
-        </CookiesProvider>
+        <ProjectsListMapBox
+          selectedDistrict={selectedDistrict}
+          selectedTopic={selectedTopic}
+          projectApiUrl={projectApiUrl}
+          extprojectApiUrl={extprojectApiUrl}
+          privateprojectApiUrl={privateprojectApiUrl}
+          plansApiUrl={plansApiUrl}
+          attribution={attribution}
+          baseUrl={baseUrl}
+          mapboxToken={mapboxToken}
+          omtToken={omtToken}
+          useVectorMap={useVectorMap}
+          bounds={bounds}
+          organisations={organisations}
+          districts={districts}
+          districtNames={districtNames}
+          topicChoices={topicChoices}
+          participationChoices={participationChoices}
+        />
       </React.StrictMode>)
   })
 }

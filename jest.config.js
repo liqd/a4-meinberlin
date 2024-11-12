@@ -35,7 +35,7 @@ const config = {
   // transpile all node_modules, not great?
     '/node_modules/(?!(.*)/)'
   ],
-  setupFiles: [
+  setupFilesAfterEnv: [
     '<rootDir>/setupTests.js'
   ]
 }

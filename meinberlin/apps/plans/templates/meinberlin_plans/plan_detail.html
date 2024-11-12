@@ -1,19 +1,18 @@
 {% extends "base.html" %}
 {% load i18n static rules wagtailcore_tags maps_tags thumbnail ckeditor_tags contrib_tags %}
 
-{% block title %}{{ object.title }} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{{ object.title }} – {{ block.super }}{% endblock title %}
 
 {% block extra_js %}
     {{ block.super }}
     <script type="text/javascript" src="{% static 'a4maps_display_point.js' %}"></script>
     <script type="text/javascript" src="{% static 'dsgvo_video_embed.js' %}"></script>
-{% endblock %}
+{% endblock extra_js %}
 
 {% block extra_css %}
     {{ block.super }}
-    <link type="text/css" href="{% static 'a4maps_display_point.css'%}" rel="stylesheet" />
-    <link rel="stylesheet" href="{% static 'dsgvo_video_embed.css' %}" />
-{% endblock %}
+    <link type="text/css" href="{% static 'a4maps_display_point.css' %}" rel="stylesheet" />
+{% endblock extra_css %}
 
 {% block extra_messages %}
     {{ block.super }}
@@ -27,8 +26,7 @@
             </li>
         </ul>
     {% endif %}
-{% endblock %}
-
+{% endblock extra_messages %}
 
 {% block breadcrumbs %}
     <div id="content-header">
@@ -40,7 +38,7 @@
             </ol>
         </nav>
     </div>
-{% endblock %}
+{% endblock breadcrumbs %}
 
 {% block content %}
 <div id="layout-grid__area--maincontent">
@@ -86,7 +84,7 @@
                             <a href='#participation-plans'>
                                 {% translate 'see participation projects' %}
                             </a>
-                        {% endif%}
+                        {% endif %}
                     </dd>
                 </div>
                 <div>
@@ -118,7 +116,7 @@
             {% endif %}
         </section>
 
-        <div class="item-detail-2__content{% if object.participation_explanation != 'Bitte Begründung einfügen' %}--borderless{% endif%}">
+        <div class="item-detail-2__content{% if object.participation_explanation != 'Bitte Begründung einfügen' %}--borderless{% endif %}">
             <div class="item-detail__basic-content ck-content">
                 {% if object.description %}
                     {{ object.description | transform_collapsibles | richtext }}
@@ -260,4 +258,4 @@
     {% endif %}
 </div>
 
-{% endblock %}
+{% endblock content %}

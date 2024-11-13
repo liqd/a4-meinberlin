@@ -3,7 +3,7 @@ import { classNames } from './helpers'
 
 export const IconSwitch = ({ buttons, viewModeStr, fullWidth, className }) => (
   <div className={classNames('icon-switch', fullWidth && 'icon-switch--full-width', className)}>
-    <span className="text--strong">{viewModeStr}</span>
+    {viewModeStr && <span className="text--strong">{viewModeStr}</span>}
     <div className="icon-switch__group" role="group">
       {buttons.map((button) => (
         <button

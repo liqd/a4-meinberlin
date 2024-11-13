@@ -1,6 +1,19 @@
 .icon-switch {
     display: inline-block;
     text-align: left;
+    width: 100%;
+
+    .button {
+        flex: 1;
+    }
+
+    @media screen and (min-width: $breakpoint-tablet) {
+        width: auto;
+
+        .button {
+            flex: none;
+        }
+    }
 }
 
 .icon-switch--full-width {

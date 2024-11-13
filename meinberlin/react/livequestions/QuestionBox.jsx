@@ -6,8 +6,8 @@ import QuestionList from './QuestionList'
 import Filters from './Filters'
 import InfoBox from './InfoBox'
 import StatisticsBox from './StatisticsBox'
+import { IconSwitch } from '../contrib/IconSwitch'
 
-const informationStr = django.gettext('Information')
 const questionsStr = django.gettext('Questions')
 const statisticsStr = django.gettext('Statistics')
 const displayStr = django.gettext('display on screen')
@@ -28,7 +28,8 @@ export default class QuestionBox extends React.Component {
       orderedByLikes: false,
       filterChanged: false,
       orderingChanged: false,
-      pollingPaused: false
+      pollingPaused: false,
+      showQuestions: true
     }
   }
 
@@ -171,123 +172,86 @@ export default class QuestionBox extends React.Component {
 
   render () {
     return (
-      <div>
-        <div className="tablist mb-0">
-          <div className="container">
-            <nav className="nav justify-content-center">
-              <a
-                id="tab-information"
-                className="tab"
-                data-bs-toggle="tab"
-                href="#tabpanel-information"
-                role="tab"
-                aria-controls="tabpanel-information"
-                aria-expanded="false"
-              >
-                {informationStr}
-              </a>
-              <a
-                id="tab-questions"
-                className="tab active"
-                data-bs-toggle="tab"
-                href="#tabpanel-questions"
-                role="tab"
-                aria-controls="tabpanel-questions"
-                aria-expanded="true"
-              >
-                {questionsStr}
-              </a>
-              <a
-                id="tab-statistics"
-                className="tab"
-                data-bs-toggle="tab"
-                href="#tabpanel-statistics"
-                role="tab"
-                aria-controls="tabpanel-statistics"
-                aria-expanded="false"
-              >
-                {statisticsStr}
-              </a>
-            </nav>
-          </div>
-        </div>
-        <div
-          className="tabpanel"
-          id="tabpanel-information"
-          role="tabpanel"
-          aria-labelledby="tab-information"
-          aria-hidden="false"
-        >
-          <div className="container">
-            <div className="offset-lg-2 col-lg-8">
-              {this.props.information}
-            </div>
-          </div>
-        </div>
-
-        <div
-          className="tabpanel active"
-          id="tabpanel-questions"
-          role="tabpanel"
-          aria-labelledby="tab-questions"
-          aria-hidden="true"
-        >
-          {this.props.hasAskQuestionsPermission &&
-            <QuestionForm
-              restartPolling={this.restartPolling}
-              category_dict={this.props.category_dict}
-              questions_api_url={this.props.questions_api_url}
-              privatePolicyLabel={this.props.privatePolicyLabel}
-            />}
-          <InfoBox
-            isModerator={this.props.isModerator}
-          />
-          <Filters
-            categories={this.props.categories}
-            currentCategory={this.state.category}
-            setCategories={this.setCategory.bind(this)}
-            orderedByLikes={this.state.orderedByLikes}
-            toggleOrdering={this.toggleOrdering.bind(this)}
-            displayOnShortlist={this.state.displayOnShortlist}
-            displayNotHiddenOnly={this.state.displayNotHiddenOnly}
-            toggleDisplayOnShortlist={this.toggleDisplayOnShortlist.bind(this)}
-            toggledisplayNotHiddenOnly={this.toggledisplayNotHiddenOnly.bind(this)}
-            isModerator={this.props.isModerator}
-          />
-          {this.props.isModerator &&
-            <div className="block">
-              <a className="btn btn--light" rel="noopener noreferrer" href={this.props.present_url} target="_blank">
-                <span className="fa-stack fa-1x">
-                  <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
-                  <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
-                </span>
-                {displayStr}
-              </a>
-            </div>}
-          <QuestionList
-            questions={this.state.filteredQuestions}
-            removeFromList={this.removeFromList.bind(this)}
-            updateQuestion={this.updateQuestion.bind(this)}
-            handleLike={this.handleLike.bind(this)}
-            isModerator={this.props.isModerator}
-            togglePollingPaused={this.togglePollingPaused.bind(this)}
-            hasLikingPermission={this.props.hasLikingPermission}
-          />
-        </div>
-        <div
-          className="tabpanel module-content--light"
-          id="tabpanel-statistics"
-          role="tabpanel"
-          aria-labelledby="tab-statistics"
-          aria-hidden="false"
-        >
-          <StatisticsBox
-            answeredQuestions={this.state.answeredQuestions}
+      <div className="live-question">
+        {this.props.hasAskQuestionsPermission && (
+          <QuestionForm
+            restartPolling={this.restartPolling}
+            category_dict={this.props.category_dict}
             questions_api_url={this.props.questions_api_url}
-            categories={this.props.categories}
-            isModerator={this.props.isModerator}
+            privatePolicyLabel={this.props.privatePolicyLabel}
           />
-        </div>
+        )}
+        <IconSwitch
+          className="live-question__icon-switch"
+          buttons={[
+            {
+              label: questionsStr,
+              icon: 'fa fa-list',
+              id: 'show_questions',
+              isActive: this.state.showQuestions,
+              handleClick: () => {
+                this.setState({
+                  showQuestions: true
+                })
+              }
+            },
+            {
+              label: statisticsStr,
+              icon: 'fas fa-chart-bar',
+              id: 'show_stats',
+              isActive: !this.state.showQuestions,
+              handleClick: () => {
+                this.setState({
+                  showQuestions: false
+                })
+              }
+            }
+          ]}
+        />
+        {this.state.showQuestions
+          ? (
+            <>
+              <InfoBox
+                isModerator={this.props.isModerator}
+              />
+              <Filters
+                categories={this.props.categories}
+                currentCategory={this.state.category}
+                setCategories={this.setCategory.bind(this)}
+                orderedByLikes={this.state.orderedByLikes}
+                toggleOrdering={this.toggleOrdering.bind(this)}
+                displayOnShortlist={this.state.displayOnShortlist}
+                displayNotHiddenOnly={this.state.displayNotHiddenOnly}
+                toggleDisplayOnShortlist={this.toggleDisplayOnShortlist.bind(this)}
+                toggledisplayNotHiddenOnly={this.toggledisplayNotHiddenOnly.bind(this)}
+                isModerator={this.props.isModerator}
+              />
+              {this.props.isModerator &&
+                <div className="block">
+                  <a className="btn btn--light" rel="noopener noreferrer" href={this.props.present_url} target="_blank">
+                    <span className="fa-stack fa-1x">
+                      <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
+                      <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
+                    </span>
+                    {displayStr}
+                  </a>
+                </div>}
+              <QuestionList
+                questions={this.state.filteredQuestions}
+                removeFromList={this.removeFromList.bind(this)}
+                updateQuestion={this.updateQuestion.bind(this)}
+                handleLike={this.handleLike.bind(this)}
+                isModerator={this.props.isModerator}
+                togglePollingPaused={this.togglePollingPaused.bind(this)}
+                hasLikingPermission={this.props.hasLikingPermission}
+              />
+            </>)
+          : <StatisticsBox
+              answeredQuestions={this.state.answeredQuestions}
+              questions_api_url={this.props.questions_api_url}
+              categories={this.props.categories}
+              isModerator={this.props.isModerator}
+            />}
       </div>
     )
   }

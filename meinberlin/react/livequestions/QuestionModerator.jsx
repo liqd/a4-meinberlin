@@ -1,5 +1,6 @@
 import React from 'react'
 import django from 'django'
+import LikeCard from './LikeCard'
 
 export default class QuestionModerator extends React.Component {
   constructor (props) {
@@ -101,29 +102,19 @@ export default class QuestionModerator extends React.Component {
     const removeLiveText = django.gettext('remove from live list')
     const addShortlistText = django.gettext('added to shortlist')
     const removeShortlistText = django.gettext('remove from shortlist')
-    const supportStr = django.gettext('Support count')
 
     return (
-      <div className="list-item">
-        <div>
-          <p className={this.props.is_hidden ? 'u-muted u-text-decoration-line-through live_questions__question' : 'live_questions__question'}>{this.props.children}</p>
-        </div>
-        {this.props.category &&
-          <div>
-            <span className="label label--big">{this.props.category}</span>
-          </div>}
-        <div className="live-question__action-bar">
-          <div className="live_questions__like">
-            <span
-              className="rating-button rating-up is-read-only"
-              title={supportStr}
-            >
-              <i className="far fa-thumbs-up" aria-hidden="true" />
-              {this.state.likes}
-              <span className="visually-hidden">{supportStr}</span>
-            </span>
-          </div>
-          <div>
+      <>
+        <LikeCard
+          title={this.props.children}
+          category={this.props.category}
+          likes={{
+            count: this.state.likes,
+            session_like: this.state.session_like
+          }}
+        />
+        <div className="list-item mb-2">
+          <div className="live-question__action-bar">
             {this.props.displayIsOnShortlist &&
               <button
                 type="button"
@@ -168,7 +159,7 @@ export default class QuestionModerator extends React.Component {
               </button>}
           </div>
         </div>
-      </div>
+      </>
     )
   }
 }

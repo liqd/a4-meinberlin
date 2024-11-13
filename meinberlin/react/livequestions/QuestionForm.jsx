@@ -66,8 +66,8 @@ export default class QuestionForm extends React.Component {
   render () {
     return (
       <>
-        <h2 id="form-heading">{askQuestionStr}</h2>
-        <form id="id-comment-form" className="form--base panel--heavy" action="" onSubmit={this.addQuestion.bind(this)} aria-labelledby="form-heading">
+        <h2 id="question-form-heading">{askQuestionStr}</h2>
+        <form id="id-comment-form" className="form--base panel--heavy" action="" onSubmit={this.addQuestion.bind(this)} aria-labelledby="question-form-heading">
           <div className="form-group">
             {Object.keys(this.props.category_dict).length > 0
               ? <CategorySelect

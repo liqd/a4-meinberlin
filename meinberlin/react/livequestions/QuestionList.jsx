@@ -7,7 +7,7 @@ const QuestionList = (props) => {
     return (
       <div>
         {
-          props.questions.map((question, index) => {
+          props.questions.map((question) => {
             return (
               <QuestionModerator
                 key={question.id}

@@ -3,11 +3,10 @@ import { updateItem } from '../contrib/helpers.js'
 import React from 'react'
 import QuestionForm from './QuestionForm'
 import QuestionList from './QuestionList'
-import InfoBox from './InfoBox'
 import Filters from './Filters'
+import InfoBox from './InfoBox'
 import StatisticsBox from './StatisticsBox'
 
-const selectAffiliationStr = django.gettext('select affiliation')
 const informationStr = django.gettext('Information')
 const questionsStr = django.gettext('Questions')
 const statisticsStr = django.gettext('Statistics')
@@ -24,7 +23,6 @@ export default class QuestionBox extends React.Component {
       filteredQuestions: [],
       answeredQuestions: [],
       category: '-1',
-      categoryName: selectAffiliationStr,
       displayNotHiddenOnly: false,
       displayOnShortlist: false,
       orderedByLikes: false,
@@ -52,10 +50,8 @@ export default class QuestionBox extends React.Component {
   }
 
   setCategory (category) {
-    const newName = (category === '-1') ? selectAffiliationStr : category
     this.setState({
       filterChanged: true,
-      categoryName: newName,
       category
     })
   }
@@ -237,68 +233,46 @@ export default class QuestionBox extends React.Component {
           aria-hidden="true"
         >
           {this.props.hasAskQuestionsPermission &&
-            <div className="container">
-              <div className="offset-lg-2 col-lg-8">
-                <QuestionForm
-                  restartPolling={this.restartPolling}
-                  category_dict={this.props.category_dict}
-                  questions_api_url={this.props.questions_api_url}
-                  privatePolicyLabel={this.props.privatePolicyLabel}
-                />
-              </div>
+            <QuestionForm
+              restartPolling={this.restartPolling}
+              category_dict={this.props.category_dict}
+              questions_api_url={this.props.questions_api_url}
+              privatePolicyLabel={this.props.privatePolicyLabel}
+            />}
+          <InfoBox
+            isModerator={this.props.isModerator}
+          />
+          <Filters
+            categories={this.props.categories}
+            currentCategory={this.state.category}
+            setCategories={this.setCategory.bind(this)}
+            orderedByLikes={this.state.orderedByLikes}
+            toggleOrdering={this.toggleOrdering.bind(this)}
+            displayOnShortlist={this.state.displayOnShortlist}
+            displayNotHiddenOnly={this.state.displayNotHiddenOnly}
+            toggleDisplayOnShortlist={this.toggleDisplayOnShortlist.bind(this)}
+            toggledisplayNotHiddenOnly={this.toggledisplayNotHiddenOnly.bind(this)}
+            isModerator={this.props.isModerator}
+          />
+          {this.props.isModerator &&
+            <div className="block">
+              <a className="btn btn--light" rel="noopener noreferrer" href={this.props.present_url} target="_blank">
+                <span className="fa-stack fa-1x">
+                  <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
+                  <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
+                </span>
+                {displayStr}
+              </a>
             </div>}
-          <div>
-            <div className="container">
-              <div className="offset-lg-2 col-lg-8">
-                <InfoBox
-                  isModerator={this.props.isModerator}
-                />
-                <div className="live_questions__filters--parent">
-                  <Filters
-                    categories={this.props.categories}
-                    currentCategory={this.state.category}
-                    currentCategoryName={this.state.categoryName}
-                    setCategories={this.setCategory.bind(this)}
-                    orderedByLikes={this.state.orderedByLikes}
-                    toggleOrdering={this.toggleOrdering.bind(this)}
-                    displayOnShortlist={this.state.displayOnShortlist}
-                    displayNotHiddenOnly={this.state.displayNotHiddenOnly}
-                    toggleDisplayOnShortlist={this.toggleDisplayOnShortlist.bind(this)}
-                    toggledisplayNotHiddenOnly={this.toggledisplayNotHiddenOnly.bind(this)}
-                    isModerator={this.props.isModerator}
-                  />
-                  {this.props.isModerator &&
-                    <div>
-                      <a className="btn btn--light live_questions__filters--screen-btn" rel="noopener noreferrer" href={this.props.present_url} target="_blank">
-                        <span className="fa-stack fa-1x">
-                          <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
-                          <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
-                        </span>
-                        {displayStr}
-                      </a>
-                    </div>}
-                </div>
-              </div>
-            </div>
-            <div className="module-content--light u-spacer-bottom">
-              <div className="container">
-                <div className="offset-lg-2 col-lg-8">
-                  <QuestionList
-                    questions={this.state.filteredQuestions}
-                    removeFromList={this.removeFromList.bind(this)}
-                    updateQuestion={this.updateQuestion.bind(this)}
-                    handleLike={this.handleLike.bind(this)}
-                    isModerator={this.props.isModerator}
-                    togglePollingPaused={this.togglePollingPaused.bind(this)}
-                    hasLikingPermission={this.props.hasLikingPermission}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="live_questions__anchor">
-              <span id="question-list-end" />
-            </div>
-          </div>
+          <QuestionList
+            questions={this.state.filteredQuestions}
+            removeFromList={this.removeFromList.bind(this)}
+            updateQuestion={this.updateQuestion.bind(this)}
+            handleLike={this.handleLike.bind(this)}
+            isModerator={this.props.isModerator}
+            togglePollingPaused={this.togglePollingPaused.bind(this)}
+            hasLikingPermission={this.props.hasLikingPermission}
+          />
         </div>
         <div
           className="tabpanel module-content--light"

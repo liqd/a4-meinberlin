@@ -1,103 +1,124 @@
-import React from 'react'
+import React, { useState } from 'react'
 import django from 'django'
 
-export default class Filter extends React.Component {
-  selectCategory (e) {
+const allTag = django.gettext('all')
+const onlyShowMarkedText = django.gettext('only show marked questions')
+const displayNotHiddenText = django.gettext('display only questions which are not hidden')
+const orderLikesText = django.gettext('order by likes')
+const questionsText = django.gettext('Questions')
+const filterText = django.gettext('Filter')
+const affiliationText = django.gettext('Affiliation')
+
+const Filter = ({
+  categories,
+  isModerator,
+  displayOnShortlist,
+  toggleDisplayOnShortlist,
+  displayNotHiddenOnly,
+  toggledisplayNotHiddenOnly,
+  orderedByLikes,
+  toggleOrdering,
+  setCategories
+}) => {
+  const [category, setCategory] = useState(null)
+
+  const selectCategory = (e) => {
     e.preventDefault()
-    const category = e.target.getAttribute('data-value')
-    this.props.setCategories(category)
+    setCategory(e.target.value)
   }
 
-  getButtonClass () {
-    if (this.props.currentCategory === '-1') {
-      return 'btn btn--light btn--select live_questions__filters--dropdown dropdown-toggle'
-    } else {
-      return 'btn btn--light btn--select live_questions__filters--dropdown dropdown-toggle'
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (category) {
+      setCategories(category)
     }
   }
 
-  render () {
-    const allTag = django.gettext('all')
-    const onlyShowMarkedText = django.gettext('only show marked questions')
-    const displayNotHiddenText = django.gettext('display only questions which are not hidden')
-    const orderLikesText = django.gettext('order by likes')
-    return (
-      <div className="live_questions__filters">
-        {this.props.categories.length > 0
-          ? <div className="dropdown live_questions__filters--dropdown">
-            <button
-              className={this.getButtonClass()} type="button" id="dropdownMenuButton"
-              data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+  return (
+    <>
+      <h2 id="filter-form-heading">{questionsText}</h2>
+      <form className="form panel--heavy" onSubmit={handleSubmit} aria-labelledby="filter-form-heading">
+        {categories.length > 0 && (
+          <div className="form-group">
+            <label htmlFor="filterCategorySelect">{affiliationText}*</label>
+            <select
+              id="filterCategorySelect"
+              className="form-control"
+              onChange={selectCategory}
             >
-              {this.props.currentCategoryName}
-              <i className="fa fa-caret-down" aria-label={onlyShowMarkedText} />
-            </button>
-            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <button className="dropdown-item" data-value={-1} onClick={this.selectCategory.bind(this)} href="#">{allTag}</button>
-              {this.props.categories.map((category, index) => {
-                return <button className="dropdown-item" key={index} data-value={category} onClick={this.selectCategory.bind(this)} href="#">{category}</button>
-              })}
-            </div>
-          </div> // eslint-disable-line react/jsx-closing-tag-location
-          : ''}
-        {this.props.isModerator &&
-          <div className="live_questions__filters--btns">
-            <div className="checkbox-btn u-spacer-right">
-              <label
-                htmlFor="markedCheck"
-                className={'btn switch--btn' + (this.props.displayOnShortlist ? ' active' : '')}
-                title={onlyShowMarkedText}
-              >
-                <input
-                  className="radio__input"
-                  type="checkbox"
-                  id="markedCheck"
-                  name="markedCheck"
-                  checked={this.props.displayOnShortlist}
-                  onChange={this.props.toggleDisplayOnShortlist} // eslint-disable-line react/jsx-handler-names
-                />
-                <span className="visually-hidden">{onlyShowMarkedText}</span>
-                <i className="far fa-list-alt" aria-hidden="true" />
-              </label>
-            </div>
-            <div className="checkbox-btn u-spacer-right">
-              <label
-                htmlFor="displayNotHiddenOnly"
-                className={'btn switch--btn' + (this.props.displayNotHiddenOnly ? ' active' : '')}
-                title={displayNotHiddenText}
-              >
-                <input
-                  className="radio__input"
-                  type="checkbox"
-                  id="displayNotHiddenOnly"
-                  name="displayNotHiddenOnly"
-                  checked={this.props.displayNotHiddenOnly}
-                  onChange={this.props.toggledisplayNotHiddenOnly} // eslint-disable-line react/jsx-handler-names
-                />
-                <span className="visually-hidden">{displayNotHiddenText}</span>
-                <i className="far fa-eye" aria-hidden="true" />
-              </label>
-            </div>
-            <div className="checkbox-btn">
-              <label
-                htmlFor="orderedByLikes"
-                className={'btn switch--btn' + (this.props.orderedByLikes ? ' active' : '')}
-                title={orderLikesText}
-              >
-                <input
-                  className="radio__input"
-                  type="checkbox"
-                  id="orderedByLikes"
-                  name="orderedByLikes"
-                  checked={this.props.orderedByLikes}
-                  onChange={this.props.toggleOrdering} // eslint-disable-line react/jsx-handler-names
-                />
-                <span className="visually-hidden">{orderLikesText}</span>
-                <i className="far fa-thumbs-up" aria-hidden="true" />
-              </label>
-            </div>
-          </div>}
-      </div>
-    )
-  }
+              <option value={-1}>{allTag}</option>
+              {categories.map((cat) => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
+          </div>
+        )}
+        <div className="form-actions">
+          <div className="form-actions__right">
+            <button type="submit" className="button">{filterText}</button>
+          </div>
+        </div>
+      </form>
+      {isModerator && (
+        <div className="block">
+          <div className="checkbox-btn u-spacer-right">
+            <label
+              htmlFor="markedCheck"
+              className={'btn switch--btn' + (displayOnShortlist ? ' active' : '')}
+              title={onlyShowMarkedText}
+            >
+              <input
+                className="radio__input"
+                type="checkbox"
+                id="markedCheck"
+                name="markedCheck"
+                checked={displayOnShortlist}
+                onChange={toggleDisplayOnShortlist}
+              />
+              <span className="visually-hidden">{onlyShowMarkedText}</span>
+              <i className="far fa-list-alt" aria-hidden="true" />
+            </label>
+          </div>
+          <div className="checkbox-btn u-spacer-right">
+            <label
+              htmlFor="displayNotHiddenOnly"
+              className={'btn switch--btn' + (displayNotHiddenOnly ? ' active' : '')}
+              title={displayNotHiddenText}
+            >
+              <input
+                className="radio__input"
+                type="checkbox"
+                id="displayNotHiddenOnly"
+                name="displayNotHiddenOnly"
+                checked={displayNotHiddenOnly}
+                onChange={toggledisplayNotHiddenOnly}
+              />
+              <span className="visually-hidden">{displayNotHiddenText}</span>
+              <i className="far fa-eye" aria-hidden="true" />
+            </label>
+          </div>
+          <div className="checkbox-btn">
+            <label
+              htmlFor="orderedByLikes"
+              className={'btn switch--btn' + (orderedByLikes ? ' active' : '')}
+              title={orderLikesText}
+            >
+              <input
+                className="radio__input"
+                type="checkbox"
+                id="orderedByLikes"
+                name="orderedByLikes"
+                checked={orderedByLikes}
+                onChange={toggleOrdering}
+              />
+              <span className="visually-hidden">{orderLikesText}</span>
+              <i className="far fa-thumbs-up" aria-hidden="true" />
+            </label>
+          </div>
+        </div>
+      )}
+    </>
+  )
 }
+
+export default Filter

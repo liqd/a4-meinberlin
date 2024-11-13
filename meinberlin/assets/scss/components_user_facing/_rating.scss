@@ -20,11 +20,11 @@
     i {
         margin-right: 0.4em;
         margin-bottom: 0.4em;
-        display: block;
+        display: inline;
+    }
 
-        @media screen and (min-width: $breakpoint-palm) {
-            display: inline;
-        }
+    &--active {
+        font-weight: bold;
     }
 
     .fa-chevron-up:before {

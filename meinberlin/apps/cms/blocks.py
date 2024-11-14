@@ -1,6 +1,6 @@
 from django.utils.translation import gettext_lazy as _
 from wagtail import blocks
-from wagtail.images.blocks import ImageChooserBlock
+from wagtail.images.blocks import ImageBlock
 
 from meinberlin.apps.cms.viewsets import project_chooser_viewset
 
@@ -32,7 +32,7 @@ class CallToActionBlock(blocks.StructBlock):
 
 
 class ImageCallToActionBlock(blocks.StructBlock):
-    image = ImageChooserBlock()
+    image = ImageBlock()
     title = blocks.CharBlock(max_length=80)
     body = blocks.RichTextBlock()
     link = blocks.CharBlock()
@@ -103,7 +103,7 @@ class InfographicBlock(blocks.StructBlock):
 
 
 class MapTeaserBlock(blocks.StructBlock):
-    image = ImageChooserBlock()
+    image = ImageBlock()
     body = blocks.RichTextBlock()
 
     class Meta:

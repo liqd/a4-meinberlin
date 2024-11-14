@@ -108,6 +108,7 @@ export default class QuestionModerator extends React.Component {
         <LikeCard
           title={this.props.children}
           category={this.props.category}
+          isOnShortlist={this.state.is_on_shortlist}
           likes={{
             count: this.state.likes,
             session_like: this.state.session_like

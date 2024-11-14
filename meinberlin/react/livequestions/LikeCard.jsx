@@ -7,10 +7,12 @@ const likedTag = django.gettext('Liked')
 const likesTag = django.gettext('Likes')
 const addLikeTag = django.gettext('add like')
 const undoLikeTag = django.gettext('undo like')
+const shortlistTag = django.gettext('on shortlist')
 
 export default function LikeCard ({
   title,
   category,
+  isOnShortlist,
   likes,
   onLikeClick
 }) {
@@ -20,9 +22,16 @@ export default function LikeCard ({
     <article className="modul-card card">
       <header className="card__header">
         <h3 className="title">{title}</h3>
-        {category && (
+        {(category || isOnShortlist) && (
           <div className="card__status status">
-            <Pill pillClass="card__pill pill pill--label">{category}</Pill>
+            {category && (
+              <Pill pillClass="card__pill pill pill--label">{category}</Pill>
+            )}
+            {isOnShortlist && (
+              <Pill pillClass="card__pill pill pill--shortlist">
+                {shortlistTag}
+              </Pill>
+            )}
           </div>
         )}
       </header>

@@ -21,6 +21,11 @@
     &--live {
         background-color: $feedback-color-rejected;
     }
+
+    &--shortlist {
+      background-color: $white;
+      color: $text-base;
+    }
 }
 
 .pill__list {

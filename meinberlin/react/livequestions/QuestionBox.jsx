@@ -167,7 +167,7 @@ export default class QuestionBox extends React.Component {
   restartPolling () {
     this.getItems()
     clearInterval(this.timer)
-    this.timer = setInterval(() => this.getItems(), 5000)
+    this.timer = setInterval(() => this.getItems(), 500)
   }
 
   render () {

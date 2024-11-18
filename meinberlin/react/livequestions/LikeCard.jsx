@@ -14,7 +14,8 @@ export default function LikeCard ({
   category,
   isOnShortlist,
   likes,
-  onLikeClick
+  onLikeClick,
+  children
 }) {
   const likeText = likes.session_like ? likedTag : likesTag
 
@@ -56,6 +57,9 @@ export default function LikeCard ({
             {likeText} ({likes.count})
           </span>
           )}
+      <div className="card__header">
+        {children}
+      </div>
     </article>
   )
 }

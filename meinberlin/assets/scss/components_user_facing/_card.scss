@@ -27,6 +27,11 @@
     text-decoration: underline;
 }
 
+.card__header .title--no-underline:hover {
+    cursor: default;
+    text-decoration: none;
+}
+
 .card__link--hover {
     text-decoration: underline !important; // BO overide
 }

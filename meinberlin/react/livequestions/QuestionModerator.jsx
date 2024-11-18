@@ -101,8 +101,8 @@ export default class QuestionModerator extends React.Component {
     const doneText = django.gettext('mark as done')
     const addLiveText = django.gettext('added to live list')
     const removeLiveText = django.gettext('remove from live list')
-    const addShortlistText = django.gettext('added to shortlist')
-    const removeShortlistText = django.gettext('remove from shortlist')
+    const addBookmarkText = django.gettext('add bookmark')
+    const removeBookmarkText = django.gettext('remove bookmark')
 
     return (
       <>
@@ -124,8 +124,8 @@ export default class QuestionModerator extends React.Component {
                   this.state.is_hidden && 'card__button--active'
                 )}
                 onClick={this.toggleIshidden.bind(this)}
-                aria-label={this.props.is_hidden ? hiddenText : undoHiddenText}
-                title={this.props.is_hidden ? hiddenText : undoHiddenText}
+                aria-label={this.props.is_hidden ? undoHiddenText : hiddenText}
+                title={this.props.is_hidden ? undoHiddenText : hiddenText}
               >
                 <i
                   className={classNames(
@@ -145,10 +145,10 @@ export default class QuestionModerator extends React.Component {
                 )}
                 onClick={this.toggleIsOnShortList.bind(this)}
                 aria-label={
-                  this.state.is_on_shortlist ? addShortlistText : removeShortlistText
+                  this.state.is_on_shortlist ? removeBookmarkText : addBookmarkText
                 }
                 title={
-                  this.state.is_on_shortlist ? addShortlistText : removeShortlistText
+                  this.state.is_on_shortlist ? removeBookmarkText : addBookmarkText
                 }
               >
                 <i className="fas fa-bookmark" aria-hidden="true" />
@@ -176,8 +176,8 @@ export default class QuestionModerator extends React.Component {
                   this.state.is_live && 'card__button--active'
                 )}
                 onClick={this.toggleIslive.bind(this)}
-                aria-label={this.state.is_live ? addLiveText : removeLiveText}
-                title={this.state.is_live ? addLiveText : removeLiveText}
+                aria-label={this.state.is_live ? removeLiveText : addLiveText}
+                title={this.state.is_live ? removeLiveText : addLiveText}
               >
                 <i className="fas fa-tv" aria-hidden="true" />
               </button>

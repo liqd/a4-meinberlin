@@ -34,3 +34,38 @@
 .card__pill {
     margin-bottom: 0.3em;
 }
+
+.card__footer .functions {
+    display: flex;
+    order: 1;
+    align-self: flex-end;
+    margin-top: -9px;
+    margin-right: -18px;
+}
+
+.card__button--shortlist:before,
+.card__button--answered:before {
+    background-color: $primary;
+}
+
+.card__button i {
+    font-size: 14px;
+}
+
+.card__button--hidden i,
+.card__button--live i {
+    color: $gray;
+}
+
+.card__button--shortlist i,
+.card__button--answered i {
+    color: $text-inverted;
+}
+
+.card__button--active:before {
+    background-color: $black;
+}
+
+.card__button--active i {
+    color: $text-inverted;
+}

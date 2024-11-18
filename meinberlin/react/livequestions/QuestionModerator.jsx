@@ -1,6 +1,7 @@
 import React from 'react'
 import django from 'django'
 import LikeCard from './LikeCard'
+import { classNames } from '../contrib/helpers'
 
 export default class QuestionModerator extends React.Component {
   constructor (props) {
@@ -113,53 +114,76 @@ export default class QuestionModerator extends React.Component {
             count: this.state.likes,
             session_like: this.state.session_like
           }}
-        />
-        <div className="list-item mb-2">
-          <div className="live-question__action-bar">
-            {this.props.displayIsOnShortlist &&
+        >
+          <div className="functions">
+            {this.props.displayIsHidden && (
               <button
                 type="button"
-                className="btn btn--light u-spacer-right"
-                onClick={this.toggleIsOnShortList.bind(this)}
-                aria-label={this.state.is_on_shortlist ? addShortlistText : removeShortlistText}
-                title={this.state.is_on_shortlist ? addShortlistText : removeShortlistText}
-              >
-                <i className={this.state.is_on_shortlist ? 'far fa-list-alt u-primary' : 'far fa-list-alt u-muted'} aria-hidden="true" />
-              </button>}
-            {this.props.displayIsLive &&
-              <button
-                type="button"
-                className="btn btn--light u-spacer-right"
-                onClick={this.toggleIslive.bind(this)}
-                aria-label={this.state.is_live ? addLiveText : removeLiveText}
-                title={this.state.is_live ? addLiveText : removeLiveText}
-              >
-                <span className="fa-stack fa-1x">
-                  <i className={this.state.is_live ? 'fas fa-tv fa-stack-2x u-primary' : 'fas fa-tv fa-stack-2x u-muted'} aria-hidden="true" />
-                  <i className={this.state.is_live ? 'fas fa-check fa-stack-1x fa-inverse u-primary' : 'fas fa-check fa-stack-1x u-muted'} aria-hidden="true" />
-                </span>
-              </button>}
-            {this.props.displayIsAnswered &&
-              <button
-                type="button" className="btn btn--light u-spacer-right"
-                onClick={this.toggleIsAnswered.bind(this)}
-                aria-label={doneText}
-                title={doneText}
-              >
-                <i className={this.props.is_answered ? 'far fa-check-circle u-primary' : 'far fa-check-circle u-muted'} aria-hidden="true" />
-              </button>}
-            {this.props.displayIsHidden &&
-              <button
-                type="button"
-                className="btn btn--light"
+                className={classNames(
+                  'cardbutton card__button card__button--hidden',
+                  this.state.is_hidden && 'card__button--active'
+                )}
                 onClick={this.toggleIshidden.bind(this)}
                 aria-label={this.props.is_hidden ? hiddenText : undoHiddenText}
                 title={this.props.is_hidden ? hiddenText : undoHiddenText}
               >
-                <i className={this.props.is_hidden ? 'far fa-eye-slash u-muted' : 'far fa-eye u-primary'} aria-hidden="true" />
-              </button>}
+                <i
+                  className={classNames(
+                    'fas fa-eye',
+                    this.state.is_hidden && 'fa-eye-slash'
+                  )}
+                  aria-hidden="true"
+                />
+              </button>
+            )}
+            {this.props.displayIsOnShortlist && (
+              <button
+                type="button"
+                className={classNames(
+                  'cardbutton card__button card__button--shortlist',
+                  this.state.is_on_shortlist && 'card__button--active'
+                )}
+                onClick={this.toggleIsOnShortList.bind(this)}
+                aria-label={
+                  this.state.is_on_shortlist ? addShortlistText : removeShortlistText
+                }
+                title={
+                  this.state.is_on_shortlist ? addShortlistText : removeShortlistText
+                }
+              >
+                <i className="fas fa-bookmark" aria-hidden="true" />
+              </button>
+            )}
+            {this.props.displayIsAnswered && (
+              <button
+                type="button"
+                className={classNames(
+                  'cardbutton card__button card__button--answered',
+                  this.props.is_answered && 'card__button--active'
+                )}
+                onClick={this.toggleIsAnswered.bind(this)}
+                aria-label={doneText}
+                title={doneText}
+              >
+                <i className="fas fa-check" aria-hidden="true" />
+              </button>
+            )}
+            {this.props.displayIsLive && (
+              <button
+                type="button"
+                className={classNames(
+                  'cardbutton card__button card__button--live',
+                  this.state.is_live && 'card__button--active'
+                )}
+                onClick={this.toggleIslive.bind(this)}
+                aria-label={this.state.is_live ? addLiveText : removeLiveText}
+                title={this.state.is_live ? addLiveText : removeLiveText}
+              >
+                <i className="fas fa-tv" aria-hidden="true" />
+              </button>
+            )}
           </div>
-        </div>
+        </LikeCard>
       </>
     )
   }

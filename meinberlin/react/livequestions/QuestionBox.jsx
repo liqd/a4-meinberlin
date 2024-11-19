@@ -249,7 +249,7 @@ export default class QuestionBox extends React.Component {
           : <StatisticsBox
               answeredQuestions={this.state.answeredQuestions}
               questions_api_url={this.props.questions_api_url}
-              categories={this.props.categories}
+              category_dict={this.props.category_dict}
               isModerator={this.props.isModerator}
             />}
       </div>

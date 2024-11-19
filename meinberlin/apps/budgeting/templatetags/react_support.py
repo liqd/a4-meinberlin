@@ -18,7 +18,7 @@ def react_support(context, obj):
     contenttype = ContentType.objects.get_for_model(obj)
     authenticated = False
     user_supported = False
-    user_support_id = -1
+    user_support_id = None
     if user.is_authenticated:
         authenticated = True
         user_support = rating_models.Rating.objects.filter(

@@ -14,3 +14,27 @@
 .button--full-width {
     width: 100%; // enforce full-width on all viewports (used on narrow containers on desktop e.g. login page)
 }
+
+.button.button--proposal {
+    background-color: $black;
+    color: $text-inverted;
+    transition: background-color 0.2s ease-in-out;
+
+    &:not(:disabled):hover,
+    &:not(:disabled):focus {
+        background-color: $primary-600;
+    }
+
+    .fas {
+        color: inherit;
+        margin-left: .5em;
+    }
+
+    &--selected {
+        background-color: $primary;
+    }
+
+    &--read-only {
+        background-color: $gray-lighter;
+    }
+}

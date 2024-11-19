@@ -34,7 +34,7 @@ def test_react_proposals(module, rf, area_settings_factory):
     assert props == {
         "apiUrl": reverse("proposals-list", kwargs={"module_pk": module.pk}),
         "endSessionUrl": reverse("end_session"),
-        "map": get_map_settings(polygon=module.settings_instance.polygon)
+        "map": get_map_settings(polygon=module.settings_instance.polygon),
     }
 
 
@@ -129,7 +129,7 @@ def test_react_support(phase_factory, proposal_factory, rating_factory, user, rf
             "authenticated": True,
             "support": 0,
             "userSupported": False,
-            "userSupportId": -1,
+            "userSupportId": None,
             "isReadOnly": False,
             "isArchived": False,
         }

@@ -8,8 +8,12 @@ $gray-lightest: #f5f5f5 !default;
 $gray-lighter: #ddd !default;
 
 // Decorative Base Colors
+// Primary hue + values
 $primary: #00a982 !default;
 $primary-400: #00c295 !default;
+$primary-500: $primary !default;
+$primary-600: #006c53 !default;
+
 $secondary: #002856 !default;
 $purple: #9185be !default;
 $pink: #f6b4cc !default;

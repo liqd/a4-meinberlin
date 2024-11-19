@@ -1,0 +1,14 @@
+.servicepanel--centered {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+
+    .servicepanel__main {
+        grid-column: 2;
+    }
+
+    .servicepanel__right {
+        grid-column: 3;
+        margin-left: auto;
+    }
+}

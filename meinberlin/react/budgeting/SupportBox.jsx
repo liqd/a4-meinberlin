@@ -1,112 +1,69 @@
-import React, { useState } from 'react'
+import React from 'react'
 import django from 'django'
+import RatingBox from 'adhocracy4/adhocracy4/ratings/static/ratings/RatingBox'
+import SupportButton from './SupportButton'
 
-const api = require('adhocracy4').api
-const config = require('adhocracy4').config
-
-export const SupportBox = (props) => {
-  const [support, setSupport] = useState(props.support)
-  const [userSupported, setUserSupported] = useState(props.userSupported)
-  const [userSupportId, setUserSupportId] = useState(props.userSupportId)
-
-  const translations = {
-    support: django.ngettext(
-      'person supports this proposal.',
-      'persons support this proposal.',
-      props.support
-    ),
-    clickToSupport: django.gettext('Click to support.'),
-    clickToUnsupport: django.gettext('You support this proposal. Click to unsupport.'),
-    supportButtonDisabled: django.gettext('Support button inactive.')
-  }
-
-  const getSupportClickStr = () => {
-    if (props.isReadOnly) {
-      return translations.supportButtonDisabled
-    }
-    return userSupported
-      ? translations.clickToUnsupport
-      : translations.clickToSupport
-  }
-
-  const handleSupportCreate = (value) => {
-    api.rating.add({
-      urlReplaces: {
-        objectPk: props.objectId,
-        contentTypeId: props.contentType
-      },
-      value
-    })
-      .done((data) => {
-        setSupport(data.meta_info.positive_ratings_on_same_object)
-        setUserSupported(true)
-        setUserSupportId(data.id)
-      })
-      .fail((xhr, status, err) => {
-        if (status === 400 &&
-           xhr.responseJSON.length === 1 &&
-           Number.isInteger(parseInt(xhr.responseJSON[0]))) {
-          setUserSupported(true)
-          setUserSupportId(xhr.responseJSON[0])
-          handleSupportModify(value, userSupportId)
-        }
-      })
-  }
-
-  const handleSupportModify = (value, id) => {
-    api.rating.change({
-      urlReplaces: {
-        objectPk: props.objectId,
-        contentTypeId: props.contentType
-      },
-      value
-    }, id)
-      .done((data) => {
-        setSupport(data.meta_info.positive_ratings_on_same_object)
-        setUserSupported(!userSupported)
-      })
-  }
-
-  const handleSupport = (e) => {
-    if (!props.authenticated) {
-      window.location.href = config.getLoginUrl()
-      return
-    }
-    if (props.isReadOnly) {
-      e.preventDefault()
-      return
-    }
-    if (userSupportId >= 0) {
-      handleSupportModify(+!userSupported, userSupportId)
-    } else {
-      handleSupportCreate(1)
-    }
-  }
-
-  const getSupportClass = () => {
-    if (props.isArchived) {
-      return 'is-archived'
-    }
-    if (props.isReadOnly) {
-      return 'is-read-only'
-    }
-    if (userSupported) {
-      return 'is-selected'
-    }
-  }
-
-  return (
-    <div className="rating">
-      <button
-        aria-label={support + ' ' + translations.support + ' ' + getSupportClickStr()}
-        className={'rating-button rating-up ' + getSupportClass()}
-        aria-disabled={props.isReadOnly}
-        onClick={handleSupport}
-        title={getSupportClickStr()}
-      >
-        <i className="far fa-thumbs-up" aria-hidden="true" />
-        <span aria-hidden="true">{support}</span>
-      </button>
-    </div>
+function getSupportText (ratings, userRatingData) {
+  const supportCount = ratings.positive
+  const supportWithoutUser = django.ngettext(
+    '1 person has supported this idea.',
+    '%s people have supported this idea.',
+    supportCount
   )
+
+  const supportWithUser = django.ngettext(
+    'You have supported this idea.',
+    'You and %s people have supported this idea.',
+    supportCount === 1 ? 1 : supportCount - 1
+  )
+
+  let text = userRatingData.userHasRating
+    ? django.interpolate(supportWithUser, [supportCount === 1 ? 1 : supportCount - 1])
+    : django.interpolate(supportWithoutUser, [supportCount])
+
+  if (supportCount === 0) {
+    text = django.gettext('This idea has not yet been supported.')
+  } else if (supportCount === 2 && userRatingData.userHasRating) {
+    // overrides the supportWithUser case when there are two supporters
+    // but we would have to subtract one because it says "you and ..."
+    // and then we would end up with supportCount = 1 again even though there
+    // are two supporters
+    text = django.gettext('You and 1 other person have supported this idea.')
+  }
+  return text
 }
+
+export const SupportBox = ({
+  authenticated,
+  support,
+  isReadOnly,
+  userSupported,
+  userSupportId,
+  objectId,
+  contentType,
+  isArchived
+}) => (
+  <RatingBox
+    authenticatedAs={authenticated}
+    positiveRatings={support}
+    userHasRating={userSupported}
+    userRatingId={userSupportId}
+    isReadOnly={isReadOnly}
+    objectId={objectId}
+    contentType={contentType}
+    render={(props) => {
+      const text = getSupportText(props.ratings, props.userRatingData)
+
+      return (
+        <div className="modul-servicepanel servicepanel--centered panel--heavy">
+          <div className="servicepanel__main">
+            {text}
+          </div>
+          <div className="servicepanel__right">
+            <SupportButton {...props} isArchived={isArchived} />
+          </div>
+        </div>
+      )
+    }}
+  />
+)

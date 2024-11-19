@@ -7,3 +7,28 @@
     margin-left: auto;
     margin-bottom: .625em;
 }
+
+.live-question__progress {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.live-question__progress-bar {
+    background-color: $gray-lighter;
+    border-radius: 10px;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+}
+
+.live-question__progress-text {
+    padding: 0 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.live-question__progress-percentage {
+    font-weight: bold;
+}

@@ -251,6 +251,8 @@ export default class QuestionBox extends React.Component {
               questions_api_url={this.props.questions_api_url}
               category_dict={this.props.category_dict}
               isModerator={this.props.isModerator}
+              handleLike={this.handleLike.bind(this)}
+              hasLikingPermission={this.props.hasLikingPermission}
             />}
       </div>
     )

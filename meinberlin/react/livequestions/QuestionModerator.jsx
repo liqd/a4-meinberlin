@@ -1,190 +1,208 @@
-import React from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import django from 'django'
 import LikeCard from './LikeCard'
 import { classNames } from '../contrib/helpers'
 
-export default class QuestionModerator extends React.Component {
-  constructor (props) {
-    super(props)
+const hiddenText = django.gettext('mark as hidden')
+const undoHiddenText = django.gettext('undo mark as hidden')
+const doneText = django.gettext('mark as done')
+const addLiveText = django.gettext('added to live list')
+const removeLiveText = django.gettext('remove from live list')
+const addBookmarkText = django.gettext('add bookmark')
+const removeBookmarkText = django.gettext('remove bookmark')
 
-    this.state = {
-      is_on_shortlist: this.props.is_on_shortlist,
-      is_live: this.props.is_live,
-      likes: this.props.likes.count,
-      session_like: this.props.likes.session_like,
-      is_hidden: this.props.is_hidden,
-      is_answered: this.props.is_answered
-    }
-  }
+const QuestionModerator = ({
+  category,
+  children,
+  displayIsAnswered,
+  displayIsHidden,
+  displayIsLive,
+  displayIsOnShortlist,
+  handleLike,
+  id,
+  is_answered: _isAnswered,
+  is_hidden: _isHidden,
+  is_live: _isLive,
+  is_on_shortlist: _isOnShortlist,
+  likes,
+  removeFromList,
+  togglePollingPaused,
+  updateQuestion
+}) => {
+  const [isOnShortlist, setisOnShortlist] = useState(_isOnShortlist)
+  const [isLive, setIsLive] = useState(_isLive)
+  const [isHidden, setIsHidden] = useState(_isHidden)
+  const [isAnswered, setIsAnswered] = useState(_isAnswered)
+  const [likeCount, setLikeCount] = useState(likes.count)
+  const [sessionLike, setSessionLike] = useState(likes.session_like)
 
-  toggleIsOnShortList () {
-    const value = !this.state.is_on_shortlist
-    const boolValue = (value) ? 1 : 0
+  // Copying props to local state ensures instant updates when interacting with the moderator buttons (for example: toggleIsOnShortList)
+  // If the props were used directly, there would be a UI delay due to polling in the QuestionBox component.
+  useEffect(() => {
+    setisOnShortlist(_isOnShortlist)
+  }, [_isOnShortlist])
+
+  useEffect(() => {
+    setIsLive(_isLive)
+  }, [_isLive])
+
+  useEffect(() => {
+    setIsHidden(_isHidden)
+  }, [_isHidden])
+
+  useEffect(() => {
+    setIsAnswered(_isAnswered)
+  }, [_isAnswered])
+
+  useEffect(() => {
+    setLikeCount(likes.count)
+    setSessionLike(likes.session_like)
+  }, [likes])
+
+  const toggleIsOnShortList = () => {
+    const value = !isOnShortlist
+    const boolValue = value ? 1 : 0
     const data = { is_on_shortlist: boolValue }
-    this.props.updateQuestion(data, this.props.id)
+    updateQuestion(data, id)
       .then((response) => response.json())
-      .then(responseData => this.setState(
-        {
-          is_on_shortlist: responseData.is_on_shortlist
-        }
-      ))
-      .then(() => this.props.togglePollingPaused())
+      .then(responseData => {
+        setisOnShortlist(responseData.is_on_shortlist)
+      })
+      .then(() => togglePollingPaused())
   }
 
-  toggleIslive () {
-    const value = !this.state.is_live
-    const boolValue = (value) ? 1 : 0
+  const toggleIslive = () => {
+    const value = !isLive
+    const boolValue = value ? 1 : 0
     const data = { is_live: boolValue }
-    this.props.updateQuestion(data, this.props.id)
+    updateQuestion(data, id)
       .then((response) => response.json())
-      .then(responseData => this.setState(
-        {
-          is_live: responseData.is_live
-        }
-      ))
-      .then(() => this.props.togglePollingPaused())
+      .then(responseData => {
+        setIsLive(responseData.is_live)
+      })
+      .then(() => togglePollingPaused())
   }
 
-  toggleIsAnswered () {
-    const value = !this.state.is_answered
-    const boolValue = (value) ? 1 : 0
+  const toggleIsAnswered = () => {
+    const value = !isAnswered
+    const boolValue = value ? 1 : 0
     const data = { is_answered: boolValue }
-    this.props.removeFromList(this.props.id, data)
+    removeFromList(id, data)
   }
 
-  toggleIshidden () {
-    const value = !this.state.is_hidden
-    const boolValue = (value) ? 1 : 0
+  const toggleIshidden = () => {
+    const value = !isHidden
+    const boolValue = value ? 1 : 0
     const data = { is_hidden: boolValue }
-    this.props.updateQuestion(data, this.props.id)
+    updateQuestion(data, id)
       .then((response) => response.json())
-      .then(responseData => this.setState(
-        {
-          is_hidden: responseData.is_hidden
-        }
-      ))
-      .then(() => this.props.togglePollingPaused())
+      .then(responseData => {
+        setIsHidden(responseData.is_hidden)
+      })
+      .then(() => togglePollingPaused())
   }
 
-  componentDidUpdate (prevProps) {
-    if (this.props.is_on_shortlist !== prevProps.is_on_shortlist) {
-      this.setState({
-        is_on_shortlist: this.props.is_on_shortlist
-      })
+  const handleErrors = (response) => {
+    if (!response.ok) {
+      throw new Error(response.statusText)
     }
-    if (this.props.is_live !== prevProps.is_live) {
-      this.setState({
-        is_live: this.props.is_live
-      })
-    }
-    if (this.props.is_hidden !== prevProps.is_hidden) {
-      this.setState({
-        is_hidden: this.props.is_hidden
-      })
-    }
-    if (this.props.is_answered !== prevProps.is_answered) {
-      this.setState({
-        is_answered: this.props.is_answered
-      })
-    }
-    if (this.props.likes !== prevProps.likes) {
-      this.setState({
-        likes: this.props.likes.count,
-        session_like: this.props.likes.session_like
-      })
-    }
+    return response
   }
 
-  render () {
-    const hiddenText = django.gettext('mark as hidden')
-    const undoHiddenText = django.gettext('undo mark as hidden')
-    const doneText = django.gettext('mark as done')
-    const addLiveText = django.gettext('added to live list')
-    const removeLiveText = django.gettext('remove from live list')
-    const addBookmarkText = django.gettext('add bookmark')
-    const removeBookmarkText = django.gettext('remove bookmark')
+  const handleLikeClick = useCallback(() => {
+    const newSessionLike = !sessionLike
+    handleLike(id, newSessionLike)
+      .then(handleErrors)
+      .then(() => {
+        setSessionLike(newSessionLike)
+        setLikeCount((prevLikes) => prevLikes + (newSessionLike ? 1 : -1))
+      })
+      .catch((error) => {
+        console.log(error.message)
+      })
+  }, [sessionLike, handleLike, id])
 
-    return (
-      <>
-        <LikeCard
-          title={this.props.children}
-          category={this.props.category}
-          isOnShortlist={this.state.is_on_shortlist}
-          likes={{
-            count: this.state.likes,
-            session_like: this.state.session_like
-          }}
-        >
-          <div className="functions">
-            {this.props.displayIsHidden && (
-              <button
-                type="button"
-                className={classNames(
-                  'cardbutton card__button card__button--hidden',
-                  this.state.is_hidden && 'card__button--active'
-                )}
-                onClick={this.toggleIshidden.bind(this)}
-                aria-label={this.props.is_hidden ? undoHiddenText : hiddenText}
-                title={this.props.is_hidden ? undoHiddenText : hiddenText}
-              >
-                <i
-                  className={classNames(
-                    'fas fa-eye',
-                    this.state.is_hidden && 'fa-eye-slash'
-                  )}
-                  aria-hidden="true"
-                />
-              </button>
+  return (
+    <LikeCard
+      title={children}
+      category={category}
+      isOnShortlist={isOnShortlist}
+      likes={{
+        count: likeCount,
+        session_like: sessionLike
+      }}
+      onLikeClick={handleLikeClick}
+    >
+      <div className="functions">
+        {displayIsHidden && (
+          <button
+            type="button"
+            className={classNames(
+              'cardbutton card__button card__button--hidden',
+              isHidden && 'card__button--active'
             )}
-            {this.props.displayIsOnShortlist && (
-              <button
-                type="button"
-                className={classNames(
-                  'cardbutton card__button card__button--shortlist',
-                  this.state.is_on_shortlist && 'card__button--active'
-                )}
-                onClick={this.toggleIsOnShortList.bind(this)}
-                aria-label={
-                  this.state.is_on_shortlist ? removeBookmarkText : addBookmarkText
-                }
-                title={
-                  this.state.is_on_shortlist ? removeBookmarkText : addBookmarkText
-                }
-              >
-                <i className="fas fa-bookmark" aria-hidden="true" />
-              </button>
+            onClick={toggleIshidden}
+            aria-label={isHidden ? undoHiddenText : hiddenText}
+            title={isHidden ? undoHiddenText : hiddenText}
+          >
+            <i
+              className={classNames(
+                'fas fa-eye',
+                isHidden && 'fa-eye-slash'
+              )}
+              aria-hidden="true"
+            />
+          </button>
+        )}
+        {displayIsOnShortlist && (
+          <button
+            type="button"
+            className={classNames(
+              'cardbutton card__button card__button--shortlist',
+              isOnShortlist && 'card__button--active'
             )}
-            {this.props.displayIsAnswered && (
-              <button
-                type="button"
-                className={classNames(
-                  'cardbutton card__button card__button--answered',
-                  this.props.is_answered && 'card__button--active'
-                )}
-                onClick={this.toggleIsAnswered.bind(this)}
-                aria-label={doneText}
-                title={doneText}
-              >
-                <i className="fas fa-check" aria-hidden="true" />
-              </button>
+            onClick={toggleIsOnShortList}
+            aria-label={
+              isOnShortlist ? removeBookmarkText : addBookmarkText
+            }
+            title={
+              isOnShortlist ? removeBookmarkText : addBookmarkText
+            }
+          >
+            <i className="fas fa-bookmark" aria-hidden="true" />
+          </button>
+        )}
+        {displayIsAnswered && (
+          <button
+            type="button"
+            className={classNames(
+              'cardbutton card__button card__button--answered',
+              isAnswered && 'card__button--active'
             )}
-            {this.props.displayIsLive && (
-              <button
-                type="button"
-                className={classNames(
-                  'cardbutton card__button card__button--live',
-                  this.state.is_live && 'card__button--active'
-                )}
-                onClick={this.toggleIslive.bind(this)}
-                aria-label={this.state.is_live ? removeLiveText : addLiveText}
-                title={this.state.is_live ? removeLiveText : addLiveText}
-              >
-                <i className="fas fa-tv" aria-hidden="true" />
-              </button>
+            onClick={toggleIsAnswered}
+            aria-label={doneText}
+            title={doneText}
+          >
+            <i className="fas fa-check" aria-hidden="true" />
+          </button>
+        )}
+        {displayIsLive && (
+          <button
+            type="button"
+            className={classNames(
+              'cardbutton card__button card__button--live',
+              isLive && 'card__button--active'
             )}
-          </div>
-        </LikeCard>
-      </>
-    )
-  }
+            onClick={toggleIslive}
+            aria-label={isLive ? removeLiveText : addLiveText}
+            title={isLive ? removeLiveText : addLiveText}
+          >
+            <i className="fas fa-tv" aria-hidden="true" />
+          </button>
+        )}
+      </div>
+    </LikeCard>
+  )
 }
+
+export default QuestionModerator

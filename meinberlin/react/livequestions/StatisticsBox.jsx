@@ -92,6 +92,8 @@ function StatisticsBox (props) {
             is_hidden={question.is_hidden}
             category={question.category}
             likes={question.likes}
+            handleLike={props.handleLike.bind(this)}
+            hasLikingPermission={props.hasLikingPermission}
           >
             {question.text}
           </QuestionModerator>
@@ -106,6 +108,8 @@ function StatisticsBox (props) {
             is_hidden={question.is_hidden}
             category={question.category}
             likes={question.likes}
+            handleLike={props.handleLike.bind(this)}
+            hasLikingPermission={props.hasLikingPermission}
           >
             {question.text}
           </QuestionUser>

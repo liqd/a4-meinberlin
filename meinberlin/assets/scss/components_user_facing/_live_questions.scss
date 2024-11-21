@@ -32,3 +32,15 @@
 .live-question__progress-percentage {
     font-weight: bold;
 }
+
+.live-question__buttons {
+    @media screen and (min-width: $breakpoint-tablet) {
+        display: flex;
+        gap: 1.25rem;
+    }
+}
+
+.live-question__present {
+    min-width: 14rem;
+    width: 100%;
+}

@@ -10,7 +10,7 @@ import { IconSwitch } from '../contrib/IconSwitch'
 
 const questionsStr = django.gettext('Questions')
 const statisticsStr = django.gettext('Statistics')
-const displayStr = django.gettext('display on screen')
+const screenStr = django.gettext('Show on Screen')
 
 export default class QuestionBox extends React.Component {
   constructor (props) {
@@ -22,12 +22,8 @@ export default class QuestionBox extends React.Component {
       questions: [],
       filteredQuestions: [],
       answeredQuestions: [],
-      category: '-1',
-      displayNotHiddenOnly: false,
-      displayOnShortlist: false,
-      orderedByLikes: false,
       filterChanged: false,
-      orderingChanged: false,
+      filters: [],
       pollingPaused: false,
       showQuestions: true
     }
@@ -45,51 +41,56 @@ export default class QuestionBox extends React.Component {
     if (this.state.filterChanged === true) {
       this.updateList()
     }
-    if (this.state.orderingChanged === true) {
-      this.getItems()
-    }
-  }
-
-  setCategory (category) {
-    this.setState({
-      filterChanged: true,
-      category
-    })
-  }
-
-  toggledisplayNotHiddenOnly () {
-    const displayNotHiddenOnly = !this.state.displayNotHiddenOnly
-    this.setState({
-      filterChanged: true,
-      displayNotHiddenOnly
-    })
-  }
-
-  toggleDisplayOnShortlist () {
-    const displayOnShortlist = !this.state.displayOnShortlist
-    this.setState({
-      filterChanged: true,
-      displayOnShortlist
-    })
-  }
-
-  toggleOrdering () {
-    const orderedByLikes = !this.state.orderedByLikes
-    this.setState({
-      orderingChanged: true,
-      orderedByLikes
-    })
   }
 
   isInFilter (item) {
-    return (this.state.category === '-1' || this.state.category === item.category) &&
-      (!this.state.displayOnShortlist || item.is_on_shortlist) && (!this.state.displayNotHiddenOnly || !item.is_hidden)
+    const filters = this.state.filters || {}
+    const categories = filters.categories || []
+    const markedFilter = filters.marked || []
+    const displayFilter = filters.display || []
+
+    const conditions = {
+      bookmarked: item.is_on_shortlist,
+      not_bookmarked: !item.is_on_shortlist,
+      screen: item.is_live,
+      not_screen: !item.is_live,
+      answered: item.is_answered,
+      not_answered: !item.is_answered,
+      visible: !item.is_hidden,
+      hidden: item.is_hidden
+    }
+
+    const matchesFilters = (filterGroup) => {
+      if (filterGroup.length === 0) return true
+
+      const filtersWithTrueConditions = filterGroup.map((filter) => conditions[filter])
+
+      if (filtersWithTrueConditions.includes(undefined)) return true
+
+      const allConflict = filtersWithTrueConditions.some((value) =>
+        filtersWithTrueConditions.some((otherValue) => value !== otherValue)
+      )
+
+      if (allConflict) return true
+
+      return filtersWithTrueConditions.every((condition) => condition)
+    }
+
+    const matchesCategoryFilter = categories.length === 0 || categories.includes(item.category)
+    const matchesMarkedFilter = matchesFilters(markedFilter)
+    const matchesDisplayFilter = matchesFilters(displayFilter)
+
+    return (
+      matchesCategoryFilter &&
+      matchesMarkedFilter &&
+      matchesDisplayFilter
+    )
   }
 
   filterQuestions (questions) {
     const filteredQuestions = []
     questions.forEach((item) => {
-      if (this.isInFilter(item) && !item.is_answered) {
+      if (this.isInFilter(item) && (this.props.isModerator || !item.is_answered)) {
         filteredQuestions.push(item)
       }
     })
@@ -115,11 +116,7 @@ export default class QuestionBox extends React.Component {
   }
 
   getUrl () {
-    const url = this.props.questions_api_url
-    if (this.state.orderedByLikes) {
-      return url + '?ordering=-like_count'
-    }
-    return url
+    return this.props.questions_api_url
   }
 
   getItems () {
@@ -129,8 +126,7 @@ export default class QuestionBox extends React.Component {
         .then(data => this.setState({
           questions: data,
           filteredQuestions: this.filterQuestions(data),
-          answeredQuestions: this.getAnsweredQuestions(data),
-          orderingChanged: false
+          answeredQuestions: this.getAnsweredQuestions(data)
         }))
     }
   }
@@ -170,6 +166,13 @@ export default class QuestionBox extends React.Component {
     this.timer = setInterval(() => this.getItems(), 500)
   }
 
+  applyFilters (filters) {
+    this.setState({
+      filters,
+      filterChanged: true
+    })
+  }
+
   render () {
     return (
       <div className="live-question">
@@ -181,33 +184,43 @@ export default class QuestionBox extends React.Component {
             privatePolicyLabel={this.props.privatePolicyLabel}
           />
         )}
-        <IconSwitch
-          className="live-question__icon-switch"
-          buttons={[
-            {
-              label: questionsStr,
-              icon: 'fa fa-list',
-              id: 'show_questions',
-              isActive: this.state.showQuestions,
-              handleClick: () => {
-                this.setState({
-                  showQuestions: true
-                })
+        <div className="live-question__buttons">
+          <IconSwitch
+            className="live-question__icon-switch"
+            buttons={[
+              {
+                label: questionsStr,
+                icon: 'fa fa-list',
+                id: 'show_questions',
+                isActive: this.state.showQuestions,
+                handleClick: () => {
+                  this.setState({
+                    showQuestions: true
+                  })
+                }
+              },
+              {
+                label: statisticsStr,
+                icon: 'fas fa-chart-bar',
+                id: 'show_stats',
+                isActive: !this.state.showQuestions,
+                handleClick: () => {
+                  this.setState({
+                    showQuestions: false
+                  })
+                }
               }
-            },
-            {
-              label: statisticsStr,
-              icon: 'fas fa-chart-bar',
-              id: 'show_stats',
-              isActive: !this.state.showQuestions,
-              handleClick: () => {
-                this.setState({
-                  showQuestions: false
-                })
-              }
-            }
-          ]}
-        />
+            ]}
+          />
+          {this.props.isModerator && (
+            <div>
+              <a className="button button--light live-question__present" rel="noopener noreferrer" href={this.props.present_url} target="_blank">
+                <span className="fas fa-tv mr-1" aria-hidden="true" />
+                {screenStr}
+              </a>
+            </div>
+          )}
+        </div>
         {this.state.showQuestions
           ? (
             <>
@@ -216,26 +229,9 @@ export default class QuestionBox extends React.Component {
               />
               <Filters
                 categories={this.props.categories}
-                currentCategory={this.state.category}
-                setCategories={this.setCategory.bind(this)}
-                orderedByLikes={this.state.orderedByLikes}
-                toggleOrdering={this.toggleOrdering.bind(this)}
-                displayOnShortlist={this.state.displayOnShortlist}
-                displayNotHiddenOnly={this.state.displayNotHiddenOnly}
-                toggleDisplayOnShortlist={this.toggleDisplayOnShortlist.bind(this)}
-                toggledisplayNotHiddenOnly={this.toggledisplayNotHiddenOnly.bind(this)}
                 isModerator={this.props.isModerator}
+                onFiltered={this.applyFilters.bind(this)}
               />
-              {this.props.isModerator &&
-                <div className="block">
-                  <a className="btn btn--light" rel="noopener noreferrer" href={this.props.present_url} target="_blank">
-                    <span className="fa-stack fa-1x">
-                      <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
-                      <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
-                    </span>
-                    {displayStr}
-                  </a>
-                </div>}
               <QuestionList
                 questions={this.state.filteredQuestions}
                 removeFromList={this.removeFromList.bind(this)}

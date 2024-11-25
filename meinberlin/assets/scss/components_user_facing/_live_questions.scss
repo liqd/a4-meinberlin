@@ -54,3 +54,30 @@
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
 }
+
+.live-question__wrapper {
+    padding: 2rem 0;
+    min-height: calc(100vh - $infographic-footer-height-mobile);
+
+    @media screen and (min-width: $breakpoint-tablet) {
+        padding: 5rem 0;
+        height: calc(100vh - $infographic-footer-height - 2rem);
+        overflow-y: scroll;
+        scrollbar-width: none;
+    }
+}
+
+.live-question__question-container {
+    padding: 1rem 0;
+    border-top: 1px solid $border-color;
+    list-style: none;
+
+    &:last-child {
+        border-bottom: 1px solid $border-color;
+    }
+}
+
+.live-question__question-container h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}

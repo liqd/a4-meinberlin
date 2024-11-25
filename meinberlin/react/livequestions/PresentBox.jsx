@@ -1,79 +1,69 @@
-/* global fetch */
-import $ from 'jquery'
-import React from 'react'
+import React, { useEffect } from 'react'
 import QuestionPresent from './QuestionPresent'
 
-export default class PresentBox extends React.Component {
-  constructor (props) {
-    super(props)
+const PresentBox = (props) => {
+  const [questions, setQuestions] = React.useState([])
 
-    this.state = {
-      questions: []
-    }
-  }
-
-  getListAndFooter (data) {
-    this.setState({
-      questions: data
-    })
-    this.displayFooterOrInfo()
-  }
-
-  getItems () {
-    fetch(this.props.questions_api_url + '?is_live=1&is_answered=0')
+  const getQuestions = () => {
+    fetch(props.questions_api_url + '?is_live=1&is_answered=0')
+      .then(response => handleErrors(response))
       .then(response => response.json())
-      .then(data => this.getListAndFooter(data))
+      .then(data => setQuestions(data))
+      .catch(error => {
+        console.error('Error fetching questions:', {
+          message: error.message,
+          stack: error.stack,
+          apiUrl: props.questions_api_url
+        })
+      })
   }
 
-  componentDidMount () {
-    this.getItems()
-    this.timer = setInterval(() => this.getItems(), 5000)
+  const handleErrors = (response) => {
+    if (!response.ok) {
+      throw new Error('HTTP-Error:' + response.status + '-' + response.statusText)
+    }
+    return response
   }
 
-  componentWillUnmount () {
-    this.timer = null
-  }
-
-  displayFooterOrInfo () {
-    if (this.state.questions.length > 0) {
-      $('#id-present-infographic').removeClass('d-none')
-      $('#id-present-infographic').addClass('infographic__info-footer')
-      $('#id-present-infographic').removeClass('infographic__info-screen')
-    } else {
-      $('#id-present-infographic').removeClass('d-none')
-      $('#id-present-infographic').removeClass('infographic__info-footer')
-      $('#id-present-infographic').addClass('infographic__info-screen')
+  const removeUserIndicator = () => {
+    const userIndicator = document.getElementById('layout-grid__area--contentheader')
+    if (userIndicator) {
+      userIndicator.remove()
     }
   }
 
-  render () {
-    if (this.state.questions.length > 0) {
-      return (
-        <div className="container">
-          <div className="offset-lg-2 col-lg-8">
-            <div className="item-detail-2__content live_question__presentation" />
-            {this.state.questions.map((question, index) => {
-              return (
-                <QuestionPresent
-                  key={question.id}
-                  id={question.id}
-                  likes={question.likes}
-                >
-                  {question.text}
-                </QuestionPresent>
-              )
-            })}
-          </div>
-        </div>
-      )
-    } else {
-      return (
-        <div className="container">
-          <div className="offset-lg-3 col-lg-6 live_question__presentation u-spacer-bottom-double">
-            <h1 className="u-align-center">{this.props.title}</h1>
-          </div>
-        </div>
-      )
-    }
-  }
+  useEffect(() => {
+    removeUserIndicator()
+    getQuestions()
+
+    const intervalId = setInterval(() => {
+      getQuestions()
+    }, 5000)
+
+    return () => clearInterval(intervalId)
+  }, [])
+
+  return (
+    /* eslint-disable multiline-ternary */
+    <>
+      {questions.length > 0
+        ? (
+          <ul>
+            {questions.map((question) =>
+              <QuestionPresent
+                key={question.id}
+                id={question.id}
+                likes={question.likes}
+                questionText={question.text}
+              />
+            )}
+          </ul>
+          ) : (
+            <h1 className="u-align-center">{props.title}</h1>
+          )}
+    </>
+    /* eslint-enable multiline-ternary */
+  )
 }
+
+export default PresentBox

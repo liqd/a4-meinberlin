@@ -1,71 +1,70 @@
 {% extends 'base.html' %}
 {% load react_questions static i18n %}
 
+{% block header %}
 
-{% block header %}{% endblock %}
+{% endblock header %}
+
 {% block content %}
+  <div class="live-question__wrapper">
     {% react_questions_present view.module %}
-
-<div id="id-present-infographic" class="d-none block--infographic live_questions_infographic__footer">
-    <div class="live_questions_infographic__logo-container">
-        <div class="live_questions_infographic__logo">
-            <a href="{% url 'wagtail_serve' '' %}" rel="home">
-                <img src="{% static 'images/logo_mb.svg' %}" alt="mein.berlin"/>
-            </a>
-        </div>
-    </div>
-    <div class="container live_questions_infographic u-spacer-bottom">
-        <div class="block--infographic__body u-spacer-bottom">
-            <div class="block--infographic__icon-block">
-                <div class="block--infographic__icon">
-                    <img src="{% static 'images/icon_liveq_infografik_phone.svg' %}" alt="">
-                </div>
-                <div class="block--infographic__text">
-                {% translate "Enter event link" %}
-                </div>
-            </div>
-            <div class="block--infographic__arrow">
-                <img src="{% static 'images/icon_infografik_arrow_down@2x.png' %}" alt="">
-            </div>
-            <div class="block--infographic__arrow--down">
-                <img src="{% static 'images/icon_infografik_arrow_down@2x.png' %}" alt="">
-            </div>
-            <div class="block--infographic__icon-block">
-                <div class="block--infographic__icon">
-                    <img src="{% static 'images/icon_liveq_infografik_thumb.svg' %}" alt="">
-                </div>
-                <div class="block--infographic__text">
-                  {% translate "Like questions" %}
-                </div>
-            </div>
-            <div class="block--infographic__arrow">
-                <img src="{% static 'images/icon_infografik_arrow_up@2x.png' %}" alt="">
-            </div>
-            <div class="block--infographic__arrow--down">
-                <img src="{% static 'images/icon_infografik_arrow_up@2x.png' %}" alt="">
-            </div>
-            <div class="block--infographic__icon-block">
-                <div class="block--infographic__icon">
-                    <img src="{% static 'images/icon_liveq_infografik_question.svg' %}" alt="">
-                </div>
-                <div class="block--infographic__text">
-                  {% translate "Ask a question yourself!" %}
-                </div>
-            </div>
-        </div>
-        <div class="offset-lg-2 col-lg-8 u-align-center">
-          <span>{% translate "join in here" %}
-            <a href="{{ project.get_absolute_url }}">{{ view.get_full_url }}</a>
-          </span>
-        </div>
-    </div>
-</div>
-{% block extra_js %}
+  </div>
+  {% block extra_js %}
     <script type="text/javascript" src="{% static 'live_questions_presents.js' %}"></script>
     {{ block.super }}
-{% endblock %}
-{% endblock %}
+  {% endblock extra_js %}
+{% endblock content %}
 
 {% block footer %}
+  <div class="infographic-footer">
+    <div class="infographic-footer__logo-container">
+      <div class="infographic-footer__logo">
+        <a href="{% url 'wagtail_serve' '' %}" rel="home"><img src="{% static 'images/logo_berlin_negative.svg' %}" alt="berlin_logo" width="" height="" /></a>
+      </div>
+      <div class="infographic-footer__logo">
+        <a href="{% url 'wagtail_serve' '' %}" rel="home"><img src="{% static 'images/logo_mb_white.svg' %}" alt="mein_berlin_logo" width="" height="" /></a>
+      </div>
+    </div>
 
-{% endblock %}
+    <div class="infographic-footer__content-wrapper">
+      <div class="infographic-footer__icons-container">
+        <div class="infographic-footer__icon-block">
+          <div class="infographic-footer__icon">
+            <img src="{% static 'images/icon_liveq_infografik_phone.svg' %}" alt="phone_icon" width="" height="" />
+          </div>
+          <div>
+            {% translate 'Enter event link' %}
+          </div>
+        </div>
+
+        <div>
+          <img src="{% static 'images/icon_infografik_arrow_up@2x.png' %}" alt="arrow_icon" width="" height="" />
+        </div>
+
+        <div class="infographic-footer__icon-block">
+          <div class="infographic-footer__icon">
+            <img src="{% static 'images/icon_liveq_infografik_thumb.svg' %}" alt="thumb_icon" width="" height=""/>
+          </div>
+          <div>
+            {% translate 'Like questions' %}
+          </div>
+        </div>
+
+        <div>
+          <img src="{% static 'images/icon_infografik_arrow_down@2x.png' %}" alt="arrow_icon" width="" height=""/>
+        </div>
+
+        <div class="infographic-footer__icon-block">
+          <div class="infographic-footer__icon">
+            <img src="{% static 'images/icon_liveq_infografik_question.svg' %}" alt="question_icon" width="" height=""/>
+          </div>
+          <div>
+            {% translate 'Ask a question yourself!' %}
+          </div>
+        </div>
+      </div>
+
+      <span><a href="{{ project.get_absolute_url }}">{% translate 'join in here' %} {{ view.get_full_url }}</a></span>
+    </div>
+  </div>
+{% endblock footer %}

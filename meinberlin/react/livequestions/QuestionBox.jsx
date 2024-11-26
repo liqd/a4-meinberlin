@@ -4,7 +4,6 @@ import React from 'react'
 import QuestionForm from './QuestionForm'
 import QuestionList from './QuestionList'
 import Filters from './Filters'
-import InfoBox from './InfoBox'
 import StatisticsBox from './StatisticsBox'
 import { IconSwitch } from '../contrib/IconSwitch'
 
@@ -243,9 +242,6 @@ export default class QuestionBox extends React.Component {
         {this.state.showQuestions
           ? (
             <>
-              <InfoBox
-                isModerator={this.props.isModerator}
-              />
               <Filters
                 categories={this.props.categories}
                 isModerator={this.props.isModerator}

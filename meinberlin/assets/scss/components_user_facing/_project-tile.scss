@@ -23,6 +23,7 @@ a.project-tile {
 .project-tile__image-wrapper {
     flex: 1;
     min-width: 0;
+    position: relative;
 
     .project-tile--map & {
         flex: 0 0 auto;
@@ -30,6 +31,23 @@ a.project-tile {
         @media screen and (min-width: $breakpoint-tablet) {
             flex: 3;
         }
+    }
+}
+
+.project-tile__icon {
+    background-color: $primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 2.3rem;
+    width: 2.3rem;
+
+    .fa {
+        font-size: 1.3rem;
+        margin-right: 0;
     }
 }
 

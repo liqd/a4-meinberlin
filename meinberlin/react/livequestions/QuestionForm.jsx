@@ -2,12 +2,14 @@ import django from 'django'
 import React from 'react'
 import { updateItem } from '../contrib/helpers.js'
 import { CategorySelect } from './CategorySelect'
+import { alert as Alert } from 'adhocracy4'
 
 const askQuestionStr = django.gettext('Here you can ask your question')
 const questionStr = django.gettext('Question')
 const yourQuestionStr = django.gettext('Your question')
 const charsStr = django.gettext(' characters')
 const postStr = django.gettext('Post')
+const submitSuccessMsg = django.gettext('Question successfully submitted')
 
 export default class QuestionForm extends React.Component {
   constructor (props) {
@@ -15,7 +17,8 @@ export default class QuestionForm extends React.Component {
     this.state = {
       question: '',
       selectedCategory: '',
-      questionCharCount: 0
+      questionCharCount: 0,
+      showSuccessAlert: false
     }
   }
 
@@ -26,6 +29,7 @@ export default class QuestionForm extends React.Component {
   handleTextChange (e) {
     this.setState({ question: e.target.value })
     this.setState({ comment: e.target.value, questionCharCount: e.target.value.length })
+    this.setState({ showSuccessAlert: false })
   }
 
   getPrivacyPolicyLabelWithLinks () {
@@ -57,16 +61,27 @@ export default class QuestionForm extends React.Component {
     updateItem(data, url, 'POST')
     this.setState({
       question: '',
-      questionCharCount: 0
+      questionCharCount: 0,
+      showSuccessAlert: true
     })
     anchor.scrollIntoView({ behavior: 'smooth', block: 'end' })
     this.props.restartPolling()
+  }
+
+  closeAlert () {
+    this.setState({ showSuccessAlert: false })
   }
 
   render () {
     return (
       <>
         <h2 id="question-form-heading">{askQuestionStr}</h2>
+        {this.state.showSuccessAlert &&
+          <Alert
+            type="success"
+            message={submitSuccessMsg}
+            onClick={this.closeAlert.bind(this)}
+          />}
         <form id="id-comment-form" className="form--base panel--heavy" action="" onSubmit={this.addQuestion.bind(this)} aria-labelledby="question-form-heading">
           <div className="form-group">
             {Object.keys(this.props.category_dict).length > 0

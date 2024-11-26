@@ -39,6 +39,7 @@ const ProjectTile = ({ project, isHorizontal, topicChoices, isMapTile }) => {
       className={classNames('project-tile', isHorizontal ? 'project-tile--horizontal' : 'project-tile--vertical', isMapTile && 'project-tile--map')}
     >
       <div className="project-tile__image-wrapper">
+        <ProjectTileIcon access={project.access} />
         <ImageWithPlaceholder
           src={project.tile_image}
           alt={project.tile_image_alt_text ?? altImgStr}
@@ -85,6 +86,34 @@ const ProjectTile = ({ project, isHorizontal, topicChoices, isMapTile }) => {
       </div>
     </a>
   )
+}
+
+function ProjectTileIcon ({ access }) {
+  const projectType = {
+    1: 'public',
+    2: 'semiPublic',
+    3: 'private'
+  }[access]
+
+  switch (projectType) {
+    case 'semiPublic':
+      return (
+        <div className="project-tile__icon" aria-hidden="true">
+          <i className="fa fa-eye" />
+        </div>
+      )
+
+    case 'private':
+      return (
+        <div className="project-tile__icon" aria-hidden="true">
+          <i className="fa fa-lock" />
+        </div>
+      )
+
+    case 'public':
+    default:
+      return null
+  }
 }
 
 export default ProjectTile

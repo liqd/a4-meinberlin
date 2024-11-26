@@ -9,6 +9,8 @@ import StatisticsBox from './StatisticsBox'
 import { IconSwitch } from '../contrib/IconSwitch'
 
 const questionsStr = django.gettext('Questions')
+const questionStr = django.gettext('Question')
+const noQuestionsStr = django.gettext('No questions available at the moment.')
 const statisticsStr = django.gettext('Statistics')
 const screenStr = django.gettext('Show on Screen')
 
@@ -173,6 +175,23 @@ export default class QuestionBox extends React.Component {
     })
   }
 
+  questionCount () {
+    const questionCount = this.state.filteredQuestions.length
+
+    if (questionCount === 0) {
+      return noQuestionsStr
+    }
+
+    const countText = questionCount >= 100 ? '100+' : questionCount
+    const questionText = questionCount === 1 ? questionStr : questionsStr
+
+    return (
+      <span aria-label={countText + ' ' + questionText}>
+        {countText} {questionText}
+      </span>
+    )
+  }
+
   render () {
     return (
       <div className="live-question">
@@ -232,6 +251,13 @@ export default class QuestionBox extends React.Component {
                 isModerator={this.props.isModerator}
                 onFiltered={this.applyFilters.bind(this)}
               />
+              <div
+                className="live_question__count"
+                aria-live="polite"
+                aria-atomic
+              >
+                {this.questionCount()}
+              </div>
               <QuestionList
                 questions={this.state.filteredQuestions}
                 removeFromList={this.removeFromList.bind(this)}

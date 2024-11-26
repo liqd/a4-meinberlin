@@ -37,6 +37,16 @@ const Filter = ({
     setFilters({ ...filters, [type]: choice })
   }
 
+  if (!isModerator && categories.length === 0) {
+    return null
+  }
+
+  const filterColumns = isModerator
+    ? categories.length > 0
+      ? 'grid--3'
+      : 'grid--2'
+    : 'grid--1'
+
   return (
     <>
       <h2 id="filter-form-heading">{questionsText}</h2>
@@ -48,14 +58,19 @@ const Filter = ({
         }}
         aria-labelledby="filter-form-heading"
       >
-        <div className={classNames('flexgrid', isModerator && 'grid--3')}>
-          <MultiSelect
-            label={categoriesLabelText}
-            placeholder={allTag}
-            choices={categories.map((choice) => ({ value: choice, name: choice }))}
-            values={filters.categories}
-            onChange={(choices) => onFilterChange('categories', choices)}
-          />
+        <div className={classNames('flexgrid', filterColumns)}>
+          {categories.length > 0 && (
+            <MultiSelect
+              label={categoriesLabelText}
+              placeholder={allTag}
+              choices={categories.map((choice) => ({
+                value: choice,
+                name: choice
+              }))}
+              values={filters.categories}
+              onChange={(choices) => onFilterChange('categories', choices)}
+            />
+          )}
           {isModerator && (
             <>
               <MultiSelect

@@ -1,92 +1,105 @@
 {% load i18n %}
+<!-- djlint:off H020, H021, H006, H005 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>{% block subject %}{% endblock %}</title>
+        <title>{% block subject %}{% endblock subject %}</title>
     </head>
     <body style="margin: 0; padding: 0; min-width: 100% !important; line-height: 1.2;">
-        <div style="margin: 20px auto; padding: 24px; width: 100%; max-width: 650px; background-color: #fff; box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);">
-            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
-                <tr>
-                    {% block logo %}
-                    <td style="padding-top: 20px; text-align: center; display: flex; justify-content: center;" align="center">
-                        <div style="width: 15%; min-width: 100px; height: auto; margin-left: auto; margin-right: auto; text-align: center;">
-                        {% if organisation.logo %}
-                            <img src="cid:organisation_logo" alt="Logo" style="width: 100%;">
-                        {% else %}
-                            <img src="cid:logo" alt="Logo" style="width: 100%;">
-                        {% endif %}
-                        </div>
-                    </td>
-                    {% endblock %}
-                </tr>
-                <tr>
-                    <td style="padding-top: 20px; text-align: center; margin-left: auto; margin-right: auto;" align="center">
-                        <h2>{% block headline %}{% endblock %}</h2>
-                        <h3 style="color: #818181;">
-                        {% block sub-headline %}{% endblock %}</h3>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="padding-top: 20px; text-align: center;" align="center">
-                        <p>
-                            {% block greeting %}
-                            {% translate 'Hello' %},
-                            {% endblock %}
-                        </p>
-                        <p>
-                            {% block content_html %}
-                                <div style="text-align: left;">{% block newsletter_content %}{% endblock %} </div>
-                                {% block content %}{% endblock %}
-                                <div style="text-align: left;">{% block content_left_aligned %}{% endblock %}</div>
-                            {% endblock %}
-                        </p>
-                    </td>
-                </tr>
-                {% block cta %}
-                    <tr>
-                        <td style="padding-top: 20px; text-align: center;" align="center">
-                            <a href="{% block cta_url %}{% endblock %}"
-                               style="padding: 0 20px; font-weight: bold; line-height: 40px; margin: 0 auto; color: #fff;
-                                    background-color: #253276; border-color: #253276; display: inline-block;
-                                    vertical-align: middle; text-decoration: none;">
-                                {% block cta_label %}{% endblock %}
-                            </a>
-                        </td>
-                    </tr>
-                {% endblock %}
-                <tr>
-                    <td style="color: #818181; font-size: x-small; padding-top: 20px;">
-                        <hr />
-                        {% block reason %}
-                        {% endblock %}
-                    </td>
-                </tr>
-                <tr>
-                    <td style="padding-top: 15px;">
-                        <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
+        <div style="background-color:#ffffff;color:#000000;font-family:Arial,sans-serif;font-size:16px;line-height:1.5;margin:0">
+            <table border="0" role="presentation" style="border-collapse:collapse;width:100%;margin:0 auto;background-color:#ffffff;text-align:left;font-size:16px;overflow:hidden">
+              <tbody>
+              <tr>
+                <td colspan="3" style="border-bottom:1px solid rgb(221,221,221);padding:10px 20px;vertical-align:top">
+                  <div style="margin:1px">
+                    <a href="https://berlin.de/" target="_blank">
+                      <img src="cid:logo_berlin" alt="berlin.de" style="display:inline-block;vertical-align:middle" width="100">
+                    </a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="border-bottom:1px solid rgb(221,221,221);padding:10px 20px;vertical-align:top">
+                  <div style="line-height:1.2;font-size:20px;margin:0;text-decoration:none;color:#000000">
+                    <img src="cid:logo" alt="mein.berlin.de" style="display:inline-block;vertical-align:middle;height:30px;width:146px" width="146px" height="30">
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td aria-hidden="true" style="vertical-align:top"> </td>
+                <td style="width:600px;max-width:100%;padding:15px;vertical-align:top">
+                  <div>
+                    <h1 style="font-size:27px;line-height:31px;margin-top:24px;margin-bottom:35px">{% block headline %}{% endblock headline %}</h1>
+                    <h2 style="font-size:22px;line-height:26px;margin-top:20px;margin-bottom:32px;border:0px none;padding:0px">{% block sub-headline %}{% endblock sub-headline %}</h2>
+
+                    <div style="margin-bottom:20px;display:table">
+                      <h3 style="font-size:17px;line-height:23px;margin-bottom:7px;margin-top:0px">
+                        {% block greeting %}
+                          {% translate 'Hello' %},
+                        {% endblock greeting %}
+                      </h3>
+
+                      <div>
+                        {% block content %}{% endblock content %}
+                      </div>
+
+                      <div>
+                        {% block cta %}
+                          <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:separate;line-height:100%;">
                             <tr>
-                                {% if organisation.logo %}
-                                    <td style="width: 1%; padding-right: 10px">
-                                        <img width="50" src="cid:logo" style="width: 50px;" alt="MeinBerlin" >
-                                    </td>
-                                {% endif %}
-                                <td style="color: #818181; font-size: x-small; vertical-align: top;">
-                                    <p>
-                                        {% translate 'meinBerlin is a participation platform operated by' %}<br />
-                                        Liquid Democracy e.V., Am Sudhaus 2, D-12053 Berlin
-                                    </p>
-                                    <p>
-                                        <a href="{{ email.get_host }}/contact">{% translate 'Contact' %}</a><br />
-                                        <a href="{{ email.get_host }}/terms-of-use">{% translate 'Terms of use' %}</a>
-                                    </p>
-                                </td>
+                              <td align="center" style="border: #000 solid 2px; cursor:auto; vertical-align: middle; padding:0; margin:0;" valign="middle">
+                                <a href="{% block cta_url %}{% endblock cta_url %}" style="color:#000000;margin:0;text-decoration:none;text-transform:none; vertical-align: middle;" target="_blank">
+                                  <span style="vertical-align: middle; line-height: 40px;padding: 0 20px;display:inline-block;">{% block cta_label %}{% endblock cta_label %}</span>
+                                  <img src="cid:button_graphic" alt="" style="height:40px;width:40px;display:inline-block; border-left: 2px solid black;" height="40" width="40">
+                                </a>
+                              </td>
                             </tr>
-                        </table>
-                    </td>
-                </tr>
+                          </table>
+                        {% endblock cta %}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td aria-hidden="true" style="vertical-align:top"> </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="text-align:center;padding:20px;background-color:rgb(245,245,245);vertical-align:top">
+                  <div style="max-width: 70ch;margin: 0 auto">
+                    {% block reason %}{% endblock reason %}
+                  </div>
+                  <div>
+                    <p style="line-height:1.5;margin-bottom:1em;margin-top:1em;">
+                      {% translate 'meinBerlin is a participation platform operated by' %}<br />
+                      Liquid Democracy e.V., Am Sudhaus 2, D-12053 Berlin
+                    </p>
+                  </div>
+                  <br>
+                  <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
+                    <tr>
+                      <td style="color: #818181; font-size: x-small; vertical-align: top;">
+                        <p>
+
+                        </p>
+                        <p>
+                          <a href="{{ email.get_host }}/contact">{% translate 'Contact' %}</a><br/>
+                          <a href="{{ email.get_host }}/terms-of-use">{% translate 'Terms of use' %}</a>
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+             <tr style="background-color:#545454">
+                <td colspan="3" style="text-align:left;color:rgb(255,255,255);background-color:#545454;padding:20px;vertical-align:top">
+                  <div>
+                    <img alt="Berlin.de" src="cid:logo_berlin_negative" style="display:inline-block;vertical-align:middle" width="100">
+                  </div>
+                </td>
+              </tr>
+              </tbody>
             </table>
         </div>
     </body>
 </html>
+<!-- djlint:on -->

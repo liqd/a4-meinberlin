@@ -11,7 +11,7 @@
 
 {% block greeting %}{% endblock %}
 
-{% block content_left_aligned %}
+{% block content_html %}
 <p>
 Name:<br>
 {{ statement.name }}

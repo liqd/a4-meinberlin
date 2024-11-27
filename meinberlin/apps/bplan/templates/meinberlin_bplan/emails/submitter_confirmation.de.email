@@ -10,7 +10,7 @@
 
 {% block greeting %}{% endblock %}
 
-{% block content_left_aligned %}
+{% block content_html %}
 <p>
 Guten Tag,
 </p>
@@ -60,7 +60,7 @@ PLZ, Ort
 E-Mail-Adresse
 {{ statement.email }}
 Ihre Stellungnahme
-{{ statement.statement| linebreaks }}
+{{ statement.statement| striptags| linebreaks }}
 {% endblock %}
 
 {% block cta_label %}Bebauungsplan anzeigen{% endblock %}

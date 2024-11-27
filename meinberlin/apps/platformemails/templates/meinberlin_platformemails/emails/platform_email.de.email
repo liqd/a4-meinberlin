@@ -6,6 +6,7 @@
 
 {% block greeting %}{% endblock %}
 
-{% block content %}{{ platformemail.body_with_absolute_urls|safe }}{% endblock content %}
+{% block content_html %}{{ platformemail.body_with_absolute_urls|safe }}{% endblock content_html %}
+{% block content_text %}{{ platformemail.body_with_absolute_urls|safe }}{% endblock content_text %}
 
 {% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Sie haben die E-Mail erhalten, weil sie auf {{ site.name }} registriert sind.{% endblock %}

@@ -59,7 +59,7 @@ const PresentBox = (props) => {
             )}
           </ul>
           ) : (
-            <h1 className="u-align-center">{props.title}</h1>
+            <p>No questions available at the moment.</p>
           )}
     </>
     /* eslint-enable multiline-ternary */

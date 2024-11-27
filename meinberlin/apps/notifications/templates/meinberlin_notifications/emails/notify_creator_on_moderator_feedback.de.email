@@ -6,9 +6,7 @@
 {% block sub-headline %}{{ object.project.name }}{% endblock  %}
 
 {% block greeting %}
-<div {% if object.moderator_feedback_text.feedback_text %}style="text-align: left;"{% endif %}>
 {% if send_to_creator %}Hallo {{ receiver.username }},{% else %}Guten Tag,{% endif %}
-</div>
 {% endblock %}
 
 {% block content_html %}
@@ -22,7 +20,7 @@ Der Status Ihres Beitrags hat sich geändert und steht nun auf “{{ object.get_
 </p>
 {% endif %}
 {% if object.moderator_feedback_text.feedback_text %}
-<p>Rückmeldung:</p>
+<p><strong>Rückmeldung:</strong></p>
 {{ object.moderator_feedback_text.feedback_text | safe }}
 {% endif %}
 <p>
@@ -38,8 +36,11 @@ Möchten Sie antworten?
 Der Status Ihres Beitrags hat sich geändert und steht nun auf “{{ object.get_moderator_status_display }}”.
 {% endif %}
 
+{% if object.moderator_feedback_text.feedback_text %}
 Rückmeldung:
-{{ object.moderator_feedback_text.feedback_text | safe }}
+{{ object.moderator_feedback_text.feedback_text | striptags | safe }}
+{% endif %}
+
 
 Möchten Sie antworten?
 {% endblock %}

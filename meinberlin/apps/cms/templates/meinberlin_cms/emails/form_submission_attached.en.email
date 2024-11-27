@@ -5,7 +5,10 @@
 
 {% block headline %}{{ emailformpage.title }}{% endblock %}
 
-{% block content %}
+{% block content_html %}
+{{ emailformpage.email_content }}
+{% endblock %}
+{% block content_text %}
 {{ emailformpage.email_content }}
 {% endblock %}
 

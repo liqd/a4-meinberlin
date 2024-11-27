@@ -4,12 +4,14 @@
 
 {% block headline %}Neues Projekt{% endblock  %}
 
-{% block sub-headline%}{{ project.name }}{% endblock %}
-
 {% block greeting %}Hallo {{ receiver.username }},{% endblock %}
 
-{% block content %}
-{{ creator.username }} hat ein neues Projekt für {{ project.organisation.name }} angelegt.
+{% block content_html %}
+{{ creator.username }} hat ein neues Projekt <strong>{{ project.name }}</strong> für {{ project.organisation.name }} angelegt.
+{% endblock %}
+
+{% block content_text %}
+{{ creator.username }} hat ein neues Projekt "{{ project.name }}" für {{ project.organisation.name }} angelegt.
 {% endblock %}
 
 

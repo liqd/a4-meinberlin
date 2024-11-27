@@ -4,12 +4,14 @@
 
 {% block headline %}New project{% endblock  %}
 
-{% block sub-headline%}{{ project.name }}{% endblock %}
-
 {% block greeting %}Hello {{ receiver.username }},{% endblock %}
 
-{% block content %}
-{{ creator.username }} created a new project for {{ project.organisation.name }}.
+{% block content_html %}
+{{ creator.username }} created a new project <strong>{{ project.name }}</strong> for {{ project.organisation.name }}.
+{% endblock %}
+
+{% block content_text %}
+{{ creator.username }} created a new project "{{ project.name }}" for {{ project.organisation.name }}.
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ project.get_absolute_url }}{% endblock %}

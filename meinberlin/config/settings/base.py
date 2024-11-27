@@ -293,8 +293,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 LOGIN_URL = "account_login"
 LOGIN_REDIRECT_URL = "/"
 
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, "emails")
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 BLEACH_LIST = {
     "default": {

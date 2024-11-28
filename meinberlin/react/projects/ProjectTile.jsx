@@ -38,7 +38,7 @@ const ProjectTile = ({ project, isHorizontal, topicChoices, isMapTile }) => {
       aria-describedby={describedById}
       className={classNames('project-tile', isHorizontal ? 'project-tile--horizontal' : 'project-tile--vertical', isMapTile && 'project-tile--map')}
     >
-      <div className="project-tile__image-wrapper">
+      <div className="project-tile__image-wrapper image">
         <ProjectTileIcon access={project.access} />
         <ImageWithPlaceholder
           src={project.tile_image}
@@ -47,7 +47,7 @@ const ProjectTile = ({ project, isHorizontal, topicChoices, isMapTile }) => {
           width={isHorizontal ? 490 : 630}
           className="project-tile__image"
         />
-        <span className="project-tile__copyright">
+        <span className="image__copyright">
           {project.tile_image_copyright ? copyrightStr + ' ' + project.tile_image_copyright : copyrightMissingStr}
         </span>
       </div>

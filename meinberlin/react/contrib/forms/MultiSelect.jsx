@@ -105,7 +105,12 @@ export const MultiSelect = ({
         }}
         onBlur={(e) => {
           if (e.relatedTarget?.classList.contains('multi-select__option')) {
-            comboboxRef.current?.focus()
+            // This fixes a firefox bug where the focus is not set if calling
+            // .focus() without a timeout and the focus doesn't go back to the
+            // combobox in that case.
+            setTimeout(() => {
+              comboboxRef.current?.focus()
+            }, 10)
             return
           }
           setOpened(false)

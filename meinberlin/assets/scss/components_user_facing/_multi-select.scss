@@ -18,13 +18,14 @@
     overflow: hidden;
 }
 
-.multi-select__container {
+.multi-select__container,
+.rbt-menu {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 10;
     list-style: none;
     margin-top: .25em;
     padding: 0;
@@ -36,7 +37,8 @@
     }
 }
 
-.multi-select__option {
+.multi-select__option,
+.rbt-menu .dropdown-item {
     margin: 0;
     padding: .4em .5em;
     cursor: pointer;
@@ -54,6 +56,7 @@
     &--focus {
         outline: 3px auto Highlight;
         outline: 3px auto -webkit-focus-ring-color;
+        outline-offset: -3px;
     }
 
     &:hover {

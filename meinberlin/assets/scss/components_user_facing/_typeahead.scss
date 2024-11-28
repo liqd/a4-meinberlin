@@ -1,5 +1,48 @@
+// this component shares styling with multi-select, be aware of multi-select.scss as well
+
 .typeahead {
     .rbt-input-main {
         min-height: 0;
     }
+
+    .rbt-menu {
+        border: 2px solid $black;
+        border-radius: 0;
+    }
+
+    .rbt-menu .dropdown-item {
+        color: $text-base;
+        text-decoration: none;
+    }
+
+    .rbt-input-multi .rbt-input-wrapper {
+        align-items: center;
+    }
+
+    .rbt-input-wrapper .rbt-token {
+        background: transparent;
+        border: 0;
+        padding: 0;
+        margin: 0;
+        color: $text-base;
+
+        &:after {
+            content: ",";
+            margin-right: .4em;
+        }
+
+        &:nth-last-child(2):after {
+            content: "";
+            margin-right: 0;
+        }
+
+        div.rbt-token-label {
+            padding: 0;
+        }
+    }
+
+    .rbt-token-active {
+        text-decoration: underline;
+    }
 }
+

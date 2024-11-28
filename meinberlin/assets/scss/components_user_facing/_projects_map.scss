@@ -1,5 +1,10 @@
 .projects-map {
     height: 100%;
+    margin: 0 -12px;
+
+    @media screen and (min-width: $breakpoint-tablet) {
+        margin: 0;
+    }
 
     .leaflet-bottom.leaflet-left {
         position: static;
@@ -17,10 +22,6 @@
 
     @media screen and (min-width: $breakpoint-tablet) {
         display: none;
-    }
-
-    .project-tile__image {
-        height: 175px;
     }
 
     a {
@@ -41,7 +42,7 @@
     }
 
     .leaflet-popup-content {
-        margin: 1em;
+        margin: 1.25em;
     }
 
     .leaflet-popup-content a {

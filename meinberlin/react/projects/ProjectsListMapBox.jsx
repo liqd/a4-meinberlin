@@ -123,12 +123,13 @@ const ProjectsListMapBox = ({
         districts={districts}
         topicChoices={topicChoices}
         appliedFilters={{ ...appliedFilters, projectState }}
+        hasContainer={!showMap}
         onFiltered={({ projectState, ...filters }) => {
           setProjectState(projectState)
           setAppliedFilters(filters)
         }}
       />
-      <div className="projects-list">
+      <div className={classNames('projects-list', !showMap && 'container')}>
         <h1 className="aural">{pageHeader}</h1>
         <div className={classNames('projects-list__list-meta', filteredItems.length === 0 && 'projects-list__list-meta--no-results')}>
           <div
@@ -141,7 +142,6 @@ const ProjectsListMapBox = ({
             uniqueId="map-switch"
             className="projects-list__toggle-switch"
             toggleSwitch={() => {
-              document.querySelector('.mb-project-overview').classList.toggle('fullwidth', !showMap)
               setShowMap(!showMap)
             }}
             onSwitchStr={showMapStr}
@@ -161,7 +161,6 @@ const ProjectsListMapBox = ({
               id: 'show_list',
               isActive: !showMap,
               handleClick: () => {
-                document.querySelector('.mb-project-overview').classList.remove('fullwidth')
                 setShowMap(false)
               }
             },
@@ -172,7 +171,6 @@ const ProjectsListMapBox = ({
               id: 'show_map',
               isActive: showMap,
               handleClick: () => {
-                document.querySelector('.mb-project-overview').classList.add('fullwidth')
                 setShowMap(true)
               }
             }

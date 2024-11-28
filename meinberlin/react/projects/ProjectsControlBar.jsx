@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import django from 'django'
 import { TypeaheadField } from '../contrib/TypeaheadField'
 import { MultiSelect } from '../contrib/forms/MultiSelect'
-import { ControlBarFilterPills } from '../contrib/ControlBarFilterPills'
 import { arraysEqual, classNames } from '../contrib/helpers'
+import { ControlBarFilterPills } from '../contrib/ControlBarFilterPills'
 
 const translated = {
   search: django.gettext('Search'),
@@ -14,7 +14,7 @@ const translated = {
   allDistricts: django.gettext('All districts'),
   topics: django.gettext('Topics'),
   allTopics: django.gettext('All topics'),
-  participation: django.gettext('Kind of participation'),
+  participations: django.gettext('Kind of participation'),
   allParticipation: django.gettext('All'),
   projectState: django.gettext('Project state'),
   organisation: django.gettext('Organization'),
@@ -59,7 +59,8 @@ export const ProjectsControlBar = ({
   participationChoices,
   topicChoices,
   appliedFilters,
-  onFiltered
+  onFiltered,
+  hasContainer
 }) => {
   const [expandFilters, setExpandFilters] = useState(false)
   const [filters, setFilters] = useState(initialState)
@@ -82,21 +83,23 @@ export const ProjectsControlBar = ({
             <div className="container">
               <fieldset className="facet">
                 <div className="facet__body">
-                  <div className="form-group a4-control-bar__search__form">
-                    <label htmlFor="searchterm" className="form-label">
-                      {translated.search}
-                    </label>
-                    <div className="a4-control-bar__search__term">
-                      <div className="input-wrapper">
-                        <i className="a4-control-bar__search__logo-start" aria-hidden="true" />
-                        <input
-                          type="search"
-                          className="form-control a4-control-bar__search__input"
-                          placeholder={translated.searchPlaceholder}
-                          value={filters.search}
-                          id="searchterm"
-                          onChange={(e) => onFilterChange('search', e.target.value)}
-                        />
+                  <div className="searchform-slot mb-3">
+                    <div className="form-group">
+                      <label htmlFor="searchterm" className="form-label">
+                        {translated.search}
+                      </label>
+                      <div className="a4-control-bar__search__term my-0">
+                        <div className="input-wrapper">
+                          <i className="a4-control-bar__search__logo-start" aria-hidden="true" />
+                          <input
+                            type="search"
+                            className="form-control a4-control-bar__search__input"
+                            placeholder={translated.searchPlaceholder}
+                            value={filters.search}
+                            id="searchterm"
+                            onChange={(e) => onFilterChange('search', e.target.value)}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -125,9 +128,9 @@ export const ProjectsControlBar = ({
                       <div className="flexgrid grid--2">
                         <div className="span--1">
                           <MultiSelect
-                            label={translated.participation}
+                            label={translated.participations}
                             placeholder={translated.allParticipation}
-                            choices={participationChoices.map((choice, index) => ({ value: index.toString(), name: choice }))}
+                            choices={participationChoices.map((choice, index) => ({ value: index, name: choice }))}
                             onChange={(choices) => onFilterChange('participations', choices)}
                             values={filters.participations}
                           />
@@ -191,15 +194,17 @@ export const ProjectsControlBar = ({
 
       {alteredFilters.length
         ? (
-          <div className="flexgrid grid grid--2 control-bar__bottom--projects">
-            <ControlBarFilterPills
-              filters={alteredFilters}
-              onRemove={(type) => {
-                const newFilters = { ...filters, [type]: initialState[type] }
-                setFilters(newFilters)
-                onFiltered(newFilters)
-              }}
-            />
+          <div className={hasContainer && 'container'}>
+            <div className="flexgrid grid grid--2 control-bar__bottom--projects">
+              <ControlBarFilterPills
+                filters={alteredFilters}
+                onRemove={(type) => {
+                  const newFilters = { ...filters, [type]: initialState[type] }
+                  setFilters(newFilters)
+                  onFiltered(newFilters)
+                }}
+              />
+            </div>
           </div>
           )
         : null}

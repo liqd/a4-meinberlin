@@ -26,7 +26,7 @@ a.project-tile {
     position: relative;
 
     .project-tile--map & {
-        flex: 0 0 auto;
+        flex: 0 0 145px;
 
         @media screen and (min-width: $breakpoint-tablet) {
             flex: 3;
@@ -69,7 +69,7 @@ a.project-tile {
     flex-direction: column;
 
     .project-tile--horizontal & {
-        margin-left: 1.5em;
+        margin-left: 1.25em;
     }
 }
 
@@ -117,12 +117,8 @@ a.project-tile {
     }
 }
 
-.project-tile__copyright {
-    font-size: $font-size-xxs;
-    display: block;
-}
-
 .project-tile__timespan {
     font-size: $font-size-sm;
     font-weight: 400;
+    color: $text-base;
 }

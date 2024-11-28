@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { Popup } from 'react-leaflet'
 import MarkerClusterLayer
   from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/MarkerClusterLayer'
-import GeoJsonMarker
-  from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/GeoJsonMarker'
+import GeoJsonMarker, {
+  makeIcon
+} from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/GeoJsonMarker'
 
 import { Map } from '../contrib/map/Map'
 import ProjectMapOverlay from './ProjectMapOverlay'
@@ -11,6 +12,17 @@ import ProjectTile from './ProjectTile'
 
 const Markers = React.memo(({ items, topicChoices }) => {
   const [activeProject, setActiveProject] = React.useState(null)
+  const icon = useCallback((project) => (
+    makeIcon(activeProject?.properties.title === project.properties.title
+      ? '/static/images/map_pin_active.svg'
+      : null)
+  ), [activeProject])
+
+  useEffect(() => {
+    // used to preload active marker to prevent flickering
+    const img = new Image()
+    img.src = '/static/images/map_pin_active.svg'
+  }, [])
 
   return (
     <>
@@ -22,6 +34,7 @@ const Markers = React.memo(({ items, topicChoices }) => {
             <GeoJsonMarker
               key={project.properties.title}
               feature={project}
+              icon={icon(project)}
               eventHandlers={{
                 popupopen: () => setActiveProject(project),
                 popupclose: () => setActiveProject(null)
@@ -29,7 +42,7 @@ const Markers = React.memo(({ items, topicChoices }) => {
             >
               <Popup
                 className="projects-map__popup"
-                offset={[0, 270]}
+                offset={[0, 295]}
                 maxWidth={400}
                 minWidth={400}
               >
@@ -53,7 +66,6 @@ const ProjectsMap = ({ items, topicChoices, ...props }) => {
   return (
     <div className="projects-map">
       <Map
-        scrollWheelZoom={false}
         zoomControl
         maxZoom={18}
         {...props}

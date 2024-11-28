@@ -30,7 +30,7 @@ def test_send_organisation(
     data = {
         "sender_name": "Tester",
         "sender": "test@test.de",
-        "subject": "Testsubject",
+        "subject": "It's a testsubject",
         "body": "Testbody",
         "receivers": newsletter_models.ORGANISATION,
         "organisation": organisation.pk,
@@ -47,7 +47,7 @@ def test_send_organisation(
     assert newsletter_models.Newsletter.objects.count() == 1
     assert len(mail.outbox) == 1
     assert mail.outbox[0].to == [user1.email]
-    assert mail.outbox[0].subject == "Testsubject"
+    assert mail.outbox[0].subject == "Its a testsubject"
 
 
 @pytest.mark.django_db

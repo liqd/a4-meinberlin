@@ -4,7 +4,7 @@
     padding: 0;
 
     > li {
-        padding: .4em 0;
+        padding: .8em 0;
         border-bottom: 1px solid $gray-lighter;
 
         @media screen and (min-width: $breakpoint-palm) {
@@ -12,6 +12,10 @@
             padding: 0;
             border-bottom: 0;
         }
+    }
+
+    &.container {
+        margin: 0 auto 1.5em;
     }
 }
 
@@ -30,6 +34,12 @@
 .projects-list__list {
     @media screen and (min-width: $breakpoint-tablet) {
         padding: 1.5em 0.875em;
+    }
+
+    .container & {
+        @media screen and (min-width: $breakpoint-tablet) {
+            padding: 1.5em 0;
+        }
     }
 }
 
@@ -88,6 +98,12 @@
     @media screen and (min-width: $breakpoint-tablet) {
         align-items: center;
         padding: 0 0.875em 1em;
+    }
+
+    .container & {
+        @media screen and (min-width: $breakpoint-tablet) {
+            padding: 0 0 1em;
+        }
     }
 }
 

@@ -9,6 +9,7 @@ import {
   extendContext
 } from '@react-leaflet/core'
 import ProjectTile from './ProjectTile'
+import { createRoot } from 'react-dom/client'
 
 // Create the custom control class
 const ProjectMapOverlayControl = L.Control.extend({
@@ -52,7 +53,9 @@ const useProjectMapOverlayElement = createElementHook((props, context) => {
 
   // Create a div for React content
   const contentDiv = L.DomUtil.create('div')
-  ReactDOM.render(children, contentDiv)
+  const root = createRoot(contentDiv)
+  root.render(children)
+
   control._content = contentDiv
 
   return createElementObject(control, extendContext(context, {

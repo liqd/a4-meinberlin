@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { getLoopedIndex, MultiSelect, toggleValue } from '../MultiSelect'
 
 describe('MultiSelect', () => {
@@ -162,7 +162,7 @@ describe('MultiSelect', () => {
     expect(combobox).toHaveAttribute('aria-activedescendant', 'de')
   })
 
-  test('keeps focus on combobox when blue', () => {
+  test('keeps focus on combobox when blur is triggered', async () => {
     render(
       <MultiSelect label="My Label" choices={choices} />
     )
@@ -177,7 +177,7 @@ describe('MultiSelect', () => {
     germanOption.focus()
     fireEvent.click(germanOption)
     fireEvent.blur(combobox, { relatedTarget: germanOption })
-    expect(combobox).toHaveFocus()
+    await waitFor(() => expect(combobox).toHaveFocus())
   })
 })
 

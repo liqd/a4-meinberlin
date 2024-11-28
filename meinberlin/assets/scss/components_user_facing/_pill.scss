@@ -1,7 +1,8 @@
 .pill {
     margin-right: 0.5 * $spacer;
     color: $white;
-    font-weight: bold;
+    font-weight: 400;
+    font-size: $font-size-xs;
 
     &--category {
         background-color: $purple;

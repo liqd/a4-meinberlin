@@ -305,8 +305,7 @@ module.exports = {
     alias: {
       bootstrap$: 'bootstrap/dist/js/bootstrap.bundle.min.js',
       jquery$: 'jquery/dist/jquery.min.js',
-      select2$: 'select2/dist/js/select2.min.js',
-      shpjs$: 'shpjs/dist/shp.min.js'
+      select2$: 'select2/dist/js/select2.min.js'
     },
     // when using `npm link`, dependencies are resolved against the linked
     // folder by default. This may result in dependencies being included twice.

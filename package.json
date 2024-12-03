@@ -19,7 +19,7 @@
     "@turf/turf": "^6.5.0",
     "acorn": "8.12.0",
     "adhocracy4": "liqd/adhocracy4#0e031ca34a177be274892a3574df70f87416dd31",
-    "autoprefixer": "10.4.19",
+    "autoprefixer": "10.4.20",
     "bootstrap": "5.2.3",
     "copy-webpack-plugin": "12.0.2",
     "css-loader": "7.1.2",

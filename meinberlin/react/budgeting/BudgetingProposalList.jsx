@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import django from 'django'
-import { useLocation, useSearchParams } from 'react-router-dom'
+import { useLocation, useSearchParams } from 'react-router'
 import { EndSessionLink } from './EndSessionLink'
 import { Pagination } from '../contrib/Pagination'
 import { Card } from '../contrib/card/Card'

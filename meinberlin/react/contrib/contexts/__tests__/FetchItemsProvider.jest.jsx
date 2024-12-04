@@ -22,8 +22,8 @@ global.fetch = jest.fn(() =>
 )
 
 // Mock react-router-dom hooks
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+jest.mock('react-router', () => ({
+  ...jest.requireActual('react-router'),
   useLocation: jest.fn().mockReturnValue({ search: '?mode=list&page=1' }),
   useSearchParams: jest.fn().mockReturnValue([{ get: jest.fn((key) => ({ mode: 'list', page: '1' }[key])) }])
 }))

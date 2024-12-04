@@ -5,7 +5,7 @@ import {
   screen
 } from '@testing-library/react'
 import { ControlBar } from '../ControlBar'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router'
 import { useFetchedItems } from '../contexts/FetchItemsProvider'
 
 const filters = {

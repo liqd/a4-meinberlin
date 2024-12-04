@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router'
 import { ControlBar } from '../ControlBar'
 import { CardList } from '../card/CardList'
 import { useFetchedItems } from '../contexts/FetchItemsProvider'

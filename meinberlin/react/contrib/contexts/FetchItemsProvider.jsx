@@ -4,7 +4,7 @@ import React, {
   createContext,
   useContext
 } from 'react'
-import { useLocation, useSearchParams } from 'react-router-dom'
+import { useLocation, useSearchParams } from 'react-router'
 import Spinner from '../Spinner'
 
 const DataContext = createContext()

@@ -1,7 +1,7 @@
 import React from 'react'
 import django from 'django'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router'
 import { widget as ReactWidget } from 'adhocracy4'
 import { FetchItemsProvider } from '../contrib/contexts/FetchItemsProvider'
 import { ListMapView } from '../contrib/map/ListMapView'

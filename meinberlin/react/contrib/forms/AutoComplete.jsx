@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useId, useRef, useState } from 'react'
 import { classNames } from '../helpers'
 import useCombobox from './useCombobox'
 
@@ -27,7 +27,7 @@ export const toggleValue = (value, values) => {
   { name: 'English', value: 'en' }
   Values need to be unique!
  */
-export const MultiSelect = ({
+export const AutoComplete = ({
   label,
   className,
   liClassName,
@@ -39,12 +39,21 @@ export const MultiSelect = ({
   defaultValue = [],
   ...rest
 }) => {
-  const { opened, labelId, activeItems, listboxAttrs, comboboxAttrs, getChoicesAttr } = useCombobox({
+  const {
+    opened,
+    labelId,
+    activeItems,
+    listboxAttrs,
+    comboboxAttrs,
+    getChoicesAttr
+  } = useCombobox({
     choices,
     values,
     defaultValue,
-    onChange
+    onChange,
+    isAutoComplete: true
   })
+  const [text, setText] = useState('')
   const classes = classNames(
     'form-control input__element multi-select__container',
     opened && 'multi-select__container--opened',
@@ -55,17 +64,17 @@ export const MultiSelect = ({
     comboboxClassName
   )
 
+  const filteredChoices = choices.filter(choice => choice.name.toLowerCase().includes(text.toLowerCase()))
+
   return (
     <div className="form-group multi-select">
       <p id={labelId} className="label">
         {label}
       </p>
-      <div className={comboboxClasses} {...comboboxAttrs}>
-        {activeItems.length ? activeItems.map(item => item.name).join(', ') : placeholder}
-      </div>
+      <input type="text" value={text} onChange={e => setText(e.target.value)} placeholder={placeholder} className={comboboxClasses} {...comboboxAttrs} />
       <ul className={classes} {...listboxAttrs} {...rest}>
         {
-          choices.map((choice) => {
+          filteredChoices.map((choice) => {
             const { active, focused, ...attrs } = getChoicesAttr(choice)
             const liClasses = classNames(
               liClassName,

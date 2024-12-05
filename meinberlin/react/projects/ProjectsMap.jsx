@@ -1,13 +1,14 @@
 import React from 'react'
-import { Popup } from 'react-leaflet'
+import { Popup, ZoomControl } from 'react-leaflet'
 import MarkerClusterLayer
   from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/MarkerClusterLayer'
 import GeoJsonMarker
   from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/GeoJsonMarker'
 
 import { Map } from '../contrib/map/Map'
-import ProjectMapOverlay from './ProjectMapOverlay'
 import ProjectTile from './ProjectTile'
+import ProjectsMapSearch from './ProjectsMapSearch'
+import ControlWrapper from './DumbControl'
 
 const Markers = React.memo(({ items, topicChoices }) => {
   const [activeProject, setActiveProject] = React.useState(null)
@@ -43,7 +44,10 @@ const Markers = React.memo(({ items, topicChoices }) => {
             </GeoJsonMarker>
           ))}
       </MarkerClusterLayer>
-      <ProjectMapOverlay position="bottomleft" project={activeProject?.properties} topicChoices={topicChoices} />
+      <ControlWrapper position="bottomleft" className="project-overlay-control">
+        {activeProject &&
+          <ProjectTile project={activeProject?.properties} isHorizontal isMapTile topicChoices={topicChoices} />}
+      </ControlWrapper>
     </>
   )
 })
@@ -54,7 +58,7 @@ const ProjectsMap = ({ items, topicChoices, ...props }) => {
     <div className="projects-map">
       <Map
         scrollWheelZoom={false}
-        zoomControl
+        zoomControl={false}
         maxZoom={18}
         {...props}
         id="project-map"
@@ -62,6 +66,10 @@ const ProjectsMap = ({ items, topicChoices, ...props }) => {
         style={{ minHeight: '100%', height: '100%' }}
         className="projects-map__map"
       >
+        <ControlWrapper position="topleft">
+          <ProjectsMapSearch />
+        </ControlWrapper>
+        <ZoomControl position="topleft" />
         <Markers items={items} topicChoices={topicChoices} />
       </Map>
     </div>

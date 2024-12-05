@@ -32,3 +32,8 @@
     font-size: $font-size-sm;
   }
 }
+
+.leaflet-control.leaflet-bar.leaflet-control-zoom {
+  border: 2px solid $black;
+  border-radius: 0;
+}

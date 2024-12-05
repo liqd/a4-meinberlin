@@ -4,6 +4,7 @@ import { TypeaheadField } from '../contrib/TypeaheadField'
 import { MultiSelect } from '../contrib/forms/MultiSelect'
 import { ControlBarFilterPills } from '../contrib/ControlBarFilterPills'
 import { arraysEqual, classNames } from '../contrib/helpers'
+import { AutoComplete } from '../contrib/forms/AutoComplete'
 
 const translated = {
   search: django.gettext('Search'),
@@ -141,13 +142,11 @@ export const ProjectsControlBar = ({
                           />
                         </div>
                       </div>
-                      <TypeaheadField
-                        typeaheadHeading={translated.organisation}
-                        uniqueId="organisation-typeahead-id"
-                        onTypeaheadChange={(choice) => onFilterChange('organisation', choice)}
-                        typeaheadOptions={organisations}
-                        typeaheadSelected={filters.organisation}
-                        multipleBoolean
+                      <AutoComplete
+                        label={translated.organisation}
+                        onChange={(choice) => onFilterChange('organisation', choice)}
+                        choices={organisations}
+                        values={filters.organisation}
                       />
                     </>
                   )}

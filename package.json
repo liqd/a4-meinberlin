@@ -34,6 +34,7 @@
     "leaflet": "1.9.4",
     "leaflet-draw": "1.0.4",
     "leaflet.markercluster": "github:liqd/Leaflet.markercluster#liqd2212",
+    "lodash.debounce": "^4.0.8",
     "maplibre-gl": "2.4.0",
     "maplibregl-mapbox-request-transformer": "0.0.2",
     "mini-css-extract-plugin": "2.9.0",

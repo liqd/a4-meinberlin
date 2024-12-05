@@ -1,3 +1,28 @@
+.card--like {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-height: 9.5rem;
+    padding: 1.1rem;
+}
+
+.card__like {
+    margin-top: auto;
+    padding-top: 1rem;
+}
+
+.card__tools {
+    bottom: 0;
+    position: absolute;
+    right: 0;
+}
+
+.card__tools .functions {
+    display: flex;
+    order: 1;
+    align-self: flex-end;
+}
+
 .card__stats {
     display: flex;
     margin-right: 2 * $spacer;
@@ -48,29 +73,24 @@
     margin-right: -18px;
 }
 
-.card__button--shortlist:before,
-.card__button--answered:before {
-    background-color: $primary;
-}
-
 .card__button i {
     font-size: 14px;
 }
 
-.card__button--hidden i,
-.card__button--live i {
+.card__button {
     color: $gray;
+    margin-left: 4px;
 }
 
-.card__button--shortlist i,
-.card__button--answered i {
-    color: $text-inverted;
+.card__button:hover:before {
+    background-color: $primary-400;
 }
 
 .card__button--active:before {
-    background-color: $black;
+    background-color: $primary;
 }
 
-.card__button--active i {
-    color: $text-inverted;
+.card__button--active i,
+.card__button:hover i {
+    color: $body-bg;
 }

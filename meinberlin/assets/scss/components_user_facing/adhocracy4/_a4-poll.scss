@@ -1,4 +1,5 @@
-.pollquestionlist-container {
+.pollquestionlist-container,
+.poll__preliminary-results {
     border: none;
     background-color: $gray-lightest;
     padding: 18px;
@@ -56,6 +57,15 @@
 
     .form-control {
         margin-left: $spacer;
+    }
+}
+
+.poll__choice--other {
+    font-weight: 400;
+    width: 100%;
+    
+    .a4-textarea-with-counter {
+      padding-top: $spacer;
     }
 }
 
@@ -260,11 +270,11 @@
     }
 
     .slick-prev:before {
-        content: "\f053"; 
+        content: "\f053";
     }
 
     .slick-next:before {
-        content: "\f054"; 
+        content: "\f054";
     }
 
     // Ensure centermode works

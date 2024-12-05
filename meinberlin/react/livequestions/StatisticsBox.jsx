@@ -1,5 +1,5 @@
 import django from 'django'
-import { updateItem } from '../contrib/helpers.js'
+import { classNames, updateItem } from '../contrib/helpers.js'
 import React, { useState, useEffect } from 'react'
 import QuestionUser from './QuestionUser'
 import QuestionModerator from './QuestionModerator'
@@ -40,6 +40,13 @@ function StatisticsBox (props) {
     return Math.round(countPerCategory * 100 / answeredQuestions) || 0
   }
 
+  const categories = Object.keys(props.category_dict).map((id) => ({
+    category: props.category_dict[id],
+    count: countCategory(props.category_dict[id])
+  }))
+
+  const highestCount = Math.max(...categories.map(({ count }) => count))
+
   return (
     <div className="container">
       {Object.keys(props.category_dict).length > 0 && (
@@ -47,13 +54,17 @@ function StatisticsBox (props) {
           <h2>{categoriesAnsweredTag}</h2>
           <div className="modul-card card">
             <h3>{categoriesTag}</h3>
-            {Object.keys(props.category_dict).map((id) => {
-              const countPerCategory = countCategory(props.category_dict[id])
+            {categories.map(({ category, count }) => {
+              const countPerCategory = count
               const style = { width: countPerCategory + '%' }
               return (
-                <div className="live-question__progress" key={id}>
+                <div className={classNames('live-question__progress', countPerCategory > 0 && 'live-question__progress--active')} key={category}>
                   <div
-                    className="live-question__progress-bar"
+                    className={classNames(
+                      'live-question__progress-bar',
+                      countPerCategory === highestCount &&
+                        'live-question__progress-bar--highlight'
+                    )}
                     style={style}
                     role="progressbar"
                     aria-valuenow={countPerCategory}
@@ -62,9 +73,9 @@ function StatisticsBox (props) {
                   />
                   <div className="live-question__progress-text">
                     <span className="live-question__progress-percentage">
-                      {countPerCategory}%
-                    </span>{' '}
-                    <span>{props.category_dict[id]}</span>
+                      {countPerCategory === 0 ? '0' + countPerCategory : countPerCategory}%
+                    </span>
+                    <span>{category}</span>
                   </div>
                 </div>
               )

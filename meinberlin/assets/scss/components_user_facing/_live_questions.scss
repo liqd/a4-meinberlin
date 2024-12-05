@@ -9,7 +9,6 @@
 }
 
 .live-question__progress {
-    background-color: $body-bg;
     border-radius: 1.2rem;
     display: flex;
     font-size: 1rem;
@@ -20,15 +19,25 @@
     position: relative;
 }
 
+.live-question__progress--active {
+    background-color: $body-bg;
+}
+
 .live-question__progress-bar {
-    background-color: $primary;
+    background-color: var(--color-message-success);
     border-radius: 1.2rem;
     height: 100%;
     position: absolute;
     z-index: 0;
 }
 
+.live-question__progress-bar--highlight {
+    background-color: $primary;
+}
+
 .live-question__progress-text {
+    display: flex;
+    gap: 0.5rem;
     padding: 0 0.5rem;
     position: relative;
     z-index: 1;

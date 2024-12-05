@@ -138,7 +138,7 @@ const QuestionModerator = ({
           <button
             type="button"
             className={classNames(
-              'cardbutton card__button card__button--hidden',
+              'cardbutton card__button',
               isHidden && 'card__button--active'
             )}
             onClick={toggleIshidden}
@@ -158,7 +158,7 @@ const QuestionModerator = ({
           <button
             type="button"
             className={classNames(
-              'cardbutton card__button card__button--shortlist',
+              'cardbutton card__button',
               isOnShortlist && 'card__button--active'
             )}
             onClick={toggleIsOnShortList}
@@ -176,7 +176,7 @@ const QuestionModerator = ({
           <button
             type="button"
             className={classNames(
-              'cardbutton card__button card__button--answered',
+              'cardbutton card__button',
               isAnswered && 'card__button--active'
             )}
             onClick={toggleIsAnswered}
@@ -190,7 +190,7 @@ const QuestionModerator = ({
           <button
             type="button"
             className={classNames(
-              'cardbutton card__button card__button--live',
+              'cardbutton card__button',
               isLive && 'card__button--active'
             )}
             onClick={toggleIslive}

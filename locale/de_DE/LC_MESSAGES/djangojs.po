@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-09-23 20:44+0200\n"
-"PO-Revision-Date: 2024-07-19 12:04+0000\n"
+"PO-Revision-Date: 2024-12-07 09:04+0000\n"
 "Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js-"
-"design-dev/de/>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
+"js-design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -383,7 +383,7 @@ msgstr "Hervorgehoben"
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:14
 #: meinberlin/react/contrib/ControlBar.jsx:12
 msgid "Show more"
-msgstr "Mehr zeigen"
+msgstr "mehr anzeigen"
 
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:8
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:15
@@ -391,7 +391,7 @@ msgstr "Mehr zeigen"
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:15
 #: meinberlin/react/contrib/ControlBar.jsx:13
 msgid "Show less"
-msgstr "Weniger zeigen"
+msgstr "weniger anzeigen"
 
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:9
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:17
@@ -423,7 +423,7 @@ msgstr[1] "Beiträge gefunden zu: "
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:11
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:11
 msgid "Join the discussion"
-msgstr "Beteiligen Sie sich an der Diskussion"
+msgstr "Mitdiskutieren"
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:12
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:12
@@ -883,12 +883,12 @@ msgstr "Für eine negative Bewertung hier klicken"
 #: adhocracy4/ratings/static/ratings/react_ratings.jsx:11
 #: adhocracy4/ratings/static/ratings/react_ratings.jsx:11
 msgid "Likes"
-msgstr ""
+msgstr "gefällt mir"
 
 #: adhocracy4/ratings/static/ratings/react_ratings.jsx:12
 #: adhocracy4/ratings/static/ratings/react_ratings.jsx:12
 msgid "Dislikes"
-msgstr ""
+msgstr "gefällt mir nicht"
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:7
 #: adhocracy4/reports/static/reports/ReportModal.jsx:7

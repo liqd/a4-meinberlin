@@ -23,14 +23,18 @@ const questionsText = django.gettext('Questions')
 const filterText = django.gettext('Filter')
 
 const Filter = ({
+  filters: initialFilters,
   categories,
   isModerator,
   onFiltered
 }) => {
   const [filters, setFilters] = useState({
-    categories: [],
-    marked: [],
-    display: []
+    ...{
+      categories: [],
+      marked: [],
+      display: []
+    },
+    ...initialFilters
   })
 
   const onFilterChange = (type, choice) => {

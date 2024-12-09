@@ -243,6 +243,7 @@ export default class QuestionBox extends React.Component {
           ? (
             <>
               <Filters
+                filters={this.state.filters}
                 categories={this.props.categories}
                 isModerator={this.props.isModerator}
                 onFiltered={this.applyFilters.bind(this)}

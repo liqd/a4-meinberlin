@@ -1,22 +1,14 @@
-import React, { useCallback, useEffect } from 'react'
-import { Popup } from 'react-leaflet'
+import React, { useEffect, useMemo } from 'react'
 import MarkerClusterLayer
   from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/MarkerClusterLayer'
-import GeoJsonMarker, {
-  makeIcon
-} from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/GeoJsonMarker'
 
 import { Map } from '../contrib/map/Map'
-import ProjectMapOverlay from './ProjectMapOverlay'
 import ProjectTile from './ProjectTile'
+import ControlWrapper from '../contrib/map/ControlWrapper'
+import ProjectMarker from './ProjectMarker'
 
-const Markers = React.memo(({ items, topicChoices }) => {
+const Markers = ({ items, topicChoices }) => {
   const [activeProject, setActiveProject] = React.useState(null)
-  const icon = useCallback((project) => (
-    makeIcon(activeProject?.properties.title === project.properties.title
-      ? '/static/images/map_pin_active.svg'
-      : null)
-  ), [activeProject])
 
   useEffect(() => {
     // used to preload active marker to prevent flickering
@@ -24,43 +16,34 @@ const Markers = React.memo(({ items, topicChoices }) => {
     img.src = '/static/images/map_pin_active.svg'
   }, [])
 
+  const markers = useMemo(() => (
+    items
+      .filter(item => !!item.point)
+      .map(item => ({ ...item.point, properties: item }))
+      .map((project) => (
+        <ProjectMarker
+          key={project.properties.title}
+          topicChoices={topicChoices}
+          project={project}
+          onOpen={() => setActiveProject(project)}
+          onClose={() => setActiveProject(null)}
+        />
+      ))
+  ), [items])
+
   return (
     <>
       <MarkerClusterLayer>
-        {items
-          .filter(item => !!item.point)
-          .map(item => ({ ...item.point, properties: item }))
-          .map((project) => (
-            <GeoJsonMarker
-              key={project.properties.title}
-              feature={project}
-              icon={icon(project)}
-              eventHandlers={{
-                popupopen: () => setActiveProject(project),
-                popupclose: () => setActiveProject(null)
-              }}
-            >
-              <Popup
-                className="projects-map__popup"
-                offset={[0, 295]}
-                maxWidth={400}
-                minWidth={400}
-              >
-                <ProjectTile
-                  project={project.properties}
-                  isHorizontal
-                  topicChoices={topicChoices}
-                  isMapTile
-                />
-              </Popup>
-            </GeoJsonMarker>
-          ))}
+        {markers}
       </MarkerClusterLayer>
-      <ProjectMapOverlay position="bottomleft" project={activeProject?.properties} topicChoices={topicChoices} />
+      {activeProject?.properties && (
+        <ControlWrapper position="bottomleft" className="project-overlay-control">
+          <ProjectTile project={activeProject.properties} isHorizontal isMapTile topicChoices={topicChoices} />
+        </ControlWrapper>
+      )}
     </>
   )
-})
-Markers.displayName = 'Markers'
+}
 
 const ProjectsMap = ({ items, topicChoices, ...props }) => {
   return (

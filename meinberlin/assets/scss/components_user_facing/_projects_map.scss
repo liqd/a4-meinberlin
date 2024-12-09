@@ -6,19 +6,17 @@
         margin: 0;
     }
 
-    .leaflet-bottom.leaflet-left {
-        position: static;
+    .leaflet-left.leaflet-bottom {
+        right: 0;
     }
 }
 
 .project-overlay-control {
     background: $white;
-    position: absolute;
-    bottom: 1.5em;
-    left: 1.5em;
-    right: 1.5em;
+    position: relative;
     z-index: 1000;
     padding: 0.5em;
+    margin-left: 0;
 
     @media screen and (min-width: $breakpoint-tablet) {
         display: none;
@@ -27,6 +25,11 @@
     a {
         color: $text-base;
     }
+}
+
+.leaflet-left .project-overlay-control.leaflet-control {
+    margin: 0 1em 1em;
+    float: none;
 }
 
 .projects-map__popup {

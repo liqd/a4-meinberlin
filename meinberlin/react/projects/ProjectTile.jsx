@@ -5,11 +5,6 @@ import ProjectTopics from './ProjectTopics'
 import getTimespan from './get-timespan'
 import ImageWithPlaceholder from '../contrib/ImageWithPlaceholder'
 
-// const participationProjectsStr = django.gettext('Participation projects: ')
-// const futureParticipationStr = django.gettext('Participation: from ')
-// const endedParticipationStr = django.gettext('Participation ended. Read result.')
-// const statusStr = django.gettext('Status: ')
-
 const copyrightMissingStr = django.gettext('copyright missing')
 const copyrightStr = django.gettext('copyright by')
 const altImgStr = django.gettext('Here you can find a decorative picture.')

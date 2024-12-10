@@ -95,6 +95,9 @@ module.exports = {
     react_map_teaser: {
       import: './meinberlin/react/plans/react_map_teaser.jsx'
     },
+    react_kiezradar_search_profiles: {
+      import: './meinberlin/react/kiezradar/react_kiezradar_search_profiles_init.jsx'
+    },
     topics: {
       import: './meinberlin/react/topicprio/react_topics_init.jsx'
     },

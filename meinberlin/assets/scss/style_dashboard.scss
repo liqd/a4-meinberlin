@@ -1,12 +1,12 @@
+// High Priority - Must Stay at the Top
 @import "~bootstrap/scss/functions";
-
 @import "styles_dashboard/mixins";
 @import "styles_dashboard/variables";
 
+// Bootstrap Core
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/maps";
 @import "~bootstrap/scss/mixins";
-
 @import "~bootstrap/scss/containers";
 @import "~bootstrap/scss/grid";
 @import "~bootstrap/scss/forms";
@@ -16,83 +16,61 @@
 @import "~bootstrap/scss/close";
 @import "~bootstrap/scss/modal";
 @import "~bootstrap/scss/spinners";
-
 @import "~bootstrap/scss/helpers/visually-hidden";
 
+// Custom Styles - Global
 @import "styles_dashboard/base";
 @import "styles_dashboard/layout";
 @import "styles_dashboard/form";
+@import "styles_dashboard/print";
+@import "styles_dashboard/utility";
+@import "styles_dashboard/shame";
 
-// @import "components/a4-comments";
-@import "components/action";
-
-// @import "components/accordion";
+// Components - Dashboard Specific
+@import "components_dashboard/a4-editpoll";
 @import "components_dashboard/alert";
-@import "components/blocks";
 @import "components_dashboard/breadcrumbs";
 @import "components_dashboard/button";
-@import "components/category_formset";
-
-// @import "components/captcheck";
 @import "components_dashboard/commenting";
 @import "components_dashboard/complete";
 @import "components_dashboard/component_library";
 @import "components_dashboard/control-bar";
-
-@import "components/ckeditor";
 @import "components_dashboard/dashboard_nav";
 @import "components_dashboard/datepicker";
+@import "components_dashboard/dropdown";
+@import "components_dashboard/export_dashboard";
+@import "components_dashboard/list_item";
+@import "components_dashboard/pagination";
+@import "components_dashboard/tabs";
+
+// Components - General
+@import "components/action";
+@import "components/category_formset";
+@import "components/ckeditor";
 @import "components/detail_info";
 @import "components/dialogue_box";
 @import "components/doc_toc";
-@import "components_dashboard/dropdown";
 @import "components/dsgvo_video_embed";
 @import "components/embed_layout";
 @import "components/embed_status";
-@import "components_dashboard/export_dashboard";
 @import "components/filter_bar";
-
-// @import "components/follow";
-// @import "components/hero_unit";
 @import "components/input_group";
-
-// @import "components/item_detail";
-// @import "components/item_detail_2";
 @import "components/label";
-@import "components_dashboard/list_item";
-
-// @import "components/live_questions";
 @import "components/lr_bar";
-
-// @import "components/map";
-// @import "components/maplist";
 @import "components/module";
 @import "components/multiform";
-@import "components_dashboard/pagination";
-
 @import "components/participation_tile";
 @import "components/progress";
-
-// @import "components/project_header";
 @import "components/radio";
 @import "components/select2";
 @import "components/select-item";
 @import "components/select_dropdown";
 @import "components/simple_page";
 @import "components/status_bar";
-
-// @import "components/storefront";
 @import "components/switch";
 @import "components/table";
-@import "components_dashboard/tabs";
 @import "components/tile";
-
-// @import "components/timeline-carousel";
-// @import "components/typeahead";
 @import "components/upload";
 
-@import "styles_dashboard/print";
-@import "styles_dashboard/utility";
-@import "styles_dashboard/shame";
-
+// Additional Styles
 @import "../extra_css/ckeditor";

@@ -97,6 +97,7 @@ urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("dashboard/", include("meinberlin.apps.dashboard.urls")),
     path("account/", include("meinberlin.apps.account.urls")),
+    path("account/", include("meinberlin.apps.kiezradar.urls")),
     path("embed/", include("meinberlin.apps.embed.urls")),
     path(
         "initiators/",

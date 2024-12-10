@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static i18n react_kiezradar_search_profiles %}
+
+{% block title %}{% translate 'Search profiles' %} - {{ block.super }}{% endblock title %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'react_kiezradar_search_profiles.js' %}"></script>
+    {{ block.super }}
+{% endblock extra_js %}
+
+{% block breadcrumbs %}
+{#    <div id="content-header">#}
+{#        <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">#}
+{#            <ol>#}
+{#                <li><a href="{% url 'wagtail_serve' '' %}">meinBerlin</a></li>#}
+{#                <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a></li>#}
+{#                <li><a href="{% url 'project-detail' project.slug %}">{{ project.name|truncatechars:50 }}</a></li>#}
+{#                {% if module.is_in_module_cluster %}#}
+{#                    <li><a href="{{ module.get_detail_url }}">{{ module.name|truncatechars:50 }}</a></li>#}
+{#                {% endif %}#}
+{#                <li><a href="{{ object.get_absolute_url }}">{% translate 'Proposal' %}</a></li>#}
+{#                <li class="active" aria-current="page">{% translate 'Edit proposal' %}</li>#}
+{#            </ol>#}
+{#        </nav>#}
+{#    </div>#}
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div id="layout-grid__area--maincontent">
+    {% react_kiezradar_search_profiles %}
+</div>
+{% endblock content %}

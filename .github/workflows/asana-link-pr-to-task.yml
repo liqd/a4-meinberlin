@@ -1,0 +1,14 @@
+on:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add comment in Asana task
+        uses: duckduckgo/native-github-asana-sync@v1.1
+        with:
+          asana-pat: ${{ secrets.GH_ASANA_SECRET }}
+          trigger-phrase: 'STORY:'
+          action: 'add-asana-comment'

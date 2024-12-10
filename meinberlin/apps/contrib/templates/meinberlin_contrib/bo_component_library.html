@@ -1,25 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Component Library &mdash; {{ block.super }}{% endblock %}
+{% block title %}
+  Component Library — {{ block.super }}
+{% endblock title %}
 
 {% block content %}
-  <div id="layout-grid__area--leftcolumn">
-    <!-- LEFT COLUMN not used -->
-  </div>
-  <div id="layout-grid__area--maincontent">
+    <div id="breadcrumb"></div>
     {% include 'meinberlin_contrib/components/breadcrumb.html' %}
-    {% include 'meinberlin_contrib/components/card.html' %}
-  </div>
-  <!-- Component list and links -->
-  <div id="layout-grid__area--marginal" role="complementary" class="marginal">
-    <ul>
-      <li>
-        <a href="#layout-grid__area--contentheader" class="">Breadcrumb</a>
-      </li>
-      <li>
-        <a href="#card" class="">Card</a>
-      </li>
-    </ul>
-  </div>
-{% endblock %}
+    <div id="layout-grid__area--maincontent">
+        {% include 'meinberlin_contrib/components/card.html' %}
+    </div>
+    <!-- Component list and links -->
+    <div id="layout-grid__area--marginal" role="complementary" class="marginal">
+        <ul>
+            <li><a href="#breadcrumb" class="">Breadcrumb</a></li>
+            <li><a href="#form-buttons" class="">Form Buttons</a></li>
+            <li><a href="#card" class="">Card</a></li>
+        </ul>
+    </div>
+{% endblock content %}

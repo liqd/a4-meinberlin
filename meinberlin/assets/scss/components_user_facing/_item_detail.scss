@@ -1,6 +1,32 @@
+.item-detail {
+    margin-bottom: 4rem;
+}
+
 .item-detail__title {
     padding: $spacer 0;
     margin: 0;
+}
+
+.item-detail__edit {
+    text-align: right;
+}
+
+.item-detail__edit-link {
+    width: auto;
+    font-size: $em-spacer;
+    line-height: 1.2;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+
+    &:before {
+        content: "\f303";
+        font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands", sans-serif;
+        font-weight: 700;
+        margin-right: .5em;
+        display: inline-block;
+        vertical-align: baseline;
+    }
 }
 
 .item-detail__image {
@@ -38,4 +64,127 @@
     strong {
         color: $text-base;
     }
+}
+
+.item-detail__factsheet {
+    border-bottom: 1px solid $gray-lighter;
+    border-top: 1px solid $gray-lighter;
+    padding: 1.5rem 0;
+    margin-top: 1.6rem;
+    margin-bottom: 1.6rem;
+
+    @media screen and (min-width: $breakpoint-palm) {
+        margin-bottom: 2.5rem;
+    }
+}
+
+dl.item-detail__factsheet-table div {
+    margin-bottom: 1.1rem;
+
+    @media screen and (min-width: $breakpoint-palm) {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        column-gap: 2.25rem;
+        margin-bottom: 1rem;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+dl.item-detail__factsheet-table,
+dl.item-detail__factsheet-table dd,
+dl.item-detail__factsheet-table dt,
+dl.item-detail__factsheet-table p {
+    margin: 0;
+}
+
+dl.item-detail__factsheet-table dt {
+    grid-column: span 3;
+}
+
+dl.item-detail__factsheet-table dd {
+    grid-column: span 9;
+}
+
+.item-detail__basic-content .text-huge,
+.item-detail__basic-content .text-big,
+.item-detail__basic-content .text-small {
+    display: block;
+}
+
+.item-detail__basic-content .text-huge {
+    font-size: 1.5rem;
+}
+
+.item-detail__basic-content .text-big,
+.item-detail__basic-content .text-small {
+    font-size: 1rem;
+}
+
+.item-detail__basic-content .image {
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.item-detail__basic-content p + .image {
+    margin-top: 2rem;
+
+    @media screen and (min-width: $breakpoint-palm) {
+        margin-top: 3rem;
+    }
+}
+
+.item-detail__contacts address p {
+    margin-bottom: 0.75rem;
+}
+
+.item-detail__basic-content .image + p {
+    margin-top: 2rem;
+
+    @media screen and (min-width: $breakpoint-palm) {
+        margin-top: 3rem;
+    }
+}
+
+.item-detail__contacts address p:last-child {
+    margin-bottom: 0;
+}
+
+.item-detail__contacts address p a  {
+    text-decoration: none;
+}
+
+.item-detail__contacts address p a:hover {
+    text-decoration: underline;
+}
+
+.item-detail__basic-content .image > figcaption {
+    background-color: transparent;
+    font-size: 0.75rem;
+    padding: 0.3rem 0 0;
+}
+
+.item-detail__map {
+  margin-bottom: 3rem;
+}
+
+.item-detail__contacts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.item-detail__contact-title {
+    font-size: 1.4rem;
+    margin: 0 0 0.75rem;
+}
+
+.item-detail__contacts address {
+    font-style: normal;
+}
+
+.item-detail__project-title {
+    font-size: 1.75rem;
+    margin: 0 0 1.5rem;
 }

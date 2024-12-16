@@ -6,6 +6,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
@@ -26,6 +27,7 @@ from meinberlin.apps.organisations.models import Organisation
 from meinberlin.apps.plans import models
 from meinberlin.apps.plans.forms import PlanForm
 from meinberlin.apps.plans.models import Plan
+from meinberlin.apps.projects import serializers as project_serializers
 
 
 class FreeTextFilterWidget(filter_widgets.FreeTextFilterWidget):
@@ -50,6 +52,10 @@ class PlanDetailView(rules_mixins.PermissionRequiredMixin, CanonicalURLDetailVie
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["polygon"] = settings.BERLIN_POLYGON
+        serializer = project_serializers.ProjectSerializer(
+            self.object.published_projects, many=True, now=timezone.now()
+        )
+        context["published_projects"] = json.dumps(serializer.data)
         return context
 
 

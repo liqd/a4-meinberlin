@@ -28,3 +28,11 @@
   font-size: 0.8em;
   color: $text-light;
 }
+
+.herounit-image-with-aside__pills.pill__list {
+  margin-bottom: 0.5rem;
+
+  @media screen and (min-width: $breakpoint-tablet) {
+    margin-bottom: -0.5rem;
+  }
+}

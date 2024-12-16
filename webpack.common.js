@@ -150,6 +150,12 @@ module.exports = {
       ],
       dependOn: 'adhocracy4'
     },
+    mb_projects_list: {
+      import: [
+        './meinberlin/react/plans/react_projects_list.jsx'
+      ],
+      dependOn: 'adhocracy4'
+    },
     // to be kept until everything uses the new maps
     a4maps_display_point: {
       import: [

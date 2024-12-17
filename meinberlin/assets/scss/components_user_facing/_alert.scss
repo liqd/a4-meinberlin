@@ -1,19 +1,18 @@
 .alert { 
+    position: relative;
     margin: $padding 0;
     background-color: $message-light-blue;
 }
 
-.a4-alert__container {
-    display: flex;
-    justify-content: space-between;
-}
-
-.a4-alert__content {
-    padding: $padding * 1.375 $padding * 1.125;
+.alert__content {
+    padding: 1.125rem 2rem 1.125rem 1.125rem;
+    margin: 0 auto;
+    max-width: 81rem;
 }
 
 .alert__headline {
-    margin: 0;
+    margin: 0 0 .4em;
+    line-height: 1.353em;
     padding: 0;
     color: inherit;
 }
@@ -24,9 +23,13 @@
 }
 
 .alert__close {
-    padding: $padding * 0.625;
-    height: fit-content;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.25rem;
+    border: 0;
     color: inherit;
+    cursor: pointer;
 }
 
 .alert--success {
@@ -47,14 +50,4 @@
 
 .alert--small {
     padding: 0.5em;
-}
-
-.alert:first-child { 
-    margin: 0;
-    margin-bottom: $padding;
-}
-
-.alert:last-child { 
-    margin: 0;
-    margin-top: $padding;
 }

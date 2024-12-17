@@ -1,63 +1,66 @@
-@use "sass:color";
-
-$messages-margin-bottom: 25px;
-
-.messages {
-    margin: 0 0 $messages-margin-bottom;
-    padding: 0;
-
-    li {
-        display: block;
-    }
-
-    + .messages {
-        margin-top: -$messages-margin-bottom;
-    }
-}
-
 .alert {
-    margin: 0;
-    padding: $padding * 1.2 0;
-    background-color: color.adjust($info, $lightness: 60%);
+    position: relative;
     color: $info;
-    text-align: center;
+    background-color: $info-bg;
+    animation: slide-in 0.2s ease-in-out;
 }
 
+.alert__content {
+    padding: 1.5rem 2rem 1.5rem 1.5rem;
+    margin: 0 auto;
+    max-width: 81rem; // reproduces the old container max-width in bootstrap
+}
+
+.alert__headline {
+    margin-top: 0;
+}
+
+.alert__text {
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Alert types */
 .alert--success {
-    background-color: color.adjust($success, $lightness: 70%);
     color: $success;
+    background-color: $success-bg;
 }
 
 .alert--error,
 .alert--danger {
-    background-color: color.adjust($danger, $lightness: 50%);
     color: $danger;
+    background-color: $danger-bg;
 }
 
 .alert--warning {
-    background-color: color.adjust($warning, $lightness: 48%);
     color: $warning;
-}
-
-.alert__close {
-    float: right;
-    color: inherit;
+    background-color: $warning-bg;
 }
 
 .alert--small {
     padding: 0.5em;
 }
 
-// If this directly follows the dialog box (see header.scss), add 16px
-// additional padding to the default value (see above).
-.messages:first-child > :first-child {
-    padding-top: calc(16px + #{$padding * 1.2});
+/* Close button */
+.alert__close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.25rem;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
 }
 
-// compensate for margin-bottom on messages
-.project-header,
-.hero-unit {
-    .messages + & {
-        margin-top: -$messages-margin-bottom;
+/* Animation */
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

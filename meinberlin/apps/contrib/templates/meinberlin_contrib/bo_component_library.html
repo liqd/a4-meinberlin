@@ -4,22 +4,36 @@
 {% block title %}Component Library &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
-  <div id="layout-grid__area--leftcolumn">
-    <!-- LEFT COLUMN not used -->
-  </div>
-  <div id="layout-grid__area--maincontent">
-    {% include 'meinberlin_contrib/components/breadcrumb.html' %}
-    {% include 'meinberlin_contrib/components/card.html' %}
-  </div>
+{% include 'meinberlin_contrib/components/breadcrumb.html' %}
+
   <!-- Component list and links -->
-  <div id="layout-grid__area--marginal" role="complementary" class="marginal">
-    <ul>
-      <li>
-        <a href="#layout-grid__area--contentheader" class="">Breadcrumb</a>
-      </li>
-      <li>
-        <a href="#card" class="">Card</a>
-      </li>
-    </ul>
-  </div>
+  <aside id="layout-grid__area--marginal" class="marginal">
+    <nav aria-label="Components">
+      <ul>
+        <li>
+          <a href="#alerts">Alerts</a>
+        </li>
+        <li>
+          <a href="#cards">Cards</a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main id="layout-grid__area--maincontent">
+    <h1>Component Library</h1>
+
+    <section id="alerts">
+      <h2>Alerts</h2>
+      {% include 'meinberlin_contrib/components/alert.html' with alert_headline='Info' alert_message='Error during validation. Please check your entries.' alert_type='info' %}
+      {% include 'meinberlin_contrib/components/alert.html' with alert_headline='Success' alert_message='Error during validation. Please check your entries.' alert_type='success' %}
+      {% include 'meinberlin_contrib/components/alert.html' with alert_headline='Warning' alert_message='Error during validation. Please check your entries.' alert_type='warning' %}
+      {% include 'meinberlin_contrib/components/alert.html' with alert_headline='Error' alert_message='Error during validation. Please check your entries.' alert_type='danger' %}
+    </section>
+
+    <section id="cards">
+      <h2>Cards</h2>
+      {% include 'meinberlin_contrib/components/card.html' %}
+    </section>
+  </main>
 {% endblock %}

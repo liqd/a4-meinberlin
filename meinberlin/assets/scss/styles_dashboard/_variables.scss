@@ -8,10 +8,17 @@ $primary: #00a982 !default;
 $primary-tint: #f5ccdd !default;
 $secondary: #253276 !default;
 $secondary-darker: #1c2659 !default;
-$success: #0a820a !default;
-$info: $secondary !default;
-$warning: #f49e00 !default;
+
+// Alerts and Messages
+$info: #1c2659 !default;
+$success: #0f5132 !default;
+$warning: #664d03 !default;
 $danger: #a72b1e !default;
+
+$info-bg: #ebf1f7 !default;
+$success-bg: #e2f1eb !default;
+$danger-bg: #fdecee !default;
+$warning-bg: #f9f4e4 !default;
 
 $body-bg: #fff !default;
 $bg-secondary: #f2f2f2 !default;

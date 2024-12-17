@@ -12,7 +12,7 @@
     {{ block.super }}
 
     {% if project.is_draft %}
-        {% include 'meinberlin_contrib/components/alert.html' with alert_message='This project has not yet been published.' alert_type='info' %}
+        {% include 'meinberlin_contrib/components/info-box.html' with info_message='This project has not yet been published.' %}
     {% endif %}
 {% endblock extra_messages %}
 

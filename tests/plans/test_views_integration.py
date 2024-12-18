@@ -6,6 +6,7 @@ from freezegun import freeze_time
 
 from adhocracy4.projects.enums import Access
 from adhocracy4.projects.models import Project
+from adhocracy4.projects.models import Topic
 from adhocracy4.test.helpers import assert_template_response
 from meinberlin.apps.plans.models import Plan
 
@@ -206,3 +207,34 @@ def test_export_view(client, plan_factory, project_factory):
         response["Content-Type"] == "application/vnd.openxmlformats-officedocument."
         "spreadsheetml.sheet"
     )
+
+
+@pytest.mark.django_db
+def test_plan_view_with_published_projects_and_topics(
+    client, plan_factory, project_factory
+):
+    project1 = project_factory()
+    project2 = project_factory()
+    project3 = project_factory()
+
+    plan = plan_factory.create(projects=[project1, project2, project3])
+    plan.topics.add(Topic.objects.get(pk=1))
+    plan.save()
+
+    assert plan.projects.all().count() == 3
+    organisation = plan.organisation
+    initiator = organisation.initiators.first()
+    client.login(username=initiator.email, password="password")
+    url = reverse("plans-list")
+    response = client.get(url)
+    items = response.data
+    assert response.status_code == 200
+    assert items[0]["published_projects"] is not None
+    assert items[0]["published_projects"][0]["title"] in [
+        project1.name,
+        project2.name,
+        project3.name,
+    ]
+    published_projects_count = len(items[0]["published_projects"])
+    assert items[0]["published_projects_count"] == published_projects_count
+    assert len(items[0]["topics"]) == plan.topics.count()

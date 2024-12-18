@@ -27,7 +27,7 @@ from meinberlin.apps.organisations.models import Organisation
 from meinberlin.apps.plans import models
 from meinberlin.apps.plans.forms import PlanForm
 from meinberlin.apps.plans.models import Plan
-from meinberlin.apps.projects import serializers as project_serializers
+from meinberlin.apps.projects.serializers import ProjectSerializer
 
 
 class FreeTextFilterWidget(filter_widgets.FreeTextFilterWidget):
@@ -51,11 +51,11 @@ class PlanDetailView(rules_mixins.PermissionRequiredMixin, CanonicalURLDetailVie
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["polygon"] = settings.BERLIN_POLYGON
-        serializer = project_serializers.ProjectSerializer(
+        serializer = ProjectSerializer(
             self.object.published_projects, many=True, now=timezone.now()
         )
-        context["published_projects"] = json.dumps(serializer.data)
+        context["published_projects"] = serializer.data
+        context["polygon"] = settings.BERLIN_POLYGON
         return context
 
 

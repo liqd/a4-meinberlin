@@ -21,8 +21,7 @@
     color: $text-inverted;
     transition: background-color 0.2s ease-in-out;
 
-    &:not(:disabled):hover,
-    &:not(:disabled):focus {
+    &:not(:disabled):hover {
         background-color: $primary-600;
     }
 
@@ -33,6 +32,16 @@
 
     &--selected {
         background-color: $primary;
+
+        // for some reason the :focus state gets a default color equal to primary-600
+        // if nothing is set, so we explicitly set the color
+        &:not(:disabled):focus {
+            background-color: $primary;
+        }
+
+        &:not(:disabled):hover {
+            background-color: $primary-600;
+        }
     }
 
     &--read-only {

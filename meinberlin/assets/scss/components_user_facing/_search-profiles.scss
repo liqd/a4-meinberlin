@@ -1,0 +1,117 @@
+.search-profiles-list__title {
+    margin-bottom: 1rem;
+
+    @media screen and (min-width: $breakpoint-palm) {
+        margin-bottom: 1.5rem;
+    }
+}
+
+.search-profile {
+    border-bottom: 1px solid $gray-lighter;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+
+    @media screen and (min-width: $breakpoint-palm) {
+        padding-bottom: 1.5rem;
+        padding-top: 1.5rem;
+    }
+}
+
+.search-profile__title {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.search-profile__header {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 1.2rem;
+}
+
+.search-profile__header-buttons {
+    display: none;
+
+    @media screen and (min-width: $breakpoint-palm) {
+        display: block;
+        margin-left: auto;
+    }
+}
+
+.search-profile__buttons {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.search-profile__button {
+    padding: 0;
+    margin: 0;
+    font-size: $em-spacer;
+    line-height: 1.2;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    color: var(--color-black);
+}
+
+.search-profile__button:hover,
+.search-profile__button:focus {
+    text-decoration: underline;
+}
+
+.search-profiles-list__error,
+.search-profile__error {
+    color: $danger;
+}
+
+.search-profile__form {
+    margin-bottom: 1.2rem;
+}
+
+.search-profile__footer {
+    @media screen and (min-width: $breakpoint-palm) {
+        display: flex;
+    }
+}
+
+.search-profile__view-projects {
+    display: block;
+
+    @media screen and (min-width: $breakpoint-palm) {
+        display: inline;
+        margin-left: auto;
+    }
+}
+
+.search-profile__footer-buttons {
+    display: flex;
+    margin-top: 1rem;
+
+    @media screen and (min-width: $breakpoint-palm) {
+        display: none;
+    }
+}
+
+.search-profile__footer-buttons div:only-of-type {
+    margin-left: auto;
+}
+
+.search-profile__alert {
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    position: fixed;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    top: 0;
+    width: 100%;
+    z-index: 50;
+}
+
+.search-profile__alert-container {
+    margin: 0 auto;
+    pointer-events: auto;
+
+    @media screen and (min-width: $breakpoint-tablet-landscape) {
+        width: clamp(980px, 50vw, 100%);
+    }
+}

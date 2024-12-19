@@ -51,6 +51,7 @@ class SearchProfile(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     disabled = models.BooleanField(default=False)
+    notification = models.BooleanField(default=False)
     status = models.SmallIntegerField(
         choices=STATUS_CHOICES,
         default=0,

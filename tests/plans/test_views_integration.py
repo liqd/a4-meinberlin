@@ -179,11 +179,14 @@ def test_list_view_no_district(client, plan_factory):
 
 
 @pytest.mark.django_db
-def test_detail_view(client, plan_factory):
-    plan = plan_factory()
+def test_detail_view(client, plan_factory, project_factory):
+    project1 = project_factory()
+    project2 = project_factory()
+    plan = plan_factory.create(projects=[project1, project2])
     url = plan.get_absolute_url()
     response = client.get(url)
     assert_template_response(response, "meinberlin_plans/plan_detail.html")
+    assert "published_projects" in response.context
 
 
 @pytest.mark.django_db

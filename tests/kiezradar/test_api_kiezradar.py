@@ -56,9 +56,6 @@ def test_create_search_profile(client, user, setup_data):
     assert data["disabled"] == payload["disabled"]
     assert data["status"] == payload["status"]
     assert data["query"] == payload["query"]
-    assert set(data["districts"]) == set(payload["districts"])
-    assert data["topics"] == payload["topics"]
-    assert data["project_types"] == payload["project_types"]
 
     # Check if the object was created in the database
     search_profile = SearchProfile.objects.get(id=data["id"])

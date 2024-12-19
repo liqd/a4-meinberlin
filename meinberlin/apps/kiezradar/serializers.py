@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.utils.module_loading import import_string
 from rest_framework import serializers
 
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
@@ -42,6 +44,7 @@ class SearchProfileSerializer(serializers.ModelSerializer):
             "name",
             "description",
             "disabled",
+            "notification",
             "status",
             "status_display",
             "query",
@@ -78,3 +81,25 @@ class SearchProfileSerializer(serializers.ModelSerializer):
             validated_data["query"] = query
 
         return super().update(instance, validated_data)
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation["organisations"] = [
+            {"id": organisation.id, "name": organisation.name}
+            for organisation in instance.organisations.all()
+        ]
+        representation["districts"] = [
+            {"id": district.id, "name": district.name}
+            for district in instance.districts.all()
+        ]
+        representation["project_types"] = [
+            {"id": project_type.id, "name": project_type.get_participation_display()}
+            for project_type in instance.project_types.all()
+        ]
+
+        topics_enum = import_string(settings.A4_PROJECT_TOPICS)
+        representation["topics"] = [
+            {"id": topic.id, "name": topics_enum(topic.code).label}
+            for topic in instance.topics.all()
+        ]
+        return representation

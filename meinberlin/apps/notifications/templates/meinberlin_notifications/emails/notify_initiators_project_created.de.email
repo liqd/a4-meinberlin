@@ -7,7 +7,7 @@
 {% block greeting %}Hallo {{ receiver.username }},{% endblock %}
 
 {% block content_html %}
-{{ creator.username }} hat ein neues Projekt <strong>{{ project.name }}</strong> für {{ project.organisation.name }} angelegt.
+<p>{{ creator.username }} hat ein neues Projekt <strong>{{ project.name }}</strong> für {{ project.organisation.name }} angelegt.</p>
 {% endblock %}
 
 {% block content_text %}

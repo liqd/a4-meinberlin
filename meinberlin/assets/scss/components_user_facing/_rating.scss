@@ -29,4 +29,10 @@
     &:hover {
         text-decoration: underline;
     }
+
+    &:disabled {
+        cursor: not-allowed;
+        pointer-events: none;
+        color: $gray-light;
+    }
 }

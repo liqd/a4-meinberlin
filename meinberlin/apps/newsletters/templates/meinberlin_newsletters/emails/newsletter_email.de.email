@@ -5,6 +5,7 @@
 {% block subject %}{{ newsletter.subject }}{% endblock %}
 
 {% block greeting %}{% endblock %}
+{% block cta %}{% endblock %}
 
 {% block content_html %}{{ newsletter.body_with_absolute_urls|safe }}{% endblock content_html %}
 {% block content_text %}{{ newsletter.body_with_absolute_urls|safe }}{% endblock content_text %}

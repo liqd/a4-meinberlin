@@ -1,0 +1,5 @@
+// Using overflow: hidden (as used in the styleguide) causes position: sticky
+// to not work as expected. See https://www.terluinwebdesign.nl/en/blog/position-sticky-not-working-try-overflow-clip-not-overflow-hidden/
+body {
+    overflow: clip;
+}

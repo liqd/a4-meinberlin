@@ -1,6 +1,7 @@
 .projects-map {
     height: 100%;
     margin: 0 -12px;
+    overflow: hidden;
 
     @media screen and (min-width: $breakpoint-tablet) {
         margin: 0;
@@ -57,3 +58,6 @@
     }
 }
 
+.projects-map__search.leaflet-control {
+    z-index: 1001;
+}

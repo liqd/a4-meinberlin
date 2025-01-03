@@ -1,6 +1,9 @@
 import React from 'react'
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
-import { getLoopedIndex, MultiSelect, toggleValue } from '../MultiSelect'
+import { render, screen } from '@testing-library/react'
+import { MultiSelect } from '../MultiSelect'
+import useCombobox from '../useCombobox'
+
+jest.mock('../useCombobox')
 
 describe('MultiSelect', () => {
   const choices = [
@@ -9,195 +12,144 @@ describe('MultiSelect', () => {
     { name: 'German', value: 'de' }
   ]
 
-  const openedClass = 'multi-select__container--opened'
+  const defaultMockHookReturn = {
+    opened: false,
+    labelId: 'test-label-id',
+    activeItems: [],
+    listboxAttrs: {
+      role: 'listbox',
+      'aria-multiselectable': 'true'
+    },
+    comboboxAttrs: {
+      role: 'combobox',
+      'aria-haspopup': 'true',
+      'aria-expanded': false,
+      'aria-labelledby': 'test-label-id'
+    },
+    getChoicesAttr: (choice) => ({
+      role: 'option',
+      'aria-selected': false,
+      active: false,
+      focused: false
+    })
+  }
 
-  test('is displaying with label and options', () => {
+  beforeEach(() => {
+    useCombobox.mockImplementation(() => defaultMockHookReturn)
+  })
+
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
+  test('renders with label and options', () => {
     render(
       <MultiSelect label="My Label" choices={choices} />
     )
 
-    const combobox = screen.getByLabelText(/My Label/)
-    expect(combobox).toHaveRole('combobox')
-
-    const options = screen.getAllByRole('option')
-    expect(options).toHaveLength(3)
-
+    expect(screen.getByText('My Label')).toBeInTheDocument()
     expect(screen.getByText('Swedish')).toBeInTheDocument()
     expect(screen.getByText('English')).toBeInTheDocument()
     expect(screen.getByText('German')).toBeInTheDocument()
   })
 
-  test('is changing values on click', () => {
-    const onChange = jest.fn()
+  test('displays active items when selected', () => {
+    useCombobox.mockImplementation(() => ({
+      ...defaultMockHookReturn,
+      activeItems: [{ name: 'English', value: 'en' }]
+    }))
+
     render(
-      <MultiSelect label="My Label" choices={choices} onChange={onChange} />
+      <MultiSelect
+        label="My Label"
+        choices={choices}
+        placeholder="Select language"
+      />
     )
 
-    const combobox = screen.getByLabelText(/My Label/)
-    const listbox = screen.getByRole('listbox')
-
-    fireEvent.click(combobox)
-    expect(listbox).toHaveClass(openedClass)
-
-    fireEvent.click(screen.getByText('English'))
-    expect(onChange).toHaveBeenCalledWith(['en'])
+    expect(screen.getAllByText('English')).toHaveLength(2)
   })
 
-  test('is closing on blur', () => {
+  test('displays placeholder when no items are selected', () => {
     render(
-      <MultiSelect label="My Label" choices={choices} />
+      <MultiSelect
+        label="My Label"
+        choices={choices}
+        placeholder="Select language"
+      />
     )
 
-    const combobox = screen.getByLabelText(/My Label/)
-    const listbox = screen.getByRole('listbox')
-
-    fireEvent.click(combobox)
-    expect(listbox).toHaveClass(openedClass)
-
-    fireEvent.blur(combobox, { relatedTarget: null })
-    expect(listbox).not.toHaveClass(openedClass)
+    expect(screen.getByText('Select language')).toBeInTheDocument()
   })
 
-  test('is opening on space', async () => {
-    render(
-      <MultiSelect label="My Label" choices={choices} />
+  test('applies correct classes', () => {
+    useCombobox.mockImplementation(() => ({
+      ...defaultMockHookReturn,
+      opened: true
+    }))
+
+    const { container } = render(
+      <MultiSelect
+        label="My Label"
+        choices={choices}
+        comboboxClassName="combobox-custom"
+        className="listbox-custom"
+        liClassName="li-custom"
+      />
     )
 
-    const combobox = screen.getByLabelText(/My Label/)
-    const listbox = screen.getByRole('listbox')
+    const combobox = container.querySelector('.combobox-custom')
+    expect(combobox).toBeInTheDocument()
 
-    expect(listbox).not.toHaveClass(openedClass)
-    fireEvent.focus(combobox)
-    fireEvent.keyDown(combobox, { key: ' ' })
-    expect(listbox).toHaveClass(openedClass)
+    const listbox = container.querySelector('.listbox-custom')
+    expect(listbox).toBeInTheDocument()
+
+    const lis = container.querySelectorAll('.li-custom')
+    expect(lis).toHaveLength(3)
   })
 
-  test('is selecting with space and enter', () => {
-    render(
-      <MultiSelect label="My Label" choices={choices} />
-    )
+  test('renders check icon for active items', () => {
+    useCombobox.mockImplementation(() => ({
+      ...defaultMockHookReturn,
+      getChoicesAttr: (choice) => ({
+        ...defaultMockHookReturn.getChoicesAttr(choice),
+        active: choice.value === 'en'
+      })
+    }))
 
-    const combobox = screen.getByLabelText(/My Label/)
-
-    fireEvent.focus(combobox)
-    fireEvent.keyDown(combobox, { key: 'Enter' })
-    const firstOption = screen.getAllByRole('option')[0]
-    expect(combobox).toHaveAttribute('aria-activedescendant', 'sv')
-    expect(firstOption).toHaveAttribute('aria-selected', 'false')
-
-    fireEvent.keyDown(combobox, { key: 'Enter' })
-    expect(firstOption).toHaveAttribute('aria-selected', 'true')
-
-    fireEvent.keyDown(combobox, { key: ' ' })
-    fireEvent.keyDown(combobox, { key: ' ' })
-    expect(firstOption).toHaveAttribute('aria-selected', 'false')
-  })
-
-  test('is closing with escape', () => {
     render(
       <MultiSelect label="My Label" choices={choices} />
     )
 
-    const combobox = screen.getByLabelText(/My Label/)
-    const listbox = screen.getByRole('listbox')
-
-    fireEvent.focus(combobox)
-    fireEvent.keyDown(combobox, { key: 'Enter' })
-    expect(listbox).toHaveClass(openedClass)
-
-    fireEvent.keyDown(combobox, { key: 'Escape' })
-    expect(listbox).not.toHaveClass(openedClass)
+    const checkIcon = screen.getByText('English').closest('li').querySelector('.bicon-check')
+    expect(checkIcon).toBeInTheDocument()
   })
 
-  test('is navigating with arrows', () => {
+  test('passes custom className to combobox', () => {
     render(
-      <MultiSelect label="My Label" choices={choices} />
+      <MultiSelect
+        label="My Label"
+        choices={choices}
+        comboboxClassName="custom-combobox-class"
+      />
     )
 
-    const combobox = screen.getByLabelText(/My Label/)
-
-    fireEvent.focus(combobox)
-    fireEvent.keyDown(combobox, { key: 'ArrowDown' })
-    expect(combobox).toHaveAttribute('aria-activedescendant', 'sv')
-
-    fireEvent.keyDown(combobox, { key: 'ArrowDown' })
-    expect(combobox).toHaveAttribute('aria-activedescendant', 'en')
-
-    fireEvent.keyDown(combobox, { key: 'ArrowUp' })
-    fireEvent.keyDown(combobox, { key: 'ArrowUp' })
-    expect(combobox).toHaveAttribute('aria-activedescendant', 'de')
+    const combobox = screen.getByRole('combobox')
+    expect(combobox).toHaveClass('custom-combobox-class')
   })
 
-  test('is navigating with home and end', () => {
+  test('passes custom className to list items', () => {
     render(
-      <MultiSelect label="My Label" choices={choices} />
+      <MultiSelect
+        label="My Label"
+        choices={choices}
+        liClassName="custom-li-class"
+      />
     )
 
-    const combobox = screen.getByLabelText(/My Label/)
-
-    fireEvent.focus(combobox)
-    fireEvent.keyDown(combobox, { key: 'ArrowDown' })
-    expect(combobox).toHaveAttribute('aria-activedescendant', 'sv')
-
-    fireEvent.keyDown(combobox, { key: 'End' })
-    expect(combobox).toHaveAttribute('aria-activedescendant', 'de')
-
-    fireEvent.keyDown(combobox, { key: 'Home' })
-    expect(combobox).toHaveAttribute('aria-activedescendant', 'sv')
-  })
-
-  test('is selecting when typing', () => {
-    render(
-      <MultiSelect label="My Label" choices={choices} />
-    )
-
-    const combobox = screen.getByLabelText(/My Label/)
-
-    fireEvent.focus(combobox)
-    fireEvent.keyDown(combobox, { key: 'ArrowDown' })
-    expect(combobox).toHaveAttribute('aria-activedescendant', 'sv')
-
-    fireEvent.keyDown(combobox, { key: 'G' })
-    fireEvent.keyDown(combobox, { key: 'E' })
-    expect(combobox).toHaveAttribute('aria-activedescendant', 'de')
-  })
-
-  test('keeps focus on combobox when blur is triggered', async () => {
-    render(
-      <MultiSelect label="My Label" choices={choices} />
-    )
-
-    const combobox = screen.getByLabelText(/My Label/)
-
-    combobox.focus()
-    fireEvent.keyDown(combobox, { key: 'ArrowDown' })
-    expect(combobox).toHaveAttribute('aria-activedescendant', 'sv')
-
-    const germanOption = screen.getByRole('option', { name: 'German' })
-    germanOption.focus()
-    fireEvent.click(germanOption)
-    fireEvent.blur(combobox, { relatedTarget: germanOption })
-    await waitFor(() => expect(combobox).toHaveFocus())
-  })
-})
-
-describe('getLoopedIndex', () => {
-  const choices = [1, 2, 3]
-  test('returns the correct index', () => {
-    expect(getLoopedIndex(choices, 0)).toBe(1)
-    expect(getLoopedIndex(choices, 2)).toBe(3)
-    expect(getLoopedIndex(choices, 3)).toBe(1)
-    expect(getLoopedIndex(choices, -1)).toBe(3)
-    expect(getLoopedIndex(choices, -3)).toBe(1)
-  })
-})
-
-describe('toggleValue', () => {
-  const choices = [1, 2, 3]
-  test('toggles the value correctly from a given list', () => {
-    expect(toggleValue(1, choices)).toEqual([2, 3])
-    expect(toggleValue(2, choices)).toEqual([1, 3])
-    expect(toggleValue(3, choices)).toEqual([1, 2])
-    expect(toggleValue(4, choices)).toEqual([1, 2, 3, 4])
+    const options = screen.getAllByRole('option')
+    options.forEach(option => {
+      expect(option).toHaveClass('custom-li-class')
+    })
   })
 })

@@ -44,11 +44,9 @@
 }
 
 .projects-list__wrapper--combined {
-    height: 600px;
-
     @media screen and (min-width: $breakpoint-tablet) {
-        height: 1100px;
         display: flex;
+        position: relative;
     }
 
     .projects-list__list {
@@ -56,7 +54,16 @@
 
         @media screen and (min-width: $breakpoint-tablet) {
             display: block;
-            overflow: auto;
+        }
+    }
+
+    .projects-list__map {
+        height: 600px;
+
+        @media screen and (min-width: $breakpoint-tablet) {
+            position: sticky;
+            top: 65px;
+            height: 1100px;
         }
     }
 
@@ -65,7 +72,6 @@
         flex: 1;
     }
 
-    .projects-list__map,
     .modul-geomap,
     .geomap-main,
     .geomap-container,

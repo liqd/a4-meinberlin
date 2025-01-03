@@ -497,7 +497,7 @@ A4_USE_VECTORMAP = True
 A4_MAP_BASEURL = "https://basemap.berlin.de/gdz_basemapde_vektor/styles/bm_web_col.json"
 A4_OPENMAPTILES_TOKEN = "9aVUrssbx7PKNUKo3WtXY6MqETI6Q336u5D142QS"
 A4_MAPBOX_TOKEN = ""
-
+A4_MAP_ATTRIBUTION = "&copy; 2024 basemap.de / BKG | Datenquellen: &copy; GeoBasis-DE"
 A4_PROJECT_TOPICS = "meinberlin.apps.contrib.enums.TopicEnum"
 
 A4_BLUEPRINT_TYPES = [

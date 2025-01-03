@@ -19,6 +19,7 @@
 
 @import "styles_user_facing/form";
 @import "styles_user_facing/utility";
+@import "styles_user_facing/base";
 
 @import "components_user_facing/accordion-list";
 @import "components_user_facing/alert";
@@ -52,6 +53,8 @@
 @import "components_user_facing/icon_switch";
 @import "components_user_facing/projects-list";
 @import "components_user_facing/projects_map";
+@import "components_user_facing/projects_map_search";
+@import "components_user_facing/projects_map_info";
 @import "components_user_facing/leaflet";
 @import "components_user_facing/project-tile";
 @import "components_user_facing/status-bar";

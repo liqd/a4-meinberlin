@@ -1,11 +1,14 @@
 import React, { useEffect, useMemo } from 'react'
+import { ZoomControl } from 'react-leaflet'
 import MarkerClusterLayer
   from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/MarkerClusterLayer'
 
 import { Map } from '../contrib/map/Map'
 import ProjectTile from './ProjectTile'
+import ProjectsMapSearch from './ProjectsMapSearch'
 import ControlWrapper from '../contrib/map/ControlWrapper'
 import ProjectMarker from './ProjectMarker'
+import ProjectsMapInfo from './ProjectsMapInfo'
 
 const Markers = ({ items, topicChoices }) => {
   const [activeProject, setActiveProject] = React.useState(null)
@@ -48,8 +51,9 @@ const Markers = ({ items, topicChoices }) => {
 const ProjectsMap = ({ items, topicChoices, ...props }) => {
   return (
     <div className="projects-map">
+      <ProjectsMapInfo className="projects-map-info--mobile" />
       <Map
-        zoomControl
+        zoomControl={false}
         maxZoom={18}
         {...props}
         id="project-map"
@@ -57,6 +61,13 @@ const ProjectsMap = ({ items, topicChoices, ...props }) => {
         style={{ minHeight: '100%', height: '100%' }}
         className="projects-map__map"
       >
+        <ControlWrapper position="topleft" className="projects-map__search">
+          <ProjectsMapSearch />
+        </ControlWrapper>
+        <ControlWrapper position="bottomleft" className="projects-map-info__wrapper">
+          <ProjectsMapInfo />
+        </ControlWrapper>
+        <ZoomControl position="topleft" />
         <Markers items={items} topicChoices={topicChoices} />
       </Map>
     </div>

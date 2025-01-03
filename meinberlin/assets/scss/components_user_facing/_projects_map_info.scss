@@ -1,0 +1,33 @@
+.projects-map-info {
+    font-size: $font-size-base;
+}
+
+.projects-map-info__wrapper {
+    margin: 10px;
+    bottom: 2em;
+    display: none;
+
+    .alert {
+        margin: 0;
+    }
+
+    .container,
+    .a4-alert__content {
+        margin: 0;
+        width: auto;
+    }
+
+    @media screen and (min-width: $breakpoint-tablet) {
+        display: block;
+    }
+}
+
+.projects-map-info--mobile {
+    @media screen and (min-width: $breakpoint-tablet) {
+        display: none;
+    }
+
+    .alert {
+        margin: 0;
+    }
+}

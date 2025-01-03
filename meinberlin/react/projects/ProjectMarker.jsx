@@ -26,7 +26,7 @@ const ProjectMarker = ({ project, onOpen, onClose, topicChoices }) => {
     >
       <Popup
         className="projects-map__popup"
-        offset={[0, 295]}
+        offset={[0, 225]}
         maxWidth={400}
         minWidth={400}
       >

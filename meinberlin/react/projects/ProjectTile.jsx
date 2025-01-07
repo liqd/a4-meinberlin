@@ -1,13 +1,17 @@
 /* global django */
 import React, { useId } from 'react'
-import { classNames } from '../contrib/helpers'
-import ProjectTopics from './ProjectTopics'
+import { classNames, toLocaleDate } from '../contrib/helpers'
+import ProjectTilePills from './ProjectTopics'
 import getTimespan from './get-timespan'
 import ImageWithPlaceholder from '../contrib/ImageWithPlaceholder'
 
 const copyrightMissingStr = django.gettext('copyright missing')
 const copyrightStr = django.gettext('copyright by')
 const altImgStr = django.gettext('Here you can find a decorative picture.')
+const participationEndedStr = django.gettext('Participation ended.')
+const beginsOnStr = django.gettext('Begins on the')
+const participationProjectsStr = django.gettext('Participation projects')
+const participationProjectStr = django.gettext('Participation project')
 
 function truncateText (item) {
   if (item.length > 170) {
@@ -22,6 +26,16 @@ const ProjectTile = ({ project, isHorizontal, topicChoices, isMapTile }) => {
   const describedById = useId()
   const statusId = useId()
   const statusBarProgress = project.active_phase ? project.active_phase[0] + '%' : null
+  let state = 'past'
+
+  // Plans are always active since we dont change state for them, we only show
+  // projects belonging to them.
+  if (project.active_phase || project.type === 'plan') {
+    state = 'active'
+  } else if (project.future_phase) {
+    state = 'future'
+  }
+  console.log(project)
 
   return (
     <a
@@ -51,7 +65,7 @@ const ProjectTile = ({ project, isHorizontal, topicChoices, isMapTile }) => {
         {!isMapTile && <span className="project-tile__head">{project.district}</span>}
         {project.topics?.length > 0 &&
           <div className="project-tile__topics">
-            <ProjectTopics project={project} topicChoices={topicChoices} />
+            <ProjectTilePills project={project} topicChoices={topicChoices} />
           </div>}
         <h3 className="project-tile__title" id={labelId}>{project.title}</h3>
         {project.description && !isMapTile && (
@@ -60,24 +74,39 @@ const ProjectTile = ({ project, isHorizontal, topicChoices, isMapTile }) => {
           </p>
         )}
 
-        {project.active_phase &&
-          <>
-            <progress
-              value={project.active_phase[0]}
-              max="100"
-              aria-valuenow={project.active_phase[0]}
-              aria-valuemin="0"
-              aria-valuemax="100"
-              className="project-tile__status"
-              id={statusId}
-            >
-              {statusBarProgress}
-            </progress>
-            <label htmlFor={statusId} className="project-tile__timespan">
-              <i className="far fa-clock" aria-hidden="true" />
-              {getTimespan(project)}
-            </label>
-          </>}
+        <div className="project-tile__status">
+          {state === 'active' && project.type !== 'plan' && (
+            <>
+              <progress
+                value={project.active_phase[0]}
+                max="100"
+                aria-valuenow={project.active_phase[0]}
+                aria-valuemin="0"
+                aria-valuemax="100"
+                id={statusId}
+                className="project-tile__status__bar"
+              >
+                {statusBarProgress}
+              </progress>
+              <label htmlFor={statusId} className="project-tile__timespan">
+                <i className="far fa-clock" aria-hidden="true" />
+                {getTimespan(project)}
+              </label>
+            </>
+          )}
+          {state === 'active' && project.type === 'plan' && (
+            <p>
+              <i className="fas fa-table-cells" aria-hidden="true" />
+
+              <span className="project-tile__plan__count">{project.published_projects_count}</span>
+              {project.published_projects_count === 1
+                ? participationProjectStr
+                : participationProjectsStr}
+            </p>
+          )}
+          {state === 'past' && <p>{participationEndedStr}</p>}
+          {state === 'future' && <p>{beginsOnStr} {toLocaleDate(project.future_phase, undefined, { month: 'numeric', year: 'numeric', day: 'numeric' })}</p>}
+        </div>
       </div>
     </a>
   )

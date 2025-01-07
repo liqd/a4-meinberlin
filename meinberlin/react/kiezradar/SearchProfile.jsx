@@ -1,0 +1,137 @@
+import React, { useState } from 'react'
+import django from 'django'
+import SearchProfileButtons from './SearchProfileButtons'
+import { updateItem } from '../contrib/helpers'
+
+const renameSearchProfileText = django.gettext('Rename search profile')
+const cancelText = django.gettext('Cancel')
+const saveText = django.gettext('Save')
+const savingText = django.gettext('Saving')
+const viewProjectsText = django.gettext('View projects')
+const errorText = django.gettext('Error')
+const errorDeleteSearchProfilesText = django.gettext(
+  'Failed to delete search profile'
+)
+const errorUpdateSearchProfilesText = django.gettext(
+  'Failed to update search profile'
+)
+
+export default function SearchProfile ({ apiUrl, planListUrl, profile: profile_, onDelete }) {
+  const [isEditing, setIsEditing] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const [profile, setProfile] = useState(profile_)
+
+  const handleDelete = async () => {
+    setLoading(true)
+    setError(null)
+
+    try {
+      const response = await updateItem({}, apiUrl + profile.id + '/', 'DELETE')
+
+      if (!response.ok) {
+        throw new Error(errorDeleteSearchProfilesText)
+      }
+
+      onDelete(profile.id)
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    setError(null)
+
+    try {
+      const response = await updateItem({ name: e.target.elements.name.value }, apiUrl + profile.id + '/', 'PATCH')
+
+      if (!response.ok) {
+        throw new Error(errorUpdateSearchProfilesText)
+      }
+
+      const data = await response.json()
+      setProfile(data)
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setIsEditing(false)
+      setLoading(false)
+    }
+  }
+
+  const filters = [
+    profile.districts,
+    profile.project_types,
+    profile.topics,
+    profile.organisations
+  ]
+    .map((filter) => filter.map(({ name }) => name))
+    .map((names) => names.join(', '))
+
+  return (
+    <div className="search-profile">
+      <div className="search-profile__header">
+        <div>
+          <h3 className="search-profile__title">{profile.name}</h3>
+          <ul className="search-profile__filters">
+            {filters.map((filter) => (
+              <li key={filter} className="search-profile__filter">{filter}</li>
+            ))}
+          </ul>
+        </div>
+        {!isEditing && (
+          <div className="search-profile__header-buttons">
+            <SearchProfileButtons
+              onEdit={() => setIsEditing(true)}
+              onDelete={handleDelete}
+              loading={loading}
+            />
+          </div>
+        )}
+      </div>
+      {error && <div className="search-profile__error">{errorText + ': ' + error}</div>}
+      {isEditing && (
+        <form className="form--base panel--heavy search-profile__form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="name">{renameSearchProfileText}</label>
+            <input id="name" name="name" type="text" required />
+          </div>
+          <div className="form-actions">
+            <div className="form-actions__left">
+              <button className="link" onClick={() => setIsEditing(false)}>
+                {cancelText}
+              </button>
+            </div>
+            <div className="form-actions__right">
+              <button
+                className="button"
+                type="submit"
+                disabled={loading}
+              >
+                {loading ? savingText + '...' : saveText}
+              </button>
+            </div>
+          </div>
+        </form>
+      )}
+      <div className="search-profile__footer">
+        <a href={planListUrl + '?search-profile=' + profile.id} className="button button--light search-profile__view-projects">
+          {viewProjectsText}
+        </a>
+        {!isEditing && (
+          <div className="search-profile__footer-buttons">
+            <SearchProfileButtons
+              onEdit={() => setIsEditing(true)}
+              onDelete={handleDelete}
+              loading={loading}
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}

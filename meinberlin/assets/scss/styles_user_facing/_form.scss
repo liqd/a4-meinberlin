@@ -8,6 +8,10 @@ button {
   cursor: pointer;
 }
 
+.widget--numberinput input {
+  @extend .form-control;
+}
+
 .errorlist {
   padding-left: 0;
 }

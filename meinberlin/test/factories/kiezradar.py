@@ -2,6 +2,7 @@ import factory
 
 from adhocracy4.test import factories as a4_factories
 from meinberlin.apps.kiezradar.models import KiezradarQuery
+from meinberlin.apps.kiezradar.models import ProjectStatus
 from meinberlin.apps.kiezradar.models import ProjectType
 from meinberlin.apps.kiezradar.models import SearchProfile
 
@@ -13,7 +14,6 @@ class SearchProfileFactory(factory.django.DjangoModelFactory):
     user = factory.SubFactory(a4_factories.USER_FACTORY)
     name = factory.Faker("sentence", nb_words=4)
     description = factory.Faker("sentence", nb_words=16)
-    status = SearchProfile.STATUS_ONGOING
 
 
 class KiezradarQueryFactory(factory.django.DjangoModelFactory):
@@ -28,3 +28,10 @@ class ProjectTypeFactory(factory.django.DjangoModelFactory):
         model = ProjectType
 
     participation = ProjectType.PARTICIPATION_INFORMATION
+
+
+class ProjectStatusFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = ProjectStatus
+
+    status = ProjectStatus.STATUS_ONGOING

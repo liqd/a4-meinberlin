@@ -11,6 +11,7 @@ def setup_data(
     kiezradar_query_factory,
     organisation_factory,
     project_type_factory,
+    project_status_factory,
 ):
     """Fixture to create required data for the test."""
     district = administrative_district_factory()
@@ -18,6 +19,7 @@ def setup_data(
     topic = Topic.objects.first()
     organisation = organisation_factory()
     project_type = project_type_factory()
+    project_status = project_status_factory()
 
     return {
         "districts": [district.id],
@@ -25,6 +27,7 @@ def setup_data(
         "organisations": [organisation.id],
         "topics": [topic.id],
         "project_types": [project_type.id],
+        "project_status": [project_status.id],
     }
 
 
@@ -37,7 +40,7 @@ def test_create_search_profile(client, user, setup_data):
         "name": "Test Search Profile",
         "description": "A description for the filters profile.",
         "disabled": False,
-        "status": SearchProfile.STATUS_ONGOING,
+        "status": setup_data["project_status"],
         "query": setup_data["query"],
         "districts": setup_data["districts"],
         "topics": setup_data["topics"],
@@ -54,7 +57,6 @@ def test_create_search_profile(client, user, setup_data):
     assert data["name"] == payload["name"]
     assert data["description"] == payload["description"]
     assert data["disabled"] == payload["disabled"]
-    assert data["status"] == payload["status"]
     assert data["query"] == payload["query"]
 
     # Check if the object was created in the database
@@ -62,12 +64,12 @@ def test_create_search_profile(client, user, setup_data):
     assert search_profile.name == payload["name"]
     assert search_profile.description == payload["description"]
     assert search_profile.disabled == payload["disabled"]
-    assert search_profile.status == payload["status"]
     assert search_profile.query.id == payload["query"]
     assert (
         list(search_profile.districts.values_list("id", flat=True))
         == payload["districts"]
     )
+    assert list(search_profile.status.values_list("id", flat=True)) == payload["status"]
     assert list(search_profile.topics.values_list("id", flat=True)) == payload["topics"]
     assert (
         list(search_profile.project_types.values_list("id", flat=True))
@@ -93,7 +95,7 @@ def test_update_search_profile(client, user, setup_data, search_profile_factory)
         "name": "Test Search Profile",
         "description": "A description for the filters profile.",
         "disabled": False,
-        "status": SearchProfile.STATUS_DONE,
+        "status": setup_data["project_status"],
         "query_text": "updated query",
         "districts": setup_data["districts"],
         "topics": setup_data["topics"],
@@ -111,13 +113,13 @@ def test_update_search_profile(client, user, setup_data, search_profile_factory)
     assert search_profile.name == payload["name"]
     assert search_profile.description == payload["description"]
     assert search_profile.disabled == payload["disabled"]
-    assert search_profile.status == payload["status"]
     assert search_profile.query.text == payload["query_text"]
     assert (
         list(search_profile.districts.values_list("id", flat=True))
         == payload["districts"]
     )
     assert list(search_profile.topics.values_list("id", flat=True)) == payload["topics"]
+    assert list(search_profile.status.values_list("id", flat=True)) == payload["status"]
     assert (
         list(search_profile.project_types.values_list("id", flat=True))
         == payload["project_types"]

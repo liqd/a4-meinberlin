@@ -12,6 +12,7 @@ function init () {
     const attribution = el.getAttribute('data-attribution')
     const baseUrl = el.getAttribute('data-baseurl')
     const bounds = JSON.parse(el.getAttribute('data-bounds'))
+    const searchProfile = el.getAttribute('data-search-profile') && JSON.parse(el.getAttribute('data-search-profile'))
     const selectedDistrict = el.getAttribute('data-selected-district')
     const selectedTopic = el.getAttribute('data-selected-topic')
     const districts = JSON.parse(el.getAttribute('data-districts'))
@@ -43,6 +44,7 @@ function init () {
           districtNames={districtNames}
           topicChoices={topicChoices}
           participationChoices={participationChoices}
+          searchProfile={searchProfile}
         />
       </React.StrictMode>)
   })

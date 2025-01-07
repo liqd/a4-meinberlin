@@ -5,6 +5,7 @@ from rest_framework import serializers
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.projects.models import Topic
 from meinberlin.apps.kiezradar.models import KiezradarQuery
+from meinberlin.apps.kiezradar.models import ProjectStatus
 from meinberlin.apps.kiezradar.models import ProjectType
 from meinberlin.apps.kiezradar.models import SearchProfile
 from meinberlin.apps.organisations.models import Organisation
@@ -31,10 +32,12 @@ class SearchProfileSerializer(serializers.ModelSerializer):
     project_types = serializers.PrimaryKeyRelatedField(
         queryset=ProjectType.objects.all(), many=True, allow_null=True, required=False
     )
+    status = serializers.PrimaryKeyRelatedField(
+        queryset=ProjectStatus.objects.all(), many=True, allow_null=True, required=False
+    )
     topics = serializers.PrimaryKeyRelatedField(
         queryset=Topic.objects.all(), many=True, allow_null=True, required=False
     )
-    status_display = serializers.CharField(source="get_status_display", read_only=True)
 
     class Meta:
         model = SearchProfile
@@ -46,7 +49,6 @@ class SearchProfileSerializer(serializers.ModelSerializer):
             "disabled",
             "notification",
             "status",
-            "status_display",
             "query",
             "query_text",
             "organisations",
@@ -96,10 +98,20 @@ class SearchProfileSerializer(serializers.ModelSerializer):
             {"id": project_type.id, "name": project_type.get_participation_display()}
             for project_type in instance.project_types.all()
         ]
+        representation["status"] = [
+            {
+                "id": project_status.id,
+                "status": project_status.status,
+                "name": project_status.get_status_display(),
+            }
+            for project_status in instance.status.all()
+        ]
 
         topics_enum = import_string(settings.A4_PROJECT_TOPICS)
         representation["topics"] = [
-            {"id": topic.id, "name": topics_enum(topic.code).label}
+            {"id": topic.id, "code": topic.code, "name": topics_enum(topic.code).label}
             for topic in instance.topics.all()
         ]
+
+        representation["query_text"] = instance.query.text if instance.query else ""
         return representation

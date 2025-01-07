@@ -29,7 +29,7 @@ const statusNames = {
   past: django.gettext('done')
 }
 
-export const initialState = {
+const initialState = {
   search: '',
   districts: [],
   organisation: [],
@@ -63,7 +63,7 @@ export const ProjectsControlBar = ({
   hasContainer
 }) => {
   const [expandFilters, setExpandFilters] = useState(false)
-  const [filters, setFilters] = useState(initialState)
+  const [filters, setFilters] = useState(appliedFilters)
   const onFilterChange = (type, choice) => {
     setFilters({ ...filters, [type]: choice })
   }

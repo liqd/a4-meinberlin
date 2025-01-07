@@ -9,6 +9,10 @@ import ProjectsMap from './ProjectsMap'
 import Spinner from '../contrib/Spinner'
 import { ProjectsControlBar } from './ProjectsControlBar'
 import { filterProjects } from './filter-projects'
+import {
+  getDefaultProjectState,
+  getDefaultState
+} from './getDefaultState'
 
 const pageHeader = django.gettext('Project overview')
 const showMapStr = django.gettext('Show map')
@@ -44,22 +48,15 @@ const ProjectsListMapBox = ({
   districtNames,
   districts,
   participationChoices,
-  organisations
+  organisations,
+  searchProfile
 }) => {
   const [showMap, setShowMap] = useState(true)
   const [loading, setLoading] = useState(true)
-  const [projectState, setProjectState] = useState(['active', 'future'])
+  const [projectState, setProjectState] = useState(getDefaultProjectState(searchProfile))
   const [items, setItems] = useState([])
   const fetchCache = useRef({})
-  const [appliedFilters, setAppliedFilters] = useState({
-    search: '',
-    districts: [],
-    // organisation is a single select but its simpler to just work with an
-    // array because of the typeahead component
-    organisation: [],
-    participations: [],
-    topics: []
-  })
+  const [appliedFilters, setAppliedFilters] = useState(getDefaultState(searchProfile))
 
   const fetchItems = useCallback(async () => {
     setLoading(true)
@@ -93,10 +90,7 @@ const ProjectsListMapBox = ({
           console.error(e)
         }
       })
-    )
-      .finally(() => setLoading(false))
-    // TODO: Check if needed when implementing filter story:
-    //  this.updateList()
+    ).finally(() => setLoading(false))
   }, [plansApiUrl, extprojectApiUrl, privateprojectApiUrl, projectState, projectApiUrl])
 
   useEffect(() => {

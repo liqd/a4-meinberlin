@@ -72,6 +72,7 @@ export default function SearchProfile ({ apiUrl, planListUrl, profile: profile_,
   ]
     .map((filter) => filter.map(({ name }) => name))
     .map((names) => names.join(', '))
+    .filter(Boolean)
 
   return (
     <div className="search-profile">

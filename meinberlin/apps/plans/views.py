@@ -10,6 +10,7 @@ from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
 from django.views.generic.detail import SingleObjectMixin
+from rest_framework.renderers import JSONRenderer
 
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
@@ -21,6 +22,8 @@ from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.enums import TopicEnum
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
 from meinberlin.apps.dashboard.mixins import DashboardProjectListGroupMixin
+from meinberlin.apps.kiezradar.models import SearchProfile
+from meinberlin.apps.kiezradar.serializers import SearchProfileSerializer
 from meinberlin.apps.maps.models import MapPreset
 from meinberlin.apps.organisations.models import Organisation
 from meinberlin.apps.plans import models
@@ -97,6 +100,25 @@ class PlanListView(rules_mixins.PermissionRequiredMixin, generic.ListView):
         choices = [str(choice[1]) for choice in Plan.participation.field.choices]
         return json.dumps(choices)
 
+    def get_search_profile(self):
+        if (
+            self.request.GET.get("search-profile", None)
+            and self.request.user.is_authenticated
+        ):
+            search_profile_id = self.request.GET.get("search-profile")
+            try:
+                search_profile = SearchProfile.objects.get(
+                    id=search_profile_id, user=self.request.user
+                )
+                return (
+                    JSONRenderer()
+                    .render(SearchProfileSerializer(instance=search_profile).data)
+                    .decode("utf-8")
+                )
+            except SearchProfile.DoesNotExist:
+                pass
+        return None
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -113,6 +135,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin, generic.ListView):
         if hasattr(settings, "A4_OPENMAPTILES_TOKEN"):
             omt_token = settings.A4_OPENMAPTILES_TOKEN
 
+        context["search_profile"] = self.get_search_profile()
         context["districts"] = self.get_district_polygons()
         context["organisations"] = self.get_organisations()
         context["district_names"] = self.get_district_names()

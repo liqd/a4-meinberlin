@@ -6,7 +6,7 @@
     <div class="header__row-portalbrand">
         <div class="logo">
             <a href="https://www.berlin.de/">
-                <img class="logo" title="{% translate 'To the home page of Berlin.de' %}" src="{% static 'images/logo_berlin.svg' %}" alt="Berlin.de" />
+                <img class="logo" title="{% translate 'To the home page of Berlin.de' %}" src="{% static 'images/logo_berlin.svg' %}" height="33" width="100" alt="Berlin.de" />
             </a>
         </div>
     </div>
@@ -15,7 +15,7 @@
         <div class="pageheader__logo">
             <div class="logo">
                 <a href="{% url 'wagtail_serve' '' %}" title="{% translate 'To the home page' %}">
-                    <img class="svg" src="{% static 'images/logo_mb.svg' %}" alt="{% translate 'meinBerlin logo' %}">
+                    <img class="svg" src="{% static 'images/logo_mb.svg' %}" alt="{% translate 'meinBerlin logo' %}" height="221" width="1080">
                 </a>
             </div>
         </div>
@@ -30,7 +30,7 @@
                 {% get_header_menu "topnav" as topnav %}
                 {% for item in topnav %}
                 <li class="{% if request.path == item.url %}active{% endif %}">
-                    <a href="{{ item.url }}">{{ item.title}}</a>
+                    <a href="{{ item.url }}">{{ item.title }}</a>
                 </li>
                 {% endfor %}
                 {% if settings.meinberlin_cms.HeaderPages.help_page %}
@@ -196,34 +196,7 @@
                         </button>
                     </div>
                     <div class="overlay__body">
-                        <nav id="navigation-primary" class="js-navigation-primary">
-                            <div class="tree-wrapper js-navigation-tree-wrapper">
-                                <h3 class="aural">{% translate 'Page navigation' %}</h3>
-                                <ul class="navigation-tree">
-                                    <li class="{% if request.path == project_list %}active{% endif %}">
-                                        <a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a>
-                                    </li>
-                                    {% for item in topnav %}
-                                    <li class="{% if request.path == item.url %}active{% endif %}">
-                                        <a href="{{ item.url }}">{{ item.title}}</a>
-                                    </li>
-                                    {% endfor %}
-                                    {% if settings.meinberlin_cms.HeaderPages.help_page %}
-                                    <li class="{% if request.path == settings.meinberlin_cms.HeaderPages.help_page.get_url %}active{% endif %}">
-                                        <a href="{{ settings.meinberlin_cms.HeaderPages.help_page.get_url }}">{% translate 'Help' %}</a>
-                                    </li>
-                                    {% endif %}
-                                    {% if settings.meinberlin_cms.HeaderPages.feedback_page %}
-                                    <li class="{% if request.path == settings.meinberlin_cms.HeaderPages.feedback_page.get_url %}active{% endif %}">
-                                        <a href="{{ settings.meinberlin_cms.HeaderPages.feedback_page.get_url }}">{% translate 'Give Feedback' %}</a>
-                                    </li>
-                                    {% endif %}
-                                    <li>
-                                    </li>
-                                </ul>
-                            </div>
-
-                        </nav>
+                        {% include 'navigation_primary.html' %}
                     </div>
                 </div>
                 <!--googleon: index--><!--/noindex-->

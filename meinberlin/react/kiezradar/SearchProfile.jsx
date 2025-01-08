@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import django from 'django'
 import SearchProfileButtons from './SearchProfileButtons'
 import { updateItem } from '../contrib/helpers'
+import PushNotificationToggle from './PushNotificationToggle'
 
 const renameSearchProfileText = django.gettext('Rename search profile')
 const cancelText = django.gettext('Cancel')
@@ -119,6 +120,12 @@ export default function SearchProfile ({ apiUrl, planListUrl, profile: profile_,
         </form>
       )}
       <div className="search-profile__footer">
+        <PushNotificationToggle
+          id={profile.id}
+          apiUrl={apiUrl}
+          checked={profile.notification}
+          onError={(error) => setError(error)}
+        />
         <a href={planListUrl + '?search-profile=' + profile.id} className="button button--light search-profile__view-projects">
           {viewProjectsText}
         </a>

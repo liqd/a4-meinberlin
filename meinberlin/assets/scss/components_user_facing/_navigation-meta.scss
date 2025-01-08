@@ -1,0 +1,32 @@
+.navigation-meta .heading {
+    padding-bottom: 1.5em;
+    padding-top: 1.5em;
+    border-top: 1px solid $gray-lighter;
+    border-bottom: 1px solid $gray-lighter;
+}
+
+.navigation-meta a {
+    border-bottom: 1px solid $gray-lighter;
+}
+
+.navigation-meta li:last-child a {
+    border-bottom: 0;
+}
+
+.navigation-meta:last-child li:last-child {
+    border-bottom: 1px solid $gray-lighter;
+}
+
+.navigation-meta .heading:empty {
+    height: 4.375em;
+}
+
+.navigation-meta .navigation-meta__link {
+    margin: 3px;
+    display: block;
+    padding: 1em 0 1em 12px;
+
+    @media screen and (min-width: $breakpoint-tablet-landscape) {
+        padding: 1em 24px;
+    }
+}

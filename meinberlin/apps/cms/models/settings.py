@@ -26,6 +26,15 @@ class HeaderPages(BaseSiteSetting):
         on_delete=models.SET_NULL,
         help_text=_("Please add a link to the feedback form page."),
     )
+    easy_language_page = models.ForeignKey(
+        "wagtailcore.Page",
+        related_name="easy_language_page",
+        verbose_name="Easy Language Form Page",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        help_text=_("Please add a link to the easy language page."),
+    )
     # accessibility settings
     feedback_name = models.CharField(max_length=255, blank=True)
     feedback_email = models.EmailField(max_length=255, blank=True)
@@ -48,6 +57,7 @@ class HeaderPages(BaseSiteSetting):
     panels = [
         FieldPanel("help_page"),
         FieldPanel("feedback_page"),
+        FieldPanel("easy_language_page"),
         MultiFieldPanel(
             [
                 FieldPanel("feedback_name"),

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load i18n userindicator static contrib_tags wagtailuserbar %}
+{% load i18n static contrib_tags wagtailuserbar %}
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
@@ -54,7 +54,6 @@
     <main role="main" tabindex="-1" {% if '/dashboard' not in request.path or '/components' not in request.path %} id="layout-grid" {% endif %}>
         <div id="layout-grid__area--contentheader">
             {% block breadcrumbs %}{% endblock breadcrumbs %}
-            {% block menu %}{% userindicator %}{% endblock menu %}
         </div>
 
         {% if messages %}

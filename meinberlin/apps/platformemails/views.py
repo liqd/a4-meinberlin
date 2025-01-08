@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.contrib import auth
 from django.contrib import messages
 from django.http.response import HttpResponseRedirect
@@ -24,11 +23,9 @@ class PlatformEmailCreateView(rules_mixins.PermissionRequiredMixin, generic.Crea
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
 
-        sender_name = settings.WAGTAIL_SITE_NAME
-
         kwargs["initial"] = {
-            "sender_name": sender_name,
-            "sender": settings.CONTACT_EMAIL,
+            "sender_name": "mein.berlin.de",
+            "sender": "support@mein.berlin.de",
         }
         return kwargs
 

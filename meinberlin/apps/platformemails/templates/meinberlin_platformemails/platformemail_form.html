@@ -1,35 +1,31 @@
-{% extends "a4dashboard/base_dashboard.html" %}
+{% extends "base.html" %}
 {% load i18n %}
 {% block title %}
-    {% translate 'Create platform email' %}
+  {% translate 'Create platform email' %}
 {% endblock title %}
 {% block content %}
-    <div class="container">
-        <div class="offset-lg-3 col-lg-6">
-            <h1>{% translate 'Create platform email' %}</h1>
-            <p class="form-hint">
-                {% blocktranslate %}This email will be sent to all registered and verified users of mein.berlin.de.{% endblocktranslate %}
-            </p>
-            <form novalidate
-                  enctype="multipart/form-data"
-                  action="{{ request.path }}"
-                  method="post">
-                {% csrf_token %}
-                {{ form.media }}
-                <div class="l-tiles-2">
-                    {% include 'a4forms/includes/form_field.html' with field=form.sender_name %}
-                    {% include 'a4forms/includes/form_field.html' with field=form.sender %}
-                </div>
-                {% include 'a4forms/includes/form_field.html' with field=form.subject %}
-                {% include 'a4forms/includes/form_field.html' with field=form.body %}
-                <div class="u-spacer-bottom">
-                    <input type="submit"
-                           class="btn btn--primary"
-                           name="send"
-                           value="{% translate 'Send' %}" />
-                    <a href="{% url 'wagtail_serve' '' %}" class="btn btn--light">{% translate 'Cancel' %}</a>
-                </div>
-            </form>
-        </div>
-    </div>
+  <div class="narrow-wrapper">
+    <h1 class="mb-1">{% translate 'Create platform email' %}</h1>
+    <p>
+      {% blocktranslate %}This email will be sent to all registered and verified users of mein.berlin.de.{% endblocktranslate %}
+    </p>
+    <form novalidate
+          enctype="multipart/form-data"
+          action="{{ request.path }}"
+          method="post">
+      {% csrf_token %}
+      {{ form.media }}
+      <div class="l-tiles-2">
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.sender_name %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.sender %}
+      </div>
+      {% include 'meinberlin_contrib/includes/form_field.html' with field=form.subject %}
+      {% include 'meinberlin_contrib/includes/form_field.html' with field=form.body %}
+
+      <div class="narrow-wrapper__secondary-cta narrow-wrapper__secondary-cta--left">
+        <a href="{% url 'wagtail_serve' '' %}">{% translate 'Cancel' %}</a>
+      </div>
+      <button type="submit" class="button button--full-width" name="send">{% translate 'Send' %}</button>
+    </form>
+  </div>
 {% endblock content %}

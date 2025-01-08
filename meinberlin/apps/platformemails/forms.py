@@ -17,3 +17,7 @@ class PlatformEmailForm(forms.ModelForm):
                 "people in summer."
             ),
         }
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.fields["sender"].required = True

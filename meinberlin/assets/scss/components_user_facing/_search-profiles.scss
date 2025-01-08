@@ -18,8 +18,12 @@
 }
 
 .search-profile__title {
-    margin-bottom: 0.25rem;
+    margin-bottom: 1rem;
     margin-top: 0;
+
+    @media screen and (min-width: $breakpoint-palm) {
+        margin-bottom: 0.25rem;
+    }
 }
 
 .search-profile__title:last-child {
@@ -43,7 +47,11 @@
 .search-profile__header {
     display: flex;
     gap: 3rem;
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.5rem;
+
+    @media screen and (min-width: $breakpoint-palm) {
+        margin-bottom: 1.2rem;
+    }
 }
 
 .search-profile__header-buttons {
@@ -87,6 +95,7 @@
 .search-profile__footer {
     @media screen and (min-width: $breakpoint-palm) {
         display: flex;
+        align-items: flex-start;
     }
 }
 
@@ -118,4 +127,26 @@
     @media screen and (min-width: $breakpoint-tablet-landscape) {
         margin-top: -2.5em;
     }
+}
+
+.search-profile__toggle-switch {
+    display: flex;
+    margin-bottom: 1rem;
+
+    @media screen and (min-width: $breakpoint-tablet-landscape) {
+        margin-bottom: 0;
+    }
+}
+
+.search-profile__toggle-switch label {
+    order: 1;
+}
+
+.search-profile__toggle-switch .toggle-switch__display {
+    transform: scale(0.75);
+    transform-origin: left;
+}
+
+.search-profile__toggle-switch .toggle-switch__label {
+    margin-left: -1.25rem;
 }

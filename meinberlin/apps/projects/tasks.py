@@ -1,12 +1,106 @@
+from datetime import UTC
 from datetime import datetime
 from datetime import timedelta
-from datetime import timezone
 
 from celery import shared_task
 from django.core.cache import cache
+from django.utils import timezone
 
 from adhocracy4.phases.models import Phase
 from meinberlin.apps import logger
+from meinberlin.apps.extprojects.api import get_external_projects
+from meinberlin.apps.extprojects.serializers import ExternalProjectSerializer
+from meinberlin.apps.plans.api import get_plans
+from meinberlin.apps.plans.serializers import PlanSerializer
+from meinberlin.apps.projects.api import get_public_projects
+from meinberlin.apps.projects.serializers import ActiveProjectSerializer
+from meinberlin.apps.projects.serializers import FutureProjectSerializer
+from meinberlin.apps.projects.serializers import PastProjectSerializer
+from meinberlin.apps.projects.serializers import ProjectSerializer
+
+
+def set_ext_projects_cache(now: datetime) -> None:
+    queryset = get_external_projects()
+    data = ExternalProjectSerializer(queryset, now=now, many=True).data
+    cache.set("extprojects", data)
+
+
+def set_plans_cache() -> None:
+    queryset = get_plans()
+    data = PlanSerializer(queryset, many=True).data
+    cache.set("plans", data)
+
+
+def set_public_projects_cache(now: datetime) -> None:
+    projects_queryset = get_public_projects()
+    active_projects = projects_queryset.filter(
+        module__phase__start_date__lte=now,
+        module__phase__end_date__gt=now,
+        module__is_draft=False,
+    ).distinct()
+    data = ActiveProjectSerializer(active_projects, now=now, many=True).data
+    cache.set("projects_" + "activeParticipation", data)
+
+    future_projects = (
+        projects_queryset.filter(
+            module__phase__start_date__gt=now, module__is_draft=False
+        )
+        .distinct()
+        .exclude(id__in=active_projects.values("id"))
+    )
+    data = FutureProjectSerializer(future_projects, now=now, many=True).data
+    cache.set("projects_" + "futureParticipation", data)
+
+    past_projects = (
+        projects_queryset.filter(
+            module__phase__end_date__lt=now, module__is_draft=False
+        )
+        .distinct()
+        .exclude(id__in=active_projects.values("id"))
+        .exclude(id__in=future_projects.values("id"))
+    )
+    data = PastProjectSerializer(past_projects, now=now, many=True).data
+    cache.set("projects_" + "pastParticipation", data)
+
+    data = ProjectSerializer(projects_queryset, now=now, many=True).data
+    cache.set("projects_", data)
+
+
+@shared_task(name="set_cache_for_projects")
+def set_cache_for_projects(
+    projects: bool = True,
+    get_next_projects: bool = False,
+    ext_projects: bool = True,
+    plans: bool = True,
+) -> None:
+    """Sets the cache for all public projects.
+    The task is called inline from reset_cache_for_projects,
+    whenever there are new future or past projects,
+    and also it is scheduled via celery beat to run
+    every hour in settings/production.txt.
+
+    Arguments:
+        projects: set new cache for projects (default: True)
+        get_next_projects: whether to fetch the next phase start or end (default: False)
+        ext_projects: set new cache for external projects (default: True)
+        plans: set new cache for plans (default: True)
+    """
+    try:
+        now: datetime = timezone.now()
+        if projects:
+            set_public_projects_cache(now)
+        if get_next_projects:
+            get_next_projects_start()
+            get_next_projects_end()
+        if ext_projects:
+            set_ext_projects_cache(now)
+        if plans:
+            set_plans_cache()
+
+        logger.info("Reset cache for projects and plans.")
+
+    except Exception as e:
+        logger.error("Cache for projects and plans failed:", e)
 
 
 def get_next_projects_start() -> list:
@@ -17,7 +111,7 @@ def get_next_projects_start() -> list:
     Returns:
         A list with the phases timestamp and remaining seconds.
     """
-    now = datetime.now(tz=timezone.utc)  # tz is UTC
+    now = datetime.now(tz=UTC)  # tz is UTC
     phases = (
         Phase.objects.filter(
             module__is_draft=False,
@@ -31,7 +125,7 @@ def get_next_projects_start() -> list:
     if phases:
         for phase in phases:
             # compare now with next start date
-            phase_start_date = phase.start_date.astimezone(timezone.utc)
+            phase_start_date = phase.start_date.astimezone(UTC)
             remain_time = phase_start_date - now
             str_phase = phase_start_date.strftime("%Y-%m-%d, %H:%M:%S %Z")
             list_format_phases.append(
@@ -52,7 +146,7 @@ def get_next_projects_end() -> list:
     Returns:
         A list with the phases timestamp and remaining seconds.
     """
-    now = datetime.now(tz=timezone.utc)  # tz is UTC
+    now = datetime.now(tz=UTC)  # tz is UTC
     phases = (
         Phase.objects.filter(
             module__is_draft=False,
@@ -67,7 +161,7 @@ def get_next_projects_end() -> list:
     if phases:
         for phase in phases:
             # compare now with next start date
-            phase_end_date = phase.end_date.astimezone(timezone.utc)
+            phase_end_date = phase.end_date.astimezone(UTC)
             remain_time = phase_end_date - now
             str_phase = phase_end_date.strftime("%Y-%m-%d, %H:%M:%S %Z")
             list_format_phases.append(
@@ -134,62 +228,16 @@ def schedule_reset_cache_for_projects() -> bool:
 
 
 @shared_task
-def reset_cache_for_projects(starts: bool, ends: bool) -> str:
+def reset_cache_for_projects(starts: bool, ends: bool):
     """
     Task called by schedule_reset_cache_for_projects
-    and clears cache for projects.
-
-    Returns:
-        A message indicating the participation
-        status of the projects that the cache
-        succeeded or failed to clear along with
-        other relevant type of projects.
+    and resets cache for projects.
     """
-
-    msg = "Clear cache "
     if starts:
         # remove redis key next_project_start
         cache.delete("next_projects_start")
-        cache.delete_many(
-            [
-                "projects_activeParticipation",
-                "projects_futureParticipation",
-                "private_projects",
-                "extprojects",
-            ]
-        )
-        if cache.get_many(
-            [
-                "projects_activeParticipation",
-                "projects_futureParticipation",
-                "private_projects",
-                "extprojects",
-            ]
-        ):
-            msg += "failed for future projects becoming active"
-        else:
-            msg += "succeeded for future projects becoming active"
     if ends:
         # remove redis key next_projects_end
         cache.delete("next_projects_end")
-        cache.delete_many(
-            [
-                "projects_activeParticipation",
-                "projects_pastParticipation",
-                "private_projects",
-                "extprojects",
-            ]
-        )
-        if cache.get_many(
-            [
-                "projects_activeParticipation",
-                "projects_pastParticipation",
-                "private_projects",
-                "extprojects",
-            ]
-        ):
-            msg += "failed for active projects becoming past"
-        else:
-            msg += "succeeded for active projects becoming past"
-    logger.info(msg)
-    return msg
+
+    set_cache_for_projects()

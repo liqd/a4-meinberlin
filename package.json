@@ -27,6 +27,7 @@
     "dsgvo-video-embed": "liqd/dsgvo-video-embed#main",
     "es6-promise": "4.2.8",
     "file-saver": "2.0.5",
+    "flatpickr": "4.6.13",
     "immutability-helper": "3.1.1",
     "jquery": "3.7.1",
     "js-cookie": "3.0.5",
@@ -81,7 +82,7 @@
     "stylelint": "16.2.1",
     "stylelint-config-standard-scss": "13.0.0",
     "stylelint-declaration-strict-value": "1.10.4",
-    "webpack": "5.92.1",
+    "webpack": "5.94.0",
     "webpack-cli": "5.1.4",
     "webpack-merge": "5.10.0",
     "whatwg-fetch": "3.6.20"

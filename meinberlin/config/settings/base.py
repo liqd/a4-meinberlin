@@ -221,7 +221,7 @@ IMAGE_ALIASES = {
     },
     "heroimage": {"min_resolution": (1500, 500)},
     "tileimage": {"min_resolution": (500, 300)},
-    "logo": {"min_resolution": (200, 50)},
+    "logo": {"min_resolution": (200, 50), "max_resolution": (650, 650)},
     "avatar": {"min_resolution": (200, 200)},
     "idea_image": {"min_resolution": (600, 400)},
     "plan_image": {"min_resolution": (600, 400)},
@@ -281,7 +281,7 @@ ACCOUNT_FORMS = {
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 ACCOUNT_USERNAME_REQUIRED = True
-ACCOUNT_PREVENT_ENUMERATION = True
+ACCOUNT_PREVENT_ENUMERATION = "strict"
 SOCIALACCOUNT_AUTO_SIGNUP = False
 SOCIALACCOUNT_EMAIL_VERIFICATION = "none"
 SOCIALACCOUNT_FORMS = {"signup": "meinberlin.apps.users.forms.SocialTermsSignupForm"}
@@ -544,6 +544,7 @@ CKEDITOR_5_PATH_FROM_USERNAME = True
 CKEDITOR_5_UNRESTRICTED_UPLOADS = True
 CKEDITOR_5_ALLOW_ALL_FILE_TYPES = True
 CKEDITOR_5_UPLOAD_FILE_TYPES = ["jpg", "jpeg", "png", "gif", "pdf", "doc", "docx"]
+CKEDITOR_5_MAX_FILE_SIZE = 5  # restrict to 5 MB
 CKEDITOR_5_CONFIGS = {
     "default": {
         "removePlugins": ["WordCount"],

@@ -52,4 +52,9 @@ CELERY_BEAT_SCHEDULE = {
         "schedule": crontab(minute=0),
         "args": (),
     },
+    "set-cache-for-projects-every-1-hr": {
+        "task": "set_cache_for_projects",
+        "schedule": crontab(minute=0, hour="*/1"),
+        "args": (),
+    },
 }

@@ -1,10 +1,8 @@
-from django.utils import timezone
 from easy_thumbnails.files import get_thumbnailer
 from rest_framework import serializers
 
 from adhocracy4.projects.enums import Access
 from meinberlin.apps.projects.serializers import CommonFields
-from meinberlin.apps.projects.serializers import ProjectSerializer
 
 from .models import Plan
 
@@ -17,7 +15,6 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
     participation_string = serializers.SerializerMethodField()
     point = serializers.SerializerMethodField()
     published_projects_count = serializers.SerializerMethodField()
-    published_projects = serializers.SerializerMethodField()
     subtype = serializers.ReadOnlyField(default="plan")
     tile_image = serializers.SerializerMethodField()
     tile_image_alt_text = serializers.SerializerMethodField()
@@ -39,7 +36,6 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
             "point",
             "point_label",
             "published_projects_count",
-            "published_projects",
             "status",
             "subtype",
             "tile_image",
@@ -56,11 +52,6 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
 
     def get_url(self, instance: Plan) -> str:
         return instance.get_absolute_url()
-
-    def get_published_projects(self, instance: Plan) -> ProjectSerializer:
-        return ProjectSerializer(
-            instance.published_projects, many=True, now=timezone.now()
-        ).data
 
     def get_published_projects_count(self, instance: Plan) -> int:
         """

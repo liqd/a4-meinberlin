@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.utils.module_loading import import_string
+from django.utils.translation import gettext as _
 from rest_framework import serializers
 
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
@@ -45,6 +46,7 @@ class SearchProfileSerializer(serializers.ModelSerializer):
             "id",
             "user",
             "name",
+            "number",
             "description",
             "disabled",
             "notification",
@@ -57,7 +59,7 @@ class SearchProfileSerializer(serializers.ModelSerializer):
             "topics",
         ]
 
-        read_only_fields = ["user"]
+        read_only_fields = ["user", "number"]
 
     def create(self, validated_data):
         # Pop many-to-many and one-to-many fields from validated_data
@@ -112,6 +114,8 @@ class SearchProfileSerializer(serializers.ModelSerializer):
             {"id": topic.id, "code": topic.code, "name": topics_enum(topic.code).label}
             for topic in instance.topics.all()
         ]
-
         representation["query_text"] = instance.query.text if instance.query else ""
+
+        if not instance.name:
+            representation["name"] = _("Searchprofile %d") % instance.number
         return representation

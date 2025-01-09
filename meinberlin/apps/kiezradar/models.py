@@ -63,7 +63,8 @@ class SearchProfile(models.Model):
         on_delete=models.CASCADE,
         related_name="search_profiles",
     )
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, null=True)
+    number = models.PositiveSmallIntegerField()
     description = models.TextField(blank=True, null=True)
     disabled = models.BooleanField(default=False)
     notification = models.BooleanField(default=False)
@@ -100,8 +101,23 @@ class SearchProfile(models.Model):
         blank=True,
     )
 
+    def save(self, update_fields=None, *args, **kwargs):
+        """Custom save() to add the next unused number per user on creation"""
+        if self.number is None:
+            latest = None
+            try:
+                latest = SearchProfile.objects.filter(user=self.user).latest("number")
+            except SearchProfile.DoesNotExist:
+                pass
+            self.number = latest.number + 1 if latest else 1
+        super().save(update_fields=update_fields, *args, **kwargs)
+
     class Meta:
-        ordering = ["name"]
+        ordering = ["number"]
+        constraints = [
+            models.UniqueConstraint("user", "number", name="unique-search-profile")
+        ]
+        indexes = [models.Index("number", name="searchprofile_number_idx")]
 
     def __str__(self):
         return f"kiezradar search profile - {self.name}, disabled {self.disabled}"

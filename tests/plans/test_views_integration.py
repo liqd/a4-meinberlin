@@ -1,3 +1,5 @@
+import json
+
 import pytest
 from dateutil.parser import parse
 from django.core.cache import cache
@@ -222,6 +224,7 @@ def test_plan_view_with_published_projects_and_topics(
     project1 = project_factory()
     project2 = project_factory()
     project3 = project_factory()
+    project1.topics.add(Topic.objects.get(pk=2))
 
     plan = plan_factory.create(projects=[project1, project2, project3])
     plan.topics.add(Topic.objects.get(pk=1))
@@ -231,16 +234,15 @@ def test_plan_view_with_published_projects_and_topics(
     organisation = plan.organisation
     initiator = organisation.initiators.first()
     client.login(username=initiator.email, password="password")
-    url = reverse("plans-list")
-    response = client.get(url)
-    items = response.data
-    assert response.status_code == 200
-    assert items[0]["published_projects"] is not None
-    assert items[0]["published_projects"][0]["title"] in [
+    response = client.get(plan.get_absolute_url())
+    assert response.context_data["published_projects"] is not None
+    published_projects = json.loads(response.context_data["published_projects"])
+    assert published_projects[0]["title"] in [
         project1.name,
         project2.name,
         project3.name,
     ]
-    published_projects_count = len(items[0]["published_projects"])
-    assert items[0]["published_projects_count"] == published_projects_count
-    assert len(items[0]["topics"]) == plan.topics.count()
+    assert len(published_projects) == 3
+    for project in published_projects:
+        if project["title"] == project1.name:
+            assert project["topics"][0] == Topic.objects.get(pk=2).code

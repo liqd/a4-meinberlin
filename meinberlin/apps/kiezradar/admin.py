@@ -6,7 +6,8 @@ from .models import SearchProfile
 
 
 class SearchProfileAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "user")
+    list_display = ("id", "name", "user", "number")
+    readonly_fields = ("number",)
     list_filter = (
         "name",
         "status",

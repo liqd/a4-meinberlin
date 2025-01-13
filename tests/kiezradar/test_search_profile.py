@@ -8,12 +8,18 @@ from meinberlin.apps.kiezradar.models import SearchProfile
 def test_create_search_profile(
     search_profile_factory,
     project_type_factory,
+    kiez_radar_factory,
     kiezradar_query_factory,
     organisation_factory,
     administrative_district_factory,
 ):
 
-    search_profile = search_profile_factory()
+    kiezradar = kiez_radar_factory()
+    user = kiezradar.creator
+
+    search_profile = search_profile_factory(creator=user)
+    assert search_profile.query is None
+    assert search_profile.kiezradar is None
     assert search_profile.topics.all().count() == 0
     assert search_profile.districts.all().count() == 0
     assert search_profile.project_types.all().count() == 0
@@ -55,6 +61,10 @@ def test_create_search_profile(
     search_profile.query = query
     search_profile.save()
     assert search_profile.query == query
+    search_profile.kiezradar = kiezradar
+    search_profile.save()
+    assert search_profile.kiezradar == kiezradar
+    assert search_profile.creator == kiezradar.creator
 
 
 @pytest.mark.django_db
@@ -62,15 +72,15 @@ def test_search_profile_save_adds_number(
     user,
     search_profile_factory,
 ):
-    user_2 = search_profile_factory().user
+    user_2 = search_profile_factory().creator
     assert user is not user_2
     for i in range(5):
-        search_profile_factory(user=user)
+        search_profile_factory(creator=user)
     for i in range(2):
-        search_profile_factory(user=user_2)
+        search_profile_factory(creator=user_2)
 
     assert SearchProfile.objects.count() == 8
-    for i, search_profile in enumerate(SearchProfile.objects.filter(user=user)):
+    for i, search_profile in enumerate(SearchProfile.objects.filter(creator=user)):
         assert search_profile.number == i + 1
-    for i, search_profile in enumerate(SearchProfile.objects.filter(user=user_2)):
+    for i, search_profile in enumerate(SearchProfile.objects.filter(creator=user_2)):
         assert search_profile.number == i + 1

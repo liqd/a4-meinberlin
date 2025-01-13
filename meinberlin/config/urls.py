@@ -27,6 +27,7 @@ from meinberlin.apps.documents.api import DocumentViewSet
 from meinberlin.apps.extprojects.api import ExternalProjectListViewSet
 from meinberlin.apps.ideas.api import IdeaViewSet
 from meinberlin.apps.kiezkasse.api import KiezkasseViewSet
+from meinberlin.apps.kiezradar.api import KiezRadarViewSet
 from meinberlin.apps.kiezradar.api import SearchProfileViewSet
 from meinberlin.apps.likes.api import LikesViewSet
 from meinberlin.apps.likes.routers import LikesDefaultRouter
@@ -48,6 +49,7 @@ js_info_dict = {
 
 router = routers.DefaultRouter()
 router.register(r"follows", FollowViewSet, basename="follows")
+router.register(r"kiezradar", KiezRadarViewSet, basename="kiezradar")
 router.register(r"searchprofiles", SearchProfileViewSet, basename="searchprofiles")
 router.register(r"reports", ReportViewSet, basename="reports")
 router.register(r"polls", PollViewSet, basename="polls")

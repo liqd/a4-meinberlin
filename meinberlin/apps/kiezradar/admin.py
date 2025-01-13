@@ -1,17 +1,23 @@
 from django.contrib import admin
 
+from .models import KiezRadar
 from .models import KiezradarQuery
 from .models import ProjectType
 from .models import SearchProfile
 
 
 class SearchProfileAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "user", "number")
+    list_display = ("id", "name", "creator", "number")
     readonly_fields = ("number",)
     list_filter = (
         "name",
         "status",
     )
+
+
+class KiezRadarAdmin(admin.ModelAdmin):
+    list_display = ("id", "name")
+    list_filter = ("name",)
 
 
 class KiezradarQueryAdmin(admin.ModelAdmin):
@@ -25,5 +31,6 @@ class ProjectTypeAdmin(admin.ModelAdmin):
 
 
 admin.site.register(SearchProfile, SearchProfileAdmin)
+admin.site.register(KiezRadar, KiezRadarAdmin)
 admin.site.register(KiezradarQuery, KiezradarQueryAdmin)
 admin.site.register(ProjectType, ProjectTypeAdmin)

@@ -80,6 +80,22 @@ def image_factory():
 
 
 @pytest.fixture
+def geojson_point():
+    return {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [13.397788148643649, 52.52958586909979],
+        },
+    }
+
+
+@pytest.fixture
+def geojson_point_str():
+    return '{"type": "Feature","geometry": {"type": "Point", "coordinates": [13.397788148643649, 52.52958586909979]}}'
+
+
+@pytest.fixture
 def login_url():
     return reverse("account_login")
 

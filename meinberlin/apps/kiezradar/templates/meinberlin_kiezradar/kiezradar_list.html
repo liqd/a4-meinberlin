@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static i18n react_kiezradar_search_profiles %}
+
+{% block title %}{% translate 'Search profiles' %} - {{ block.super }}{% endblock title %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'react_kiezradar_search_profiles.js' %}"></script>
+    {{ block.super }}
+{% endblock extra_js %}
+
+{% block breadcrumbs %}
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div id="layout-grid__area--maincontent">
+    {% react_kiezradar_filters %}
+</div>
+{% endblock content %}

@@ -1,11 +1,45 @@
 from django.conf import settings
+from django.core.exceptions import ValidationError
+from django.core.validators import MaxValueValidator
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
+from adhocracy4.maps.fields import PointField
 from adhocracy4.projects.models import Topic
 
 Organisation = settings.A4_ORGANISATIONS_MODEL
+
+
+class KiezRadar(models.Model):
+    KIEZRADAR_LIMIT = 5
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="kiezradar",
+    )
+    name = models.CharField(max_length=125)
+    point = PointField(
+        blank=True,
+        verbose_name=_("Where can your address be located on a map?"),
+        help_text=_(
+            "Click inside the marked area "
+            "or type in an address to set the marker. A set "
+            "marker can be dragged when pressed."
+        ),
+    )
+    radius = models.FloatField(
+        validators=[MinValueValidator(500.0), MaxValueValidator(3000.0)],
+        help_text=_("How long should be the radius area?"),
+    )
+
+    def save(self, update_fields=None, *args, **kwargs):
+        if self.user.kiezradar.count() >= self.KIEZRADAR_LIMIT:
+            raise ValidationError(
+                f"Users can only have up to {self.KIEZRADAR_LIMIT} radius filters."
+            )
+        super().save(update_fields=update_fields, *args, **kwargs)
 
 
 class KiezradarQuery(models.Model):
@@ -68,6 +102,13 @@ class SearchProfile(models.Model):
     description = models.TextField(blank=True, null=True)
     disabled = models.BooleanField(default=False)
     notification = models.BooleanField(default=False)
+    kiezradar = models.OneToOneField(
+        KiezRadar,
+        models.SET_NULL,
+        related_name="search_profile",
+        blank=True,
+        null=True,
+    )
     query = models.ForeignKey(
         KiezradarQuery,
         models.SET_NULL,

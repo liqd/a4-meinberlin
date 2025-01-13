@@ -8,12 +8,18 @@ from meinberlin.apps.kiezradar.models import SearchProfile
 def test_create_search_profile(
     search_profile_factory,
     project_type_factory,
+    kiez_radar_factory,
     kiezradar_query_factory,
     organisation_factory,
     administrative_district_factory,
 ):
 
-    search_profile = search_profile_factory()
+    kiezradar = kiez_radar_factory()
+    user = kiezradar.user
+
+    search_profile = search_profile_factory(user=user)
+    assert search_profile.query is None
+    assert search_profile.kiezradar is None
     assert search_profile.topics.all().count() == 0
     assert search_profile.districts.all().count() == 0
     assert search_profile.project_types.all().count() == 0
@@ -55,6 +61,10 @@ def test_create_search_profile(
     search_profile.query = query
     search_profile.save()
     assert search_profile.query == query
+    search_profile.kiezradar = kiezradar
+    search_profile.save()
+    assert search_profile.kiezradar == kiezradar
+    assert search_profile.user == kiezradar.user
 
 
 @pytest.mark.django_db

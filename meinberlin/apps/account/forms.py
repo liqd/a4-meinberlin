@@ -6,7 +6,7 @@ from meinberlin.apps.users.models import User
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ["username", "get_notifications", "get_newsletters"]
+        fields = ["username"]
 
     def clean_username(self):
         username = self.cleaned_data["username"]

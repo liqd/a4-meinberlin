@@ -27,6 +27,12 @@
       background-color: $white;
       color: $text-base;
     }
+
+    &--ghost {
+        background-color: transparent;
+        color: $text-base;
+        border: 1px solid currentcolor;
+    }
 }
 
 .pill__list {

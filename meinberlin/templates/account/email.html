@@ -5,58 +5,71 @@
 {% block title %}{% translate 'Email Addresses' %} — {{ block.super }}{% endblock title %}
 
 {% block dashboard_content %}
-<h1 class="u-first-heading">{% translate 'Email Addresses' %}</h1>
+  <h4>{% translate 'Manage your Email Addresses' %}</h4>
 
-<form class="multiform" action="{% url 'account_email' %}?next={{ request.path|urlencode }}" method="post">
-    {% csrf_token %}
+  <ul class="actionable-list">
     {% for emailaddress in user.emailaddress_set.all %}
-    <div class="form-check">
-        <label class="form-check__label">
-            <input type="radio" name="email"
-                   {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked" {% endif %}
-                   value="{{ emailaddress.email }}">
+      <li class="actionable-list__item">
+        <form class="actionable-list__item__wrapper" action="{% url 'account_email' %}?next={{ request.path|urlencode }}" method="post">
+          {% csrf_token %}
+          <div class="actionable-list__item__body">
+            <input type="hidden" name="email" value="{{ emailaddress.email }}"/>
             {{ emailaddress.email }}
-            {% if emailaddress.primary %}
-            <span class="label">{% translate "Primary" %}</span>
-            {% endif %}
-            {% if emailaddress.verified %}
-            <span class="label">{% translate "Verified" %}</span>
-            {% else %}
-            <span class="label">{% translate "Unverified" %}</span>
-            {% endif %}
-        </label>
-    </div>
+            <div class="actionable-list__item__details">
+              <ul class="pill__list">
+                {% if emailaddress.primary %}
+                  <li class="pill pill--ghost">{% translate "Primary" %}</li>
+                {% endif %}
+                {% if emailaddress.verified %}
+                  <li class="pill">{% translate "Verified" %}</li>
+                {% else %}
+                  <li class="pill">{% translate "Unverified" %}</li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+
+          <div class="actionable-list__item__actions">
+            <button type="submit" name="action_send"><i class="fas fa-envelope" aria-hidden="true"></i> {% translate 'Re-send Verification' %}</button>
+            <button type="submit" name="action_remove"><i class="far fa-trash-can" aria-hidden="true"></i> {% translate 'Remove' %}</button>
+            <div class="actionable-list__item__actions__bottom">
+              <button
+                class="button button--light button--fullwidth-palm"
+                type="submit"
+                name="action_primary"
+                {% if emailaddress.primary %}disabled{% endif %}
+              >
+                {% translate 'Make Primary' %}
+              </button>
+            </div>
+          </div>
+        </form>
+      </li>
     {% endfor %}
+  </ul>
 
-    <div class="u-spacer-bottom">
-        <button class="btn btn--primary" type="submit" name="action_primary">{% translate 'Make Primary' %}</button>
-        <button class="btn btn--secondary" type="submit" name="action_send">{% translate 'Re-send Verification' %}</button>
-        <button class="btn btn--secondary" type="submit" name="action_remove" >{% translate 'Remove' %}</button>
-    </div>
-</form>
-
-<form class="multiform" method="post" action="{% url 'account_email' %}">
+  <form class="multiform" method="post" action="{% url 'account_email' %}">
     {% csrf_token %}
     {% if form.non_field_errors %}
-        <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+      <ul class="errorlist" aria-live="assertive" aria-atomic="true">
         {% for error in form.non_field_errors %}
-            <li>{{ error|escape }}</li>
+          <li>{{ error|escape }}</li>
         {% endfor %}
-        </ul>
+      </ul>
     {% endif %}
 
     <div class="form-group">
-        <label class="control-label" for="{{ form.email.id_for_label }}">{% translate "Add another Email" %}</label>
-        {% if form.email.errors %}
-            <ul class="errorlist" aria-live="assertive" aria-atomic="true">
-            {% for error in form.email.errors %}
-                <li>{{ error|escape }}</li>
-            {% endfor %}
-            </ul>
-        {% endif %}
-        {{ form.email|add_class:"form-control"|add_error_attr:"aria-invalid:true" }}
+      <label class="control-label" for="{{ form.email.id_for_label }}">{% translate "Add another Email" %}</label>
+      {% if form.email.errors %}
+        <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+          {% for error in form.email.errors %}
+            <li>{{ error|escape }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      {{ form.email|add_class:"form-control"|add_error_attr:"aria-invalid:true" }}
     </div>
 
-    {% include 'meinberlin_contrib/includes/form_submit_flex_end.html' with button_text='Add Email' %}
-</form>
+    {% include 'meinberlin_contrib/includes/form_submit_flex_end.html' with button_text='Add' %}
+  </form>
 {% endblock dashboard_content %}

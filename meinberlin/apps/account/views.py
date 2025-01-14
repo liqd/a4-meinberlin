@@ -43,3 +43,15 @@ class ProfileActionsView(LoginRequiredMixin, generic.ListView):
         qs = super().get_queryset()
         qs = qs.filter(project__follow__creator=user, project__follow__enabled=True)
         return qs.exclude_updates()
+
+
+class NotificationsView(LoginRequiredMixin, generic.TemplateView):
+    template_name = "meinberlin_account/notifications.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["show_restricted"] = (
+            self.request.user.project_moderator.exists()
+            or len(self.request.user.organisations) > 0
+        )
+        return context

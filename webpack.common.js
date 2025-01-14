@@ -156,6 +156,12 @@ module.exports = {
       ],
       dependOn: 'adhocracy4'
     },
+    mb_notifications: {
+      import: [
+        './meinberlin/react/account/react_notifications.jsx'
+      ],
+      dependOn: 'adhocracy4'
+    },
     // to be kept until everything uses the new maps
     a4maps_display_point: {
       import: [

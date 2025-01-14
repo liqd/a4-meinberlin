@@ -7,10 +7,11 @@ export const ToggleSwitch = ({
   toggleSwitch,
   defaultChecked,
   checked,
-  className
+  className,
+  labelLeft = true
 }) => (
   <div className={classNames('toggle-switch form-check', className)}>
-    <label className="toggle-switch__label" htmlFor={uniqueId}>{onSwitchStr}</label>
+    {labelLeft && <label className="toggle-switch__label" htmlFor={uniqueId}>{onSwitchStr}</label>}
     <input
       type="checkbox"
       name={uniqueId}
@@ -24,5 +25,6 @@ export const ToggleSwitch = ({
       <i className="bicon bicon-check toggle-switch__icon toggle-switch__icon--on" aria-hidden="true" />
       <i className="bicon bicon-times toggle-switch__icon toggle-switch__icon--off" aria-hidden="true" />
     </span>
+    {!labelLeft && <label className="toggle-switch__label toggle-switch__label--right" htmlFor={uniqueId}>{onSwitchStr}</label>}
   </div>
 )

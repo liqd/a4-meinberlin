@@ -4,11 +4,30 @@
     margin: 0 0 2.5em;
 }
 
+.actionable-list__header {
+    margin-top: .25rem;
+    margin-bottom: .5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+        margin-top: 0;
+        margin-bottom: 0;
+        flex-shrink: 1;
+    }
+}
+
+.actionable-list__header__action {
+    flex: 0 0 auto;
+    margin-left: .25rem;
+}
+
 .actionable-list__item {
     padding: 1.5em 0;
     border-top: 1px solid $gray-lighter;
 
-    &:last-child {
+    &:not(.actionable-list__item--hide-last-line):last-child {
         border-bottom: 1px solid $gray-lighter;
     }
 }

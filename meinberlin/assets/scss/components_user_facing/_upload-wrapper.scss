@@ -1,0 +1,49 @@
+.upload-wrapper {
+    position: relative;
+
+    .form-control-file {
+        cursor: pointer;
+        left: 0;
+        position: absolute;
+        opacity: 0;
+        top: 0;
+    }
+}
+
+.upload-wrapper__fields {
+    .form-hint {
+        margin-top: 0.4em;
+    }
+
+    .form-control-file-dummy {
+        padding-left: 60px;
+    }
+}
+
+.clear-image {
+    @extend .aural;
+}
+
+.clear-image:checked + img {
+    opacity: 0.2;
+    filter: grayscale(100%);
+}
+
+.upload-wrapper__action {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.upload-wrapper__preview {
+    position: absolute;
+    overflow: hidden;
+    background-color: $gray-lightest;
+    width: 50px;
+    height: 33px;
+    top: 5px;
+    left: 5px;
+    z-index: 1;
+}

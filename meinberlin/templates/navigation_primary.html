@@ -25,15 +25,15 @@
       {% endfor %}
       {% if request.user.is_authenticated %}
         <li>
-          <a href="{% url 'account' %}">{% translate "Your account" %}</a>
+          <a href="{% url 'account' %}">{% translate "Your Account" %}</a>
           <ul class="navigation-tree">
             <li>
               {% url 'account_profile' as account_url %}
-              <a href="{% url 'account_profile' %}" class="{% if request.path == account_url %}active{% endif %}">{% translate "Account and security" %}</a>
+              <a href="{% url 'account_profile' %}" class="{% if request.path == account_url %}active{% endif %}">{% translate "Account & Security" %}</a>
             </li>
             <li>
               {% url 'search_profiles' as search_profiles_url %}
-              <a href="{% url 'search_profiles' %}" class="{% if request.path == search_profiles_url %}active{% endif %}">{% translate "Search profiles" %}</a>
+              <a href="{% url 'search_profiles' %}" class="{% if request.path == search_profiles_url %}active{% endif %}">{% translate "Search Profiles" %}</a>
             </li>
           </ul>
         </li>
@@ -57,7 +57,7 @@
     <ul>
       {% if settings.meinberlin_cms.HeaderPages.easy_language_page %}
         <li class="{% if request.path == settings.meinberlin_cms.HeaderPages.easy_language_page.get_url %}active{% endif %}">
-          <a href="{{ settings.meinberlin_cms.HeaderPages.easy_language_page.get_url }}">{% translate 'Simple language' %}</a>
+          <a href="{{ settings.meinberlin_cms.HeaderPages.easy_language_page.get_url }}">{% translate 'Simple Language' %}</a>
         </li>
       {% endif %}
     </ul>
@@ -68,7 +68,7 @@
       <ul>
         {% if request.user.is_superuser %}
           <li>
-            <a href="{% url 'meinberlin_platformemails:create' %}">{% translate "Platform Email" %}</a>
+            <a href="{% url 'meinberlin_platformemails:create' %}">{% translate "Platform Mail" %}</a>
           </li>
         {% endif %}
       </ul>
@@ -94,7 +94,7 @@
           <a href="{% url 'account_signup' %}?next={{ redirect_field_value|urlencode }}">{% translate "Register" %}</a>
         </li>
         <li>
-          <a href="{% url 'account_reset_password' %}?next={{ redirect_field_value|urlencode }}">{% translate "Forgot password" %}</a>
+          <a href="{% url 'account_reset_password' %}?next={{ redirect_field_value|urlencode }}">{% translate "Forgot Password" %}</a>
         </li>
       {% endif %}
     </ul>

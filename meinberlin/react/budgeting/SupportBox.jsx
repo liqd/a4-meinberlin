@@ -13,7 +13,7 @@ function getSupportText (ratings, userRatingData) {
 
   const supportWithUser = django.ngettext(
     'You have supported this idea.',
-    'You and %s people have supported this idea.',
+    '<strong>You</strong> and %s people have supported this idea.',
     supportCount === 1 ? 1 : supportCount - 1
   )
 
@@ -28,7 +28,7 @@ function getSupportText (ratings, userRatingData) {
     // but we would have to subtract one because it says "you and ..."
     // and then we would end up with supportCount = 1 again even though there
     // are two supporters
-    text = django.gettext('You and 1 other person have supported this idea.')
+    text = django.gettext('<strong>You</strong> and 1 other person have supported this idea.')
   }
   return text
 }
@@ -56,9 +56,7 @@ export const SupportBox = ({
 
       return (
         <div className="modul-servicepanel servicepanel--centered panel--heavy">
-          <div className="servicepanel__main">
-            {text}
-          </div>
+          <div className="servicepanel__main" dangerouslySetInnerHTML={{ __html: text }} />
           <div className="servicepanel__right">
             <SupportButton {...props} isArchived={isArchived} />
           </div>

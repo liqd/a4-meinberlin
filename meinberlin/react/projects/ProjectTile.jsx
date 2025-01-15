@@ -8,7 +8,7 @@ import ImageWithPlaceholder from '../contrib/ImageWithPlaceholder'
 const copyrightMissingStr = django.gettext('copyright missing')
 const copyrightStr = django.gettext('copyright by')
 const altImgStr = django.gettext('Here you can find a decorative picture.')
-const participationEndedStr = django.gettext('Participation ended.')
+const participationEndedStr = django.gettext('Participation ended')
 const beginsOnStr = django.gettext('Begins on the')
 const participationProjectsStr = django.gettext('Participation projects')
 const participationProjectStr = django.gettext('Participation project')
@@ -83,11 +83,11 @@ const ProjectTile = ({ project, isHorizontal, topicChoices, isMapTile }) => {
                 aria-valuemin="0"
                 aria-valuemax="100"
                 id={statusId}
-                className="project-tile__status__bar"
+                className="status-bar"
               >
                 {statusBarProgress}
               </progress>
-              <label htmlFor={statusId} className="project-tile__timespan">
+              <label htmlFor={statusId} className="status-bar__timespan">
                 <i className="far fa-clock" aria-hidden="true" />
                 {getTimespan(project)}
               </label>

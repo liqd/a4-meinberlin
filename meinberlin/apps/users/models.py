@@ -56,10 +56,11 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         verbose_name=_("Notifications"),
         default=True,
         help_text=_(
-            "Yes, I would like to be notified by e-mail about the start "
-            "and end of participation opportunities. This applies to all "
-            "projects I follow. I also receive an e-mail when someone "
-            "comments on one of my contributions."
+            "Yes, I would like to be notified by e-mail about the start and "
+            "end of participation opportunities. This applies to all projects "
+            "I follow. I also receive an e-mail when someone comments on one "
+            "of my contributions. I can adapt notification in my user account "
+            "settings. "
         ),
     )
 
@@ -67,8 +68,9 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         verbose_name=_("Newsletter"),
         default=False,
         help_text=_(
-            "Yes, I would like to receive e-mail newsletters about "
-            "the projects I am following."
+            "Yes, I would like to receive e-mail newsletters about the projects "
+            "I am following. I can undo this at any time in my user "
+            "account settings."
         ),
     )
 

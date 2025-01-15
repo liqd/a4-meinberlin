@@ -21,12 +21,12 @@ export const ControlBarFilterPills = ({ filters: _filters, onRemove }) => {
           const label = filter.label || filter.choices.find(choice => choice[0] === filter.value)[1]
           return (
             <Pill
-              key={'pill_' + filter.type}
+              key={'pill_' + filter.type + filter.value}
               pillClass="pill"
             >
               {label}
               <button
-                onClick={() => onRemove(filter.type)}
+                onClick={() => onRemove(filter.type, filter.value)}
                 className="pill__close"
                 title={getFilterRemoveText(label)}
               >

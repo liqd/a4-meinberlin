@@ -122,6 +122,10 @@ const ProjectsListMapBox = ({
           setProjectState(projectState)
           setAppliedFilters(filters)
         }}
+        onResetClick={() => {
+          setAppliedFilters(getDefaultState(searchProfile))
+          setProjectState(['active', 'future'])
+        }}
       />
       <div className={classNames('projects-list', !showMap && 'container')}>
         <h1 className="aural">{pageHeader}</h1>

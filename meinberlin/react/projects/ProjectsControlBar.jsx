@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import django from 'django'
 import { TypeaheadField } from '../contrib/TypeaheadField'
 import { MultiSelect } from '../contrib/forms/MultiSelect'
-import { arraysEqual, classNames } from '../contrib/helpers'
+import { classNames } from '../contrib/helpers'
 import { ControlBarFilterPills } from '../contrib/ControlBarFilterPills'
 
 const translated = {
@@ -38,17 +38,16 @@ const initialState = {
   projectState: ['active', 'future']
 }
 
-const getAlteredFilters = ({ search, ...arrayFilters }) => {
+const getAlteredFilters = ({ search, districts, topics, projectState, organisation, participations }, topicChoices, participationChoices) => {
   const filters = []
   if (search !== initialState.search) {
-    filters.push({ label: translated.search, type: 'search', value: search })
+    filters.push({ label: search, type: 'search', value: search })
   }
-
-  Object.keys(arrayFilters).forEach(key => {
-    if (!arraysEqual(arrayFilters[key], initialState[key])) {
-      filters.push({ label: translated[key], type: key, value: arrayFilters[key] })
-    }
-  })
+  districts.forEach(d => filters.push({ label: d, type: 'districts', value: d }))
+  topics.forEach(t => filters.push({ label: topicChoices[t], type: 'topics', value: t }))
+  projectState.forEach(s => filters.push({ label: statusNames[s], type: 'status', value: s }))
+  organisation.forEach(o => filters.push({ label: o, type: 'organisation', value: o }))
+  participations.forEach(p => filters.push({ label: participationChoices[p], type: 'participations', value: p }))
 
   return filters
 }
@@ -60,6 +59,7 @@ export const ProjectsControlBar = ({
   topicChoices,
   appliedFilters,
   onFiltered,
+  onResetClick,
   hasContainer
 }) => {
   const [expandFilters, setExpandFilters] = useState(false)
@@ -67,7 +67,7 @@ export const ProjectsControlBar = ({
   const onFilterChange = (type, choice) => {
     setFilters({ ...filters, [type]: choice })
   }
-  const alteredFilters = getAlteredFilters(appliedFilters)
+  const alteredFilters = getAlteredFilters(appliedFilters, topicChoices, participationChoices)
 
   return (
     <nav aria-label={translated.nav}>
@@ -173,6 +173,7 @@ export const ProjectsControlBar = ({
                     className="link"
                     onClick={() => {
                       setFilters(initialState)
+                      onResetClick()
                     }}
                   >
                     {translated.reset}
@@ -198,8 +199,15 @@ export const ProjectsControlBar = ({
             <div className="flexgrid grid grid--2 control-bar__bottom--projects">
               <ControlBarFilterPills
                 filters={alteredFilters}
-                onRemove={(type) => {
-                  const newFilters = { ...filters, [type]: initialState[type] }
+                onRemove={(type, value) => {
+                  const newFilters = { ...filters }
+
+                  if (Array.isArray(newFilters[type])) {
+                    newFilters[type] = newFilters[type].filter(f => f !== value)
+                  } else {
+                    newFilters[type] = initialState[type]
+                  }
+
                   setFilters(newFilters)
                   onFiltered(newFilters)
                 }}

@@ -24,7 +24,7 @@ describe('ControlBarFilterPills', () => {
     fireEvent.click(screen.getAllByRole('button')[0])
 
     // Check if the remove function was called with the correct argument
-    expect(removeFn).toHaveBeenCalledWith('color')
+    expect(removeFn).toHaveBeenCalledWith('color', 'red')
   })
 
   test('does not render if filters are empty or values are empty strings', () => {

@@ -106,31 +106,6 @@ a.project-tile {
     }
 }
 
-.project-tile__status__bar {
-    width: 100%;
-    height: .3em;
-    appearance: none;
-    background: $message-light-green;
-    border: none;
-
-    &::-moz-progress-bar {
-        background: $primary;
-
-    }
-
-    &::-webkit-progress-bar {
-        background: $message-light-green;
-    }
-
-    &::-webkit-progress-value {
-        background: $primary;
-    }
-}
-
-.project-tile__timespan {
-    font-weight: 400;
-}
-
 .project-tile__plan__count {
     margin-right: .25em;
 }

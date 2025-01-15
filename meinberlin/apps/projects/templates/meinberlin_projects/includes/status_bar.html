@@ -1,0 +1,20 @@
+{% load i18n %}
+
+<progress
+  value="{{ progress }}"
+  max="100"
+  aria-valuenow="{{ progress }}"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  id="{{ uniqueId }}"
+  class="status-bar"
+>
+  {{ progress }}%
+</progress>
+{% if not uniqueId %}
+  <p class="message--error">Please add a uniqueId to status_bar.html includes!</p>
+{% endif %}
+<label for="{{ uniqueId }}" class="status-bar__timespan">
+  <i class="far fa-clock" aria-hidden="true"></i>
+  {% blocktranslate %}remaining {{ time_left }}{% endblocktranslate %}
+</label>

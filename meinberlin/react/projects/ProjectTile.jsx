@@ -85,11 +85,11 @@ const ProjectTile = forwardRef(function ProjectTile ({ project, isHorizontal, to
                 aria-valuemin="0"
                 aria-valuemax="100"
                 id={statusId}
-                className="project-tile__status__bar"
+                className="status-bar"
               >
                 {statusBarProgress}
               </progress>
-              <label htmlFor={statusId} className="project-tile__timespan">
+              <label htmlFor={statusId} className="status-bar__timespan">
                 <i className="far fa-clock" aria-hidden="true" />
                 {getTimespan(project)}
               </label>

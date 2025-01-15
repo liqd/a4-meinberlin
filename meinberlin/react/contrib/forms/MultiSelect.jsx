@@ -24,7 +24,8 @@ export const MultiSelect = ({
     choices,
     values,
     defaultValue,
-    onChange
+    onChange,
+    isMultiple: true
   })
   const classes = classNames(
     'form-control input__element multi-select__container',

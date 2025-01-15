@@ -35,7 +35,6 @@ const ProjectTile = ({ project, isHorizontal, topicChoices, isMapTile }) => {
   } else if (project.future_phase) {
     state = 'future'
   }
-  console.log(project)
 
   return (
     <a

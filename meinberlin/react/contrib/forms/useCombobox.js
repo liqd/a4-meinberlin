@@ -31,6 +31,7 @@ const useCombobox = ({
   const defaultValueArray = Array.isArray(defaultValue) ? defaultValue : [defaultValue]
 
   const listboxRef = useRef(null)
+  const comboboxRef = useRef(null)
   const typed = useRef('')
 
   const [internalValue, setInternalValue] = useState(defaultValueArray)
@@ -64,7 +65,7 @@ const useCombobox = ({
 
   const onBlur = useCallback((e) => {
     if (listboxRef.current?.contains(e.relatedTarget)) {
-      listboxRef.current?.focus()
+      setTimeout(() => comboboxRef.current?.focus(), 10)
       return
     }
     setOpened(false)
@@ -159,7 +160,8 @@ const useCombobox = ({
       'aria-activedescendant': focusedItem?.value,
       'aria-labelledby': labelId,
       'aria-controls': containerId,
-      role: 'combobox'
+      role: 'combobox',
+      ref: comboboxRef
     },
     listboxAttrs: {
       role: 'listbox',

@@ -4,6 +4,7 @@ import { TypeaheadField } from '../contrib/TypeaheadField'
 import { MultiSelect } from '../contrib/forms/MultiSelect'
 import { classNames } from '../contrib/helpers'
 import { ControlBarFilterPills } from '../contrib/ControlBarFilterPills'
+import SaveSearchProfile from '../plans/SaveSearchProfile'
 
 const translated = {
   search: django.gettext('Search'),
@@ -30,6 +31,12 @@ const statusNames = {
   past: django.gettext('done')
 }
 
+const STATUS_MAPPING = {
+  active: 'running',
+  past: 'done',
+  future: 'future'
+}
+
 const initialState = {
   search: '',
   districts: [],
@@ -45,23 +52,38 @@ const getAlteredFilters = ({ search, districts, topics, projectState, organisati
     filters.push({ label: search, type: 'search', value: search })
   }
   districts.forEach(d => filters.push({ label: d, type: 'districts', value: d }))
-  topics.forEach(t => filters.push({ label: topicChoices[t], type: 'topics', value: t }))
+  topics.forEach(topicCode => {
+    const choice = topicChoices.find(choice => choice.code === topicCode)
+    if (choice) {
+      filters.push({ label: choice.name, type: 'topics', value: topicCode })
+    }
+  })
   projectState.forEach(s => filters.push({ label: statusNames[s], type: 'projectState', value: s }))
   organisation.forEach(o => filters.push({ label: o, type: 'organisation', value: o }))
-  participations.forEach(p => filters.push({ label: participationChoices[p], type: 'participations', value: p }))
+  participations.forEach(participationId => {
+    const choice = participationChoices.find(choice => choice.id === participationId)
+    if (choice) {
+      filters.push({ label: choice.name, type: 'participations', value: participationId })
+    }
+  })
 
   return filters
 }
 
 export const ProjectsControlBar = ({
-  districtNames,
+  districts,
   organisations,
   participationChoices,
   topicChoices,
   appliedFilters,
   onFiltered,
   onResetClick,
-  hasContainer
+  hasContainer,
+  searchProfile: initialSearchProfile,
+  searchProfilesApiUrl,
+  searchProfilesCount: initialSearchProfilesCount,
+  isAuthenticated,
+  projectStatus
 }) => {
   const [expandFilters, setExpandFilters] = useState(false)
   const [filters, setFilters] = useState(appliedFilters)
@@ -69,6 +91,22 @@ export const ProjectsControlBar = ({
     setFilters({ ...filters, [type]: choice })
   }
   const alteredFilters = getAlteredFilters(appliedFilters, topicChoices, participationChoices)
+  const [searchProfile, setSearchProfile] = useState(initialSearchProfile)
+  const [searchProfilesCount, setSearchProfilesCount] = useState(initialSearchProfilesCount)
+
+  const isFiltersInitialState = JSON.stringify(appliedFilters) === JSON.stringify(initialState)
+
+  const removeSearchProfile = () => {
+    setSearchProfile(null)
+    window.history.replaceState({}, '', window.location.pathname)
+  }
+
+  const createSearchProfile = (searchProfile) => {
+    setSearchProfile(searchProfile)
+    setSearchProfilesCount(searchProfilesCount + 1)
+    window.history.replaceState({}, '', window.location.pathname + '?search-profile=' + searchProfile.id
+    )
+  }
 
   return (
     <nav aria-label={translated.nav}>
@@ -81,6 +119,7 @@ export const ProjectsControlBar = ({
             newFilters.projectState = initialState.projectState
           }
           onFiltered(newFilters)
+          removeSearchProfile()
         }}
       >
         <div className="facetingform__container">
@@ -113,7 +152,7 @@ export const ProjectsControlBar = ({
                       <MultiSelect
                         label={translated.districts}
                         placeholder={translated.allDistricts}
-                        choices={districtNames.map((choice) => ({ value: choice, name: choice }))}
+                        choices={districts.map((choice) => ({ value: choice.name, name: choice.name }))}
                         values={filters.districts}
                         onChange={(choices) => onFilterChange('districts', choices)}
                       />
@@ -122,7 +161,7 @@ export const ProjectsControlBar = ({
                       <MultiSelect
                         label={translated.topics}
                         placeholder={translated.allTopics}
-                        choices={Object.entries(topicChoices).map(([key, choice]) => ({ value: key, name: choice }))}
+                        choices={topicChoices.map((topic) => ({ value: topic.code, name: topic.name }))}
                         values={filters.topics}
                         onChange={(choices) => onFilterChange('topics', choices)}
                       />
@@ -135,7 +174,7 @@ export const ProjectsControlBar = ({
                           <MultiSelect
                             label={translated.participations}
                             placeholder={translated.allParticipation}
-                            choices={participationChoices.map((choice, index) => ({ value: index, name: choice }))}
+                            choices={participationChoices.map((choice, index) => ({ value: index, name: choice.name }))}
                             onChange={(choices) => onFilterChange('participations', choices)}
                             values={filters.participations}
                           />
@@ -143,7 +182,17 @@ export const ProjectsControlBar = ({
                         <div className="span--1">
                           <MultiSelect
                             label={translated.projectState}
-                            choices={Object.entries(statusNames).map(([key, choice]) => ({ value: key, name: choice }))}
+                            choices={Object.entries(statusNames)
+                              .map(([key, translatedName]) => {
+                                const matchingStatus = projectStatus.find(
+                                  item => item.name === STATUS_MAPPING[key]
+                                )
+
+                                return matchingStatus
+                                  ? { value: key, name: translatedName }
+                                  : null
+                              })
+                              .filter(Boolean)}
                             values={filters.projectState}
                             onChange={(choices) => onFilterChange('projectState', choices)}
                             placeholder={translated.projectStatePlaceholder}
@@ -154,7 +203,7 @@ export const ProjectsControlBar = ({
                         typeaheadHeading={translated.organisation}
                         uniqueId="organisation-typeahead-id"
                         onTypeaheadChange={(choice) => onFilterChange('organisation', choice)}
-                        typeaheadOptions={organisations}
+                        typeaheadOptions={organisations.map((organisation) => organisation.name)}
                         typeaheadSelected={filters.organisation}
                         multipleBoolean
                       />
@@ -180,6 +229,7 @@ export const ProjectsControlBar = ({
                     onClick={() => {
                       setFilters(initialState)
                       onResetClick()
+                      removeSearchProfile()
                     }}
                   >
                     {translated.reset}
@@ -219,6 +269,23 @@ export const ProjectsControlBar = ({
                   onFiltered(newFilters)
                 }}
               />
+              {!isFiltersInitialState && (
+                <div>
+                  <SaveSearchProfile
+                    districts={districts}
+                    organisations={organisations}
+                    topicChoices={topicChoices}
+                    participationChoices={participationChoices}
+                    projectStatus={projectStatus}
+                    searchProfile={searchProfile}
+                    searchProfilesApiUrl={searchProfilesApiUrl}
+                    searchProfilesCount={searchProfilesCount}
+                    isAuthenticated={isAuthenticated}
+                    appliedFilters={appliedFilters}
+                    onSearchProfileCreate={createSearchProfile}
+                  />
+                </div>
+              )}
             </div>
           </div>
           )

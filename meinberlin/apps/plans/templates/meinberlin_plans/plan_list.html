@@ -25,7 +25,6 @@
          data-projects-url="{{ projects_api_url }}"
          data-districts="{{ districts }}"
          data-organisations="{{ organisations }}"
-         data-district-names="{{ district_names }}"
          data-topic-choices="{{ topic_choices }}"
          data-attribution="{{ attribution }}"
          data-mapbox-token="{{ mapbox_token }}"
@@ -34,6 +33,10 @@
          data-baseurl="{{ baseurl }}"
          data-bounds="{{ bounds }}"
          data-search-profile="{{ search_profile|default:"" }}"
+         data-search-profiles-url="{{ search_profiles_url }}"
+         data-search-profiles-count="{{ search_profiles_count }}"
+         data-is-authenticated="{{ is_authenticated }}"
+         data-project-status="{{ project_status }}"
          data-participation-choices="{{ participation_choices }}"></div>
 {% endblock content %}
 

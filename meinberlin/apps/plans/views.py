@@ -18,10 +18,13 @@ from adhocracy4.filters import views as filter_views
 from adhocracy4.filters import widgets as filter_widgets
 from adhocracy4.filters.filters import DefaultsFilterSet
 from adhocracy4.filters.filters import FreeTextFilter
+from adhocracy4.projects.models import Topic
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.enums import TopicEnum
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
 from meinberlin.apps.dashboard.mixins import DashboardProjectListGroupMixin
+from meinberlin.apps.kiezradar.models import ProjectStatus
+from meinberlin.apps.kiezradar.models import ProjectType
 from meinberlin.apps.kiezradar.models import SearchProfile
 from meinberlin.apps.kiezradar.serializers import SearchProfileSerializer
 from meinberlin.apps.maps.models import MapPreset
@@ -77,28 +80,43 @@ class PlanListView(rules_mixins.PermissionRequiredMixin, generic.ListView):
             return []
 
     def get_organisations(self):
-        organisations = Organisation.objects.values_list("name", flat=True).order_by(
-            "name"
-        )
+        organisations = Organisation.objects.values("id", "name").order_by("name")
         return json.dumps(list(organisations))
 
-    def get_district_polygons(self):
-        districts = self.districts
-        return json.dumps([district.polygon for district in districts])
-
-    def get_district_names(self):
-        city_wide = _("City wide")
-        districts = AdministrativeDistrict.objects.all()
-        district_names_list = [district.name for district in districts]
-        district_names_list.append(str(city_wide))
-        return json.dumps(district_names_list)
+    def get_districts(self):
+        districts = AdministrativeDistrict.objects.values("id", "name")
+        districts_list = [district for district in districts]
+        districts_list.append({"id": -1, "name": "City Wide"})
+        return json.dumps(districts_list)
 
     def get_topics(self):
-        return json.dumps({topic: str(topic.label) for topic in TopicEnum})
+        topics = [
+            {
+                "id": topic.id,
+                "code": topic.code,
+                "name": str(TopicEnum(topic.code).label),
+            }
+            for topic in Topic.objects.all()
+        ]
+        return json.dumps(topics)
 
     def get_participation_choices(self):
-        choices = [str(choice[1]) for choice in Plan.participation.field.choices]
-        return json.dumps(choices)
+        project_types = [
+            {"id": project_type.id, "name": project_type.get_participation_display()}
+            for project_type in ProjectType.objects.all()
+        ]
+        return json.dumps(project_types)
+
+    def get_project_status(self):
+        statuses = [
+            {
+                "id": project_status.id,
+                "status": project_status.status,
+                "name": project_status.get_status_display(),
+            }
+            for project_status in ProjectStatus.objects.all()
+        ]
+        return json.dumps(statuses)
 
     def get_search_profile(self):
         if (
@@ -119,6 +137,12 @@ class PlanListView(rules_mixins.PermissionRequiredMixin, generic.ListView):
                 pass
         return None
 
+    def get_search_profiles_count(self):
+        if self.request.user.is_authenticated:
+            return SearchProfile.objects.filter(user=self.request.user).count()
+        else:
+            return 0
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -136,9 +160,8 @@ class PlanListView(rules_mixins.PermissionRequiredMixin, generic.ListView):
             omt_token = settings.A4_OPENMAPTILES_TOKEN
 
         context["search_profile"] = self.get_search_profile()
-        context["districts"] = self.get_district_polygons()
+        context["districts"] = self.get_districts()
         context["organisations"] = self.get_organisations()
-        context["district_names"] = self.get_district_names()
         context["topic_choices"] = self.get_topics()
         context["extprojects_api_url"] = reverse("extprojects-list")
         context["privateprojects_api_url"] = reverse("privateprojects-list")
@@ -156,6 +179,10 @@ class PlanListView(rules_mixins.PermissionRequiredMixin, generic.ListView):
         context["district"] = self.request.GET.get("district", -1)
         context["topic"] = self.request.GET.get("topic", -1)
         context["participation_choices"] = self.get_participation_choices()
+        context["search_profiles_url"] = reverse("searchprofiles-list")
+        context["search_profiles_count"] = self.get_search_profiles_count()
+        context["is_authenticated"] = json.dumps(self.request.user.is_authenticated)
+        context["project_status"] = self.get_project_status()
 
         return context
 

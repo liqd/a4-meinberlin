@@ -17,8 +17,8 @@ const ProjectTilePills = ({ project, topicChoices }) => {
     return (
       <ul className="pill__list pill__list--inline">
         {project.type === 'plan' && <li className="pill pill--label">{planStr}</li>}
-        {topicList.map(topic =>
-          <li key={topic} className="pill pill--topic">{topic}</li>
+        {topicChoices.filter(topic => project.topics.includes(topic.code)).map(topic =>
+          <li key={topic.code} className="pill pill--topic">{topic.name}</li>
         )}
       </ul>
     )

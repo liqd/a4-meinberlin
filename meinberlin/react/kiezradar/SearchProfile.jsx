@@ -16,6 +16,11 @@ const errorDeleteSearchProfilesText = django.gettext(
 const errorUpdateSearchProfilesText = django.gettext(
   'Failed to update search profile'
 )
+const statusNames = {
+  running: django.gettext('ongoing'),
+  future: django.gettext('upcoming'),
+  done: django.gettext('done')
+}
 
 export default function SearchProfile ({ apiUrl, planListUrl, profile: profile_, onDelete }) {
   const [isEditing, setIsEditing] = useState(false)
@@ -66,11 +71,14 @@ export default function SearchProfile ({ apiUrl, planListUrl, profile: profile_,
 
   const filters = [
     profile.districts,
-    profile.project_types,
     profile.topics,
+    profile.project_types,
+    profile.status.map((status) => ({ name: statusNames[status.name] })),
     profile.organisations
   ]
     .map((filter) => filter.map(({ name }) => name))
+
+  const selection = [[profile.query_text], ...filters]
     .map((names) => names.join(', '))
     .filter(Boolean)
 
@@ -80,7 +88,7 @@ export default function SearchProfile ({ apiUrl, planListUrl, profile: profile_,
         <div>
           <h3 className="search-profile__title">{profile.name}</h3>
           <ul className="search-profile__filters">
-            {filters.map((filter) => (
+            {selection.map((filter) => (
               <li key={filter} className="search-profile__filter">{filter}</li>
             ))}
           </ul>

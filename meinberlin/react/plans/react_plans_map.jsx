@@ -17,12 +17,15 @@ function init () {
     const selectedTopic = el.getAttribute('data-selected-topic')
     const districts = JSON.parse(el.getAttribute('data-districts'))
     const organisations = JSON.parse(el.getAttribute('data-organisations'))
-    const districtNames = JSON.parse(el.getAttribute('data-district-names'))
     const topicChoices = JSON.parse(el.getAttribute('data-topic-choices'))
     const mapboxToken = el.getAttribute('data-mapbox-token')
     const omtToken = el.getAttribute('data-omt-token')
     const useVectorMap = el.getAttribute('data-use_vector_map')
     const participationChoices = JSON.parse(el.getAttribute('data-participation-choices'))
+    const searchProfilesApiUrl = el.getAttribute('data-search-profiles-url')
+    const searchProfilesCount = JSON.parse(el.getAttribute('data-search-profiles-count'))
+    const isAuthenticated = JSON.parse(el.getAttribute('data-is-authenticated'))
+    const projectStatus = JSON.parse(el.getAttribute('data-project-status'))
     const root = createRoot(el)
     root.render(
       <React.StrictMode>
@@ -41,10 +44,13 @@ function init () {
           bounds={bounds}
           organisations={organisations}
           districts={districts}
-          districtNames={districtNames}
           topicChoices={topicChoices}
           participationChoices={participationChoices}
           searchProfile={searchProfile}
+          searchProfilesApiUrl={searchProfilesApiUrl}
+          searchProfilesCount={searchProfilesCount}
+          isAuthenticated={isAuthenticated}
+          projectStatus={projectStatus}
         />
       </React.StrictMode>)
   })

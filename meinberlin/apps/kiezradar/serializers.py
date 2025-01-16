@@ -5,6 +5,7 @@ from rest_framework import serializers
 
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.projects.models import Topic
+from meinberlin.apps.kiezradar.models import KiezRadar
 from meinberlin.apps.kiezradar.models import KiezradarQuery
 from meinberlin.apps.kiezradar.models import ProjectStatus
 from meinberlin.apps.kiezradar.models import ProjectType
@@ -12,9 +13,32 @@ from meinberlin.apps.kiezradar.models import SearchProfile
 from meinberlin.apps.organisations.models import Organisation
 
 
+class KiezRadarSerializer(serializers.ModelSerializer):
+    point = serializers.JSONField(required=False, write_only=True, binary=True)
+
+    class Meta:
+        model = KiezRadar
+        fields = ["id", "user", "name", "point", "radius"]
+        read_only_fields = ["id", "user"]
+
+    def validate(self, data):
+        """Ensure a user has no more than 5 kiezradar entries."""
+        user = data.get("user")
+        if user.kiezradar.count() >= self.Meta.model.KIEZRADAR_LIMIT:
+            raise serializers.ValidationError(
+                "Users can only have up to 5 kiezradar filters."
+            )
+        return data
+
+
 class SearchProfileSerializer(serializers.ModelSerializer):
     """Serializer for the SearchProfile model."""
 
+    kiezradar = (
+        serializers.PrimaryKeyRelatedField(
+            queryset=KiezRadar.objects.all(), required=False
+        ),
+    )
     query = (
         serializers.PrimaryKeyRelatedField(
             queryset=KiezradarQuery.objects.all(), required=False
@@ -57,12 +81,13 @@ class SearchProfileSerializer(serializers.ModelSerializer):
             "districts",
             "project_types",
             "topics",
+            "kiezradar",
         ]
 
-        read_only_fields = ["user", "number"]
+        read_only_fields = ["id", "user", "number"]
 
     def create(self, validated_data):
-        # Pop many-to-many and one-to-many fields from validated_data
+        # Pop one-to-many fields from validated_data
         query_text = validated_data.pop("query_text", None)
 
         if query_text:

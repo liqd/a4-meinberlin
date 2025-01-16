@@ -1,6 +1,7 @@
 import factory
 
 from adhocracy4.test import factories as a4_factories
+from meinberlin.apps.kiezradar.models import KiezRadar
 from meinberlin.apps.kiezradar.models import KiezradarQuery
 from meinberlin.apps.kiezradar.models import ProjectStatus
 from meinberlin.apps.kiezradar.models import ProjectType
@@ -14,6 +15,22 @@ class SearchProfileFactory(factory.django.DjangoModelFactory):
     user = factory.SubFactory(a4_factories.USER_FACTORY)
     name = factory.Faker("sentence", nb_words=4)
     description = factory.Faker("sentence", nb_words=16)
+
+
+class KiezRadarFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = KiezRadar
+
+    user = factory.SubFactory(a4_factories.USER_FACTORY)
+    name = factory.Faker("sentence", nb_words=4)
+    point = {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [13.397788148643649, 52.52958586909979],
+        },
+    }
+    radius = 500.0
 
 
 class KiezradarQueryFactory(factory.django.DjangoModelFactory):

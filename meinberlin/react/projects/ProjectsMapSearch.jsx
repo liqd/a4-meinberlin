@@ -54,7 +54,13 @@ const ProjectsMapSearch = ({
 
   return (
     <div className="projects-map-search">
-      <form onSubmit={onSubmitHandler} data-embed-target="ignore">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault()
+          onSubmitHandler(e)
+        }}
+        data-embed-target="ignore"
+      >
         <div className="searchform-slot">
           <div className="form-group">
             <AutoComplete
@@ -81,11 +87,6 @@ const ProjectsMapSearch = ({
               inputValue={searchString}
               before={
                 <i className="bicon bicon-search lens" aria-hidden="true" />
-              }
-              after={
-                <button className="submit " type="submit" title="Suchen">
-                  <span className="aural">Suchen</span><i className="bicon bicon-arrow-right icon" aria-hidden="true" />
-                </button>
               }
             />
           </div>

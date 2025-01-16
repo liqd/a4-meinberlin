@@ -31,7 +31,7 @@
 }
 
 .search-profile__filters {
-    color: var(--color-grey-darkest);
+    color: $gray-darkest;
     font-size: 0.9rem;
     margin-bottom: 0;
     padding-left: 0;
@@ -149,4 +149,26 @@
 
 .search-profile__toggle-switch .toggle-switch__label {
     margin-left: -1.25rem;
+}
+
+.save-search-profile__action {
+    color: $gray-darkest;
+    line-height: 1.5rem;
+}
+
+.save-search-profile__action--link,
+.save-search-profile__action--button {
+    color: $link-color;
+}
+
+.save-search-profile__action--button {
+    padding: 0;
+
+    &:hover {
+      text-decoration: underline;
+    }
+}
+
+.save-search-profile__error {
+    color: $text-error
 }

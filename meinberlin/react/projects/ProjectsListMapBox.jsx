@@ -38,6 +38,7 @@ const ProjectsListMapBox = ({
   plansApiUrl,
   extprojectApiUrl,
   privateprojectApiUrl,
+  searchProfilesApiUrl,
   attribution,
   bounds,
   baseUrl,
@@ -45,11 +46,13 @@ const ProjectsListMapBox = ({
   omtToken,
   useVectorMap,
   // for filtering:
-  districtNames,
   districts,
   participationChoices,
+  projectStatus,
   organisations,
-  searchProfile
+  searchProfile,
+  searchProfilesCount,
+  isAuthenticated
 }) => {
   const [showMap, setShowMap] = useState(true)
   const [loading, setLoading] = useState(true)
@@ -111,7 +114,6 @@ const ProjectsListMapBox = ({
   return (
     <div>
       <ProjectsControlBar
-        districtNames={districtNames}
         participationChoices={participationChoices}
         organisations={organisations}
         districts={districts}
@@ -126,6 +128,11 @@ const ProjectsListMapBox = ({
           setAppliedFilters(getDefaultState(searchProfile))
           setProjectState(['active', 'future'])
         }}
+        searchProfile={searchProfile}
+        searchProfilesApiUrl={searchProfilesApiUrl}
+        searchProfilesCount={searchProfilesCount}
+        isAuthenticated={isAuthenticated}
+        projectStatus={projectStatus}
       />
       <div className={classNames('projects-list', !showMap && 'container')}>
         <h1 className="aural">{pageHeader}</h1>

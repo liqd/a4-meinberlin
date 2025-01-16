@@ -13,6 +13,7 @@ const ControlWrapper = Control.extend({
   onAdd () {
     const _controlDiv = DomUtil.create('div', this.options.className)
     DomEvent.disableClickPropagation(_controlDiv)
+    DomEvent.disableScrollPropagation(_controlDiv)
     return _controlDiv
   },
 

@@ -59,6 +59,7 @@
 
     .projects-list__map {
         height: 600px;
+        max-height: calc(100vh - 65px);
 
         @media screen and (min-width: $breakpoint-tablet) {
             position: sticky;

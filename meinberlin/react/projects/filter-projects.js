@@ -10,7 +10,9 @@ export const isInTitle = (title, search) => {
   return true
 }
 
-export const filterProjects = (items, appliedFilters) => {
+const statusNames = ['active', 'future', 'past']
+
+export const filterProjects = (items, appliedFilters, projectState) => {
   const { search, topics, districts, organisation, participations } = appliedFilters
 
   return items.filter((item) => {
@@ -18,6 +20,7 @@ export const filterProjects = (items, appliedFilters) => {
            (districts.length === 0 || districts.includes(item.district)) &&
            (participations.length === 0 || participations.includes(item.participation)) &&
            (organisation.length === 0 || organisation.includes(item.organisation)) &&
-           (search === '' || isInTitle(item.title, search))
+           (search === '' || isInTitle(item.title, search)) &&
+           (projectState.includes(statusNames[item.status]))
   })
 }

@@ -35,15 +35,21 @@ const ProjectsMapSearch = ({
   })
 
   const onAddressSelect = (val) => {
+    let leafletMarker
     if (activeMarker) {
       map.removeLayer(activeMarker)
     }
     const feature = geoJson.features[val[0]]
     activeMarker = L.geoJSON(feature, {
       pointToLayer: function (feature, latlng) {
-        return L.marker(latlng, { icon: makeIcon('/static/images/map_pin_active.svg') })
+        leafletMarker = L.marker(latlng, {
+          icon: makeIcon('/static/images/map_pin_active.svg'),
+          alt: 'Marker: ' + getSearchResultText(feature)
+        })
+        return leafletMarker
       }
     }).addTo(map)
+    leafletMarker.getElement()?.focus()
 
     map.flyToBounds(activeMarker.getBounds(), { maxZoom: 13 })
   }

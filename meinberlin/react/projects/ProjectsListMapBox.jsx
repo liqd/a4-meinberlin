@@ -99,7 +99,7 @@ const ProjectsListMapBox = ({
 
   let status = nothingStr
 
-  const filteredItems = useMemo(() => filterProjects(items, appliedFilters), [items, appliedFilters])
+  const filteredItems = useMemo(() => filterProjects(items, appliedFilters, projectState), [items, appliedFilters, projectState])
   if (loading) {
     status = (
       <Spinner />

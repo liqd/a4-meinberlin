@@ -182,9 +182,11 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
 
     def get_status(self, instance):
         project_phases = instance.phases
-        if project_phases.active_phases() or project_phases.future_phases():
+        if project_phases.active_phases():
             return 0
-        return 1
+        if project_phases.future_phases():
+            return 1
+        return 2
 
     def get_participation(self, instance):
         return Plan.PARTICIPATION_CONSULTATION
@@ -303,7 +305,7 @@ class FutureProjectSerializer(ProjectSerializer):
         return False
 
     def get_status(self, instance):
-        return 0
+        return 1
 
     def get_future_phase(self, instance):
         future_phase = self._future_phases.filter(module__project=instance).first()
@@ -330,7 +332,7 @@ class PastProjectSerializer(ProjectSerializer):
         return False
 
     def get_status(self, instance):
-        return 1
+        return 2
 
     def get_future_phase(self, instance):
         return False

@@ -17,6 +17,7 @@ const translated = {
   participations: django.gettext('Kind of participation'),
   allParticipation: django.gettext('All'),
   projectState: django.gettext('Project state'),
+  projectStatePlaceholder: django.gettext('None'),
   organisation: django.gettext('Organization'),
   nav: django.gettext('Search, filter and sort the ideas list'),
   searchFor: django.gettext('Search for Proposals'),
@@ -45,7 +46,7 @@ const getAlteredFilters = ({ search, districts, topics, projectState, organisati
   }
   districts.forEach(d => filters.push({ label: d, type: 'districts', value: d }))
   topics.forEach(t => filters.push({ label: topicChoices[t], type: 'topics', value: t }))
-  projectState.forEach(s => filters.push({ label: statusNames[s], type: 'status', value: s }))
+  projectState.forEach(s => filters.push({ label: statusNames[s], type: 'projectState', value: s }))
   organisation.forEach(o => filters.push({ label: o, type: 'organisation', value: o }))
   participations.forEach(p => filters.push({ label: participationChoices[p], type: 'participations', value: p }))
 
@@ -75,7 +76,11 @@ export const ProjectsControlBar = ({
         className={classNames('modul-facetingform js-facetingform', alteredFilters.length ? 'control-bar--no-spacing' : 'control-bar--spacing')}
         onSubmit={(e) => {
           e.preventDefault()
-          onFiltered({ ...filters })
+          const newFilters = { ...filters }
+          if (newFilters.projectState.length === 0) {
+            newFilters.projectState = initialState.projectState
+          }
+          onFiltered(newFilters)
         }}
       >
         <div className="facetingform__container">
@@ -141,6 +146,7 @@ export const ProjectsControlBar = ({
                             choices={Object.entries(statusNames).map(([key, choice]) => ({ value: key, name: choice }))}
                             values={filters.projectState}
                             onChange={(choices) => onFilterChange('projectState', choices)}
+                            placeholder={translated.projectStatePlaceholder}
                           />
                         </div>
                       </div>
@@ -202,6 +208,7 @@ export const ProjectsControlBar = ({
                 onRemove={(type, value) => {
                   const newFilters = { ...filters }
 
+                  console.log(type, value, newFilters)
                   if (Array.isArray(newFilters[type])) {
                     newFilters[type] = newFilters[type].filter(f => f !== value)
                   } else {

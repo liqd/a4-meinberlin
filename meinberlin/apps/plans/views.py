@@ -54,12 +54,24 @@ class PlanDetailView(rules_mixins.PermissionRequiredMixin, CanonicalURLDetailVie
     template_name = "meinberlin_plans/plan_detail.html"
     permission_required = "meinberlin_plans.view_plan"
 
+    def get_topics(self):
+        topics = [
+            {
+                "id": topic.id,
+                "code": topic.code,
+                "name": str(TopicEnum(topic.code).label),
+            }
+            for topic in Topic.objects.all()
+        ]
+        return json.dumps(topics)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         serializer = PlanSerializer(self.object)
         context["published_projects"] = json.dumps(
             serializer.data.get("published_projects")
         )
+        context["topic_choices"] = self.get_topics()
         context["polygon"] = settings.BERLIN_POLYGON
         return context
 

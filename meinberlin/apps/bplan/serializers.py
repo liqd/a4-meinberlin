@@ -155,7 +155,6 @@ class BplanSerializer(serializers.ModelSerializer):
 
         tile_image = validated_data.pop("tile_image", None)
         if tile_image:
-            print(tile_image)
             validated_data["tile_image"] = self._create_image_from_base64(tile_image)
 
         image_url = validated_data.pop("image_url", None)
@@ -329,6 +328,7 @@ class BplanSerializer(serializers.ModelSerializer):
 
         root_path, extension = posixpath.splitext(url_path)
         if file:
+            file.seek(0)
             file_mime = magic.from_buffer(file.read(), mime=True)
             extension = mimetypes.guess_extension(file_mime) or "jpeg"
 

@@ -140,14 +140,6 @@ export default class QuestionBox extends React.Component {
     return updateItem(data, url, 'PATCH')
   }
 
-  removeFromList (id, data) {
-    this.updateQuestion(data, id)
-      .then(response => this.setState(prevState => ({
-        filteredQuestions: prevState.filteredQuestions.filter(question => question.id !== id),
-        pollingPaused: false
-      })))
-  }
-
   handleLike (id, value) {
     const url = '/api/questions/' + id + '/likes/'
     const data = { value }
@@ -257,7 +249,6 @@ export default class QuestionBox extends React.Component {
               </div>
               <QuestionList
                 questions={this.state.filteredQuestions}
-                removeFromList={this.removeFromList.bind(this)}
                 updateQuestion={this.updateQuestion.bind(this)}
                 handleLike={this.handleLike.bind(this)}
                 isModerator={this.props.isModerator}

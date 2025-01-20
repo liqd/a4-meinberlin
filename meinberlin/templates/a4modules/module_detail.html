@@ -83,7 +83,9 @@
             <ul class="u-list-reset participation-tile__list">
               {% for other_module in module.module_cluster %}
                 {% if not other_module == module %}
-                  {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=other_module %}
+                  <li>
+                    {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=other_module %}
+                  </li>
                 {% endif %}
               {% endfor %}
             </ul>

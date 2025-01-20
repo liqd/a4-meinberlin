@@ -1,0 +1,40 @@
+// `a` to override the bo base style `a:link` to keep a black text color
+a.module-tile {
+    padding: 1.5rem 1.625rem 1.25rem;
+    border: 1px solid $gray-lighter;
+    color: $text-base;
+    min-height: 20em;
+    display: flex;
+    flex-direction: column;
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+
+    .status-bar__timespan {
+        margin-bottom: 0;
+    }
+}
+
+.module-tile__title {
+    margin-top: 0;
+
+    .module-tile:hover &,
+    .module-tile:focus &, {
+        text-decoration: underline;
+    }
+}
+
+.module-tile__description {
+    margin-bottom: auto;
+}
+
+.module-tile__future {
+    vertical-align: middle;
+}
+
+.module-tile__future i,
+.module-tile__future time {
+    display: inline-block;
+}

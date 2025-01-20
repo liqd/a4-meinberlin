@@ -3,13 +3,14 @@ import { createRoot } from 'react-dom/client'
 import ProjectsList from '../projects/ProjectsList'
 
 function init () {
-  const projectsList = document.querySelectorAll('[data-projects-list')
+  const projectsList = document.querySelectorAll('[data-projects-list]')
   projectsList.forEach(el => {
     const root = createRoot(el)
     const projects = JSON.parse(el.getAttribute('data-projects'))
+    const topicChoices = JSON.parse(el.getAttribute('data-topic-choices'))
     root.render(
       <React.StrictMode>
-        <ProjectsList projects={projects} />
+        <ProjectsList projects={projects} topicChoices={topicChoices} />
       </React.StrictMode>)
   })
 }

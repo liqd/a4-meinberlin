@@ -167,12 +167,27 @@ dl.item-detail__factsheet-table dd {
 }
 
 .item-detail__map {
-  margin-bottom: 3rem;
+    margin-bottom: 3rem;
+}
+
+.item-detail__map .leaflet-map-pane,
+.item-detail__map .leaflet-control-container .leaflet-top {
+    z-index: 0;
 }
 
 .item-detail__contacts {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    @media screen and (min-width: $breakpoint-palm) {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.item-detail__contact {
+    margin-bottom: 2.75rem;
+}
+
+.item-detail__contact:last-child {
+    margin-bottom: 0;
 }
 
 .item-detail__contact-title {

@@ -9,5 +9,5 @@ urlpatterns = [
         views.PlanDetailView.as_view(),
         name="plan-detail",
     ),
-    path("projekte/", views.PlanListView.as_view(), name="plan-list"),
+    path("kiezradar/", views.PlanListView.as_view(), name="plan-list"),
 ]

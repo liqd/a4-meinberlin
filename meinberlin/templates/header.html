@@ -25,7 +25,7 @@
             <ul>
                 <li class="{% if request.path == project_list %}active{% endif %}">
                     {% url 'meinberlin_plans:plan-list' as project_list %}
-                    <a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a>
+                    <a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Kiezradar' %}</a>
                 </li>
                 {% get_header_menu "topnav" as topnav %}
                 {% for item in topnav %}

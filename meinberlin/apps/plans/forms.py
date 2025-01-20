@@ -77,7 +77,7 @@ class PlanForm(ImageMetadataMixin, forms.ModelForm):
             ),
             "point": _(
                 "If you locate your plan, it will be shown "
-                "on the map in the project overview in addition "
+                "on the map in the Kiezradar in addition "
                 "to the list. To set a pin, click inside the "
                 "highlighted area or enter an address. Once a "
                 "pin is set you can move it by dragging it."
@@ -112,9 +112,9 @@ class PlanForm(ImageMetadataMixin, forms.ModelForm):
                 "overview projects can be "
                 "filtered according to topics."
             ),
-            "status": _("In the project overview projects can be filtered by status."),
+            "status": _("In the Kiezradar projects can be filtered by status."),
             "participation": _(
-                "In the project overview "
+                "In the Kiezradar "
                 "projects can be filtered "
                 "according to the level of "
                 "participation."

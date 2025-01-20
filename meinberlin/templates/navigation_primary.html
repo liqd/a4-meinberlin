@@ -5,7 +5,7 @@
     <h3 class="aural">{% translate 'Page navigation' %}</h3>
     <ul class="navigation-tree">
       <li class="{% if request.path == project_list %}active{% endif %}">
-        <a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a>
+        <a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Kiezradar' %}</a>
       </li>
       {% if settings.meinberlin_cms.HeaderPages.help_page %}
         <li class="{% if request.path == settings.meinberlin_cms.HeaderPages.help_page.get_url %}active{% endif %}">

@@ -25,7 +25,6 @@ const QuestionModerator = ({
   is_live: _isLive,
   is_on_shortlist: _isOnShortlist,
   likes,
-  removeFromList,
   togglePollingPaused,
   updateQuestion
 }) => {
@@ -87,7 +86,12 @@ const QuestionModerator = ({
     const value = !isAnswered
     const boolValue = value ? 1 : 0
     const data = { is_answered: boolValue }
-    removeFromList(id, data)
+    updateQuestion(data, id)
+      .then((response) => response.json())
+      .then(responseData => {
+        setIsAnswered(responseData.is_answered)
+      })
+      .then(() => togglePollingPaused())
   }
 
   const toggleIshidden = () => {

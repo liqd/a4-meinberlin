@@ -20,12 +20,6 @@ function StatisticsBox (props) {
     return updateItem(data, url, 'PATCH')
   }
 
-  const removeFromList = (id, data) => {
-    updateQuestion(data, id)
-      .then(() => setAnsweredQuestions(prevQuestions => prevQuestions.filter(question => question.id !== id)
-      ))
-  }
-
   const countCategory = (category) => {
     let countPerCategory = 0
     let answeredQuestions = 0
@@ -94,7 +88,6 @@ function StatisticsBox (props) {
             displayIsLive={false}
             displayIsHidden={false}
             displayIsAnswered={question.is_answered}
-            removeFromList={removeFromList}
             key={question.id}
             id={question.id}
             is_answered={question.is_answered}

@@ -15,7 +15,6 @@ const QuestionList = (props) => {
                 displayIsLive={!question.is_hidden}
                 displayIsHidden
                 displayIsAnswered={!question.is_hidden}
-                removeFromList={props.removeFromList.bind(this)}
                 updateQuestion={props.updateQuestion.bind(this)}
                 handleLike={props.handleLike.bind(this)}
                 isModerator={props.isModerator}

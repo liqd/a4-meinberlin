@@ -7,8 +7,7 @@ import ImageWithPlaceholder from '../contrib/ImageWithPlaceholder'
 
 const copyrightMissingStr = django.gettext('copyright missing')
 const copyrightStr = django.gettext('copyright by')
-const altImgStr = django.gettext('Here you can find a decorative picture.')
-const participationEndedStr = django.gettext('Participation ended.')
+const participationEndedStr = django.gettext('Participation ended')
 const beginsOnStr = django.gettext('Begins on the')
 const participationProjectsStr = django.gettext('Participation projects')
 const participationProjectStr = django.gettext('Participation project')
@@ -50,7 +49,7 @@ const ProjectTile = ({ project, isHorizontal, topicChoices, isMapTile }) => {
         <ProjectTileIcon access={project.access} />
         <ImageWithPlaceholder
           src={project.tile_image}
-          alt={project.tile_image_alt_text ?? altImgStr}
+          alt={project.tile_image_alt_text ?? ''}
           height={490}
           width={isHorizontal ? 490 : 630}
           className="project-tile__image"

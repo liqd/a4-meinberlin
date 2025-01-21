@@ -1,14 +1,13 @@
 {% load rules i18n %}
 <div class="block block--projects">
-    <h2>{{ value.title }}</h2>
-    <ul class="l-tiles-4">
-        {% for project in value.projects %}
-            {% if project and not project.is_private and not project.is_draft %}
-                {% include "meinberlin_projects/includes/project_tile.html" with project=project %}
-            {% endif %}
-        {% endfor %}
-    </ul>
-    <div class="block__actions">
-        <a href="{% url 'meinberlin_plans:plan-list' %}" class="btn btn--primary">{% translate 'Show all projects' %}</a>
-    </div>
+  <h2>{{ value.heading }}</h2>
+  <ul class="flexgrid grid--3 grid--stretch">
+    {% for project in value.projects %}
+      {% if project and not project.is_private and not project.is_draft %}
+        <li>
+          {% include "meinberlin_projects/includes/project_tile.html" with project=project %}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
 </div>

@@ -2,22 +2,22 @@
 {% load wagtailimages_tags rules i18n static %}
 
 {% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}
-    {{ self.title }}{% endif %} &mdash; {{ block.super }}{% endblock %}
+    {{ self.title }}{% endif %} – {{ block.super }}{% endblock title%}
 
 {% block header_meta %}
     {% if self.search_description %}
         <meta name="description" content="{{ self.search_description }}"/>
     {% endif %}
-{% endblock %}
+{% endblock header_meta %}
 
 {% block breadcrumbs %}
     {% include 'meinberlin_cms/includes/cms_breadcrumb.html' %}
-{% endblock %}
+{% endblock breadcrumbs %}
 
 {% block extra_js %}
     {{ block.super }}
     <script type="text/javascript" src="{% static 'react_map_teaser.js' %}" defer></script>
-{% endblock %}
+{% endblock extra_js %}
 
 {% block content %}
     {% image self.header_image max-1920x560 as header_image %}
@@ -34,41 +34,6 @@
                 {% endif %}
             </div>
         </div>
-        {% else %}
-        {% if self.storefront %}
-        {% image self.storefront.image max-400x600 as storefront_image %}
-        <div class="container">
-            <div class="storefront">
-                <div class="storefront__col storefront__first-col u-xs-down-display-none">
-                    <div class="storefront__item storefront__img tile__lg u-xs-down-display-none" style="width=100%; background:url({{ storefront_image.url }}) no-repeat; background-size: cover; background-position: bottom;">
-                       <h1 class="storefront__lg-text">{{ self.storefront.teaser }}</h1>
-                    </div>
-                    <div class="storefront__item storefront__stat-sm tile__sm u-xs-down-display-none">
-                        <h1 class="storefront__lg-text storefront__xl-text">{{ self.storefront.num_entries }}</h1>
-                        <p>{% blocktranslate count counter=self.storefront.num_entries %}entry added by citizens{% plural %}entries added by citizens{% endblocktranslate %}</p>
-                    </div>
-                </div>
-                <div class="storefront__col storefront__mid-col u-xs-down-display-none">
-                    {% include "meinberlin_cms/includes/storefronts.html" with item=self.storefront.random_items.0 %}
-                    {% include "meinberlin_cms/includes/storefronts.html" with item=self.storefront.random_items.1 %}
-                </div>
-                <div class="storefront__col storefront__last-col u-xs-md-display-none">
-                    <div class="storefront__item storefront__img tile__lg--xs-screen u-xs-only-display" style="width=100%; background:url({{ storefront_image.url }}) no-repeat; background-size: cover; background-position: bottom;">
-                       <h1 class="storefront__lg-text">{{ self.storefront.teaser }}</h1>
-                    </div>
-                    {% include "meinberlin_cms/includes/storefronts.html" with item=self.storefront.random_items.2 %}
-                    <div class="storefront__item storefront__stat-lg tile__md">
-                        <span class="storefront__xxl-text">{{ self.storefront.num_projects }}</span>
-                        <div class="storefront__stat-text">
-                            <p>{% blocktranslate count counter=self.storefront.num_projects %}project you can participate in!{% plural %}projects you can participate in!{% endblocktranslate %}</p>
-                            <div class="storefront__stat-spacer"></div>
-                        </div>
-                        <div class="storefront__stat-arrow"><i class="fa fa-arrow-down" aria-label="{% translate 'Scroll down' %}"></i></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% endif %}
         {% endif %}
 
     {% for block in self.body %}
@@ -86,6 +51,4 @@
         </div>
         {% endif %}
     {% endfor %}
-
-
-{% endblock %}
+{% endblock content %}

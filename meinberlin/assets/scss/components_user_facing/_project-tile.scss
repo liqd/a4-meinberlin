@@ -99,6 +99,10 @@ a.project-tile {
     margin-bottom: .5em;
     font-size: $font-size-sm;
     color: $text-base;
+
+    p:last-child {
+        margin-bottom: 0;
+    }
 }
 
 .project-tile__status__bar {

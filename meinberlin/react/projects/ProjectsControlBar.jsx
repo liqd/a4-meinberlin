@@ -20,6 +20,8 @@ const translated = {
   projectState: django.gettext('Project state'),
   projectStatePlaceholder: django.gettext('None'),
   organisation: django.gettext('Organization'),
+  onlyShow: django.gettext('Only show:'),
+  plans: django.gettext('Plans'),
   nav: django.gettext('Search, filter and sort the ideas list'),
   searchFor: django.gettext('Search for Proposals'),
   button: django.gettext('Show projects')
@@ -43,7 +45,8 @@ const initialState = {
   organisation: [],
   participations: [],
   topics: [],
-  projectState: ['active', 'future']
+  projectState: ['active', 'future'],
+  plansOnly: false
 }
 
 const getAlteredFilters = ({ search, districts, topics, projectState, organisation, participations }, topicChoices, participationChoices) => {
@@ -207,6 +210,21 @@ export const ProjectsControlBar = ({
                         typeaheadSelected={filters.organisation}
                         multipleBoolean
                       />
+                      <fieldset className="control-bar__checkboxes">
+                        <legend className="control-bar__checkboxes-legend">{translated.onlyShow}</legend>
+                        <div className="form-check form-check-inline control-bar__form-check-inline">
+                          <input
+                            id="plans"
+                            className="form-check-input control-bar__check-input"
+                            type="checkbox"
+                            checked={filters.plansOnly}
+                            onChange={() => onFilterChange('plansOnly', !filters.plansOnly)}
+                          />
+                          <label className="form-check-label" htmlFor="plans">
+                            {translated.plans}
+                          </label>
+                        </div>
+                      </fieldset>
                     </>
                   )}
                   <button

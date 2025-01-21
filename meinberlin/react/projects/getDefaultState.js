@@ -5,7 +5,8 @@ const defaultState = {
   // array because of the typeahead component
   organisation: [],
   participations: [],
-  topics: []
+  topics: [],
+  plansOnly: false
 }
 
 export const getDefaultState = (searchProfile) => {

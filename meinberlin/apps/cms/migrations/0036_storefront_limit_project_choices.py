@@ -2,7 +2,6 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import meinberlin.apps.cms.models.storefronts
 
 
 class Migration(migrations.Migration):
@@ -17,7 +16,7 @@ class Migration(migrations.Migration):
             name="project",
             field=models.ForeignKey(
                 blank=True,
-                limit_choices_to=meinberlin.apps.cms.models.storefronts.project_choice_limit,
+                limit_choices_to={"in_id": [1, 2]},
                 null=True,
                 on_delete=django.db.models.deletion.CASCADE,
                 related_name="+",

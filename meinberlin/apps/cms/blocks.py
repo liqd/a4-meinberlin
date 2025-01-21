@@ -1,47 +1,19 @@
-from django import forms
-from django.db.models import Q
-from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
 
-from adhocracy4.projects.models import Access
-from adhocracy4.projects.models import Project
+from meinberlin.apps.cms.viewsets import project_chooser_viewset
 
-
-class ProjectSelectionBlock(blocks.ChooserBlock):
-    target_model = Project
-    widget = forms.widgets.Select
-
-    @cached_property
-    def field(self):
-        return forms.ModelChoiceField(
-            queryset=self.target_model.objects.filter(
-                Q(access=Access.PUBLIC) | Q(access=Access.SEMIPUBLIC),
-                is_draft=False,
-                is_archived=False,
-            ),
-            widget=self.widget,
-            required=self._required,
-            help_text=self._help_text,
-        )
-
-    def value_for_form(self, value):
-        if isinstance(value, Project):
-            return value.pk
-        return value
-
-    def value_from_form(self, value):
-        # if project became unavailable (unpublished), selection will become an
-        # empty string and cause a server error on save, so we give a fallback
-        value = value or None
-        return super().value_from_form(value)
+ProjectSelectionBlock = project_chooser_viewset.get_block_class(
+    name="ProjectSelectionBlock", module_path="meinberlin.apps.cms.blocks"
+)
 
 
 class ProjectsWrapperBlock(blocks.StructBlock):
-    title = blocks.CharBlock(max_length=80)
+    heading = blocks.CharBlock(max_length=80)
     projects = blocks.ListBlock(
         ProjectSelectionBlock(label="Project"),
+        min_num=3
     )
 
     class Meta:

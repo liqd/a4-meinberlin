@@ -43,6 +43,7 @@ class HomePage(Page):
                     template="meinberlin_cms/blocks/richtext_block.html"
                 ),
             ),
+            ("projects", cms_blocks.ProjectsWrapperBlock()),
             ("call_to_action", cms_blocks.CallToActionBlock()),
             ("image_call_to_action", cms_blocks.ImageCallToActionBlock()),
             ("columns_text", cms_blocks.ColumnsBlock()),
@@ -64,18 +65,11 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    storefront = models.ForeignKey(
-        "meinberlin_cms.Storefront",
-        on_delete=models.SET_NULL,
-        null=True,
-        related_name="+",
-    )
 
     content_panels = Page.content_panels + [
         panels.FieldPanel("subtitle"),
         panels.FieldPanel("header_image"),
         panels.FieldPanel("body"),
-        panels.FieldPanel("storefront"),
     ]
 
 

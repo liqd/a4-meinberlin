@@ -9,8 +9,7 @@
 }
 
 .form-submit-flex-end__link {
-    margin: 0 auto!important;
-    padding: $spacer!important;
+    padding-bottom: $spacer!important;
 
     @media (min-width: $breakpoint-tablet) {
         margin-right: $spacer * 1.5!important;

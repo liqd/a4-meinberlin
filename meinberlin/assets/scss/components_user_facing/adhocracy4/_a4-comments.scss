@@ -184,12 +184,14 @@
     white-space: nowrap;
     display: flex;
     align-items: center;
+
+    button {
+        margin-right: $spacer;
+        padding: 0;
+    }
 }
 
 .a4-comments__action-bar__btn {
-    margin-right: $spacer;
-    padding: 0;
-
     .fa,
     .far,
     .fas {

@@ -11,24 +11,68 @@ ProjectSelectionBlock = project_chooser_viewset.get_block_class(
 
 class ProjectsWrapperBlock(blocks.StructBlock):
     heading = blocks.CharBlock(max_length=80)
-    projects = blocks.ListBlock(
-        ProjectSelectionBlock(label="Project"),
-        min_num=3
-    )
+    projects = blocks.ListBlock(ProjectSelectionBlock(label="Project"), min_num=3)
 
     class Meta:
         template = "meinberlin_cms/blocks/projects_block.html"
         icon = "list-ul"
 
 
-class CallToActionBlock(blocks.StructBlock):
-    body = blocks.RichTextBlock()
-    link = blocks.CharBlock()
-    link_text = blocks.CharBlock(max_length=50, label="Link Text")
+class ButtonBlock(blocks.StructBlock):
+    link_text = blocks.CharBlock(required=True)
+    link = blocks.URLBlock(
+        required=True,
+        help_text=_("Please enter a full url which starts with https://"),
+        max_length=500,
+    )
+    style = blocks.ChoiceBlock(
+        choices=[("light", "light"), ("fulltone", "fulltone"), ("primary", "primary")],
+        default="primary",
+    )
 
     class Meta:
-        template = "meinberlin_cms/blocks/cta_block.html"
-        icon = "plus-inverse"
+        template = "meinberlin_cms/blocks/button_block.html"
+
+
+class UserActionBarBlock(blocks.StructBlock):
+    body_logged_in = blocks.RichTextBlock(
+        label="Body",
+        help_text=_("Use '%username%' in the text to display the username"),
+    )
+    buttons_logged_in = blocks.ListBlock(ButtonBlock(), label="Buttons")
+    body_anonymous = blocks.RichTextBlock(label="Body")
+    buttons_anonymous = blocks.ListBlock(ButtonBlock(), label="Buttons")
+
+    class Meta:
+        template = "meinberlin_cms/blocks/user_action_bar_block.html"
+        form_template = "meinberlin_cms/blocks/user_action_bar_block_form.html"
+        icon = "user"
+
+    def get_form_context(self, value, prefix="", errors=None):
+        context = super().get_form_context(value, prefix, errors)
+        context["logged_in_fields"] = [
+            context["children"]["body_logged_in"],
+            context["children"]["buttons_logged_in"],
+        ]
+        context["anonymous_fields"] = [
+            context["children"]["body_anonymous"],
+            context["children"]["buttons_anonymous"],
+        ]
+        return context
+
+    def get_context(self, value, parent_context=None):
+        context = super().get_context(value, parent_context=parent_context)
+        request = context["request"]
+
+        if request.user.is_authenticated:
+            context["body"] = str(value["body_logged_in"]).replace(
+                "%username%", request.user.username
+            )
+            context["buttons"] = value["buttons_logged_in"]
+        else:
+            context["body"] = value["body_anonymous"]
+            context["buttons"] = value["buttons_anonymous"]
+        return context
 
 
 class ImageCallToActionBlock(blocks.StructBlock):
@@ -125,7 +169,7 @@ class ExternalLinkBlock(blocks.StructBlock):
     link_text = blocks.CharBlock(required=True)
     link = blocks.URLBlock(
         required=True,
-        help_text=_("Please enter a full url which starts with https:// " "or http://"),
+        help_text=_("Please enter a full url which starts with https://"),
         max_length=500,
     )
 

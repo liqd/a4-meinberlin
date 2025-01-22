@@ -15,10 +15,22 @@
         .servicepanel__right {
             grid-column: 3;
             margin-left: auto;
-
         }
     }
+}
 
+.modul-servicepanel {
+    &.panel--transparent {
+        background: transparent;
+        border: none;
+        padding: 0;
+    }
 
+    h2:first-child {
+        margin-top: 0;
+    }
+}
 
+.modul-servicepanel.panel--colored {
+    background: $panel-colored;
 }

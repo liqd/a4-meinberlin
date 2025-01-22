@@ -1,0 +1,25 @@
+.user-action-bar {
+    align-items: center;
+
+    @media screen and (min-width: $breakpoint-palm) {
+        display: flex;
+    }
+
+    p {
+        text-wrap: pretty;
+    }
+}
+
+.servicepanel__main.user-action-bar {
+    margin-right: 0;
+}
+
+.user-action-bar__buttons {
+    display: flex;
+    margin-left: auto;
+    gap: .5em;
+
+    @media screen and (min-width: $breakpoint-palm) {
+        padding-left: 1em;
+    }
+}

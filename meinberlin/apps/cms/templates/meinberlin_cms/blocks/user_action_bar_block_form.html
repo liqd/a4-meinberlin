@@ -1,0 +1,39 @@
+{% load wagtailadmin_tags i18n %}
+
+<div class="{{ classname }}">
+  {% if help_text %}
+    <span>
+      <div class="help">
+        {% icon name="help" classname="default" %}
+        {{ help_text }}
+      </div>
+    </span>
+  {% endif %}
+  <h3>{% translate 'Fields for logged in users:' %}</h3>
+  {% for child in logged_in_fields %}
+    <div class="w-field w-panel" data-field data-contentpath="{{ child.block.name }}">
+      {% if child.block.label %}
+        <label class="w-field__label" {% if child.id_for_label %}for="{{ child.id_for_label }}"{% endif %}>
+          {{ child.block.label }}
+          {% if child.block.required %}
+            <span class="w-required-mark">*</span>{% endif %}
+        </label>
+      {% endif %}
+      {{ child.render_form }}
+    </div>
+  {% endfor %}
+  <hr/>
+  <h3>{% translate 'Fields for non-logged in users:' %}</h3>
+  {% for child in anonymous_fields %}
+    <div class="w-field w-panel" data-field data-contentpath="{{ child.block.name }}">
+      {% if child.block.label %}
+        <label class="w-field__label" {% if child.id_for_label %}for="{{ child.id_for_label }}"{% endif %}>
+          {{ child.block.label }}
+          {% if child.block.required %}
+            <span class="w-required-mark">*</span>{% endif %}
+        </label>
+      {% endif %}
+      {{ child.render_form }}
+    </div>
+  {% endfor %}
+</div>

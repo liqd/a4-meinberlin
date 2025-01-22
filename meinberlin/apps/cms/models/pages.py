@@ -43,7 +43,7 @@ class HomePage(Page):
                 ),
             ),
             ("projects", cms_blocks.ProjectsWrapperBlock()),
-            ("call_to_action", cms_blocks.CallToActionBlock()),
+            ("user_action_bar", cms_blocks.UserActionBarBlock()),
             ("image_call_to_action", cms_blocks.ImageCallToActionBlock()),
             ("columns_text", cms_blocks.ColumnsBlock()),
             ("activities", actions_blocks.PlatformActivityBlock()),

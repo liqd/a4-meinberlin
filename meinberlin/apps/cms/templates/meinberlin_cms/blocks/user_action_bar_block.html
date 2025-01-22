@@ -1,0 +1,24 @@
+{% load wagtailcore_tags %}
+
+<div class="modul-servicepanel block {% if not request.user.is_authenticated %}fullwidth panel--colored{% else %}panel--transparent{% endif %}">
+  <div class="servicepanel__main user-action-bar">
+    <div class="user-action-bar__body">
+      {{ body | richtext }}
+    </div>
+
+    {% if not request.user.is_authenticated %}
+      <div class="user-action-bar__buttons">
+        {% for button in buttons %}
+          {% include_block button %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+  {% if request.user.is_authenticated %}
+    <div class="servicepanel__right">
+      {% for button in buttons %}
+        {% include_block button %}
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>

@@ -74,6 +74,7 @@ class SearchProfileSerializer(serializers.ModelSerializer):
             "description",
             "disabled",
             "notification",
+            "plans_only",
             "status",
             "query",
             "query_text",

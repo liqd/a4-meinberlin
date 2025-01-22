@@ -114,6 +114,7 @@ def test_create_search_profile_with_kiezradar(apiclient, setup_data):
     assert data["name"] == payload["name"]
     assert data["number"] == 1
     assert data["description"] == payload["description"]
+    assert data["plans_only"] is False
     assert data["disabled"] == payload["disabled"]
     assert data["query"] == payload["query"]
     assert data["kiezradar"] == payload["kiezradar"]
@@ -163,6 +164,7 @@ def test_create_and_update_search_profile_without_name(apiclient, user, setup_da
     assert data["name"] == "Searchprofile 1"
     assert data["number"] == 1
     assert data["description"] == payload["description"]
+    assert data["plans_only"] is False
     assert data["disabled"] == payload["disabled"]
     assert data["query"] == payload["query"]
 
@@ -185,6 +187,7 @@ def test_create_and_update_search_profile_without_name(apiclient, user, setup_da
 
     payload = {
         "name": "Test Search Profile",
+        "plans_only": True,
     }
     url = reverse("searchprofiles-detail", kwargs={"pk": search_profile.id})
     response = apiclient.patch(url, data=payload, format="json")
@@ -193,6 +196,7 @@ def test_create_and_update_search_profile_without_name(apiclient, user, setup_da
     assert response.status_code == 200
     assert data["name"] == payload["name"]
     assert data["number"] == 1
+    assert data["plans_only"] is True
 
     # Check if the object was updated in the database
     search_profile = SearchProfile.objects.get(id=data["id"])

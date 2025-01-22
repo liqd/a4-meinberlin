@@ -94,6 +94,7 @@ class SearchProfile(UserGeneratedContentModel):
     description = models.TextField(blank=True, null=True)
     disabled = models.BooleanField(default=False)
     notification = models.BooleanField(default=False)
+    plans_only = models.BooleanField(default=False)
     kiezradar = models.OneToOneField(
         KiezRadar,
         models.SET_NULL,

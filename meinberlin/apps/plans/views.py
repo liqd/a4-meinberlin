@@ -138,7 +138,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin, generic.ListView):
             search_profile_id = self.request.GET.get("search-profile")
             try:
                 search_profile = SearchProfile.objects.get(
-                    id=search_profile_id, user=self.request.user
+                    id=search_profile_id, creator=self.request.user
                 )
                 return (
                     JSONRenderer()
@@ -151,7 +151,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin, generic.ListView):
 
     def get_search_profiles_count(self):
         if self.request.user.is_authenticated:
-            return SearchProfile.objects.filter(user=self.request.user).count()
+            return SearchProfile.objects.filter(creator=self.request.user).count()
         else:
             return 0
 

@@ -14,7 +14,7 @@ import {
   getDefaultState
 } from './getDefaultState'
 
-const pageHeader = django.gettext('Project overview')
+const pageHeader = django.gettext('Kiezradar')
 const showMapStr = django.gettext('Show map')
 const nothingStr = django.gettext('Unfortunately, there are no projects matching your search. Please adjust the search criteria.')
 const showMapAriaStr = django.gettext('show map')

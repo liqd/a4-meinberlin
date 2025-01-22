@@ -32,6 +32,6 @@ If you have any questions, please contact {{ contact_email }}.
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{% url 'meinberlin_plans:plan-list' %}{% endblock %}
-{% block cta_label %}To project overview{% endblock %}
+{% block cta_label %}To Kiezradar{% endblock %}
 
 {% block reason %}This e-mail was sent to {{ user.email }}. You have received the e-mail because you have registered on {{ site.name }}.{% endblock %}

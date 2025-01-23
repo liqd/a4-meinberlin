@@ -1,6 +1,6 @@
 import React from 'react'
 import ProjectTile from './ProjectTile'
-import { classNames } from '../contrib/helpers'
+import { classNames } from 'adhocracy4'
 
 const ProjectsList = ({ projects, topicChoices, isHorizontal }) => {
   if (projects.length > 0) {

@@ -1,6 +1,6 @@
 import React from 'react'
-import { classNames } from '../helpers'
-import useCombobox from './useCombobox'
+import { classNames } from 'adhocracy4'
+import useCombobox from 'adhocracy4/adhocracy4/static/forms/useCombobox'
 
 /*
   Choice formatting looks like:
@@ -28,17 +28,17 @@ export const MultiSelect = ({
     isMultiple: true
   })
   const classes = classNames(
-    'form-control input__element multi-select__container',
-    opened && 'multi-select__container--opened',
+    'form-control input__element a4-combo-box__container',
+    opened && 'a4-combo-box__container--opened',
     className
   )
   const comboboxClasses = classNames(
-    'form-control multi-select__combobox',
+    'form-control a4-combo-box__combobox',
     comboboxClassName
   )
 
   return (
-    <div className="form-group multi-select">
+    <div className="form-group a4-combo-box">
       <p id={labelId} className="label">
         {label}
       </p>
@@ -51,9 +51,9 @@ export const MultiSelect = ({
             const { active, focused, ...attrs } = getChoicesAttr(choice)
             const liClasses = classNames(
               liClassName,
-              'multi-select__option',
-              active && 'multi-select__option--active',
-              focused && 'multi-select__option--focus'
+              'a4-combo-box__option',
+              active && 'a4-combo-box__option--active',
+              focused && 'a4-combo-box__option--focus'
             )
 
             return (

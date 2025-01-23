@@ -1,6 +1,7 @@
 /* global django */
 import React, { forwardRef, useId } from 'react'
-import { classNames, toLocaleDate } from '../contrib/helpers'
+import { classNames } from 'adhocracy4'
+import { toLocaleDate } from '../contrib/helpers'
 import ProjectTilePills from './ProjectTopics'
 import getTimespan from './get-timespan'
 import ImageWithPlaceholder from '../contrib/ImageWithPlaceholder'

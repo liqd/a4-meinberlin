@@ -1,0 +1,9 @@
+.a4-address-search {
+    form {
+        margin-bottom: 0;
+    }
+}
+
+.a4-address-search__search-form {
+    @extend .searchform-slot
+}

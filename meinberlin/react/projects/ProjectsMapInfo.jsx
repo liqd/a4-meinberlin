@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import django from 'django'
 import Alert from 'adhocracy4/adhocracy4/static/Alert'
-import { classNames } from '../contrib/helpers'
+import { classNames } from 'adhocracy4'
 
 const translations = {
   dontForget: django.gettext("Don't forget"),

@@ -1,5 +1,5 @@
 import React from 'react'
-import { classNames } from './helpers'
+import { classNames } from 'adhocracy4'
 
 export const ToggleSwitch = ({
   onSwitchStr,

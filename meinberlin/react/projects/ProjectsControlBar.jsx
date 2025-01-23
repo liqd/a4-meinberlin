@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import django from 'django'
 import { TypeaheadField } from '../contrib/TypeaheadField'
 import { MultiSelect } from '../contrib/forms/MultiSelect'
-import { classNames } from '../contrib/helpers'
+import { classNames } from 'adhocracy4'
 import { ControlBarFilterPills } from '../contrib/ControlBarFilterPills'
 import SaveSearchProfile from '../plans/SaveSearchProfile'
 

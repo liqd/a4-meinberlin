@@ -1,5 +1,6 @@
 import django from 'django'
-import { classNames, updateItem } from '../contrib/helpers.js'
+import { classNames } from 'adhocracy4'
+import { updateItem } from '../contrib/helpers.js'
 import React, { useState, useEffect } from 'react'
 import QuestionUser from './QuestionUser'
 import QuestionModerator from './QuestionModerator'

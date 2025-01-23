@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import django from 'django'
 import { MultiSelect } from '../contrib/forms/MultiSelect'
-import { classNames } from '../contrib/helpers'
+import { classNames } from 'adhocracy4'
 
 const allTag = django.gettext('All')
 const categoriesLabelText = django.gettext('Affiliation')

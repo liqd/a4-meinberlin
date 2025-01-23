@@ -1,4 +1,4 @@
-.multi-select {
+.a4-combo-box {
     position: relative;
 
     .form-label {
@@ -11,8 +11,8 @@
         overflow: hidden;
     }
 
-    &:not(.multi-select--autocomplete) {
-        .multi-select__combobox {
+    &:not(.a4-combo-box--autocomplete) {
+        .a4-combo-box__combobox {
             background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBkPSJNMjMzLjQgNDA2LjZjMTIuNSAxMi41IDMyLjggMTIuNSA0NS4zIDBsMTkyLTE5MmMxMi41LTEyLjUgMTIuNS0zMi44IDAtNDUuM3MtMzIuOC0xMi41LTQ1LjMgMEwyNTYgMzM4LjcgODYuNiAxNjkuNGMtMTIuNS0xMi41LTMyLjgtMTIuNS00NS4zIDBzLTEyLjUgMzIuOCAwIDQ1LjNsMTkyIDE5MnoiLz48L3N2Zz4=") !important;
             background-repeat: no-repeat;
             background-position: right 0.5em center;
@@ -22,8 +22,7 @@
     }
 }
 
-
-input.multi-select__combobox {
+input.a4-combo-box__combobox {
     border: 0;
     line-height: normal;
     min-height: 0;
@@ -37,25 +36,25 @@ input.multi-select__combobox {
     }
 }
 
-.multi-select__input-wrapper {
+.a4-combo-box__input-wrapper {
     display: flex;
     align-items: center;
 }
 
-.multi-select__input-wrapper:has(input:focus) {
+.a4-combo-box__input-wrapper:has(input:focus) {
     outline: 2px solid Highlight;
     outline: 5px auto -webkit-focus-ring-color;
 }
 
-.multi-select__before {
+.a4-combo-box__before {
     margin-right: 1em;
 }
 
-.multi-select__after {
+.a4-combo-box__after {
     margin-left: 1em;
 }
 
-.multi-select__container,
+.a4-combo-box__container,
 .rbt-menu {
     display: none;
     position: absolute;
@@ -74,7 +73,7 @@ input.multi-select__combobox {
     }
 }
 
-.multi-select__option,
+.a4-combo-box__option,
 .rbt-menu .dropdown-item {
     margin: 0;
     padding: .4em .5em;

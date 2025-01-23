@@ -1,7 +1,7 @@
 import React from 'react'
 import django from 'django'
 import { Pill } from '../contrib/Pill'
-import { classNames } from '../contrib/helpers'
+import { classNames } from 'adhocracy4'
 
 const likedTag = django.gettext('Liked')
 const likesTag = django.gettext('Likes')

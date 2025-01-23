@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import django from 'django'
 import LikeCard from './LikeCard'
-import { classNames } from '../contrib/helpers'
+import { classNames } from 'adhocracy4'
 
 const hiddenText = django.gettext('mark as hidden')
 const undoHiddenText = django.gettext('undo mark as hidden')

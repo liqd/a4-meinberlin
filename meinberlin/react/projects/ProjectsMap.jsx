@@ -2,11 +2,12 @@ import React, { useEffect, useMemo } from 'react'
 import { ZoomControl } from 'react-leaflet'
 import MarkerClusterLayer
   from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/MarkerClusterLayer'
+import ControlWrapper
+  from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/ControlWrapper'
+import { AddressSearch } from 'adhocracy4'
 
 import { Map } from '../contrib/map/Map'
 import ProjectTile from './ProjectTile'
-import ProjectsMapSearch from './ProjectsMapSearch'
-import ControlWrapper from '../contrib/map/ControlWrapper'
 import ProjectMarker from './ProjectMarker'
 import ProjectsMapInfo from './ProjectsMapInfo'
 
@@ -62,7 +63,7 @@ const ProjectsMap = ({ items, topicChoices, ...props }) => {
         className="projects-map__map"
       >
         <ControlWrapper position="topleft" className="projects-map__search">
-          <ProjectsMapSearch />
+          <AddressSearch />
         </ControlWrapper>
         <ControlWrapper position="bottomleft" className="projects-map-info__wrapper">
           <ProjectsMapInfo />

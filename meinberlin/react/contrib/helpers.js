@@ -26,17 +26,6 @@ export const toLocaleDate = (
 }
 
 /*
- * creates a string for className attribute from an array of classnames
- * while filtering out empty strings and undefined
- *
- * @param {...string} classes
- * @returns {string}
- */
-export const classNames = (...classes) => {
-  return classes.filter(Boolean).join(' ')
-}
-
-/*
  * checks if two arrays are equal
  *
  * @param {array} a

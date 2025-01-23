@@ -1,5 +1,5 @@
 import React from 'react'
-import { classNames } from './helpers'
+import { classNames } from 'adhocracy4'
 
 export const IconSwitch = ({ buttons, viewModeStr, fullWidth, className }) => (
   <div className={classNames('icon-switch', fullWidth && 'icon-switch--full-width', className)}>

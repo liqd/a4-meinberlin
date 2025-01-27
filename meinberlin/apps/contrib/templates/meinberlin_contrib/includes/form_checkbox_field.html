@@ -12,11 +12,15 @@
             {% endif %}
         </label>
         {% if field.errors %}
-            <ul class="errorlist" aria-live="assertive" aria-atomic="true">
-                {% for error in field.errors %}
-                    <li>{{ error|escape }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+            {% if field.errors|length > 1 %}
+                <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+                    {% for error in field.errors %}
+                        <li>{{ error|escape }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                {% include 'meinberlin_contrib/components/alert.html' with alert_message=field.errors.0|escape alert_type='danger' %}
+            {% endif %}
+         {% endif %}
     </div>
 </div>

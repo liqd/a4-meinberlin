@@ -10,9 +10,7 @@
 <form method="POST">
     {% csrf_token %}
     {% if form.errors %}
-    <div class="alert alert--danger" aria-live="assertive" aria-atomic="true" id="alert">
-        {% translate 'An error occurred while evaluating your data. Please check the data you entered again.' %}
-    </div>
+      {% include 'meinberlin_contrib/components/alert.html' with alert_message='An error occurred while evaluating your data. Please check the data you entered again.' alert_type='danger' %}
     {% endif %}
 
     {% if form.non_field_errors %}

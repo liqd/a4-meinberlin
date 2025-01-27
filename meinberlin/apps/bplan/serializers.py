@@ -20,6 +20,7 @@ from rest_framework import serializers
 from adhocracy4.dashboard import components
 from adhocracy4.dashboard import signals as a4dashboard_signals
 from adhocracy4.images.validators import validate_image
+from adhocracy4.maps.mixins import PointSerializerMixin
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
@@ -38,7 +39,7 @@ DESCRIPTION_MAX_LENGTH = project_models.Project._meta.get_field(
 ).max_length
 
 
-class BplanSerializer(serializers.ModelSerializer):
+class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
     id = serializers.IntegerField(required=False)
     name = serializers.CharField(
         write_only=True,
@@ -82,12 +83,13 @@ class BplanSerializer(serializers.ModelSerializer):
         required=False,
         write_only=True,
     )
-    # overwrite the point model field so it's expecting json, the original field is validated as a string and therefore
-    # doesn't pass validation when not receiving a string
-    point = serializers.JSONField(required=False, write_only=True, binary=True)
+
+    def get_properties(self):
+        return {"strname": "street_name", "hsnr": "house_number", "plz": "zip_code"}
 
     class Meta:
         model = Bplan
+        geo_field = "point"
         fields = (
             "id",
             "name",
@@ -116,6 +118,7 @@ class BplanSerializer(serializers.ModelSerializer):
             "url": {"write_only": True},
             "office_worker_email": {"write_only": True},
             "identifier": {"write_only": True},
+            "point": {"write_only": True},
         }
 
     def to_representation(self, instance):

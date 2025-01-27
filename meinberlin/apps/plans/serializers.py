@@ -1,19 +1,19 @@
 from easy_thumbnails.files import get_thumbnailer
 from rest_framework import serializers
 
+from adhocracy4.maps.mixins import PointSerializerMixin
 from adhocracy4.projects.enums import Access
 from meinberlin.apps.projects.serializers import CommonFields
 
 from .models import Plan
 
 
-class PlanSerializer(serializers.ModelSerializer, CommonFields):
+class PlanSerializer(PointSerializerMixin, serializers.ModelSerializer, CommonFields):
     created_or_modified = serializers.SerializerMethodField()
     district = serializers.SerializerMethodField()
     organisation = serializers.SerializerMethodField()
     participation_active = serializers.SerializerMethodField()
     participation_string = serializers.SerializerMethodField()
-    point = serializers.SerializerMethodField()
     published_projects_count = serializers.SerializerMethodField()
     subtype = serializers.ReadOnlyField(default="plan")
     tile_image = serializers.SerializerMethodField()
@@ -23,8 +23,12 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
     type = serializers.ReadOnlyField(default="plan")
     url = serializers.SerializerMethodField()
 
+    def get_properties(self):
+        return {"strname": "street_name", "hsnr": "house_number", "plz": "zip_code"}
+
     class Meta:
         model = Plan
+        geo_field = "point"
         fields = [
             "cost",
             "created_or_modified",
@@ -46,6 +50,7 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
             "type",
             "url",
         ]
+        read_only_fields = ["point"]
 
     def get_topics(self, instance):
         return [topic.code for topic in instance.topics.all()]

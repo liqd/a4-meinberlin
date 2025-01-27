@@ -1,5 +1,3 @@
-import json
-
 import pytest
 from django.utils.translation import gettext as _
 
@@ -9,7 +7,9 @@ from meinberlin.apps.plans.exports import DashboardPlanExportView
 
 
 @pytest.mark.django_db
-def test_reply_to_mixin(plan_factory, project_factory, administrative_district):
+def test_reply_to_mixin(
+    plan_factory, project_factory, administrative_district, geos_point
+):
     export = DashboardPlanExportView()
     virtual = export.get_virtual_fields({})
     # ItemExportWithReferenceNumberMixin and ItemExportWithLinkMixin
@@ -42,7 +42,7 @@ def test_reply_to_mixin(plan_factory, project_factory, administrative_district):
     assert "projects" in virtual
     assert "projects_links" in virtual
 
-    plan = plan_factory(point="")
+    plan = plan_factory(point=None)
 
     # ItemExportWithReferenceNumberMixin and ItemExportWithLinkMixin
     assert plan.reference_number == export.get_reference_number_data(plan)
@@ -108,11 +108,7 @@ def test_reply_to_mixin(plan_factory, project_factory, administrative_district):
         duration="1 month",
         projects=[project_1, project_2],
         district=administrative_district,
-        point=json.loads(
-            '{"type":"Feature","properties":{},'
-            '"geometry":{"type":"Point",'
-            '"coordinates":[13.382721,52.512121]}}'
-        ),
+        point=geos_point,
         is_draft=True,
     )
 
@@ -157,8 +153,8 @@ def test_reply_to_mixin(plan_factory, project_factory, administrative_district):
     )
     assert _("yes") == export.get_field_data(plan, "is_draft")
     # ItemExportWithLocationMixin
-    assert 13.382721 == export.get_location_lon_data(plan)
-    assert 52.512121 == export.get_location_lat_data(plan)
+    assert geos_point.x == export.get_location_lon_data(plan)
+    assert geos_point.y == export.get_location_lat_data(plan)
     assert plan.point_label == export.get_location_label_data(plan)
 
     # defined directly in DashboardPlanExportView

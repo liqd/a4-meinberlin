@@ -10,6 +10,7 @@ from rest_framework import status
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from meinberlin.apps.bplan import models as bplan_models
+from tests.conftest import get_geojson_point
 from tests.helpers import get_base64_image
 from tests.helpers import pytest_regex
 
@@ -264,7 +265,7 @@ def test_add_bplan_diplan_response_no_embed(apiclient, districts, organisation):
         "start_date": "2013-01-01 18:00",
         "end_date": "2021-01-01 18:00",
         "bplan_id": "1-234",
-        "point": "[0,0]",
+        "point": '{"type":"Feature", "geometry":{"type":"Point","coordinates":[13.397788148643649,52.52958586909979]}}',
     }
     user = organisation.initiators.first()
     apiclient.force_authenticate(user=user)
@@ -412,7 +413,7 @@ def test_bplan_api_adds_is_diplan_if_point_is_sent(apiclient, districts, organis
         "url": "https://bplan.net",
         "start_date": "2013-01-01 18:00",
         "identifier": "1-234",
-        "point": "[0,0]",
+        "point": '{"type":"Feature", "geometry":{"type":"Point","coordinates":[13.397788148643649,52.52958586909979]}}',
         "end_date": "2021-01-01 18:00",
     }
     user = organisation.initiators.first()
@@ -423,10 +424,18 @@ def test_bplan_api_adds_is_diplan_if_point_is_sent(apiclient, districts, organis
     assert bplan.is_diplan is True
 
 
-@patch("meinberlin.apps.bplan.tasks.get_bplan_point", return_value=[1, 1])
+@patch(
+    "meinberlin.apps.bplan.tasks.get_features_from_bplan_api",
+    return_value=[get_geojson_point()],
+)
 @pytest.mark.django_db
 def test_bplan_api_location_task_called_if_no_point_included(
-    mock, apiclient, districts, organisation, django_capture_on_commit_callbacks
+    mock,
+    apiclient,
+    districts,
+    organisation,
+    django_capture_on_commit_callbacks,
+    geos_point,
 ):
     url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
     data = {
@@ -446,14 +455,20 @@ def test_bplan_api_location_task_called_if_no_point_included(
         bplan = bplan_models.Bplan.objects.first()
         assert bplan.is_draft is False
         assert bplan.is_diplan is False
-        assert bplan.point == [1, 1]
+        assert bplan.point.equals(geos_point)
         mock.assert_called_once()
 
 
-@patch("meinberlin.apps.bplan.tasks.get_bplan_point", return_value=[1, 1])
+@patch("meinberlin.apps.bplan.tasks.get_features_from_bplan_api", return_value=[])
 @pytest.mark.django_db
 def test_bplan_api_location_task_not_called_if_point_included(
-    mock, apiclient, districts, organisation, django_capture_on_commit_callbacks
+    mock,
+    apiclient,
+    districts,
+    organisation,
+    django_capture_on_commit_callbacks,
+    geojson_point_str,
+    geos_point,
 ):
     url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
     data = {
@@ -464,7 +479,7 @@ def test_bplan_api_location_task_not_called_if_point_included(
         "end_date": "2021-01-01 18:00",
         "identifier": "1-234",
         "is_published": True,
-        "point": '{"type":"Feature", "geometry":{"type":"Point","coordinates":[13.397788148643649,52.52958586909979]}}',
+        "point": geojson_point_str,
     }
     user = organisation.initiators.first()
     apiclient.force_authenticate(user=user)
@@ -474,19 +489,18 @@ def test_bplan_api_location_task_not_called_if_point_included(
         bplan = bplan_models.Bplan.objects.first()
         assert bplan.is_draft is False
         assert bplan.is_diplan is True
-        assert bplan.point == {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [13.397788148643649, 52.52958586909979],
-            },
-        }
+        assert bplan.point.equals(geos_point)
         mock.assert_not_called()
 
 
 @pytest.mark.django_db
 def test_bplan_api_accepts_valid_geojson(
-    apiclient, districts, organisation, django_capture_on_commit_callbacks
+    apiclient,
+    districts,
+    organisation,
+    django_capture_on_commit_callbacks,
+    geojson_point_str,
+    geos_point,
 ):
     url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
     data = {
@@ -497,7 +511,7 @@ def test_bplan_api_accepts_valid_geojson(
         "end_date": "2021-01-01 18:00",
         "identifier": "1-234",
         "is_published": True,
-        "point": '{"type":"Feature", "geometry":{"type":"Point","coordinates":[13.397788148643649,52.52958586909979]}}',
+        "point": geojson_point_str,
     }
     user = organisation.initiators.first()
     apiclient.force_authenticate(user=user)
@@ -507,18 +521,17 @@ def test_bplan_api_accepts_valid_geojson(
         bplan = bplan_models.Bplan.objects.first()
         assert bplan.is_draft is False
         assert bplan.is_diplan is True
-        assert bplan.point == {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [13.397788148643649, 52.52958586909979],
-            },
-        }
+        assert bplan.point.equals(geos_point)
 
 
 @pytest.mark.django_db
 def test_bplan_api_accepts_valid_base64_image(
-    apiclient, districts, organisation, django_capture_on_commit_callbacks
+    apiclient,
+    districts,
+    organisation,
+    django_capture_on_commit_callbacks,
+    geojson_point_str,
+    geos_point,
 ):
     image = get_base64_image(width=500, height=300)
     url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
@@ -530,7 +543,7 @@ def test_bplan_api_accepts_valid_base64_image(
         "end_date": "2021-01-01 18:00",
         "identifier": "1-234",
         "is_published": True,
-        "point": '{"type":"Feature", "geometry":{"type":"Point","coordinates":[13.397788148643649,52.52958586909979]}}',
+        "point": geojson_point_str,
         "tile_image": image,
     }
 
@@ -549,7 +562,11 @@ def test_bplan_api_accepts_valid_base64_image(
 
 @pytest.mark.django_db
 def test_bplan_api_rejects_small_base64_image(
-    apiclient, districts, organisation, django_capture_on_commit_callbacks
+    apiclient,
+    districts,
+    organisation,
+    django_capture_on_commit_callbacks,
+    geojson_point_str,
 ):
     url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
     data = {
@@ -560,7 +577,7 @@ def test_bplan_api_rejects_small_base64_image(
         "end_date": "2021-01-01 18:00",
         "identifier": "1-234",
         "is_published": True,
-        "point": "1492195.544958444,6895923.461738203",
+        "point": geojson_point_str,
         "tile_image": get_base64_image(width=200, height=100),
     }
 
@@ -574,7 +591,11 @@ def test_bplan_api_rejects_small_base64_image(
 @patch("meinberlin.apps.bplan.serializers.DOWNLOAD_IMAGE_SIZE_LIMIT_BYTES", 1024)
 @pytest.mark.django_db
 def test_bplan_api_rejects_large_base64_image(
-    apiclient, districts, organisation, django_capture_on_commit_callbacks
+    apiclient,
+    districts,
+    organisation,
+    django_capture_on_commit_callbacks,
+    geojson_point_str,
 ):
     url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
     data = {
@@ -585,7 +606,7 @@ def test_bplan_api_rejects_large_base64_image(
         "end_date": "2021-01-01 18:00",
         "identifier": "1-234",
         "is_published": True,
-        "point": "1492195.544958444,6895923.461738203",
+        "point": geojson_point_str,
         "tile_image": get_base64_image(width=500, height=300),
     }
 
@@ -598,7 +619,11 @@ def test_bplan_api_rejects_large_base64_image(
 
 @pytest.mark.django_db
 def test_bplan_api_rejects_invalid_base64_image(
-    apiclient, districts, organisation, django_capture_on_commit_callbacks
+    apiclient,
+    districts,
+    organisation,
+    django_capture_on_commit_callbacks,
+    geojson_point_str,
 ):
     url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
     data = {
@@ -609,7 +634,7 @@ def test_bplan_api_rejects_invalid_base64_image(
         "end_date": "2021-01-01 18:00",
         "identifier": "1-234",
         "is_published": True,
-        "point": "1492195.544958444,6895923.461738203",
+        "point": geojson_point_str,
         "tile_image": base64.b64encode(b"ABCDEFG"),
     }
 
@@ -622,7 +647,7 @@ def test_bplan_api_rejects_invalid_base64_image(
 
 @pytest.mark.django_db
 def test_bplan_api_accepts_long_name_and_truncates_it(
-    apiclient, districts, organisation
+    apiclient, districts, organisation, geojson_point_str
 ):
     url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
     data = {
@@ -631,7 +656,7 @@ def test_bplan_api_accepts_long_name_and_truncates_it(
         "url": "https://bplan.net",
         "start_date": "2013-01-01 18:00",
         "identifier": "1-234",
-        "point": "[0,0]",
+        "point": geojson_point_str,
         "end_date": "2021-01-01 18:00",
     }
     user = organisation.initiators.first()
@@ -646,7 +671,7 @@ def test_bplan_api_accepts_long_name_and_truncates_it(
 
 @pytest.mark.django_db
 def test_bplan_api_accepts_long_description_and_truncates_it(
-    apiclient, districts, organisation
+    apiclient, districts, organisation, geojson_point_str
 ):
     url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
     data = {
@@ -655,7 +680,7 @@ def test_bplan_api_accepts_long_description_and_truncates_it(
         "url": "https://bplan.net",
         "start_date": "2013-01-01 18:00",
         "identifier": "1-234",
-        "point": "[0,0]",
+        "point": geojson_point_str,
         "end_date": "2021-01-01 18:00",
     }
     user = organisation.initiators.first()

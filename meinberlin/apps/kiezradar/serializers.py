@@ -4,6 +4,7 @@ from django.utils.translation import gettext as _
 from rest_framework import serializers
 
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
+from adhocracy4.maps.mixins import PointSerializerMixin
 from adhocracy4.projects.models import Topic
 from meinberlin.apps.kiezradar.models import KiezRadar
 from meinberlin.apps.kiezradar.models import KiezradarQuery
@@ -13,11 +14,11 @@ from meinberlin.apps.kiezradar.models import SearchProfile
 from meinberlin.apps.organisations.models import Organisation
 
 
-class KiezRadarSerializer(serializers.ModelSerializer):
-    point = serializers.JSONField(required=False)
+class KiezRadarSerializer(PointSerializerMixin, serializers.ModelSerializer):
 
     class Meta:
         model = KiezRadar
+        geo_field = "point"
         fields = ["id", "creator", "name", "point", "radius"]
         read_only_fields = ["id", "creator"]
 

@@ -1,5 +1,3 @@
-import json
-
 import pytest
 from django.urls import reverse
 
@@ -17,7 +15,7 @@ def test_anonymous_user_cant_create_kiezradar(apiclient, geojson_point_str):
 
 
 @pytest.mark.django_db
-def test_user_can_create_kiezradar(user, apiclient, geojson_point, geojson_point_str):
+def test_user_can_create_kiezradar(user, apiclient, geos_point, geojson_point_str):
     payload = {"name": "My Kiez", "point": geojson_point_str, "radius": 600}
     apiclient.force_authenticate(user)
     url = reverse("kiezradar-list")
@@ -27,7 +25,7 @@ def test_user_can_create_kiezradar(user, apiclient, geojson_point, geojson_point
     assert KiezRadar.objects.count() == 1
     kiezradar = KiezRadar.objects.first()
     assert kiezradar.name == payload["name"]
-    assert json.loads(kiezradar.point) == geojson_point
+    assert kiezradar.point.equals(geos_point)
 
 
 @pytest.mark.django_db
@@ -57,11 +55,13 @@ def test_user_cant_create_kiezradar_bigger_3000(
 
 
 @pytest.mark.django_db
-def test_user_cant_update_other_users_kiezradar(user, apiclient, kiez_radar_factory):
+def test_user_cant_update_other_users_kiezradar(
+    user, apiclient, geojson_point_str, kiez_radar_factory
+):
     kiezradar = kiez_radar_factory()
     assert user != kiezradar.creator
 
-    payload = {"name": "My Kiezradar", "point": "{}", "radius": 600}
+    payload = {"name": "My Kiezradar", "point": geojson_point_str, "radius": 600}
     apiclient.force_authenticate(user)
     url = reverse("kiezradar-detail", kwargs={"pk": kiezradar.id})
     response = apiclient.patch(url, data=payload, format="json")
@@ -73,10 +73,12 @@ def test_user_cant_update_other_users_kiezradar(user, apiclient, kiez_radar_fact
 
 
 @pytest.mark.django_db
-def test_user_can_update_kiezradar(apiclient, kiez_radar_factory):
+def test_user_can_update_kiezradar(
+    apiclient, geos_point, geojson_point_str, kiez_radar_factory
+):
     kiezradar = kiez_radar_factory()
 
-    payload = {"name": "My Kiezradar", "point": "{}", "radius": 600}
+    payload = {"name": "My Kiezradar", "point": geojson_point_str, "radius": 600}
     apiclient.force_authenticate(kiezradar.creator)
     url = reverse("kiezradar-detail", kwargs={"pk": kiezradar.id})
     response = apiclient.patch(url, data=payload, format="json")
@@ -85,7 +87,7 @@ def test_user_can_update_kiezradar(apiclient, kiez_radar_factory):
     assert KiezRadar.objects.count() == 1
     kiezradar = KiezRadar.objects.first()
     assert kiezradar.name == payload["name"]
-    assert json.loads(kiezradar.point) == {}
+    assert kiezradar.point.equals(geos_point)
 
 
 @pytest.mark.django_db

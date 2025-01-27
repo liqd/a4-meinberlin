@@ -6,6 +6,7 @@ from easy_thumbnails.files import get_thumbnailer
 from rest_framework import fields
 from rest_framework import serializers
 
+from adhocracy4.maps.mixins import PointSerializerMixin
 from adhocracy4.phases.models import Phase
 from adhocracy4.projects.models import Project
 from adhocracy4.projects.models import Topic
@@ -20,13 +21,6 @@ class CommonFields:
         if instance.administrative_district:
             district_name = instance.administrative_district.name
         return district_name
-
-    @staticmethod
-    def get_point(instance):
-        point = instance.point
-        if not point:
-            point = ""
-        return point
 
     @staticmethod
     def get_organisation(instance):
@@ -45,7 +39,9 @@ class TopicSerializer(serializers.ModelSerializer):
         fields = ["code"]
 
 
-class ProjectSerializer(serializers.ModelSerializer, CommonFields):
+class ProjectSerializer(
+    PointSerializerMixin, serializers.ModelSerializer, CommonFields
+):
     active_phase = serializers.SerializerMethodField()
     cost = serializers.SerializerMethodField()
     created_or_modified = serializers.SerializerMethodField()
@@ -58,7 +54,6 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
     past_phase = serializers.SerializerMethodField()
     plan_title = serializers.SerializerMethodField()
     plan_url = serializers.SerializerMethodField()
-    point = serializers.SerializerMethodField()
     point_label = serializers.SerializerMethodField()
     published_projects_count = serializers.SerializerMethodField()
     status = serializers.SerializerMethodField()
@@ -75,7 +70,11 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
         self.now = kwargs.pop("now")
         super().__init__(args, kwargs)
 
+    def get_properties(self):
+        return {"strname": "street_name", "hsnr": "house_number", "plz": "zip_code"}
+
     class Meta:
+        geo_field = "point"
         model = Project
         fields = [
             "access",
@@ -106,6 +105,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
             "url",
             "id",
         ]
+        read_only_fields = ["point"]
 
     def get_topics(self, instance):
         return [topic.code for topic in instance.topics.all()]

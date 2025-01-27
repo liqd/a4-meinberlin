@@ -38,14 +38,14 @@ def test_plan_form_missing_alt_text(organisation, plan_factory):
 
 
 @pytest.mark.django_db
-def test_plan_form_with_alt_text(organisation, plan_factory):
+def test_plan_form_with_alt_text(organisation, plan_factory, geos_point):
     plan = plan_factory(organisation=organisation)
     form = PlanForm(
         instance=plan,
         data={
             "title": "title",
             "description": 'description <img alt="description">',
-            "point": '{ "type":"Feature", "geometry":{ "type":"Point","coordinates":[ 13.0, 52.0 ] }, "properties":{}}',
+            "point": geos_point,
             "point_label": "somewhere",
             "cost": "500",
             "topics": [Topic.objects.first()],

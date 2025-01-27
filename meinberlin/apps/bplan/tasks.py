@@ -2,6 +2,7 @@ import json
 import urllib
 
 from celery import shared_task
+from django.contrib.gis.geos import GEOSGeometry
 
 from meinberlin.apps import logger
 from meinberlin.apps.bplan.models import Bplan
@@ -26,7 +27,9 @@ def get_bplan_point(bplan_identifier):
         features = get_features_from_bplan_api(url_poi)
         if features:
             point = features[0]
-            return point
+            if "geometry" in point:
+                json_point = json.dumps(point["geometry"])
+                return GEOSGeometry(json_point)
 
         return None
 

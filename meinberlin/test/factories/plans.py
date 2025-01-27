@@ -1,4 +1,5 @@
 import factory
+from django.contrib.gis.geos import Point
 
 from adhocracy4.test import factories as a4_factories
 from adhocracy4.test.factories import AdministrativeDistrictFactory
@@ -14,14 +15,7 @@ class PlanFactory(factory.django.DjangoModelFactory):
     organisation = factory.SubFactory(a4_factories.ORGANISATION_FACTORY)
     group = factory.SubFactory(a4_factories.GroupFactory)
     district = factory.SubFactory(AdministrativeDistrictFactory)
-    point = {
-        "type": "Feature",
-        "properties": {},
-        "geometry": {
-            "type": "Point",
-            "coordinates": [13.447437286376953, 52.51518602243137],
-        },
-    }
+    point = Point(13.447437286376953, 52.51518602243137)
     contact_address_text = ""
     status = Plan.STATUS_ONGOING
     participation = Plan.PARTICIPATION_INFORMATION

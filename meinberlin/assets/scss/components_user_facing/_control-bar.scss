@@ -30,7 +30,11 @@
 .control-bar__bottom--projects {
     display: flex;
     flex-direction: column-reverse;
-    padding: 1em 0.875em;
+    padding: 1em 0;
+
+    @media screen and (min-width: $breakpoint-tablet-landscape) {
+        padding: 1em 0.875em;
+    }
 
     @media screen and (min-width: $breakpoint-palm) {
         display: block;

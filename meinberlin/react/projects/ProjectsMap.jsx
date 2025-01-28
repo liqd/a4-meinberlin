@@ -41,7 +41,13 @@ const Markers = ({ items, topicChoices }) => {
       </MarkerClusterLayer>
       {activeProject?.properties && (
         <ControlWrapper position="bottomleft" className="project-overlay-control">
-          <ProjectTile project={activeProject.properties} isHorizontal isMapTile topicChoices={topicChoices} />
+          <ProjectTile
+            project={activeProject.properties}
+            topicChoices={topicChoices}
+            ref={(node) => node?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })}
+            isHorizontal
+            isMapTile
+          />
         </ControlWrapper>
       )}
     </>

@@ -1,5 +1,5 @@
 /* global django */
-import React, { useId } from 'react'
+import React, { forwardRef, useId } from 'react'
 import { classNames, toLocaleDate } from '../contrib/helpers'
 import ProjectTilePills from './ProjectTopics'
 import getTimespan from './get-timespan'
@@ -20,7 +20,7 @@ function truncateText (item) {
   }
 }
 
-const ProjectTile = ({ project, isHorizontal, topicChoices, isMapTile }) => {
+const ProjectTile = forwardRef(function ProjectTile ({ project, isHorizontal, topicChoices, isMapTile }, ref) {
   const labelId = useId()
   const describedById = useId()
   const statusId = useId()
@@ -40,6 +40,7 @@ const ProjectTile = ({ project, isHorizontal, topicChoices, isMapTile }) => {
       href={project.url}
       target={project.subtype === 'external' ? '_blank' : '_self'}
       rel="noreferrer"
+      ref={ref}
       aria-labelledby={labelId}
       id={describedById}
       aria-describedby={describedById}
@@ -108,7 +109,7 @@ const ProjectTile = ({ project, isHorizontal, topicChoices, isMapTile }) => {
       </div>
     </a>
   )
-}
+})
 
 function ProjectTileIcon ({ access }) {
   const projectType = {

@@ -43,3 +43,9 @@ textarea.form-control {
 :not(.panel--heavy) .form-check {
   padding: 0;
 }
+
+.facet {
+  // browsers set this to min-width: min-content by default for fieldsets
+  // causing scrollbars in some scenarios, this fixes it
+  min-width: auto;
+}

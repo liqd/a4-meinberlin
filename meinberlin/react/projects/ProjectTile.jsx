@@ -20,6 +20,8 @@ function truncateText (item) {
   }
 }
 
+// FIXME: change to `ref` when using this component once we are on react v19
+//  see https://react.dev/reference/react/forwardRef
 const ProjectTile = forwardRef(function ProjectTile ({ project, isHorizontal, topicChoices, isMapTile }, ref) {
   const labelId = useId()
   const describedById = useId()

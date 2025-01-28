@@ -8,6 +8,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
+from django.utils.translation import gettext
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
 from django.views.generic.detail import SingleObjectMixin
@@ -100,7 +101,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin, generic.ListView):
     def get_districts(self):
         districts = AdministrativeDistrict.objects.values("id", "name")
         districts_list = [district for district in districts]
-        districts_list.append({"id": -1, "name": "City Wide"})
+        districts_list.append({"id": -1, "name": gettext("City wide")})
         return json.dumps(districts_list)
 
     def get_topics(self):

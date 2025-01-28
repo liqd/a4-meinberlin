@@ -171,7 +171,7 @@ export const ProjectsControlBar = ({
                           <MultiSelect
                             label={translated.participations}
                             placeholder={translated.allParticipation}
-                            choices={participationChoices.map((choice, index) => ({ value: index, name: choice.name }))}
+                            choices={participationChoices.map((choice) => ({ value: choice.id, name: choice.name }))}
                             onChange={(choices) => onFilterChange('participations', choices)}
                             values={filters.participations}
                           />

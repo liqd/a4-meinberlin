@@ -2,6 +2,7 @@
 a.project-tile {
     display: flex;
     color: $text-base;
+    font-family: $font-family-base;
 
     &:hover,
     &:focus {

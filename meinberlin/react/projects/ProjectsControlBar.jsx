@@ -270,13 +270,12 @@ export const ProjectsControlBar = ({
       {alteredFilters.length
         ? (
           <div className={hasContainer && 'container'}>
-            <div className="flexgrid grid grid--2 control-bar__bottom--projects">
+            <div className="control-bar__bottom--projects">
               <ControlBarFilterPills
                 filters={alteredFilters}
                 onRemove={(type, value) => {
                   const newFilters = { ...filters }
 
-                  console.log(type, value, newFilters)
                   if (Array.isArray(newFilters[type])) {
                     newFilters[type] = newFilters[type].filter(f => f !== value)
                   } else {
@@ -288,21 +287,19 @@ export const ProjectsControlBar = ({
                 }}
               />
               {!isFiltersInitialState && (
-                <div>
-                  <SaveSearchProfile
-                    districts={districts}
-                    organisations={organisations}
-                    topicChoices={topicChoices}
-                    participationChoices={participationChoices}
-                    projectStatus={projectStatus}
-                    searchProfile={searchProfile}
-                    searchProfilesApiUrl={searchProfilesApiUrl}
-                    searchProfilesCount={searchProfilesCount}
-                    isAuthenticated={isAuthenticated}
-                    appliedFilters={appliedFilters}
-                    onSearchProfileCreate={createSearchProfile}
-                  />
-                </div>
+                <SaveSearchProfile
+                  districts={districts}
+                  organisations={organisations}
+                  topicChoices={topicChoices}
+                  participationChoices={participationChoices}
+                  projectStatus={projectStatus}
+                  searchProfile={searchProfile}
+                  searchProfilesApiUrl={searchProfilesApiUrl}
+                  searchProfilesCount={searchProfilesCount}
+                  isAuthenticated={isAuthenticated}
+                  appliedFilters={appliedFilters}
+                  onSearchProfileCreate={createSearchProfile}
+                />
               )}
             </div>
           </div>

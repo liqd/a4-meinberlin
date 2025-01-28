@@ -44,7 +44,7 @@ const Markers = ({ items, topicChoices }) => {
           <ProjectTile
             project={activeProject.properties}
             topicChoices={topicChoices}
-            ref={(node) => node?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })}
+            ref={(node) => node?.scrollIntoView?.({ behavior: 'smooth', block: 'nearest' })}
             isHorizontal
             isMapTile
           />

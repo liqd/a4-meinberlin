@@ -4,7 +4,7 @@ import MarkerClusterLayer
   from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/MarkerClusterLayer'
 import ControlWrapper
   from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/ControlWrapper'
-import { AddressSearch } from 'adhocracy4'
+import { SearchAndShowAddress } from 'adhocracy4'
 
 import { Map } from '../contrib/map/Map'
 import ProjectTile from './ProjectTile'
@@ -62,9 +62,7 @@ const ProjectsMap = ({ items, topicChoices, ...props }) => {
         style={{ minHeight: '100%', height: '100%' }}
         className="projects-map__map"
       >
-        <ControlWrapper position="topleft" className="projects-map__search">
-          <AddressSearch />
-        </ControlWrapper>
+        <SearchAndShowAddress apiUrl="https://bplan-prod.liqd.net/api/addresses/" />
         <ControlWrapper position="bottomleft" className="projects-map-info__wrapper">
           <ProjectsMapInfo />
         </ControlWrapper>

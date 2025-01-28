@@ -154,6 +154,7 @@
 .save-search-profile__action {
     color: $gray-darkest;
     line-height: 1.5rem;
+    flex-shrink: 0;
 }
 
 .save-search-profile__action--link,

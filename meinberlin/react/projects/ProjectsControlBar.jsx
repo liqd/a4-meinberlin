@@ -33,12 +33,6 @@ const statusNames = {
   past: django.gettext('done')
 }
 
-const STATUS_MAPPING = {
-  active: 'running',
-  past: 'done',
-  future: 'future'
-}
-
 const initialState = {
   search: '',
   districts: [],
@@ -185,17 +179,7 @@ export const ProjectsControlBar = ({
                         <div className="span--1">
                           <MultiSelect
                             label={translated.projectState}
-                            choices={Object.entries(statusNames)
-                              .map(([key, translatedName]) => {
-                                const matchingStatus = projectStatus.find(
-                                  item => item.name === STATUS_MAPPING[key]
-                                )
-
-                                return matchingStatus
-                                  ? { value: key, name: translatedName }
-                                  : null
-                              })
-                              .filter(Boolean)}
+                            choices={Object.entries(statusNames).map(([key, choice]) => ({ value: key, name: choice }))}
                             values={filters.projectState}
                             onChange={(choices) => onFilterChange('projectState', choices)}
                             placeholder={translated.projectStatePlaceholder}

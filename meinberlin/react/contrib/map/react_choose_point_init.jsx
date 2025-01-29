@@ -6,7 +6,7 @@ import AddMarkerControl
   from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/AddMarkerControl'
 
 function init () {
-  ReactWidget.initialise('a4', 'choose-point', function (el) {
+  ReactWidget.initialise('a4', 'react-choose-point', function (el) {
     const props = JSON.parse(el.getAttribute('data-attributes'))
     const root = createRoot(el)
     root.render(

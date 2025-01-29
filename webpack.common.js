@@ -184,11 +184,19 @@ module.exports = {
       ],
       dependOn: 'adhocracy4'
     },
-    a4maps_choose_point: {
+    a4maps_react_choose_point: {
       import: [
         'leaflet/dist/leaflet.css',
         'maplibre-gl/dist/maplibre-gl.css',
         './meinberlin/react/contrib/map/react_choose_point_init.jsx'
+      ],
+      dependOn: 'adhocracy4'
+    },
+    a4maps_choose_point: {
+      import: [
+        'leaflet/dist/leaflet.css',
+        'maplibre-gl/dist/maplibre-gl.css',
+        'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_choose_point.js'
       ],
       dependOn: 'adhocracy4'
     },

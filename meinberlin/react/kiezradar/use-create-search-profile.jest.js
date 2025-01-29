@@ -51,6 +51,7 @@ describe('useCreateSearchProfile', () => {
       topics: ['ANT'],
       participations: [0, 1, 2],
       projectState: ['active', 'past', 'future'],
+      plansOnly: false,
       search: ''
     }
 
@@ -59,7 +60,9 @@ describe('useCreateSearchProfile', () => {
       organisations: [1],
       topics: [1],
       project_types: [1, 2, 3],
-      status: [1, 2, 3]
+      status: [1, 2, 3],
+      plans_only: false,
+      notification: true
     }
 
     const { result } = renderHook(() =>
@@ -71,6 +74,7 @@ describe('useCreateSearchProfile', () => {
         topicChoices,
         participationChoices,
         projectStatus,
+        searchProfilesCount: 0,
         onSearchProfileCreate: () => {}
       })
     )
@@ -93,6 +97,7 @@ describe('useCreateSearchProfile', () => {
       topics: [],
       participations: [],
       projectState: [],
+      plansOnly: false,
       search: ''
     }
 
@@ -128,6 +133,7 @@ describe('useCreateSearchProfile', () => {
         topicChoices,
         participationChoices,
         projectStatus,
+        searchProfilesCount: 0,
         onSearchProfileCreate: mockOnSearchProfileCreate
       })
     )
@@ -137,5 +143,37 @@ describe('useCreateSearchProfile', () => {
     })
 
     expect(mockOnSearchProfileCreate).toHaveBeenCalledWith(mockedSearchProfile)
+  })
+
+  it('sets limitExceeded to true when searchProfilesCount is 10', async () => {
+    const appliedFilters = {
+      districts: [],
+      organisation: [],
+      topics: [],
+      participations: [],
+      projectState: [],
+      plansOnly: false,
+      search: ''
+    }
+
+    const { result } = renderHook(() =>
+      useCreateSearchProfile({
+        searchProfilesApiUrl,
+        appliedFilters,
+        districts,
+        organisations,
+        topicChoices,
+        participationChoices,
+        projectStatus,
+        searchProfilesCount: 10,
+        onSearchProfileCreate: () => {}
+      })
+    )
+
+    await act(async () => {
+      await result.current.createSearchProfile()
+    })
+
+    expect(result.current.limitExceeded).toBe(true)
   })
 })

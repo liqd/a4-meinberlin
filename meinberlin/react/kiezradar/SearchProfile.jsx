@@ -9,6 +9,7 @@ const cancelText = django.gettext('Cancel')
 const saveText = django.gettext('Save')
 const savingText = django.gettext('Saving')
 const viewProjectsText = django.gettext('View projects')
+const plansText = django.gettext('Plans')
 const errorText = django.gettext('Error')
 const errorDeleteSearchProfilesText = django.gettext(
   'Failed to delete search profile'
@@ -78,7 +79,11 @@ export default function SearchProfile ({ apiUrl, planListUrl, profile: profile_,
   ]
     .map((filter) => filter.map(({ name }) => name))
 
-  const selection = [[profile.query_text], ...filters]
+  const selection = [
+    [profile.query_text],
+    ...filters,
+    [profile.plans_only ? plansText : null]
+  ]
     .map((names) => names.join(', '))
     .filter(Boolean)
 

@@ -30,10 +30,6 @@ export default function SaveSearchProfile ({
     )
   }
 
-  if (searchProfilesCount > 10) {
-    return <span className="save-search-profile__action">{limitText}</span>
-  }
-
   if (searchProfile) {
     return (
       <a className="save-search-profile__action save-search-profile__action--link" href="/account/search-profiles">
@@ -42,7 +38,7 @@ export default function SaveSearchProfile ({
     )
   }
 
-  return <CreateSearchProfileButton {...props} />
+  return <CreateSearchProfileButton {...props} searchProfilesCount={searchProfilesCount} />
 }
 
 function CreateSearchProfileButton ({
@@ -53,9 +49,10 @@ function CreateSearchProfileButton ({
   projectStatus,
   searchProfilesApiUrl,
   appliedFilters,
+  searchProfilesCount,
   onSearchProfileCreate
 }) {
-  const { loading, error, createSearchProfile } = useCreateSearchProfile({
+  const { loading, limitExceeded, error, createSearchProfile } = useCreateSearchProfile({
     searchProfilesApiUrl,
     appliedFilters,
     districts,
@@ -63,8 +60,13 @@ function CreateSearchProfileButton ({
     topicChoices,
     participationChoices,
     projectStatus,
+    searchProfilesCount,
     onSearchProfileCreate
   })
+
+  if (limitExceeded) {
+    return <span className="save-search-profile__action">{limitText}</span>
+  }
 
   if (error) {
     return <span className="save-search-profile__error">{error}</span>

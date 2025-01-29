@@ -8,14 +8,15 @@ register = template.Library()
 
 
 @register.simple_tag()
-def react_kiezradar_search_profiles():
+def react_kiezradar():
     attributes = {
         "apiUrl": reverse("kiezradar-list"),
         "planListUrl": reverse("meinberlin_plans:plan-list"),
+        "kiezradarFiltersUrl": reverse("kiezradar_filters"),
+        "kiezradarNewUrl": reverse("kiezradar_new"),
     }
 
     return format_html(
-        '<div data-mb-widget="kiezradar-filters" '
-        'data-attributes="{attributes}"></div>',
+        '<div data-mb-widget="kiezradar" ' 'data-attributes="{attributes}"></div>',
         attributes=json.dumps(attributes),
     )

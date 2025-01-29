@@ -1,26 +1,36 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import django from 'django'
 import { Link } from 'react-router-dom'
 import Loading from './Loading'
 import { alert as Alert } from 'adhocracy4'
+import { updateItem } from '../contrib/helpers'
 
 const noSavedKiezradarsText = django.gettext('No saved Kiezes')
 const addKiezText = django.gettext('Add Kiez')
 const yourKiezradarsText = django.gettext('Your Kiezes')
 const errorText = django.gettext('Error')
 const errorKiezesText = django.gettext('Failed to fetch Kiezes')
+const errorDeleteKiezesText = django.gettext(
+  'Failed to delete kiezradar'
+)
 const editText = django.gettext('Edit')
+const deleteText = django.gettext('Delete')
+const closeText = django.gettext('Close')
 const viewProjectsText = django.gettext('View projects')
+const confirmDeletion = django.gettext('Confirm deletion')
+const confirmDeletionDescriptionText = django.gettext('You will no longer be able to select this kiez in the Kiezradar. In addition, search profiles based on this kiez will also be deleted.')
 
 export default function KiezradarList ({
   apiUrl,
   planListUrl,
   kiezradarFiltersUrl,
-  kiezradarNewUrl
+  kiezradarNewUrl,
+  onKiezradarDelete
 }) {
   const [kiezradars, setKiezradars] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [deleteModal, setDeleteModal] = useState(null)
 
   useEffect(() => {
     const fetchKiezradars = async () => {
@@ -45,6 +55,30 @@ export default function KiezradarList ({
     fetchKiezradars()
   }, [])
 
+  const handleDelete = async (kiezradar) => {
+    try {
+      setLoading(true)
+      setDeleteModal(null)
+
+      const response = await updateItem({}, apiUrl + kiezradar.id + '/', 'DELETE')
+
+      if (!response.ok) {
+        throw new Error(errorDeleteKiezesText)
+      }
+
+      setKiezradars((prevKiezradars) =>
+        prevKiezradars.filter((prevKiezradar) => prevKiezradar.id !== kiezradar.id)
+      )
+
+      onKiezradarDelete()
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <div aria-live="polite">
       {loading
@@ -57,6 +91,7 @@ export default function KiezradarList ({
             )
           : (
             <>
+              {deleteModal?.kiezradar && <DeleteModal onDelete={() => handleDelete(deleteModal.kiezradar)} onClose={() => setDeleteModal(null)} />}
               <h2>
                 {kiezradars.length === 0
                   ? yourKiezradarsText
@@ -87,9 +122,8 @@ export default function KiezradarList ({
                                   </div>
                                   <div className="kiezradar-list__header-buttons">
                                     <div className="kiezradar-list__buttons">
-                                      <EditLink to={kiezradarFiltersUrl + kiezradar.id}>
-                                        {editText}
-                                      </EditLink>
+                                      <EditLink to={kiezradarFiltersUrl + kiezradar.id} />
+                                      <DeleteButton onDelete={() => setDeleteModal({ kiezradar })} />
                                     </div>
                                   </div>
                                 </header>
@@ -103,9 +137,8 @@ export default function KiezradarList ({
                                 </footer>
                                 <div className="kiezradar-list__footer-buttons">
                                   <div className="kiezradar-list__buttons">
-                                    <EditLink to={kiezradarFiltersUrl + kiezradar.id}>
-                                      {editText}
-                                    </EditLink>
+                                    <EditLink to={kiezradarFiltersUrl + kiezradar.id} />
+                                    <DeleteButton onDelete={() => setDeleteModal({ kiezradar })} />
                                   </div>
                                 </div>
                               </article>
@@ -136,5 +169,58 @@ function EditLink ({ to }) {
       <i className="fa-solid fa-pencil mr-1" />
       {editText}
     </Link>
+  )
+}
+
+function DeleteButton ({ onDelete }) {
+  return (
+    <button
+      className="kiezradar-list__button"
+      onClick={onDelete}
+    >
+      <i className="fa-classic fa-regular fa-trash-can mr-1" />
+      {deleteText}
+    </button>
+  )
+}
+
+function DeleteModal ({ onDelete, onClose }) {
+  const dialogRef = useRef(null)
+
+  const closeModal = () => {
+    dialogRef.current.close()
+    onClose()
+  }
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') closeModal()
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [])
+
+  useEffect(() => {
+    dialogRef.current.showModal()
+  }, [])
+
+  return (
+    <dialog className="kiezradar__modal" ref={dialogRef} aria-modal="true">
+      <button type="button" className="kiezradar__modal-close" aria-label={closeText} onClick={closeModal}>
+        <span className="fa fa-times" aria-hidden="true" />
+      </button>
+      <h3 className="kiezradar__modal-title">{confirmDeletion}</h3>
+      <p className="kiezradar__modal-text">{confirmDeletionDescriptionText}</p>
+      <div className="kiezradar__modal-buttons">
+        <button className="link" onClick={closeModal}>
+          {closeText}
+        </button>
+        <button className="button kiezradar__modal-button-open" onClick={onDelete}>
+          {deleteText}
+        </button>
+      </div>
+    </dialog>
   )
 }

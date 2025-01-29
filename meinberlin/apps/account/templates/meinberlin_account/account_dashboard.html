@@ -28,38 +28,51 @@
       {% translate "Manage your username, your password and your e-mail addresses." %}
     </p>
 
-    <nav class="dashboard-nav" aria-label="{% translate 'User Dashboard navigation' %}">
+    <nav class="tabnavigation" aria-label="{% translate 'User Dashboard navigation' %}">
       {% with request.resolver_match.url_name as url_name %}
-        <ul class="dashboard-nav__pages">
-          <li class="dashboard-nav__page">
-            <a href="{% url 'account_profile' %}" class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == " account_profile" %}is-active{% endif %}">
-              {% translate 'Profile' %}
-            </a>
-          </li>
-          <li class="dashboard-nav__page">
-            <a href="{% url 'account_actions' %}" class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == " account_actions" %}is-active{% endif %}">
-              {% translate 'Activities' %}
-            </a>
-          </li>
-          <li class="dashboard-nav__page">
-            <a href="{% url 'account_change_password' %}" class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == " account_change_password" %}is-active{% endif %}">
-              {% translate 'Change password' %}
-            </a>
-          </li>
-          <li class="dashboard-nav__page">
-            <a href="{% url 'account_email' %}" class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == " account_email" %}is-active{% endif %}">
-              {% translate 'Email addresses' %}
-            </a>
-          </li>
-          {% get_providers as socialaccount_providers %}
-          {% if socialaccount_providers %}
-            <li class="dashboard-nav__page">
-              <a href="{% url 'socialaccount_connections' %}" class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == " socialaccount_connections" %}is-active{% endif %}">
-                {% translate 'Account Connections' %}
+        <div class="row">
+          <ul class="tabnavigation--left">
+            <li>
+              <a
+                href="{% url 'account_profile' %}"
+                class="tabnavigation__button"
+                {% if request.resolver_match.url_name == "account_profile" %}aria-selected="true"{% endif %}
+              >
+                {% translate 'Profile' %}
               </a>
             </li>
-          {% endif %}
-        </ul>
+            <li>
+              <a
+                href="{% url 'account_change_password' %}"
+                class="tabnavigation__button"
+                {% if request.resolver_match.url_name == "account_change_password" %}aria-selected="true"{% endif %}
+              >
+                {% translate 'Change password' %}
+              </a>
+            </li>
+            <li>
+              <a
+                href="{% url 'account_email' %}"
+                class="tabnavigation__button"
+                {% if request.resolver_match.url_name == "account_email" %}aria-selected="true"{% endif %}
+              >
+                {% translate 'Email addresses' %}
+              </a>
+            </li>
+            {% get_providers as socialaccount_providers %}
+            {% if socialaccount_providers %}
+              <li>
+                <a
+                  href="{% url 'socialaccount_connections' %}"
+                  class="tabnavigation__button"
+                  {% if request.resolver_match.url_name == "socialaccount_connections" %}aria-selected="true"{% endif %}
+                >
+                  {% translate 'Account Connections' %}
+                </a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
       {% endwith %}
     </nav>
 

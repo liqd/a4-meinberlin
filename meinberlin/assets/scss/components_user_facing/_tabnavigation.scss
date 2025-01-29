@@ -1,14 +1,21 @@
 // Styling taken from BO button element styling with some small adjustments
 .tabnavigation__button {
-    min-height: 43px;
+    min-height: 40px;
     width: auto;
-    padding: 10px 6px;
     font-size: $em-spacer;
     line-height: 1.2;
-    display: inline-block;
     text-align: center;
     cursor: pointer;
     overflow: visible;
+    padding: 4px;
+    display: inline-block;
+    color: var(--color-grey-darkest);
+}
+
+a.tabnavigation__button {
+    // this component looks different on links, this adapts the styling to
+    // make it look the same
+    min-height: 35px;
 }
 
 .tabnavigation__link {
@@ -67,12 +74,6 @@
     margin-right: 0
 }
 
-.tabnavigation--left li button {
-    padding: 4px;
-    display: inline-block;
-    color: var(--color-grey-darkest);
-}
-
 @media (width <= 37.5rem) {
     .tabnavigation--left li {
         flex-grow: 1;
@@ -80,7 +81,7 @@
     }
 }
 
-.tabnavigation--left li button[aria-selected="true"] {
+.tabnavigation__button[aria-selected="true"] {
     border-bottom: 4px solid $primary;
     font-weight: bold;
     color: var(--color-black);

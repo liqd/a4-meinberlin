@@ -6,13 +6,5 @@ class SearchProfileListView(LoginRequiredMixin, generic.TemplateView):
     template_name = "meinberlin_kiezradar/search_profile_list.html"
 
 
-class KiezRadarListView(LoginRequiredMixin, generic.TemplateView):
-    template_name = "meinberlin_kiezradar/kiezradar_list.html"
-
-
-class KiezRadarDetailView(LoginRequiredMixin, generic.TemplateView):
-    template_name = "meinberlin_kiezradar/kiezradar_detail.html"
-
-
-class KiezRadarCreateView(LoginRequiredMixin, generic.TemplateView):
-    template_name = "meinberlin_kiezradar/kiezradar_create.html"
+class KiezRadarView(LoginRequiredMixin, generic.TemplateView):
+    template_name = "meinberlin_kiezradar/kiezradar.html"

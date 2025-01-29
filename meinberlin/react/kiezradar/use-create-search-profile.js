@@ -20,12 +20,19 @@ export function useCreateSearchProfile ({
   topicChoices,
   participationChoices,
   projectStatus,
+  searchProfilesCount,
   onSearchProfileCreate
 }) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [limitExceeded, setLimitExceeded] = useState(false)
 
   const createSearchProfile = async () => {
+    if (searchProfilesCount === 10) {
+      setLimitExceeded(true)
+      return
+    }
+
     setLoading(true)
     setError(null)
 
@@ -51,7 +58,9 @@ export function useCreateSearchProfile ({
       organisations: organisationIds,
       topics: topicIds,
       project_types: participationIds,
-      status: projectStatusIds
+      status: projectStatusIds,
+      plans_only: appliedFilters.plansOnly,
+      notification: true
     }
 
     if (appliedFilters.search.length > 0) {
@@ -70,7 +79,7 @@ export function useCreateSearchProfile ({
     }
   }
 
-  return { loading, error, createSearchProfile }
+  return { loading, limitExceeded, error, createSearchProfile }
 }
 
 function getFilteredResults ({

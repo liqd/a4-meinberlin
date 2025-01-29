@@ -18,7 +18,8 @@ export const getDefaultState = (searchProfile) => {
       districts: searchProfile.districts.map(d => d.name),
       organisation: searchProfile.organisations.map(o => o.name),
       participations: searchProfile.project_types.map(p => p.id),
-      topics: searchProfile.topics.map((t) => t.code)
+      topics: searchProfile.topics.map((t) => t.code),
+      plansOnly: searchProfile.plans_only
     }
   }
 

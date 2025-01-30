@@ -35,6 +35,10 @@
               {% url 'search_profiles' as search_profiles_url %}
               <a href="{% url 'search_profiles' %}" class="{% if request.path == search_profiles_url %}active{% endif %}">{% translate "Search Profiles" %}</a>
             </li>
+            <li>
+              {% url 'kiezradar_filters' as kiezradar_filters_url %}
+              <a href="{% url 'kiezradar_filters' %}" class="{% if request.path == kiezradar_filters_url %}active{% endif %}">{% translate "Manage Kiezes" %}</a>
+            </li>
           </ul>
         </li>
       {% endif %}

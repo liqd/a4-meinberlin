@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-23 14:41+0100\n"
-"PO-Revision-Date: 2025-01-29 16:15+0000\n"
+"PO-Revision-Date: 2025-01-30 10:50+0000\n"
 "Last-Translator: MarleyMi <m.mittmann@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "main-design-dev/de/>\n"
@@ -586,7 +586,7 @@ msgstr "Archiviert"
 #: meinberlin/apps/projects/views.py:61 meinberlin/apps/topicprio/api.py:88
 #: meinberlin/apps/topicprio/api.py:119
 msgid "All"
-msgstr "Alle"
+msgstr "Alle Beteiligungungsarten"
 
 #: adhocracy4/dashboard/filter.py:20
 #: meinberlin/apps/budgeting/api.py:39 meinberlin/apps/projects/views.py:62
@@ -4436,7 +4436,7 @@ msgstr "Entfernen"
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_invite_list.html:31
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_user_list.html:29
 msgid "None"
-msgstr "Keine Einträge"
+msgstr "Alle Projekte"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/users_from_email_form.html:25
 msgid "Add"

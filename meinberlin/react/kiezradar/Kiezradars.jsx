@@ -2,10 +2,9 @@ import React, { useState } from 'react'
 import django from 'django'
 import KiezradarList from './KiezradarList'
 import { Route, Routes, useLocation, Link } from 'react-router-dom'
-import { classNames } from '../contrib/helpers'
 import NewKiezradar from './NewKiezradar'
 import EditKiezradar from './EditKiezradar'
-import { alert as Alert } from 'adhocracy4'
+import { alert as Alert, classNames } from 'adhocracy4'
 
 const titleText = django.gettext('Kiez selection')
 const descriptionText = django.gettext(

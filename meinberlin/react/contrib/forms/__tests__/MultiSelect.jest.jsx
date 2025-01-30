@@ -1,9 +1,9 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import { MultiSelect } from '../MultiSelect'
-import useCombobox from '../useCombobox'
+import useCombobox from 'adhocracy4/adhocracy4/static/forms/useCombobox'
 
-jest.mock('../useCombobox')
+jest.mock('adhocracy4/adhocracy4/static/forms/useCombobox')
 
 describe('MultiSelect', () => {
   const choices = [

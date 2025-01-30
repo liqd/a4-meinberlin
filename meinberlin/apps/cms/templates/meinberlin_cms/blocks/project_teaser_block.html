@@ -1,0 +1,47 @@
+{% load rules i18n project_tags meinberlin_project_tags contrib_tags thumbnail %}
+<div class="block">
+  <h2 class="project-teaser-block__title">{{ value.headline }}</h2>
+  <div class="row project-teaser-block__grid">
+    <div class="span5 project-teaser-block__image-wrapper">
+      {% if value.project.has_finished %}
+        <p class="project-teaser-block__past-project">
+          <i class="fas fa-circle-check" aria-hidden="true"></i>
+          {% translate 'Finished' %}
+        </p>
+      {% endif %}
+      <img
+        src="{{ value.project.tile_image|thumbnail_url:'project_thumbnail' | default:"/static/images/placeholder.png" }}"
+        alt="{{ value.project.tile_image_alt_text }}"
+        height=510
+        width=600
+        class="project-teaser-block__image"
+        loading="lazy"
+      />
+      <span class="image__copyright">
+        {% if value.project.tile_image_copyright %}
+          {% translate 'copyright by' %} {{ value.project.tile_image_copyright }}
+        {% else %}
+          {% translate 'copyright missing' %}
+        {% endif %}
+      </span>
+    </div>
+    <div class="span7 project-teaser-block__body{% if value.project.has_finished %} project-teaser-block__body--past{% endif %}">
+      <h3 class="project-teaser-block__project-title" id="project-title-{{ value.project.id }}">
+        {{ value.custom_title |default:value.project.name }}
+      </h3>
+      {% if value.project.description %}
+        <p class="project-teaser-block__description">
+          {{ value.custom_teaser|default:value.project.description }}
+        </p>
+      {% endif %}
+      <a
+        href="{{ value.project|project_url }}"
+        target="{{ value.project|is_external|yesno:"_blank,_self" }}"
+        class="button button--primary project-teaser-block__button"
+        aria-labelledby="project-title-{{ value.project.id }}"
+      >
+        {{ value.button_text }}
+      </a>
+    </div>
+  </div>
+</div>

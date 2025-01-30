@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from wagtail import blocks
 from wagtail import fields
 from wagtail.admin import panels
@@ -42,6 +43,7 @@ class HomePage(Page):
                     template="meinberlin_cms/blocks/richtext_block.html"
                 ),
             ),
+            ("project", cms_blocks.ProjectTeaserBlock(label=_("Project teaser"))),
             ("projects", cms_blocks.ProjectsWrapperBlock()),
             ("user_action_bar", cms_blocks.UserActionBarBlock()),
             ("icon_list", cms_blocks.IconListBlock()),

@@ -18,6 +18,28 @@ class ProjectsWrapperBlock(blocks.StructBlock):
         icon = "list-ul"
 
 
+class ProjectTeaserBlock(blocks.StructBlock):
+    headline = blocks.CharBlock(max_length=100)
+    custom_title = blocks.CharBlock(
+        max_length=100,
+        required=False,
+        label=_("Overwrite title"),
+        help_text=_("Will be shown instead of the project title if set."),
+    )
+    custom_teaser = blocks.RichTextBlock(
+        max_length=500,
+        required=False,
+        label=_("Overwrite teaser text"),
+        help_text=_("Will be shown instead of the project teaser if set."),
+    )
+    project = ProjectSelectionBlock(label="Project")
+    button_text = blocks.CharBlock(max_length=64, default=_("Show project"))
+
+    class Meta:
+        template = "meinberlin_cms/blocks/project_teaser_block.html"
+        icon = "doc-full-inverse"
+
+
 class ButtonBlock(blocks.StructBlock):
     link_text = blocks.CharBlock(required=True)
     link = blocks.URLBlock(

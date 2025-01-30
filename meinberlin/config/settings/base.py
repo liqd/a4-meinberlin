@@ -230,7 +230,7 @@ IMAGE_ALIASES = {
 THUMBNAIL_ALIASES = {
     "": {
         "heroimage": {"size": (1500, 500)},
-        "project_thumbnail": {"size": (520, 330)},
+        "project_thumbnail": {"size": (600, 510)},
         "logo": {"size": (160, 160), "background": "white"},
         "item_image": {"size": (330, 0), "crop": "scale"},
         "map_thumbnail": {"size": (200, 200), "crop": "smart"},

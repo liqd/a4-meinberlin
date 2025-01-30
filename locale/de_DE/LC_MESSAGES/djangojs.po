@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-23 14:41+0100\n"
-"PO-Revision-Date: 2024-12-07 09:04+0000\n"
-"Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js-"
-"design-dev/de/>\n"
+"PO-Revision-Date: 2025-01-30 10:50+0000\n"
+"Last-Translator: MarleyMi <m.mittmann@liqd.net>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
+"js-design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1261,8 +1261,8 @@ msgstr "Vorschläge durchsuchen"
 #, javascript-format
 msgid "1 proposal found."
 msgid_plural "%s proposals found."
-msgstr[0] "1 Vorschlag gefunden."
-msgstr[1] "%s Vorschläge gefunden."
+msgstr[0] "1 Vorschlag gefunden"
+msgstr[1] "%s Vorschläge gefunden"
 
 #: meinberlin/react/contrib/ControlBarFilterPills.jsx:5
 #, javascript-format
@@ -1496,7 +1496,7 @@ msgstr "laufend"
 #: meinberlin/react/kiezradar/SearchProfile.jsx:21
 #: meinberlin/react/projects/ProjectsControlBar.jsx:32
 msgid "upcoming"
-msgstr ""
+msgstr "anstehend"
 
 #: meinberlin/react/kiezradar/SearchProfile.jsx:22
 #: meinberlin/react/projects/ProjectsControlBar.jsx:33
@@ -1559,7 +1559,7 @@ msgstr ""
 #: meinberlin/react/livequestions/Filters.jsx:6
 #: meinberlin/react/projects/ProjectsControlBar.jsx:19
 msgid "All"
-msgstr ""
+msgstr "Alle Beteiligungungsarten"
 
 #: meinberlin/react/livequestions/Filters.jsx:8
 msgid "Marked Questions"
@@ -1713,7 +1713,7 @@ msgstr "Welchen Bezirk suchen Sie?"
 
 #: meinberlin/react/plans/FilterNav.jsx:11
 msgid "„ all Topics “"
-msgstr "„ alle Themen “"
+msgstr "\"alle Themen\""
 
 #: meinberlin/react/plans/FilterNav.jsx:12
 msgid "Which topic are you interested in?"
@@ -1809,47 +1809,47 @@ msgstr ""
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:14
 msgid "Districts"
-msgstr ""
+msgstr "Bezirk"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:15
 msgid "All districts"
-msgstr ""
+msgstr "Alle Bezirke"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:16
 msgid "Topics"
-msgstr ""
+msgstr "Themen"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:17
 msgid "All topics"
-msgstr ""
+msgstr "Alle Themen"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:18
 msgid "Kind of participation"
-msgstr ""
+msgstr "Art der Beteiligung"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:20
 msgid "Project state"
-msgstr ""
+msgstr "Projektstatus"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:21
 msgid "None"
-msgstr ""
+msgstr "Alle Projekte"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:22
 msgid "Organization"
-msgstr ""
+msgstr "Organisation"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:23
 msgid "Only show:"
-msgstr ""
+msgstr "Zeige nur:"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:24
 msgid "Plans"
-msgstr ""
+msgstr "Vorhaben"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:27
 msgid "Show projects"
-msgstr ""
+msgstr "Projekte anzeigen"
 
 #: meinberlin/react/projects/ProjectsListMapBox.jsx:17
 msgid "Kiezradar"
@@ -1864,6 +1864,8 @@ msgid ""
 "Unfortunately, there are no projects matching your search. Please adjust the "
 "search criteria."
 msgstr ""
+"Leider gibt es keine passenden Projekte zu Ihrer Suche. Bitte passen Sie die "
+"Suchkriterien an."
 
 #: meinberlin/react/projects/ProjectsListMapBox.jsx:20
 msgid "show map"
@@ -1877,12 +1879,12 @@ msgstr "Liste anzeigen"
 #, javascript-format
 msgid "1 Proposal found."
 msgid_plural "%s Proposals found."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 Suchergebniss"
+msgstr[1] "%sSuchergebnisse"
 
 #: meinberlin/react/projects/ProjectsMapInfo.jsx:7
 msgid "Don't forget"
-msgstr ""
+msgstr "Vergessen Sie nicht"
 
 #: meinberlin/react/projects/ProjectsMapInfo.jsx:8
 msgid ""

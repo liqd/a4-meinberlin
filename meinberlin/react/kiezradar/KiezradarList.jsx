@@ -17,7 +17,12 @@ const editText = django.gettext('Edit')
 const deleteText = django.gettext('Delete')
 const closeText = django.gettext('Close')
 const viewProjectsText = django.gettext('View projects')
-const confirmDeletion = django.gettext('Confirm deletion')
+const confirmDeletionText = (name) =>
+  django.interpolate(
+    django.gettext('Confirm deletion of %(name)s'),
+    { name },
+    true
+  )
 const confirmDeletionDescriptionText = django.gettext('You will no longer be able to select this kiez in the Kiezradar. In addition, search profiles based on this kiez will also be deleted.')
 
 export default function KiezradarList ({
@@ -91,7 +96,13 @@ export default function KiezradarList ({
             )
           : (
             <>
-              {deleteModal?.kiezradar && <DeleteModal onDelete={() => handleDelete(deleteModal.kiezradar)} onClose={() => setDeleteModal(null)} />}
+              {deleteModal?.kiezradar && (
+                <DeleteModal
+                  kiezradar={deleteModal.kiezradar}
+                  onDelete={() => handleDelete(deleteModal.kiezradar)}
+                  onClose={() => setDeleteModal(null)}
+                />
+              )}
               <h2>
                 {kiezradars.length === 0
                   ? yourKiezradarsText
@@ -184,7 +195,7 @@ function DeleteButton ({ onDelete }) {
   )
 }
 
-function DeleteModal ({ onDelete, onClose }) {
+function DeleteModal ({ kiezradar, onDelete, onClose }) {
   const dialogRef = useRef(null)
 
   const closeModal = () => {
@@ -211,7 +222,7 @@ function DeleteModal ({ onDelete, onClose }) {
       <button type="button" className="kiezradar__modal-close" aria-label={closeText} onClick={closeModal}>
         <span className="fa fa-times" aria-hidden="true" />
       </button>
-      <h3 className="kiezradar__modal-title">{confirmDeletion}</h3>
+      <h3 className="kiezradar__modal-title">{confirmDeletionText(kiezradar.name)}</h3>
       <p className="kiezradar__modal-text">{confirmDeletionDescriptionText}</p>
       <div className="kiezradar__modal-buttons">
         <button className="link" onClick={closeModal}>

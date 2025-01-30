@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-23 14:41+0100\n"
-"PO-Revision-Date: 2025-01-30 11:07+0000\n"
+"PO-Revision-Date: 2025-01-31 14:15+0000\n"
 "Last-Translator: MarleyMi <m.mittmann@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "js-design-dev/de/>\n"
@@ -983,7 +983,7 @@ msgstr "Textmodus"
 #: adhocracy4/static/Captcha.jsx:9
 #: adhocracy4/static/Captcha.jsx:9
 msgid "I am not a robot"
-msgstr ""
+msgstr "Ich bin kein Roboter"
 
 #: adhocracy4/static/Captcha.jsx:11
 #: adhocracy4/static/Captcha.jsx:11
@@ -991,11 +991,14 @@ msgid ""
 "Solve the math problem and click on the correct result. <strong>If you are "
 "having difficulty please contact us by {}email{}.</strong>"
 msgstr ""
+"Löse die Rechenaufgabe und klicke auf das richtige Ergebnis. <strong>Wenn "
+"Sie Schwierigkeiten haben, kontaktieren Sie uns bitte per "
+"{}E-Mail{}.</strong>"
 
 #: adhocracy4/static/Captcha.jsx:13
 #: adhocracy4/static/Captcha.jsx:13
 msgid "There was a problem loading the CAPTCHA."
-msgstr ""
+msgstr "Es gab ein Problem beim Laden des CAPTCHA."
 
 #: adhocracy4/static/TermsOfUseCheckbox.jsx:5
 #: adhocracy4/static/TermsOfUseCheckbox.jsx:5
@@ -1056,99 +1059,114 @@ msgstr ""
 
 #: meinberlin/react/account/NotificationToggle.jsx:5
 msgid "E-Mail"
-msgstr ""
+msgstr "E-Mail"
 
 #: meinberlin/react/account/NotificationToggle.jsx:6
 msgid "Activity Feed"
-msgstr ""
+msgstr "In-App-Benachrichtigungen"
 
 #: meinberlin/react/account/NotificationsList.jsx:8
 msgid "Project-Related Notifications"
-msgstr ""
+msgstr "Projektbezogene Benachrichtigungen"
 
 #: meinberlin/react/account/NotificationsList.jsx:11
 msgid "E-Mail Newsletter"
-msgstr ""
+msgstr "E-Mail Newsletter"
 
 #: meinberlin/react/account/NotificationsList.jsx:12
 msgid ""
 "Receive newsletters with updates and news about the projects you follow via "
 "e-mail."
 msgstr ""
+"Erhalten Sie via E-Mail Newsletter mit Updates und Neuigkeiten aus den "
+"Projekten, denen Sie folgen."
 
 #: meinberlin/react/account/NotificationsList.jsx:15
 msgid "Participation Start"
-msgstr ""
+msgstr "Beteiligungsbeginn"
 
 #: meinberlin/react/account/NotificationsList.jsx:16
 msgid ""
 "Receive a notification when a participation begins in a project you follow."
 msgstr ""
+"Erhalten Sie eine Benachrichtigung, wenn eine Beteiligung startet in einem "
+"Projekt, dem Sie folgen."
 
 #: meinberlin/react/account/NotificationsList.jsx:20
 msgid "Participation End"
-msgstr ""
+msgstr "Beteiligungsende"
 
 #: meinberlin/react/account/NotificationsList.jsx:21
 msgid ""
 "Receive a notification when a participation is near its end in a project you "
 "follow."
 msgstr ""
+"Erhalten Sie eine Benachrichtigung, wenn eine Beteiligung bald endet in "
+"einem Projekt, dem Sie folgen."
 
 #: meinberlin/react/account/NotificationsList.jsx:25
 msgid "Event"
-msgstr ""
+msgstr "Veranstaltung"
 
 #: meinberlin/react/account/NotificationsList.jsx:26
 msgid "Receive notifications for upcoming events in projects you follow."
 msgstr ""
+"Erhalten Sie Benachrichtigungen über anstehende Veranstaltungen in "
+"Projekten, denen Sie Folgen."
 
 #: meinberlin/react/account/NotificationsList.jsx:32
 msgid "Interactions with Other Users or Moderation"
-msgstr ""
+msgstr "Interaktionen mit anderen Nutzer*innen und der Moderation"
 
 #: meinberlin/react/account/NotificationsList.jsx:35
 msgid "Reactions of other users"
-msgstr ""
+msgstr "Reaktionen anderer Nutzer*innen"
 
 #: meinberlin/react/account/NotificationsList.jsx:36
 msgid ""
 "Receive a notification when someone reacts to your contribution with a "
 "comment."
 msgstr ""
+"Erhalten Sie eine Benachrichtigung, wenn jemand Ihren Beitrag kommentiert."
 
 #: meinberlin/react/account/NotificationsList.jsx:39
 msgid "Reactions of moderation"
-msgstr ""
+msgstr "Reaktionen der Moderation"
 
 #: meinberlin/react/account/NotificationsList.jsx:40
 msgid ""
 "Receive a notification for feedback and status changes of your idea from the "
 "moderation."
 msgstr ""
+"Erhalten Sie eine Benachrichtigung, wenn es eine Rückmeldung oder eine "
+"Statusänderung Ihrer Idee durch die Moderation gibt."
 
 #: meinberlin/react/account/NotificationsList.jsx:45
 msgid "Notifications for Initiators and Moderators"
-msgstr ""
+msgstr "Benachrichtigungen für Initiator*innen und Moderator*innen"
 
 #: meinberlin/react/account/NotificationsList.jsx:49
 msgid "New Project in Your Organization"
-msgstr ""
+msgstr "Neues Projekt in Ihrer Organisation"
 
 #: meinberlin/react/account/NotificationsList.jsx:50
 msgid ""
 "Receive a notification when a new project is created in your organization."
 msgstr ""
+"Erhalten Sie eine Benachrichtigung, wenn in Ihrer Organisation ein neues "
+"Projekt angelegt wird."
 
 #: meinberlin/react/account/NotificationsList.jsx:53
 msgid "New Contribution in a Moderated Project"
-msgstr ""
+msgstr "Neuer Beitrag in einem moderierten Projekt"
 
 #: meinberlin/react/account/NotificationsList.jsx:54
 msgid ""
 "Receive a notification when a new contribution is added to a project you "
 "moderate."
 msgstr ""
+"Erhalten Sie eine Benachrichtigung, wenn ein neuer Beitrag in einem von "
+"Ihnen moderierten Projekt hinzugefügt wird."
 
 #: meinberlin/react/budgeting/BudgetingProposalList.jsx:18
 #, javascript-format
@@ -1456,7 +1474,7 @@ msgstr "Ideenliste"
 
 #: meinberlin/react/kiezradar/PushNotificationToggle.jsx:7
 msgid "Notifications"
-msgstr ""
+msgstr "Benachrichtigungen"
 
 #: meinberlin/react/kiezradar/PushNotificationToggle.jsx:10
 msgid "Failed to update push notification"
@@ -1781,7 +1799,7 @@ msgstr "Copyright fehlt"
 
 #: meinberlin/react/projects/ProjectTile.jsx:9
 msgid "copyright by"
-msgstr ""
+msgstr "©"
 
 #: meinberlin/react/projects/ProjectTile.jsx:10
 msgid "Here you can find a decorative picture."
@@ -1880,7 +1898,7 @@ msgstr "Liste anzeigen"
 msgid "1 Proposal found."
 msgid_plural "%s Proposals found."
 msgstr[0] "1 Suchergebniss"
-msgstr[1] "%s Suchergebnisse"
+msgstr[1] "%s  Suchergebnisse"
 
 #: meinberlin/react/projects/ProjectsMapInfo.jsx:7
 msgid "Don't forget"

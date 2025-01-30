@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-23 14:41+0100\n"
-"PO-Revision-Date: 2025-01-30 10:50+0000\n"
+"PO-Revision-Date: 2025-01-31 14:15+0000\n"
 "Last-Translator: MarleyMi <m.mittmann@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "main-design-dev/de/>\n"
@@ -1483,11 +1483,11 @@ msgstr "Nutzerkonto Einstellungen"
 #: meinberlin/apps/account/templates/meinberlin_account/account_dashboard.html:25
 #: meinberlin/templates/navigation_primary.html:32
 msgid "Account & Security"
-msgstr ""
+msgstr "Konto & Sicherheit"
 
 #: meinberlin/apps/account/templates/meinberlin_account/account_dashboard.html:28
 msgid "Manage your username, your password and your e-mail addresses."
-msgstr ""
+msgstr "Verwalten Sie Ihren Profilnamen, Ihr Passwort und Ihre E-Mail-Adressen."
 
 #: meinberlin/apps/account/templates/meinberlin_account/account_dashboard.html:31
 msgid "User Dashboard navigation"
@@ -3332,7 +3332,7 @@ msgstr ""
 #: meinberlin/apps/kiezradar/serializers.py:151
 #, python-format
 msgid "Searchprofile %d"
-msgstr ""
+msgstr "Suchprofil %d"
 
 #: meinberlin/apps/kiezradar/templates/meinberlin_kiezradar/kiezradar_create.html:4
 #: meinberlin/apps/kiezradar/templates/meinberlin_kiezradar/kiezradar_detail.html:4
@@ -5313,7 +5313,7 @@ msgstr "E-Mail Adressen"
 
 #: meinberlin/templates/account/email.html:8
 msgid "Manage your Email Addresses"
-msgstr ""
+msgstr "E-Mail-Adresen Verwalten"
 
 #: meinberlin/templates/account/email.html:21
 msgid "Primary"
@@ -5398,7 +5398,7 @@ msgstr "Neues Passwort"
 
 #: meinberlin/templates/account/password_change.html:46
 msgid "New Password (repeat)"
-msgstr ""
+msgstr "Neues Passwort (wiederholen)"
 
 #: meinberlin/templates/account/password_reset.html:5
 #: meinberlin/templates/account/password_reset.html:10
@@ -5593,7 +5593,7 @@ msgstr ""
 
 #: meinberlin/templates/navigation_primary.html:18
 msgid "Activity Feed"
-msgstr ""
+msgstr "In-App-Benachrichtigungen"
 
 #: meinberlin/templates/navigation_primary.html:28
 msgid "Your Account"

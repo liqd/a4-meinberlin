@@ -44,7 +44,7 @@ class HomePage(Page):
             ),
             ("projects", cms_blocks.ProjectsWrapperBlock()),
             ("user_action_bar", cms_blocks.UserActionBarBlock()),
-            ("image_call_to_action", cms_blocks.ImageCallToActionBlock()),
+            ("icon_list", cms_blocks.IconListBlock()),
             ("columns_text", cms_blocks.ColumnsBlock()),
             ("activities", actions_blocks.PlatformActivityBlock()),
             ("accordion_list", cms_blocks.AccordionListBlock()),

@@ -155,15 +155,6 @@ class TeaserBlock(blocks.StructBlock):
         icon = "view"
 
 
-class MapTeaserBlock(blocks.StructBlock):
-    image = ImageBlock()
-    body = blocks.RichTextBlock()
-
-    class Meta:
-        template = "meinberlin_cms/blocks/map_teaser_block.html"
-        icon = "view"
-
-
 class LinkBlock(blocks.StructBlock):
     link_text = blocks.CharBlock(required=True)
     link = blocks.PageChooserBlock(
@@ -172,6 +163,16 @@ class LinkBlock(blocks.StructBlock):
 
     class Meta:
         icon = "link"
+
+
+class InfoBarBlock(blocks.StructBlock):
+    body = blocks.RichTextBlock()
+    image = ImageBlock(required=False, form_classname="w-field w-panel")
+    link = LinkBlock(required=False, form_classname="w-field w-panel")
+
+    class Meta:
+        template = "meinberlin_cms/blocks/info_bar_block.html"
+        icon = "info-circle"
 
 
 class ExternalLinkBlock(blocks.StructBlock):

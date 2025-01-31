@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-04 12:03+0100\n"
-"PO-Revision-Date: 2024-12-07 09:04+0000\n"
-"Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
+"PO-Revision-Date: 2025-01-31 11:15+0000\n"
+"Last-Translator: MarleyMi <m.mittmann@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
@@ -890,14 +890,14 @@ msgid ""
 "Solve the math problem and click on the correct result. <strong>If you are "
 "having difficulty please contact us by {}email{}.</strong>"
 msgstr ""
-"Lösen Sie die Rechenaufgabe und klicken Sie auf das richtige "
-"Ergebnis.<strong> Wenn Sie Schwierigkeiten haben, kontaktieren Sie uns bitte "
-"per {}E-Mail{}.</strong>"
+"Löse die Rechenaufgabe und klicke auf das richtige Ergebnis. <strong>Wenn "
+"Sie Schwierigkeiten haben, kontaktieren Sie uns bitte per "
+"{}E-Mail{}.</strong>"
 
 #: adhocracy4/static/Captcha.jsx:13
 #: adhocracy4/static/Captcha.jsx:13
 msgid "There was a problem loading the CAPTCHA."
-msgstr "Es gab ein Problem, das CAPTCHA zu laden."
+msgstr "Es gab ein Problem beim Laden des CAPTCHA."
 
 #: adhocracy4/static/TermsOfUseCheckbox.jsx:5
 #: adhocracy4/static/TermsOfUseCheckbox.jsx:5
@@ -967,8 +967,8 @@ msgstr "Suchen, Filtern und Sortieren der Vorschläge in der Liste"
 #, javascript-format
 msgid "1 proposal found."
 msgid_plural "%s proposals found."
-msgstr[0] "1 Vorschlag gefunden."
-msgstr[1] "%s Vorschläge gefunden."
+msgstr[0] "1 Vorschlag gefunden"
+msgstr[1] "%s Vorschläge gefunden"
 
 #: meinberlin/apps/budgeting/assets/ControlBarListMapSwitch.jsx:21
 msgid "View as list"
@@ -1315,7 +1315,7 @@ msgstr "Welchen Bezirk suchen Sie?"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:11
 msgid "„ all Topics “"
-msgstr "„ alle Themen “"
+msgstr "\"alle Themen\""
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:12
 msgid "Which topic are you interested in?"

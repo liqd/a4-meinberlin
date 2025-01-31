@@ -75,16 +75,26 @@ class UserActionBarBlock(blocks.StructBlock):
         return context
 
 
-class ImageCallToActionBlock(blocks.StructBlock):
+class IconBlock(blocks.StructBlock):
     image = ImageBlock()
-    title = blocks.CharBlock(max_length=80)
     body = blocks.RichTextBlock()
-    link = blocks.CharBlock()
-    link_text = blocks.CharBlock(max_length=50, label="Link Text")
 
     class Meta:
-        template = "meinberlin_cms/blocks/image_cta_block.html"
+        template = "meinberlin_cms/blocks/icon_block.html"
         icon = "image"
+
+
+class IconListBlock(blocks.StructBlock):
+    heading = blocks.CharBlock(
+        required=False,
+        help_text=_("Optional title for the list of panels."),
+    )
+    icon_list_blocks = blocks.ListBlock(IconBlock())
+
+    class Meta:
+        template = "meinberlin_cms/blocks/icon_list_block.html"
+        icon = "list-ul"
+        label = _("Icon List")
 
 
 class ColumnsBlock(blocks.StructBlock):

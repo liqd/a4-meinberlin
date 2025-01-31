@@ -1,0 +1,14 @@
+{% load rules i18n wagtailcore_tags %}
+
+<div class="block fullwidth panel icon-list">
+  <div class="fullwidth__inner">
+  {% if value.heading %}<h2 class="icon-list__heading align--center">{{ value.heading }}</h2>{% endif %}
+  <ul class="icon-list__wrapper">
+    {% for block in value.icon_list_blocks %}
+      <li>
+        {% include_block block %}
+      </li>
+    {% endfor %}
+  </ul>
+  </div>
+</div>

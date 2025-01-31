@@ -1,0 +1,16 @@
+{% load wagtailimages_tags wagtailcore_tags block_tags react_map_teaser %}
+
+<div class="block panel panel--colored info-bar-block" style="background-image: url({{ image.url }})">
+  {% if value.image %}
+    {% image value.image width-150 class="info-bar-block__image" %}
+  {% endif %}
+  <div>
+    {{ value.body|richtext }}
+
+    {% if value.link %}
+      <a href="{{ value.link.link }}" class="more mt-1">
+        {{ value.link.link_text }}
+      </a>
+    {% endif %}
+  </div>
+</div>

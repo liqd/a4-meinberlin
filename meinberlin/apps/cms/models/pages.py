@@ -49,7 +49,7 @@ class HomePage(Page):
             ("activities", actions_blocks.PlatformActivityBlock()),
             ("accordion_list", cms_blocks.AccordionListBlock()),
             ("teaser", cms_blocks.TeaserBlock()),
-            ("map_teaser", cms_blocks.MapTeaserBlock()),
+            ("info_bar", cms_blocks.InfoBarBlock()),
         ],
     )
     subtitle = models.CharField(max_length=120)

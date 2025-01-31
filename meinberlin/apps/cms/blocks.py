@@ -136,14 +136,23 @@ class AccordionListBlock(blocks.StructBlock):
         label = _("Accordion List")
 
 
-class InfographicBlock(blocks.StructBlock):
-    text_left = blocks.CharBlock(max_length=50)
-    text_center = blocks.CharBlock(max_length=50)
-    text_right = blocks.CharBlock(max_length=50)
+class TeaserBlock(blocks.StructBlock):
+    alignment = blocks.ChoiceBlock(
+        choices=[
+            ("left", _("Left")),
+            ("right", _("Right")),
+        ],
+        default="left",
+        help_text=_("Should the image be on the left or on the right?"),
+    )
+    title = blocks.CharBlock(max_length=70)
+    body = blocks.RichTextBlock(max_length=250)
+    button = ButtonBlock(required=False, form_classname="w-field w-panel")
+    image = ImageBlock(form_classname="w-field w-panel")
 
     class Meta:
-        template = "meinberlin_cms/blocks/infographic_block.html"
-        icon = "success"
+        template = "meinberlin_cms/blocks/teaser_block.html"
+        icon = "view"
 
 
 class MapTeaserBlock(blocks.StructBlock):

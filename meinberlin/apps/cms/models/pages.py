@@ -48,7 +48,7 @@ class HomePage(Page):
             ("columns_text", cms_blocks.ColumnsBlock()),
             ("activities", actions_blocks.PlatformActivityBlock()),
             ("accordion_list", cms_blocks.AccordionListBlock()),
-            ("infographic", cms_blocks.InfographicBlock()),
+            ("teaser", cms_blocks.TeaserBlock()),
             ("map_teaser", cms_blocks.MapTeaserBlock()),
         ],
     )

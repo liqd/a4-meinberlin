@@ -1,0 +1,15 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<div class="block">
+  <div class="teaser-block teaser-block--{{ value.alignment }}">
+    {% picture value.image format-{avif,webp,jpeg} fill-755x370 class="span2 teaser-block__img" %}
+    <div class="teaser-block__body">
+      <h2>{{ value.title }}</h2>
+      {{ value.body|richtext }}
+
+      {% if value.button %}
+        {% include_block value.button %}
+      {% endif %}
+    </div>
+  </div>
+</div>

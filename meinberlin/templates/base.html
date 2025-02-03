@@ -51,7 +51,7 @@
       {% include "header.html" %}
     {% endblock header %}
     <!-- FIXME we don't currently want their grid in dashboard however this does not work if someone names wagtail, project or plan page 'dashboard' -->
-    <main role="main" tabindex="-1" {% if '/dashboard' not in request.path or '/components' not in request.path %} id="layout-grid" {% endif %}>
+    <main tabindex="-1" {% if '/dashboard' not in request.path or '/components' not in request.path %} id="layout-grid" {% endif %}>
         <div id="layout-grid__area--contentheader">
             {% block breadcrumbs %}{% endblock breadcrumbs %}
         </div>
@@ -60,7 +60,6 @@
             {% for message in messages %}
                 {% include 'meinberlin_contrib/components/alert.html' with alert_message=message|stringformat:"s" alert_headline=message.level_headline alert_type=message.level_tag %}
             {% endfor %}
-
         {% endif %}
 
         {% block extra_messages %}{% endblock extra_messages %}
@@ -70,8 +69,8 @@
         {% endblock super_content %}
 
         {% wagtailuserbar %}
-
     </main>
+
     {% block footer %}
       {% include "footer.html" %}
     {% endblock footer %}

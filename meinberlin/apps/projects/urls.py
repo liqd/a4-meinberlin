@@ -33,4 +33,9 @@ urlpatterns = [
         views.ModuleDetailview.as_view(),
         name="module-detail",
     ),
+    re_path(
+        r"^(?P<slug>[-\w_]+)/information/$",
+        views.ProjectInformationView.as_view(),
+        name="project-information",
+    ),
 ]

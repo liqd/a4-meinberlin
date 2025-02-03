@@ -1,0 +1,106 @@
+$hero-height: 350px;
+
+.hero {
+  width: 100%;
+  background-color: $gray-lightest;
+}
+
+.hero__container {
+  max-width: 980px;
+  min-height: $hero-height;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.hero__content {
+  width: 100%;
+  padding: 1rem;
+}
+
+.hero__title {
+  margin-top: 0;
+  margin-bottom: 10px;
+
+  a {
+    color: $text-base;
+  }
+}
+
+.hero__image-copyright {
+  font-size: 0.8em;
+  color: $text-light;
+}
+
+.hero__media {
+  width: 100%;
+  aspect-ratio: 3/2;
+}
+
+.hero__figure {
+  margin: 0;
+  height: 100%;
+}
+
+.hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__buttons {
+  display: flex;
+
+  .button {
+    margin-right: 0.5em;
+    text-decoration: none!important;
+  }
+}
+
+// Adjust margin to prevent content from touching the edge at specific screen sizes
+@media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) {
+  .hero__content {
+    margin-left: 2em;
+  }
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .hero {
+    width: 100vw;
+    height: $hero-height;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    border-top: 1px solid $gray-lighter;
+  }
+
+  .hero--plan {
+    margin-top: -40px!important; // used to make up for parent container top margin which creates a gap
+  }
+
+  .hero__container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero__content {
+    width: 50%;
+    padding: 2em 0;
+  }
+
+  .hero__description {
+    max-width: 400px;
+  }
+
+  .hero__media {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 50vw;
+    aspect-ratio: auto;
+  }
+}

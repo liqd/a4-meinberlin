@@ -1,0 +1,20 @@
+{% load i18n %}
+
+{% if organisation %}
+  <div class="modul-contact">
+    <h3 id="responsible-body">{% trans 'Responsible body' %}</h3>
+    <address aria-labelledby="responsible-body" class="mt-2">
+      <p>{{ organisation.name }}</p>
+
+      {% if organisation.address %}
+        <p>{{ organisation.address|linebreaksbr }}</p>
+      {% endif %}
+
+      {% if organisation.url %}
+      <p>{% trans "Website" %}: 
+         <a href="{{ organisation.url }}" target="_blank" rel="noopener noreferrer">{{ organisation.url }}</a>
+      </p>
+    {% endif %}
+    </address>
+  </div>
+{% endif %}

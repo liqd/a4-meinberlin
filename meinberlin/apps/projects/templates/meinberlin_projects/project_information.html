@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}
+  {{ project.name }} -{% trans 'Information' %}
+{% endblock title %}
+
+{% block extra_messages %}
+  {{ block.super }}
+
+  {% if project.is_draft %}
+    {% include 'meinberlin_contrib/components/info-box.html' with info_message='This project has not yet been published.' %}
+  {% endif %}
+{% endblock extra_messages %}
+
+{% block breadcrumbs %}
+    <div id="content-header">
+        <nav class="breadcrumb" aria-label='{% translate "You are here:" %}'>
+            <ol>
+                <li><a href="{% url 'wagtail_serve' '' %}">meinBerlin</a></li>
+                <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate "Kiezradar" %}</a></li>
+                <li><a href="{% url 'project-detail' project.slug %}">{{ project.name|truncatechars:50 }}</a></li>
+                <li class="active" aria-current="page">{% trans 'Project Information' %}</li>
+            </ol>
+        </nav>
+    </div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+  <div class="layout-grid__area--maincontent">
+    <article>
+      <header>
+        <h1>{% trans 'Project Information' %}</h1>
+      </header>
+
+      <section aria-labelledby="description-title">
+        <h2 id="description-title">
+          <span class="aural">{% trans 'Project Description' %}</span>
+          {{ project.name }}
+        </h2>
+        <div>{{ project.information|safe }}</div>
+      </section>
+
+      {% if project.has_contact_details or project.organisation %}
+        <hr aria-hidden="true" />
+        <section class="flexgrid grid--2 mb-3" aria-labelledby="contact-title">
+          <h2>{% trans 'Contact Information' %}</h2>
+          {% include 'meinberlin_projects/includes/contact_person.html' with contact=project only %}
+          {% include 'meinberlin_projects/includes/contact_organisation.html' with organisation=project.organisation only %}
+        </section>
+      {% endif %}
+    </article>
+  </div>
+{% endblock content %}

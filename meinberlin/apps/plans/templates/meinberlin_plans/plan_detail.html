@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n static rules wagtailcore_tags maps_tags thumbnail ckeditor_tags contrib_tags %}
+{% load i18n static rules wagtailcore_tags maps_tags thumbnail ckeditor_tags contrib_tags plan_tags %}
 
 {% block title %}{{ object.title }} – {{ block.super }}{% endblock title %}
 
@@ -42,42 +42,9 @@
 
 {% block content %}
 <div id="layout-grid__area--maincontent">
-    <section class="herounit-image-with-aside fullwidth">
-        <div class="mainbar">
-            <div class="mainbar__left">
-                {% if object.image %}
-                    <div class="image">
-                        <div class="image__image">
-                            <img src="{{ object.image | thumbnail_url:"heroimage" }}" alt="{% if object.image_alt_text %}{{ object.image_alt_text }}{% else %}{% translate "Here you can find a decorative picture." %}{% endif %}" width="100%" height="auto" loading="lazy"/>
-                        </div>
-                    </div>
-                {% endif %}
-            </div>
-            <div class="mainbar__right">
-                <div class="panel--heavy panel--remove-inner-panels flex--stretch-inner __py-0__">
-                    <ul class="pill__list pill__list--inline herounit-image-with-aside__pills">
-                        <li class="pill pill--label">{% translate "Plan" %}</li>
-                        {% for topic in object.topic_names %}
-                            <li class="pill pill--topic">{{ topic }}</li>
-                        {% endfor %}
-                    </ul>
+    {% modify_hero_content object as modified_content %}
+    {% include 'meinberlin_contrib/components/hero.html' with content=modified_content show_buttons=False extra_class="hero--plan" %}
 
-                    <h1 class="title herounit-image-with-aside__title">{{ object.title }}</h1>
-                    <div class="herounit-image-with-aside__description">
-                        <p>{{ object.point_label }}</p>
-                        
-                        <p class="herounit-image-with-aside__copyright">
-                            {% if object.image_copyright %}
-                                {% translate "Image" %}: {{ object.image_copyright }}
-                            {% else %}
-                                {% translate "Image: copyright missing" %}
-                            {% endif %}
-                        </p>   
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <article class="item-detail">
         {% has_perm 'meinberlin_plans.change_plan' request.user object as user_may_change %}
         {% if user_may_change %}
@@ -157,58 +124,12 @@
             </div>
         {% endif %}
 
-        {% if object.contact_name or object.contact_address_text or object.contact_email or object.contact_phone or object.contact_url or object.organisation.address or object.organisation.url %}
-            <div class="item-detail__contacts">
-            {% if object.contact_name or object.contact_address_text or object.contact_email or object.contact_phone or object.contact_url %}
-                <div class="item-detail__contact">
-                    <h2 class="item-detail__contact-title">{% translate 'Contact for questions' %}</h2>
-                    <address>
-                        {% if object.contact_name %}
-                        <p>{{ object.contact_name }}</p>
-                        {% endif %}
-                        {% if object.contact_address_text %}
-                            <p>{{ object.contact_address_text|linebreaks }}</p>
-                        {% endif %}
-                        {% if object.contact_phone %}
-                            <p><strong>{% translate 'Telephone' %}: </strong>{{ object.contact_phone }}</p>
-                        {% endif %}
-                        {% if object.contact_email %}
-                            <p>
-                                <a href="mailto:{{ object.contact_email }}">
-                                    {% translate 'Email' %}
-                                </a>
-                            </p>
-                        {% endif %}
-                        {% if object.contact_url %}
-                            <p>
-                                <a target="_blank" href="{{ object.contact_url }}">
-                                    {% translate 'Website' %}
-                                </a>
-                            </p>
-                        {% endif %}
-                    </address>
-                </div>
-            {% endif %}
-
-            {% if object.organisation.address or object.organisation.url %}
-                <div class="item-detail__contact">
-                    <h2 class="item-detail__contact-title">{% translate 'Responsible body' %}</h2>
-                    <address>
-                        {% if object.organisation.address %}
-                        <p>{{ object.organisation.name }}</p>
-                        <p>{{ object.organisation.address|linebreaks }}</p>
-                        {% endif %}
-                        {% if object.organisation.url %}
-                            <p>
-                                <a target="_blank" href="{{ object.organisation.url }}">
-                                    {% translate 'Website' %}
-                                </a>
-                            </p>
-                        {% endif %}
-                    </address>
-                </div>
-            {% endif %}
-            </div>
+        {% if object.has_contact_details or object.organisation %}
+            <section class="flexgrid grid--2 mb-3" aria-labelledby="contact-title">
+                <h2>{% trans 'Contact Information' %}</h2>
+                {% include 'meinberlin_projects/includes/contact_person.html' with contact=object only %}
+                {% include 'meinberlin_projects/includes/contact_organisation.html' with organisation=object.organisation only %}
+            </section>
         {% endif %}
     </article>
 

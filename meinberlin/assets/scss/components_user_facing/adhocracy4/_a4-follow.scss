@@ -1,20 +1,10 @@
-.follow__container > span {
-    width: 100%;
-}
-
-// BO overwrites
 .a4-btn--follow,
 .a4-btn--following {
     @extend .button;
     @extend .button--fullwidth-palm;
-}
-
-.a4-btn--follow:after {
-    content: "\f067"; // plus sign
-}
-
-.a4-btn--following:after {
-    content: "\f00c"; // check mark
+    @extend .button--light;
+    @extend .button--fulltone;
+    color: $text-inverted !important;
 }
 
 // we do not display alert in mB
@@ -22,8 +12,16 @@
     display: none;
 }
 
-.follow__container {
-    display: flex;
-    align-items: end;
-    margin-bottom: 2 * $spacer;
+.a4-follow__btn--content:after {
+    font-family: "Font Awesome 6 Free", sans-serif;
+    font-weight: 900;
+    margin-left: 8px;
+}
+
+.a4-btn--follow .a4-follow__btn--content:after {
+    content: "\f067"; // fa-plus icon
+}
+
+.a4-btn--following .a4-follow__btn--content:after {
+    content: "\f00c"; // fa-check icon
 }

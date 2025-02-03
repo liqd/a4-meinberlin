@@ -384,3 +384,9 @@ class ModuleDetailview(PermissionRequiredMixin, PhaseDispatchMixin):
         if "module" not in kwargs:
             kwargs["module"] = self.module
         return super().get_context_data(**kwargs)
+
+
+class ProjectInformationView(PermissionRequiredMixin, generic.DetailView):
+    model = models.Project
+    template_name = "meinberlin_projects/project_information.html"
+    permission_required = "a4projects.view_project"

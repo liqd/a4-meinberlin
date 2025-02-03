@@ -1,0 +1,22 @@
+{% load i18n %}
+
+{% if contact.has_contact_details %}
+<div class="modul-contact">
+    <h3 id="contact-questions">{% trans "Contact for questions" %}</h3>
+    <address aria-labelledby="contact-questions" class="mt-2">
+      <p>{{ contact.contact_name }}</p>
+      
+      {% if contact.contact_email %}
+        <p>{% trans "Email" %}: 
+           <a href="mailto:{{ contact.contact_email }}" aria-label="{% trans 'Email' %} {{ contact.contact_name }}">{{ contact.contact_email }}</a>
+        </p>
+      {% endif %}
+      
+      {% if contact.contact_phone %}
+        <p>{% trans "Phone" %}: 
+           <a href="tel:{{ contact.contact_phone }}" aria-label="{% trans 'Call' %} {{ contact.contact_name }}">{{ contact.contact_phone }}</a>
+        </p>
+      {% endif %}
+    </address>
+  </div>
+{% endif %}

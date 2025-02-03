@@ -1,0 +1,48 @@
+{% load i18n thumbnail %}
+
+<article class="hero block {{ extra_class|default:'' }}">
+  <div class="hero__container">
+    <div class="hero__content">
+        <h1 class="hero__title">
+          {% if show_buttons %}
+              <a href="{{ hero_link }}">{{ content.name }}</a>
+          {% else %}
+              {{ content.name }}
+          {% endif %}
+        </h1>
+        <div class="hero__description">
+          <p>{{ content.description|safe }}</p>
+          {% if content.image_copyright %}
+            <p class="hero__image-copyright">{% translate "Image" %}: {{ content.image_copyright }}</p>
+          {% endif %}
+        </div>
+
+        {% if show_buttons %}
+            <div class="hero__buttons">
+              <a href="{{ hero_link }}" class="button button--light">
+                {% translate "More information" %}
+              </a>
+              {% load react_follows %}
+              {% react_follows project %}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="hero__media">
+      <figure class="hero__figure">
+        {% if show_buttons %}
+            <a href="{{ hero_link }}">
+        {% endif %}
+        <img
+          class="hero__image"
+          src="{{ content.image|thumbnail_url:'heroimage' }}"
+          alt="{{ content.image_alt_text|default:'' }}"
+          loading="lazy"
+        />
+      </figure>
+      {% if show_buttons %}
+          </a>
+      {% endif %}
+    </div>
+  </div>
+</article>

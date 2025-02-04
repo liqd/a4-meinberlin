@@ -35,6 +35,7 @@ from meinberlin.apps.livequestions.api import LiveQuestionViewSet
 from meinberlin.apps.mapideas.api import MapIdeaViewSet
 from meinberlin.apps.maptopicprio.api import MapTopicViewSet
 from meinberlin.apps.moderatorremark.api import ModeratorRemarkViewSet
+from meinberlin.apps.notifications.api import NotificationSettingsViewSet
 from meinberlin.apps.notifications.api import NotificationViewSet
 from meinberlin.apps.plans.api import PlansListViewSet
 from meinberlin.apps.projects.api import PrivateProjectListViewSet
@@ -55,6 +56,11 @@ router.register(r"kiezradar", KiezRadarViewSet, basename="kiezradar")
 router.register(r"searchprofiles", SearchProfileViewSet, basename="searchprofiles")
 router.register(r"reports", ReportViewSet, basename="reports")
 router.register(r"polls", PollViewSet, basename="polls")
+router.register(
+    r"notification-settings",
+    NotificationSettingsViewSet,
+    basename="notification-settings",
+)
 router.register(r"projects", ProjectListViewSet, basename="projects")
 router.register(
     r"privateprojects", PrivateProjectListViewSet, basename="privateprojects"

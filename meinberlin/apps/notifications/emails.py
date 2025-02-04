@@ -27,11 +27,16 @@ def _exclude_moderators(receivers, action):
     return receivers
 
 
-def _exclude_notifications_disabled(receivers):
+def _exclude_notifications_disabled(receivers, notification_type):
     if hasattr(receivers, "filter"):
-        return receivers.filter(get_notifications=True)
+        filters = {f"notification_settings__{notification_type}": True}
+        return receivers.filter(**filters)
 
-    return [user for user in receivers if user.get_notifications]
+    return [
+        user
+        for user in receivers
+        if getattr(user.notification_settings, notification_type)
+    ]
 
 
 class NotifyCreatorEmail(Email):
@@ -41,7 +46,7 @@ class NotifyCreatorEmail(Email):
         action = self.object
         if hasattr(action.target, "creator"):
             receivers = [action.target.creator]
-            receivers = _exclude_notifications_disabled(receivers)
+            receivers = _exclude_notifications_disabled(receivers, "notify_creator")
             receivers = _exclude_actor(receivers, action.actor)
             receivers = _exclude_moderators(receivers, action)
             return receivers
@@ -60,7 +65,9 @@ class NotifyCreatorOrContactOnModeratorFeedback(Email):
         else:
             #  send to creator
             receivers = [self.object.creator]
-            receivers = _exclude_notifications_disabled(receivers)
+            receivers = _exclude_notifications_disabled(
+                receivers, "notify_creator_on_moderator_feedback"
+            )
         return receivers
 
     def get_context(self):
@@ -79,7 +86,7 @@ class NotifyModeratorsEmail(Email):
         action = self.object
         receivers = action.project.moderators.all()
         receivers = _exclude_actor(receivers, action.actor)
-        receivers = _exclude_notifications_disabled(receivers)
+        receivers = _exclude_notifications_disabled(receivers, "notify_moderator")
         return receivers
 
 
@@ -91,7 +98,9 @@ class NotifyInitiatorsOnProjectCreatedEmail(Email):
         creator = User.objects.get(pk=self.kwargs["creator_pk"])
         receivers = project.organisation.initiators.all()
         receivers = _exclude_actor(receivers, creator)
-        receivers = _exclude_notifications_disabled(receivers)
+        receivers = _exclude_notifications_disabled(
+            receivers, "notify_initiators_project_created"
+        )
         return receivers
 
     def get_context(self):
@@ -103,7 +112,7 @@ class NotifyInitiatorsOnProjectCreatedEmail(Email):
 
 
 class NotifyFollowersOnPhaseStartedEmail(Email):
-    template_name = "meinberlin_notifications/emails" "/notify_followers_phase_started"
+    template_name = "meinberlin_notifications/emails/notify_followers_phase_started"
 
     def get_receivers(self):
         action = self.object
@@ -111,14 +120,14 @@ class NotifyFollowersOnPhaseStartedEmail(Email):
             follow__project=action.project,
             follow__enabled=True,
         )
-        receivers = _exclude_notifications_disabled(receivers)
+        receivers = _exclude_notifications_disabled(
+            receivers, "notify_followers_phase_started"
+        )
         return receivers
 
 
 class NotifyFollowersOnPhaseIsOverSoonEmail(Email):
-    template_name = (
-        "meinberlin_notifications/emails" "/notify_followers_phase_over_soon"
-    )
+    template_name = "meinberlin_notifications/emails/notify_followers_phase_over_soon"
 
     def get_receivers(self):
         action = self.object
@@ -126,7 +135,9 @@ class NotifyFollowersOnPhaseIsOverSoonEmail(Email):
             follow__project=action.project,
             follow__enabled=True,
         )
-        receivers = _exclude_notifications_disabled(receivers)
+        receivers = _exclude_notifications_disabled(
+            receivers, "notify_followers_phase_over_soon"
+        )
         return receivers
 
 
@@ -139,5 +150,7 @@ class NotifyFollowersOnUpcomingEventEmail(Email):
             follow__project=action.project,
             follow__enabled=True,
         )
-        receivers = _exclude_notifications_disabled(receivers)
+        receivers = _exclude_notifications_disabled(
+            receivers, "notify_followers_event_upcoming"
+        )
         return receivers

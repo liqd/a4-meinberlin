@@ -10,6 +10,7 @@ from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext
 
 from meinberlin.apps.captcha.fields import CaptcheckCaptchaField
+from meinberlin.apps.notifications.models import NotificationSettings
 from meinberlin.apps.organisations.models import Organisation
 from meinberlin.apps.users.models import User
 
@@ -117,9 +118,13 @@ class TermsSignupForm(allauth_forms.SignupForm):
     def save(self, request):
         user = super(TermsSignupForm, self).save(request)
         if user:
-            user.get_newsletters = self.cleaned_data["get_newsletters"]
-            user.get_notifications = self.cleaned_data["get_notifications"]
-            user.save()
+            notification_settings, _ = NotificationSettings.objects.get_or_create(
+                user=user
+            )
+            notification_settings.update_email_settings(
+                self.cleaned_data["get_notifications"],
+                email_newsletter=self.cleaned_data["get_newsletters"],
+            )
             return user
 
 

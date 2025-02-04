@@ -1,11 +1,14 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import get_object_or_404
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
 from django.views.generic.base import RedirectView
+from rest_framework.renderers import JSONRenderer
 from rules.contrib.views import LoginRequiredMixin
 
 from adhocracy4.actions.models import Action
+from meinberlin.apps.notifications.serializers import NotificationSettingsSerializer
 from meinberlin.apps.users.models import User
 
 from . import forms
@@ -50,8 +53,15 @@ class NotificationsView(LoginRequiredMixin, generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        user = self.request.user
         context["show_restricted"] = (
-            self.request.user.project_moderator.exists()
-            or len(self.request.user.organisations) > 0
+            user.project_moderator.exists() or len(user.organisations) > 0
+        )
+
+        data = NotificationSettingsSerializer(user.notification_settings).data
+        context["data"] = JSONRenderer().render(data).decode("utf-8")
+        context["api_url"] = reverse(
+            "notification-settings-detail",
+            kwargs={"pk": user.notification_settings.id},
         )
         return context

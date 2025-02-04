@@ -5,8 +5,12 @@
 {% block title %}{% translate 'Your user profile' %} — {{ block.super }}{% endblock title %}
 
 {% block content %}
-  <h1>{% translate "Notifications" %}</h1>
-  <div id="notifications-react" data-initial-notifications="{&quot;email_newsletter&quot;:{&quot;email&quot;:false,&quot;activity_feed&quot;:true},&quot;participation_start&quot;:{&quot;email&quot;:true,&quot;activity_feed&quot;:true},&quot;participation_end&quot;:{&quot;email&quot;:true,&quot;activity_feed&quot;:true},&quot;new_events&quot;:{&quot;email&quot;:true,&quot;activity_feed&quot;:true},&quot;reactions&quot;:{&quot;email&quot;:true,&quot;activity_feed&quot;:true},&quot;moderation_reactions&quot;:{&quot;email&quot;:true,&quot;activity_feed&quot;:true},&quot;new_project_in_organisation&quot;:{&quot;email&quot;:true,&quot;activity_feed&quot;:true},&quot;new_contribution_in_moderated_project&quot;:{&quot;email&quot;:true,&quot;activity_feed&quot;:true}}" data-show-restricted="{% if show_restricted %}true{% endif %}"></div>
+  <h1>{% translate "Notification settings" %}</h1>
+  <div id="notifications-react"
+       data-initial-notifications="{{ data }}"
+       data-show-restricted="{% if show_restricted %}true{% endif %}"
+       data-api-url="{{ api_url }}"
+  ></div>
 {% endblock content %}
 
 {% block extra_js_deferred %}

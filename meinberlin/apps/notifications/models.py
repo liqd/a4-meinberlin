@@ -45,3 +45,59 @@ class Notification(models.Model):
         elif action.type == "offlineevent" and verb == Verbs.START:
             return True, followers
         return False, []
+
+
+class NotificationSettings(models.Model):
+    email_fields = [
+        "email_newsletter",
+        "notify_followers_phase_started",
+        "notify_followers_phase_over_soon",
+        "notify_followers_event_upcoming",
+        "notify_creator",
+        "notify_creator_on_moderator_feedback",
+        "notify_initiators_project_created",
+        "notify_moderator",
+    ]
+    user = models.OneToOneField(
+        "meinberlin_users.User",
+        on_delete=models.CASCADE,
+        related_name="notification_settings",
+    )
+    email_newsletter = models.BooleanField(default=False)
+
+    """
+    Notification fields are being used to check if a notification should be sent
+    via email.
+    """
+    notify_followers_phase_started = models.BooleanField(default=True)
+    notify_followers_phase_over_soon = models.BooleanField(default=True)
+    notify_followers_event_upcoming = models.BooleanField(default=True)
+    notify_creator = models.BooleanField(default=True)
+    notify_creator_on_moderator_feedback = models.BooleanField(default=True)
+    notify_initiators_project_created = models.BooleanField(default=True)
+    notify_moderator = models.BooleanField(default=True)
+
+    """
+    Tracked fields are being used to check if a notification should show in
+    the activity feed.
+    """
+    track_followers_phase_started = models.BooleanField(default=True)
+    track_followers_phase_over_soon = models.BooleanField(default=True)
+    track_followers_event_upcoming = models.BooleanField(default=True)
+
+    def update_all_settings(self, notifications_on, **kwargs):
+        for field in self._meta.get_fields():
+            if isinstance(field, models.BooleanField):
+                if field.name in kwargs:
+                    setattr(self, field.name, kwargs[field.name])
+                else:
+                    setattr(self, field.name, notifications_on)
+        self.save()
+
+    def update_email_settings(self, notifications_on, **kwargs):
+        for field in self.email_fields:
+            if field in kwargs:
+                setattr(self, field, kwargs[field])
+            else:
+                setattr(self, field, notifications_on)
+        self.save()

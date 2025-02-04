@@ -7,6 +7,27 @@ from meinberlin.apps.users.models import User
 
 
 @pytest.mark.django_db
+def test_signup_user_notifications_checked(client):
+    resp = client.post(
+        reverse("account_signup"),
+        {
+            "username": "dauser",
+            "email": "mail@example.com",
+            "get_newsletters": "on",
+            "get_notifications": "on",
+            "password1": "password",
+            "password2": "password",
+            "terms_of_use": "on",
+            "captcha": "testpass:0",
+        },
+    )
+    assert resp.status_code == 302
+    user = User.objects.get()
+    assert user.notification_settings.email_newsletter
+    assert user.notification_settings.notify_creator
+
+
+@pytest.mark.django_db
 def test_signup_user_newsletter_checked(client):
     resp = client.post(
         reverse("account_signup"),
@@ -22,7 +43,8 @@ def test_signup_user_newsletter_checked(client):
     )
     assert resp.status_code == 302
     user = User.objects.get()
-    assert user.get_newsletters
+    assert user.notification_settings.email_newsletter
+    assert not user.notification_settings.notify_creator
 
 
 @pytest.mark.django_db
@@ -40,7 +62,7 @@ def test_signup_user_newsletter_not_checked(client):
     )
     assert resp.status_code == 302
     user = User.objects.get()
-    assert not user.get_newsletters
+    assert not user.notification_settings.email_newsletter
 
 
 @pytest.mark.django_db
@@ -77,7 +99,7 @@ def test_signup_user_without_captcha(client):
     )
     assert resp.status_code == 302
     user = User.objects.get()
-    assert user.get_newsletters
+    assert user.notification_settings.email_newsletter
 
 
 @override_settings()
@@ -97,4 +119,4 @@ def test_signup_user_with_captcha_url_as_empty_string(client):
     )
     assert resp.status_code == 302
     user = User.objects.get()
-    assert user.get_newsletters
+    assert user.notification_settings.email_newsletter

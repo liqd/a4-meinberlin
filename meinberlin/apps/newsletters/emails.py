@@ -31,7 +31,7 @@ class NewsletterEmail(ReportToAdminEmailMixin, Email):
         verified_emails = EmailAddress.objects.filter(verified=True).values("email")
         return (
             User.objects.filter(id__in=self.kwargs["participant_ids"])
-            .filter(get_newsletters=True)
+            .filter(notification_settings__email_newsletter=True)
             .filter(is_active=True)
             .filter(email__in=verified_emails)
             .distinct()
@@ -54,7 +54,7 @@ class NewsletterEmailAll(NewsletterEmail):
     def get_receivers(self):
         verified_emails = EmailAddress.objects.filter(verified=True).values("email")
         return (
-            User.objects.filter(get_newsletters=True)
+            User.objects.filter(notification_settings__email_newsletter=True)
             .filter(is_active=True)
             .filter(email__in=verified_emails)
             .distinct()

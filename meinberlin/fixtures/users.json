@@ -11,8 +11,6 @@
       "is_staff": true,
       "is_active": true,
       "date_joined": "2023-01-25T14:12:42.022Z",
-      "get_notifications": true,
-      "get_newsletters": false,
       "groups": [],
       "user_permissions": []
     }
@@ -29,8 +27,6 @@
       "is_staff": false,
       "is_active": true,
       "date_joined": "2023-01-25T14:12:42.025Z",
-      "get_notifications": true,
-      "get_newsletters": false,
       "groups": [],
       "user_permissions": []
     }
@@ -47,8 +43,6 @@
       "is_staff": false,
       "is_active": true,
       "date_joined": "2023-01-25T14:12:42.026Z",
-      "get_notifications": true,
-      "get_newsletters": false,
       "groups": [],
       "user_permissions": []
     }
@@ -65,8 +59,6 @@
       "is_staff": false,
       "is_active": true,
       "date_joined": "2023-01-25T14:12:42.026Z",
-      "get_notifications": true,
-      "get_newsletters": false,
       "groups": [],
       "user_permissions": []
     }

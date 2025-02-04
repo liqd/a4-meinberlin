@@ -15,6 +15,7 @@ from meinberlin.test.factories.activities import ActivityFactory
 from meinberlin.test.factories.bplan import BplanFactory
 from meinberlin.test.factories.extprojects import ExternalProjectFactory
 from meinberlin.test.factories.likes import LikeFactory
+from meinberlin.test.factories.notifications import NotificationSettingsFactory
 from meinberlin.test.factories.organisations import OrganisationFactory
 from meinberlin.test.factories.plans import PlanFactory
 
@@ -41,6 +42,7 @@ register(PlanFactory)
 register(ExternalProjectFactory)
 register(BplanFactory)
 register(LikeFactory)
+register(NotificationSettingsFactory)
 
 register(a4_factories.GroupFactory)
 register(a4_factories.ProjectFactory)

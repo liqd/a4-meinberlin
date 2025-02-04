@@ -9,6 +9,7 @@ from adhocracy4.images.validators import ImageAltTextValidator
 from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.newsletters import models as newsletter_models
+from meinberlin.apps.notifications.models import NotificationSettings
 
 User = get_user_model()
 
@@ -18,7 +19,9 @@ def test_send_organisation(
     admin, client, project, user_factory, follow_factory, email_address_factory
 ):
     organisation = project.organisation
-    user1 = user_factory(get_newsletters=True)
+    user1 = user_factory(
+        get_newsletters=True, notification_settings__email_newsletter=True
+    )
     user2 = user_factory(get_newsletters=True)
     user_factory()
     email_address_factory(user=user1, email=user1.email, primary=True, verified=True)
@@ -83,7 +86,7 @@ def test_send_organisation_initiators(
         "a4dashboard:newsletter-create", kwargs={"organisation_slug": organisation.slug}
     )
     client.login(username=admin.email, password="password")
-    User.objects.update(get_newsletters=True)
+    NotificationSettings.objects.update(email_newsletter=True)
     response = client.post(url, data)
     assert redirect_target(response) == "newsletter-create"
     assert newsletter_models.Newsletter.objects.count() == 1
@@ -189,7 +192,7 @@ def test_send_newsletter_platform(client, project, user_factory, email_address_f
     admin = user_factory(is_superuser=True)
     user1 = user_factory()
     user2 = user_factory()
-    User.objects.update(get_newsletters=True)
+    NotificationSettings.objects.update(email_newsletter=True)
     user3 = user_factory()
     assert User.objects.count() == 6
 
@@ -227,7 +230,7 @@ def test_send_newsletter_platform(client, project, user_factory, email_address_f
     to_sent = sorted([m.to[0] for m in mail.outbox])
     to_expected = sorted(
         EmailAddress.objects.filter(verified=True)
-        .filter(user__get_newsletters=True)
+        .filter(user__notification_settings__email_newsletter=True)
         .values_list("email", flat=True)
     )
     assert to_sent == to_expected

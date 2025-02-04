@@ -86,7 +86,7 @@ def test_register(client, signup_url):
     confirm_email_response = client.post(confirmation_url)
     assert confirm_email_response.status_code == 302
     assert EmailAddress.objects.filter(email=email, verified=True).count() == 1
-    assert User.objects.get(email=email).get_newsletters is True
+    assert User.objects.get(email=email).notification_settings.email_newsletter is True
 
 
 @pytest.mark.django_db

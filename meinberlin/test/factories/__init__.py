@@ -5,11 +5,14 @@ from django.conf import settings
 from django.contrib.auth.hashers import make_password
 from django.core.files import base
 from django.core.files import images
+from django.db.models.signals import post_save
 from PIL import Image
 
 from adhocracy4.test import factories
+from meinberlin.test.factories.notifications import NotificationSettingsFactory
 
 
+@factory.django.mute_signals(post_save)
 class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = settings.AUTH_USER_MODEL
@@ -17,6 +20,17 @@ class UserFactory(factory.django.DjangoModelFactory):
     username = factory.Sequence(lambda n: "user%d" % n)
     email = factory.Sequence(lambda n: "user%d@liqd.net" % n)
     password = make_password("password")
+
+    # Use a RelatedFactory to create the notification settings
+    notification_settings = factory.RelatedFactory(
+        NotificationSettingsFactory,
+        factory_related_name="user",
+    )
+
+    class Params:
+        get_newsletters = factory.Trait(
+            notification_settings__email_newsletter=True,
+        )
 
     @factory.post_generation
     def groups(self, create, extracted, **kwargs):

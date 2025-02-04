@@ -3,6 +3,7 @@
 
 {% block title %}{% blocktranslate with project=moderatorinvite.project.name %}Invitation to {{ project }}{% endblocktranslate %}{% endblock title %}
 {% block content %}
+<div class="narrow-wrapper">
     <h1>{% blocktranslate with project=moderatorinvite.project.name %}Moderation invitation for {{ project }}{% endblocktranslate %}</h1>
 
     {% if form.non_field_errors %}
@@ -20,4 +21,5 @@
         {% csrf_token %}
         {% include 'meinberlin_contrib/includes/form_submit_flex_end.html' with button_text='Accept' secondary_button_text='Decline' %}
     </form>
+</div>
 {% endblock content %}

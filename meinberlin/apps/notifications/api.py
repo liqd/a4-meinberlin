@@ -7,12 +7,16 @@ from django.db.models import Window
 from django.db.models.functions import RowNumber
 from django.utils import timezone
 from rest_framework import mixins
+from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.viewsets import GenericViewSet
 
 from meinberlin.apps.notifications.models import Notification
 from meinberlin.apps.notifications.serializers import NotificationSerializer
+
+from .models import NotificationSettings
+from .serializers import NotificationSettingsSerializer
 
 
 class NotificationPagination(PageNumberPagination):
@@ -114,3 +118,12 @@ class NotificationViewSet(
         page = self.paginate_queryset(qs)
         serializer = self.get_serializer(page, many=True)
         return self.get_paginated_response(serializer.data)
+
+
+class NotificationSettingsViewSet(
+    mixins.RetrieveModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet
+):
+    serializer_class = NotificationSettingsSerializer
+
+    def get_queryset(self):
+        return NotificationSettings.objects.filter(user=self.request.user)

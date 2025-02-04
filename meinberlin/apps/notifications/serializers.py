@@ -3,6 +3,7 @@ from rest_framework import serializers
 
 from meinberlin.apps.actions.serializers import ActionSerializer
 from meinberlin.apps.notifications.models import Notification
+from meinberlin.apps.notifications.models import NotificationSettings
 
 
 class NotificationSerializer(serializers.ModelSerializer):
@@ -31,3 +32,12 @@ class NotificationSerializer(serializers.ModelSerializer):
         if "read" in self.validated_data:
             return super().save(**kwargs, read_at=timezone.now())
         return super().save(**kwargs)
+
+
+class NotificationSettingsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = NotificationSettings
+        exclude = (
+            "user",
+            "id",
+        )

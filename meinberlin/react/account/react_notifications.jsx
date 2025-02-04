@@ -7,9 +7,10 @@ function init () {
   const root = createRoot(el)
   const notifications = JSON.parse(el.getAttribute('data-initial-notifications'))
   const showRestricted = JSON.parse(el.getAttribute('data-show-restricted'))
+  const apiUrl = el.getAttribute('data-api-url')
   root.render(
     <React.StrictMode>
-      <NotificationsList initialNotifications={notifications} showRestricted={showRestricted} />
+      <NotificationsList initialNotifications={notifications} showRestricted={showRestricted} apiUrl={apiUrl} />
     </React.StrictMode>)
 }
 

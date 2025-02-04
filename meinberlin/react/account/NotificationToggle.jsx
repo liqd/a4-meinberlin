@@ -3,29 +3,30 @@ import React from 'react'
 import { ToggleSwitch } from '../contrib/ToggleSwitch'
 
 const emailStr = django.gettext('E-Mail')
-const activityFeedStr = django.gettext('Activity Feed')
+const inAppNotificationStr = django.gettext('In-App Notification')
 
-const NotificationToggle = ({ notification, notificationState, id, onToggle }) => {
+const NotificationToggle = ({ notification, notificationState, name, onToggle }) => {
+  const activityFeedName = notification.activityFeedName
   return (
     <>
       <h3>{notification.title}</h3>
       <p>{notification.description}</p>
       <div className="flexbox">
         <ToggleSwitch
-          uniqueId={id}
+          uniqueId={name}
           onSwitchStr={emailStr}
           labelLeft={false}
-          checked={notificationState.email}
-          toggleSwitch={() => onToggle('email')}
+          checked={notificationState[name]}
+          toggleSwitch={() => onToggle(name)}
         />
-        {notification.showInActivityFeed &&
+        {activityFeedName &&
           <ToggleSwitch
             className="ml-1"
-            uniqueId={id}
-            onSwitchStr={activityFeedStr}
+            uniqueId={name}
+            onSwitchStr={inAppNotificationStr}
             labelLeft={false}
-            checked={notificationState.activityFeed}
-            toggleSwitch={() => onToggle('activityFeed')}
+            checked={notificationState[activityFeedName]}
+            toggleSwitch={() => onToggle(activityFeedName)}
           />}
       </div>
     </>

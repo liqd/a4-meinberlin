@@ -16,7 +16,12 @@ class UserAdmin(auth.admin.UserAdmin):
         (_("Permissions"), {"fields": ("is_staff", "is_superuser")}),
         (
             _("Important dates"),
-            {"fields": ("last_login", "date_joined", "get_newsletters")},
+            {
+                "fields": (
+                    "last_login",
+                    "date_joined",
+                )
+            },
         ),
     )
     add_fieldsets = (
@@ -28,7 +33,10 @@ class UserAdmin(auth.admin.UserAdmin):
             },
         ),
     )
-    readonly_fields = ("date_joined", "last_login", "get_newsletters")
+    readonly_fields = (
+        "date_joined",
+        "last_login",
+    )
     list_display = (
         "id",
         "username",
@@ -37,7 +45,6 @@ class UserAdmin(auth.admin.UserAdmin):
         "last_login",
         "is_staff",
         "is_superuser",
-        "get_newsletters",
     )
     list_filter = ("is_staff", "is_superuser", "last_login")
     search_fields = ("username", "email", "id")

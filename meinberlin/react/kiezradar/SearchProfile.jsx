@@ -113,7 +113,19 @@ export default function SearchProfile ({ apiUrl, planListUrl, profile: profile_,
         <form className="form--base panel--heavy search-profile__form" onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="name">{renameSearchProfileText}</label>
-            <input id="name" name="name" type="text" required />
+            <input
+              id="name"
+              name="name"
+              type="text"
+              defaultValue={profile.name}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault()
+                  e.target.form.requestSubmit()
+                }
+              }}
+              required
+            />
           </div>
           <div className="form-actions">
             <div className="form-actions__left">

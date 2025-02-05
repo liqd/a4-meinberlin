@@ -156,13 +156,38 @@
 }
 
 .kiezradar__map {
-  align-items: center;
-  display: flex;
-  background-color: $gray-lightest;
-  color: $gray-light;
-  height: 30vh;
-  justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+
+  @media screen and (min-width: $breakpoint-tablet) {
+    margin-bottom: 2rem;
+    position: relative;
+    align-items: start;
+  }
+
+  .leaflet-top.leaflet-right {
+    display: none;
+    width: 100%;
+
+    @media screen and (min-width: $breakpoint-tablet) {
+      display: block;
+      width: block;
+    }
+  }
+}
+
+.leaflet-top.leaflet-right .leaflet-control {
+  height: 77px;
+  margin: 0;
+  width: 100%;
+
+  @media screen and (min-width: $breakpoint-tablet) {
+    margin: 10px 10px 0 0;
+    width: auto;
+  }
+}
+
+.kiezradar__map-search.leaflet-control {
+  z-index: 1001;
 }
 
 .kiezradar__modal {
@@ -215,4 +240,76 @@
   border: 0;
   color: inherit;
   cursor: pointer;
+}
+
+.kiezradar__controls--tablet {
+  display: none;
+
+  @media screen and (min-width: $breakpoint-tablet) {
+    display: block;
+  }
+}
+
+.kiezradar__controls--mobile {
+  display: block;
+  margin-bottom: 1rem;
+
+  @media screen and (min-width: $breakpoint-tablet) {
+    display: none;
+  }
+}
+
+.kiezradar__radius-controls {
+  background-color: $white;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+  width: 100%;
+  padding: 1rem;
+
+  @media screen and (min-width: $breakpoint-tablet) {
+    width: 18.75rem;
+  }
+}
+
+.kiezradar__radius-info {
+  display: flex;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.kiezradar__radius-label {
+  margin-bottom: 0;
+}
+
+.kiezradar__radius-measurement {
+  margin-left: auto;
+}
+
+.kiezradar__range-slider {
+  appearance: none;
+  width: 100%;
+  height: 0.5rem;
+  border-radius: 2px;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background: $primary;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+
+    &:hover {
+      transform: scale(0.97);
+    }
+
+    &:active {
+      transform: scale(0.92);
+    }
+  }
 }

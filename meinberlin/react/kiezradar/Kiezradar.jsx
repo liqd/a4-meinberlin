@@ -6,6 +6,7 @@ import { alert as Alert } from 'adhocracy4'
 
 const KiezradarMap = React.lazy(() => import('./KiezradarMap'))
 
+const loadingMapText = django.gettext('Loading map...')
 const nameYourKiezText = django.gettext('Name your Kiez selection')
 const saveText = django.gettext('Save Kiez selection')
 const savingText = django.gettext('Saving')
@@ -15,11 +16,30 @@ const errorLimitedExceededText = django.gettext(
 )
 const errorUpdateKiezText = django.gettext('Failed to update kiezradar filter')
 
-export default function Kiezradar ({ kiezradar, ...props }) {
+const CENTRAL_BERLIN = [13.4050, 52.5200]
+const MIN_RADIUS = 500
+const MAX_RADIUS = 3000
+
+const defaultPoint = {
+  type: 'Feature',
+  geometry: {
+    type: 'Point',
+    coordinates: CENTRAL_BERLIN
+  }
+}
+
+export default function Kiezradar ({ kiezradar, onKiezradarSave, ...props }) {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [limitExceeded, setLimitExceeded] = useState(false)
+  const [point, setPoint] = useState(kiezradar?.point ?? defaultPoint)
+  const [radius, setRadius] = useState(kiezradar?.radius ?? MIN_RADIUS)
+
+  const handleLocationChange = ({ point, radius }) => {
+    setPoint(point)
+    setRadius(radius)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -29,7 +49,8 @@ export default function Kiezradar ({ kiezradar, ...props }) {
     try {
       const payload = {
         name: e.target.elements.name.value,
-        radius: e.target.elements.radius.value
+        point,
+        radius
       }
       const url = props.apiUrl + (kiezradar ? kiezradar.id + '/' : '')
       const method = kiezradar ? 'PATCH' : 'POST'
@@ -46,6 +67,7 @@ export default function Kiezradar ({ kiezradar, ...props }) {
         throw new Error(errorUpdateKiezText)
       }
 
+      onKiezradarSave(data)
       navigate(props.kiezradarFiltersUrl)
     } catch (err) {
       setError(err.message)
@@ -53,6 +75,8 @@ export default function Kiezradar ({ kiezradar, ...props }) {
       setLoading(false)
     }
   }
+
+  const markerPosition = [...point.geometry.coordinates].reverse()
 
   return (
     <>
@@ -64,11 +88,18 @@ export default function Kiezradar ({ kiezradar, ...props }) {
           />
         </div>
       )}
-      <Suspense fallback={<div>Loading map...</div>}>
-        <KiezradarMap />
+      <Suspense fallback={<div>{loadingMapText}</div>}>
+        <KiezradarMap
+          {...props}
+          center={kiezradar ? markerPosition : null}
+          position={markerPosition}
+          radius={radius}
+          minRadius={MIN_RADIUS}
+          maxRadius={MAX_RADIUS}
+          onChange={handleLocationChange}
+        />
       </Suspense>
       <form className="form--base" onSubmit={handleSubmit}>
-        <input name="radius" type="hidden" value={kiezradar?.radius ?? 500.0} />
         <div className="form-group form-group form-group--inline fullspace align-bottom">
           <div className="form-group">
             <label htmlFor="name">{nameYourKiezText}*</label>

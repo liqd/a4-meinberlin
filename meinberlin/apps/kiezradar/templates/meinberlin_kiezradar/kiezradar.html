@@ -4,15 +4,20 @@
 {% block title %}{% translate 'Kiez selection' %} - {{ block.super }}{% endblock title %}
 
 {% block extra_js %}
-    <script type="text/javascript" src="{% static 'react_kiezradar.js' %}"></script>
     {{ block.super }}
 {% endblock extra_js %}
 
-{% block breadcrumbs %}
-{% endblock breadcrumbs %}
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'react_kiezradar.css' %}" />
+{% endblock extra_css %}
 
 {% block content %}
 <div id="layout-grid__area--maincontent">
     {% react_kiezradar %}
 </div>
 {% endblock content %}
+
+{% block extra_js_deferred %}
+    <script src="{% static 'react_kiezradar.js' %}"></script>
+{% endblock extra_js_deferred %}

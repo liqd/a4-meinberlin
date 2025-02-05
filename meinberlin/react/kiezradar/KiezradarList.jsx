@@ -75,8 +75,7 @@ export default function KiezradarList ({
         prevKiezradars.filter((prevKiezradar) => prevKiezradar.id !== kiezradar.id)
       )
 
-      onKiezradarDelete()
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      onKiezradarDelete(kiezradar)
     } catch (err) {
       setError(err.message)
     } finally {

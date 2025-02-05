@@ -11,7 +11,7 @@ function init () {
     root.render(
       <React.StrictMode>
         <BrowserRouter>
-          <Kiezradars {...props} />
+          <Kiezradars {...props} bounds={JSON.parse(props.bounds)} />
         </BrowserRouter>
       </React.StrictMode>
     )

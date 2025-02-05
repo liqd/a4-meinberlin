@@ -14,7 +14,7 @@ from meinberlin.apps.organisations.models import Organisation
 
 
 class KiezRadarSerializer(serializers.ModelSerializer):
-    point = serializers.JSONField(required=False, write_only=True, binary=True)
+    point = serializers.JSONField(required=False)
 
     class Meta:
         model = KiezRadar

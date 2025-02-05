@@ -1,3 +1,5 @@
+import json
+
 import pytest
 from django.urls import reverse
 
@@ -25,7 +27,7 @@ def test_user_can_create_kiezradar(user, apiclient, geojson_point, geojson_point
     assert KiezRadar.objects.count() == 1
     kiezradar = KiezRadar.objects.first()
     assert kiezradar.name == payload["name"]
-    assert kiezradar.point == geojson_point
+    assert json.loads(kiezradar.point) == geojson_point
 
 
 @pytest.mark.django_db
@@ -83,7 +85,7 @@ def test_user_can_update_kiezradar(apiclient, kiez_radar_factory):
     assert KiezRadar.objects.count() == 1
     kiezradar = KiezRadar.objects.first()
     assert kiezradar.name == payload["name"]
-    assert kiezradar.point == {}
+    assert json.loads(kiezradar.point) == {}
 
 
 @pytest.mark.django_db

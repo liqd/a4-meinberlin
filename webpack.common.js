@@ -96,7 +96,11 @@ module.exports = {
       import: './meinberlin/react/plans/react_map_teaser.jsx'
     },
     react_kiezradar: {
-      import: './meinberlin/react/kiezradar/react_kiezradar_init.jsx'
+      import: [
+        'leaflet/dist/leaflet.css',
+        'maplibre-gl/dist/maplibre-gl.css',
+        './meinberlin/react/kiezradar/react_kiezradar_init.jsx'
+      ]
     },
     react_kiezradar_search_profiles: {
       import: './meinberlin/react/kiezradar/react_kiezradar_search_profiles_init.jsx'

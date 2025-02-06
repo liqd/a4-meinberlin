@@ -90,28 +90,16 @@
             {% endfor %}
           </ul>
         </article>
-      {% elif view.is_project_view %}
-        <ul class="list--clean">
-          {% for module in modules %}
-            <li>
-              {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=module %}
-            </li>
-          {% endfor %}
-        </ul>
-      {% else %}
-        <!-- if just one module and no phase view to dispatch to -->
-        <div class="modul-servicepanel fullwidth panel--heavy phase-info">
-          <div class="servicepanel__main">
-            {% include "a4modules/includes/module_detail_phase.html" %}
-          </div>
-          <!-- these blocks are only filled when in phase view -->
-          <div class="servicepanel__right phase-info__cta">
-            {% block project_action %}{% endblock project_action %}
-          </div>
-        </div>
       {% endif %}
-      {% block voting_token_field %}{% endblock voting_token_field %}
-      {% block phase_content %}{% endblock phase_content %}
+      <h2>{% translate "Online Participation" %}</h2>
+      <ul class="list--clean flexgrid grid--3">
+        {% get_sorted_modules as modules %}
+        {% for module in modules %}
+          <li>
+            {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=module %}
+          </li>
+        {% endfor %}
+      </ul>
     </section>
     <section aria-labelledby="tab-project-{{ project.pk }}-result">
       <h2 class="mt-0" id="tab-project-{{ project.pk }}-result">{% translate "Result" %}</h2>

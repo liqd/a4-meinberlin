@@ -21,19 +21,21 @@ def test_list_view(client, phase_factory, proposal_factory, area_settings_factor
         phase_factory, proposal_factory, phases.RequestPhase
     )
     area_settings_factory(module=module)
-    url = project.get_absolute_url()
+    url = module.get_absolute_url()
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(response, "meinberlin_budgeting/proposal_list.html")
 
 
 @pytest.mark.django_db
-def test_list_view_qs_gets_annotated(client, phase_factory, proposal_factory, area_settings_factory):
+def test_list_view_qs_gets_annotated(
+    client, phase_factory, proposal_factory, area_settings_factory
+):
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
     area_settings_factory(module=module)
-    url = project.get_absolute_url()
+    url = module.get_absolute_url()
 
     with freeze_phase(phase):
         response = client.get(url)
@@ -45,12 +47,14 @@ def test_list_view_qs_gets_annotated(client, phase_factory, proposal_factory, ar
 
 
 @pytest.mark.django_db
-def test_list_view_ordering_choices(client, phase_factory, proposal_factory, area_settings_factory):
+def test_list_view_ordering_choices(
+    client, phase_factory, proposal_factory, area_settings_factory
+):
     phase, module, project, item = setup_phase(
         phase_factory, proposal_factory, phases.RatingPhase
     )
     area_settings_factory(module=module)
-    url = project.get_absolute_url()
+    url = module.get_absolute_url()
     with freeze_phase(phase):
         response = client.get(url)
         view = response.context["view"]
@@ -66,7 +70,7 @@ def test_list_view_ordering_choices(client, phase_factory, proposal_factory, are
         phase_factory, proposal_factory, phases.SupportPhase
     )
     area_settings_factory(module=module)
-    url = project.get_absolute_url()
+    url = module.get_absolute_url()
     with freeze_phase(phase):
         response = client.get(url)
         view = response.context["view"]
@@ -80,7 +84,9 @@ def test_list_view_ordering_choices(client, phase_factory, proposal_factory, are
 
 
 @pytest.mark.django_db
-def test_list_view_default_filters(client, module, phase_factory, area_settings_factory):
+def test_list_view_default_filters(
+    client, module, phase_factory, area_settings_factory
+):
     area_settings_factory(module=module)
     support_phase = phase_factory(
         phase_content=phases.SupportPhase(),
@@ -133,13 +139,19 @@ def test_list_view_default_filters(client, module, phase_factory, area_settings_
 
 @pytest.mark.django_db
 def test_list_view_token_form(
-    client, user, phase_factory, proposal_factory, voting_token_factory, module_factory, area_settings_factory
+    client,
+    user,
+    phase_factory,
+    proposal_factory,
+    voting_token_factory,
+    module_factory,
+    area_settings_factory,
 ):
     phase, module, project, item = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
     area_settings_factory(module=module)
-    url = project.get_absolute_url()
+    url = module.get_absolute_url()
     token = voting_token_factory(module=module)
 
     data = {"token": str(token)}
@@ -181,13 +193,18 @@ def test_list_view_token_form(
 
 @pytest.mark.django_db
 def test_list_view_token_form_redirect(
-    client, user, phase_factory, proposal_factory, voting_token_factory, area_settings_factory
+    client,
+    user,
+    phase_factory,
+    proposal_factory,
+    voting_token_factory,
+    area_settings_factory,
 ):
     phase, module, project, item = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
     area_settings_factory(module=module)
-    url = project.get_absolute_url()
+    url = module.get_absolute_url()
     token = voting_token_factory(module=module)
 
     data = {"token": str(token)}
@@ -354,7 +371,7 @@ def test_detail_view_token_in_session(
     area_settings_factory(module=module_2)
 
     token_1 = voting_token_factory(module=module_1)
-    project_url = project_1.get_absolute_url()
+    project_url = module_1.get_absolute_url()
     data = {"token": str(token_1)}
 
     proposal_1_url = proposal_1.get_absolute_url()

@@ -44,10 +44,6 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
         verbose_name=_("Title of your plan"),
     )
 
-    @property
-    def name(self):
-        return self.title
-
     organisation = models.ForeignKey(
         settings.A4_ORGANISATIONS_MODEL,
         on_delete=models.CASCADE,

@@ -25,10 +25,8 @@ from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.filters.widgets import DropdownLinkWidget
 from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
-from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
-from adhocracy4.projects.mixins import ProjectModuleDispatchMixin
 from meinberlin.apps.offlineevents.models import OfflineEvent
 
 from . import forms
@@ -339,9 +337,7 @@ class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
         return self.project
 
 
-class ProjectDetailView(
-    PermissionRequiredMixin, ProjectModuleDispatchMixin, DisplayProjectOrModuleMixin
-):
+class ProjectDetailView(PermissionRequiredMixin, generic.DetailView):
     model = models.Project
     permission_required = "a4projects.view_project"
 
@@ -353,13 +349,13 @@ class ProjectDetailView(
             return ["meinberlin_projects/project_bplan_detail.html"]
         return ["meinberlin_projects/project_detail.html"]
 
-    @cached_property
-    def is_project_view(self):
-        return self.get_current_modules()
-
     @property
     def raise_exception(self):
         return self.request.user.is_authenticated
+
+    @cached_property
+    def project(self):
+        return self.get_object()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -1,3 +1,5 @@
+import itertools
+
 from django import template
 from django.db.models import Count
 from django.db.models import Q
@@ -30,6 +32,24 @@ def is_external(project):
     return (
         project.project_type == "meinberlin_bplan.Bplan"
         or project.project_type == "meinberlin_extprojects.ExternalProject"
+    )
+
+
+@register.simple_tag(takes_context=True)
+def get_sorted_modules(context):
+    project = context["project"]
+    module = context.get("module", None)
+    module_qs = project.modules
+
+    if module:
+        module_qs = module.other_modules
+
+    return list(
+        itertools.chain(
+            module_qs.running_modules(),
+            module_qs.future_modules(),
+            module_qs.past_modules(),
+        )
     )
 
 

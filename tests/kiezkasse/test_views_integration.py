@@ -15,7 +15,7 @@ def test_list_view(client, phase_factory, proposal_factory, area_settings_factor
         phase_factory, proposal_factory, phases.RequestPhase
     )
     area_settings_factory(module=module)
-    url = project.get_absolute_url()
+    url = module.get_absolute_url()
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(response, "meinberlin_kiezkasse/proposal_list.html")

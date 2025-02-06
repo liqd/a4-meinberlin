@@ -77,19 +77,16 @@
       {% block voting_token_field %}{% endblock voting_token_field %}
       {% block phase_content %}{% endblock phase_content %}
       {% if module.is_in_module_cluster %}
-        <section class="participation-tile__wrapper">
-          <div class="participation-tile__list-container">
-            <h2 class="participation-tile__list-header">{% translate 'More from this online participation:' %}</h2>
-            <ul class="u-list-reset participation-tile__list">
-              {% for other_module in module.module_cluster %}
-                {% if not other_module == module %}
-                  <li>
-                    {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=other_module %}
-                  </li>
-                {% endif %}
-              {% endfor %}
-            </ul>
-          </div>
+        <section>
+          <h2>{% translate 'More from this online participation:' %}</h2>
+          <ul class="list--clean flexgrid grid--3">
+            {% get_sorted_modules as modules %}
+            {% for module in modules %}
+              <li>
+                {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=module %}
+              </li>
+            {% endfor %}
+          </ul>
         </section>
       {% endif %}
     </section>

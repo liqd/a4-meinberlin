@@ -17,7 +17,7 @@ def test_list_view(client, phase_factory, idea_factory):
     phase_2, module_2, project_2, idea_2 = setup_phase(
         phase_factory, idea_factory, phases.FeedbackPhase
     )
-    url = project.get_absolute_url()
+    url = module.get_absolute_url()
 
     with freeze_phase(phase):
         response = client.get(url)
@@ -34,7 +34,7 @@ def test_list_view_qs_gets_annotated(client, phase_factory, idea_factory):
     phase, module, project, idea = setup_phase(
         phase_factory, idea_factory, phases.FeedbackPhase
     )
-    url = project.get_absolute_url()
+    url = module.get_absolute_url()
 
     with freeze_phase(phase):
         response = client.get(url)
@@ -56,7 +56,7 @@ def test_list_view_filter_set(client, phase_factory, idea_factory):
     phase, module, project, idea = setup_phase(
         phase_factory, idea_factory, phases.FeedbackPhase
     )
-    url = project.get_absolute_url()
+    url = module.get_absolute_url()
     response = client.get(url)
 
     assert len(response.context["view"].filter_set.base_filters)

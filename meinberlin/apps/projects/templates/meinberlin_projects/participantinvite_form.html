@@ -3,6 +3,7 @@
 
 {% block title %}{% blocktranslate with project=participantinvite.project.name %}Project: {{ project }}{% endblocktranslate %}{% endblock title %}
 {% block content %}
+<div class="narrow-wrapper">
     <div class="container">
         <div class="offset-lg-3 col-lg-6">
             <h1>{% blocktranslate with project=participantinvite.project.name %}Do you want to join {{ project }}?{% endblocktranslate %}</h1>
@@ -24,4 +25,5 @@
             </form>
         </div>
     </div>
+</div>
 {% endblock content %}

@@ -16,7 +16,7 @@ def test_list_view(client, phase_factory, map_idea_factory, area_settings_factor
         phase_factory, map_idea_factory, phases.FeedbackPhase
     )
     area_settings_factory(module=module_2)
-    url = project.get_absolute_url()
+    url = module.get_absolute_url()
 
     with freeze_phase(phase):
         response = client.get(url)

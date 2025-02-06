@@ -11,7 +11,7 @@ def test_document_detail_view(client, phase_factory, chapter_factory):
     phase, module, project, item = setup_phase(
         phase_factory, chapter_factory, phases.CommentPhase
     )
-    url = project.get_absolute_url()
+    url = module.get_absolute_url()
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(response, "meinberlin_documents/chapter_detail.html")

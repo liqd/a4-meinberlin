@@ -22,7 +22,7 @@ def test_token_deleted_from_session(
     proposal_ct = ContentType.objects.get_for_model(proposal.__class__)
     token = voting_token_factory(module=module)
 
-    url_project = project.get_absolute_url()
+    url_module = module.get_absolute_url()
 
     url_post = reverse(
         "tokenvotes-list",
@@ -44,7 +44,7 @@ def test_token_deleted_from_session(
 
     with freeze_time(phase_started):
         # post token
-        response = apiclient.post(url_project, token_data)
+        response = apiclient.post(url_module, token_data)
         assert response.status_code == 302
 
         # post and delete token vote
@@ -65,7 +65,7 @@ def test_token_deleted_from_session(
         assert "token_expire_date" not in apiclient.session
 
         # post token again
-        response = apiclient.post(url_project, token_data)
+        response = apiclient.post(url_module, token_data)
         assert response.status_code == 302
 
         response = apiclient.post(url_post, proposal_data, format="json")

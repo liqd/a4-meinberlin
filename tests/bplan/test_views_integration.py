@@ -13,7 +13,7 @@ def test_statement_form_view(client, phase_factory, bplan_factory, module_factor
     bplan = bplan_factory(is_draft=False)
     module = module_factory(project=bplan)
     phase = phase_factory(phase_content=phases.StatementPhase(), module=module)
-    url = bplan.get_absolute_url()
+    url = module.get_absolute_url()
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(
@@ -39,7 +39,7 @@ def test_statement_form_view_no_captcha(
     bplan = bplan_factory(is_draft=False)
     module = module_factory(project=bplan)
     phase = phase_factory(phase_content=phases.StatementPhase(), module=module)
-    url = bplan.get_absolute_url()
+    url = module.get_absolute_url()
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(
@@ -65,7 +65,7 @@ def test_statement_emails(client, phase_factory, bplan_factory, module_factory):
     bplan = bplan_factory(is_draft=False)
     module = module_factory(project=bplan)
     phase = phase_factory(phase_content=phases.StatementPhase(), module=module)
-    url = bplan.get_absolute_url()
+    url = module.get_absolute_url()
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(
@@ -101,7 +101,7 @@ def test_statement_form_view_post_phase(
     bplan = bplan_factory(is_draft=False)
     module = module_factory(project=bplan)
     phase = phase_factory(phase_content=phases.StatementPhase(), module=module)
-    url = bplan.get_absolute_url()
+    url = module.get_absolute_url()
     with freeze_post_phase(phase):
         response = client.get(url)
         assert response.status_code == 302

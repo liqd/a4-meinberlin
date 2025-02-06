@@ -157,6 +157,8 @@
 
 .kiezradar__map {
   margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 0;
 
   @media screen and (min-width: $breakpoint-tablet) {
     margin-bottom: 2rem;

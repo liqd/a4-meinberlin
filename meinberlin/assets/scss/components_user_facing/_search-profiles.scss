@@ -151,6 +151,15 @@
     margin-left: -1.25rem;
 }
 
+.save-search-profile {
+    margin-bottom: 0.9375rem;
+    text-align: right;
+
+    @media screen and (min-width: $breakpoint-palm) {
+        margin-bottom: 0;
+    }
+}
+
 .save-search-profile__action {
     color: $gray-darkest;
     line-height: 1.5rem;

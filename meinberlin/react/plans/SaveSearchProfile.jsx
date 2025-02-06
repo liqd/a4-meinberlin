@@ -16,29 +16,37 @@ export default function SaveSearchProfile ({
 }) {
   if (!isAuthenticated) {
     return (
-      <a
-        className="save-search-profile__action save-search-profile__action--link"
-        href={
-          '/accounts/login/?next=' +
-          window.location.pathname +
-          window.location.search
-        }
-      >
-        <Icon />
-        {loginText}
-      </a>
+      <div className="save-search-profile">
+        <a
+          className="save-search-profile__action save-search-profile__action--link"
+          href={
+            '/accounts/login/?next=' +
+            window.location.pathname +
+            window.location.search
+          }
+        >
+          <Icon />
+          {loginText}
+        </a>
+      </div>
     )
   }
 
   if (searchProfile) {
     return (
-      <a className="save-search-profile__action save-search-profile__action--link" href="/account/search-profiles">
-        {viewText}
-      </a>
+      <div className="save-search-profile">
+        <a className="save-search-profile__action save-search-profile__action--link" href="/account/search-profiles">
+          {viewText}
+        </a>
+      </div>
     )
   }
 
-  return <CreateSearchProfileButton {...props} searchProfilesCount={searchProfilesCount} />
+  return (
+    <div className="save-search-profile">
+      <CreateSearchProfileButton {...props} searchProfilesCount={searchProfilesCount} />
+    </div>
+  )
 }
 
 function CreateSearchProfileButton ({

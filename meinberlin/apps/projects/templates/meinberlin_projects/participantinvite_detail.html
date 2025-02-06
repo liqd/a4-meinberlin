@@ -3,6 +3,7 @@
 
 {% block title %}{% blocktranslate with project=participantinvite.project.name %}Project: {{ project }}{% endblocktranslate %}{% endblock %}
 {% block content %}
+<div class="narrow-wrapper">
     <div class="container">
         <div class="offset-lg-3 col-lg-6">
             <h1>{% blocktranslate with project=participantinvite.project.name %}Do you want to take part in "{{ project }}"?{% endblocktranslate %}</h1>
@@ -22,4 +23,5 @@
             <a class="btn btn--light" href="{% url 'account_signup' %}?next={% url 'project-participant-invite-detail' invite_token=participantinvite.token %}">{% translate "Register" %}</a>
         </div>
     </div>
+</div>
 {% endblock %}

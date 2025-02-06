@@ -9,7 +9,6 @@ const noSavedKiezradarsText = django.gettext('No saved Kiezes')
 const addKiezText = django.gettext('Add Kiez')
 const yourKiezradarsText = django.gettext('Your Kiezes')
 const errorText = django.gettext('Error')
-const errorKiezesText = django.gettext('Failed to fetch Kiezes')
 const errorDeleteKiezesText = django.gettext(
   'Failed to delete kiezradar'
 )
@@ -30,35 +29,13 @@ export default function KiezradarList ({
   planListUrl,
   kiezradarFiltersUrl,
   kiezradarNewUrl,
+  kiezradars,
+  limitExceeded,
   onKiezradarDelete
 }) {
-  const [kiezradars, setKiezradars] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [deleteModal, setDeleteModal] = useState(null)
-
-  useEffect(() => {
-    const fetchKiezradars = async () => {
-      try {
-        setLoading(true)
-        setError(null)
-
-        const response = await fetch(apiUrl)
-
-        if (!response.ok) {
-          throw new Error(errorKiezesText)
-        }
-
-        const data = await response.json()
-        setKiezradars(data)
-      } catch (err) {
-        setError(err.message)
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchKiezradars()
-  }, [])
 
   const handleDelete = async (kiezradar) => {
     try {
@@ -70,10 +47,6 @@ export default function KiezradarList ({
       if (!response.ok) {
         throw new Error(errorDeleteKiezesText)
       }
-
-      setKiezradars((prevKiezradars) =>
-        prevKiezradars.filter((prevKiezradar) => prevKiezradar.id !== kiezradar.id)
-      )
 
       onKiezradarDelete(kiezradar)
     } catch (err) {
@@ -157,12 +130,19 @@ export default function KiezradarList ({
                         </ul>
                       </section>
                       <div className="kiezradar-list__button-container">
-                        <Link
-                          to={kiezradarNewUrl}
-                          className="button kiezradar-list__button"
-                        >
-                          {addKiezText}
-                        </Link>
+                        {limitExceeded
+                          ? (
+                            <button className="button" disabled>
+                              {addKiezText}
+                            </button>
+                            )
+                          : (
+                            <Link
+                              to={kiezradarNewUrl}
+                              className="button"
+                            >
+                              {addKiezText}
+                            </Link>)}
                       </div>
                     </>
                     )}

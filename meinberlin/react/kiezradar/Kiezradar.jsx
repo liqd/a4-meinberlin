@@ -11,9 +11,6 @@ const nameYourKiezText = django.gettext('Name your Kiez selection')
 const saveText = django.gettext('Save Kiez selection')
 const savingText = django.gettext('Saving')
 const errorText = django.gettext('Error')
-const errorLimitedExceededText = django.gettext(
-  'Users can only have up to 5 kiezradar filters. Delete a filter to create a new one.'
-)
 const errorUpdateKiezText = django.gettext('Failed to update kiezradar filter')
 
 const CENTRAL_BERLIN = [13.4050, 52.5200]
@@ -28,11 +25,17 @@ const defaultPoint = {
   }
 }
 
-export default function Kiezradar ({ kiezradar, onKiezradarSave, ...props }) {
+export default function Kiezradar ({
+  kiezradar,
+  apiUrl,
+  kiezradarFiltersUrl,
+  limitExceeded,
+  onKiezradarSave,
+  ...props
+}) {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
-  const [limitExceeded, setLimitExceeded] = useState(false)
   const [point, setPoint] = useState(kiezradar?.point ?? defaultPoint)
   const [radius, setRadius] = useState(kiezradar?.radius ?? MIN_RADIUS)
 
@@ -52,23 +55,18 @@ export default function Kiezradar ({ kiezradar, onKiezradarSave, ...props }) {
         point,
         radius
       }
-      const url = props.apiUrl + (kiezradar ? kiezradar.id + '/' : '')
+      const url = apiUrl + (kiezradar ? kiezradar.id + '/' : '')
       const method = kiezradar ? 'PATCH' : 'POST'
 
       const response = await updateItem(payload, url, method)
       const data = await response.json()
-
-      if (data.non_field_errors) {
-        setLimitExceeded(true)
-        throw new Error(errorLimitedExceededText)
-      }
 
       if (!response.ok) {
         throw new Error(errorUpdateKiezText)
       }
 
       onKiezradarSave(data)
-      navigate(props.kiezradarFiltersUrl)
+      navigate(kiezradarFiltersUrl)
     } catch (err) {
       setError(err.message)
     } finally {
@@ -115,7 +113,7 @@ export default function Kiezradar ({ kiezradar, onKiezradarSave, ...props }) {
             <button
               className="button"
               type="submit"
-              disabled={loading || limitExceeded}
+              disabled={loading || (!kiezradar && limitExceeded)}
             >
               {loading ? savingText + '...' : saveText}
             </button>

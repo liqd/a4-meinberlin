@@ -14,30 +14,39 @@ const translations = {
   ),
   manageKiezesText: django.gettext('Manage Kiezes'),
   createKiezText: django.gettext('Create a Kiez'),
+  kiezCreatedTitle: (title) =>
+    django.interpolate(
+      django.gettext('Your Kiez %(title)s has been successfully created'),
+      { title },
+      true
+    ),
   kiezCreatedText: (title) =>
     django.interpolate(
       django.gettext(
-        'Your kiez %(title)s has been successfully created. You can find it under “Kiezes & Districts” on the Kiezradar page. By selecting %(title)s you can explore projects from this Kiez. Individual adjustments are possible in the user settings under “Manage Kiezes”.'
+        'You can find %(title)s under “Kiezes & Districts” on the Kiezradar page. By selecting %(title)s you can explore projects from this Kiez. Individual adjustments are possible under “Manage Kiezes”.'
       ),
       { title },
       true
     ),
-  kiezSavedText: (title) =>
+  kiezSavedTitle: (title) =>
     django.interpolate(
-      django.gettext(
-        '%(title)s successfully updated. Your changes have been saved.'
-      ),
+      django.gettext('%(title)s successfully updated'),
       { title },
       true
     ),
+  kiezSavedText: django.gettext('Your changes have been saved.'),
+  kiezDeletedTitle: (title) =>
+    django.interpolate(django.gettext('%(title)s deleted'), { title }, true),
   kiezDeletedText: (title) =>
     django.interpolate(
       django.gettext('%(title)s has been permanently deleted.'),
       { title },
       true
     ),
+  errorText: django.gettext('Error'),
   errorKiezesText: django.gettext('Failed to fetch Kiezes'),
-  limitExceededText: django.gettext('You’ve reached the maximum number of 5 Kiez allowed. To save a new one, you’ll need to delete an existing Kiez.')
+  limitExceededTitle: django.gettext('You have reached the limit of saved Kieze'),
+  limitExceededText: django.gettext('You are using the maximum number of 5 Kieze. To create a new Kiez, you must delete an existing one.')
 }
 
 export default function Kiezradars (props) {
@@ -80,9 +89,16 @@ export default function Kiezradars (props) {
 
   return (
     <>
+      {limitExceeded && (
+        <Alert
+          title={translations.limitExceededTitle}
+          message={translations.limitExceededText}
+        />
+      )}
       {error && (
         <Alert
           type="danger"
+          title={translations.errorText}
           message={error}
           onClick={() => setError(null)}
         />
@@ -90,12 +106,10 @@ export default function Kiezradars (props) {
       {alert && (
         <Alert
           type="success"
+          title={alert.title}
           message={alert.message}
           onClick={() => setAlert(null)}
         />
-      )}
-      {limitExceeded && (
-        <AlertLimit />
       )}
       <h1>{translations.titleText}</h1>
       <p>{translations.descriptionText}</p>
@@ -142,6 +156,7 @@ export default function Kiezradars (props) {
                         setKiezradars((prevKiezradars) => prevKiezradars.filter((prevKiezradar) => prevKiezradar.id !== kiezradar.id))
 
                         handleAlert({
+                          title: translations.kiezDeletedTitle(kiezradar.name),
                           message: translations.kiezDeletedText(kiezradar.name)
                         })
                       }}
@@ -160,6 +175,7 @@ export default function Kiezradars (props) {
                         )
 
                         handleAlert({
+                          title: translations.kiezCreatedTitle(kiezradar.name),
                           message: translations.kiezCreatedText(kiezradar.name)
                         })
                       }}
@@ -181,7 +197,8 @@ export default function Kiezradars (props) {
                         )
 
                         handleAlert({
-                          message: translations.kiezSavedText(kiezradar.name)
+                          title: translations.kiezSavedTitle(kiezradar.name),
+                          message: translations.kiezSavedText
                         })
                       }}
                     />
@@ -191,20 +208,5 @@ export default function Kiezradars (props) {
             </div>)}
       </div>
     </>
-  )
-}
-
-function AlertLimit () {
-  const [active, isActive] = useState(true)
-
-  if (!active) {
-    return null
-  }
-
-  return (
-    <Alert
-      message={translations.limitExceededText}
-      onClick={() => isActive(false)}
-    />
   )
 }

@@ -1,11 +1,12 @@
 import L from 'leaflet'
-import React, { useRef } from 'react'
+import React, { useMemo, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import django from 'django'
 import { Circle, MapContainer, Marker, useMap, useMapEvents, ZoomControl } from 'react-leaflet'
 import { AddressSearch } from 'adhocracy4'
 import ControlWrapper from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/ControlWrapper'
 import MaplibreGlLayer from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/MaplibreGlLayer'
+import * as turf from '@turf/turf'
 
 const chooseYourRadiusText = django.gettext('Choose your radius')
 
@@ -15,6 +16,7 @@ export default function KiezradarMap ({
   minRadius,
   maxRadius,
   onChange,
+  polygon,
   ...mapProps
 }) {
   const handleRadiusChange = ({ point, radius }) => {
@@ -45,6 +47,7 @@ export default function KiezradarMap ({
           <Radius
             position={position}
             radius={radius}
+            polygon={polygon}
             minRadius={minRadius}
             maxRadius={maxRadius}
             onChange={handleRadiusChange}
@@ -60,6 +63,7 @@ export default function KiezradarMap ({
 function Radius ({
   position,
   radius,
+  polygon,
   minRadius,
   maxRadius,
   onChange
@@ -67,19 +71,30 @@ function Radius ({
   const markerRef = useRef(null)
   const isTouchDevice = window.matchMedia('(pointer: coarse)').matches
 
+  const turfPolygon = useMemo(
+    () => turf.polygon(polygon.features[0].geometry.coordinates),
+    []
+  )
+
   useMapEvents({
     click: (e) => {
       if (isTouchDevice) {
-        onChange({
-          point: {
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              coordinates: [e.latlng.lng, e.latlng.lat]
-            }
-          },
-          radius
-        })
+        const point = {
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [e.latlng.lng, e.latlng.lat]
+          }
+        }
+
+        const isPointInPolygon = turf.booleanPointInPolygon(point, turfPolygon)
+
+        if (isPointInPolygon) {
+          onChange({
+            point,
+            radius
+          })
+        }
       }
     }
   })
@@ -117,15 +132,19 @@ function Radius ({
         eventHandlers={{
           dragend: () => {
             const marker = markerRef.current
-            if (marker != null) {
-              onChange({ point: marker.toGeoJSON(), radius })
+            if (!marker) return
+
+            const point = marker.toGeoJSON()
+            const isPointInPolygon = turf.booleanPointInPolygon(point, turfPolygon)
+
+            if (isPointInPolygon) {
+              onChange({ point, radius })
+            } else {
+              marker.setLatLng(position)
             }
           }
         }}
-        position={{
-          lat: position[0],
-          lng: position[1]
-        }}
+        position={position}
         ref={markerRef}
       />
       <Circle center={position} color="#00A982" radius={radius} />

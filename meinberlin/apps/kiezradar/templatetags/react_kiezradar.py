@@ -33,6 +33,7 @@ def react_kiezradar():
         "baseUrl": settings.A4_MAP_BASEURL,
         "mapboxToken": mapbox_token,
         "omtToken": omt_token,
+        "polygon": settings.BERLIN_POLYGON,
     }
 
     return format_html(

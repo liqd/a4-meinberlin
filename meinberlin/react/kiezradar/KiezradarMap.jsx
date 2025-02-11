@@ -2,7 +2,7 @@ import L from 'leaflet'
 import React, { useRef } from 'react'
 import { createPortal } from 'react-dom'
 import django from 'django'
-import { Circle, MapContainer, Marker, useMap, ZoomControl } from 'react-leaflet'
+import { Circle, MapContainer, Marker, useMap, useMapEvents, ZoomControl } from 'react-leaflet'
 import { AddressSearch } from 'adhocracy4'
 import ControlWrapper from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/ControlWrapper'
 import MaplibreGlLayer from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/MaplibreGlLayer'
@@ -65,6 +65,24 @@ function Radius ({
   onChange
 }) {
   const markerRef = useRef(null)
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches
+
+  useMapEvents({
+    click: (e) => {
+      if (isTouchDevice) {
+        onChange({
+          point: {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [e.latlng.lng, e.latlng.lat]
+            }
+          },
+          radius
+        })
+      }
+    }
+  })
 
   const radiusControls = (
     <RadiusControls

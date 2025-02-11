@@ -4,6 +4,11 @@
     background-color: $message-light-blue;
 }
 
+.alert a {
+    color: inherit;
+    text-decoration: underline;
+}
+
 .alert__content {
     padding: 1.125rem 2rem 1.125rem 1.125rem;
     margin: 0 auto;

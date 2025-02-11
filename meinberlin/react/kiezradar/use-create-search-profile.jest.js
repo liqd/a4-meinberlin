@@ -156,6 +156,8 @@ describe('useCreateSearchProfile', () => {
       search: ''
     }
 
+    const mockOnSearchProfileCreate = jest.fn()
+
     const { result } = renderHook(() =>
       useCreateSearchProfile({
         searchProfilesApiUrl,
@@ -166,7 +168,7 @@ describe('useCreateSearchProfile', () => {
         participationChoices,
         projectStatus,
         searchProfilesCount: 10,
-        onSearchProfileCreate: () => {}
+        onSearchProfileCreate: mockOnSearchProfileCreate
       })
     )
 
@@ -175,5 +177,6 @@ describe('useCreateSearchProfile', () => {
     })
 
     expect(result.current.limitExceeded).toBe(true)
+    expect(mockOnSearchProfileCreate).toHaveBeenCalledWith(null, true)
   })
 })

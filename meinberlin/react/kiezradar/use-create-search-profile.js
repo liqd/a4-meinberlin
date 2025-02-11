@@ -30,6 +30,7 @@ export function useCreateSearchProfile ({
   const createSearchProfile = async () => {
     if (searchProfilesCount === 10) {
       setLimitExceeded(true)
+      onSearchProfileCreate(null, true)
       return
     }
 

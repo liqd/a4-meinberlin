@@ -24,7 +24,21 @@ const translated = {
   plans: django.gettext('Plans'),
   nav: django.gettext('Search, filter and sort the ideas list'),
   searchFor: django.gettext('Search for Proposals'),
-  button: django.gettext('Show projects')
+  button: django.gettext('Show projects'),
+  searchProfileCreatedTitle: django.gettext('Search profile created successfully'),
+  searchProfileCreatedText: (url) =>
+    django.interpolate(
+      django.gettext('You will be informed about new projects that meet the selected filters. You can manage your search profiles in the User Settings under <a href="%(url)s">Search Profiles</a>.'),
+      { url },
+      true
+    ),
+  searchProfileLimitExceededTitle: django.gettext('Search profile cannot be saved'),
+  searchProfileLimitExceededText: (url) =>
+    django.interpolate(
+      django.gettext('You have saved the maximum number of 10 search profiles. To save a new one, delete an existing profile in the User Settings under <a href="%(url)s">Search Profiles</a>.'),
+      { url },
+      true
+    )
 }
 
 const statusNames = {
@@ -75,9 +89,12 @@ export const ProjectsControlBar = ({
   appliedFilters,
   onFiltered,
   onResetClick,
+  onAlert,
+  onError,
   hasContainer,
   searchProfile: initialSearchProfile,
   searchProfilesApiUrl,
+  searchProfilesUrl,
   searchProfilesCount: initialSearchProfilesCount,
   isAuthenticated,
   projectStatus
@@ -98,9 +115,33 @@ export const ProjectsControlBar = ({
     window.history.replaceState({}, '', window.location.pathname)
   }
 
-  const createSearchProfile = (searchProfile) => {
+  const createSearchProfile = (searchProfile, limitExceeded) => {
+    if (limitExceeded) {
+      onError({
+        title: translated.searchProfileLimitExceededTitle,
+        message: (
+          <div
+            dangerouslySetInnerHTML={{
+              __html: translated.searchProfileLimitExceededText(searchProfilesUrl)
+            }}
+          />
+        )
+      })
+      return
+    }
+
     setSearchProfile(searchProfile)
     setSearchProfilesCount(searchProfilesCount + 1)
+    onAlert({
+      title: translated.searchProfileCreatedTitle,
+      message: (
+        <div
+          dangerouslySetInnerHTML={{
+            __html: translated.searchProfileCreatedText(searchProfilesUrl)
+          }}
+        />
+      )
+    })
     window.history.replaceState({}, '', window.location.pathname + '?search-profile=' + searchProfile.id
     )
   }

@@ -22,7 +22,8 @@ function init () {
     const omtToken = el.getAttribute('data-omt-token')
     const useVectorMap = el.getAttribute('data-use_vector_map')
     const participationChoices = JSON.parse(el.getAttribute('data-participation-choices'))
-    const searchProfilesApiUrl = el.getAttribute('data-search-profiles-url')
+    const searchProfilesApiUrl = el.getAttribute('data-search-profiles-api-url')
+    const searchProfilesUrl = el.getAttribute('data-search-profiles-url')
     const searchProfilesCount = JSON.parse(el.getAttribute('data-search-profiles-count'))
     const isAuthenticated = JSON.parse(el.getAttribute('data-is-authenticated'))
     const projectStatus = JSON.parse(el.getAttribute('data-project-status'))
@@ -48,6 +49,7 @@ function init () {
           participationChoices={participationChoices}
           searchProfile={searchProfile}
           searchProfilesApiUrl={searchProfilesApiUrl}
+          searchProfilesUrl={searchProfilesUrl}
           searchProfilesCount={searchProfilesCount}
           isAuthenticated={isAuthenticated}
           projectStatus={projectStatus}

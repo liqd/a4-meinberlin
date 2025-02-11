@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import ProjectsList from '../projects/ProjectsList'
 import { ToggleSwitch } from '../contrib/ToggleSwitch'
 import { IconSwitch } from '../contrib/IconSwitch'
-import { classNames } from 'adhocracy4'
+import { alert as Alert, classNames } from 'adhocracy4'
 import sortProjects from './sort-projects'
 import ProjectsMap from './ProjectsMap'
 import Spinner from '../contrib/Spinner'
@@ -39,6 +39,7 @@ const ProjectsListMapBox = ({
   extprojectApiUrl,
   privateprojectApiUrl,
   searchProfilesApiUrl,
+  searchProfilesUrl,
   attribution,
   bounds,
   baseUrl,
@@ -60,6 +61,8 @@ const ProjectsListMapBox = ({
   const [items, setItems] = useState([])
   const fetchCache = useRef({})
   const [appliedFilters, setAppliedFilters] = useState(getDefaultState(searchProfile))
+  const [alert, setAlert] = useState(null)
+  const [error, setError] = useState(null)
 
   const fetchItems = useCallback(async () => {
     setLoading(true)
@@ -113,6 +116,26 @@ const ProjectsListMapBox = ({
 
   return (
     <div>
+      {(error || alert) && (
+        <div className="container">
+          {error && (
+            <Alert
+              type="danger"
+              title={error.title}
+              message={error.message}
+              onClick={() => setError(null)}
+            />
+          )}
+          {alert && (
+            <Alert
+              type="success"
+              title={alert.title}
+              message={alert.message}
+              onClick={() => setAlert(null)}
+            />
+          )}
+        </div>
+      )}
       <ProjectsControlBar
         participationChoices={participationChoices}
         organisations={organisations}
@@ -128,8 +151,11 @@ const ProjectsListMapBox = ({
           setAppliedFilters(getDefaultState(searchProfile))
           setProjectState(['active', 'future'])
         }}
+        onAlert={setAlert}
+        onError={setError}
         searchProfile={searchProfile}
         searchProfilesApiUrl={searchProfilesApiUrl}
+        searchProfilesUrl={searchProfilesUrl}
         searchProfilesCount={searchProfilesCount}
         isAuthenticated={isAuthenticated}
         projectStatus={projectStatus}

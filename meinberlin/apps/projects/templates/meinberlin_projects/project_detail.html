@@ -17,30 +17,59 @@
 {% endblock extra_messages %}
 
 {% block breadcrumbs %}
-    <div id="content-header">
-        <nav class="breadcrumb" aria-label='{% translate "You are here:" %}'>
-            <ol>
-                <li><a href="{% url 'wagtail_serve' '' %}">meinBerlin</a></li>
-                <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate "Kiezradar" %}</a></li>
-                <li class="active" aria-current="page">{{ project.name|truncatechars:50 }}</li>
-            </ol>
-        </nav>
-    </div>
+  <div id="content-header">
+    <nav class="breadcrumb" aria-label='{% translate "You are here:" %}'>
+      <ol>
+        <li><a href="{% url 'wagtail_serve' '' %}">meinBerlin</a></li>
+        <li>
+          <a href="{% url 'meinberlin_plans:plan-list' %}">{% translate "Kiezradar" %}</a>
+        </li>
+        <li class="active" aria-current="page">{{ project.name|truncatechars:50 }}</li>
+      </ol>
+    </nav>
+  </div>
 {% endblock breadcrumbs %}
 
 {% block content %}
-<div class="layout-grid__area--maincontent">
+  <div class="layout-grid__area--maincontent">
     {% url 'project-information' slug=project.slug as info_page %}
     {% include 'meinberlin_contrib/components/hero.html' with content=project show_buttons=True hero_link=info_page %}
 
-    <section
-      id="tabpanel-project-{{ project.pk }}-participation"
-      class="tabpanel"
-      role="tabpanel"
-      aria-expanded="true"
-      aria-hidden="false"
-      aria-labelledby="tab-project-{{ project.pk }}-participation">
-      <h2 class="mt-0">{% translate "Participate" %}</h2>
+    <section aria-labelledby="project-{{ project.pk }}-details">
+      <h2 class="mt-0" id="project-{{ project.pk }}-details">{% translate "Project details" %}</h2>
+      <ul>
+        <li>
+          {% translate "Organisation" %}<br />
+          {{ project.organisation }}
+        </li>
+        {% if project.topics %}
+          <li>
+            {% translate "Topics" %}<br />
+            {% for topic in project.topics.all %}
+              {{ topic }}
+            {% endfor %}
+          </li>
+        {% endif %}
+        {% if project.administrative_district %}
+          <li>
+            {% translate "District" %}<br />
+            {{ project.administrative_district }}
+          </li>
+        {% endif %}
+        <li>
+          {% translate "Project status" %}<br />
+          {% if project.phases.active_phases %}
+            {% translate 'running' %}
+          {% elif project.phases.future_phases %}
+            {% translate 'upcoming' %}
+          {% else %}
+            {% translate 'ended' %}
+          {% endif %}
+        </li>
+      </ul>
+    </section>
+    <section aria-labelledby="project-{{ project.pk }}-participation">
+      <h2 class="mt-0" id="project-{{ project.pk }}-participation">{% translate "Participate" %}</h2>
       {% if event %}
         <article>
           <h2>{{ event.name }}</h2>
@@ -72,14 +101,8 @@
       {% block voting_token_field %}{% endblock voting_token_field %}
       {% block phase_content %}{% endblock phase_content %}
     </section>
-    <section
-      id="tabpanel-project-{{ project.pk }}-result"
-      class="tabpanel"
-      role="tabpanel"
-      aria-expanded="false"
-      aria-hidden="true"
-      aria-labelledby="tab-project-{{ project.pk }}-result">
-      <h2 class="mt-0">{% translate "Result" %}</h2>
+    <section aria-labelledby="tab-project-{{ project.pk }}-result">
+      <h2 class="mt-0" id="tab-project-{{ project.pk }}-result">{% translate "Result" %}</h2>
       {% if project.result %}
         <div class="ck-content">
           {{ project.result | transform_collapsibles | disable_iframes | richtext }}

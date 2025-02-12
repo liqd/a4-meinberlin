@@ -83,11 +83,6 @@
     text-decoration: underline;
 }
 
-.search-profiles-list__error,
-.search-profile__error {
-    color: $danger;
-}
-
 .search-profile__form {
     margin-bottom: 1.2rem;
 }
@@ -119,14 +114,6 @@
 
 .search-profile__footer-buttons div:only-of-type {
     margin-left: auto;
-}
-
-.search-profile__alert {
-    margin-top: -1.5em;
-
-    @media screen and (min-width: $breakpoint-tablet-landscape) {
-        margin-top: -2.5em;
-    }
 }
 
 .search-profile__toggle-switch {

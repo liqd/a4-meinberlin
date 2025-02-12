@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 import django from 'django'
 import { Link } from 'react-router-dom'
 import Loading from './Loading'
 import { alert as Alert } from 'adhocracy4'
 import { updateItem } from '../contrib/helpers'
+import DeleteModal from './DeleteModal'
 
 const noSavedKiezradarsText = django.gettext('No saved Kiezes')
 const addKiezText = django.gettext('Add Kiez')
@@ -14,7 +15,6 @@ const errorDeleteKiezesText = django.gettext(
 )
 const editText = django.gettext('Edit')
 const deleteText = django.gettext('Delete')
-const closeText = django.gettext('Close')
 const viewProjectsText = django.gettext('View projects')
 const confirmDeletionText = (name) =>
   django.interpolate(
@@ -70,7 +70,8 @@ export default function KiezradarList ({
             <>
               {deleteModal?.kiezradar && (
                 <DeleteModal
-                  kiezradar={deleteModal.kiezradar}
+                  title={confirmDeletionText(deleteModal.kiezradar.name)}
+                  message={confirmDeletionDescriptionText}
                   onDelete={() => handleDelete(deleteModal.kiezradar)}
                   onClose={() => setDeleteModal(null)}
                 />
@@ -171,46 +172,5 @@ function DeleteButton ({ onDelete }) {
       <i className="fa-classic fa-regular fa-trash-can mr-1" />
       {deleteText}
     </button>
-  )
-}
-
-function DeleteModal ({ kiezradar, onDelete, onClose }) {
-  const dialogRef = useRef(null)
-
-  const closeModal = () => {
-    dialogRef.current.close()
-    onClose()
-  }
-
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === 'Escape') closeModal()
-    }
-
-    document.addEventListener('keydown', handleKeyDown)
-
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [])
-
-  useEffect(() => {
-    dialogRef.current.showModal()
-  }, [])
-
-  return (
-    <dialog className="kiezradar__modal" ref={dialogRef} aria-modal="true">
-      <button type="button" className="kiezradar__modal-close" aria-label={closeText} onClick={closeModal}>
-        <span className="fa fa-times" aria-hidden="true" />
-      </button>
-      <h3 className="kiezradar__modal-title">{confirmDeletionText(kiezradar.name)}</h3>
-      <p className="kiezradar__modal-text">{confirmDeletionDescriptionText}</p>
-      <div className="kiezradar__modal-buttons">
-        <button className="link" onClick={closeModal}>
-          {closeText}
-        </button>
-        <button className="button kiezradar__modal-button-open" onClick={onDelete}>
-          {deleteText}
-        </button>
-      </div>
-    </dialog>
   )
 }

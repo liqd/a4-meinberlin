@@ -9,6 +9,7 @@ from adhocracy4.follows.models import Follow
 from adhocracy4.projects.models import Project
 
 from . import emails
+from .models import Notification
 
 User = get_user_model()
 
@@ -17,6 +18,13 @@ User = get_user_model()
 def send_notifications(instance, created, **kwargs):
     action = instance
     verb = Verbs(action.verb)
+    should_notify, recipients = Notification.should_notify(action)
+
+    if should_notify:
+        notifications = [
+            Notification(recipient=recpient, action=action) for recpient in recipients
+        ]
+        Notification.objects.bulk_create(notifications)
 
     if action.type in ("item", "comment") and verb in (Verbs.CREATE, Verbs.ADD):
         emails.NotifyCreatorEmail.send(action)

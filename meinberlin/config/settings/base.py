@@ -448,10 +448,12 @@ A4_REPORTABLES = (
 
 A4_ACTIONABLES = (
     ("a4comments", "comment"),
+    ("a4ratings", "rating"),
     ("meinberlin_ideas", "idea"),
     ("meinberlin_mapideas", "mapidea"),
     ("meinberlin_budgeting", "proposal"),
     ("meinberlin_kiezkasse", "proposal"),
+    ("meinberlin_moderatorremark", "moderatorremark"),
 )
 
 A4_AUTO_FOLLOWABLES = (

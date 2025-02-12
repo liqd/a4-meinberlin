@@ -57,4 +57,9 @@ CELERY_BEAT_SCHEDULE = {
         "schedule": crontab(minute=0, hour="*/1"),
         "args": (),
     },
+    "periodic-notifications-cleanup-every-day-at-3am": {
+        "task": "periodic_notifications_cleanup",
+        "schedule": crontab(minute=0, hour="3"),
+        "args": (),
+    },
 }

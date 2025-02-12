@@ -27,6 +27,9 @@ class Config(AppConfig):
             ("meinberlin_mapideas", "mapidea"),
         )
         configure_type("offlineevent", ("meinberlin_offlineevents", "offlineevent"))
+        configure_type(
+            "moderatorremark", ("meinberlin_moderatorremark", "moderatorremark")
+        )
 
         configure_icon("far fa-comment", type="comment")
         configure_icon("far fa-lightbulb", type="item")

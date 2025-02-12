@@ -35,6 +35,7 @@ from meinberlin.apps.livequestions.api import LiveQuestionViewSet
 from meinberlin.apps.mapideas.api import MapIdeaViewSet
 from meinberlin.apps.maptopicprio.api import MapTopicViewSet
 from meinberlin.apps.moderatorremark.api import ModeratorRemarkViewSet
+from meinberlin.apps.notifications.api import NotificationViewSet
 from meinberlin.apps.plans.api import PlansListViewSet
 from meinberlin.apps.projects.api import PrivateProjectListViewSet
 from meinberlin.apps.projects.api import ProjectListViewSet
@@ -48,6 +49,7 @@ js_info_dict = {
 }
 
 router = routers.DefaultRouter()
+router.register(r"notifications", NotificationViewSet, basename="notifications")
 router.register(r"follows", FollowViewSet, basename="follows")
 router.register(r"kiezradar", KiezRadarViewSet, basename="kiezradar")
 router.register(r"searchprofiles", SearchProfileViewSet, basename="searchprofiles")

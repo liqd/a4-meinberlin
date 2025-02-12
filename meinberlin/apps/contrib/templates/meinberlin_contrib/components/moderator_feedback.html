@@ -6,13 +6,15 @@
                             {% if object.moderator_feedback_text.feedback_text or object.moderator_status %}
                             moderator-feedback__bg--{{ feedback_classification }}
                             {% endif %}
-                            ">
+                            "
+      id="moderator-feedback"
+    >
         <h2 class="moderator-feedback__title">{% translate 'Feedback' %}</h2>
 
         {% if object.moderator_status %}
             <!-- This div could be replaced by ModeratorStatus.jsx since it's exactly the same thing: -->
             <div class="moderator-status" aria-label="Status Indicator">
-                <span class="moderator-status__color-indicator moderator-status__label--{{ feedback_classification }}" aria-hidden="true"/></span>
+                <span class="moderator-status__color-indicator moderator-status__label--{{ feedback_classification }}" aria-hidden="true"></span>
                 <span>
                     <strong>
                         {% translate 'Status: ' %}

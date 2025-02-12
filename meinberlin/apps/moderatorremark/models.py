@@ -21,6 +21,14 @@ class ModeratorRemark(UserGeneratedContentModel):
     )
 
     @property
+    def content_object(self):
+        """
+        This is used so that a4 can generate an action for notifications and knows
+        what the target object is, since it's looking for `content_object`.
+        """
+        return self.item
+
+    @property
     def project(self):
         return self.item.project
 

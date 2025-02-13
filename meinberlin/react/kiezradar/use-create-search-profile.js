@@ -102,7 +102,7 @@ function getFilteredResults ({
       appliedFilters.topics.includes(topic.code)
     ),
     filteredParticipationChoices: appliedFilters.participations.map(index =>
-      participationChoices[index]
+      participationChoices[index - 1]
     ),
     filteredProjectStatus: projectStatus.filter(status =>
       appliedFilters.projectState.includes(STATUS_MAPPING[status.name])

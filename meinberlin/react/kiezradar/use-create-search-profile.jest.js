@@ -49,7 +49,7 @@ describe('useCreateSearchProfile', () => {
       districts: ['Charlottenburg-Wilmersdorf', 'Friedrichshain-Kreuzberg'],
       organisation: ['liqd'],
       topics: ['ANT'],
-      participations: [0, 1, 2],
+      participations: [3, 4],
       projectState: ['active', 'past', 'future'],
       plansOnly: false,
       search: ''
@@ -59,7 +59,7 @@ describe('useCreateSearchProfile', () => {
       districts: [1, 2],
       organisations: [1],
       topics: [1],
-      project_types: [1, 2, 3],
+      project_types: [3, 4],
       status: [1, 2, 3],
       plans_only: false,
       notification: true

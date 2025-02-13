@@ -25,10 +25,13 @@
 
 .actionable-list__item {
     padding: 1.5em 0;
-    border-top: 1px solid $gray-lighter;
 
     &:not(.actionable-list__item--hide-last-line):last-child {
         border-bottom: 1px solid $gray-lighter;
+    }
+
+    &:not(.actionable-list__item--hide-first-line:first-child) {
+        border-top: 1px solid $gray-lighter;
     }
 }
 
@@ -52,6 +55,10 @@
     @media screen and (min-width: $breakpoint-tablet) {
         margin-top: 0;
     }
+}
+
+.actionable-list__item__actions--inline {
+    margin-top: 0;
 }
 
 .actionable-list__item__actions__bottom {

@@ -70,13 +70,25 @@
     </section>
     <section aria-labelledby="project-{{ project.pk }}-participation">
       <h2 class="mt-0" id="project-{{ project.pk }}-participation">{% translate "Participate" %}</h2>
-      {% if event %}
+      {% if events %}
         <article>
           <h2>{{ event.name }}</h2>
-          <div class="phase-info__item__subtitle">
-            {% html_date event.date 'DATETIME_FORMAT' %}
+          <div class="actionable-list__header">
+            <h2>{% translate "Offline Events" %}</h2>
           </div>
-          <p>{{ event.description | safe | transform_collapsibles | richtext }}</p>
+          <ul class="actionable-list">
+            {% for event in events %}
+              <li class="actionable-list__item actionable-list__item--hide-first-line">
+                {% html_date event.date 'DATE_FORMAT' %} · {{ event.event_type }}
+                <a href="{{ event.get_absolute_url }}" class="actionable-list__item__body">
+                  <h4 class="my-0">{{ event.name }}</h4>
+                  <div class="actionable-list__item__actions actionable-list__item__actions--inline">
+                    <i class="bicon bicon-arrow-right" aria-hidden="true"></i>
+                  </div>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
         </article>
       {% elif view.is_project_view %}
         <ul class="list--clean">

@@ -38,4 +38,9 @@ urlpatterns = [
         views.ProjectInformationView.as_view(),
         name="project-information",
     ),
+    re_path(
+        r"^(?P<slug>[-\w_]+)/veranstaltung/(?P<event_slug>[-\w_]+)/$",
+        views.ProjectEventView.as_view(),
+        name="project-event",
+    ),
 ]

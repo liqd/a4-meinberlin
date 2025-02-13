@@ -29,6 +29,7 @@ from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.projects.mixins import ProjectModuleDispatchMixin
+from meinberlin.apps.offlineevents.models import OfflineEvent
 
 from . import forms
 from . import models
@@ -359,6 +360,24 @@ class ProjectDetailView(
     @property
     def raise_exception(self):
         return self.request.user.is_authenticated
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["events"] = self.project.offlineevent_set.all().order_by("date")
+        return context
+
+
+class ProjectEventView(PermissionRequiredMixin, generic.DetailView):
+    model = OfflineEvent
+    permission_required = "meinberlin_offlineevents.view_offlineevent"
+    slug_url_kwarg = "event_slug"
+    template_name = "meinberlin_projects/project_event.html"
+    context_object_name = "event"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["project"] = self.object.project
+        return context
 
 
 class ModuleDetailview(PermissionRequiredMixin, PhaseDispatchMixin):

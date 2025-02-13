@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}
+  {{ project.name }} - {{ event.name }}
+{% endblock title %}
+
+{% block extra_messages %}
+  {{ block.super }}
+
+  {% if project.is_draft %}
+    {% include 'meinberlin_contrib/components/info-box.html' with info_message='This project has not yet been published.' %}
+  {% endif %}
+{% endblock extra_messages %}
+
+{% block breadcrumbs %}
+    <div id="content-header">
+        <nav class="breadcrumb" aria-label='{% translate "You are here:" %}'>
+            <ol>
+                <li><a href="{% url 'wagtail_serve' '' %}">meinBerlin</a></li>
+                <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate "Kiezradar" %}</a></li>
+                <li><a href="{% url 'project-detail' project.slug %}">{{ project.name|truncatechars:50 }}</a></li>
+                <li class="active" aria-current="page">{{ event.name|truncatechars:50 }}</li>
+            </ol>
+        </nav>
+    </div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+  <div class="layout-grid__area--maincontent">
+    <article>
+      <header>
+        <h1>{{ event.name }}</h1>
+      </header>
+
+      <section aria-labelledby="description-title">
+        <h2 id="description-title" class="aural">{% trans 'Event Description' %}</h2>
+        <div class="mb-3">{{ event.description|safe }}</div>
+        <ul class="list--tablelist span--3">
+          <li>
+            <div class="cell nowrap"><strong>{% trans 'Event type' %}:</strong></div>
+            <div class="cell">{{ event.event_type }}</div>
+          </li>
+          <li>
+            <div class="cell nowrap"><strong>{% trans 'Date and time' %}:</strong></div>
+            <div class="cell">{{ event.date|date:"DATETIME_FORMAT" }}</div>
+          </li>
+        </ul>
+      </section>
+    </article>
+  </div>
+{% endblock content %}

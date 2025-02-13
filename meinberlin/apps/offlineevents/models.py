@@ -2,6 +2,7 @@ from datetime import timedelta
 
 from autoslug import AutoSlugField
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
@@ -60,8 +61,6 @@ class OfflineEvent(UserGeneratedContentModel):
         return 0
 
     def get_absolute_url(self):
-        if self.project.display_timeline:
-            return "{}?initialSlide={}".format(
-                self.project.get_absolute_url(), self.get_timeline_index
-            )
-        return self.project.get_absolute_url()
+        return reverse(
+            "project-event", kwargs={"slug": self.project.slug, "event_slug": self.slug}
+        )

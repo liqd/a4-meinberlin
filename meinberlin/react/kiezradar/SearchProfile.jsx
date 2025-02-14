@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import django from 'django'
 import SearchProfileButtons from './SearchProfileButtons'
-import { updateItem } from '../contrib/helpers'
+import { toSearchParams, updateItem } from '../contrib/helpers'
 import PushNotificationToggle from './PushNotificationToggle'
 import { alert as Alert } from 'adhocracy4'
 import DeleteModal from './DeleteModal'
@@ -170,7 +170,7 @@ export default function SearchProfile ({ apiUrl, planListUrl, searchProfile, onS
             checked={searchProfile.notification}
             onError={(error) => setError(error)}
           />
-          <a href={planListUrl + '?search-profile=' + searchProfile.id} className="button button--light search-profile__view-projects">
+          <a href={planListUrl + '?' + toQueryString(searchProfile)} className="button button--light search-profile__view-projects">
             {viewProjectsText}
           </a>
           {!isEditing && (
@@ -186,4 +186,19 @@ export default function SearchProfile ({ apiUrl, planListUrl, searchProfile, onS
       </div>
     </>
   )
+}
+
+function toQueryString (searchProfile) {
+  const projectStateMapping = ['active', 'past', 'future']
+
+  return toSearchParams({
+    'search-profile': searchProfile.id,
+    search: searchProfile.query_text || undefined,
+    districts: searchProfile.districts.map(district => district.name),
+    organisation: searchProfile.organisations.map(organisation => organisation.name),
+    participations: searchProfile.project_types.map(participation => participation.id),
+    topics: searchProfile.topics.map((topic) => topic.code),
+    plansOnly: searchProfile.plans_only,
+    projectState: searchProfile.status.map(status => projectStateMapping[status.status])
+  }).toString()
 }

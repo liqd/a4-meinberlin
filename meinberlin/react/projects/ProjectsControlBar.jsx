@@ -5,6 +5,8 @@ import { MultiSelect } from '../contrib/forms/MultiSelect'
 import { classNames } from 'adhocracy4'
 import { ControlBarFilterPills } from '../contrib/ControlBarFilterPills'
 import SaveSearchProfile from '../plans/SaveSearchProfile'
+import { toSearchParams } from '../contrib/helpers'
+import { useSearchParams } from 'react-router-dom'
 
 const translated = {
   search: django.gettext('Search'),
@@ -99,6 +101,7 @@ export const ProjectsControlBar = ({
   isAuthenticated,
   projectStatus
 }) => {
+  const [, setSearchParams] = useSearchParams()
   const [expandFilters, setExpandFilters] = useState(false)
   const [filters, setFilters] = useState(appliedFilters)
   const onFilterChange = (type, choice) => {
@@ -110,12 +113,7 @@ export const ProjectsControlBar = ({
 
   const isFiltersInitialState = JSON.stringify(appliedFilters) === JSON.stringify(initialState)
 
-  const removeSearchProfile = () => {
-    setSearchProfile(null)
-    window.history.replaceState({}, '', window.location.pathname)
-  }
-
-  const createSearchProfile = (searchProfile, limitExceeded) => {
+  const handleCreateSearchProfile = (searchProfile, limitExceeded) => {
     if (limitExceeded) {
       onError({
         title: translated.searchProfileLimitExceededTitle,
@@ -132,6 +130,8 @@ export const ProjectsControlBar = ({
 
     setSearchProfile(searchProfile)
     setSearchProfilesCount(searchProfilesCount + 1)
+    setParams({ 'search-profile': searchProfile.id, ...filters })
+
     onAlert({
       title: translated.searchProfileCreatedTitle,
       message: (
@@ -142,23 +142,38 @@ export const ProjectsControlBar = ({
         />
       )
     })
-    window.history.replaceState({}, '', window.location.pathname + '?search-profile=' + searchProfile.id
-    )
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    const newFilters = { ...filters }
+    if (newFilters.projectState.length === 0) {
+      newFilters.projectState = initialState.projectState
+    }
+
+    onFiltered(newFilters)
+    setSearchProfile(null)
+    setParams(newFilters)
+  }
+
+  const handleReset = () => {
+    setFilters(initialState)
+    onResetClick()
+    setSearchProfile(null)
+    setParams({})
+  }
+
+  const setParams = (params) => {
+    const searchParams = toSearchParams(params)
+    setSearchParams(searchParams, { replace: true })
   }
 
   return (
     <nav aria-label={translated.nav}>
       <form
         className={classNames('modul-facetingform js-facetingform', alteredFilters.length ? 'control-bar--no-spacing' : 'control-bar--spacing')}
-        onSubmit={(e) => {
-          e.preventDefault()
-          const newFilters = { ...filters }
-          if (newFilters.projectState.length === 0) {
-            newFilters.projectState = initialState.projectState
-          }
-          onFiltered(newFilters)
-          removeSearchProfile()
-        }}
+        onSubmit={handleSubmit}
       >
         <div className="facetingform__container">
           <div className="facets">
@@ -269,11 +284,7 @@ export const ProjectsControlBar = ({
                   <button
                     type="button"
                     className="link"
-                    onClick={() => {
-                      setFilters(initialState)
-                      onResetClick()
-                      removeSearchProfile()
-                    }}
+                    onClick={handleReset}
                   >
                     {translated.reset}
                   </button>
@@ -309,6 +320,7 @@ export const ProjectsControlBar = ({
 
                   setFilters(newFilters)
                   onFiltered(newFilters)
+                  setParams(newFilters)
                 }}
               />
               {!isFiltersInitialState && (
@@ -323,7 +335,7 @@ export const ProjectsControlBar = ({
                   searchProfilesCount={searchProfilesCount}
                   isAuthenticated={isAuthenticated}
                   appliedFilters={appliedFilters}
-                  onSearchProfileCreate={createSearchProfile}
+                  onSearchProfileCreate={handleCreateSearchProfile}
                 />
               )}
             </div>

@@ -45,3 +45,34 @@ export const arraysEqual = (a, b) => {
   }
   return true
 }
+
+/*
+ * converts an object to URLSearchParams
+ *
+ * This function takes an object and converts it into a URLSearchParams
+ * instance, which can be used for query string formatting in URLs.
+ * It handles arrays by appending each value to the parameter, and ignores
+ * any null or undefined values.
+ *
+ * Example:
+ * For the input:
+ *   { search: 'apple', category: 'fruit', tags: ['red', 'green'], page: null }
+ * The output will be:
+ *   "search=apple&category=fruit&tags=red&tags=green"
+ *
+ * @param {Object} params - The object to convert into URLSearchParams
+ * @returns {URLSearchParams} - The resulting URLSearchParams instance
+ */
+export const toSearchParams = (params) => {
+  return Object.entries(params).reduce((acc, [key, value]) => {
+    if (value == null || value === '') return acc
+
+    if (Array.isArray(value)) {
+      value.forEach(val => (val != null && val !== '') && acc.append(key, val))
+    } else {
+      acc.set(key, value)
+    }
+
+    return acc
+  }, new URLSearchParams())
+}

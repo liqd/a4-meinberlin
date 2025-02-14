@@ -9,10 +9,8 @@ import ProjectsMap from './ProjectsMap'
 import Spinner from '../contrib/Spinner'
 import { ProjectsControlBar } from './ProjectsControlBar'
 import { filterProjects } from './filter-projects'
-import {
-  getDefaultProjectState,
-  getDefaultState
-} from './getDefaultState'
+import { getDefaultProjectState, getDefaultState } from './getDefaultState'
+import { useLocation } from 'react-router-dom'
 
 const pageHeader = django.gettext('Kiezradar')
 const showMapStr = django.gettext('Show map')
@@ -55,12 +53,14 @@ const ProjectsListMapBox = ({
   searchProfilesCount,
   isAuthenticated
 }) => {
+  const location = useLocation()
+  const searchParams = new URLSearchParams(location.search)
   const [showMap, setShowMap] = useState(true)
   const [loading, setLoading] = useState(true)
-  const [projectState, setProjectState] = useState(getDefaultProjectState(searchProfile))
+  const [projectState, setProjectState] = useState(getDefaultProjectState(searchParams))
   const [items, setItems] = useState([])
   const fetchCache = useRef({})
-  const [appliedFilters, setAppliedFilters] = useState(getDefaultState(searchProfile))
+  const [appliedFilters, setAppliedFilters] = useState(getDefaultState(searchParams, { districts, organisations, participationChoices, topicChoices }))
   const [alert, setAlert] = useState(null)
   const [error, setError] = useState(null)
 
@@ -148,7 +148,7 @@ const ProjectsListMapBox = ({
           setAppliedFilters(filters)
         }}
         onResetClick={() => {
-          setAppliedFilters(getDefaultState(searchProfile))
+          setAppliedFilters(getDefaultState(null, { districts, organisations, participationChoices, topicChoices }))
           setProjectState(['active', 'future'])
         }}
         onAlert={setAlert}

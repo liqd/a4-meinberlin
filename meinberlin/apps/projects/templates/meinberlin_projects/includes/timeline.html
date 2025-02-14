@@ -1,0 +1,31 @@
+{% load contrib_tags i18n offlineevent_tags static %}
+{% offlineevents_and_modules_sorted project as modules_and_events %}
+
+{% if project.display_timeline %}
+  <nav aria-labelledby="timeline-heading">
+    <h2 id="timeline-heading">{% translate "Participation process" %}</h2>
+    <ol>
+      {% for obj in project.participation_dates %}
+        {% is_in_past obj.date as in_past %}
+        {% if obj.type == "module" %}
+          <li>
+            {{ obj.title }}
+            {{ obj.date|date:"DATE_FORMAT" }}
+            {% if in_past %}
+              active
+            {% endif %}
+          </li>
+        {% else %}
+          <li>
+            {{ obj.name }}
+            {{ obj.event_type }}
+            {{ obj.date|date:"DATE_FORMAT" }}
+            {% if in_past %}
+              active
+            {% endif %}
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ol>
+  </nav>
+{% endif %}

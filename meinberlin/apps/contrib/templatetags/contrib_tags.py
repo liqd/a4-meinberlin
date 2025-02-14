@@ -94,6 +94,11 @@ def fa_class(icon):
 
 
 @register.simple_tag()
+def is_in_past(date):
+    return date < timezone.now()
+
+
+@register.simple_tag()
 def tracking_enabled():
     return settings.TRACKING_ENABLED
 

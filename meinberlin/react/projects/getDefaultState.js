@@ -9,17 +9,30 @@ const defaultState = {
   plansOnly: false
 }
 
-export const getDefaultState = (searchProfile) => {
+export const getDefaultState = (searchParams, {
+  districts,
+  organisations,
+  participationChoices,
+  topicChoices
+}) => {
   let mergeData = {}
 
-  if (searchProfile) {
+  if (searchParams) {
     mergeData = {
-      search: searchProfile.query_text ?? '',
-      districts: searchProfile.districts.map(d => d.name),
-      organisation: searchProfile.organisations.map(o => o.name),
-      participations: searchProfile.project_types.map(p => p.id),
-      topics: searchProfile.topics.map((t) => t.code),
-      plansOnly: searchProfile.plans_only
+      search: searchParams.get('search') ?? '',
+      districts: districts
+        .filter((district) => searchParams.getAll('districts').includes(district.name))
+        .map((district) => district.name),
+      organisation: organisations
+        .filter((organisation) => searchParams.getAll('organisation').includes(organisation.name))
+        .map((organisation) => organisation.name),
+      participations: participationChoices
+        .filter((participation) => searchParams.getAll('participations').includes(participation.id.toString()))
+        .map((participation) => participation.id),
+      topics: topicChoices
+        .filter((topic) => searchParams.getAll('topics').includes(topic.code))
+        .map((topic) => topic.code),
+      plansOnly: searchParams.get('plansOnly') === 'true'
     }
   }
 
@@ -29,11 +42,12 @@ export const getDefaultState = (searchProfile) => {
   }
 }
 
-export const getDefaultProjectState = (searchProfile) => {
-  const mapping = ['active', 'past', 'future']
-  if (searchProfile && searchProfile.status.length) {
-    return searchProfile.status.map(s => mapping[s.status])
-  }
+const defaultProjectState = ['active', 'future']
+const validProjectStates = [...defaultProjectState, 'past']
 
-  return ['active', 'future']
+export const getDefaultProjectState = (searchParams) => {
+  const projectState = searchParams.getAll('projectState')
+  const filteredStates = projectState.filter(state => validProjectStates.includes(state))
+
+  return filteredStates.length ? filteredStates : defaultProjectState
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import ProjectsListMapBox from '../projects/ProjectsListMapBox'
+import { BrowserRouter } from 'react-router-dom'
 
 function init () {
   const plansMapBox = document.querySelectorAll('[data-map="plans"]')
@@ -30,30 +31,32 @@ function init () {
     const root = createRoot(el)
     root.render(
       <React.StrictMode>
-        <ProjectsListMapBox
-          selectedDistrict={selectedDistrict}
-          selectedTopic={selectedTopic}
-          projectApiUrl={projectApiUrl}
-          extprojectApiUrl={extprojectApiUrl}
-          privateprojectApiUrl={privateprojectApiUrl}
-          plansApiUrl={plansApiUrl}
-          attribution={attribution}
-          baseUrl={baseUrl}
-          mapboxToken={mapboxToken}
-          omtToken={omtToken}
-          useVectorMap={useVectorMap}
-          bounds={bounds}
-          organisations={organisations}
-          districts={districts}
-          topicChoices={topicChoices}
-          participationChoices={participationChoices}
-          searchProfile={searchProfile}
-          searchProfilesApiUrl={searchProfilesApiUrl}
-          searchProfilesUrl={searchProfilesUrl}
-          searchProfilesCount={searchProfilesCount}
-          isAuthenticated={isAuthenticated}
-          projectStatus={projectStatus}
-        />
+        <BrowserRouter>
+          <ProjectsListMapBox
+            selectedDistrict={selectedDistrict}
+            selectedTopic={selectedTopic}
+            projectApiUrl={projectApiUrl}
+            extprojectApiUrl={extprojectApiUrl}
+            privateprojectApiUrl={privateprojectApiUrl}
+            plansApiUrl={plansApiUrl}
+            attribution={attribution}
+            baseUrl={baseUrl}
+            mapboxToken={mapboxToken}
+            omtToken={omtToken}
+            useVectorMap={useVectorMap}
+            bounds={bounds}
+            organisations={organisations}
+            districts={districts}
+            topicChoices={topicChoices}
+            participationChoices={participationChoices}
+            searchProfile={searchProfile}
+            searchProfilesApiUrl={searchProfilesApiUrl}
+            searchProfilesUrl={searchProfilesUrl}
+            searchProfilesCount={searchProfilesCount}
+            isAuthenticated={isAuthenticated}
+            projectStatus={projectStatus}
+          />
+        </BrowserRouter>
       </React.StrictMode>)
   })
 }

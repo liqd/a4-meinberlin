@@ -1,0 +1,59 @@
+.modal {
+  border: none;
+  max-width: 43rem;
+  padding: 2rem 1.125rem;
+  margin: auto 3px 0;
+
+  @media screen and (min-width: $breakpoint-palm) {
+    margin: auto;
+  }
+}
+  
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal__title {
+  font-size: 1.375rem;
+  margin: 0;
+  margin-bottom: 0.625rem;
+}
+
+.modal__text {
+  margin-bottom: 2.5rem;
+}
+
+.modal__content {
+  margin-bottom: 40px;
+}
+
+.modal__content > div {
+  margin: 0;
+}
+
+.modal__buttons {
+  display: flex;
+
+  @media screen and (min-width: $breakpoint-palm) {
+    justify-content: flex-end;
+    gap: 2rem;
+  }
+}
+
+.modal__confirm-button {
+  margin-left: auto;
+
+  @media screen and (min-width: $breakpoint-palm) {
+    margin-left: 0;
+  }
+}
+
+.modal__close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.25rem;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+}

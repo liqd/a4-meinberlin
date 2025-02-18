@@ -4,12 +4,13 @@ import SearchProfileButtons from './SearchProfileButtons'
 import { toSearchParams, updateItem } from '../contrib/helpers'
 import PushNotificationToggle from './PushNotificationToggle'
 import { alert as Alert } from 'adhocracy4'
-import DeleteModal from './DeleteModal'
+import Modal from '../contrib/Modal'
 
 const renameSearchProfileText = django.gettext('Rename search profile')
 const cancelText = django.gettext('Cancel')
 const saveText = django.gettext('Save')
 const savingText = django.gettext('Saving')
+const deleteText = django.gettext('Delete')
 const viewProjectsText = django.gettext('View projects')
 const plansText = django.gettext('Plans')
 const errorText = django.gettext('Error')
@@ -103,10 +104,11 @@ export default function SearchProfile ({ apiUrl, planListUrl, searchProfile, onS
   return (
     <>
       {deleteModal?.searchProfile && (
-        <DeleteModal
+        <Modal
           title={confirmDeletionText(deleteModal.searchProfile.name)}
           message={confirmDeletionDescriptionText}
-          onDelete={() => handleDelete()}
+          buttonText={deleteText}
+          onConfirm={() => handleDelete()}
           onClose={() => setDeleteModal(null)}
         />
       )}

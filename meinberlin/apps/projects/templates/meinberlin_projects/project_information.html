@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n %}
+{% load i18n ckeditor_tags %}
 
 {% block title %}
   {{ project.name }} -{% trans 'Information' %}
@@ -38,7 +38,9 @@
           <span class="aural">{% trans 'Project Description' %}</span>
           {{ project.name }}
         </h2>
-        <div>{{ project.information|safe }}</div>
+        <div class="ck-content">
+          {{ project.information | transform_collapsibles | disable_iframes | safe }}
+        </div>
       </section>
 
       {% if project.has_contact_details or project.organisation %}

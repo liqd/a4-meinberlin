@@ -192,58 +192,6 @@
   z-index: 1001;
 }
 
-.kiezradar__modal {
-  border: none;
-  max-width: 43rem;
-  padding: 2rem 1.125rem;
-  margin: auto 3px 0;
-
-  @media screen and (min-width: $breakpoint-palm) {
-    margin: auto;
-  }
-}
-
-.kiezradar__modal::backdrop {
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.kiezradar__modal-title {
-  font-size: 1.375rem;
-  margin: 0;
-  margin-bottom: 0.625rem;
-}
-
-.kiezradar__modal-text {
-  margin-bottom: 2.5rem;
-}
-
-.kiezradar__modal-buttons {
-  display: flex;
-
-  @media screen and (min-width: $breakpoint-palm) {
-    justify-content: flex-end;
-    gap: 2rem;
-  }
-}
-
-.kiezradar__modal-button-open {
-  margin-left: auto;
-
-  @media screen and (min-width: $breakpoint-palm) {
-    margin-left: 0;
-  }
-}
-
-.kiezradar__modal-close {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  padding: 0.25rem;
-  border: 0;
-  color: inherit;
-  cursor: pointer;
-}
-
 .kiezradar__controls--tablet {
   display: none;
 

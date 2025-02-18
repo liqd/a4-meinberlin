@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Loading from './Loading'
 import { alert as Alert } from 'adhocracy4'
 import { updateItem } from '../contrib/helpers'
-import DeleteModal from './DeleteModal'
+import Modal from '../contrib/Modal'
 
 const noSavedKiezradarsText = django.gettext('No saved Kiezes')
 const addKiezText = django.gettext('Add Kiez')
@@ -69,10 +69,11 @@ export default function KiezradarList ({
           : (
             <>
               {deleteModal?.kiezradar && (
-                <DeleteModal
+                <Modal
                   title={confirmDeletionText(deleteModal.kiezradar.name)}
                   message={confirmDeletionDescriptionText}
-                  onDelete={() => handleDelete(deleteModal.kiezradar)}
+                  buttonText={deleteText}
+                  onConfirm={() => handleDelete(deleteModal.kiezradar)}
                   onClose={() => setDeleteModal(null)}
                 />
               )}

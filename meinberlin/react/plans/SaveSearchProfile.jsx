@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import django from 'django'
 import { useCreateSearchProfile } from '../kiezradar/use-create-search-profile'
+import Modal from '../contrib/Modal'
+import { alert as Alert } from 'adhocracy4'
+import { useSearchParams } from 'react-router-dom'
 
-const loginText = django.gettext('Login to save search profiles')
+const modalTitleText = django.gettext('Login or register to save a search profile')
+const modalMessageText = django.gettext('To save your search profile and access it later, please log in or create an account.')
+const modalButtonText = django.gettext('Continue to login')
+const alertTitleText = django.gettext('Please note, your current selection won’t be saved automatically')
+const alertMessageText = django.gettext('After logging in, you can create and save a new search profile.')
 const viewText = django.gettext('View search profiles')
 const limitText = django.gettext('You can only create 10 search profiles.')
 const saveText = django.gettext('Save search profile')
@@ -14,21 +21,42 @@ export default function SaveSearchProfile ({
   searchProfilesCount,
   ...props
 }) {
+  const [searchParams] = useSearchParams()
+  const [modal, setModal] = useState(false)
+
   if (!isAuthenticated) {
     return (
-      <div className="save-search-profile">
-        <a
-          className="save-search-profile__action save-search-profile__action--link"
-          href={
-            '/accounts/login/?next=' +
-            window.location.pathname +
-            window.location.search
-          }
-        >
-          <Icon />
-          {loginText}
-        </a>
-      </div>
+      <>
+        {modal && (
+          <Modal
+            title={modalTitleText}
+            message={modalMessageText}
+            buttonText={modalButtonText}
+            onConfirm={() => {
+              const nextUrl = window.location.pathname + '?' + searchParams.toString()
+              const encodedNext = encodeURIComponent(nextUrl)
+              window.location = '/accounts/login/?next=' + encodedNext
+              setModal(false)
+            }}
+            onClose={() => setModal(false)}
+          >
+            <Alert
+              title={alertTitleText}
+              message={alertMessageText}
+            />
+          </Modal>
+        )}
+        <div className="save-search-profile">
+          <button
+            className="save-search-profile__action save-search-profile__action--button"
+            type="button"
+            onClick={() => setModal(!modal)}
+          >
+            <Icon />
+            {saveText}
+          </button>
+        </div>
+      </>
     )
   }
 

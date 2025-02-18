@@ -5,6 +5,10 @@
     <h3 id="contact-questions">{% trans "Contact for questions" %}</h3>
     <address aria-labelledby="contact-questions" class="mt-2">
       <p>{{ contact.contact_name }}</p>
+
+      {% if contact.contact_address_text %}
+        <p>{{ contact.contact_address_text|linebreaksbr }}</p>
+      {% endif %}
       
       {% if contact.contact_email %}
         <p>{% trans "Email" %}: 
@@ -15,6 +19,12 @@
       {% if contact.contact_phone %}
         <p>{% trans "Phone" %}: 
            <a href="tel:{{ contact.contact_phone }}" aria-label="{% trans 'Call' %} {{ contact.contact_name }}">{{ contact.contact_phone }}</a>
+        </p>
+      {% endif %}
+
+      {% if contact.contact_url %}
+        <p>{% trans "Website" %}: 
+          <a href="{{ contact.contact_url }}" target="_blank" rel="noopener noreferrer">{{ contact.contact_url }}</a>
         </p>
       {% endif %}
     </address>

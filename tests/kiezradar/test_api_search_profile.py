@@ -44,7 +44,7 @@ def test_anonymous_user_cant_create_search_profile(apiclient, setup_data):
         "disabled": False,
         "status": setup_data["project_status"],
         "query": setup_data["query"],
-        "kiezradar": setup_data["kiezradar"],
+        "kiezradars": [setup_data["kiezradar"]],
         "districts": setup_data["districts"],
         "topics": setup_data["topics"],
         "organisation": setup_data["organisations"],
@@ -71,7 +71,7 @@ def test_cant_create_search_profile_with_other_users_kiezradar(
         "disabled": False,
         "status": setup_data["project_status"],
         "query": setup_data["query"],
-        "kiezradar": setup_data["kiezradar"],
+        "kiezradars": [kiezradar.pk],
         "districts": setup_data["districts"],
         "topics": setup_data["topics"],
         "organisation": setup_data["organisations"],
@@ -98,7 +98,7 @@ def test_create_search_profile_with_kiezradar(apiclient, setup_data):
         "disabled": False,
         "status": setup_data["project_status"],
         "query": setup_data["query"],
-        "kiezradar": setup_data["kiezradar"],
+        "kiezradars": [setup_data["kiezradar"]],
         "districts": setup_data["districts"],
         "topics": setup_data["topics"],
         "organisation": setup_data["organisations"],
@@ -117,7 +117,7 @@ def test_create_search_profile_with_kiezradar(apiclient, setup_data):
     assert data["plans_only"] is False
     assert data["disabled"] == payload["disabled"]
     assert data["query"] == payload["query"]
-    assert data["kiezradar"] == payload["kiezradar"]
+    assert data["kiezradars"] == payload["kiezradars"]
 
     # Check if the object was created in the database
     search_profile = SearchProfile.objects.get(id=data["id"])
@@ -125,7 +125,7 @@ def test_create_search_profile_with_kiezradar(apiclient, setup_data):
     assert search_profile.description == payload["description"]
     assert search_profile.disabled == payload["disabled"]
     assert search_profile.query.id == payload["query"]
-    assert search_profile.kiezradar.id == payload["kiezradar"]
+    assert search_profile.kiezradars.first().id == payload["kiezradars"][0]
     assert (
         list(search_profile.districts.values_list("id", flat=True))
         == payload["districts"]
@@ -136,7 +136,7 @@ def test_create_search_profile_with_kiezradar(apiclient, setup_data):
         list(search_profile.project_types.values_list("id", flat=True))
         == payload["project_types"]
     )
-    assert search_profile.kiezradar.creator == search_profile.creator
+    assert search_profile.kiezradars.first().creator == search_profile.creator
 
 
 @pytest.mark.django_db
@@ -240,7 +240,8 @@ def test_update_search_profile(
     query_id = setup_data.pop("query")
     search_profile.query_id = query_id
     kiezradar_id = setup_data.pop("kiezradar")
-    search_profile.kiezradar_id = kiezradar_id
+    kiezradar = KiezRadar.objects.get(pk=kiezradar_id)
+    search_profile.kiezradars.set([kiezradar])
     search_profile.save()
 
     apiclient.force_authenticate(search_profile.creator)
@@ -253,7 +254,7 @@ def test_update_search_profile(
         "description": "A description for the filters profile.",
         "disabled": False,
         "status": setup_data["project_status"],
-        "kiezradar": new_kiezradar.id,
+        "kiezradars": [new_kiezradar.id],
         "query_text": "updated query",
         "districts": setup_data["districts"],
         "topics": setup_data["topics"],
@@ -272,7 +273,7 @@ def test_update_search_profile(
     assert search_profile.description == payload["description"]
     assert search_profile.disabled == payload["disabled"]
     assert search_profile.query.text == payload["query_text"]
-    assert search_profile.kiezradar_id == payload["kiezradar"]
+    assert search_profile.kiezradars.first().pk == payload["kiezradars"][0]
     assert (
         list(search_profile.districts.values_list("id", flat=True))
         == payload["districts"]

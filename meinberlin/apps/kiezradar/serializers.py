@@ -22,22 +22,22 @@ class KiezRadarSerializer(PointSerializerMixin, serializers.ModelSerializer):
         fields = ["id", "creator", "name", "point", "radius"]
         read_only_fields = ["id", "creator"]
 
-    def validate(self, data):
+    def create(self, validated_data):
         """Ensure a user has no more than 5 kiezradar entries."""
         user = self.context["request"].user
         if user.kiezradar_set.count() >= self.Meta.model.KIEZRADAR_LIMIT:
             raise serializers.ValidationError(
                 "Users can only have up to 5 kiezradar filters."
             )
-        return data
+        return super().create(validated_data)
 
 
 class SearchProfileSerializer(serializers.ModelSerializer):
     """Serializer for the SearchProfile model."""
 
-    kiezradar = (
+    kiezradars = (
         serializers.PrimaryKeyRelatedField(
-            queryset=KiezRadar.objects.all(), required=False
+            queryset=KiezRadar.objects.all(), many=True, allow_null=True, required=False
         ),
     )
     query = (
@@ -83,16 +83,17 @@ class SearchProfileSerializer(serializers.ModelSerializer):
             "districts",
             "project_types",
             "topics",
-            "kiezradar",
+            "kiezradars",
         ]
 
         read_only_fields = ["id", "creator", "number"]
 
-    def validate_kiezradar(self, instance):
+    def validate_kiezradars(self, instances):
         user = self.context["request"].user
-        if not user.has_perm("meinberlin_kiezradar.change_kiezradar", instance):
-            raise serializers.ValidationError("Permission denied")
-        return instance
+        for kiezradar in instances:
+            if not user.has_perm("meinberlin_kiezradar.change_kiezradar", kiezradar):
+                raise serializers.ValidationError("Permission denied")
+        return instances
 
     def create(self, validated_data):
         # Pop one-to-many fields from validated_data

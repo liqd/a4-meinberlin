@@ -1,14 +1,22 @@
+from functools import reduce
+
 from django.conf import settings
 from django.contrib.gis.db import models as gis_models
+from django.contrib.gis.db.models.functions import Distance
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator
 from django.core.validators import MinValueValidator
+from django.db import connection
 from django.db import models
+from django.db.models import Q
+from django.db.models import QuerySet
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.models.base import UserGeneratedContentModel
+from adhocracy4.projects.models import Project
 from adhocracy4.projects.models import Topic
+from meinberlin.apps.plans.models import Plan
 
 Organisation = settings.A4_ORGANISATIONS_MODEL
 
@@ -32,7 +40,10 @@ class KiezRadar(UserGeneratedContentModel):
     )
 
     def save(self, update_fields=None, *args, **kwargs):
-        if self.creator.kiezradar_set.count() >= self.KIEZRADAR_LIMIT:
+        if (
+            self._state.adding
+            and self.creator.kiezradar_set.count() >= self.KIEZRADAR_LIMIT
+        ):
             raise ValidationError(
                 f"Users can only have up to {self.KIEZRADAR_LIMIT} radius filters."
             )
@@ -50,18 +61,8 @@ class KiezradarQuery(models.Model):
 
 
 class ProjectType(models.Model):
-    PARTICIPATION_INFORMATION = 0
-    PARTICIPATION_CONSULTATION = 1
-    PARTICIPATION_COOPERATION = 2
-    PARTICIPATION_DECISION_MAKING = 3
-    PARTICIPATION_CHOICES = (
-        (PARTICIPATION_INFORMATION, _("information (no participation)")),
-        (PARTICIPATION_CONSULTATION, _("consultation")),
-        (PARTICIPATION_COOPERATION, _("cooperation")),
-        (PARTICIPATION_DECISION_MAKING, _("decision-making")),
-    )
     participation = models.SmallIntegerField(
-        choices=PARTICIPATION_CHOICES,
+        choices=Plan.PARTICIPATION_CHOICES,
         verbose_name=_("Type"),
     )
 
@@ -71,12 +72,12 @@ class ProjectType(models.Model):
 
 class ProjectStatus(models.Model):
     STATUS_ONGOING = 0
-    STATUS_DONE = 1
-    STATUS_FUTURE = 2
+    STATUS_FUTURE = 1
+    STATUS_DONE = 2
     STATUS_CHOICES = (
         (STATUS_ONGOING, _("running")),
-        (STATUS_DONE, _("done")),
         (STATUS_FUTURE, _("future")),
+        (STATUS_DONE, _("done")),
     )
 
     status = models.SmallIntegerField(
@@ -95,12 +96,10 @@ class SearchProfile(UserGeneratedContentModel):
     disabled = models.BooleanField(default=False)
     notification = models.BooleanField(default=False)
     plans_only = models.BooleanField(default=False)
-    kiezradar = models.OneToOneField(
+    kiezradars = models.ManyToManyField(
         KiezRadar,
-        models.SET_NULL,
-        related_name="search_profile",
+        related_name="search_profiles",
         blank=True,
-        null=True,
     )
     query = models.ForeignKey(
         KiezradarQuery,
@@ -157,3 +156,33 @@ class SearchProfile(UserGeneratedContentModel):
 
     def __str__(self):
         return f"kiezradar search profile - {self.name}, disabled {self.disabled}"
+
+
+def get_search_profiles_for_project(project: Project) -> QuerySet[SearchProfile]:
+    search_profiles = SearchProfile.objects.filter(
+        (Q(topics__in=project.topics.all()) | Q(topics__isnull=True))
+        & Q(status__status=project.status)
+        & Q(plans_only=False)
+        & (Q(organisations=project.organisation) | Q(organisations__isnull=True))
+        & (Q(districts=project.administrative_district) | Q(districts__isnull=True))
+        & Q(project_types__participation=Plan.PARTICIPATION_CONSULTATION)
+        & Q(disabled=False)
+    )
+    search_term = project.name + " " + project.description + " " + project.information
+    if connection.vendor == "postresql":
+        # django has some postgresql-only search tools which are much better
+        search_profiles = search_profiles.filter(
+            Q(query__text__search=search_term) | Q(query__isnull=True)
+        )
+    else:
+        # this is probably very inefficient and more hack to make the search somewhat useful on sqlite
+        query = reduce(
+            lambda a, b: a | b,
+            (Q(query__text__icontains=term) for term in search_term.split()),
+        )
+        search_profiles = search_profiles.filter(query | Q(query__isnull=True))
+    if project.point:
+        search_profiles = search_profiles.filter(
+            Q(kiezradars__radius__gte=Distance("kiezradars__point", project.point))
+        )
+    return search_profiles

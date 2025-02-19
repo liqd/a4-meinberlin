@@ -1,8 +1,9 @@
-$hero-height: 350px;
+$hero-height: 400px;
 
 .hero {
   width: 100%;
   background-color: $gray-lightest;
+  overflow: hidden;
 }
 
 .hero__container {
@@ -51,10 +52,19 @@ $hero-height: 350px;
 
 .hero__buttons {
   display: flex;
+  flex-direction: column;
 
   .button {
     margin-right: 0.5em;
+    margin-bottom: 0.5em;
     text-decoration: none!important;
+  }
+}
+
+@media (min-width: $breakpoint-palm) {
+  .hero__buttons {
+    display: block;
+    margin-top: auto;
   }
 }
 
@@ -88,11 +98,29 @@ $hero-height: 350px;
 
   .hero__content {
     width: 50%;
-    padding: 2em 0;
+    min-height: 100%;
+    padding: 2.5em 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+
+  .hero__title {
+    max-width: 450px;
   }
 
   .hero__description {
     max-width: 400px;
+    flex-grow: 1;
+  }
+
+  .hero__image-copyright {
+    flex-grow: 1;
+  }
+
+  .hero__buttons {
+    margin-top: auto;
   }
 
   .hero__media {

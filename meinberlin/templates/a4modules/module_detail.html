@@ -78,8 +78,8 @@
       {% block phase_content %}{% endblock phase_content %}
       {% if module.is_in_module_cluster %}
         <section>
-          <h2>{% translate 'More from this online participation:' %}</h2>
-          <ul class="list--clean flexgrid grid--3">
+          <h2>{% translate 'More from this online participation' %}</h2>
+          <ul class="list--clean flexgrid grid--3 grid--stretch">
             {% get_sorted_modules as modules %}
             {% for module in modules %}
               <li>

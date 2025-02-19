@@ -18,7 +18,7 @@
     "@react-leaflet/core": "^2.1.0",
     "@turf/turf": "^6.5.0",
     "acorn": "8.14.0",
-    "adhocracy4": "liqd/adhocracy4#bd82532a0ed6334a2276416d20dd3d8c423be9cc",
+    "adhocracy4": "liqd/adhocracy4#cffc3e29b2486c51434fd28aa63ffcaa57043242",
     "autoprefixer": "10.4.20",
     "bootstrap": "5.2.3",
     "copy-webpack-plugin": "12.0.2",

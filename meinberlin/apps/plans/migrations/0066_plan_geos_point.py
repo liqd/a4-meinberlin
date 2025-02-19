@@ -2,11 +2,9 @@
 
 import json
 import logging
-import django.contrib.gis.db.models.fields
 
 from django.contrib.gis.geos import GEOSGeometry
-from django.contrib.gis.geos import Point
-from django.db import migrations, models
+from django.db import migrations
 
 logger = logging.getLogger(__name__)
 
@@ -34,13 +32,6 @@ def migrate_plan_point_field(apps, schema_editor):
         plan.save()
 
 
-def migrate_plan_geos_point_field(apps, schema_editor):
-    plans = apps.get_model("meinberlin_plans", "Plan")
-    for plan in plans.objects.all():
-        plan.point = plan.geos_point
-        plan.save()
-
-
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -53,26 +44,5 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RunPython(
             migrate_plan_point_field, reverse_code=migrations.RunPython.noop
-        ),
-        migrations.RemoveField(
-            model_name="plan",
-            name="point",
-        ),
-        migrations.AddField(
-            model_name="plan",
-            name="point",
-            field=django.contrib.gis.db.models.fields.PointField(
-                blank=True,
-                null=True,
-                srid=4326,
-                verbose_name="Can your plan be located on the map?",
-            ),
-        ),
-        migrations.RunPython(
-            migrate_plan_geos_point_field, reverse_code=migrations.RunPython.noop
-        ),
-        migrations.RemoveField(
-            model_name="plan",
-            name="geos_point",
         ),
     ]

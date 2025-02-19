@@ -15,6 +15,8 @@ def migrate_plan_point_field(apps, schema_editor):
     plan = apps.get_model("meinberlin_plans", "Plan")
     for plan in plan.objects.all():
         geojson_point = plan.point
+        if not geojson_point:
+            continue
         if not "geometry" in geojson_point:
             logger.warning(
                 "error migrating point of plan " + plan.name + ": " + str(geojson_point)

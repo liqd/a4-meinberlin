@@ -86,6 +86,7 @@ def test_should_notify_on_phase_start(
         call_command("create_system_actions")
         action = Action.objects.last()
         should_notify, recipients = Notification.should_notify(action)
+        recipients = recipients.order_by("pk")
         assert len(recipients) == 2
         assert list(recipients) == [user1, user2]
         assert should_notify
@@ -109,6 +110,7 @@ def test_should_notify_on_event_start(
         call_command("create_offlineevent_system_actions")
         action = Action.objects.last()
         should_notify, recipients = Notification.should_notify(action)
+        recipients = recipients.order_by("pk")
         assert len(recipients) == 2
         assert list(recipients) == [user1, user2]
         assert should_notify

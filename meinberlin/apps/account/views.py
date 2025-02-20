@@ -39,7 +39,7 @@ class NotificationsView(LoginRequiredMixin, generic.ListView):
 
     model = Action
     paginate_by = 10
-    template_name = "meinberlin_account/actions.html"
+    template_name = "meinberlin_account/notifications.html"
 
     def get_queryset(self):
         user = get_object_or_404(User, pk=self.request.user.id)

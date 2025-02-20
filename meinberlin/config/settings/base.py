@@ -32,6 +32,7 @@ INSTALLED_APPS = (
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
+    "django.contrib.gis",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
@@ -58,6 +59,7 @@ INSTALLED_APPS = (
     "django_celery_beat",
     "easy_thumbnails",
     "rest_framework",
+    "rest_framework_gis",
     "rules.apps.AutodiscoverRulesConfig",
     "taggit",  # wagtail dependency
     "widget_tweaks",
@@ -177,7 +179,7 @@ WSGI_APPLICATION = "meinberlin.config.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
+        "ENGINE": "django.contrib.gis.db.backends.spatialite",
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
         "TEST": {
             "NAME": os.path.join(BASE_DIR, "test_db.sqlite3"),

@@ -5,12 +5,9 @@
 {% block title %}{% translate 'Notifications' %} — {{ block.super }}{% endblock title %}
 
 {% block content %}
+  <h1>{% translate 'Notifications' %}</h1>
+  <h1>{% translate "Account & Security" %}</h1>
   <div id="layout-grid__area--maincontent">
-    <h1>{% translate "Account & Security" %}</h1>
-
-    <p>
-      {% translate "Manage your username, your password and your e-mail addresses." %}
-    </p>
 
     <nav class="tabnavigation" aria-label="{% translate 'User Dashboard navigation' %}">
       {% with request.resolver_match.url_name as url_name %}

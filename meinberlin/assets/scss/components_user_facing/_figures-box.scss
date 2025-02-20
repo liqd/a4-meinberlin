@@ -34,13 +34,13 @@
 .figures-box__item {
     margin-bottom: 1.1em;
 
-    @media screen and (min-width: $breakpoint-tablet-landscape){
-        flex: 1 1 auto;
-    }
-
     @media screen and (min-width: $breakpoint-palm) {
         margin-bottom: 0;
         flex: 1 1 50%;
+    }
+
+    @media screen and (min-width: $breakpoint-tablet-landscape){
+        flex: 1 1 auto;
     }
 
     &:last-child {

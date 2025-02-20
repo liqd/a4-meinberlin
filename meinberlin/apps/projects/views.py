@@ -405,3 +405,10 @@ class ProjectInformationView(PermissionRequiredMixin, generic.DetailView):
     model = models.Project
     template_name = "meinberlin_projects/project_information.html"
     permission_required = "a4projects.view_project"
+
+
+class ProjectResultsView(PermissionRequiredMixin, generic.DetailView):
+    model = models.Project
+    template_name = "meinberlin_projects/project_results.html"
+    permission_required = "a4projects.view_project"
+    context_object_name = "project"

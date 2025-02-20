@@ -94,6 +94,23 @@
         </li>
       </ul>
     </section>
+    {% if counts %}
+      <section aria-labelledby="project-{{ project.pk }}-results">
+        <h2 class="mt-0" id="project-{{ project.pk }}-results">{% translate "Statistics & Results" %}</h2>
+        <ul>
+          {% for count in counts %}
+          <li>
+            {{ count.0 }}: {{ count.1 }}
+          </li>
+          {% endfor %}
+        </ul>
+        {% if project.result %}
+          <a href="{% url 'project-results' project.slug %}" class="button button--fullwidth-palm">
+            {% translate "See results" %}
+          </a>
+        {% endif %}
+      </section>
+    {% endif %}
     <section aria-labelledby="project-{{ project.pk }}-participation">
       {% if events %}
         <article>
@@ -125,16 +142,6 @@
           </li>
         {% endfor %}
       </ul>
-    </section>
-    <section aria-labelledby="tab-project-{{ project.pk }}-result">
-      <h2 class="mt-0" id="tab-project-{{ project.pk }}-result">{% translate "Result" %}</h2>
-      {% if project.result %}
-        <div class="ck-content">
-          {{ project.result | transform_collapsibles | disable_iframes | richtext }}
-        </div>
-      {% else %}
-        <p>{% translate "No results yet." %}</p>
-      {% endif %}
     </section>
   </div>
 {% endblock content %}

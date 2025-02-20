@@ -1,9 +1,81 @@
 {% extends "base.html" %}
+{% load i18n socialaccount %}
 
-{% load i18n static %}
+{% block title %}
+  {% translate "User Dashboard" %}
+  —
+  {{ block.super }}
+{% endblock title %}
 
-{% block title %}{% translate 'Notifications' %} — {{ block.super }}{% endblock title %}
+{% block breadcrumbs %}
+  <div id="content-header">
+    <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
+      <ol>
+        <li>
+          <a href="{% url 'wagtail_serve' '' %}">{% translate 'meinBerlin Homepage' %}</a>
+        </li>
+        <li class="active" aria-current="page">{% translate 'Account Settings' %}</li>
+      </ol>
+    </nav>
+  </div>
+{% endblock breadcrumbs %}
 
 {% block content %}
-  <h1>{% translate "Notifications" %}</h1>
+  <div id="layout-grid__area--maincontent">
+    <h1>{% translate "Account & Security" %}</h1>
+
+    <p>
+      {% translate "Manage your username, your password and your e-mail addresses." %}
+    </p>
+
+    <nav class="tabnavigation" aria-label="{% translate 'User Dashboard navigation' %}">
+      {% with request.resolver_match.url_name as url_name %}
+        <div class="row">
+          <ul class="tabnavigation--left">
+            <li>
+              <a
+                href="{% url 'account_profile' %}"
+                class="tabnavigation__button"
+                {% if request.resolver_match.url_name == "account_profile" %}aria-selected="true"{% endif %}
+              >
+                {% translate 'Profile' %}
+              </a>
+            </li>
+            <li>
+              <a
+                href="{% url 'account_change_password' %}"
+                class="tabnavigation__button"
+                {% if request.resolver_match.url_name == "account_change_password" %}aria-selected="true"{% endif %}
+              >
+                {% translate 'Change password' %}
+              </a>
+            </li>
+            <li>
+              <a
+                href="{% url 'account_email' %}"
+                class="tabnavigation__button"
+                {% if request.resolver_match.url_name == "account_email" %}aria-selected="true"{% endif %}
+              >
+                {% translate 'Email addresses' %}
+              </a>
+            </li>
+            {% get_providers as socialaccount_providers %}
+            {% if socialaccount_providers %}
+              <li>
+                <a
+                  href="{% url 'socialaccount_connections' %}"
+                  class="tabnavigation__button"
+                  {% if request.resolver_match.url_name == "socialaccount_connections" %}aria-selected="true"{% endif %}
+                >
+                  {% translate 'Account Connections' %}
+                </a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      {% endwith %}
+    </nav>
+
+    {% block dashboard_content %}{% endblock dashboard_content %}
+  </div>
 {% endblock content %}

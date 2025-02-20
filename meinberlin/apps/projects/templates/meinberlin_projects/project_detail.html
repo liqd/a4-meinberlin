@@ -125,15 +125,24 @@
       </ul>
     </section>
     {% endif %}
-    <section aria-labelledby="project-result">
-      <h2 class="mt-0" id="project-result">{% translate "Result" %}</h2>
-      {% if project.result %}
-        <div class="ck-content">
-          {{ project.result | transform_collapsibles | disable_iframes | richtext }}
-        </div>
-      {% else %}
-        <p>{% translate "No results yet." %}</p>
-      {% endif %}
-    </section>
+    {% if counts or project.result %}
+      <section aria-labelledby="project-insights">
+        <h2 class="mt-0" id="project-insights">{% translate "Statistics & Results" %}</h2>
+        {% if counts %}
+          <ul>
+            {% for count in counts %}
+            <li>
+              {{ count.0 }}: {{ count.1 }}
+            </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        {% if project.result %}
+          <a href="{% url 'project-results' project.slug %}" class="button button--fullwidth-palm">
+            {% translate "See results" %}
+          </a>
+        {% endif %}
+      </section>
+    {% endif %}
   </div>
 {% endblock content %}

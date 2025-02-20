@@ -1,24 +1,8 @@
 {% extends "base.html" %}
-{% load i18n socialaccount %}
 
-{% block title %}
-  {% translate "User Dashboard" %}
-  —
-  {{ block.super }}
-{% endblock title %}
+{% load i18n static %}
 
-{% block breadcrumbs %}
-  <div id="content-header">
-    <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
-      <ol>
-        <li>
-          <a href="{% url 'wagtail_serve' '' %}">{% translate 'meinBerlin Homepage' %}</a>
-        </li>
-        <li class="active" aria-current="page">{% translate 'Account Settings' %}</li>
-      </ol>
-    </nav>
-  </div>
-{% endblock breadcrumbs %}
+{% block title %}{% translate 'Notifications' %} — {{ block.super }}{% endblock title %}
 
 {% block content %}
   <div id="layout-grid__area--maincontent">

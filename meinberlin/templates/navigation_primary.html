@@ -13,9 +13,9 @@
         </li>
       {% endif %}
       {% if request.user.is_authenticated %}
-        {% url 'account_actions' as activity_feed %}
-        <li class="{% if request.path == activity_feed %}active{% endif %}">
-          <a href="{% url 'account_actions' %}">{% translate 'Activity Feed' %}</a>
+        {% url 'notifications' as notifications %}
+        <li class="{% if request.path == notifications %}active{% endif %}">
+          <a href="{% url 'notifications' %}">{% translate 'Notifications' %}</a>
         </li>
       {% endif %}
       {% for item in topnav %}

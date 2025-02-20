@@ -35,7 +35,7 @@ class ProfileUpdateView(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateV
         return self.request.path
 
 
-class ProfileActionsView(LoginRequiredMixin, generic.ListView):
+class NotificationsView(LoginRequiredMixin, generic.ListView):
 
     model = Action
     paginate_by = 10
@@ -48,8 +48,8 @@ class ProfileActionsView(LoginRequiredMixin, generic.ListView):
         return qs.exclude_updates()
 
 
-class NotificationsView(LoginRequiredMixin, generic.TemplateView):
-    template_name = "meinberlin_account/notifications.html"
+class NotificationSettingsView(LoginRequiredMixin, generic.TemplateView):
+    template_name = "meinberlin_account/notification-settings.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

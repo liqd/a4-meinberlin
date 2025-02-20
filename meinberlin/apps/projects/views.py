@@ -360,6 +360,7 @@ class ProjectDetailView(PermissionRequiredMixin, generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["events"] = self.project.offlineevent_set.all().order_by("date")
+        return models.ProjectInsight.update_context(self.project, context)
         return context
 
 
@@ -405,3 +406,10 @@ class ProjectInformationView(PermissionRequiredMixin, generic.DetailView):
     model = models.Project
     template_name = "meinberlin_projects/project_information.html"
     permission_required = "a4projects.view_project"
+
+
+class ProjectResultsView(PermissionRequiredMixin, generic.DetailView):
+    model = models.Project
+    template_name = "meinberlin_projects/project_results.html"
+    permission_required = "a4projects.view_project"
+    context_object_name = "project"

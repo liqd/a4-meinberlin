@@ -3,6 +3,7 @@ import uuid
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.models import base
 from adhocracy4.projects.models import Project
@@ -71,3 +72,70 @@ class ModeratorInvite(Invite):
     def accept(self, user):
         self.project.moderators.add(user)
         super().accept(user)
+
+
+class ProjectInsight(base.TimeStampedModel):
+    project = models.OneToOneField(
+        Project, related_name="insight", on_delete=models.CASCADE
+    )
+    active_participants = models.ManyToManyField(settings.AUTH_USER_MODEL)
+    unregistered_participants = models.PositiveIntegerField(default=0)
+    comments = models.PositiveIntegerField(default=0)
+    ratings = models.PositiveIntegerField(default=0)
+    written_ideas = models.PositiveIntegerField(default=0)
+    poll_answers = models.PositiveIntegerField(default=0)
+    live_questions = models.PositiveIntegerField(default=0)
+
+    @staticmethod
+    def update_context(project, context):
+        insight, created = ProjectInsight.objects.get_or_create(project=project)
+        context.update(create_insight_context(insight=insight))
+        return context
+
+    def __str__(self):
+        return "Insights for project %s" % self.project.name
+
+
+def create_insight_context(insight: ProjectInsight) -> dict:
+    """
+    ("BS", _("brainstorming")),
+    ("MBS", _("spatial brainstorming")),
+    ("IC", _("idea challenge")),
+    ("MIC", _("spatial idea challenge")),
+    ("TR", _("text review")),
+    ("PO", _("poll")),
+    ("PB", _("participatory budgeting")),
+    ("IE", _("interactive event")),
+    ("TP", _("prioritization")),
+    ("DB", _("debate")),
+    """
+
+    active_modules = [
+        module for module in insight.project.modules if not module.is_draft
+    ]
+    blueprint_types = {module.blueprint_type for module in active_modules}
+    show_polls = "PO" in blueprint_types
+    show_live_questions = "IE" in blueprint_types
+    show_ideas = bool(blueprint_types.intersection({"BS", "IC", "MBS", "MIC", "PB"}))
+
+    counts = [
+        (
+            _("active participants"),
+            insight.active_participants.count() + insight.unregistered_participants,
+        ),
+        (_("comments"), insight.comments),
+        (_("ratings"), insight.ratings),
+    ]
+
+    if show_ideas:
+        counts.append((_("written ideas"), insight.written_ideas))
+
+    if show_polls:
+        counts.append((_("poll answers"), insight.poll_answers))
+
+    if show_live_questions:
+        counts.append((_("interactive event questions"), insight.live_questions))
+
+    return dict(
+        counts=counts,
+    )

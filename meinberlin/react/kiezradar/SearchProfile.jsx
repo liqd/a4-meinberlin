@@ -89,7 +89,8 @@ export default function SearchProfile ({ apiUrl, planListUrl, searchProfile, onS
     searchProfile.topics,
     searchProfile.project_types,
     searchProfile.status.map((status) => ({ name: statusNames[status.name] })),
-    searchProfile.organisations
+    searchProfile.organisations,
+    searchProfile.kiezradars
   ]
     .map((filter) => filter.map(({ name }) => name))
 
@@ -201,6 +202,7 @@ function toQueryString (searchProfile) {
     participations: searchProfile.project_types.map(participation => participation.id),
     topics: searchProfile.topics.map((topic) => topic.code),
     plansOnly: searchProfile.plans_only,
-    projectState: searchProfile.status.map(status => projectStateMapping[status.status])
+    projectState: searchProfile.status.map(status => projectStateMapping[status.status]),
+    kiezradars: searchProfile.kiezradars.map(kiezradar => kiezradar.name)
   }).toString()
 }

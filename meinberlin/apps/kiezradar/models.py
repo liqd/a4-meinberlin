@@ -95,19 +95,17 @@ class SearchProfile(UserGeneratedContentModel):
     disabled = models.BooleanField(default=False)
     notification = models.BooleanField(default=False)
     plans_only = models.BooleanField(default=False)
-    kiezradar = models.OneToOneField(
-        KiezRadar,
-        models.SET_NULL,
-        related_name="search_profile",
-        blank=True,
-        null=True,
-    )
     query = models.ForeignKey(
         KiezradarQuery,
         models.SET_NULL,
         related_name="search_profiles",
         blank=True,
         null=True,
+    )
+    kiezradars = models.ManyToManyField(
+        KiezRadar,
+        related_name="search_profiles",
+        blank=True,
     )
     status = models.ManyToManyField(
         ProjectStatus,

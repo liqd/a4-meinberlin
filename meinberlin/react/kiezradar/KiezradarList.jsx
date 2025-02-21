@@ -114,7 +114,7 @@ export default function KiezradarList ({
                                 </header>
                                 <footer className="kiezradar-list__footer">
                                   <a
-                                    href={planListUrl + '?kiezradar=' + kiezradar.id}
+                                    href={planListUrl + '?kiezradars=' + kiezradar.name}
                                     className="button button--light kiezradar-list__view-projects"
                                   >
                                     {viewProjectsText}

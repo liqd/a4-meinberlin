@@ -18,7 +18,6 @@ const savingText = django.gettext('Saving')
 export default function SaveSearchProfile ({
   isAuthenticated,
   searchProfile,
-  searchProfilesCount,
   ...props
 }) {
   const [searchParams] = useSearchParams()
@@ -72,7 +71,7 @@ export default function SaveSearchProfile ({
 
   return (
     <div className="save-search-profile">
-      <CreateSearchProfileButton {...props} searchProfilesCount={searchProfilesCount} />
+      <CreateSearchProfileButton {...props} />
     </div>
   )
 }
@@ -83,6 +82,7 @@ function CreateSearchProfileButton ({
   topicChoices,
   participationChoices,
   projectStatus,
+  kiezradars,
   searchProfilesApiUrl,
   appliedFilters,
   searchProfilesCount,
@@ -96,6 +96,7 @@ function CreateSearchProfileButton ({
     topicChoices,
     participationChoices,
     projectStatus,
+    kiezradars,
     searchProfilesCount,
     onSearchProfileCreate
   })

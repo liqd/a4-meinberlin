@@ -36,6 +36,7 @@ npm-debug.log*
 
 # IDEs
 .idea/
+.vscode/
 
 # Django databases
 *.sqlite3*

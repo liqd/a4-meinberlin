@@ -154,3 +154,14 @@ class NotifyFollowersOnUpcomingEventEmail(Email):
             receivers, "notify_followers_event_upcoming"
         )
         return receivers
+
+
+class NotifyUserOnSearchProfileMatch(Email):
+    template_name = "meinberlin_projects/emails/notify_new_profile_project"
+
+    def get_receivers(self):
+        search_profiles = self.object
+        receivers = set()
+        for search_profile in search_profiles:
+            receivers = receivers.add(search_profile.creator)
+        return receivers

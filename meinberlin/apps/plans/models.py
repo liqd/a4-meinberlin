@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.auth.models import Group
+from django.contrib.gis.db import models as gis_models
 from django.db import models
 from django.db.models import Q
 from django.urls import reverse
@@ -13,7 +14,6 @@ from adhocracy4.images.fields import ConfiguredImageField
 from adhocracy4.images.fields import ImageAltTextField
 from adhocracy4.images.fields import ImageCopyrightField
 from adhocracy4.images.validators import ImageAltTextValidator
-from adhocracy4.maps import fields as map_fields
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.phases.models import Phase
 from adhocracy4.projects import models as project_models
@@ -53,10 +53,16 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
         project_models.Project, related_name="plans", blank=True
     )
     group = models.ForeignKey(Group, on_delete=models.SET_NULL, blank=True, null=True)
-    point = map_fields.PointField(
+    point = gis_models.PointField(
+        null=True,
         blank=True,
         verbose_name=_("Can your plan be located on the map?"),
     )
+
+    street_name = models.CharField(null=True, blank=True, max_length=200)
+    house_number = models.CharField(null=True, blank=True, max_length=10)
+    zip_code = models.CharField(null=True, blank=True, max_length=20)
+
     point_label = models.CharField(
         blank=True,
         default="",

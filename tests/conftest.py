@@ -1,6 +1,7 @@
 import factory
 import pytest
 from celery import Celery
+from django.contrib.gis.geos import Point
 from django.core.cache import cache
 from django.urls import reverse
 from pytest_factoryboy import register
@@ -79,6 +80,11 @@ def ImagePNG():
 @pytest.fixture
 def image_factory():
     return factories.ImageFactory()
+
+
+@pytest.fixture
+def gis_point():
+    return Point(13.397788148643649, 52.52958586909979)
 
 
 @pytest.fixture

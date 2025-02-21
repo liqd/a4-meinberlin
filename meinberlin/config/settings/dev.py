@@ -39,7 +39,7 @@ CSP_DEFAULT_SRC = ["'self'", "'unsafe-inline'", "'unsafe-eval'", "data:", "blob:
 if os.getenv("DATABASE") == "postgresql":
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.postgresql",
+            "ENGINE": "django.contrib.gis.db.backends.postgis",
             "NAME": "django",
             "USER": "django",
             "PASSWORD": "",

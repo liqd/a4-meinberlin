@@ -163,6 +163,12 @@ module.exports = {
       ],
       dependOn: 'adhocracy4'
     },
+    mb_notifications: {
+      import: [
+        './meinberlin/react/account/react_notifications.jsx'
+      ],
+      dependOn: 'adhocracy4'
+    },
     mb_notification_settings: {
       import: [
         './meinberlin/react/account/react_notification_settings.jsx'

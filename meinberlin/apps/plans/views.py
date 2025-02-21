@@ -25,9 +25,11 @@ from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.enums import TopicEnum
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
 from meinberlin.apps.dashboard.mixins import DashboardProjectListGroupMixin
+from meinberlin.apps.kiezradar.models import KiezRadar
 from meinberlin.apps.kiezradar.models import ProjectStatus
 from meinberlin.apps.kiezradar.models import ProjectType
 from meinberlin.apps.kiezradar.models import SearchProfile
+from meinberlin.apps.kiezradar.serializers import KiezRadarSerializer
 from meinberlin.apps.kiezradar.serializers import SearchProfileSerializer
 from meinberlin.apps.maps.models import MapPreset
 from meinberlin.apps.organisations.models import Organisation
@@ -133,6 +135,17 @@ class PlanListView(rules_mixins.PermissionRequiredMixin, generic.ListView):
         ]
         return json.dumps(statuses)
 
+    def get_kiezradars(self):
+        if not self.request.user.is_authenticated:
+            return json.dumps([])
+
+        kiezradars = KiezRadar.objects.filter(creator=self.request.user)
+        return (
+            JSONRenderer()
+            .render(KiezRadarSerializer(kiezradars, many=True).data)
+            .decode("utf-8")
+        )
+
     def get_search_profile(self):
         if (
             self.request.GET.get("search-profile", None)
@@ -174,6 +187,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin, generic.ListView):
         if hasattr(settings, "A4_OPENMAPTILES_TOKEN"):
             omt_token = settings.A4_OPENMAPTILES_TOKEN
 
+        context["kiezradars"] = self.get_kiezradars()
         context["search_profile"] = self.get_search_profile()
         context["districts"] = self.get_districts()
         context["organisations"] = self.get_organisations()

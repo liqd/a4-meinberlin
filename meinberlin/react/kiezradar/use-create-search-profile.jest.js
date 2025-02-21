@@ -39,6 +39,10 @@ describe('useCreateSearchProfile', () => {
       name: 'future'
     }
   ]
+  const kiezradars = [
+    { id: 1, name: 'Kiezradar 1' },
+    { id: 2, name: 'Kiezradar 2' }
+  ]
 
   beforeEach(() => {
     jest.clearAllMocks()
@@ -51,6 +55,7 @@ describe('useCreateSearchProfile', () => {
       topics: ['ANT'],
       participations: [3, 4],
       projectState: ['active', 'past', 'future'],
+      kiezradars: ['Kiezradar 1', 'Kiezradar 2'],
       plansOnly: false,
       search: ''
     }
@@ -61,6 +66,7 @@ describe('useCreateSearchProfile', () => {
       topics: [1],
       project_types: [3, 4],
       status: [1, 2, 3],
+      kiezradars: [1, 2],
       plans_only: false,
       notification: true
     }
@@ -74,6 +80,7 @@ describe('useCreateSearchProfile', () => {
         topicChoices,
         participationChoices,
         projectStatus,
+        kiezradars,
         searchProfilesCount: 0,
         onSearchProfileCreate: () => {}
       })
@@ -97,6 +104,7 @@ describe('useCreateSearchProfile', () => {
       topics: [],
       participations: [],
       projectState: [],
+      kiezradars: [],
       plansOnly: false,
       search: ''
     }
@@ -133,6 +141,7 @@ describe('useCreateSearchProfile', () => {
         topicChoices,
         participationChoices,
         projectStatus,
+        kiezradars,
         searchProfilesCount: 0,
         onSearchProfileCreate: mockOnSearchProfileCreate
       })
@@ -152,6 +161,7 @@ describe('useCreateSearchProfile', () => {
       topics: [],
       participations: [],
       projectState: [],
+      kiezradars: [],
       plansOnly: false,
       search: ''
     }
@@ -167,6 +177,7 @@ describe('useCreateSearchProfile', () => {
         topicChoices,
         participationChoices,
         projectStatus,
+        kiezradars,
         searchProfilesCount: 10,
         onSearchProfileCreate: mockOnSearchProfileCreate
       })

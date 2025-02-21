@@ -19,7 +19,7 @@ def test_create_search_profile(
 
     search_profile = search_profile_factory(creator=user)
     assert search_profile.query is None
-    assert search_profile.kiezradar is None
+    assert search_profile.kiezradars.all().count() == 0
     assert search_profile.topics.all().count() == 0
     assert search_profile.districts.all().count() == 0
     assert search_profile.project_types.all().count() == 0
@@ -61,9 +61,9 @@ def test_create_search_profile(
     search_profile.query = query
     search_profile.save()
     assert search_profile.query == query
-    search_profile.kiezradar = kiezradar
-    search_profile.save()
-    assert search_profile.kiezradar == kiezradar
+
+    search_profile.kiezradars.add(kiezradar.id)
+    assert search_profile.kiezradars.first() == kiezradar
     assert search_profile.creator == kiezradar.creator
 
 

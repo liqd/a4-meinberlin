@@ -76,3 +76,36 @@ export const toSearchParams = (params) => {
     return acc
   }, new URLSearchParams())
 }
+
+/*
+ * Calculates the geographical distance between two points using the Haversine formula.
+ *
+ * This function computes the shortest distance between two latitude/longitude coordinates
+ * on Earth's surface, returning the result in meters.
+ *
+ * Example:
+ * getDistanceBetweenPoints([13.405, 52.52], [9.9937, 53.5511])
+ * returns: ~255600 meters (distance between Berlin and Hamburg)
+ *
+ * @param {number[]} coords1 - [longitude, latitude] of the first point
+ * @param {number[]} coords2 - [longitude, latitude] of the second point
+ * @returns {number} - Distance between the two points in meters
+ */
+export const getDistanceBetweenPoints = (coords1, coords2) => {
+  const toRad = (angle) => (angle * Math.PI) / 180
+
+  const [lon1, lat1] = coords1
+  const [lon2, lat2] = coords2
+
+  const earthRadiusInMeters = 6371000
+  const deltaLat = toRad(lat2 - lat1)
+  const deltaLon = toRad(lon2 - lon1)
+
+  const haversineFormula =
+    Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(deltaLon / 2) * Math.sin(deltaLon / 2)
+
+  const centralAngle = 2 * Math.atan2(Math.sqrt(haversineFormula), Math.sqrt(1 - haversineFormula))
+
+  return earthRadiusInMeters * centralAngle
+}

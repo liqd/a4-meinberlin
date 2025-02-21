@@ -13,6 +13,7 @@ function init () {
     const attribution = el.getAttribute('data-attribution')
     const baseUrl = el.getAttribute('data-baseurl')
     const bounds = JSON.parse(el.getAttribute('data-bounds'))
+    const kiezradars = el.getAttribute('data-kiezradars') && JSON.parse(el.getAttribute('data-kiezradars'))
     const searchProfile = el.getAttribute('data-search-profile') && JSON.parse(el.getAttribute('data-search-profile'))
     const selectedDistrict = el.getAttribute('data-selected-district')
     const selectedTopic = el.getAttribute('data-selected-topic')
@@ -49,6 +50,7 @@ function init () {
             districts={districts}
             topicChoices={topicChoices}
             participationChoices={participationChoices}
+            kiezradars={kiezradars}
             searchProfile={searchProfile}
             searchProfilesApiUrl={searchProfilesApiUrl}
             searchProfilesUrl={searchProfilesUrl}

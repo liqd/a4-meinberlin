@@ -10,7 +10,7 @@ import Spinner from '../contrib/Spinner'
 import { ProjectsControlBar } from './ProjectsControlBar'
 import { filterProjects } from './filter-projects'
 import { getDefaultProjectState, getDefaultState } from './getDefaultState'
-import { useLocation } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 
 const pageHeader = django.gettext('Kiezradar')
 const showMapStr = django.gettext('Show map')
@@ -49,18 +49,18 @@ const ProjectsListMapBox = ({
   participationChoices,
   projectStatus,
   organisations,
+  kiezradars,
   searchProfile,
   searchProfilesCount,
   isAuthenticated
 }) => {
-  const location = useLocation()
-  const searchParams = new URLSearchParams(location.search)
+  const [searchParams] = useSearchParams()
   const [showMap, setShowMap] = useState(true)
   const [loading, setLoading] = useState(true)
   const [projectState, setProjectState] = useState(getDefaultProjectState(searchParams))
   const [items, setItems] = useState([])
   const fetchCache = useRef({})
-  const [appliedFilters, setAppliedFilters] = useState(getDefaultState(searchParams, { districts, organisations, participationChoices, topicChoices }))
+  const [appliedFilters, setAppliedFilters] = useState(getDefaultState(searchParams, { districts, organisations, participationChoices, topicChoices, kiezradars }))
   const [alert, setAlert] = useState(null)
   const [error, setError] = useState(null)
 
@@ -105,7 +105,7 @@ const ProjectsListMapBox = ({
 
   let status = nothingStr
 
-  const filteredItems = useMemo(() => filterProjects(items, appliedFilters, projectState), [items, appliedFilters, projectState])
+  const filteredItems = useMemo(() => filterProjects(items, appliedFilters, kiezradars, projectState), [items, appliedFilters, kiezradars, projectState])
   if (loading) {
     status = (
       <Spinner />
@@ -141,6 +141,7 @@ const ProjectsListMapBox = ({
         organisations={organisations}
         districts={districts}
         topicChoices={topicChoices}
+        kiezradars={kiezradars}
         appliedFilters={{ ...appliedFilters, projectState }}
         hasContainer={!showMap}
         onFiltered={({ projectState, ...filters }) => {
@@ -148,7 +149,7 @@ const ProjectsListMapBox = ({
           setAppliedFilters(filters)
         }}
         onResetClick={() => {
-          setAppliedFilters(getDefaultState(null, { districts, organisations, participationChoices, topicChoices }))
+          setAppliedFilters(getDefaultState(null, { districts, organisations, participationChoices, topicChoices, kiezradars }))
           setProjectState(['active', 'future'])
         }}
         onAlert={setAlert}

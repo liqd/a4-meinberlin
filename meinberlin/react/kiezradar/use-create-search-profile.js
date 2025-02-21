@@ -20,6 +20,7 @@ export function useCreateSearchProfile ({
   topicChoices,
   participationChoices,
   projectStatus,
+  kiezradars,
   searchProfilesCount,
   onSearchProfileCreate
 }) {
@@ -43,7 +44,8 @@ export function useCreateSearchProfile ({
       organisations,
       topicChoices,
       participationChoices,
-      projectStatus
+      projectStatus,
+      kiezradars
     })
 
     const {
@@ -51,7 +53,8 @@ export function useCreateSearchProfile ({
       organisationIds,
       topicIds,
       participationIds,
-      projectStatusIds
+      projectStatusIds,
+      kiezradarIds
     } = getFilteredIds(results)
 
     const params = {
@@ -60,6 +63,7 @@ export function useCreateSearchProfile ({
       topics: topicIds,
       project_types: participationIds,
       status: projectStatusIds,
+      kiezradars: kiezradarIds,
       plans_only: appliedFilters.plansOnly,
       notification: true
     }
@@ -89,7 +93,8 @@ function getFilteredResults ({
   organisations,
   topicChoices,
   participationChoices,
-  projectStatus
+  projectStatus,
+  kiezradars
 }) {
   return {
     filteredDistricts: districts.filter(district =>
@@ -106,6 +111,9 @@ function getFilteredResults ({
     ),
     filteredProjectStatus: projectStatus.filter(status =>
       appliedFilters.projectState.includes(STATUS_MAPPING[status.name])
+    ),
+    filteredKiezradars: kiezradars.filter(kiezradar =>
+      appliedFilters.kiezradars.includes(kiezradar.name)
     )
   }
 }
@@ -116,7 +124,8 @@ function getFilteredIds (results) {
     results.filteredOrganisations,
     results.filteredTopics,
     results.filteredParticipationChoices,
-    results.filteredProjectStatus
+    results.filteredProjectStatus,
+    results.filteredKiezradars
   ]
 
   const [
@@ -124,7 +133,8 @@ function getFilteredIds (results) {
     organisationIds,
     topicIds,
     participationIds,
-    projectStatusIds
+    projectStatusIds,
+    kiezradarIds
   ] = filters.map(items => items.map(item => item.id))
 
   return {
@@ -132,6 +142,7 @@ function getFilteredIds (results) {
     organisationIds,
     topicIds,
     participationIds,
-    projectStatusIds
+    projectStatusIds,
+    kiezradarIds
   }
 }

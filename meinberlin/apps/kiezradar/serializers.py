@@ -34,7 +34,7 @@ class KiezRadarSerializer(serializers.ModelSerializer):
 class SearchProfileSerializer(serializers.ModelSerializer):
     """Serializer for the SearchProfile model."""
 
-    kiezradar = (
+    kiezradars = (
         serializers.PrimaryKeyRelatedField(
             queryset=KiezRadar.objects.all(), required=False
         ),
@@ -82,16 +82,18 @@ class SearchProfileSerializer(serializers.ModelSerializer):
             "districts",
             "project_types",
             "topics",
-            "kiezradar",
+            "kiezradars",
         ]
 
         read_only_fields = ["id", "creator", "number"]
 
-    def validate_kiezradar(self, instance):
+    def validate_kiezradars(self, objs):
         user = self.context["request"].user
-        if not user.has_perm("meinberlin_kiezradar.change_kiezradar", instance):
-            raise serializers.ValidationError("Permission denied")
-        return instance
+
+        for obj in objs:
+            if not user.has_perm("meinberlin_kiezradar.change_kiezradar", obj):
+                raise serializers.ValidationError("Permission denied")
+        return objs
 
     def create(self, validated_data):
         # Pop one-to-many fields from validated_data
@@ -120,6 +122,12 @@ class SearchProfileSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
+        if instance.kiezradars:
+            representation["kiezradars"] = KiezRadarSerializer(
+                instance.kiezradars, many=True
+            ).data
+        else:
+            representation["kiezradars"] = None
         representation["organisations"] = [
             {"id": organisation.id, "name": organisation.name}
             for organisation in instance.organisations.all()

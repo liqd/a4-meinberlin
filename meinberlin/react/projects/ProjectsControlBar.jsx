@@ -7,14 +7,18 @@ import { ControlBarFilterPills } from '../contrib/ControlBarFilterPills'
 import SaveSearchProfile from '../plans/SaveSearchProfile'
 import { toSearchParams } from '../contrib/helpers'
 import { useSearchParams } from 'react-router-dom'
+import { GroupMultiSelect } from '../contrib/forms/GroupMultiSelect'
 
 const translated = {
   search: django.gettext('Search'),
   reset: django.gettext('Reset'),
   showFilters: django.gettext('Show more'),
   hideFilters: django.gettext('Show less'),
+  districtsKieze: django.gettext('Kiezes & Districts'),
+  allDistrictsKieze: django.gettext('Choose district or Kiez'),
+  savedKieze: django.gettext('Your saved Kieze'),
+  createKiez: django.gettext('Create a Kiez to use this filter'),
   districts: django.gettext('Districts'),
-  allDistricts: django.gettext('All districts'),
   topics: django.gettext('Topics'),
   allTopics: django.gettext('All topics'),
   participations: django.gettext('Kind of participation'),
@@ -56,10 +60,23 @@ const initialState = {
   participations: [],
   topics: [],
   projectState: ['active', 'future'],
-  plansOnly: false
+  plansOnly: false,
+  kiezradars: []
 }
 
-const getAlteredFilters = ({ search, districts, topics, projectState, organisation, participations }, topicChoices, participationChoices) => {
+const getAlteredFilters = (
+  {
+    search,
+    districts,
+    topics,
+    projectState,
+    organisation,
+    participations,
+    kiezradars
+  },
+  topicChoices,
+  participationChoices
+) => {
   const filters = []
   if (search !== initialState.search) {
     filters.push({ label: search, type: 'search', value: search })
@@ -79,6 +96,7 @@ const getAlteredFilters = ({ search, districts, topics, projectState, organisati
       filters.push({ label: choice.name, type: 'participations', value: participationId })
     }
   })
+  kiezradars.forEach(k => filters.push({ label: k, type: 'kiezradars', value: k }))
 
   return filters
 }
@@ -94,6 +112,7 @@ export const ProjectsControlBar = ({
   onAlert,
   onError,
   hasContainer,
+  kiezradars,
   searchProfile: initialSearchProfile,
   searchProfilesApiUrl,
   searchProfilesUrl,
@@ -202,12 +221,52 @@ export const ProjectsControlBar = ({
                   </div>
                   <div className="flexgrid grid--2">
                     <div className="span--1">
-                      <MultiSelect
-                        label={translated.districts}
-                        placeholder={translated.allDistricts}
-                        choices={districts.map((choice) => ({ value: choice.name, name: choice.name }))}
-                        values={filters.districts}
-                        onChange={(choices) => onFilterChange('districts', choices)}
+                      <GroupMultiSelect
+                        label={translated.districtsKieze}
+                        placeholder={translated.allDistrictsKieze}
+                        groups={[
+                          {
+                            title: translated.savedKieze,
+                            info: kiezradars.length === 0 ? translated.createKiez : null,
+                            choices: kiezradars.map((choice) => ({
+                              value: choice.name,
+                              name: choice.name
+                            }))
+                          },
+                          {
+                            title: translated.districts,
+                            choices: districts.map((choice) => ({
+                              value: choice.name,
+                              name: choice.name
+                            }))
+                          }
+                        ]}
+                        values={[...filters.kiezradars, ...filters.districts]}
+                        onChange={(choices) => {
+                          const selectedKiezradars = choices.filter((choice) =>
+                            kiezradars.some((kiezradar) => kiezradar.name === choice)
+                          )
+
+                          const selectedDistricts = choices.filter((choice) =>
+                            districts.some((district) => district.name === choice)
+                          )
+
+                          const hasKiezradarsChanged =
+                            selectedKiezradars.length !== filters.kiezradars.length ||
+                            selectedKiezradars.some((k) => !filters.kiezradars.includes(k))
+
+                          const hasDistrictsChanged =
+                            selectedDistricts.length !== filters.districts.length ||
+                            selectedDistricts.some((d) => !filters.districts.includes(d))
+
+                          if (hasKiezradarsChanged) {
+                            onFilterChange('kiezradars', selectedKiezradars)
+                          }
+
+                          if (hasDistrictsChanged) {
+                            onFilterChange('districts', selectedDistricts)
+                          }
+                        }}
                       />
                     </div>
                     <div className="span--1">
@@ -330,6 +389,7 @@ export const ProjectsControlBar = ({
                   topicChoices={topicChoices}
                   participationChoices={participationChoices}
                   projectStatus={projectStatus}
+                  kiezradars={kiezradars}
                   searchProfile={searchProfile}
                   searchProfilesApiUrl={searchProfilesApiUrl}
                   searchProfilesCount={searchProfilesCount}

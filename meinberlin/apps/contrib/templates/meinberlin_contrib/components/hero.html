@@ -5,13 +5,13 @@
     <div class="hero__content">
         <h1 class="hero__title">
           {% if show_buttons %}
-              <a href="{{ hero_link }}">{{ content.name }}</a>
+              <a href="{{ hero_link }}">{{ content.name|truncatechars:70 }}</a>
           {% else %}
-              {{ content.name }}
+              {{ content.name|truncatechars:70 }}
           {% endif %}
         </h1>
         <div class="hero__description">
-          <p>{{ content.description|safe }}</p>
+          <p>{{ content.description|safe|truncatechars:245 }}</p>
           {% if content.image_copyright %}
             <p class="hero__image-copyright">{% translate "Image" %}: {{ content.image_copyright }}</p>
           {% endif %}
@@ -19,7 +19,7 @@
 
         {% if show_buttons %}
             <div class="hero__buttons">
-              <a href="{{ hero_link }}" class="button button--light">
+              <a href="{{ hero_link }}" class="button button--light button--fullwidth-palm">
                 {% translate "More information" %}
               </a>
               {% load react_follows %}

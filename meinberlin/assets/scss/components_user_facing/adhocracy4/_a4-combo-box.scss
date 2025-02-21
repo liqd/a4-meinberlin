@@ -99,3 +99,31 @@ input.a4-combo-box__combobox {
         background: $gray-lighter;
     }
 }
+
+.a4-combo-box__title {
+    display: block;
+    color: $gray;
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5em;
+}
+
+.a4-combo-box__info {
+    display: block;
+    color: $black;
+    padding: 0.4em 0.5em;
+}
+
+.a4-combo-box__group-item {
+    margin: 0;
+}
+
+.a4-combo-box__group-dropdown {
+    border-bottom: 1px solid $border-color;
+    padding: 0;
+    margin: 0 0 0.25rem;
+}
+
+.a4-combo-box__container li:last-child .a4-combo-box__group-dropdown {
+    border-bottom: 0;
+    margin-bottom: 0;
+}

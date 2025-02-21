@@ -6,14 +6,16 @@ const defaultState = {
   organisation: [],
   participations: [],
   topics: [],
-  plansOnly: false
+  plansOnly: false,
+  kiezradars: []
 }
 
 export const getDefaultState = (searchParams, {
   districts,
   organisations,
   participationChoices,
-  topicChoices
+  topicChoices,
+  kiezradars
 }) => {
   let mergeData = {}
 
@@ -32,7 +34,10 @@ export const getDefaultState = (searchParams, {
       topics: topicChoices
         .filter((topic) => searchParams.getAll('topics').includes(topic.code))
         .map((topic) => topic.code),
-      plansOnly: searchParams.get('plansOnly') === 'true'
+      plansOnly: searchParams.get('plansOnly') === 'true',
+      kiezradars: kiezradars
+        .filter(kiezradar => searchParams.getAll('kiezradars').includes(kiezradar.name))
+        .map((kiezradar) => kiezradar.name)
     }
   }
 

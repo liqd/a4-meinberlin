@@ -9,7 +9,7 @@
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
 
     {% if form.show_categories %}
-        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.category %}
+        {% include 'meinberlin_contrib/includes/form_field_select.html' with field=form.category %}
     {% endif %}
 
     {% if form.show_labels %}

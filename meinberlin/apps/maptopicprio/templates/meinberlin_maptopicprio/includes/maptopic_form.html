@@ -8,7 +8,7 @@
     {% include 'a4forms/includes/form_field.html' with field=form.name %}
     {% include 'a4forms/includes/form_field.html' with field=form.description %}
     {% if form.show_categories %}
-        {% include 'a4forms/includes/form_field.html' with field=form.category %}
+        {% include 'meinberlin_contrib/includes/form_field_select.html' with field=form.category %}
     {% endif %}
     {% if form.show_labels %}
         {% include 'a4forms/includes/form_field.html' with field=form.labels %}

@@ -6,7 +6,6 @@ from adhocracy4.labels.mixins import LabelsAddableFieldMixin
 from adhocracy4.maps_react import widgets as maps_widgets
 from meinberlin.apps.contrib.mixins import CategoryAndLabelAliasMixin
 from meinberlin.apps.contrib.mixins import ImageRightOfUseMixin
-from meinberlin.apps.contrib.widgets import Select2Widget
 
 from . import models
 
@@ -39,7 +38,6 @@ class MapIdeaForm(
             "point",
             "point_label",
         ]
-        widgets = {"category": Select2Widget(attrs={"class": "select2__no-search"})}
 
 
 class MapIdeaModerateForm(forms.ModelForm):

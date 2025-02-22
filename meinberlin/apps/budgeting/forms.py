@@ -27,9 +27,6 @@ class ProposalForm(ContactStorageConsentMixin, MapIdeaForm):
             "contact_email",
             "contact_phone",
         ]
-        widgets = {
-            "category": widgets.Select2Widget(attrs={"class": "select2__no-search"})
-        }
         labels = {
             "allow_contact": _(
                 "For questions or in case of implementation "

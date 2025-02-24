@@ -5,9 +5,13 @@ import Notifications from './Notifications'
 function init () {
   const el = document.getElementById('notifications-react')
   const root = createRoot(el)
+  const notificationsApiUrl = el.getAttribute('data-notifications-api-url')
+  console.log(notificationsApiUrl)
   root.render(
     <React.StrictMode>
-      <Notifications />
+      <Notifications
+        notificationsApiUrl={notificationsApiUrl}
+      />
     </React.StrictMode>)
 }
 

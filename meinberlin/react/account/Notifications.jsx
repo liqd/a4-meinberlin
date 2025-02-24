@@ -54,7 +54,7 @@ const translations = {
   yesterdayText: django.gettext('Yesterday')
 }
 
-export default function Notifications () {
+export default function Notifications ({ notificationsApiUrl }) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
@@ -66,7 +66,7 @@ export default function Notifications () {
         setLoading(true)
         setError(null)
 
-        const response = await fetch('/api/notifications/')
+        const response = await fetch(notificationsApiUrl)
 
         if (!response.ok) {
           throw new Error(translations.errorNotificationsText)

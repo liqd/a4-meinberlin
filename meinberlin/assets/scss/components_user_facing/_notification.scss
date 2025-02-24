@@ -30,10 +30,14 @@
     border: 1px solid $gray-lighter;
     display: flex;
     margin-bottom: 0.625rem;
-    padding: 1.125rem 1.125rem 1.125rem 0.875rem;
+    padding: 0.75rem;
 
     &:last-child {
         margin-bottom: 1.875rem;
+    }
+
+    @media screen and (min-width: $breakpoint-palm) {
+        padding: 1.125rem 1.125rem 1.125rem 0.875rem;
     }
 }
 
@@ -64,11 +68,13 @@
 }
 
 .notification__title {
+    font-size: 1rem;
     margin: 0;
 }
 
 .notification__date {
     color: $gray-darkest;
+    padding-left: 0.75rem;
     margin-left: auto;
 }
 
@@ -86,6 +92,12 @@
     display: flex;
     padding-bottom: 0.75rem;
     padding-top: 0.75rem;
+    flex-direction: column;
+
+    @media screen and (min-width: $breakpoint-palm) {
+        display: flex;
+        flex-direction: row;
+    }
 }
 
 .notification__panel--filled {

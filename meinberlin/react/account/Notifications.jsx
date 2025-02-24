@@ -85,7 +85,7 @@ export default function Notifications ({ notificationsApiUrl }) {
           : (
             <>
               <h2 className="notifications__title">
-                {translations.notificationsText} {notifications && <span className="notifications__count">{notifications.count}</span>}
+                {translations.notificationsText}
               </h2>
               <p className="notifications__description">{translations.notificationsDescriptionText}</p>
               {notifications &&

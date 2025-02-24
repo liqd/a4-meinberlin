@@ -15,17 +15,6 @@
     margin-bottom: 1.875rem;
 }
 
-.notifications__count {
-    background-color: $link-color;
-    border-radius: 1.8125rem;
-    color: $white;
-    display: block;
-    font-size: 1rem;
-    height: 1.8125rem;
-    margin-left: 0.625rem;
-    padding: 0 0.625rem;
-}
-
 .notification {
     border: 1px solid $gray-lighter;
     display: flex;
@@ -121,6 +110,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 40px;
+    margin-top: 30px;
 }
 
 .notifications__pagination-item {

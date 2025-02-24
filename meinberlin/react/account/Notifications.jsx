@@ -89,7 +89,7 @@ export default function Notifications ({ notificationsApiUrl }) {
               </h2>
               <p className="notifications__description">{translations.notificationsDescriptionText}</p>
               {notifications &&
-                [...notifications.results].map(({ read, action }) => {
+                notifications.results.map(({ read, action }) => {
                   const { type, timestamp, link, ...rest } = action
                   const text = getNotifcationText({ type, ...rest })
 

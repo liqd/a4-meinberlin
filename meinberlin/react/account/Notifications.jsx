@@ -44,7 +44,7 @@ const translations = {
   viewCommentText: django.gettext('View comment')
 }
 
-export default function Notifications ({ notificationsApiUrl }) {
+export default function Notifications ({ interactionsApiUrl }) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [notifications, setNotifications] = useState(null)
@@ -57,7 +57,7 @@ export default function Notifications ({ notificationsApiUrl }) {
         setLoading(true)
         setError(null)
 
-        const response = await fetch(notificationsApiUrl + '?page=' + page)
+        const response = await fetch(interactionsApiUrl + '?page=' + page + '&page_size=3')
 
         if (!response.ok) {
           throw new Error(translations.errorNotificationsText)
@@ -65,7 +65,7 @@ export default function Notifications ({ notificationsApiUrl }) {
 
         const data = await response.json()
         setNotifications(data)
-        setTotalPages(Math.ceil(data.count / 10))
+        setTotalPages(Math.ceil(data.count / 3))
       } catch (err) {
         setError(err.message)
       } finally {

@@ -48,7 +48,7 @@ class NotificationsView(LoginRequiredMixin, generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["notifications_api_url"] = reverse("notifications-list")
+        context["interactions_api_url"] = "/api/notifications/interactions/"
         return context
 
 

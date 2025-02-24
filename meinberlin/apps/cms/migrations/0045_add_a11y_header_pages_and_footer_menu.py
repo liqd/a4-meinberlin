@@ -10,7 +10,7 @@ import wagtail.fields
 class Migration(migrations.Migration):
     dependencies = [
         ("wagtailcore", "0083_workflowcontenttype"),
-        ("meinberlin_cms", "0043_alter_customrendition_file"),
+        ("meinberlin_cms", "0044_customimage_description_alter_homepage_body"),
     ]
 
     operations = [

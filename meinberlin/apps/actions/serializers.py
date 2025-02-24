@@ -13,8 +13,10 @@ class ActionSerializer(serializers.ModelSerializer):
     body = serializers.SerializerMethodField()
     link = serializers.SerializerMethodField()
     item = serializers.SerializerMethodField()
-    actor = serializers.CharField(source="actor.username", default="system")
-    target_creator = serializers.SerializerMethodField()
+    actor = serializers.SerializerMethodField()
+    target_creator = serializers.CharField(
+        source="target_creator.username", default=None
+    )
     project = ProjectSerializer(source="project", now=timezone.now())
 
     _cache = {}
@@ -114,10 +116,10 @@ class ActionSerializer(serializers.ModelSerializer):
             verb="moderate",
             name=trigger._meta.verbose_name,
         )
-        return obj.target_creator.has_perm(moderate_perm)
+        return obj.actor.has_perm(moderate_perm)
 
-    def get_target_creator(self, obj):
+    def get_actor(self, obj):
         return {
-            "username": obj.target_creator.username,
+            "username": obj.actor.username,
             "is_moderator": self.is_moderator(obj),
         }

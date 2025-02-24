@@ -7,7 +7,7 @@ import wagtail.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("meinberlin_cms", "0048_remove_storefrontcollection_parent_and_more"),
+        ("meinberlin_cms", "0043_alter_customrendition_file"),
     ]
 
     operations = [

@@ -4,6 +4,7 @@ from meinberlin.apps.projects.serializers import ProjectSerializer
 
 class ExternalProjectSerializer(ProjectSerializer):
     class Meta:
+        geo_field = "point"
         model = ExternalProject
         fields = [
             "access",

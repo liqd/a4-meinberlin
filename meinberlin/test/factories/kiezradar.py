@@ -1,4 +1,5 @@
 import factory
+from django.contrib.gis.geos import Point
 
 from adhocracy4.test import factories as a4_factories
 from meinberlin.apps.kiezradar.models import KiezRadar
@@ -23,13 +24,7 @@ class KiezRadarFactory(factory.django.DjangoModelFactory):
 
     creator = factory.SubFactory(a4_factories.USER_FACTORY)
     name = factory.Faker("sentence", nb_words=4)
-    point = {
-        "type": "Feature",
-        "geometry": {
-            "type": "Point",
-            "coordinates": [13.397788148643649, 52.52958586909979],
-        },
-    }
+    point = Point(13.397788148643649, 52.52958586909979)
     radius = 500.0
 
 

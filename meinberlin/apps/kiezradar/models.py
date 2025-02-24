@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.gis.db import models as gis_models
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator
 from django.core.validators import MinValueValidator
@@ -6,7 +7,6 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
-from adhocracy4.maps.fields import PointField
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.projects.models import Topic
 
@@ -17,8 +17,9 @@ class KiezRadar(UserGeneratedContentModel):
     KIEZRADAR_LIMIT = 5
 
     name = models.CharField(max_length=125)
-    point = PointField(
+    point = gis_models.PointField(
         blank=True,
+        null=True,
         verbose_name=_("Where can your address be located on a map?"),
         help_text=_(
             "Click inside the marked area "

@@ -116,3 +116,52 @@
     color: $link-color;
     margin-left: auto;
 }
+
+.notifications__pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notifications__pagination-item {
+    border-bottom: 1px solid $black;
+    border-top: 1px solid $black;
+    border-left: 1px solid $black;
+    position: relative;
+    height: 40px;
+    width: 40px;
+}
+
+.notifications__pagination-item:last-child {
+    border-right: 1px solid $black;  
+}
+
+.notifications__pagination-item--active:after {
+    background-color: $black;
+    content: "";
+    height: 6px;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+}
+
+.notifications__pagination-icon {
+    font-size: 12px;
+}
+
+.notifications__pagination-button:hover {
+    background-color: $gray-lightest;
+}
+
+.notifications__pagination-button:disabled {
+    cursor: default;
+}
+
+.notifications__pagination-button:disabled .notifications__pagination-icon {
+    opacity: 0.3;
+}
+
+.notifications__pagination-button:disabled:hover {
+    background-color: transparent;
+}

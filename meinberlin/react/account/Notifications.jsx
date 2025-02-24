@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import django from 'django'
 import Spinner from '../contrib/Spinner'
-import { alert as Alert, classNames } from 'adhocracy4'
+import { alert as Alert } from 'adhocracy4'
+import Notification from './Notification'
+import NotificationsPagination from './NotificationsPagination'
 
 const translations = {
   notificationsText: django.gettext('Notifications'),
@@ -39,26 +41,15 @@ const translations = {
     true
   ),
   viewIdeaText: django.gettext('View idea'),
-  viewCommentText: django.gettext('View comment'),
-  nowText: django.gettext('now'),
-  minutesAgoText: (minutes) => django.interpolate(
-    django.gettext('%(minutes)sm ago'),
-    { minutes },
-    true
-  ),
-  hoursAgoText: (hours) => django.interpolate(
-    django.gettext('%(hours)sh ago'),
-    { hours },
-    true
-  ),
-  yesterdayText: django.gettext('Yesterday')
+  viewCommentText: django.gettext('View comment')
 }
 
 export default function Notifications ({ notificationsApiUrl }) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
-
   const [notifications, setNotifications] = useState(null)
+  const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,7 +57,7 @@ export default function Notifications ({ notificationsApiUrl }) {
         setLoading(true)
         setError(null)
 
-        const response = await fetch(notificationsApiUrl)
+        const response = await fetch(notificationsApiUrl + '?page=' + page)
 
         if (!response.ok) {
           throw new Error(translations.errorNotificationsText)
@@ -74,6 +65,7 @@ export default function Notifications ({ notificationsApiUrl }) {
 
         const data = await response.json()
         setNotifications(data)
+        setTotalPages(Math.ceil(data.count / 10))
       } catch (err) {
         setError(err.message)
       } finally {
@@ -82,7 +74,7 @@ export default function Notifications ({ notificationsApiUrl }) {
     }
 
     fetchData()
-  }, [])
+  }, [page])
 
   return (
     <div className="notifications" aria-live="polite">
@@ -97,7 +89,7 @@ export default function Notifications ({ notificationsApiUrl }) {
               </h2>
               <p className="notifications__description">{translations.notificationsDescriptionText}</p>
               {notifications &&
-                [...notifications.results].reverse().map(({ read, action }) => {
+                [...notifications.results].map(({ read, action }) => {
                   const { type, timestamp, link, ...rest } = action
                   const text = getNotifcationText({ type, ...rest })
 
@@ -122,35 +114,7 @@ export default function Notifications ({ notificationsApiUrl }) {
                 })}
             </>
             )}
-    </div>
-  )
-}
-
-function Notification ({ icon, title, body, link, linkText, isRead, timestamp }) {
-  return (
-    <div className={classNames('notification', !isRead && 'notification--unread')}>
-      <div className="notification__icon">
-        <i
-          className={classNames(
-            'fa-solid',
-            icon === 'comment' && 'fa-comment',
-            icon === 'clock' && 'fa-clock'
-          )}
-        />
-        {!isRead && <span className="notification__unread" />}
-      </div>
-      <div className="notification__content">
-        <div className="notification__info">
-          <h3 className="notification__title">{title}</h3>
-          <time className="notification__date" dateTime={new Date(timestamp).toISOString()}>
-            {formatTimestamp(timestamp)}
-          </time>
-        </div>
-        <div className={classNames('notification__panel', body && 'notification__panel--filled')}>
-          {body && <p className="notification__body">{body}</p>}
-          <a className="notification__link" href={link}>{linkText}</a>
-        </div>
-      </div>
+      {totalPages && <NotificationsPagination page={page} totalPages={totalPages} setPage={setPage} />}
     </div>
   )
 }
@@ -211,21 +175,4 @@ function getNotifcationText (action) {
           }
       }
   }
-}
-
-function formatTimestamp (timestamp) {
-  const now = new Date()
-  const date = new Date(timestamp)
-  const diffMs = now - date
-  const diffSeconds = Math.floor(diffMs / 1000)
-  const diffMinutes = Math.floor(diffSeconds / 60)
-  const diffHours = Math.floor(diffMinutes / 60)
-  const diffDays = Math.floor(diffHours / 24)
-
-  if (diffSeconds < 60) return translations.nowText
-  if (diffMinutes < 60) return translations.minutesAgoText(diffMinutes)
-  if (diffHours < 24) return translations.hoursAgoText(diffHours)
-  if (diffDays === 1) return translations.yesterdayText
-
-  return date.toLocaleDateString()
 }

@@ -35,11 +35,10 @@ class ProfileUpdateView(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateV
         return self.request.path
 
 
-class ProfileActionsView(LoginRequiredMixin, generic.ListView):
+class NotificationsView(LoginRequiredMixin, generic.ListView):
 
     model = Action
-    paginate_by = 10
-    template_name = "meinberlin_account/actions.html"
+    template_name = "meinberlin_account/notifications.html"
 
     def get_queryset(self):
         user = get_object_or_404(User, pk=self.request.user.id)
@@ -47,9 +46,14 @@ class ProfileActionsView(LoginRequiredMixin, generic.ListView):
         qs = qs.filter(project__follow__creator=user, project__follow__enabled=True)
         return qs.exclude_updates()
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["interactions_api_url"] = "/api/notifications/interactions/"
+        return context
 
-class NotificationsView(LoginRequiredMixin, generic.TemplateView):
-    template_name = "meinberlin_account/notifications.html"
+
+class NotificationSettingsView(LoginRequiredMixin, generic.TemplateView):
+    template_name = "meinberlin_account/notification-settings.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

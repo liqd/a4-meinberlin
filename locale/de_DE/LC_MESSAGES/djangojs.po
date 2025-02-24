@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-23 14:41+0100\n"
-"PO-Revision-Date: 2025-01-31 14:15+0000\n"
+"PO-Revision-Date: 2025-02-25 09:03+0000\n"
 "Last-Translator: MarleyMi <m.mittmann@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "js-design-dev/de/>\n"
@@ -919,12 +919,12 @@ msgstr ""
 #: meinberlin/react/livequestions/LikeCard.jsx:7
 #: meinberlin/react/livequestions/QuestionPresent.jsx:4
 msgid "Likes"
-msgstr "gefällt mir"
+msgstr "Gefällt"
 
 #: adhocracy4/ratings/static/ratings/RatingBox.jsx:10
 #: adhocracy4/ratings/static/ratings/RatingBox.jsx:10
 msgid "Dislikes"
-msgstr "gefällt mir nicht"
+msgstr "gefällt nicht"
 
 #: adhocracy4/ratings/static/ratings/RatingButton.jsx:5
 #: adhocracy4/ratings/static/ratings/RatingButton.jsx:5
@@ -1216,23 +1216,23 @@ msgstr "Möchten Sie diese Sitzung beenden?"
 #, javascript-format
 msgid "1 person has supported this idea."
 msgid_plural "%s people have supported this idea."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 Person unterstützt diese Idee."
+msgstr[1] "%s Personen unterstützen diese Idee."
 
 #: meinberlin/react/budgeting/SupportBox.jsx:15
 #, javascript-format
 msgid "You have supported this idea."
 msgid_plural "<strong>You</strong> and %s people have supported this idea."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Sie haben diese Idee unterstützt."
+msgstr[1] "<strong>Sie</strong> und %s Personen haben diese Idee unterstützt."
 
 #: meinberlin/react/budgeting/SupportBox.jsx:25
 msgid "This idea has not yet been supported."
-msgstr ""
+msgstr "Diese Idee wurde bisher noch nicht unterstützt."
 
 #: meinberlin/react/budgeting/SupportBox.jsx:31
 msgid "<strong>You</strong> and 1 other person have supported this idea."
-msgstr ""
+msgstr "<strong>Sie</strong> und 1 weitere person unterstützen diese Idee."
 
 #: meinberlin/react/budgeting/SupportButton.jsx:5
 msgid "Support button inactive."
@@ -1241,11 +1241,11 @@ msgstr "Button zum Unterstützen inaktiv."
 #: meinberlin/react/budgeting/SupportButton.jsx:6
 msgctxt "button text"
 msgid "Support"
-msgstr ""
+msgstr "Unterstützen"
 
 #: meinberlin/react/budgeting/SupportButton.jsx:7
 msgid "Supported"
-msgstr ""
+msgstr "Unterstützt"
 
 #: meinberlin/react/budgeting/VoteButton.jsx:46
 msgid "Voted"
@@ -1496,11 +1496,11 @@ msgstr ""
 #: meinberlin/react/kiezradar/SearchProfile.jsx:12
 #: meinberlin/react/kiezradar/SearchProfileList.jsx:9
 msgid "Error"
-msgstr ""
+msgstr "Fehler"
 
 #: meinberlin/react/kiezradar/SearchProfile.jsx:14
 msgid "Failed to delete search profile"
-msgstr ""
+msgstr "Suchprofil konnte nicht gelöscht werden"
 
 #: meinberlin/react/kiezradar/SearchProfile.jsx:17
 msgid "Failed to update search profile"
@@ -1523,7 +1523,7 @@ msgstr "abgeschlossen"
 
 #: meinberlin/react/kiezradar/SearchProfileAlert.jsx:5
 msgid "Search profile successfully deleted"
-msgstr ""
+msgstr "Suchprofil erfolgreich gelöscht"
 
 #: meinberlin/react/kiezradar/SearchProfileAlert.jsx:7
 msgid "Your changes have been deleted."
@@ -1535,15 +1535,15 @@ msgstr ""
 
 #: meinberlin/react/kiezradar/SearchProfileList.jsx:6
 msgid "No saved search profiles"
-msgstr ""
+msgstr "Keine gespeicherten Suchprofile"
 
 #: meinberlin/react/kiezradar/SearchProfileList.jsx:7
 msgid "Find projects"
-msgstr ""
+msgstr "Endecken Sie Projekte"
 
 #: meinberlin/react/kiezradar/SearchProfileList.jsx:8
 msgid "Your saved search profiles"
-msgstr ""
+msgstr "Ihre gespeicherten Suchprofile"
 
 #: meinberlin/react/kiezradar/SearchProfileList.jsx:11
 msgid "Failed to fetch search profiles"
@@ -1551,11 +1551,11 @@ msgstr ""
 
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:6
 msgid "Search Profiles"
-msgstr ""
+msgstr "Such Profile"
 
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:8
 msgid "In this area you manage your search profiles."
-msgstr ""
+msgstr "In diesem Bereich verwalten Sie Ihre Suchprofile."
 
 #: meinberlin/react/kiezradar/use-create-search-profile.js:6
 msgid "Error creating search profile"
@@ -1581,43 +1581,43 @@ msgstr "Alle Beteiligungungsarten"
 
 #: meinberlin/react/livequestions/Filters.jsx:8
 msgid "Marked Questions"
-msgstr ""
+msgstr "Markierte Fragen"
 
 #: meinberlin/react/livequestions/Filters.jsx:10
 msgid "Bookmarked"
-msgstr ""
+msgstr "Vorgemerkt"
 
 #: meinberlin/react/livequestions/Filters.jsx:11
 msgid "Not Bookmarked"
-msgstr ""
+msgstr "Nicht vorgemerkt"
 
 #: meinberlin/react/livequestions/Filters.jsx:12
 msgid "Answered"
-msgstr ""
+msgstr "Beantwortet"
 
 #: meinberlin/react/livequestions/Filters.jsx:13
 msgid "Open"
-msgstr ""
+msgstr "Nicht beantwortet"
 
 #: meinberlin/react/livequestions/Filters.jsx:14
 msgid "On Screen"
-msgstr ""
+msgstr "Auf Bildschirm"
 
 #: meinberlin/react/livequestions/Filters.jsx:15
 msgid "Not on Screen"
-msgstr ""
+msgstr "Nicht auf Bildschirm"
 
 #: meinberlin/react/livequestions/Filters.jsx:17
 msgid "Display"
-msgstr ""
+msgstr "Anzeige"
 
 #: meinberlin/react/livequestions/Filters.jsx:19
 msgid "Visible"
-msgstr ""
+msgstr "Sichtbar"
 
 #: meinberlin/react/livequestions/Filters.jsx:20
 msgid "Hidden"
-msgstr ""
+msgstr "Verborgen"
 
 #: meinberlin/react/livequestions/Filters.jsx:22
 #: meinberlin/react/livequestions/QuestionBox.jsx:10
@@ -1626,7 +1626,7 @@ msgstr "Fragen"
 
 #: meinberlin/react/livequestions/LikeCard.jsx:6
 msgid "Liked"
-msgstr ""
+msgstr "Gefällt mir"
 
 #: meinberlin/react/livequestions/LikeCard.jsx:8
 msgid "add like"
@@ -1638,7 +1638,7 @@ msgstr "like zurück nehmen"
 
 #: meinberlin/react/livequestions/LikeCard.jsx:10
 msgid "bookmarked"
-msgstr ""
+msgstr "Vorgemerkt"
 
 #: meinberlin/react/livequestions/QuestionBox.jsx:12
 msgid "No questions available at the moment."
@@ -1650,7 +1650,7 @@ msgstr "Statistik"
 
 #: meinberlin/react/livequestions/QuestionBox.jsx:14
 msgid "Show on Screen"
-msgstr ""
+msgstr "Auf Bildschirm anzeigen"
 
 #: meinberlin/react/livequestions/QuestionForm.jsx:7
 msgid "Here you can ask your question"
@@ -1662,7 +1662,7 @@ msgstr "Ihre Frage"
 
 #: meinberlin/react/livequestions/QuestionForm.jsx:12
 msgid "Question successfully submitted"
-msgstr ""
+msgstr "Frage erfolgreich eingereicht"
 
 #: meinberlin/react/livequestions/QuestionModerator.jsx:6
 msgid "mark as hidden"
@@ -1686,11 +1686,11 @@ msgstr "von live list entfernen"
 
 #: meinberlin/react/livequestions/QuestionModerator.jsx:11
 msgid "add bookmark"
-msgstr ""
+msgstr "Vormerken"
 
 #: meinberlin/react/livequestions/QuestionModerator.jsx:12
 msgid "remove bookmark"
-msgstr ""
+msgstr "Nicht mehr vormerken"
 
 #: meinberlin/react/livequestions/StatisticsBox.jsx:7
 msgid "Questions Answered"
@@ -1698,7 +1698,7 @@ msgstr "Beantwortete Fragen"
 
 #: meinberlin/react/livequestions/StatisticsBox.jsx:8
 msgid "Categories"
-msgstr ""
+msgstr "Kategorien"
 
 #: meinberlin/react/livequestions/StatisticsBox.jsx:9
 msgid "Affiliation Of Answered Questions"
@@ -1779,7 +1779,7 @@ msgstr "Projekte anzeigen"
 
 #: meinberlin/react/plans/SaveSearchProfile.jsx:5
 msgid "Login to save search profiles"
-msgstr ""
+msgstr "Einloggen, um Suchprofile zu speichern"
 
 #: meinberlin/react/plans/SaveSearchProfile.jsx:6
 msgid "View search profiles"
@@ -1807,23 +1807,23 @@ msgstr "Hier finden Sie ein dekoratives Bild."
 
 #: meinberlin/react/projects/ProjectTile.jsx:11
 msgid "Participation ended."
-msgstr ""
+msgstr "Beteiligung abgeschlossen."
 
 #: meinberlin/react/projects/ProjectTile.jsx:12
 msgid "Begins on the"
-msgstr ""
+msgstr "Startet am"
 
 #: meinberlin/react/projects/ProjectTile.jsx:13
 msgid "Participation projects"
-msgstr ""
+msgstr "Beteiligungsprojekte"
 
 #: meinberlin/react/projects/ProjectTile.jsx:14
 msgid "Participation project"
-msgstr ""
+msgstr "Beteiligungsprojekte"
 
 #: meinberlin/react/projects/ProjectTopics.jsx:4
 msgid "Plan"
-msgstr ""
+msgstr "Vorhaben"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:14
 msgid "Districts"
@@ -1871,7 +1871,7 @@ msgstr "Projekte anzeigen"
 
 #: meinberlin/react/projects/ProjectsListMapBox.jsx:17
 msgid "Kiezradar"
-msgstr ""
+msgstr "Kiezradar"
 
 #: meinberlin/react/projects/ProjectsListMapBox.jsx:18
 msgid "Show map"

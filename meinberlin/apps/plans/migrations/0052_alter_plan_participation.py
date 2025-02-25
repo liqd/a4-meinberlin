@@ -2,14 +2,14 @@
 
 from django.db import migrations, models
 
-from meinberlin.apps.plans.models import Plan
+from meinberlin.apps.kiezradar.models import ProjectType
 
 
 def set_participation_to_default(apps, schema_editor):
     plan_model = apps.get_model("meinberlin_plans", "Plan")
     for plan in plan_model.objects.all():
-        if plan.participation != Plan.PARTICIPATION_INFORMATION:
-            plan.participation = Plan.PARTICIPATION_INFORMATION
+        if plan.participation != ProjectType.PARTICIPATION_INFORMATION:
+            plan.participation = ProjectType.PARTICIPATION_INFORMATION
             plan.save()
 
 

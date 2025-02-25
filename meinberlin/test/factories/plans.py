@@ -3,6 +3,7 @@ from django.contrib.gis.geos import Point
 
 from adhocracy4.test import factories as a4_factories
 from adhocracy4.test.factories import AdministrativeDistrictFactory
+from meinberlin.apps.kiezradar.models import ProjectType
 from meinberlin.apps.plans.models import Plan
 
 
@@ -18,7 +19,7 @@ class PlanFactory(factory.django.DjangoModelFactory):
     point = Point(13.447437286376953, 52.51518602243137)
     contact_address_text = ""
     status = Plan.STATUS_ONGOING
-    participation = Plan.PARTICIPATION_INFORMATION
+    participation = ProjectType.PARTICIPATION_INFORMATION
     is_draft = False
 
     @factory.post_generation

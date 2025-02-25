@@ -17,6 +17,28 @@ class SearchProfileFactory(factory.django.DjangoModelFactory):
     name = factory.Faker("sentence", nb_words=4)
     description = factory.Faker("sentence", nb_words=16)
 
+    @factory.post_generation
+    def project_types(self, create, extracted, **kwargs):
+        if extracted is not None:
+            if isinstance(extracted, list):
+                for project_type in extracted:
+                    self.project_types.add(project_type)
+            elif isinstance(extracted, int):
+                self.project_types.add(ProjectType.objects.get(participation=extracted))
+            else:
+                self.project_types.add(extracted)
+
+    @factory.post_generation
+    def status(self, create, extracted, **kwargs):
+        if extracted is not None:
+            if isinstance(extracted, list):
+                for project_status in extracted:
+                    self.status.add(project_status)
+            elif isinstance(extracted, int):
+                self.status.add(ProjectStatus.objects.get(status=extracted))
+            else:
+                self.status.add(extracted)
+
 
 class KiezRadarFactory(factory.django.DjangoModelFactory):
     class Meta:
@@ -39,7 +61,7 @@ class ProjectTypeFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = ProjectType
 
-    participation = ProjectType.PARTICIPATION_INFORMATION
+    participation = ProjectType.PARTICIPATION_CONSULTATION
 
 
 class ProjectStatusFactory(factory.django.DjangoModelFactory):

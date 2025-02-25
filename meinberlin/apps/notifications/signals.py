@@ -9,37 +9,14 @@ from adhocracy4.follows.models import Follow
 from adhocracy4.projects.models import Project
 
 from . import emails
-from .models import Notification
+from . import tasks
 
 User = get_user_model()
 
 
 @receiver(signals.post_save, sender=Action)
 def send_notifications(instance, created, **kwargs):
-    action = instance
-    verb = Verbs(action.verb)
-    should_notify, recipients = Notification.should_notify(action)
-
-    if should_notify:
-        notifications = [
-            Notification(recipient=recpient, action=action) for recpient in recipients
-        ]
-        Notification.objects.bulk_create(notifications)
-
-    if action.type in ("item", "comment") and verb in (Verbs.CREATE, Verbs.ADD):
-        emails.NotifyCreatorEmail.send(action)
-
-        if action.project:
-            emails.NotifyModeratorsEmail.send(action)
-
-    elif action.type == "phase" and action.project.project_type == "a4projects.Project":
-        if verb == Verbs.START:
-            emails.NotifyFollowersOnPhaseStartedEmail.send(action)
-        elif verb == Verbs.SCHEDULE:
-            emails.NotifyFollowersOnPhaseIsOverSoonEmail.send(action)
-
-    elif action.type == "offlineevent" and verb == Verbs.START:
-        emails.NotifyFollowersOnUpcomingEventEmail.send(action)
+    tasks.send_notifications.delay(instance.pk)
 
 
 @receiver(dashboard_signals.project_created)
@@ -47,6 +24,16 @@ def send_project_created_notifications(**kwargs):
     project = kwargs.get("project")
     creator = kwargs.get("user")
     emails.NotifyInitiatorsOnProjectCreatedEmail.send(project, creator_pk=creator.pk)
+
+
+@receiver(dashboard_signals.project_published)
+def create_project_published_action(**kwargs):
+    project = kwargs.get("project")
+    Action.objects.create(
+        verb=Verbs.PUBLISH.value,
+        obj=project,
+        project=project,
+    )
 
 
 @receiver(signals.m2m_changed, sender=Project.moderators.through)

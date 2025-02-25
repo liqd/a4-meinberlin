@@ -5,7 +5,10 @@ from django.core.management import call_command
 from freezegun import freeze_time
 from rest_framework.reverse import reverse
 
+from adhocracy4.dashboard import signals
 from adhocracy4.follows.models import Follow
+from adhocracy4.test.helpers import setup_phase
+from meinberlin.apps.ideas import phases
 from meinberlin.apps.notifications.models import Notification
 from meinberlin.test.factories import CommentFactory
 
@@ -172,3 +175,23 @@ def test_interactions_mark_single_as_read(
     response = apiclient.patch(url, {"read": True})
     assert response.status_code == 200
     assert response.data["read"]
+
+
+@pytest.mark.django_db
+def test_search_profiles(apiclient, user, phase_factory, search_factories):
+    matching_profile, non_matching_profile_same_user, matching_profile_other_user = (
+        search_factories
+    )
+
+    phase, module, project, _ = setup_phase(
+        phase_factory, None, phases.CollectPhase, module__project__name="Berlin"
+    )
+    signals.project_published.send(sender=None, project=project, user=user)
+
+    apiclient.force_authenticate(user=user)
+    url = reverse("notifications-search-profiles")
+    response = apiclient.get(url)
+    assert response.status_code == 200
+    assert len(response.data["results"]) == 1
+    assert response.data["results"][0]["action"]["type"] == "project_published"
+    assert response.data["results"][0]["search_profile"]["id"] == matching_profile.id

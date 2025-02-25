@@ -5,6 +5,7 @@ from django.db.models import QuerySet
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.projects.enums import Access
 from meinberlin.apps.extprojects.models import ExternalProject
+from meinberlin.apps.kiezradar.models import ProjectType
 from meinberlin.apps.organisations.models import Organisation
 from meinberlin.apps.plans.models import Plan
 from meinberlin.apps.projects.models import Project
@@ -191,7 +192,7 @@ def create_fake_plans(
             },
             contact_address_text="",
             status=Plan.STATUS_ONGOING,
-            participation=Plan.PARTICIPATION_INFORMATION,
+            participation=ProjectType.PARTICIPATION_INFORMATION,
             is_draft=False,
         )
 

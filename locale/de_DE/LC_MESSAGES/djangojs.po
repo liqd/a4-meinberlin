@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-04 12:03+0100\n"
-"PO-Revision-Date: 2025-01-31 11:15+0000\n"
+"PO-Revision-Date: 2025-02-25 10:27+0000\n"
 "Last-Translator: MarleyMi <m.mittmann@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js/de/>\n"
 "Language: de_DE\n"
@@ -818,12 +818,12 @@ msgstr "Ihre Wahl"
 #: adhocracy4/ratings/static/ratings/RatingBox.jsx:9
 #: adhocracy4/ratings/static/ratings/RatingBox.jsx:9
 msgid "Likes"
-msgstr "gefällt mir"
+msgstr "Gefällt"
 
 #: adhocracy4/ratings/static/ratings/RatingBox.jsx:10
 #: adhocracy4/ratings/static/ratings/RatingBox.jsx:10
 msgid "Dislikes"
-msgstr "gefällt mir nicht"
+msgstr "gefällt nicht"
 
 #: adhocracy4/ratings/static/ratings/RatingButton.jsx:5
 #: adhocracy4/ratings/static/ratings/RatingButton.jsx:5

@@ -12,12 +12,10 @@
           <a href="{{ settings.meinberlin_cms.HeaderPages.help_page.get_url }}">{% translate 'Help & Support' %}</a>
         </li>
       {% endif %}
-      {% if request.user.is_authenticated %}
-        {% url 'account_actions' as activity_feed %}
-        <li class="{% if request.path == activity_feed %}active{% endif %}">
-          <a href="{% url 'account_actions' %}">{% translate 'Activity Feed' %}</a>
-        </li>
-      {% endif %}
+      {% url 'notifications' as notifications %}
+      <li class="{% if request.path == notifications %}active{% endif %}">
+        <a href="{% url 'notifications' %}">{% translate 'Notifications' %}</a>
+      </li>
       {% for item in topnav %}
         <li class="{% if request.path == item.url %}active{% endif %}">
           <a href="{{ item.url }}">{{ item.title }}</a>

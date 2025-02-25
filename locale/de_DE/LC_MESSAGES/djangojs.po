@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-25 13:14+0100\n"
-"PO-Revision-Date: 2025-02-25 09:03+0000\n"
+"PO-Revision-Date: 2025-02-26 16:15+0000\n"
 "Last-Translator: MarleyMi <m.mittmann@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js-"
-"design-dev/de/>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
+"js-design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1145,13 +1145,13 @@ msgstr ""
 
 #: meinberlin/react/account/notification_data.js:22
 msgid "Event"
-msgstr "Veranstaltung"
+msgstr "Veranstaltungen"
 
 #: meinberlin/react/account/notification_data.js:23
 msgid "Receive notifications for upcoming events in projects you follow."
 msgstr ""
 "Erhalten Sie Benachrichtigungen über anstehende Veranstaltungen in "
-"Projekten, denen Sie Folgen."
+"Projekten, denen Sie folgen."
 
 #: meinberlin/react/account/notification_data.js:29
 msgid "Interactions with Other Users or Moderation"
@@ -1663,7 +1663,7 @@ msgstr ""
 
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:7
 msgid "Search Profiles"
-msgstr "Such Profile"
+msgstr "Suchprofile"
 
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:9
 msgid "In this area you manage your search profiles."

@@ -5,7 +5,7 @@ from meinberlin.apps.kiezradar.models import KiezRadar
 
 
 @pytest.mark.django_db
-def test_anonymous_user_cant_create_kiezradar(apiclient, geojson_point_str):
+def test_anonymous_user_cannot_create_kiezradar(apiclient, geojson_point_str):
     payload = {"name": "Test Search Profile", "point": geojson_point_str, "radius": 500}
 
     url = reverse("kiezradar-list")
@@ -29,7 +29,23 @@ def test_user_can_create_kiezradar(user, apiclient, geos_point, geojson_point_st
 
 
 @pytest.mark.django_db
-def test_user_cant_create_kiezradar_smaller_500(
+def test_user_can_create_kiezradar_with_geo_data_as_dict(
+    user, apiclient, geos_point, geojson_point
+):
+    payload = {"name": "My Kiez", "point": geojson_point, "radius": 600}
+    apiclient.force_authenticate(user)
+    url = reverse("kiezradar-list")
+    response = apiclient.post(url, payload, format="json")
+
+    assert response.status_code == 201
+    assert KiezRadar.objects.count() == 1
+    kiezradar = KiezRadar.objects.first()
+    assert kiezradar.name == payload["name"]
+    assert kiezradar.point.equals(geos_point)
+
+
+@pytest.mark.django_db
+def test_user_cannot_create_kiezradar_smaller_500(
     user, apiclient, geojson_point, geojson_point_str
 ):
     payload = {"name": "Too small Kiez", "point": geojson_point_str, "radius": 400}
@@ -42,7 +58,7 @@ def test_user_cant_create_kiezradar_smaller_500(
 
 
 @pytest.mark.django_db
-def test_user_cant_create_kiezradar_bigger_3000(
+def test_user_cannot_create_kiezradar_bigger_3000(
     user, apiclient, geojson_point, geojson_point_str
 ):
     payload = {"name": "Too big Kiez", "point": geojson_point_str, "radius": 3001}
@@ -55,7 +71,7 @@ def test_user_cant_create_kiezradar_bigger_3000(
 
 
 @pytest.mark.django_db
-def test_user_cant_update_other_users_kiezradar(
+def test_user_cannot_update_other_users_kiezradar(
     user, apiclient, geojson_point_str, kiez_radar_factory
 ):
     kiezradar = kiez_radar_factory()
@@ -102,7 +118,7 @@ def test_user_can_only_list_their_kiezradars(user, apiclient, kiez_radar_factory
 
 
 @pytest.mark.django_db
-def test_user_cant_see_other_users_kiezradar(user, apiclient, kiez_radar_factory):
+def test_user_cannot_see_other_users_kiezradar(user, apiclient, kiez_radar_factory):
     kiez_radar_factory()
     assert KiezRadar.objects.count() == 1
 

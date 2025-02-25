@@ -1,5 +1,5 @@
 # A4
-git+https://github.com/liqd/adhocracy4.git@82b2455f664bf196d1bf3eae38f06a769556cd11#egg=adhocracy4
+git+https://github.com/liqd/adhocracy4.git@87561ed9c8c8432ad08490a772cddc0b5ae4d81d#egg=adhocracy4
 
 # Additional requirements
 beautifulsoup4==4.12.3

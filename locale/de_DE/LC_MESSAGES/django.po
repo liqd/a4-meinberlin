@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-25 13:14+0100\n"
-"PO-Revision-Date: 2025-02-25 10:28+0000\n"
-"Last-Translator: Julian Dehm <j.dehm@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main-"
-"design-dev/de/>\n"
+"PO-Revision-Date: 2025-02-26 16:15+0000\n"
+"Last-Translator: MarleyMi <m.mittmann@liqd.net>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
+"main-design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1538,7 +1538,7 @@ msgstr "Ihr Nutzerprofil"
 
 #: meinberlin/apps/account/templates/meinberlin_account/notifications.html:8
 msgid "Notification settings"
-msgstr ""
+msgstr "Benachrichtigungseinstellungen"
 
 #: meinberlin/apps/account/views.py:29
 msgid "Your profile was successfully updated."
@@ -4573,7 +4573,7 @@ msgstr "anstehend"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:89
 msgid "ended"
-msgstr ""
+msgstr "Beendet"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:134
 msgid "No results yet."
@@ -5635,7 +5635,7 @@ msgstr ""
 
 #: meinberlin/templates/navigation_primary.html:36
 msgid "Search Profiles"
-msgstr "Such Profile"
+msgstr "Suchprofile"
 
 #: meinberlin/templates/navigation_primary.html:40
 msgid "Manage Kiezes"

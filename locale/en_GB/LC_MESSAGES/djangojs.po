@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-23 14:41+0100\n"
+"POT-Creation-Date: 2025-02-25 13:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,6 @@ msgstr "Your reply here"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:31
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:17
-#: adhocracy4/reports/static/reports/react_reports.jsx:22
 msgid ""
 "You want to report this content? Your message will be sent to the "
 "moderation. The moderation will look at the reported content. The content "
@@ -53,45 +52,47 @@ msgstr ""
 "will be deleted if it does not meet our discussion rules (netiquette)."
 
 #: adhocracy4/comments/static/comments/Comment.jsx:96
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:35
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:32
 msgid "Moderator"
 msgstr "Moderator"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:105
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:34
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:31
 msgid "Latest edit on"
 msgstr "Latest edit on"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:110
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:31
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:28
 msgid "Deleted by creator on"
 msgstr "Deleted by creator on"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:112
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:32
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:29
 msgid "Deleted by moderator on"
 msgstr "Deleted by moderator on"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:153
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:27
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:25
 msgid "Do you really want to delete this comment?"
 msgstr "Do you really want to delete this comment?"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:154
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:29
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:27
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:6
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:72
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:77
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:154
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
 #: meinberlin/react/documents/ChapterNavItem.jsx:5
 #: meinberlin/react/documents/ParagraphForm.jsx:11
+#: meinberlin/react/kiezradar/KiezradarList.jsx:17
+#: meinberlin/react/kiezradar/SearchProfile.jsx:13
 #: meinberlin/react/kiezradar/SearchProfileButtons.jsx:5
 msgid "Delete"
 msgstr "Delete"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:155
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:30
-#: adhocracy4/static/Modal.jsx:6
 msgid "Abort"
 msgstr "Abort"
 
@@ -135,10 +136,13 @@ msgstr "Only invited users can actively participate."
 
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:5
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:5
+#: meinberlin/react/kiezradar/EditKiezradar.jsx:7
+#: meinberlin/react/kiezradar/KiezradarList.jsx:16
 msgid "Edit"
 msgstr "Edit"
 
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
+#: adhocracy4/reports/static/reports/ReportModal.jsx:12
 msgid "Report"
 msgstr "Report"
 
@@ -234,47 +238,39 @@ msgid "Read less"
 msgstr "Read less"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:23
-msgid "Share"
-msgstr "Share"
-
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:24
-msgid " Report"
-msgstr " Report"
-
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:25
 msgid "Show moderator's feedback"
 msgstr "Show moderator's feedback"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:26
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:24
 msgid "Hide moderator's feedback"
 msgstr "Hide moderator's feedback"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:28
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:26
 msgid "Delete comment"
 msgstr "Delete comment"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:33
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:30
 msgid "Blocked by moderator"
 msgstr "Blocked by moderator"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:36
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:33
 msgid "hide replies"
 msgstr "hide replies"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:37
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:34
 msgctxt "verb"
 msgid "Reply"
 msgstr "Reply"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:38
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:35
 msgid "Click to view rest of comment text."
 msgstr "Click to view rest of comment text."
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:39
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:36
 msgid "Click to hide expanded text."
 msgstr "Click to hide expanded text."
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:48
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:45
 #, javascript-format
 msgid "1 reply"
 msgid_plural "%s replies"
@@ -321,14 +317,14 @@ msgstr "Highlighted"
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:7
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:14
 #: meinberlin/react/contrib/ControlBar.jsx:12
-#: meinberlin/react/projects/ProjectsControlBar.jsx:12
+#: meinberlin/react/projects/ProjectsControlBar.jsx:15
 msgid "Show more"
 msgstr "Show more"
 
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:8
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:15
 #: meinberlin/react/contrib/ControlBar.jsx:13
-#: meinberlin/react/projects/ProjectsControlBar.jsx:13
+#: meinberlin/react/projects/ProjectsControlBar.jsx:16
 msgid "Show less"
 msgstr "Show less"
 
@@ -386,8 +382,8 @@ msgstr "Post"
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:21
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
-#: meinberlin/react/budgeting/EndSessionLink.jsx:12
-#: meinberlin/react/kiezradar/SearchProfile.jsx:8
+#: adhocracy4/static/Modal.jsx:7
+#: meinberlin/react/kiezradar/SearchProfile.jsx:10
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -402,6 +398,10 @@ msgstr "Search contributions"
 #: adhocracy4/comments_async/static/comments_async/filter_search.jsx:6
 msgid "Clear search"
 msgstr "Clear search"
+
+#: adhocracy4/comments_async/static/modals/UrlModal.jsx:7
+msgid "Share"
+msgstr "Share"
 
 #: adhocracy4/comments_async/static/modals/UrlModal.jsx:8
 msgid "Copy"
@@ -454,9 +454,10 @@ msgid "Import polygon via file upload"
 msgstr "Import polygon via file upload"
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:88
-#: adhocracy4/static/Alert.jsx:6 meinberlin/apps/embed/assets/embed.js:59
+#: adhocracy4/static/Alert.jsx:6 adhocracy4/static/Modal.jsx:6
+#: meinberlin/apps/embed/assets/embed.js:59
 #: meinberlin/apps/embed/assets/embed.js:60
-#: meinberlin/react/plans/FilterNav.jsx:15
+#: meinberlin/react/contrib/Modal.jsx:4 meinberlin/react/plans/FilterNav.jsx:15
 msgid "Close"
 msgstr "Close"
 
@@ -519,6 +520,16 @@ msgid_plural "persons commented on this proposal."
 msgstr[0] "person commented on this proposal."
 msgstr[1] "persons commented on this proposal."
 
+#: adhocracy4/maps_react/static/a4maps_react/AddressSearch.jsx:7
+msgid "Address Search"
+msgstr "Address Search"
+
+#: adhocracy4/maps_react/static/a4maps_react/ChoosePointMap.jsx:8
+msgid ""
+"The chosen address is outside this map's bounds. Please choose another one."
+msgstr ""
+"The chosen address is outside this map's bounds. Please choose another one."
+
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:9
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:70
 msgctxt "noun"
@@ -573,7 +584,7 @@ msgstr ""
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:287
 #: meinberlin/react/documents/DocumentManagement.jsx:16
-#: meinberlin/react/kiezradar/SearchProfile.jsx:9
+#: meinberlin/react/kiezradar/SearchProfile.jsx:11
 msgid "Save"
 msgstr "Save"
 
@@ -589,6 +600,24 @@ msgstr "Question"
 #: adhocracy4/polls/static/PollDashboard/HelptextForm.jsx:11
 msgid "Explanation"
 msgstr "Explanation"
+
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:49
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:54
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
+#: meinberlin/react/documents/ChapterNavItem.jsx:3
+#: meinberlin/react/documents/ParagraphForm.jsx:9
+msgid "Move up"
+msgstr "Move up"
+
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:61
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:66
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
+#: meinberlin/react/documents/ChapterNavItem.jsx:4
+#: meinberlin/react/documents/ParagraphForm.jsx:10
+msgid "Move down"
+msgstr "Move down"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:47
 msgid "Participants can vote for more than one option (multiple choice)"
@@ -606,20 +635,6 @@ msgstr "Other"
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:113
 msgid "New answer"
 msgstr "New answer"
-
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
-#: meinberlin/react/documents/ChapterNavItem.jsx:3
-#: meinberlin/react/documents/ParagraphForm.jsx:9
-msgid "Move up"
-msgstr "Move up"
-
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
-#: meinberlin/react/documents/ChapterNavItem.jsx:4
-#: meinberlin/react/documents/ParagraphForm.jsx:10
-msgid "Move down"
-msgstr "Move down"
 
 #: adhocracy4/polls/static/PollDetail/CharCounter.jsx:5
 msgid "characters"
@@ -742,20 +757,38 @@ msgid "Click to dislike"
 msgstr "Click to dislike"
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:7
+msgid "Report Content"
+msgstr "Report Content"
+
+#: adhocracy4/reports/static/reports/ReportModal.jsx:8
 msgid "Report sent"
 msgstr "Report sent"
 
-#: adhocracy4/reports/static/reports/ReportModal.jsx:8
+#: adhocracy4/reports/static/reports/ReportModal.jsx:9
 msgid "Thank you! We are taking care of it."
 msgstr "Thank you! We are taking care of it."
 
-#: adhocracy4/reports/static/reports/ReportModal.jsx:9
+#: adhocracy4/reports/static/reports/ReportModal.jsx:10
 msgid "Your message"
 msgstr "Your message"
 
-#: adhocracy4/reports/static/reports/ReportModal.jsx:10
+#: adhocracy4/reports/static/reports/ReportModal.jsx:11
 msgid "Send Report"
 msgstr "Send Report"
+
+#: adhocracy4/reports/static/reports/ReportModal.jsx:13
+msgid "Please enter a message before submitting."
+msgstr "Please enter a message before submitting."
+
+#: adhocracy4/reports/static/reports/react_reports.jsx:16
+msgid ""
+"Do you want to report this content? Your message will be sent to our "
+"moderation team. They will review the reported content, and if it violates "
+"our discussion rules (netiquette), it will be removed."
+msgstr ""
+"Do you want to report this content? Your message will be sent to our "
+"moderation team. They will review the reported content, and if it violates "
+"our discussion rules (netiquette), it will be removed."
 
 #: adhocracy4/static/Captcha.jsx:5
 #: meinberlin/apps/captcha/assets/captcheck.js:29
@@ -806,7 +839,7 @@ msgid "You can still manage all your preferences on User Agreements."
 msgstr "You can still manage all your preferences on User Agreements."
 
 #: adhocracy4/static/control_bar/ControlBarSearch.jsx:5
-#: meinberlin/react/projects/ProjectsControlBar.jsx:10
+#: meinberlin/react/projects/ProjectsControlBar.jsx:13
 msgid "Search"
 msgstr "Search"
 
@@ -847,18 +880,18 @@ msgid "E-Mail"
 msgstr "E-Mail"
 
 #: meinberlin/react/account/NotificationToggle.jsx:6
-msgid "Activity Feed"
-msgstr "Activity Feed"
+msgid "In-App Notification"
+msgstr "In-App Notification"
 
-#: meinberlin/react/account/NotificationsList.jsx:8
+#: meinberlin/react/account/notification_data.js:5
 msgid "Project-Related Notifications"
 msgstr "Project-Related Notifications"
 
-#: meinberlin/react/account/NotificationsList.jsx:11
+#: meinberlin/react/account/notification_data.js:8
 msgid "E-Mail Newsletter"
 msgstr "E-Mail Newsletter"
 
-#: meinberlin/react/account/NotificationsList.jsx:12
+#: meinberlin/react/account/notification_data.js:9
 msgid ""
 "Receive newsletters with updates and news about the projects you follow via "
 "e-mail."
@@ -866,21 +899,21 @@ msgstr ""
 "Receive newsletters with updates and news about the projects you follow via "
 "e-mail."
 
-#: meinberlin/react/account/NotificationsList.jsx:15
+#: meinberlin/react/account/notification_data.js:12
 msgid "Participation Start"
 msgstr "Participation Start"
 
-#: meinberlin/react/account/NotificationsList.jsx:16
+#: meinberlin/react/account/notification_data.js:13
 msgid ""
 "Receive a notification when a participation begins in a project you follow."
 msgstr ""
 "Receive a notification when a participation begins in a project you follow."
 
-#: meinberlin/react/account/NotificationsList.jsx:20
+#: meinberlin/react/account/notification_data.js:17
 msgid "Participation End"
 msgstr "Participation End"
 
-#: meinberlin/react/account/NotificationsList.jsx:21
+#: meinberlin/react/account/notification_data.js:18
 msgid ""
 "Receive a notification when a participation is near its end in a project you "
 "follow."
@@ -888,23 +921,23 @@ msgstr ""
 "Receive a notification when a participation is near its end in a project you "
 "follow."
 
-#: meinberlin/react/account/NotificationsList.jsx:25
+#: meinberlin/react/account/notification_data.js:22
 msgid "Event"
 msgstr "Event"
 
-#: meinberlin/react/account/NotificationsList.jsx:26
+#: meinberlin/react/account/notification_data.js:23
 msgid "Receive notifications for upcoming events in projects you follow."
 msgstr "Receive notifications for upcoming events in projects you follow."
 
-#: meinberlin/react/account/NotificationsList.jsx:32
+#: meinberlin/react/account/notification_data.js:29
 msgid "Interactions with Other Users or Moderation"
 msgstr "Interactions with Other Users or Moderation"
 
-#: meinberlin/react/account/NotificationsList.jsx:35
+#: meinberlin/react/account/notification_data.js:32
 msgid "Reactions of other users"
 msgstr "Reactions of other users"
 
-#: meinberlin/react/account/NotificationsList.jsx:36
+#: meinberlin/react/account/notification_data.js:33
 msgid ""
 "Receive a notification when someone reacts to your contribution with a "
 "comment."
@@ -912,11 +945,11 @@ msgstr ""
 "Receive a notification when someone reacts to your contribution with a "
 "comment."
 
-#: meinberlin/react/account/NotificationsList.jsx:39
+#: meinberlin/react/account/notification_data.js:36
 msgid "Reactions of moderation"
 msgstr "Reactions of moderation"
 
-#: meinberlin/react/account/NotificationsList.jsx:40
+#: meinberlin/react/account/notification_data.js:37
 msgid ""
 "Receive a notification for feedback and status changes of your idea from the "
 "moderation."
@@ -924,75 +957,31 @@ msgstr ""
 "Receive a notification for feedback and status changes of your idea from the "
 "moderation."
 
-#: meinberlin/react/account/NotificationsList.jsx:45
+#: meinberlin/react/account/notification_data.js:42
 msgid "Notifications for Initiators and Moderators"
 msgstr "Notifications for Initiators and Moderators"
 
-#: meinberlin/react/account/NotificationsList.jsx:49
+#: meinberlin/react/account/notification_data.js:46
 msgid "New Project in Your Organization"
 msgstr "New Project in Your Organization"
 
-#: meinberlin/react/account/NotificationsList.jsx:50
+#: meinberlin/react/account/notification_data.js:47
 msgid ""
 "Receive a notification when a new project is created in your organization."
 msgstr ""
 "Receive a notification when a new project is created in your organization."
 
-#: meinberlin/react/account/NotificationsList.jsx:53
+#: meinberlin/react/account/notification_data.js:50
 msgid "New Contribution in a Moderated Project"
 msgstr "New Contribution in a Moderated Project"
 
-#: meinberlin/react/account/NotificationsList.jsx:54
+#: meinberlin/react/account/notification_data.js:51
 msgid ""
 "Receive a notification when a new contribution is added to a project you "
 "moderate."
 msgstr ""
 "Receive a notification when a new contribution is added to a project you "
 "moderate."
-
-#: meinberlin/react/budgeting/BudgetingProposalList.jsx:18
-#, javascript-format
-msgid "you have 1 vote left."
-msgid_plural "you have %s votes left."
-msgstr[0] "you have 1 vote left."
-msgstr[1] "you have %s votes left."
-
-#: meinberlin/react/budgeting/BudgetingProposalList.jsx:23
-#: meinberlin/react/budgeting/react_proposals_init.jsx:11
-#: meinberlin/react/kiezkasse/react_kiezkasse_proposals_init.jsx:18
-msgid "Proposals list"
-msgstr "Proposals list"
-
-#: meinberlin/react/budgeting/BudgetingProposalList.jsx:24
-#: meinberlin/react/contrib/card/CardList.jsx:14
-msgid "Nothing to show"
-msgstr "Nothing to show"
-
-#: meinberlin/react/budgeting/BudgetingProposalList.jsx:25
-msgid "Proposal tags"
-msgstr "Proposal tags"
-
-#: meinberlin/react/budgeting/EndSessionLink.jsx:8
-msgid "Are you finished?"
-msgstr "Are you finished?"
-
-#: meinberlin/react/budgeting/EndSessionLink.jsx:9
-msgid "End session"
-msgstr "End session"
-
-#: meinberlin/react/budgeting/EndSessionLink.jsx:10
-msgid ""
-"To save your votes you do not need to do anything else. End the session to "
-"enter a new code. If you want to change the votes you have already cast, you "
-"can re-enter your code as long as the voting phase is running. "
-msgstr ""
-"To save your votes you do not need to do anything else. End the session to "
-"enter a new code. If you want to change the votes you have already cast, you "
-"can re-enter your code as long as the voting phase is running. "
-
-#: meinberlin/react/budgeting/EndSessionLink.jsx:11
-msgid "Do you want to end the session?"
-msgstr "Do you want to end the session?"
 
 #: meinberlin/react/budgeting/SupportBox.jsx:9
 #, javascript-format
@@ -1037,8 +1026,13 @@ msgstr "Voted"
 msgid "Give my vote"
 msgstr "Give my vote"
 
+#: meinberlin/react/budgeting/react_proposals_init.jsx:10
+#: meinberlin/react/kiezkasse/react_kiezkasse_proposals_init.jsx:18
+msgid "Proposals list"
+msgstr "Proposals list"
+
 #: meinberlin/react/contrib/ControlBar.jsx:11
-#: meinberlin/react/projects/ProjectsControlBar.jsx:11
+#: meinberlin/react/projects/ProjectsControlBar.jsx:14
 msgid "Reset"
 msgstr "Reset"
 
@@ -1048,12 +1042,12 @@ msgid "Filter"
 msgstr "Filter"
 
 #: meinberlin/react/contrib/ControlBar.jsx:16
-#: meinberlin/react/projects/ProjectsControlBar.jsx:25
+#: meinberlin/react/projects/ProjectsControlBar.jsx:31
 msgid "Search, filter and sort the ideas list"
 msgstr "Search, filter and sort the ideas list"
 
 #: meinberlin/react/contrib/ControlBar.jsx:17
-#: meinberlin/react/projects/ProjectsControlBar.jsx:26
+#: meinberlin/react/projects/ProjectsControlBar.jsx:32
 msgid "Search for Proposals"
 msgstr "Search for Proposals"
 
@@ -1070,7 +1064,7 @@ msgid "Remove filter %s"
 msgstr "Remove filter %s"
 
 #: meinberlin/react/contrib/ControlBarListMapSwitch.jsx:7
-#: meinberlin/react/projects/ProjectsListMapBox.jsx:24
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:22
 msgid "View mode"
 msgstr "View mode"
 
@@ -1079,7 +1073,7 @@ msgid "View as list"
 msgstr "View as list"
 
 #: meinberlin/react/contrib/ControlBarListMapSwitch.jsx:9
-#: meinberlin/react/projects/ProjectsListMapBox.jsx:21
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:19
 msgid "List"
 msgstr "List"
 
@@ -1088,7 +1082,7 @@ msgid "View as map"
 msgstr "View as map"
 
 #: meinberlin/react/contrib/ControlBarListMapSwitch.jsx:11
-#: meinberlin/react/projects/ProjectsListMapBox.jsx:22
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:20
 msgid "Map"
 msgstr "Map"
 
@@ -1113,6 +1107,7 @@ msgid "prev page"
 msgstr "prev page"
 
 #: meinberlin/react/contrib/Spinner.jsx:4
+#: meinberlin/react/kiezradar/Loading.jsx:4
 msgid "loading"
 msgstr "loading"
 
@@ -1125,6 +1120,10 @@ msgstr "Item details"
 #: meinberlin/react/contrib/map/ItemPopup.jsx:27
 msgid "to:"
 msgstr "to:"
+
+#: meinberlin/react/contrib/card/CardList.jsx:14
+msgid "Nothing to show"
+msgstr "Nothing to show"
 
 #: meinberlin/react/contrib/card/CardList.jsx:15
 msgid "Pill List"
@@ -1254,6 +1253,149 @@ msgstr ""
 msgid "Ideas list"
 msgstr "Ideas list"
 
+#: meinberlin/react/kiezradar/EditKiezradar.jsx:8
+msgid "Failed to fetch Kiez"
+msgstr "Failed to fetch Kiez"
+
+#: meinberlin/react/kiezradar/EditKiezradar.jsx:9
+#: meinberlin/react/kiezradar/Kiezradar.jsx:13
+#: meinberlin/react/kiezradar/KiezradarList.jsx:12
+#: meinberlin/react/kiezradar/Kiezradars.jsx:46
+#: meinberlin/react/kiezradar/SearchProfile.jsx:16
+#: meinberlin/react/kiezradar/SearchProfiles.jsx:11
+msgid "Error"
+msgstr "Error"
+
+#: meinberlin/react/kiezradar/Kiezradar.jsx:9
+msgid "Loading map..."
+msgstr "Loading map..."
+
+#: meinberlin/react/kiezradar/Kiezradar.jsx:10
+msgid "Name your Kiez selection"
+msgstr "Name your Kiez selection"
+
+#: meinberlin/react/kiezradar/Kiezradar.jsx:11
+msgid "Save Kiez selection"
+msgstr "Save Kiez selection"
+
+#: meinberlin/react/kiezradar/Kiezradar.jsx:12
+#: meinberlin/react/kiezradar/SearchProfile.jsx:12
+#: meinberlin/react/plans/SaveSearchProfile.jsx:16
+msgid "Saving"
+msgstr "Saving"
+
+#: meinberlin/react/kiezradar/Kiezradar.jsx:14
+msgid "Failed to update kiezradar filter"
+msgstr "Failed to update kiezradar filter"
+
+#: meinberlin/react/kiezradar/KiezradarList.jsx:9
+msgid "No saved Kiezes"
+msgstr "No saved Kiezes"
+
+#: meinberlin/react/kiezradar/KiezradarList.jsx:10
+msgid "Add Kiez"
+msgstr "Add Kiez"
+
+#: meinberlin/react/kiezradar/KiezradarList.jsx:11
+msgid "Your Kiezes"
+msgstr "Your Kiezes"
+
+#: meinberlin/react/kiezradar/KiezradarList.jsx:14
+msgid "Failed to delete kiezradar"
+msgstr "Failed to delete kiezradar"
+
+#: meinberlin/react/kiezradar/KiezradarList.jsx:18
+#: meinberlin/react/kiezradar/SearchProfile.jsx:14
+msgid "View projects"
+msgstr "View projects"
+
+#: meinberlin/react/kiezradar/KiezradarList.jsx:21
+#: meinberlin/react/kiezradar/SearchProfile.jsx:30
+msgid "Confirm deletion of %(name)s"
+msgstr "Confirm deletion of %(name)s"
+
+#: meinberlin/react/kiezradar/KiezradarList.jsx:25
+msgid ""
+"You will no longer be able to select this kiez in the Kiezradar. In "
+"addition, search profiles based on this kiez will also be deleted."
+msgstr ""
+"You will no longer be able to select this kiez in the Kiezradar. In "
+"addition, search profiles based on this kiez will also be deleted."
+
+#: meinberlin/react/kiezradar/KiezradarMap.jsx:11
+msgid "Choose your radius"
+msgstr "Choose your radius"
+
+#: meinberlin/react/kiezradar/Kiezradars.jsx:11
+msgid "Kiez selection"
+msgstr "Kiez selection"
+
+#: meinberlin/react/kiezradar/Kiezradars.jsx:13
+msgid ""
+"Set up your Kiez to get notified when new projects in your area get "
+"published."
+msgstr ""
+"Set up your Kiez to get notified when new projects in your area get "
+"published."
+
+#: meinberlin/react/kiezradar/Kiezradars.jsx:15
+msgid "Manage Kiezes"
+msgstr "Manage Kiezes"
+
+#: meinberlin/react/kiezradar/Kiezradars.jsx:16
+msgid "Create a Kiez"
+msgstr "Create a Kiez"
+
+#: meinberlin/react/kiezradar/Kiezradars.jsx:19
+msgid "Your Kiez %(title)s has been successfully created"
+msgstr "Your Kiez %(title)s has been successfully created"
+
+#: meinberlin/react/kiezradar/Kiezradars.jsx:26
+msgid ""
+"You can find %(title)s under “Kiezes & Districts” on the Kiezradar page. By "
+"selecting %(title)s you can explore projects from this Kiez. Individual "
+"adjustments are possible under “Manage Kiezes”."
+msgstr ""
+"You can find %(title)s under “Kiezes & Districts” on the Kiezradar page. By "
+"selecting %(title)s you can explore projects from this Kiez. Individual "
+"adjustments are possible under “Manage Kiezes”."
+
+#: meinberlin/react/kiezradar/Kiezradars.jsx:33
+msgid "%(title)s successfully updated"
+msgstr "%(title)s successfully updated"
+
+#: meinberlin/react/kiezradar/Kiezradars.jsx:37
+msgid "Your changes have been saved."
+msgstr "Your changes have been saved."
+
+#: meinberlin/react/kiezradar/Kiezradars.jsx:39
+msgid "%(title)s deleted"
+msgstr "%(title)s deleted"
+
+#: meinberlin/react/kiezradar/Kiezradars.jsx:42
+msgid "%(title)s has been permanently deleted."
+msgstr "%(title)s has been permanently deleted."
+
+#: meinberlin/react/kiezradar/Kiezradars.jsx:47
+msgid "Failed to fetch Kiezes"
+msgstr "Failed to fetch Kiezes"
+
+#: meinberlin/react/kiezradar/Kiezradars.jsx:48
+msgid "You have reached the limit of saved Kieze"
+msgstr "You have reached the limit of saved Kieze"
+
+#: meinberlin/react/kiezradar/Kiezradars.jsx:49
+msgid ""
+"You are using the maximum number of 5 Kieze. To create a new Kiez, you must "
+"delete an existing one."
+msgstr ""
+"You are using the maximum number of 5 Kieze. To create a new Kiez, you must "
+"delete an existing one."
+
+#: meinberlin/react/kiezradar/NewKiezradar.jsx:5
+msgid "New Kiezradar"
+msgstr "New Kiezradar"
+
 #: meinberlin/react/kiezradar/PushNotificationToggle.jsx:7
 msgid "Notifications"
 msgstr "Notifications"
@@ -1262,82 +1404,93 @@ msgstr "Notifications"
 msgid "Failed to update push notification"
 msgstr "Failed to update push notification"
 
-#: meinberlin/react/kiezradar/SearchProfile.jsx:7
+#: meinberlin/react/kiezradar/SearchProfile.jsx:9
 msgid "Rename search profile"
 msgstr "Rename search profile"
 
-#: meinberlin/react/kiezradar/SearchProfile.jsx:10
-#: meinberlin/react/plans/SaveSearchProfile.jsx:9
-msgid "Saving"
-msgstr "Saving"
+#: meinberlin/react/kiezradar/SearchProfile.jsx:15
+#: meinberlin/react/projects/ProjectsControlBar.jsx:30
+msgid "Plans"
+msgstr "Plans"
 
-#: meinberlin/react/kiezradar/SearchProfile.jsx:11
-msgid "View projects"
-msgstr "View projects"
-
-#: meinberlin/react/kiezradar/SearchProfile.jsx:12
-#: meinberlin/react/kiezradar/SearchProfileList.jsx:9
-msgid "Error"
-msgstr "Error"
-
-#: meinberlin/react/kiezradar/SearchProfile.jsx:14
+#: meinberlin/react/kiezradar/SearchProfile.jsx:18
 msgid "Failed to delete search profile"
 msgstr "Failed to delete search profile"
 
-#: meinberlin/react/kiezradar/SearchProfile.jsx:17
+#: meinberlin/react/kiezradar/SearchProfile.jsx:21
 msgid "Failed to update search profile"
 msgstr "Failed to update search profile"
 
-#: meinberlin/react/kiezradar/SearchProfile.jsx:20
-#: meinberlin/react/projects/ProjectsControlBar.jsx:31
+#: meinberlin/react/kiezradar/SearchProfile.jsx:24
+#: meinberlin/react/projects/ProjectsControlBar.jsx:51
 msgid "ongoing"
 msgstr "ongoing"
 
-#: meinberlin/react/kiezradar/SearchProfile.jsx:21
-#: meinberlin/react/projects/ProjectsControlBar.jsx:32
+#: meinberlin/react/kiezradar/SearchProfile.jsx:25
+#: meinberlin/react/projects/ProjectsControlBar.jsx:52
 msgid "upcoming"
 msgstr "upcoming"
 
-#: meinberlin/react/kiezradar/SearchProfile.jsx:22
-#: meinberlin/react/projects/ProjectsControlBar.jsx:33
+#: meinberlin/react/kiezradar/SearchProfile.jsx:26
+#: meinberlin/react/projects/ProjectsControlBar.jsx:53
 msgid "done"
 msgstr "done"
 
-#: meinberlin/react/kiezradar/SearchProfileAlert.jsx:5
-msgid "Search profile successfully deleted"
-msgstr "Search profile successfully deleted"
-
-#: meinberlin/react/kiezradar/SearchProfileAlert.jsx:7
-msgid "Your changes have been deleted."
-msgstr "Your changes have been deleted."
+#: meinberlin/react/kiezradar/SearchProfile.jsx:34
+msgid ""
+"You will no longer receive notifications about new participation projects "
+"with the selected filters."
+msgstr ""
+"You will no longer receive notifications about new participation projects "
+"with the selected filters."
 
 #: meinberlin/react/kiezradar/SearchProfileButtons.jsx:4
 msgid "Rename"
 msgstr "Rename"
 
-#: meinberlin/react/kiezradar/SearchProfileList.jsx:6
-msgid "No saved search profiles"
-msgstr "No saved search profiles"
-
-#: meinberlin/react/kiezradar/SearchProfileList.jsx:7
-msgid "Find projects"
-msgstr "Find projects"
-
-#: meinberlin/react/kiezradar/SearchProfileList.jsx:8
-msgid "Your saved search profiles"
-msgstr "Your saved search profiles"
-
-#: meinberlin/react/kiezradar/SearchProfileList.jsx:11
-msgid "Failed to fetch search profiles"
-msgstr "Failed to fetch search profiles"
-
-#: meinberlin/react/kiezradar/SearchProfiles.jsx:6
+#: meinberlin/react/kiezradar/SearchProfiles.jsx:7
 msgid "Search Profiles"
 msgstr "Search Profiles"
 
-#: meinberlin/react/kiezradar/SearchProfiles.jsx:8
+#: meinberlin/react/kiezradar/SearchProfiles.jsx:9
 msgid "In this area you manage your search profiles."
 msgstr "In this area you manage your search profiles."
+
+#: meinberlin/react/kiezradar/SearchProfiles.jsx:13
+msgid "Failed to fetch search profiles"
+msgstr "Failed to fetch search profiles"
+
+#: meinberlin/react/kiezradar/SearchProfiles.jsx:16
+msgid "Search profile successfully deleted"
+msgstr "Search profile successfully deleted"
+
+#: meinberlin/react/kiezradar/SearchProfiles.jsx:19
+msgid "Your changes have been deleted."
+msgstr "Your changes have been deleted."
+
+#: meinberlin/react/kiezradar/SearchProfiles.jsx:21
+msgid "No saved search profiles"
+msgstr "No saved search profiles"
+
+#: meinberlin/react/kiezradar/SearchProfiles.jsx:22
+msgid "Find projects"
+msgstr "Find projects"
+
+#: meinberlin/react/kiezradar/SearchProfiles.jsx:23
+msgid "Your saved search profiles"
+msgstr "Your saved search profiles"
+
+#: meinberlin/react/kiezradar/SearchProfiles.jsx:24
+msgid "You have reached the limit of saved search profiles"
+msgstr "You have reached the limit of saved search profiles"
+
+#: meinberlin/react/kiezradar/SearchProfiles.jsx:25
+msgid ""
+"You are using the maximum number of 10 search profiles. To save a new one, "
+"you must delete an existing profile."
+msgstr ""
+"You are using the maximum number of 10 search profiles. To save a new one, "
+"you must delete an existing profile."
 
 #: meinberlin/react/kiezradar/use-create-search-profile.js:6
 msgid "Error creating search profile"
@@ -1357,7 +1510,7 @@ msgstr ""
 "chosen affiliation."
 
 #: meinberlin/react/livequestions/Filters.jsx:6
-#: meinberlin/react/projects/ProjectsControlBar.jsx:19
+#: meinberlin/react/projects/ProjectsControlBar.jsx:25
 msgid "All"
 msgstr "All"
 
@@ -1474,15 +1627,15 @@ msgstr "add bookmark"
 msgid "remove bookmark"
 msgstr "remove bookmark"
 
-#: meinberlin/react/livequestions/StatisticsBox.jsx:7
+#: meinberlin/react/livequestions/StatisticsBox.jsx:8
 msgid "Questions Answered"
 msgstr "Questions Answered"
 
-#: meinberlin/react/livequestions/StatisticsBox.jsx:8
+#: meinberlin/react/livequestions/StatisticsBox.jsx:9
 msgid "Categories"
 msgstr "Categories"
 
-#: meinberlin/react/livequestions/StatisticsBox.jsx:9
+#: meinberlin/react/livequestions/StatisticsBox.jsx:10
 msgid "Affiliation Of Answered Questions"
 msgstr "Affiliation Of Answered Questions"
 
@@ -1559,37 +1712,53 @@ msgstr "Project status"
 msgid "show projects"
 msgstr "show projects"
 
-#: meinberlin/react/plans/SaveSearchProfile.jsx:5
-msgid "Login to save search profiles"
-msgstr "Login to save search profiles"
+#: meinberlin/react/plans/SaveSearchProfile.jsx:8
+msgid "Login or register to save a search profile"
+msgstr "Login or register to save a search profile"
 
-#: meinberlin/react/plans/SaveSearchProfile.jsx:6
+#: meinberlin/react/plans/SaveSearchProfile.jsx:9
+msgid ""
+"To save your search profile and access it later, please log in or create an "
+"account."
+msgstr ""
+"To save your search profile and access it later, please log in or create an "
+"account."
+
+#: meinberlin/react/plans/SaveSearchProfile.jsx:10
+msgid "Continue to login"
+msgstr "Continue to login"
+
+#: meinberlin/react/plans/SaveSearchProfile.jsx:11
+msgid "Please note, your current selection won’t be saved automatically"
+msgstr "Please note, your current selection won’t be saved automatically"
+
+#: meinberlin/react/plans/SaveSearchProfile.jsx:12
+msgid "After logging in, you can create and save a new search profile."
+msgstr "After logging in, you can create and save a new search profile."
+
+#: meinberlin/react/plans/SaveSearchProfile.jsx:13
 msgid "View search profiles"
 msgstr "View search profiles"
 
-#: meinberlin/react/plans/SaveSearchProfile.jsx:7
+#: meinberlin/react/plans/SaveSearchProfile.jsx:14
 msgid "You can only create 10 search profiles."
 msgstr "You can only create 10 search profiles."
 
-#: meinberlin/react/plans/SaveSearchProfile.jsx:8
+#: meinberlin/react/plans/SaveSearchProfile.jsx:15
 msgid "Save search profile"
 msgstr "Save search profile"
 
-#: meinberlin/react/projects/ProjectTile.jsx:8
+#: meinberlin/react/projects/ProjectTile.jsx:9
 msgid "copyright missing"
 msgstr "copyright missing"
 
-#: meinberlin/react/projects/ProjectTile.jsx:9
+#: meinberlin/react/projects/ProjectTile.jsx:10
 msgid "copyright by"
 msgstr "copyright by"
 
-#: meinberlin/react/projects/ProjectTile.jsx:10
-msgid "Here you can find a decorative picture."
-msgstr "Here you can find a decorative picture."
-
 #: meinberlin/react/projects/ProjectTile.jsx:11
-msgid "Participation ended."
-msgstr "Participation ended."
+msgid "Participation ended"
+msgstr "Participation ended"
 
 #: meinberlin/react/projects/ProjectTile.jsx:12
 msgid "Begins on the"
@@ -1607,59 +1776,95 @@ msgstr "Participation project"
 msgid "Plan"
 msgstr "Plan"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:14
+#: meinberlin/react/projects/ProjectsControlBar.jsx:17
+msgid "Kiezes & Districts"
+msgstr "Kiezes & Districts"
+
+#: meinberlin/react/projects/ProjectsControlBar.jsx:18
+msgid "Choose district or Kiez"
+msgstr "Choose district or Kiez"
+
+#: meinberlin/react/projects/ProjectsControlBar.jsx:19
+msgid "Your saved Kieze"
+msgstr "Your saved Kieze"
+
+#: meinberlin/react/projects/ProjectsControlBar.jsx:20
+msgid "Create a Kiez to use this filter"
+msgstr "Create a Kiez to use this filter"
+
+#: meinberlin/react/projects/ProjectsControlBar.jsx:21
 msgid "Districts"
 msgstr "Districts"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:15
-msgid "All districts"
-msgstr "All districts"
-
-#: meinberlin/react/projects/ProjectsControlBar.jsx:16
+#: meinberlin/react/projects/ProjectsControlBar.jsx:22
 msgid "Topics"
 msgstr "Topics"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:17
+#: meinberlin/react/projects/ProjectsControlBar.jsx:23
 msgid "All topics"
 msgstr "All topics"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:18
+#: meinberlin/react/projects/ProjectsControlBar.jsx:24
 msgid "Kind of participation"
 msgstr "Kind of participation"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:20
+#: meinberlin/react/projects/ProjectsControlBar.jsx:26
 msgid "Project state"
 msgstr "Project state"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:21
+#: meinberlin/react/projects/ProjectsControlBar.jsx:27
 msgid "None"
 msgstr "None"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:22
+#: meinberlin/react/projects/ProjectsControlBar.jsx:28
 msgid "Organization"
 msgstr "Organization"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:23
+#: meinberlin/react/projects/ProjectsControlBar.jsx:29
 msgid "Only show:"
 msgstr "Only show:"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:24
-msgid "Plans"
-msgstr "Plans"
-
-#: meinberlin/react/projects/ProjectsControlBar.jsx:27
+#: meinberlin/react/projects/ProjectsControlBar.jsx:33
 msgid "Show projects"
 msgstr "Show projects"
 
-#: meinberlin/react/projects/ProjectsListMapBox.jsx:17
+#: meinberlin/react/projects/ProjectsControlBar.jsx:34
+msgid "Search profile created successfully"
+msgstr "Search profile created successfully"
+
+#: meinberlin/react/projects/ProjectsControlBar.jsx:37
+msgid ""
+"You will be informed about new projects that meet the selected filters. You "
+"can manage your search profiles in the User Settings under <a "
+"href=\"%(url)s\">Search Profiles</a>."
+msgstr ""
+"You will be informed about new projects that meet the selected filters. You "
+"can manage your search profiles in the User Settings under <a "
+"href=\"%(url)s\">Search Profiles</a>."
+
+#: meinberlin/react/projects/ProjectsControlBar.jsx:41
+msgid "Search profile cannot be saved"
+msgstr "Search profile cannot be saved"
+
+#: meinberlin/react/projects/ProjectsControlBar.jsx:44
+msgid ""
+"You have saved the maximum number of 10 search profiles. To save a new one, "
+"delete an existing profile in the User Settings under <a "
+"href=\"%(url)s\">Search Profiles</a>."
+msgstr ""
+"You have saved the maximum number of 10 search profiles. To save a new one, "
+"delete an existing profile in the User Settings under <a "
+"href=\"%(url)s\">Search Profiles</a>."
+
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:15
 msgid "Kiezradar"
 msgstr "Kiezradar"
 
-#: meinberlin/react/projects/ProjectsListMapBox.jsx:18
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:16
 msgid "Show map"
 msgstr "Show map"
 
-#: meinberlin/react/projects/ProjectsListMapBox.jsx:19
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:17
 msgid ""
 "Unfortunately, there are no projects matching your search. Please adjust the "
 "search criteria."
@@ -1667,15 +1872,15 @@ msgstr ""
 "Unfortunately, there are no projects matching your search. Please adjust the "
 "search criteria."
 
-#: meinberlin/react/projects/ProjectsListMapBox.jsx:20
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:18
 msgid "show map"
 msgstr "show map"
 
-#: meinberlin/react/projects/ProjectsListMapBox.jsx:23
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:21
 msgid "show list"
 msgstr "show list"
 
-#: meinberlin/react/projects/ProjectsListMapBox.jsx:28
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:26
 #, javascript-format
 msgid "1 Proposal found."
 msgid_plural "%s Proposals found."
@@ -1693,10 +1898,6 @@ msgid ""
 msgstr ""
 "Projects without spacial reference are not shown on the map. Please have a "
 "look at the project list."
-
-#: meinberlin/react/projects/ProjectsMapSearch.jsx:11
-msgid "Address Search"
-msgstr "Address Search"
 
 #: meinberlin/react/projects/get-timespan.js:3
 msgid "remaining"
@@ -1725,34 +1926,31 @@ msgid "More information can be found in the privacy policy of Google under: "
 msgstr "More information can be found in the privacy policy of Google under: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
-msgid "Link to Video: "
-msgstr "Link to Video: "
+#: dsgvo-video-embed/js/dsgvo-video-embed.js:20
+msgid "Link to video: "
+msgstr "Link to video: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
 msgid "Play video"
 msgstr "Play video"
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:16
-msgid "external video"
-msgstr "external video"
+msgid "External video"
+msgstr "External video"
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:17
 msgid ""
-"here you can find a video from vimeo. to protect your data the content will "
-"only be loaded after you give your consent. only then will vimeo set cookies "
+"Here you can find a video from Vimeo. To protect your data the content will "
+"only be loaded after you give your consent. Only then will Vimeo set cookies "
 "that collect information on user behaviour."
 msgstr ""
-"here you can find a video from vimeo. to protect your data the content will "
-"only be loaded after you give your consent. only then will vimeo set cookies "
+"Here you can find a video from Vimeo. To protect your data the content will "
+"only be loaded after you give your consent. Only then will Vimeo set cookies "
 "that collect information on user behaviour."
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:18
-msgid "more information can be found in the privacy policy of vimeo under: "
-msgstr "more information can be found in the privacy policy of vimeo under: "
-
-#: dsgvo-video-embed/js/dsgvo-video-embed.js:20
-msgid "link to video: "
-msgstr "link to video: "
+msgid "More information can be found in the privacy policy of Vimeo under: "
+msgstr "More information can be found in the privacy policy of Vimeo under: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "play video"

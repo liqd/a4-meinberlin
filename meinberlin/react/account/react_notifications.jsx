@@ -1,16 +1,20 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import NotificationsList from './NotificationsList'
+import Notifications from './Notifications'
 
 function init () {
   const el = document.getElementById('notifications-react')
   const root = createRoot(el)
-  const notifications = JSON.parse(el.getAttribute('data-initial-notifications'))
-  const showRestricted = JSON.parse(el.getAttribute('data-show-restricted'))
-  const apiUrl = el.getAttribute('data-api-url')
+  const interactionsApiUrl = el.getAttribute('data-interactions-api-url')
+  const followedProjectsApiUrl = el.getAttribute('data-followed-projects-api-url')
+  const planListUrl = el.getAttribute('data-plan-list-url')
   root.render(
     <React.StrictMode>
-      <NotificationsList initialNotifications={notifications} showRestricted={showRestricted} apiUrl={apiUrl} />
+      <Notifications
+        interactionsApiUrl={interactionsApiUrl}
+        followedProjectsApiUrl={followedProjectsApiUrl}
+        planListUrl={planListUrl}
+      />
     </React.StrictMode>)
 }
 

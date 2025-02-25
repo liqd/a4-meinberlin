@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-04 12:03+0100\n"
-"PO-Revision-Date: 2025-01-31 11:15+0000\n"
+"PO-Revision-Date: 2025-02-25 10:27+0000\n"
 "Last-Translator: MarleyMi <m.mittmann@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main/de/>"
 "\n"
@@ -4368,7 +4368,7 @@ msgstr[1] "%(num_entries)s Beiträge"
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_module_tile.html:21
 #, python-format
 msgid "remaining %(time_left)s"
-msgstr "noch %(time_left)s"
+msgstr "noch %(time_left)"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_module_tile.html:27
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:77
@@ -4392,7 +4392,7 @@ msgstr "jetzt lesen"
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:68
 #, python-format
 msgid "%(time_left)s remaining "
-msgstr "noch %(time_left)s"
+msgstr "noch %(time_left) "
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_timeline-carousel.html:12
 msgid "Timeline item"

@@ -12,11 +12,12 @@ def test_kiezradar_user_limit(user, kiez_radar_factory):
     with pytest.raises(ValidationError) as error:
         for i in range(kiezradar.KIEZRADAR_LIMIT):
             kiez_radar_factory(creator=user)
-        assert "Users can only have up to 5 radius filters." in error
+    assert "Users can only have up to 5 radius filters." in error.value
+    assert KiezRadar.objects.all().count() == 5
 
 
 @pytest.mark.django_db
-def test_kiezradar_can_filter_by_distance_to_location1(user, kiez_radar_factory):
+def test_kiezradar_can_filter_by_distance_to_location(user, kiez_radar_factory):
     kiez_location = Point(13.408151799858457, 52.51655612494057)
     kiez_location_small_radius = Point(13.408151799858457, 52.51655612494057)
     project_location = Point(13.409476102873219, 52.520861941592365, srid=4326)

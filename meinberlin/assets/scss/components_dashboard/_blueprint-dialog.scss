@@ -1,0 +1,14 @@
+.blueprint-dialog {
+    border: none;
+    max-width: 1000px;
+}
+
+.blueprint-dialog__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    h2 {
+        margin: 1em 0;
+    }
+}

@@ -9,8 +9,7 @@
     type="button"
     id="module-blueprint-btn"
     href="{% url 'a4dashboard:module-blueprint-list' project_slug=project.slug %}"
-    data-bs-toggle="modal"
-    data-bs-target="#module-blueprint-list">
+    data-target="#module-blueprint-list">
     {% translate 'Create Module' %}
 </button>
 
@@ -22,22 +21,19 @@
 </div>
 {% endfor %}
 
-<div class="modal" tabindex="-1" role="dialog" id="module-blueprint-list">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content modal-content--rounded modal-content--padding">
-            <div class="modal-header">
-                <h2 class="u-no-margin-bottom u-spacer-top-one-half">{% translate "Choose Participation Module" %}</h2>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="{% translate 'Close' %}">
-                  <i class="fa fa-times" aria-hidden="true"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-            </div>
-        </div>
-    </div>
-</div>
+<dialog id="module-blueprint-list" class="blueprint-dialog">
+    <header class="blueprint-dialog__header">
+        <h2>
+            {% translate "Choose Participation Module" %}
+        </h2>
+        <button type="button" data-action="close-dialog" aria-label="{% translate 'Close' %}">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+    </header>
+    <div class="blueprint-dialog__body"></div>
+</dialog>
 
 <!-- must load in order to populate the modal with blueprint list -->
 {% block extra_js %}
-    <script src="{% static 'blueprint_picker.js' %}"></script>
+    <script src="{% static 'blueprint_dialog.js' %}"></script>
 {% endblock extra_js %}

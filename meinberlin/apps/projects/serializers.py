@@ -10,7 +10,7 @@ from adhocracy4.maps.mixins import PointSerializerMixin
 from adhocracy4.phases.models import Phase
 from adhocracy4.projects.models import Project
 from adhocracy4.projects.models import Topic
-from meinberlin.apps.plans.models import Plan
+from meinberlin.apps.kiezradar.models import ProjectType
 
 
 class CommonFields:
@@ -189,7 +189,7 @@ class ProjectSerializer(
         return 2
 
     def get_participation(self, instance):
-        return Plan.PARTICIPATION_CONSULTATION
+        return ProjectType.PARTICIPATION_CONSULTATION
 
     def get_future_phase(self, instance):
         if instance.future_modules and instance.future_modules.first().module_start:

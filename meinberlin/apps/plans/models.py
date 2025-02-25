@@ -20,20 +20,10 @@ from adhocracy4.projects import models as project_models
 from adhocracy4.projects.enums import Access
 from adhocracy4.projects.models import ProjectContactDetailMixin
 from adhocracy4.projects.models import Topic
+from meinberlin.apps.kiezradar.models import ProjectType
 
 
 class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
-    PARTICIPATION_INFORMATION = 0
-    PARTICIPATION_CONSULTATION = 1
-    PARTICIPATION_COOPERATION = 2
-    PARTICIPATION_DECISION_MAKING = 3
-    PARTICIPATION_CHOICES = (
-        (PARTICIPATION_INFORMATION, _("information (no participation)")),
-        (PARTICIPATION_CONSULTATION, _("consultation")),
-        (PARTICIPATION_COOPERATION, _("cooperation")),
-        (PARTICIPATION_DECISION_MAKING, _("decision-making")),
-    )
-
     STATUS_ONGOING = 0
     STATUS_DONE = 1
 
@@ -118,8 +108,8 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
         verbose_name=_("Status"),
     )
     participation = models.SmallIntegerField(
-        choices=PARTICIPATION_CHOICES,
-        default=PARTICIPATION_INFORMATION,
+        choices=ProjectType.PARTICIPATION_CHOICES,
+        default=ProjectType.PARTICIPATION_INFORMATION,
         verbose_name=_("Level of participation"),
     )
     participation_explanation = models.TextField(

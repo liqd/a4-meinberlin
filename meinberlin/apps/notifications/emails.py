@@ -1,5 +1,6 @@
 from django.contrib import auth
 
+from adhocracy4.projects.models import Project
 from meinberlin.apps.contrib.emails import Email
 
 User = auth.get_user_model()
@@ -154,3 +155,16 @@ class NotifyFollowersOnUpcomingEventEmail(Email):
             receivers, "notify_followers_event_upcoming"
         )
         return receivers
+
+
+class NotifyUserOnSearchProfileMatch(Email):
+    template_name = "meinberlin_notifications/emails/notify_new_search_profile_project"
+
+    def get_receivers(self):
+        profile = self.object
+        return [profile.creator]
+
+    def get_context(self):
+        context = super().get_context()
+        context["project"] = Project.objects.get(pk=self.kwargs["project_pk"])
+        return context

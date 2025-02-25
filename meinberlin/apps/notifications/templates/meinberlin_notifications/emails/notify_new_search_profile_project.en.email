@@ -1,0 +1,23 @@
+{% extends 'email_base.'|add:part_type %}
+
+{% block subject %}New Project on meinBerlin matching your Search Profile: {{ project.name }}{% endblock %}
+
+{% block headline %}New Project{% endblock %}
+{% block sub-headline %}{{ project.name }}{% endblock  %}
+
+{% block greeting %}Hello  {{ receiver.username }},{% endblock %}
+
+{% block content_html %}
+<p>
+wording
+</p>
+{% endblock %}
+
+{% block content_text %}
+wording
+{% endblock %}
+
+{% block cta_url %}{{ email.get_host }}{{ project.get_absolute_url }}{% endblock %}
+{% block cta_label %}Visit the project{% endblock %}
+
+{% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you added a contribution to the above project. If you no longer want to receive notifications, change the settings for your <a href="{{ email.get_host }}{% url 'account' %}">account</a>.{% endblock %}

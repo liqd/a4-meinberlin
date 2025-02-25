@@ -92,6 +92,77 @@ If you post to this endpoint, it will mark all `followed_projects` notifications
   "read": true
 }
 ```
+
+### 4. Search Profile Notifications (GET/POST)
+**`GET|POST /search_profiles/`**
+
+**Shows**:
+- Notifications about new participation projects with selected filters from search profiles of the user
+- the search profile that triggered the notification
+- the project that fits into the search profile
+
+**Response:**
+
+```json
+{
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "search_profile": {
+        "id": 1,
+        "creator": 1,
+        "name": "Searchprofile 1",
+        "number": 1,
+        "description": "",
+        "disabled": false,
+        "notification": true,
+        "plans_only": false,
+        "status": [],
+        "query": null,
+        "organisations": [],
+        "districts": [],
+        "project_types": [],
+        "topics": [],
+        "kiezradars": [
+          {
+            "id": 1,
+            "creator": 1,
+            "name": "Mitte",
+            "point": null,
+            "radius": 500.0
+          }
+        ],
+        "query_text": ""
+      },
+      "action": {
+        "id": 54,
+        "type": "project_published",
+        "body": null,
+        "link": "/projekte/projekt-zum-triggern-von-notification/",
+        "item": null,
+        "actor": "system",
+        "target_creator": null,
+        "project": "Projekt zum Triggern von Notification",
+        "timestamp": "2025-02-25T17:07:37.482361+01:00"
+      },
+      "read": false,
+      "read_at": null,
+      "id": 2
+    }
+  ]
+}
+```
+#### POST `/search_profiles`
+If you post to this endpoint, it will mark all `search_profiles` notifications as read and then return the updated, paginated list.
+
+**Request**:
+```json
+{
+  "read": true
+}
+```
 ---
 ## Serializers
 ### ActionSerializer

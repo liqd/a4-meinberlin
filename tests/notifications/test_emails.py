@@ -9,6 +9,7 @@ from freezegun import freeze_time
 
 from adhocracy4.actions.models import Action
 from adhocracy4.actions.verbs import Verbs
+from adhocracy4.dashboard import signals
 from adhocracy4.phases.models import Phase
 from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import setup_phase
@@ -130,3 +131,25 @@ def test_phase_started_draft_no_email(apiclient, phase_factory, proposal_factory
         ).count()
         assert action_count == 0
         assert len(mail.outbox) == 0
+
+
+@pytest.mark.django_db
+def test_search_profile_matches(search_factories, phase_factory, user):
+    phase, module, project, _ = setup_phase(
+        phase_factory, None, phases.CollectPhase, module__project__name="Berlin"
+    )
+    project = phase.module.project
+
+    matching_profile, non_matching_profile_same_user, matching_profile_other_user = (
+        search_factories
+    )
+    signals.project_published.send(sender=None, project=project, user=user)
+
+    assert len(mail.outbox) == 2
+    recipients = mail.outbox[0].recipients() + mail.outbox[1].recipients()
+    assert (
+        mail.outbox[0].subject
+        == f"New Project on meinBerlin matching your Search Profile: {project.name}"
+    )
+    assert matching_profile.creator.email in recipients
+    assert matching_profile_other_user.creator.email in recipients

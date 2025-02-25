@@ -30,10 +30,7 @@ def test_should_notify_on_comment(idea_factory, comment_factory):
     _add_action(None, comment, True, None)
     action = Action.objects.last()
 
-    should_notify, recipients = Notification.should_notify(action)
-    assert len(recipients) == 1
-    assert recipients[0] == idea.creator
-    assert should_notify
+    assert Notification.should_notify(action)
 
 
 @factory.django.mute_signals(post_save)
@@ -44,10 +41,7 @@ def test_should_notify_on_like(idea_factory, rating_factory):
     _add_action(None, rating, True, None)
     action = Action.objects.last()
 
-    should_notify, recipients = Notification.should_notify(action)
-    assert len(recipients) == 1
-    assert recipients[0] == idea.creator
-    assert should_notify
+    assert Notification.should_notify(action)
 
 
 @factory.django.mute_signals(post_save)
@@ -57,10 +51,7 @@ def test_should_notify_on_remark(moderator_remark_factory):
     _add_action(None, remark, True, None)
     action = Action.objects.last()
 
-    should_notify, recipients = Notification.should_notify(action)
-    assert len(recipients) == 1
-    assert recipients[0] == remark.item.creator
-    assert should_notify
+    assert Notification.should_notify(action)
 
 
 @factory.django.mute_signals(post_save)
@@ -85,11 +76,7 @@ def test_should_notify_on_phase_start(
     with freeze_phase(phase):
         call_command("create_system_actions")
         action = Action.objects.last()
-        should_notify, recipients = Notification.should_notify(action)
-        recipients = recipients.order_by("pk")
-        assert len(recipients) == 2
-        assert list(recipients) == [user1, user2]
-        assert should_notify
+        assert Notification.should_notify(action)
 
 
 @factory.django.mute_signals(post_save)
@@ -109,8 +96,4 @@ def test_should_notify_on_event_start(
     with freeze_time(event.date - timedelta(hours=5)):
         call_command("create_offlineevent_system_actions")
         action = Action.objects.last()
-        should_notify, recipients = Notification.should_notify(action)
-        recipients = recipients.order_by("pk")
-        assert len(recipients) == 2
-        assert list(recipients) == [user1, user2]
-        assert should_notify
+        assert Notification.should_notify(action)

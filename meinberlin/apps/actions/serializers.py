@@ -100,4 +100,6 @@ class ActionSerializer(serializers.ModelSerializer):
             return "phase_soon_over"
         if obj.type == "phase" and obj.verb == "start":
             return "phase_started"
+        if obj.type == "project" and obj.verb == "publish":
+            return "project_published"
         return obj.type

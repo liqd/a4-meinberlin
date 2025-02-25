@@ -119,6 +119,24 @@ class NotificationViewSet(
         serializer = self.get_serializer(page, many=True)
         return self.get_paginated_response(serializer.data)
 
+    @action(methods=["get", "post"], detail=False)
+    def search_profiles(self, request):
+        qs = (
+            self.get_queryset()
+            .filter(
+                Q(action__obj_content_type__model="project", action__verb="publish")
+            )
+            .order_by("-action__timestamp")
+        )
+
+        # Mark all notifications as read
+        if request.method == "POST" and request.data.get("read", False):
+            qs.filter(read=False).update(read=True, read_at=timezone.now())
+
+        page = self.paginate_queryset(qs)
+        serializer = self.get_serializer(page, many=True)
+        return self.get_paginated_response(serializer.data)
+
 
 class NotificationSettingsViewSet(
     mixins.RetrieveModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet

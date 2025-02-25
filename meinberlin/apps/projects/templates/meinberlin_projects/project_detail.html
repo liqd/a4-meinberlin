@@ -60,9 +60,9 @@
               {% translate "Topics" %}
             </h3>
             <strong>
-            {% for topic in project.topics.all %}
-              {{ topic }} <br/>
-            {% endfor %}
+              {% for topic in project.topics.all %}
+                {{ topic }} <br/>
+              {% endfor %}
             </strong>
           </li>
         {% endif %}

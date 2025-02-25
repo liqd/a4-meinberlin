@@ -1,6 +1,7 @@
 from django.db import models
 
 from adhocracy4.actions.verbs import Verbs
+from meinberlin.apps.kiezradar.models import get_search_profiles_for_project
 from meinberlin.apps.users.models import User
 
 NOTIFIABLES = (
@@ -11,7 +12,71 @@ NOTIFIABLES = (
 )
 
 
+class NotificationManager(models.Manager):
+    def create_from_action(self, action):
+        notifications = []
+        verb = Verbs(action.verb)
+
+        # For published projects, notify search profile creators.
+        if action.verb == Verbs.PUBLISH:
+            profiles = get_search_profiles_for_project(action.obj)
+            notifications = [
+                Notification(
+                    recipient=profile.creator, action=action, search_profile=profiles
+                )
+                for profile in profiles
+            ]
+
+        # For create/add actions where the target has a creator.
+        elif (
+            hasattr(action.target, "creator")
+            and action.type in NOTIFIABLES
+            and verb in (Verbs.CREATE, Verbs.ADD)
+        ):
+            notifications = [
+                Notification(recipient=action.target.creator, action=action)
+            ]
+
+        # For phase and offlineevent notifications
+        elif action.type in ("phase", "offlineevent"):
+            followers = User.objects.filter(
+                follow__project=action.project,
+                follow__enabled=True,
+            )
+
+            recipients = []
+            if (
+                action.type == "phase"
+                and action.project.project_type == "a4projects.Project"
+            ):
+                if verb == Verbs.START:
+                    recipients = followers.filter(
+                        notification_settings__track_followers_phase_started=True
+                    )
+                elif verb == Verbs.SCHEDULE:
+                    recipients = followers.filter(
+                        notification_settings__track_followers_phase_over_soon=True
+                    )
+            elif action.type == "offlineevent" and verb == Verbs.START:
+                recipients = followers.filter(
+                    notification_settings__track_followers_event_upcoming=True
+                )
+
+            notifications = [
+                Notification(recipient=recipient, action=action)
+                for recipient in recipients
+            ]
+
+        if notifications:
+            created_objs = self.bulk_create(notifications)
+            return len(created_objs)
+
+        return 0
+
+
 class Notification(models.Model):
+    objects = NotificationManager()
+
     recipient = models.ForeignKey(
         "meinberlin_users.User", on_delete=models.CASCADE, related_name="notifications"
     )
@@ -20,6 +85,13 @@ class Notification(models.Model):
     )
     read = models.BooleanField(default=False)
     read_at = models.DateTimeField(null=True, blank=True)
+    search_profile = models.ForeignKey(
+        "meinberlin_kiezradar.SearchProfile",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="notifications",
+    )
 
     def __str__(self):
         return f"Notification for {self.recipient} regarding {self.action}"
@@ -27,24 +99,28 @@ class Notification(models.Model):
     @classmethod
     def should_notify(cls, action):
         verb = Verbs(action.verb)
-        # if there is someone to notify
-        if hasattr(action.target, "creator"):
-            if action.type in NOTIFIABLES and verb in (Verbs.CREATE, Verbs.ADD):
-                return True, [action.target.creator]
 
-        followers = User.objects.filter(
-            follow__project=action.project,
-            follow__enabled=True,
-        )
+        if (
+            hasattr(action.target, "creator")
+            and action.type in NOTIFIABLES
+            and verb in (Verbs.CREATE, Verbs.ADD)
+        ):
+            return True
+
+        if action.verb == Verbs.PUBLISH:
+            return True
+
         if (
             action.type == "phase"
             and action.project.project_type == "a4projects.Project"
         ):
-            if verb == Verbs.START or verb == Verbs.SCHEDULE:
-                return True, followers
-        elif action.type == "offlineevent" and verb == Verbs.START:
-            return True, followers
-        return False, []
+            if verb in (Verbs.START, Verbs.SCHEDULE):
+                return True
+
+        if action.type == "offlineevent" and verb == Verbs.START:
+            return True
+
+        return False
 
 
 class NotificationSettings(models.Model):

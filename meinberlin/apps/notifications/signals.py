@@ -18,13 +18,9 @@ User = get_user_model()
 def send_notifications(instance, created, **kwargs):
     action = instance
     verb = Verbs(action.verb)
-    should_notify, recipients = Notification.should_notify(action)
 
-    if should_notify:
-        notifications = [
-            Notification(recipient=recpient, action=action) for recpient in recipients
-        ]
-        Notification.objects.bulk_create(notifications)
+    if Notification.should_notify(action):
+        Notification.objects.create_from_action(action)
 
     if action.type in ("item", "comment") and verb in (Verbs.CREATE, Verbs.ADD):
         emails.NotifyCreatorEmail.send(action)
@@ -47,6 +43,15 @@ def send_project_created_notifications(**kwargs):
     project = kwargs.get("project")
     creator = kwargs.get("user")
     emails.NotifyInitiatorsOnProjectCreatedEmail.send(project, creator_pk=creator.pk)
+
+
+@receiver(dashboard_signals.project_published)
+def send_project_created_notifications(**kwargs):
+    project = kwargs.get("project")
+    Action.objects.create(
+        verb=Verbs.PUBLISH.value,
+        obj=project,
+    )
 
 
 @receiver(signals.m2m_changed, sender=Project.moderators.through)

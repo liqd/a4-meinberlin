@@ -35,6 +35,8 @@
     {% url 'project-information' slug=project.slug as info_page %}
     {% include 'meinberlin_contrib/components/hero.html' with content=project show_buttons=True hero_link=info_page %}
 
+    {% include 'meinberlin_projects/project_actions.html' %}
+
     <section aria-labelledby="project-{{ project.pk }}-details">
       <h2 class="mt-0" id="project-{{ project.pk }}-details">{% translate "Project details" %}</h2>
       <ul class="figures-box {% spaceless %}

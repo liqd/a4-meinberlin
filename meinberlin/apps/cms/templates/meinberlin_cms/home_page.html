@@ -21,21 +21,8 @@
 
 {% block content %}
   <div id="layout-grid__area--maincontent">
-    {% image self.header_image max-1920x560 as header_image %}
 
-        {% if header_image.url %}
-        <div class="hero-unit">
-            <div class="hero-unit__wrapper">
-                <h1 class="hero-unit__title u-first-heading">{{ self.title }}</h1>
-                <div class="hero-unit__subtitle">{{ self.subtitle }}</div>
-            </div>
-            <div class="hero-unit__img" style="background-image: url({{ header_image.url }})">
-                {% if self.header_image.copyright %}
-                    <div class="hero-unit__copyright copyright">© {{ self.header_image.copyright }}</div>
-                {% endif %}
-            </div>
-        </div>
-        {% endif %}
+    {% include 'meinberlin_cms/includes/hero_home.html' %}
 
     {% for block in self.body %}
       {% if block.block_type == 'infographic' or block.block_type == 'map_teaser' %}

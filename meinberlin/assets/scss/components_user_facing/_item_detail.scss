@@ -30,7 +30,7 @@
 }
 
 .item-detail__image {
-    margin-top: -40px;
+    margin-top: $maincontent-top-margin;
     
     img {
         aspect-ratio: 2/1;

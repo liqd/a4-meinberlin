@@ -7,7 +7,7 @@ $hero-height: 400px;
 }
 
 .hero__container {
-  max-width: 980px;
+  max-width: $container-width;
   min-height: $hero-height;
   margin: 0 auto;
   position: relative;
@@ -88,7 +88,7 @@ $hero-height: 400px;
   }
 
   .hero--plan {
-    margin-top: -40px!important; // used to make up for parent container top margin which creates a gap
+    margin-top: $maincontent-top-margin!important; // used to make up for parent container top margin which creates a gap
   }
 
   .hero__container {

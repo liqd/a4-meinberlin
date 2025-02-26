@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
@@ -360,6 +361,9 @@ class ProjectDetailView(PermissionRequiredMixin, generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["events"] = self.project.offlineevent_set.all().order_by("date")
+        context["edit_link"] = reverse(
+            "a4dashboard:project-edit", kwargs={"project_slug": self.project.slug}
+        )
         return context
 
 
@@ -373,6 +377,9 @@ class ProjectEventView(PermissionRequiredMixin, generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["project"] = self.object.project
+        context["edit_link"] = reverse(
+            "a4dashboard:offlineevent-update", kwargs={"slug": self.object.slug}
+        )
         return context
 
 
@@ -405,3 +412,11 @@ class ProjectInformationView(PermissionRequiredMixin, generic.DetailView):
     model = models.Project
     template_name = "meinberlin_projects/project_information.html"
     permission_required = "a4projects.view_project"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["edit_link"] = reverse(
+            "a4dashboard:dashboard-information-edit",
+            kwargs={"project_slug": self.object.slug},
+        )
+        return context

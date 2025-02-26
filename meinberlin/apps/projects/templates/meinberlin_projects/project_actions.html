@@ -1,0 +1,13 @@
+{% load i18n rules %}
+{% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
+
+<div class="project-actions block">
+  {% if request.resolver_match.url_name != 'project-detail' %}
+    <a href="{% url 'project-detail' project.slug %}" class="link--back">{% translate 'Back' %}</a>
+  {% endif %}
+  {% if edit_link and user_may_change %}
+    <a href="{{ edit_link }}" target="_blank" class="project-actions__right">
+      <i class="fa fas fa-pencil-alt" aria-hidden="true"></i>{% translate 'Edit' %}
+    </a>
+  {% endif %}
+</div>

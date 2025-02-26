@@ -1,0 +1,12 @@
+.project-actions {
+    display: flex;
+    align-items: center;
+
+    &:first-child {
+        margin-top: 3rem;
+    }
+}
+
+.project-actions__right {
+    margin-left: auto;
+}

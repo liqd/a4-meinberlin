@@ -1,0 +1,23 @@
+{% load i18n %}
+
+<h2 id="search-label" class="aural">{% translate "Search" %}</h2>
+<form action="{% url 'meinberlin_plans:plan-list' %}" method="get" role="search" aria-labelledby="search-label">
+    <div class="searchform-slot">
+        <div class="form-group">
+            <label class="aural" for="hero-search">{% translate "Search for participation projects, ideas or topics" %}</label> 
+            <div class="searchterm">
+                <div class="input-wrapper">
+                    <i class="bicon bicon-search lens" aria-hidden="true"></i>
+                    <input type="search" class="form-control search" value="" 
+                    placeholder="{% translate "Search for participation projects, ideas or topics" %}" 
+                    name="search" id="hero-search" 
+                    aria-required="true">
+                </div>
+                <button class="submit" type="submit">
+                    <span class="aural">{% translate "Search" %}</span>
+                    <i class="bicon bicon-arrow-right icon" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

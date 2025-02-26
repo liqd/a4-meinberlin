@@ -1,6 +1,6 @@
 .container {
     @media screen and (min-width: $breakpoint-tablet-landscape) {
-        width: 980px;
+        width: $container-width;
         max-width: 100%;
         margin: 0 auto;
     }

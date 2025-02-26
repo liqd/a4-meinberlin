@@ -1,0 +1,18 @@
+{% load i18n static %}
+
+<section class="hero-home block">
+  <picture class="hero-home__image hero-home__image--top">
+    <source media="(max-width: 1300px)" srcset="{% static 'images/home-hero-mobile-top.svg' %}">
+    <img src="{% static 'images/home-hero-desktop-right.svg' %}" alt="" aria-hidden="true">
+  </picture>
+
+  <div class="hero-home__container">
+    <h1 class="hero-home__title">{% translate 'Help shape your neighborhood: Discover participation projects in Berlin!' %}</h1>
+    {% include 'meinberlin_cms/includes/hero_search.html' %}
+  </div>
+
+  <picture class="hero-home__image hero-home__image--bottom">
+    <source media="(max-width: 1300px)" srcset="{% static 'images/home-hero-mobile-bottom.svg' %}">
+    <img src="{% static 'images/home-hero-desktop-left.svg' %}" alt="" aria-hidden="true">
+  </picture>
+</section>

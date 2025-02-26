@@ -2,4 +2,10 @@ $em-spacer: 1em !default;
 $spacer: 1rem !default;
 $padding: 1rem !default;
 
+$container-width: 980px !default;
 $wrapper-width: 81rem !default;
+
+// Override default top margin for the BO main content container (.layout-grid__area--maincontent).
+// The negative value moves the container upward, countering the default
+// top spacing applied by the main content.
+$maincontent-top-margin: -40px!important;

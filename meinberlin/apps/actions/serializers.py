@@ -1,20 +1,23 @@
 from django.template.defaultfilters import truncatechars
+from django.utils import timezone
 from django.utils.html import strip_tags
 from rest_framework import serializers
 
 from adhocracy4.actions.models import Action
+from meinberlin.apps.projects.serializers import ProjectSerializer
 
 
 class ActionSerializer(serializers.ModelSerializer):
     type = serializers.SerializerMethodField()
+    source = serializers.SerializerMethodField()
     body = serializers.SerializerMethodField()
     link = serializers.SerializerMethodField()
     item = serializers.SerializerMethodField()
-    actor = serializers.CharField(source="actor.username", default="system")
+    actor = serializers.SerializerMethodField()
     target_creator = serializers.CharField(
         source="target_creator.username", default=None
     )
-    project = serializers.CharField(source="project.name")
+    project = ProjectSerializer(source="project", now=timezone.now())
 
     _cache = {}
 
@@ -101,3 +104,23 @@ class ActionSerializer(serializers.ModelSerializer):
         if obj.type == "phase" and obj.verb == "start":
             return "phase_started"
         return obj.type
+
+    def get_source(self, obj):
+        trigger, _ = self.get_cached_trigger(obj)
+
+        if trigger and hasattr(trigger, "name"):
+            return trigger.name
+        elif trigger and hasattr(trigger, "content_object"):
+            return trigger.content_object.__class__.__name__.lower()
+
+    def is_moderator(self, obj):
+        return obj.actor in obj.project.moderators.all()
+
+    def get_actor(self, obj):
+        if not obj.actor:
+            return {"username": "system", "is_moderator": False}
+
+        return {
+            "username": obj.actor.username,
+            "is_moderator": self.is_moderator(obj),
+        }

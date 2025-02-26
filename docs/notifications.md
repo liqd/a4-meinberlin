@@ -105,6 +105,10 @@ If you post to this endpoint, it will mark all `followed_projects` notifications
   * `phase_soon_over` - if a phase in a followed project is soon over
   * `phase_started` - if a phase in a followed project starts soon
   * `offlineevent` - if an event in a followed project starts soon
+- `source` - The content type of the item where the action happened. For example:
+  * `idea`
+  * `mapidea`
+  * `comment`
 - `body` - Notification preview
 - `link` - Link to notification trigger
 - `item` - Name of the item (e.g. Idea, Proposal) where the action happened

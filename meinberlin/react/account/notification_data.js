@@ -1,6 +1,72 @@
 import django from 'django'
 
-export const notificationData = [
+export const notificationsData = {
+  interactions: {
+    title: django.gettext('Interactions'),
+    description: django.gettext(
+      'Here you can see all the interactions you have with other users on meinBerlin.'
+    ),
+    descriptionNoItems: django.gettext(
+      'No reactions to your posts yet. Get involved to get reactions.'
+    ),
+    buttonText: django.gettext('Find participation projects'),
+    moderatorReplieIdeaText: (title) => django.interpolate(
+      django.gettext('A moderator has responded to your idea in %(title)s'),
+      { title },
+      true
+    ),
+    userRepliedIdeaText: (title) => django.interpolate(
+      django.gettext('A user has replied to your idea in %(title)s'),
+      { title },
+      true
+    ),
+    moderatorRepliedCommentText: (title) => django.interpolate(
+      django.gettext('A moderator has responded to your comment in %(title)s'),
+      { title },
+      true
+    ),
+    userRepliedCommentText: (title) => django.interpolate(
+      django.gettext('A user has replied to your comment in %(title)s'),
+      { title },
+      true
+    ),
+    userRatedIdeaText: (title) => django.interpolate(
+      django.gettext('A user has rated your idea in %(title)s'),
+      { title },
+      true
+    ),
+    userRatedCommentText: (title) => django.interpolate(
+      django.gettext('A user has rated your comment in %(title)s'),
+      { title },
+      true
+    )
+  },
+  followedProjects: {
+    title: django.gettext('Followed projects'),
+    description: django.gettext(
+      'Here you will receive all the latest news about the projects you follow.'
+    ),
+    descriptionNoItems: django.gettext(
+      'No followed projects. Find projects to follow them.'
+    ),
+    buttonText: django.gettext('Find projects'),
+    phaseStartedText: (title, date) => django.interpolate(
+      django.gettext('%(title)s is now open for participation. You can participate until %(date)s'),
+      { title, date },
+      true
+    ),
+    phaseEndedText: (title, date) => django.interpolate(
+      django.gettext('%(title)s will end soon. You can still participate until %(date)s'),
+      { title, date },
+      true
+    )
+  },
+  viewIdeaText: django.gettext('View idea'),
+  viewCommentText: django.gettext('View comment'),
+  viewProjectText: django.gettext('View project')
+}
+
+export const notificationSettingsData = [
   {
     header: django.gettext('Project-Related Notifications'),
     notifications: {

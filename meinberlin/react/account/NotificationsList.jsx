@@ -3,7 +3,7 @@ import React from 'react'
 import { ToggleSwitch } from '../contrib/ToggleSwitch'
 import NotificationToggle from './NotificationToggle'
 import { updateItem } from '../contrib/helpers'
-import { notificationData } from './notification_data'
+import { notificationSettingsData } from './notification_data'
 import useNotifications from './useNotifications'
 
 const NotificationsList = ({
@@ -50,7 +50,7 @@ const NotificationsList = ({
 
   return (
     <ul className="list--clean">
-      {notificationData.map((notification, index) => {
+      {notificationSettingsData.map((notification, index) => {
         if (notification.restricted && !showRestricted) return null
 
         return (

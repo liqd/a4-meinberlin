@@ -91,10 +91,17 @@ class NotificationViewSet(
             "-action__timestamp"
         )
 
+        unread_count = (
+            non_rating_qs.filter(read=False).count()
+            + most_recent_ratings.filter(read=False).count()
+        )
+
         # Paginate and serialize
         page = self.paginate_queryset(combined_qs)
         serializer = self.get_serializer(page, many=True)
-        return self.get_paginated_response(serializer.data)
+        response = self.get_paginated_response(serializer.data)
+        response.data["unread_count"] = unread_count
+        return response
 
     @action(methods=["get", "post"], detail=False)
     def followed_projects(self, request):

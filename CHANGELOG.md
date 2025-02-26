@@ -5,6 +5,425 @@ All notable changes to this project will be documented in this file.
 Since version v2308 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2502.1
+
+### Changed
+
+- Restyled `Filters` component and added filter button
+- added project status model instead of a field to be able to store a list of project statuses inside a search profile
+- added some more options to actionable list component
+- added prop to have the label of a toggleswitch on the right
+- update Berlin Online css file
+- remove local versions of Berlin Online JS files and add new version via a script tag
+- remove un-needed packages from package.json
+- update stylelint to 16.11.0
+- update stylelint-config-standard-scss to 13.1.0
+- fix new stylelint warnings
+- renamed component_library to dashboard_component_library and non dashboard components
+- Style `StatisticsBox`
+- Add $primary green color to statistics progress
+- updated references to old notification and newsletter flags
+- refactored some of the js logic for notification settings
+- wording for notification settings page
+- new a4 rating component used for support buttons in budgeting
+- updated font awesome from v5 to v6
+-
+- made button block fullwidth on palm breakpoint
+- update wagtail to 6.0.x
+- update wagtail to 6.1.x
+- update djangorestframework to 3.15.1 as required by wagtail 6.1.x
+- update wagtail to 6.2.x
+- update wagtail to 6.3.x LTS
+- replace wagtails ImageChooserBlock with the more accessible ImageBlock
+- Converted alert component to a static info box `contrib/templates/meinberlin_contrib/components/`
+- Removed dismissible functionality (close button)
+- Updated ARIA semantics from `role="alert"` to `role="status"`
+- Info box visibility now toggles based on project publication state- Updated module page forms to feature a grey background container and buttons, aligning with the BO style guide (e.g., the proposal form now uses the "form--base panel--heavy" classes for consistency).
+- Relocated follow.scss to a4-follow.scss within the adhocracy folder, indicating that it overwrites styles for an A4 component.
+- updated the design of `templates/account/login.html` and `templates/account/signup.html`
+- Update styles to reflect the Modal.jsx refactor in adhocracy4
+- Changed categories select to `MultiSelect`
+- Style “Show on Screen” link
+- Changed `CategorySelect` and `QuestionForm` CSS classes to [styleguide.berlin.de form classes](https://styleguide.berlin.de/patterns/09-vertical_marketing-page-element-forms/09-vertical_marketing-page-element-forms.html)
+- IconSwitch now always has full width on mobile
+- IconSwitch title is now optional
+- Search pills on project overview are now shown for all separate items
+- resetting the form now happens on click not on click and then submitting the form
+- favicons for BO one (story !7629)
+- replaced the old datepicker with flatpickr
+- make flatpickr instances aware of each other (e.g. for start and end phase of
+  a module, you can't choose an end date which is earlier than the start date)
+- add a time-only datepicker to the time field
+- Change plan detail page styling
+- project_detail header to BO herounit-image-with-aside !7701
+- `styles_user_facing/_variables.scss`
+- update django-ckeditor-5 to v0.2.13-liqd
+- refactor ParagraphForm.jsx to work with the changed api in django-ckeditor-5
+- CardMeta: removed ref number and updated the date helper to new date format and updated wording
+- CardStats: use bold tag as per the design and update all tests where stats rendered
+- Pill: change text colour inline with design
+- platformemail_form template: change extend from base to dashboard as it is part of the initiator interface and therfore shoudl not be BO styled
+- redesign rating and comments
+- updated a4forms/form_field.html to be identical to the old
+  meinberlin_contrib/form_field.html
+- update all dashboard forms to use a4forms/form_field.html instead of the new
+  redesigned meinberlin_contrib/form_field.html, fixes the broken styling in
+  dashboard forms
+- updated navigation for burger menu
+- Replaced instances of `<a href="/">` with `<a href="{% url 'wagtail_serve' '' %}">`to fix linting errors
+- update celery to 5.4.0
+- make post_save and post_delete signal for external projects, plans and
+  projects reset the cache instead of deleting it.
+- use delay_on_commit() to call celery tasks to prevent race conditions, adjust
+  tests
+- replace old django ckeditor fields with TextField in migrations to allow the
+removal of the django-ckeditor package
+- refactored ListItemBadges.jsx to remove the moderator_status from the list
+- create reusable `moderator_form.html` snippet and update moderator form templates
+- add two new helper/utility classes `.mt-1` `.mb-2`
+- increase (overwrite) `.formgroup__help` font-size to 14px- added/changed styling for comment filters and form according to styleguide
+- renamed _select.scss to _a4-select.css to reflect the move from mB to a4
+- updated imports for ControlBarDropdown and ControlBarSearch to reflect the
+  move from mB to a4
+- project_detail changes tabs to new style and used wcag recommended structure https://www.w3.org/WAI/ARIA/apg/patterns/tabs/examples/tabs-automatic/ used BO js for functionality
+- add new tab styling and move old to component_dashboard
+- add edit link styling using same system as BO styleguide
+- ProposalViewSet now extends IdeaViewSet to simplify code structure (#7833)
+- Implemented redesign for phase info according to BerlinOnline styleguide
+- Refactor files in templates/a4modules
+- Optimized Swiper integration
+- `imghdr` support was deprecated in python, so now we use `python-magic` and built-in `mime` to check the filetype of images files for bplans created using the API.
+- move all react components to separate react folder structure and update webpack paths, documented in wiki
+- modified `form_submit_flex_end.html` to add secondary link
+- modified `form_submit_actions.html` to add optional button text
+- simplify wording on form submit buttons
+- unify dropdown and refactor following files: dropdown.js, _dropdown.scss, item_detail_dropdown.html, user_indicator.html, _user_indicator.scss
+- Generate actions for moderator remarks and ratings
+- redesigned poll module
+- moved and renamed `components/poll.scss` to `meinberlin/assets/scss/components_user_facing/_a4-poll.scss`
+- updated `styles_user_facing/_variables.scss`
+- removed `components/radio.scss` from `styles_user_facing.scss`- moved Card components to own folder as seemed more tidy
+- added headline to mapswitch as part of design and used different BO classes for additional styling
+- removed django filters from list view
+- adapted `chapter_detail.html` and `paragraph_detail.html` to redesign
+- simplified `nextprev.html`
+- deleted `document.scss` as styles not needed anymore- **Breaking Change**: Renamed `DocsBlock` into `AccordionBlock` on `cms/blocks.py` for consistency.
+- Modified `AccordionBlock` to support dynamic heading levels based on context. It now adjusts between `h2` and `h3` depending on whether it is used as a standalone block or within a list.
+- Updated the `accordion_list_block.html` and `accordion_block.html` templates to accommodate the new `AccordionListBlock` structure and dynamic heading levels.
+- `_accordion.scss` has been renamed to `collapsible-fragment` to reflect the respective template and located to a new `/ck-editor` subfolder in `components_user_facing`.
+- The `details.scss` file now handles styling for the `<details>` barebones element, adopting a more semantic HTML approach.
+- add ckeditor text size css to make text sizing work
+- add <i> tag to `collapsible-image-editor` Bleach config to allow italic text
+- Refactored the label class in ModeratorStatus.jsx for improved clarity and modularity.
+- Cleaned up templates/meinberlin_contrib/item_detail.html
+- moved Pagination from /budgeting to /contrib
+- TypeaheadField styling
+- variants for the control bar
+- updated @testing-library/* packages to get rid of deprecation warnings
+- Moved `is_answered` update logic to `QuestionModerator` component
+- removed idea-list-item template and exclussive associated styles and deleted from component library
+- move remaining list-item styles to components_dashboard where they are still used in project list and some form lists
+- remove pagination include from list templates
+- add BO classes to Pagination.jsx so it conforms to styleguide
+- move pagination.scss to components_dashboard as not needed usersides anymore
+- update components_dashboard and components_userside lists to better rflect what is used where and what has already been touched
+- styled navigation on account dashboard to look like tab navigation
+- removed warning from ModeratorStatus.jsx- Fixed incorrect use of `rem` values in old variables to ensure proper functionality in `em`-based layouts.
+- plan and project detail pages- moved LocaleInfoMixin from ideas to contrib
+- **BREAKING CHANGE** A database with geospatial support is now required (e.g spatialite, postgresql with postgis)
+- Migrate the point field of the `Plan` model to GeoJson
+- Use the new `PointSerializerMixin` in Bplan, ExtProject and Plan Serializers
+- refactor (scss/components_user_facing/_details.scss) to update global element selector to class `.details`- made title for module detail page h1 instead of h2
+- make `name` field on SearchProfile optional as users can only change it after
+creation and it makes accommodating the auto-naming scheme easier
+- changed unused `project_thumbnail` thumbnail alias to reflect the new teaser
+- moved `/components/_alert.scss` to components_dashboard folder
+- New design for platform mail form
+- sender field is now required to prevent issues with email clients
+- CKEditor styling for redesign
+- change default values for fields in platform email form
+- adapt bplan api to the requirements for the diplan system
+  - add a new field `is_diplan` to the bplan model to be able to differentiate
+    between old bplans from imperia and new ones from diplan
+  - add the `point` field to the serializer as we no longer need to get it from
+    the bplan map for bplans coming from diplan
+  - calculate the district from the bplan identifier instead of getting it from
+    the bplan map
+  - keep compatibility with the imperia system for now but annotated code which
+    can be removed once the transition to diplan is completed
+  - update the bplan api documentation
+  - add a `bplan_id` field which will replace the `identifier` field once the
+  switch to diplan is done
+  - remove char limit for name and description field, instead truncate text if
+  too long
+- renamed `/components_user_facing/_account.scss` to `/components_user_facing/_narrow-wrapper.scss`
+- adapted `templates/account/signup.html`, `templates/account/login.html` and `templates/account/password_change.html` respectively- allowed certain attributes for iframes to make fullscreen possible
+- styled ck iframe embeds with aspect ratio
+- show live streams even when phase is over
+- new style for mailings
+- removed HTML from mailings when using a text-only client
+- update module tiles to resemble the new design
+- refactor status bar to show a projects time status (or a module time status, its flexible!)
+- changed ``question_present_list.html`` according to new design
+- simplified ``PresentBox.jsx`` and ``QuestionPresent.jsx`` and changed from class component to component
+- Offline Event get absoulute url now points to that new detail page
+- ckeditor accordion template to Berlin Online markup with small a11y additions ref: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/examples/accordion/ [7274]
+- make the captcha js listen to both DOMContentLoaded and a4.embed.ready
+- moved logic out of MultiSelect into useCombobox hook
+- Cleaned up `meinberlin_contrib/item_detail.html` and `components/_item_detail.scss`
+- Separated dropdown into `item_detail_dropdown.html` for further refactoring.
+- Initialized `dropdown.scss` on style_user_facing and refactored old code.
+- kiezradar one-to-one field in SearchProfile model
+- Removed vanilla leaflet from project overview and use react leaflet instead
+- Deprecate PlansMap.jsx
+- Make project overview span whole screen
+- Updated buttons on multiple account pages with new snippet `form_submit_flex_end.html`.
+- Relocated follow.scss to a4-follow.scss within the adhocracy folder, indicating that it overwrites styles for an A4 component.
+
+### Added
+
+- Added new `LikeCard` component
+– Added `LikeCard` component to `QuestionModerator` and `QuestionUser` components
+- Style shortlist pill
+– Style moderator buttons
+– Change moderator buttons text
+– Allow moderators to like
+– Add questions count
+– Added categories conditional
+- Added Berlin polygon boundary to `KiezradarMap`.
+- Add `page_size_query_param` to APIPagination to allow fetching all items (e.g.
+  required for the map)
+- user action bar that changes depending on whether a user is logged in or not
+- added ghost button
+- block for new landing page
+- functions for the project overview to get its default state based on if a search profile exists or not
+- functionality to load a search profile's preset filters into project overview
+- View for notifications
+- new components for setting notification
+- Added `SaveSearchProfile` component for saving search profiles
+- Added map and radius slider when editing kiezradars.
+- Radius and point (latitude and longitude) now saved to kiezradar.
+- added details to project detail like organisation, status, topics and district
+- added a4 alert to ``QuestionForm.jsx``
+- new notifications settings model to allow for a fine grained control over notifications per user
+- endpoints to read and update notification settings
+- new proposal style button, used for CTA in budgeting ideas (support, vote)
+- service-panel including a new modifier to keep the main part centered
+-
+- Added teaser block
+- Grid view for module tiles
+- template tag for sorting modules into: running, upcoming, ended
+convert ideas list to react component:
+- added /ideas to /react folder: new files IdeaList.jsx, IdeaList.jest.jsx
+- initialized in templatetags/react_ideas.py
+- Introduced a reusable snippet `form_submit_actions.html` to enhance consistency and maintainability across forms.- github workflows for dev
+- added a duplicate of form_checkbox_field (`a4dashboard/includes/form_checkbox_field.html`) to maintain old styles for the dashboard- New CSS classes following `a4-modal` prefix convention- Added search profile alerts to `ProjectsListMapBox` component.
+- Added `DeleteModal` to `SearchProfile` component.
+- Added `MultiSelect` moderator filters
+- Added info-bar-block
+convert mapideas list to react component:
+- added /mapideas to /react folder: new files MapIdeaList.jsx, react_mapideas_init.jsx,
+- initialized in mapideas/templatetags/react_mapideas.py and webpack.common.js
+- testing MapIdeaList.jest.jsx
+- Added `DeleteModal` component for deleting kiezradars.
+- Added `.form-check-input` styling overrides
+- viewset for maptopicprio list by extending that for topicprio and filtering with template tag
+- entry point and template tag for maptopicprio
+- create react list component utilising card* components and use in maptopicpriolist and topicpriolist
+- add test for maptopicpriolist component
+- refactor idealist to also use list component
+- IconSwitch to live questions
+- new scss file for live questions
+- Wagtail block and logic to choose a project instance
+- imports for BO style libraries and css, favicon, logo files locally (story !7629)
+- local versions of BO js files and updated linting and imports (story !7629)
+- local version of Fontawesome and update README to explain style library chaoices (story !7629)
+- get_footer managment command and tag to import BO portal footer add to template (story !7626)
+- periodic_footer_update task (story !7626)
+- search profiles organisation, district, project-type, topic names in the serializer returning values
+- new search profile notification field
+- Added `Modal` component for when logging in on project overview.
+- extra serializer field for plan's published_projects
+- extra test for plan views with topics and published_projects
+- different style.scss sheets depending on if BO or a4 (dashboard) pages with if statement in base.html to load depending on url, will need adjusting
+- `styles_user_facing/variables/` folder with smaller variables files `_breakpoints.scss`, `_colors.scss`, `_fonts.scss` and `_spacing.scss`
+- Added `scss/dollar-variable-empty-line-before` rule to Stylelint configuration to enforce an empty line before SCSS variables.- add max resolution (650, 650) to organisation logo
+- add settings to restrict upload file size for django-ckeditor-5
+- correct structure for skiplink to base.html inline with lighthouse recommendation
+- Bootstrap support for modals and dropdown due to dependencies with a4
+- viewset for topicprio list and filtering with template tag
+- react list component utilising card component to topicprio list template with webpack entrypoint and template tag
+- Cache for public projects, external projects and plans duplicating the view projects-list
+- Scheduled resetting cache for public projects, external projects and plans every hour
+- add select_related to external project queryset to save a query per project
+- add select_related and prefetch_related to plans
+- add topics to prefetch_related for projects
+- new file react/contrib/ModeratorStatus.jsx which creates a new component Moderator Status, decoupling status from the badges list
+- new file components/_moderator-status.scss as a separate stylesheet
+- new dev dependency `@testing-library/jest-dom` on package.json
+- BO header template code and setting to include a11y information in wagtail and logo files (story !7630)
+- added generic form elements (input, select) to react/contrib/forms
+- new css component _a4-control-bar-search
+- a new IdeaViewSet, a serializer and filters for ideas to be able to fetch
+ comments via js (#7833)
+- meaningful labels where context was provided by placeholders before
+- ID for the main label of a RadioSelectWithTextInputWidget
+- Introduced new CSS file assets/scss/components_user_facing/_phase_info.scss for specific styles
+- viewset for kiezkasse list by extending that for idea and filtering with template tag
+- entry point and template tag for kiezkasse
+- add test for kiezkasselist component
+- {{ block.super }} to extra_css tags to ensure all templates do not overwrite the base styling added in base.html and base_dashboard.html
+- add custom `components_user_facing/_form_submit_flex_end.scss` - Styling for project detail box
+- Added kiezradar 5 limit exceeded alert
+- Notification model to track notifications per user and whether they have been read
+- Serializers & Endpoints for notifications to be consumed by the frontend
+- Endpoints for marking notifications as read
+- Task to delete old notifications
+- Aggregated notifications for ratings
+- extra context in paragraph detail view
+- added ControlBar component to CardList component for react filtering on all the lists [7861]
+- **New Block**: Introduced `AccordionListBlock`, a new block type for rendering a list of accordion items. This block allows multiple `AccordionBlock` instances to be grouped and displayed as a list of accordions. Includes an optional `list_title` field for the list header.
+- Added `_accordion-list.scss` to the `/components_user_facing` folder to style the new accordion list component.
+- function and styling in Card component to mimic Berlin Online lick and title click behaviour with test (#7760)
+- Separated the moderator feedback into its own template (templates/meinberlin_contrib/components/moderator_feedback.html) for better organization.
+- Created a new stylesheet (scss/components_user_facing/_moderator_feedback.scss) specifically for the moderator feedback for improved maintainability.- Helper for comparing arrays
+- ProjectsControlBar, a copy of ControlBar made to work with client side filtering
+- a css class `.container` for aligning content inside the content column
+- MultiSelect, an accessible MultiSelect component that works controlled and uncontrolled
+- client-side in-memory caching for fetching projects on the overview page
+- added @testing-library/jest-dom setup, as its been in the project already anyways
+  - allows for some cool new expect matchers, see https://github.com/testing-library/jest-dom
+  - just dont use anything thats based on css, as our tests dont include styles
+- converting budegting list item to Berlin Online card and seperating out the list item styles (for the dashboard) and add list_card styling component (for the user side) [7702]
+- Added `Kiezradars` component and related components, allowing creation and editing of kiezradars.
+- new user indicator for user side pages with custom js functionality mimicing the language dropdown functionality from the BO stylguide useing our own vanilla js #7840
+- an include of BO breadcrumb template code to base.html with wagtail template tag for all cms page breadcrumbs (!7681)
+- BO breadcrumb template code with logical site tree structure to all project/plan/container templates that user interacts with (!7681)
+- hover style for rating buttons
+- active style for rating buttons
+- added management command to create fake comments for testing
+- create project information page
+- hero component
+- contact snippets
+- API for map list ideas
+- MapPolygonMixin which adds the module polygon to the API
+- Added `GroupMultiSelect` component
+- Added kiezradar project filtering
+- BO landmark page classes to all user side pages !7628
+- UI states for upcoming and ending projects on project tiles
+- adapted UI for plan tiles
+- Separated the moderator notes into its own template (templates/meinberlin_contrib/components/moderator_notes.html) for better organization.
+- Created a new stylesheet (scss/components_user_facing/_moderator_notes.scss) specifically for the moderator notes snippet for better maintainability.
+- Added extra variables for icon color on (scss/components_user_facing/_variables.scss) with `icon-` prefix
+- refactored map switch component out from control bar into a new component "icon-switch"
+- updated BO styles
+- added BO styled toggle switch on project overview
+- add a new field `number` to SearchProfile which indexes the search profiles per
+  user
+- add auto-naming to SearchProfiles for unnamed search profiles
+- project teaser block in wagtail
+- introduced a reusable snippet `alerts.html` to enhance consistency and maintainability across alerts and prevent code duplication.
+- added snippet to `project_detail.html`, `module_detail.html`, `base.html`, `idea_create_form.html`, `idea_update_form.html`, `image_upload_widget.html`, `topic_create_form.html`, `topic_update_form.html`, `proposal_create_form.html`, `proposal_update_form.html`, `mapidea_create_form.html` ,`mapidea_update_form.html`
+- added alert__headline, .alert__content  and alert__text to `/components_user_facing/_alert.scss`
+- Added `SearchProfiles` component for kiezradar search profile list view
+- new footer snippet to enable headings and BO content footer template, replacing old footer (story !7627)
+- a4 prefix to follow styling after a4 refactor (story !7618/7701)
+- show point field for bplans in the django-admin
+- timeline include for representation of project modules & events
+- added pill for live stream status
+- mechanism for adding new attachments to all mailings
+- Style for new account setting forms
+- added a new scss component `actionable-list` where we have a list of items that the user can take an (or multiple) actions on
+- added mein berlin logo in white
+- added classes to ``_live_questions.scss``
+- added variables to ``styles_user_facing/_variables.scss``
+- Event detail page
+- list for events on project detail page
+- Added the plans (Vorhaben) checkbox to the plans filter.
+- padding overwrite for form-check outside `.panel--heavy` containers
+- Added `PushNotificationToggle` component for kiezradar search profile list view
+- Added icons for private and semi public projects in the `ProjectTile` component
+- add captcha to bplan statement form
+- celerybeat hourly periodic task for footer update
+- AutoComplete component with accessible aria combobox pattern
+- useDebounce to allow for debounced callbacks that are only called after a certain amount of time has passed
+- useCombobox to handle keyboard navigation and selection
+- ProjectsMapSearch component to allow for searching by address on the map
+- kiezradar app
+- SearchProfile model with fields:
+	- name, description, disabled, status
+	- m2m relations for districts, project-types, topics, organisations
+	- FK relation to user, query
+- KiezRadarQuery model, same instance can be added to many search profiles
+- serialiser with custom create() and update() methods for the m2m relations
+- api view for searchprofile
+- populate the db with project participation types
+- Created a new assets file `contrib/assets/dropdown.js` to handle generic dropdown functionality- KiezRadar model, serializer, view and api for radius based filter in kiezradar app
+- styling for widget--numberinput
+- Added $text-inverted variable for white text color on dark background
+- colored panels block in wagtail
+- Introduced a reusable snippet `form_submit_flex_end.html` to enhance consistency and maintainability across forms.
+### Removed
+
+– Removed `InfoBox` component from live questions area
+- removed CallToActionBlock
+- Removed react_questions_statistics.jsx
+- old notification and newsletter flag fields from user
+- Removed InfographicBlock
+- removed no longer required `use_json_field` from wagtail pages
+- MapTeaserBlock
+- Removed unused `.live_questions__char-count` and `.live_questions__anchor` classes
+- Old tab navigation from live questions
+- removed storefront code as its obsolete now
+- old header styling (story !7630)
+- old footer styling (story !7627)
+- `assets/scss/components/rating.scss`- userindicator (blue bar)
+- Word count plugin from CKEditor 5
+- django-ckeditor package
+- **Breaking Change** moved the Select component to a4
+- **Breaking Change** moved the ControlBarDropdown component to a4
+- **Breaking Change** moved the ControlBarSearch component to a4
+- removed css for a4-forms__select__wrapper from the user facing css
+- placeholders from allauth input fields
+- deleted user_indicator.js- **Breaking Change**: The previous standalone implementation of `AccordionBlock` is now deprecated in favor of the new `AccordionListBlock` structure for lists of accordions. Existing templates using the old `DocsBlock` standalone format need to be updated.
+- Removed old CSS styles associated with the previous accordion implementation. Styles related to `_accordion.scss` and outdated approaches have been deprecated.
+- old Plans JSX
+- react-cookies dependency
+- commented out offline event detail template as appears to be unused (!7681)
+- thumbs up/down icons in ratings because they are now in a4
+- Removed outdated breakpoint variables (`$breakpoint-xs`, `$breakpoint`, `$breakpoint-md`, `$breakpoint-lg`, etc.) as these `min-width` and `max-width` queries no longer align with the redesign requirements.
+- image with aside (replaced with hero)
+- Module-Detail navigation
+- removed messages class, @use "sass:color", $messages-margin-bottom form `/components_user_facing/_alert.scss`- styling for the video-wall that previously was packaged through webpack
+  - will now be styled in first party css
+- Fields for notifications and newsletter from profile form
+- a4-select.scss and renamed to a4-forms.scss
+- `form-check` padding overwrite in `form.scss`- form field with addon template
+- ImageCallToActionBlock
+
+### Modified
+
+apps/ideas/templates/idea_list.html to render new idea list react componentapps/mapideas/templates/mapidea_list.html to render new idea list react component- react/contrib/ControlBar.jsx to include new styling and layout
+- switched webpack devtool to generate sourcemaps for dev mode
+
+### Fixed
+
+- incorrect version pin of djlint
+- Kiezradar serializer by including dict value for point field (fix comes from adhocracy4)
+- Bug where tile_image was being used instead of image_url.
+- fixed linting in: `project_bplan_detail.html`, `project_detail.html`, `module_detail.html`, `base.html`
+- fix form submit for document / text commenting dashboard view not reloading on submit
+
+### Change
+
+- removed old breadcrumb code from idea/proposal detail, create and moderate templates
+- removed old class names from idea/proposal detail, create and moderate templates
+
+### Updated
+
+- a4 tag for follow refactor (story !7618/7701)
+
+
 ## v2404.1.2
 
 ### Changed

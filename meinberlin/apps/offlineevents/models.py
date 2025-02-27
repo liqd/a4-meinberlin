@@ -64,3 +64,7 @@ class OfflineEvent(UserGeneratedContentModel):
         return reverse(
             "project-event", kwargs={"slug": self.project.slug, "event_slug": self.slug}
         )
+
+    @cached_property
+    def is_past(self):
+        return self.date < timezone.now()

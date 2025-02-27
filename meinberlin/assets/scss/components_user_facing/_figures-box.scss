@@ -5,6 +5,7 @@
     align-items: flex-start;
     gap: 1.25em 0;
     flex-wrap: wrap;
+    margin-bottom: 0;
 
     @media screen and (min-width: $breakpoint-palm){
         display: flex;

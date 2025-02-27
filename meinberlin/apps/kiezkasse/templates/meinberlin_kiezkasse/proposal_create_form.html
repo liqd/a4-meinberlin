@@ -7,11 +7,9 @@
         <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
             <ol>
                 <li><a href="{% url 'wagtail_serve' '' %}">meinBerlin</a></li>
-                <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a></li>
+                <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Kiezradar' %}</a></li>
                 <li><a href="{% url 'project-detail' project.slug %}">{{ project.name|truncatechars:50 }}</a></li>
-                {% if module.is_in_module_cluster %}
-                    <li><a href="{{ module.get_detail_url }}">{{ module.name|truncatechars:50 }}</a></li>
-                {% endif %}
+                <li><a href="{{ module.get_absolute_url }}">{{ module.name|truncatechars:50 }}</a></li>
                 <li class="active" aria-current="page">{% translate 'Submit a new proposal for this project' %}</li>
             </ol>
         </nav>
@@ -24,6 +22,6 @@
         {% include 'meinberlin_contrib/components/alert.html' with alert_message='Error during validation. Please check your entries.' alert_type='danger' %}
     {% endif %}
 
-    {% include "meinberlin_kiezkasse/includes/proposal_form.html" with proposal=proposal cancel=module.get_detail_url %}
+    {% include "meinberlin_kiezkasse/includes/proposal_form.html" with proposal=proposal cancel=module.get_absolute_url %}
 </div>
 {% endblock content %}

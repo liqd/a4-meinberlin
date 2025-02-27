@@ -349,10 +349,10 @@ def test_detail_view_back_link(
         assert response.context["back_string"] == _("list")
 
         response = client.get(url, HTTP_referer="/")
-        assert response.context["back"] == module.get_detail_url
+        assert response.context["back"]() == module.get_absolute_url()
         assert response.context["back_string"] == _("map")
         response = client.get(url)
-        assert response.context["back"] == module.get_detail_url
+        assert response.context["back"]() == module.get_absolute_url()
         assert response.context["back_string"] == _("map")
 
 

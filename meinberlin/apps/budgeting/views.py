@@ -160,7 +160,7 @@ class ProposalDetailView(idea_views.AbstractIdeaDetailView):
         are remembered when going back, we check if the referer is a
         module or project detail view and add the appropriate back url.
         """
-        back_link = self.module.get_detail_url
+        back_link = self.module.get_absolute_url
         back_string = _("map")
         if "Referer" in self.request.headers:
             referer = self.request.headers["Referer"]

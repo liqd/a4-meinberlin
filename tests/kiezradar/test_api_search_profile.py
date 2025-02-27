@@ -1,5 +1,6 @@
 import pytest
 from django.urls import reverse
+from django.utils.translation import gettext as _
 
 from adhocracy4.projects.models import Topic
 from meinberlin.apps.kiezradar.models import KiezRadar
@@ -164,7 +165,7 @@ def test_create_and_update_search_profile_without_name(apiclient, user, setup_da
     assert response.status_code == 201
     data = response.json()
 
-    assert data["name"] == "Searchprofile 1"
+    assert data["name"] == _("Searchprofile %d") % 1
     assert data["number"] == 1
     assert data["description"] == payload["description"]
     assert data["plans_only"] is False
@@ -331,7 +332,7 @@ def test_creating_multiple_search_profiles_assign_correct_number(
         response = apiclient.post(url, payload, format="json")
         assert response.status_code == 201
         data = response.json()
-        assert data["name"] == "Searchprofile " + str(i)
+        assert data["name"] == _("Searchprofile %d") % i
         assert data["number"] == i
 
     assert SearchProfile.objects.count() == 5

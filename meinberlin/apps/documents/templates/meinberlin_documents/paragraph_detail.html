@@ -8,13 +8,9 @@
         <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
             <ol>
                 <li><a href="{% url 'wagtail_serve' '' %}">meinBerlin</a></li>
-                <li><a href="{% url 'wagtail_serve' '' %}">meinBerlin</a></li>
-                <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a></li>
+                <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Kiezradar' %}</a></li>
                 <li><a href="{{ project.get_absolute_url }}">{{ project.name|truncatechars:50 }}</a></li>
-                <!-- FIXME this doesn't work, it doesn't know it's in a cluster -->
-                {% if module.is_in_module_cluster %}
-                    <li><a href="{{ chapter.get_absolute_url }}">{{ chapter.name|truncatechars:50 }}</a></li>
-                {% endif %}
+                <li><a href="{{ chapter.get_absolute_url }}">{{ chapter.name|truncatechars:50 }}</a></li>
                 <li class="active" aria-current="page">{{ paragraph.name|truncatechars:50 }}</li>
             </ol>
         </nav>

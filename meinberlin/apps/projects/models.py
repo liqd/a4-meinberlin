@@ -109,7 +109,6 @@ def create_insight_context(insight: ProjectInsight) -> dict:
     ("PO", _("poll")),
     ("PB", _("participatory budgeting")),
     ("PB2", _("participatory budgeting 2 phases")),
-    ("PB3", _("participatory budgeting 3 phases")),
     ("IE", _("interactive event")),
     ("TP", _("prioritization")),
     ("MTP", _("spatial prioritization")),
@@ -123,7 +122,7 @@ def create_insight_context(insight: ProjectInsight) -> dict:
     show_live_questions = "IE" in blueprint_types
     show_ideas = bool(
         blueprint_types.intersection(
-            {"BS", "IC", "MBS", "TP", "MTP", "MIC", "PB", "PB2", "PB3"}
+            {"BS", "IC", "MBS", "TP", "MTP", "MIC", "PB", "PB2"}
         )
     )
 

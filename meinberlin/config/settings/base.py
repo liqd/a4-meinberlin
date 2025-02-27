@@ -518,7 +518,7 @@ A4_BLUEPRINT_TYPES = [
     ("MIC", "map idea collection"),
     ("PB", "participatory budgeting (1 phase)"),
     ("PB2", "participatory budgeting (2 phase)"),
-    ("PB3", "participatory budgeting (3 phase)"),
+    # ("PB3", "participatory budgeting (3 phase)"),
     ("KK", "kiezkasse"),
     ("TP", "topic prioritization"),
     ("MTP", "map topic prioritization"),

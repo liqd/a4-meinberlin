@@ -109,28 +109,29 @@ blueprints = [
             type="PB2",
         ),
     ),
-    (
-        "participatory-budgeting-3-phases",
-        ProjectBlueprint(
-            title=_("Participatory budgeting (3 phase)"),
-            description=_(
-                "In a first phase, participants can submit their own "
-                "suggestions, mark them on a map, and add a budget. The "
-                "proposals of others can be discussed. In a second phase "
-                "proposals can be supported. In the third phase, participants "
-                "vote on the shortlisted proposals.  "
-            ),
-            content=[
-                budgeting_phases.CollectPhase(),
-                budgeting_phases.SupportPhase(),
-                budgeting_phases.VotingPhase(),
-            ],
-            # The icon has to be updated:
-            image="images/participatory-budgeting-3.svg",
-            settings_model=("a4maps", "AreaSettings"),
-            type="PB3",
-        ),
-    ),
+    # Taken out for now, see https://github.com/liqd/a4-meinberlin/issues/6128
+    # (
+    #     "participatory-budgeting-3-phases",
+    #     ProjectBlueprint(
+    #         title=_("Participatory budgeting (3 phase)"),
+    #         description=_(
+    #             "In a first phase, participants can submit their own "
+    #             "suggestions, mark them on a map, and add a budget. The "
+    #             "proposals of others can be discussed. In a second phase "
+    #             "proposals can be supported. In the third phase, participants "
+    #             "vote on the shortlisted proposals.  "
+    #         ),
+    #         content=[
+    #             budgeting_phases.CollectPhase(),
+    #             budgeting_phases.SupportPhase(),
+    #             budgeting_phases.VotingPhase(),
+    #         ],
+    #         # The icon has to be updated:
+    #         image="images/participatory-budgeting-3.svg",
+    #         settings_model=("a4maps", "AreaSettings"),
+    #         type="PB3",
+    #     ),
+    # ),
     (
         "prioritization",
         ProjectBlueprint(

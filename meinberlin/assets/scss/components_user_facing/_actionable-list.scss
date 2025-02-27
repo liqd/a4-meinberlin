@@ -47,6 +47,19 @@
     display: flex;
 }
 
+.actionable-list__item--faded {
+    color: $gray-light;
+
+    h4,
+    .bicon {
+        color: $gray-light;
+    }
+
+    a {
+        text-decoration-color: $gray-light;
+    }
+}
+
 .actionable-list__item__actions {
     margin-left: auto;
     text-align: right;

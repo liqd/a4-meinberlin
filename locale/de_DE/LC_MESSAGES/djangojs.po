@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-25 13:14+0100\n"
-"PO-Revision-Date: 2025-02-26 16:15+0000\n"
+"PO-Revision-Date: 2025-02-28 14:15+0000\n"
 "Last-Translator: MarleyMi <m.mittmann@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "js-design-dev/de/>\n"
@@ -1102,7 +1102,7 @@ msgstr "E-Mail"
 
 #: meinberlin/react/account/NotificationToggle.jsx:6
 msgid "In-App Notification"
-msgstr ""
+msgstr "In-App-Benachrichtigungen"
 
 #: meinberlin/react/account/notification_data.js:5
 msgid "Project-Related Notifications"
@@ -1979,7 +1979,7 @@ msgstr "Beteiligungsprojekte"
 
 #: meinberlin/react/projects/ProjectTile.jsx:14
 msgid "Participation project"
-msgstr "Beteiligungsprojekte"
+msgstr "Beteiligungsprojekt"
 
 #: meinberlin/react/projects/ProjectTopics.jsx:4
 msgid "Plan"

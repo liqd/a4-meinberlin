@@ -1,104 +1,97 @@
 {% load i18n %}
 
 <nav id="navigation-primary" class="js-navigation-primary">
-  <div class="tree-wrapper js-navigation-tree-wrapper">
-    <h3 class="aural">{% translate 'Page navigation' %}</h3>
-    <ul class="navigation-tree">
-      <li class="{% if request.path == project_list %}active{% endif %}">
-        <a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Kiezradar' %}</a>
-      </li>
-      {% if settings.meinberlin_cms.HeaderPages.help_page %}
-        <li class="{% if request.path == settings.meinberlin_cms.HeaderPages.help_page.get_url %}active{% endif %}">
-          <a href="{{ settings.meinberlin_cms.HeaderPages.help_page.get_url }}">{% translate 'Help & Support' %}</a>
-        </li>
-      {% endif %}
-      {% url 'notifications' as notifications %}
-      <li class="{% if request.path == notifications %}active{% endif %}">
-        <a href="{% url 'notifications' %}">{% translate 'Notifications' %}</a>
-      </li>
-      {% for item in topnav %}
-        <li class="{% if request.path == item.url %}active{% endif %}">
-          <a href="{{ item.url }}">{{ item.title }}</a>
-        </li>
-      {% endfor %}
-      {% if request.user.is_authenticated %}
-        <li>
-          <a href="{% url 'account' %}">{% translate "Your Account" %}</a>
-          <ul class="navigation-tree">
-            <li>
-              {% url 'account_profile' as account_url %}
-              <a href="{% url 'account_profile' %}" class="{% if request.path == account_url %}active{% endif %}">{% translate "Account & Security" %}</a>
+    <div class="tree-wrapper js-navigation-tree-wrapper">
+        <h3 class="aural">{% translate 'Page navigation' %}</h3>
+        <ul class="navigation-tree">
+            <li class="{% if request.path == project_list %}active{% endif %}">
+                <a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Kiezradar' %}</a>
             </li>
-            <li>
-              {% url 'search_profiles' as search_profiles_url %}
-              <a href="{% url 'search_profiles' %}" class="{% if request.path == search_profiles_url %}active{% endif %}">{% translate "Search Profiles" %}</a>
+            {% url 'notifications' as notifications_url %}
+            <li class="{% if request.path == notifications_url %}active{% endif %}">
+                <a href="{{ notifications_url }}">{% translate 'Notifications' %}</a>
             </li>
-            <li>
-              {% url 'kiezradar_filters' as kiezradar_filters_url %}
-              <a href="{% url 'kiezradar_filters' %}" class="{% if request.path == kiezradar_filters_url %}active{% endif %}">{% translate "Manage Kiezes" %}</a>
-            </li>
-          </ul>
-        </li>
-      {% endif %}
-    </ul>
-  </div>
-  {% if request.user.organisations %}
-    <div class="navigation-meta">
-      <h3 class="heading">{% translate 'Dashboard' %}</h3>
-      <ul>
-        {% for organisation in request.user.organisations %}
-          <li>
-            <a href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">{{ organisation.name }}</a>
-          </li>
-        {% endfor %}
-      </ul>
+            {% if settings.meinberlin_cms.HeaderPages.help_page %}
+                <li class="{% if request.path == settings.meinberlin_cms.HeaderPages.help_page.get_url %}active{% endif %}">
+                    <a href="{{ settings.meinberlin_cms.HeaderPages.help_page.get_url }}">{% translate 'Help & Support' %}</a>
+                </li>
+            {% endif %}
+            {% for item in topnav %}
+                <li class="{% if request.path == item.url %}active{% endif %}">
+                    <a href="{{ item.url }}">{{ item.title }}</a>
+                </li>
+            {% endfor %}
+            {% if request.user.is_authenticated %}
+                <li>
+                    <span>
+                        <i class="fa fa-solid fa-user"></i>
+                        {% translate "User Account Settings" %}
+                    </span>
+                    <ul class="navigation-tree">
+                        <li>
+                            {% url 'account_profile' as account_url %}
+                            <a href="{{ account_url }}" class="{% if request.path == account_url %}active{% endif %}">{% translate "Account & Security" %}</a>
+                        </li>
+                        <li>
+                            {% url 'notification_settings' as notification_settings_url %}
+                            <a href="{{ notification_settings_url }}" class="{% if request.path == notification_settings_url %}active{% endif %}">{% translate "Notification Settings" %}</a>
+                        </li>
+                        <li>
+                            {% url 'search_profiles' as search_profiles_url %}
+                            <a href="{{ search_profiles_url }}" class="{% if request.path == search_profiles_url %}active{% endif %}">{% translate "Searchprofiles" %}</a>
+                        </li>
+                        <li>
+                            {% url 'kiezradar_filters' as kiezradar_filters_url %}
+                            <a href="{{ kiezradar_filters_url }}" class="{% if request.path == kiezradar_filters_url %}active{% endif %}">{% translate "Kiez Selection" %}</a>
+                        </li>
+                    </ul>
+                </li>
+            {% endif %}
+            {% if request.user.organisations or request.user.is_superuser %}
+                <li>
+                    <span>
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        {% translate 'Dashboard' %}
+                    </span>
+                    <ul class="navigation-tree">
+                        {% for organisation in request.user.organisations %}
+                            <li>
+                                <a href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">{{ organisation.name }}</a>
+                            </li>
+                        {% endfor %}
+                        {% if request.user.is_superuser %}
+                            <li>
+                                <a href="{% url 'meinberlin_platformemails:create' %}">{% translate "Platform Mail" %}</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </li>
+            {% endif %}
+        </ul>
     </div>
-  {% endif %}
-  <div class="navigation-meta">
-    <h3 class="heading">{% translate 'Accessibility' %}</h3>
-    <ul>
-      {% if settings.meinberlin_cms.HeaderPages.easy_language_page %}
-        <li class="{% if request.path == settings.meinberlin_cms.HeaderPages.easy_language_page.get_url %}active{% endif %}">
-          <a href="{{ settings.meinberlin_cms.HeaderPages.easy_language_page.get_url }}">{% translate 'Simple Language' %}</a>
-        </li>
-      {% endif %}
-    </ul>
-  </div>
-  {% if request.user.is_superuser %}
     <div class="navigation-meta">
-      <h3 class="heading">{% translate "Further links" %}</h3>
-      <ul>
-        {% if request.user.is_superuser %}
-          <li>
-            <a href="{% url 'meinberlin_platformemails:create' %}">{% translate "Platform Mail" %}</a>
-          </li>
-        {% endif %}
-      </ul>
+        <h3 class="heading"></h3>
+        <ul>
+            {% if request.user.is_authenticated %}
+                <li>
+                    <form class="block--nogap text--color-dark" action="{% url 'account_logout' %}" method="post" aria-label="{% translate 'Log out' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ redirect_field_value }}">
+                        <button class="link navigation-meta__link" type="submit">{% translate "Log out" %}</button>
+                    </form>
+                </li>
+            {% endif %}
+            {% if not request.user.is_authenticated %}
+                <li>
+                    <a href="{% url 'account_login' %}?next={{ redirect_field_value|urlencode }}">{% translate "Log in" %}</a>
+                </li>
+                <li>
+                    <a href="{% url 'account_signup' %}?next={{ redirect_field_value|urlencode }}">{% translate "Register" %}</a>
+                </li>
+                <li>
+                    <a href="{% url 'account_reset_password' %}?next={{ redirect_field_value|urlencode }}">{% translate "Forgot Password" %}</a>
+                </li>
+            {% endif %}
+        </ul>
     </div>
-  {% endif %}
-  <div class="navigation-meta">
-    <h3 class="heading">{{ request.user.username }}</h3>
-    <ul>
-      {% if request.user.is_authenticated %}
-        <li>
-          <form class="block--nogap text--color-dark" action="{% url 'account_logout' %}" method="post" aria-label="{% translate 'Logout' %}">
-            {% csrf_token %}
-            <input type="hidden" name="next" value="{{ redirect_field_value }}">
-            <button class="link navigation-meta__link" type="submit">{% translate "Logout" %}</button>
-          </form>
-        </li>
-      {% endif %}
-      {% if not request.user.is_authenticated %}
-        <li>
-          <a href="{% url 'account_login' %}?next={{ redirect_field_value|urlencode }}">{% translate "Login" %}</a>
-        </li>
-        <li>
-          <a href="{% url 'account_signup' %}?next={{ redirect_field_value|urlencode }}">{% translate "Register" %}</a>
-        </li>
-        <li>
-          <a href="{% url 'account_reset_password' %}?next={{ redirect_field_value|urlencode }}">{% translate "Forgot Password" %}</a>
-        </li>
-      {% endif %}
-    </ul>
-  </div>
 </nav>

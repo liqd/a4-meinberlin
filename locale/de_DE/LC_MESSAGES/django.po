@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-25 13:14+0100\n"
-"PO-Revision-Date: 2025-02-26 16:15+0000\n"
+"PO-Revision-Date: 2025-02-28 14:15+0000\n"
 "Last-Translator: MarleyMi <m.mittmann@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "main-design-dev/de/>\n"
@@ -40,7 +40,7 @@ msgstr "Kategorie hinzufügen"
 #: meinberlin/templates/a4dashboard/base_dashboard.html:56
 #: meinberlin/templates/navigation_primary.html:49
 msgid "Dashboard"
-msgstr "Organisationsverwaltung"
+msgstr "Dashboard"
 
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:5
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:5
@@ -4573,7 +4573,7 @@ msgstr "anstehend"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:89
 msgid "ended"
-msgstr "Beendet"
+msgstr "beendet"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:134
 msgid "No results yet."
@@ -5285,6 +5285,8 @@ msgid ""
 "Your image will be uploaded/removed once you save your changes at the end of "
 "this page. "
 msgstr ""
+"Ihr Bild wird hochgeladen/entfernt, sobald Sie Ihre Änderungen am Ende "
+"dieser Seite gespeichert haben. "
 
 #: meinberlin/templates/a4labels/includes/module_labels_form.html:23
 msgid ""
@@ -5447,6 +5449,9 @@ msgid ""
 "which you can reset your password. Please contact us if you have any "
 "problems resetting your password."
 msgstr ""
+"Passwort vergessen? Geben Sie Ihre E-Mail-Adresse ein und Sie erhalten eine "
+"E-Mail, mit der Sie Ihr Passwort zurücksetzen können. Bitte kontaktieren Sie "
+"uns, wenn Sie Probleme beim Zurücksetzen Ihres Passworts haben."
 
 #: meinberlin/templates/account/password_reset.html:26
 msgid "Reset"

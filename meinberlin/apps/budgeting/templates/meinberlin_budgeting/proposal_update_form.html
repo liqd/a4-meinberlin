@@ -1,24 +1,22 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% blocktranslate with title=object.name %}Edit {{ title }}{% endblocktranslate %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% blocktranslate with title=object.name %}Edit {{ title }}{% endblocktranslate %} – {{ block.super }}{% endblock title %}
 
 {% block breadcrumbs %}
     <div id="content-header">
         <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
             <ol>
                 <li><a href="{% url 'wagtail_serve' '' %}">meinBerlin</a></li>
-                <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project Overview' %}</a></li>
+                <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Kiezradar' %}</a></li>
                 <li><a href="{% url 'project-detail' project.slug %}">{{ project.name|truncatechars:50 }}</a></li>
-                {% if module.is_in_module_cluster  %}
-                    <li><a href="{{ module.get_detail_url }}">{{ module.name|truncatechars:50 }}</a></li>
-                {% endif %}
+                <li><a href="{{ module.get_absolute_url }}">{{ module.name|truncatechars:50 }}</a></li>
                 <li><a href="{{ object.get_absolute_url }}">{% translate 'Proposal' %}</a></li>
                 <li class="active" aria-current="page">{% translate 'Edit proposal' %}</li>
             </ol>
         </nav>
     </div>
-{% endblock %}
+{% endblock breadcrumbs %}
 
 {% block content %}
 <div id="layout-grid__area--maincontent">
@@ -30,4 +28,4 @@
 
     {% include "meinberlin_budgeting/includes/proposal_form.html" with proposal=proposal cancel=object.get_absolute_url %}
 </div>
-{% endblock %}
+{% endblock content %}

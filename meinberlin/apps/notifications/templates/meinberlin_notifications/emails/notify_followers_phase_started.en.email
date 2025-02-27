@@ -22,7 +22,7 @@ Online participation for the above project has started.
 You can participate until {{ action.obj.end_date }}.
 {% endblock %}
 
-{% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_detail_url }}{% endblock %}
+{% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_absolute_url }}{% endblock %}
 {% block cta_label %}Join now{% endblock %}
 
 {% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you are following the above project. If you no longer want to receive notifications, unsubscribe from the <a href="{{ email.get_host }}{{ action.project.get_absolute_url }}">project</a> or change the settings for your <a href="{{ email.get_host }}{% url 'account' %}">account</a>.{% endblock %}

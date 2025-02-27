@@ -1,4 +1,5 @@
 import cookie from 'js-cookie'
+import django from 'django'
 
 export function updateItem (data, url, method) {
   return fetch(url, {
@@ -108,4 +109,64 @@ export const getDistanceBetweenPoints = (coords1, coords2) => {
   const centralAngle = 2 * Math.atan2(Math.sqrt(haversineFormula), Math.sqrt(1 - haversineFormula))
 
   return earthRadiusInMeters * centralAngle
+}
+
+const statusNames = {
+  running: django.gettext('ongoing'),
+  future: django.gettext('upcoming'),
+  done: django.gettext('done')
+}
+
+const plansText = django.gettext('Plans')
+
+/*
+ * Converts a search profile object into a structured list of filters.
+ *
+ * This function extracts relevant filtering criteria from a given search profile
+ * and returns them as an array of arrays, where each sub-array represents a different
+ * filter category. Empty filters are removed to ensure a clean output.
+ *
+ * Example:
+ * Given a search profile:
+ * {
+ *   query_text: "Lichtenberg",
+ *   districts: [{ name: "Charlottenburg-Wilmersdorf" }, { name: "Friedrichshain-Kreuzberg" }],
+ *   topics: [{ name: "Work & economy" }],
+ *   project_types: [{ name: "information (no participation)" }],
+*   status: [{ name: "ongoing" }],
+ *   organisations: [{ name: "liqd" }],
+ *   kiezradars: [{ name: "Kiezradar 1" }],
+ *   plans_only: true
+ * }
+ *
+ * The output will be:
+ * [
+ *   ["Lichtenberg"],
+ *   ["Charlottenburg-Wilmersdorf", "Friedrichshain-Kreuzberg"],
+ *   ["Work & economy"],
+ *   ["information (no participation)"],
+ *   ["ongoing"],
+ *   ["liqd"],
+ *   ["Kiezradar 1"],
+ *   ["Plans"]
+ * ]
+ *
+ * @param {Object} searchProfile - The search profile containing filter criteria
+ * @returns {string[][]} - A structured list of filter values
+ */
+export const toFilterList = (searchProfile) => {
+  const filters = [
+    searchProfile.districts,
+    searchProfile.topics,
+    searchProfile.project_types,
+    searchProfile.status.map((status) => ({ name: statusNames[status.name] })),
+    searchProfile.organisations,
+    searchProfile.kiezradars
+  ].map((filter) => filter.map(({ name }) => name))
+
+  return [
+    [searchProfile.query_text],
+    ...filters,
+    [searchProfile.plans_only ? plansText : null]
+  ].filter(arr => arr.some(value => value))
 }

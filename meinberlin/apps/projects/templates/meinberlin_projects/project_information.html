@@ -45,6 +45,8 @@
         </div>
       </section>
 
+      {% include 'meinberlin_projects/includes/timeline.html' with project=project only %}
+
       {% if project.has_contact_details or project.organisation %}
         <hr aria-hidden="true" />
         <section class="flexgrid grid--2 mb-3" aria-labelledby="contact-title">
@@ -53,8 +55,6 @@
           {% include 'meinberlin_projects/includes/contact_organisation.html' with organisation=project.organisation only %}
         </section>
       {% endif %}
-
-      {% include 'meinberlin_projects/includes/timeline.html' with project=project only %}
     </article>
   </div>
 {% endblock content %}

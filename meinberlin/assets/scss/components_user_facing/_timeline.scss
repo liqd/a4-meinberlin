@@ -1,0 +1,121 @@
+$dot-size: 60px;
+$line-thickness: 4px;
+$active-color: $primary;
+$inactive-color: $gray-lighter;
+
+.timeline__steps {
+    display: flex;
+    flex-direction: column;
+    padding-top: 2em;
+}
+
+.timeline__step {
+    display: flex;
+    position: relative;
+
+    &:before {
+        display: none;
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        left: calc($dot-size / 2);
+        width: $line-thickness;
+        height: calc(50% + 50%);
+        background-color: $inactive-color;
+        transform: translateX(-50%);
+        z-index: -1;
+    }
+
+    &:not(:last-child) {
+        height: 150px;
+    }
+
+    &:last-child:after {
+        display: none;
+    }
+}
+
+.timeline__indicator {
+    position: relative;
+    width: $dot-size;
+    height: $dot-size;
+    border-radius: 50%;
+    border: $line-thickness solid $inactive-color;
+    background-color: $white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2em;
+
+    &:before {
+        content: "";
+        width: 50%;
+        height: 50%;
+        border-radius: 50%;
+    }
+}
+
+.timeline__step--completed .timeline__indicator {
+    border-color: rgba($active-color, 0.4);
+}
+
+.timeline__step--completed:after {
+    background-color: rgba($active-color, 0.4);
+}
+
+.timeline__step--completed .timeline__indicator:before {
+    background-color: $active-color;
+}
+
+.timeline__details {
+    font-size: $font-size-sm;
+    line-height: 1.3;
+}
+
+.timeline__title {
+    margin-top: 0.5em;
+}
+
+@media (min-width: $breakpoint-tablet) {
+    .timeline__steps {
+        flex-direction: row;
+        align-items: flex-start;
+        overflow-x: auto;
+        scrollbar-width: thin;
+        width: 100%;
+    }
+
+    .timeline__step {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        flex: 0 0 180px;
+
+        &:after {
+            top: calc($dot-size / 2);
+            left: 50%;
+            width: calc(50% + 50%);
+            height: $line-thickness;
+            transform: translateY(-50%);
+        }
+
+        &:not(:last-child) {
+            height: auto;
+        }
+    }
+
+    .timeline__indicator {
+        margin-right: 0;
+    }
+
+    .timeline__title {
+        margin-top: 1em;
+    }
+
+    .timeline__details {
+        font-size: $font-size-sm;
+        line-height: 1.3;
+    }
+}

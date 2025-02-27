@@ -2,30 +2,30 @@
 {% offlineevents_and_modules_sorted project as modules_and_events %}
 
 {% if project.display_timeline %}
-  <nav aria-labelledby="timeline-heading">
-    <h2 id="timeline-heading">{% translate "Participation process" %}</h2>
-    <ol>
+  <section class="timeline" aria-labelledby="timeline-heading">
+    <h2 id="timeline-heading">{% translate 'Participation process timeline' %}</h2>
+    <ol class="timeline__steps">
       {% for obj in project.participation_dates %}
         {% is_in_past obj.date as in_past %}
-        {% if obj.type == "module" %}
-          <li>
-            {{ obj.title }}
-            {{ obj.date|date:"DATE_FORMAT" }}
-            {% if in_past %}
-              active
-            {% endif %}
+        {% if obj.type == 'module' %}
+          <li class="timeline__step {% if in_past %}timeline__step--completed{% endif %}">
+            <div class="timeline__indicator" aria-hidden="true"></div>
+            <div class="timeline__details">
+              <h3 class="timeline__title">{{ obj.title }}</h3>
+              <time class="timeline__date" datetime="{{ obj.date|date:'c' }}">{% translate 'from' %} {{ obj.date|date:'DATE_FORMAT' }}</time>
+            </div>
           </li>
         {% else %}
-          <li>
-            {{ obj.name }}
-            {{ obj.event_type }}
-            {{ obj.date|date:"DATE_FORMAT" }}
-            {% if in_past %}
-              active
-            {% endif %}
+          <li class="timeline__step {% if in_past %}timeline__step--completed{% endif %}">
+            <div class="timeline__indicator" aria-hidden="true"></div>
+            <div class="timeline__details">
+              <h3 class="timeline__title">{{ obj.name }}</h3>
+              <time class="timeline__date" datetime="{{ obj.date|date:'c' }}">{% translate 'on' %} {{ obj.date|date:'DATE_FORMAT' }}</time>
+              <div class="timeline__type">{{ obj.event_type }}</div>
+            </div>
           </li>
         {% endif %}
       {% endfor %}
     </ol>
-  </nav>
+  </section>
 {% endif %}

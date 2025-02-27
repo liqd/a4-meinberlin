@@ -7,6 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from adhocracy4.dashboard.components.forms import ProjectDashboardForm
 from adhocracy4.images.mixins import ImageMetadataMixin
 from adhocracy4.maps import widgets as maps_widgets
+from adhocracy4.maps.mixins import PointFormMixin
 from adhocracy4.projects import models as project_models
 from adhocracy4.projects.models import Topic
 from meinberlin.apps.contrib.widgets import Select2Widget
@@ -14,7 +15,7 @@ from meinberlin.apps.contrib.widgets import Select2Widget
 from . import models
 
 
-class PlanForm(ImageMetadataMixin, forms.ModelForm):
+class PlanForm(PointFormMixin, ImageMetadataMixin, forms.ModelForm):
     topics = forms.ModelMultipleChoiceField(
         label=_("Topics"),
         help_text=_(
@@ -37,6 +38,7 @@ class PlanForm(ImageMetadataMixin, forms.ModelForm):
 
     class Meta:
         model = models.Plan
+        geo_field = "point"
         fields = [
             "title",
             "image",
@@ -60,6 +62,9 @@ class PlanForm(ImageMetadataMixin, forms.ModelForm):
             "tile_image",
             "tile_image_alt_text",
             "tile_image_copyright",
+            "street_name",
+            "house_number",
+            "zip_code",
         ]
         widgets = {
             "point": maps_widgets.MapChoosePointWidget(polygon=settings.BERLIN_POLYGON),
@@ -137,6 +142,9 @@ class PlanForm(ImageMetadataMixin, forms.ModelForm):
         self.fields["district"].empty_label = _("City wide")
         self.fields["contact_address_text"].widget.attrs["rows"] = 6
         self.fields["participation_explanation"].widget.attrs["rows"] = 1
+
+    def get_geojson_properties(self):
+        return {"strname": "street_name", "hsnr": "house_number", "plz": "zip_code"}
 
     def save(self, commit=True):
         plan = super().save(commit=False)

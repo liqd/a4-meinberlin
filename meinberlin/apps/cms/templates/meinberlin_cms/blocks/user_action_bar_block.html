@@ -6,19 +6,10 @@
       {{ body | richtext }}
     </div>
 
-    {% if not request.user.is_authenticated %}
-      <div class="user-action-bar__buttons">
-        {% for button in buttons %}
-          {% include_block button %}
-        {% endfor %}
-      </div>
-    {% endif %}
-  </div>
-  {% if request.user.is_authenticated %}
-    <div class="servicepanel__right">
+    <div class="user-action-bar__buttons">
       {% for button in buttons %}
         {% include_block button %}
       {% endfor %}
     </div>
-  {% endif %}
+  </div>
 </div>

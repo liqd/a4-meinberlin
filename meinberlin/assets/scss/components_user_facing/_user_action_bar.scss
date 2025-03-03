@@ -15,11 +15,30 @@
 }
 
 .user-action-bar__buttons {
-    display: flex;
-    margin-left: auto;
-    gap: .5em;
-
     @media screen and (min-width: $breakpoint-palm) {
+        display: flex;
+        justify-content: flex-end;
+        margin-left: auto;
+        gap: .5em;
+        min-width: 18.75rem;
         padding-left: 1em;
     }
+}
+
+.user-action-bar__buttons .button {
+    margin-bottom: 0.5rem;
+    width: 100%;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    @media screen and (min-width: $breakpoint-palm) {
+        margin-bottom: 0;
+        width: auto;
+    }
+}
+
+.user-action-bar h2 {
+    margin-bottom: 0;
 }

@@ -15,7 +15,7 @@
 
     <ul class="swiper-wrapper">
         {% for phase in module.phases %}
-        <li class="swiper-slide">
+        <li class="swiper-slide {% if phase == module.active_phase %}active{% endif %}">
             {% include "a4modules/includes/module_detail_phase_info.html" %}
         </li>
         {% endfor %}
@@ -25,5 +25,5 @@
 
 {% block extra_js %}
     <script src="{% static 'swiper_phases.js' %}" defer></script>
-{% endblock %}
+{% endblock extra_js %}
 

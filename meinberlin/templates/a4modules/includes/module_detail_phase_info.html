@@ -3,7 +3,7 @@
 <article>
     <section>
         <h2 class="phase-info__title">{{ phase.name }}</h2>
-        <p>{{ phase.description }}</p>
+        <p class="phase-info__description">{{ phase.description }}</p>
     </section>
     <section role="status" aria-label="{% translate 'Phase status' %}">
         <span class="fas fa-clock" aria-hidden="true"></span>
@@ -32,6 +32,6 @@
         {% endif %} 
 
         {% html_date phase.start_date 'DATETIME_FORMAT' %}
-        &ndash; {% html_date phase.end_date 'DATETIME_FORMAT' %}
+        – {% html_date phase.end_date 'DATETIME_FORMAT' %}
     </section>
 </article>

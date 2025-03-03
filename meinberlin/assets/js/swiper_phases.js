@@ -12,12 +12,22 @@ const createSwiper = ({ rootElement, options }) =>
   new Swiper(rootElement, options)
 
 const initSwiper = () => {
+  const rootElement = document.querySelector('.swiper-container')
+  const swiperWrapper = rootElement.querySelector('.swiper-wrapper')
+  const active = rootElement.querySelector('.active')
+  let initialSlide = Array.prototype.indexOf.call(swiperWrapper.children, active)
+
+  if (initialSlide === -1) {
+    initialSlide = 0
+  }
+
   const config = {
-    rootElement: '.swiper-container',
+    rootElement,
     options: {
       direction: 'horizontal',
       loop: true,
       modules: [Navigation, Pagination],
+      initialSlide,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'

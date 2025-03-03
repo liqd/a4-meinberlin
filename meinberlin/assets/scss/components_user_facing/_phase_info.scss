@@ -1,11 +1,19 @@
 .phase-info {
     background-color: $panel-dark;
     color: $white;
+
+    .fas {
+        margin-right: .25em;
+    }
 }
 
 .phase-info__title {
     color: inherit;
     margin: 0;
+}
+
+.phase-info__description {
+    margin-bottom: 0;
 }
 
 .phase-info__cta {

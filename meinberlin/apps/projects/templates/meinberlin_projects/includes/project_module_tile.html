@@ -2,23 +2,25 @@
 {% project_tile_image project as project_image %}
 {% project_tile_image_copyright project as project_image_copyright %}
 <a href="{% url 'module-detail' module.slug %}" class="module-tile">
-  <h3 class="module-tile__title">{{ module.name }}</h3>
-  <p class="module-tile__description">{{ module.description }}</p>
+    <h3 class="module-tile__title">{{ module.name }}</h3>
+    <p class="module-tile__description">{{ module.description|truncatechars:240 }}</p>
 
-  {% if module.module_running_time_left %}
+    {% if module.module_running_time_left %}
 
-    {% include "meinberlin_projects/includes/status_bar.html" with progress=module.module_running_progress uniqueId="module-running-progress-{{ module.pk }}" time_left=module.module_running_time_left %}
+        {% include "meinberlin_projects/includes/status_bar.html" with progress=module.module_running_progress uniqueId="module-running-progress-{{ module.pk }}" time_left=module.module_running_time_left %}
 
-  {% elif not module.module_has_started %}
+    {% elif not module.module_has_started %}
 
-    <span class="module-tile__future">
-      <i class="far fa-clock" aria-hidden="true"></i>{% html_date module.module_start 'd.m.Y' as start_date %}
-      {% blocktranslate with date=start_date %}Begins on the {{ date }}{% endblocktranslate %}
-    </span>
+        <span class="module-tile__timespan">
+            <i class="far fa-clock" aria-hidden="true"></i>{% html_date module.module_start 'd.m.Y' as start_date %}
+            {% blocktranslate with date=start_date %}Begins on the {{ date }}{% endblocktranslate %}
+        </span>
 
-  {% elif module.module_has_finished %}
+    {% elif module.module_has_finished %}
 
-    {% translate 'Participation ended' %}
+        <span class="module-tile__timespan">
+            {% translate 'Participation ended' %}
+        </span>
 
-  {% endif %}
+    {% endif %}
 </a>

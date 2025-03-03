@@ -1,12 +1,7 @@
 import React from 'react'
-import django from 'django'
 
 import { ModeratorStatus } from '../ModeratorStatus'
 import { Pill } from '../Pill'
-
-const translated = {
-  more: django.gettext('More')
-}
 
 export const CardStatus = props => {
   const getClass = (pill) => {
@@ -42,8 +37,8 @@ export const CardStatus = props => {
           )
         })}
         {props.numOfMorePills > 0 &&
-          <li className="pill pill--info">
-            {props.numOfMorePills + ' ' + translated.more}
+          <li className="pill pill--label">
+            {'+' + props.numOfMorePills}
           </li>}
       </ul>
       <ModeratorStatus

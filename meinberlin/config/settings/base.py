@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
+    "django.contrib.postgres",
     "django.contrib.sitemaps",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",

@@ -1,5 +1,6 @@
 import pytest
 from django.contrib.gis.geos import Point
+from django.db import connection
 
 from adhocracy4.projects.models import Topic
 from adhocracy4.test.helpers import freeze_phase
@@ -163,6 +164,9 @@ def test_searchprofile_filter_organisation(
     )
     search_profile = search_profile_factory()
     search_profile.organisations.add(project.organisation)
+    search_profile.organisations.add(organisation_factory())
+    search_profile.organisations.add(organisation_factory())
+    search_profile.organisations.count() == 3
     search_profile1 = search_profile_factory()
     search_profile1.organisations.add(organisation_factory())
     search_profile2 = search_profile_factory()
@@ -184,6 +188,9 @@ def test_searchprofile_filter_districts(
     project.administrative_district = administrative_district_factory()
     search_profile = search_profile_factory()
     search_profile.districts.add(project.administrative_district)
+    search_profile.districts.add(administrative_district_factory())
+    search_profile.districts.add(administrative_district_factory())
+    assert search_profile.districts.count() == 3
     search_profile1 = search_profile_factory()
     search_profile1.districts.add(administrative_district_factory())
     search_profile2 = search_profile_factory()
@@ -235,30 +242,41 @@ def test_searchprofile_filter_disabled(phase_factory, search_profile_factory):
 def test_searchprofile_filter_query(
     phase_factory, search_profile_factory, kiezradar_query_factory
 ):
-    phase, module, project, item = setup_phase(
+    phase, _, project, _ = setup_phase(
         phase_factory,
         None,
         CollectFeedbackPhase,
-        module__project__name="A Project in Berlin",
+        module__project__name="A project within the city of Berlin",
     )
 
-    search_profile = search_profile_factory()
-    query = kiezradar_query_factory(text="Berlin")
-    search_profile.query = query
-    search_profile.save()
-
-    search_profile1 = search_profile_factory()
-    query1 = kiezradar_query_factory(text="Other")
-    search_profile1.query = query1
-    search_profile1.save()
-
-    search_profile2 = search_profile_factory()
+    # Create search profiles with associated queries
+    berlin_profile = search_profile_factory(
+        query=kiezradar_query_factory(text="This is Berlin")
+    )
+    search_profile_factory(query=kiezradar_query_factory(text="This is Leipzig"))
+    other_profile = search_profile_factory(
+        query=kiezradar_query_factory(text="Other")
+    )  # matches "the" on sqlite
+    profile_without_query = search_profile_factory()
+    search_profile_factory(
+        query=kiezradar_query_factory(text="Berli")
+    )  # partial word not matching
+    stop_word_profile = search_profile_factory(
+        query=kiezradar_query_factory(text="the")
+    )
 
     with freeze_phase(phase):
         result = get_search_profiles_for_project(project).order_by("pk")
-        assert len(result) == 2
-        assert result.first() == search_profile
-        assert result.last() == search_profile2
+
+        if connection.vendor == "postgresql":
+            assert list(result) == [berlin_profile, profile_without_query]
+        else:
+            assert list(result) == [
+                berlin_profile,
+                other_profile,
+                profile_without_query,
+                stop_word_profile,
+            ]
 
 
 @pytest.mark.django_db
@@ -283,9 +301,10 @@ def test_searchprofile_filter_kiezradar(
     search_profile.kiezradars.add(kiezradar_match)
     search_profile1 = search_profile_factory()
     search_profile1.kiezradars.add(kiezradar_no_match)
-    search_profile_factory()
+    search_profile2 = search_profile_factory()
 
     with freeze_phase(phase):
-        result = get_search_profiles_for_project(project)
-        assert len(result) == 1
+        result = get_search_profiles_for_project(project).order_by("pk")
+        assert len(result) == 2
         assert result.first() == search_profile
+        assert result.last() == search_profile2

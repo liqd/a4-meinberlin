@@ -3,6 +3,8 @@ from functools import reduce
 from django.conf import settings
 from django.contrib.gis.db import models as gis_models
 from django.contrib.gis.db.models.functions import Distance
+from django.contrib.postgres.search import SearchQuery
+from django.contrib.postgres.search import SearchVector
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator
 from django.core.validators import MinValueValidator
@@ -179,8 +181,8 @@ def get_search_profiles_for_project(project: Project) -> QuerySet[SearchProfile]
         (Q(topics__in=project.topics.all()) | Q(topics__isnull=True))
         & (Q(status__status=status) | Q(status__isnull=True))
         & Q(plans_only=False)
-        & (Q(organisations=project.organisation) | Q(organisations__isnull=True))
-        & (Q(districts=project.administrative_district) | Q(districts__isnull=True))
+        & (Q(organisations__in=[project.organisation]) | Q(organisations__isnull=True))
+        & (Q(districts__in=[project.administrative_district]) | Q(districts__isnull=True))
         & (
             Q(project_types__participation=ProjectType.PARTICIPATION_CONSULTATION)
             | Q(project_types__isnull=True)
@@ -190,8 +192,11 @@ def get_search_profiles_for_project(project: Project) -> QuerySet[SearchProfile]
     search_term = project.name
     if connection.vendor == "postgresql":
         # django has some postgresql-only search tools which are much better
+        query = "|".join(search_term.split(" "))
+        search_query = SearchQuery(query, search_type="raw")
+        search_profiles = search_profiles.annotate(search=SearchVector("query__text"))
         search_profiles = search_profiles.filter(
-            Q(query__text__search=search_term) | Q(query__isnull=True)
+            Q(search=search_query) | Q(query__isnull=True)
         )
     else:
         # this is probably very inefficient and more hack to make the search somewhat useful on sqlite
@@ -203,5 +208,6 @@ def get_search_profiles_for_project(project: Project) -> QuerySet[SearchProfile]
     if project.point:
         search_profiles = search_profiles.filter(
             Q(kiezradars__radius__gte=Distance("kiezradars__point", project.point))
+            | Q(kiezradars__isnull=True)
         )
     return search_profiles

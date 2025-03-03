@@ -1,7 +1,7 @@
 import { getDistanceBetweenPoints } from '../contrib/helpers'
 
-export const isInTitle = (title, search) => {
-  const titleLower = title.toLowerCase().trim().replace(/\s/g, '')
+const isInTitle = (title, search) => {
+  const titleLower = title?.toLowerCase().trim().replace(/\s/g, '') ?? ''
   const searchString = search.toLowerCase().trim()
   const searchList = searchString.split(/\s/)
   for (const i in searchList) {
@@ -12,10 +12,15 @@ export const isInTitle = (title, search) => {
   return true
 }
 
+const isInTopic = (topics, itemTopics, search) => {
+  const activeTopics = topics.filter((topic) => itemTopics.includes(topic.code))
+  return activeTopics.some(topic => isInTitle(topic.name, search))
+}
+
 const statusNames = ['active', 'future', 'past']
 
-export const filterProjects = (items, appliedFilters, kiezradars, projectState) => {
-  const { search, topics, districts, organisation, participations, plansOnly, kiezradars: activeKiezradars } = appliedFilters
+export const filterProjects = (items, appliedFilters, kiezradars, topics, projectState) => {
+  const { search, topics: activeTopics, districts, organisation, participations, plansOnly, kiezradars: activeKiezradars } = appliedFilters
 
   return items.filter((item) => {
     const isWithinAnyRadius =
@@ -24,11 +29,16 @@ export const filterProjects = (items, appliedFilters, kiezradars, projectState) 
         getDistanceBetweenPoints(item.point.geometry.coordinates, kiezradar.point.geometry.coordinates) <= kiezradar.radius
       )
 
-    return (topics.length === 0 || topics.some(topic => item.topics.includes(topic))) &&
+    return (activeTopics.length === 0 || activeTopics.some(topic => item.topics.includes(topic))) &&
            (districts.length === 0 || districts.includes(item.district)) &&
            (participations.length === 0 || participations.includes(item.participation)) &&
            (organisation.length === 0 || organisation.includes(item.organisation)) &&
-           (search === '' || isInTitle(item.title, search)) &&
+           (search === '' ||
+             isInTitle(item.title, search) ||
+             isInTitle(item.district, search) ||
+             isInTitle(item.organisation, search) ||
+             isInTitle(item.description, search) ||
+             isInTopic(topics, item.topics, search)) &&
            (projectState.includes(statusNames[item.status])) &&
            (!plansOnly || item.type === 'plan') &&
            (activeKiezradars.length === 0 || isWithinAnyRadius)

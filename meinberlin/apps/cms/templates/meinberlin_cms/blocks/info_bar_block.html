@@ -1,6 +1,6 @@
 {% load wagtailimages_tags wagtailcore_tags block_tags react_map_teaser %}
 
-<div class="block panel panel--colored info-bar-block" style="background-image: url({{ image.url }})">
+<div class="block panel panel--colored info-bar-block{% if value.image %} info-bar-block--image{% endif %}" style="background-image: url({{ image.url }})">
   {% if value.image %}
     {% image value.image width-150 class="info-bar-block__image" %}
   {% endif %}
@@ -8,7 +8,7 @@
     {{ value.body|richtext }}
 
     {% if value.link %}
-      <a href="{{ value.link.link }}" class="more mt-1">
+      <a href="{{ value.link.link.get_url }}" class="more info-bar-block__link">
         {{ value.link.link_text }}
       </a>
     {% endif %}

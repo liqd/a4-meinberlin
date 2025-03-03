@@ -116,9 +116,7 @@ fixtures:
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/categories.json
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/documents.json
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/labels.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/maptopicprop.json
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/moderationtasks.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/topicprio.json
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/votes.json
 	git restore meinberlin/fixtures/phases.json
 

@@ -18,9 +18,7 @@ const searchProfileDeletedTitle = django.gettext(
 const searchProfileDeletedText = django.gettext(
   'Your changes have been deleted.'
 )
-const noSavedProfilesText = django.gettext('No saved search profiles')
 const findProjectsText = django.gettext('Find projects')
-const yourSavedProfilesText = django.gettext('Your saved search profiles')
 const limitExceededTitle = django.gettext('You have reached the limit of saved search profiles')
 const limitExceededText = django.gettext('You are using the maximum number of 10 search profiles. To save a new one, you must delete an existing profile.')
 
@@ -84,19 +82,17 @@ export default function SearchProfiles (props) {
           onClick={() => setAlert(null)}
         />
       )}
-      <h1>{titleText}</h1>
+      <h1>
+        {titleText + (
+          searchProfiles.length ? (' (' + searchProfiles.length + ')') : ''
+        )}
+      </h1>
       <p>{descriptionText}</p>
       <div aria-live="polite">
         {loading
           ? <Loading />
           : (
-            <>
-              <h2>
-                {searchProfiles.length === 0
-                  ? noSavedProfilesText
-                  : yourSavedProfilesText + ' ' + searchProfiles.length}
-              </h2>
-              {searchProfiles.length === 0
+              searchProfiles.length === 0
                 ? (
                   <a href={props.planListUrl} className="button button--light">
                     <i className="fa-solid fa-magnifying-glass mr-1" />
@@ -131,8 +127,9 @@ export default function SearchProfiles (props) {
                           })
                         }}
                       />
-                    )))}
-            </>)}
+                    ))
+                  )
+            )}
       </div>
     </>
   )

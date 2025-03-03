@@ -22,7 +22,6 @@ def test_create_search_profile(
     organisation_factory,
     administrative_district_factory,
 ):
-
     kiezradar = kiez_radar_factory()
     user = kiezradar.creator
 
@@ -240,7 +239,10 @@ def test_searchprofile_filter_disabled(phase_factory, search_profile_factory):
 
 @pytest.mark.django_db
 def test_searchprofile_filter_query(
-    phase_factory, search_profile_factory, kiezradar_query_factory
+    phase_factory,
+    search_profile_factory,
+    kiezradar_query_factory,
+    administrative_district_factory,
 ):
     phase, _, project, _ = setup_phase(
         phase_factory,
@@ -248,6 +250,16 @@ def test_searchprofile_filter_query(
         CollectFeedbackPhase,
         module__project__name="A project within the city of Berlin",
     )
+    topic1, topic2 = Topic.objects.first(), Topic.objects.last()
+    project.topics.add(topic1)
+    district = administrative_district_factory()
+    project.description = "Description of the project"
+    project.administrative_district = district
+    project.save()
+
+    organisation = project.organisation
+    organisation.name = "Liquid"
+    organisation.save()
 
     # Create search profiles with associated queries
     berlin_profile = search_profile_factory(
@@ -264,19 +276,45 @@ def test_searchprofile_filter_query(
     stop_word_profile = search_profile_factory(
         query=kiezradar_query_factory(text="the")
     )
+    organisation_name = search_profile_factory(
+        query=kiezradar_query_factory(text="Liquid")
+    )
+    project_topic = search_profile_factory(
+        query=kiezradar_query_factory(text=str(topic1))
+    )
+    search_profile_factory(query=kiezradar_query_factory(text=str(topic2)))
+    project_description = search_profile_factory(
+        query=kiezradar_query_factory(text="Description")
+    )
+    project_district = search_profile_factory(
+        query=kiezradar_query_factory(text=district.name)
+    )
 
+    # Execute search
     with freeze_phase(phase):
         result = get_search_profiles_for_project(project).order_by("pk")
 
         if connection.vendor == "postgresql":
-            assert list(result) == [berlin_profile, profile_without_query]
+            expected_profiles = [
+                berlin_profile,
+                profile_without_query,
+                organisation_name,
+                project_topic,
+                project_description,
+                project_district,
+            ]
         else:
-            assert list(result) == [
+            expected_profiles = [
                 berlin_profile,
                 other_profile,
                 profile_without_query,
                 stop_word_profile,
+                organisation_name,
+                project_topic,
+                project_description,
+                project_district,
             ]
+        assert list(result) == expected_profiles
 
 
 @pytest.mark.django_db

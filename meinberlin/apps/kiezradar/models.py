@@ -189,10 +189,16 @@ def get_search_profiles_for_project(project: Project) -> QuerySet[SearchProfile]
         )
         & Q(disabled=False)
     )
-    search_term = project.name
+    search_term = (
+        project.name + " " + project.description + " " + project.organisation.name
+    )
+    if project.administrative_district:
+        search_term += " " + project.administrative_district.name
+    for topic in project.topic_names:
+        search_term += " " + topic
     if connection.vendor == "postgresql":
         # django has some postgresql-only search tools which are much better
-        query = "|".join(search_term.split(" "))
+        query = "|".join(search_term.split())
         search_query = SearchQuery(query, search_type="raw")
         search_profiles = search_profiles.annotate(search=SearchVector("query__text"))
         search_profiles = search_profiles.filter(
@@ -202,7 +208,11 @@ def get_search_profiles_for_project(project: Project) -> QuerySet[SearchProfile]
         # this is probably very inefficient and more hack to make the search somewhat useful on sqlite
         query = reduce(
             lambda a, b: a | b,
-            (Q(query__text__icontains=term) for term in search_term.split()),
+            (
+                Q(query__text__icontains=term)
+                for term in search_term.split()
+                if len(term) > 2
+            ),
         )
         search_profiles = search_profiles.filter(query | Q(query__isnull=True))
     if project.point:

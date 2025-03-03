@@ -6,11 +6,7 @@ const errorCreatingSearchProfile = django.gettext(
   'Error creating search profile'
 )
 
-const STATUS_MAPPING = {
-  running: 'active',
-  done: 'past',
-  future: 'future'
-}
+const STATUS_MAPPING = ['active', 'future', 'past']
 
 export function useCreateSearchProfile ({
   searchProfilesApiUrl,
@@ -110,7 +106,7 @@ function getFilteredResults ({
       participationChoices[index - 1]
     ),
     filteredProjectStatus: projectStatus.filter(status =>
-      appliedFilters.projectState.includes(STATUS_MAPPING[status.name])
+      appliedFilters.projectState.includes(STATUS_MAPPING[status.status])
     ),
     filteredKiezradars: kiezradars.filter(kiezradar =>
       appliedFilters.kiezradars.includes(kiezradar.name)

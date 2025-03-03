@@ -28,6 +28,11 @@
     &:last-child {
         margin-bottom: 0 !important;
     }
+
+    a,
+    button {
+        white-space: nowrap;
+    }
 }
 
 .dropdown__wrapper {

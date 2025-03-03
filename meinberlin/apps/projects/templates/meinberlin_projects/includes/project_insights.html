@@ -1,0 +1,21 @@
+{% load i18n %}
+{% if counts or project.result %}
+  <section aria-labelledby="project-insights" class="block">
+    <h2 class="mt-0" id="project-insights">{% translate 'Statistics & Results' %}</h2>
+    {% if counts %}
+      <ul class="figures-box figures-box--four-columns">
+        {% for count in counts %}
+          <li class="figures-box__item figures-box__item--centered" aria-label="{{ count.1 }} {{ count.0 }}">
+              <span class="figures-box__number" aria-hidden="true">{{ count.1 }}</span>
+              <span class="figures-box__label" aria-hidden="true">{{ count.0 }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% if project.result %}
+    <div class="u-flex-end mt-2">
+      <a href="{% url 'project-results' project.slug %}" class="button button--fullwidth-palm">{% translate 'See results' %}</a>
+    </div>
+    {% endif %}
+  </section>
+{% endif %}

@@ -1,0 +1,58 @@
+{% load i18n %}
+<section aria-labelledby="project-details">
+    <h2 class="mt-0" id="project-details">{% translate "Project details" %}</h2>
+    <ul class="figures-box {% spaceless %}
+      {% if project.phases.active_phases %}
+        figures-box--running
+      {% elif project.phases.future_phases %}
+        figures-box--upcoming
+      {% else %}
+        figures-box--ended
+      {% endif %}
+    {% endspaceless %}">
+      <li class="figures-box__item">
+        <h3>
+          <i class="fas fa-globe" aria-hidden="true"></i>
+          {% translate "Organisation" %}
+        </h3>
+        <strong>{{ project.organisation }}</strong>
+      </li>
+      {% if project.topics %}
+        <li class="figures-box__item">
+          <h3>
+            <i class="fas fa-table-cells" aria-hidden="true"></i>
+            {% translate "Topics" %}
+          </h3>
+          <strong>
+            {% for topic in project.topics.all %}
+              {{ topic }} <br/>
+            {% endfor %}
+          </strong>
+        </li>
+      {% endif %}
+      {% if project.administrative_district %}
+        <li class="figures-box__item">
+          <h3>
+            <i class="fas fa-map-location-dot" aria-hidden="true"></i>
+            {% translate "District" %}
+          </h3>
+          <strong>{{ project.administrative_district }}</strong>
+        </li>
+      {% endif %}
+      <li class="figures-box__item">
+        <h3>
+          <i class="fas fa-circle" aria-hidden="true"></i>
+          {% translate "Status" %}
+        </h3>
+        <strong>
+          {% if project.phases.active_phases %}
+            {% translate 'running' %}
+          {% elif project.phases.future_phases %}
+            {% translate 'upcoming' %}
+          {% else %}
+            {% translate 'ended' %}
+          {% endif %}
+        </strong>
+      </li>
+    </ul>
+  </section>

@@ -188,7 +188,7 @@ def get_search_profiles_for_project(project: Project) -> QuerySet[SearchProfile]
         & Q(disabled=False)
     )
     search_term = project.name
-    if connection.vendor == "postresql":
+    if connection.vendor == "postgresql":
         # django has some postgresql-only search tools which are much better
         search_profiles = search_profiles.filter(
             Q(query__text__search=search_term) | Q(query__isnull=True)

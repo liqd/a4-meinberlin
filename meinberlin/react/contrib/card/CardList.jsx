@@ -25,7 +25,7 @@ export const CardList = (props) => {
             {data.results.map((item, idx) => (
               <li key={idx}>
                 <Card item={item} idx={idx} permissions={data?.permissions} currentPage={currentPage}>
-                  {props.cardStatus &&
+                  {item.item_badges_for_list?.length &&
                     <CardStatus
                       pills={item.item_badges_for_list}
                       proposal={item}

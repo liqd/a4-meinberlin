@@ -25,7 +25,14 @@
 
 .card__stats {
     display: flex;
-    margin-right: 2 * $spacer;
+    margin-bottom: .75em;
+    width: 100%;
+
+    @media screen and (min-width: $breakpoint-tablet) {
+        width: auto;
+        margin-bottom: 0;
+        margin-right: 2 * $spacer;
+    }
 }
 
 .card__stat {
@@ -43,7 +50,9 @@
 }
 
 .card__footer--light {
-    display: inline-flex;
+    @media screen and (min-width: $breakpoint-tablet) {
+        display: inline-flex;
+    }
 }
 
 // Needed for due to Bo js not working

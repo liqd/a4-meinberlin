@@ -12,6 +12,8 @@ class TopicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Topic
         fields = (
+            "additional_item_badges_for_list_count",
+            "item_badges_for_list",
             "comment_count",
             "name",
             "negative_rating_count",
@@ -20,6 +22,8 @@ class TopicSerializer(serializers.ModelSerializer):
             "url",
         )
         read_only_fields = (
+            "additional_item_badges_for_list_count",
+            "item_badges_for_list",
             "comment_count",
             "name",
             "negative_rating_count",

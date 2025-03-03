@@ -49,6 +49,6 @@ test('displaying first 3 pills and add more link', () => {
       proposal={proposal}
     />
   )
-  expect(screen.getByText('1 More')).toBeTruthy()
+  expect(screen.getByText('+1')).toBeTruthy()
   expect(screen.getByText('Accepted')).toBeTruthy()
 })

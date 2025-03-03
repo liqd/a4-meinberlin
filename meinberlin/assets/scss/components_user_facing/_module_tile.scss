@@ -12,6 +12,10 @@ a.module-tile {
         text-decoration: none;
     }
 
+    .status-bar {
+        margin-top: .75em;
+    }
+
     .status-bar__timespan {
         margin-bottom: 0;
     }
@@ -30,11 +34,12 @@ a.module-tile {
     margin-bottom: auto;
 }
 
-.module-tile__future {
+.module-tile__timespan {
     vertical-align: middle;
+    font-size: $font-size-sm;
 }
 
-.module-tile__future i,
-.module-tile__future time {
+.module-tile__timespan i,
+.module-tile__timespan time {
     display: inline-block;
 }

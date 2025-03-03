@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import django from 'django'
 import SearchProfileButtons from './SearchProfileButtons'
-import { toSearchParams, updateItem } from '../contrib/helpers'
+import { toFilterList, toSearchParams, updateItem } from '../contrib/helpers'
 import PushNotificationToggle from './PushNotificationToggle'
 import { alert as Alert } from 'adhocracy4'
 import Modal from '../contrib/Modal'
@@ -12,7 +12,6 @@ const saveText = django.gettext('Save')
 const savingText = django.gettext('Saving')
 const deleteText = django.gettext('Delete')
 const viewProjectsText = django.gettext('View projects')
-const plansText = django.gettext('Plans')
 const errorText = django.gettext('Error')
 const errorDeleteSearchProfilesText = django.gettext(
   'Failed to delete search profile'
@@ -20,11 +19,6 @@ const errorDeleteSearchProfilesText = django.gettext(
 const errorUpdateSearchProfilesText = django.gettext(
   'Failed to update search profile'
 )
-const statusNames = {
-  running: django.gettext('ongoing'),
-  future: django.gettext('upcoming'),
-  done: django.gettext('done')
-}
 const confirmDeletionText = (name) =>
   django.interpolate(
     django.gettext('Confirm deletion of %(name)s'),
@@ -84,23 +78,7 @@ export default function SearchProfile ({ apiUrl, planListUrl, searchProfile, onS
     }
   }, [apiUrl, searchProfile, onSave])
 
-  const filters = [
-    searchProfile.districts,
-    searchProfile.topics,
-    searchProfile.project_types,
-    searchProfile.status.map((status) => ({ name: statusNames[status.name] })),
-    searchProfile.organisations,
-    searchProfile.kiezradars
-  ]
-    .map((filter) => filter.map(({ name }) => name))
-
-  const selection = [
-    [searchProfile.query_text],
-    ...filters,
-    [searchProfile.plans_only ? plansText : null]
-  ]
-    .map((names) => names.join(', '))
-    .filter(Boolean)
+  const selection = toFilterList(searchProfile).map((names) => names.join(', '))
 
   return (
     <>

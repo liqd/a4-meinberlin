@@ -41,6 +41,21 @@ export const notificationsData = {
       true
     )
   },
+  searchProfiles: {
+    title: django.gettext('Search Profiles'),
+    description: django.gettext(
+      'Here you will find newly published participation projects that match your search profiles.'
+    ),
+    descriptionNoItems: django.gettext(
+      'No results from your saved searches yet. Add new saved searches and wait for a matching project to be published.'
+    ),
+    buttonText: django.gettext('Save a search'),
+    projectMatchesSearchProfileText: (title, name) => django.interpolate(
+      django.gettext('A new project, %(title)s, matches your search profile %(name)s'),
+      { title, name },
+      true
+    )
+  },
   followedProjects: {
     title: django.gettext('Followed projects'),
     description: django.gettext(

@@ -6,12 +6,14 @@ function init () {
   const el = document.getElementById('notifications-react')
   const root = createRoot(el)
   const interactionsApiUrl = el.getAttribute('data-interactions-api-url')
+  const searchProfilesApiUrl = el.getAttribute('data-search-profiles-api-url')
   const followedProjectsApiUrl = el.getAttribute('data-followed-projects-api-url')
   const planListUrl = el.getAttribute('data-plan-list-url')
   root.render(
     <React.StrictMode>
       <Notifications
         interactionsApiUrl={interactionsApiUrl}
+        searchProfilesApiUrl={searchProfilesApiUrl}
         followedProjectsApiUrl={followedProjectsApiUrl}
         planListUrl={planListUrl}
       />

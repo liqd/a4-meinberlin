@@ -2,11 +2,13 @@ import React from 'react'
 import FeedItem from './FeedItem'
 import FeedList from './FeedList'
 import { notificationsData } from './notification_data'
+import { toFilterList } from '../contrib/helpers'
 
-export default function Notifications ({ interactionsApiUrl, followedProjectsApiUrl, planListUrl }) {
+export default function Notifications ({ interactionsApiUrl, searchProfilesApiUrl, followedProjectsApiUrl, planListUrl }) {
   return (
     <>
       <InteractionsFeed apiUrl={interactionsApiUrl} planListUrl={planListUrl} />
+      <SearchProfilesFeed apiUrl={searchProfilesApiUrl} planListUrl={planListUrl} />
       <FollowedProjectsFeed apiUrl={followedProjectsApiUrl} planListUrl={planListUrl} />
     </>
   )
@@ -33,6 +35,45 @@ function InteractionsFeed ({ apiUrl, planListUrl }) {
             key={timestamp + index}
             icon={type === 'comment' ? 'comment' : 'clock'}
             title={title}
+            body={body}
+            link={link}
+            linkText={linkText}
+            isRead={read}
+            timestamp={timestamp}
+          />
+        )
+      }}
+    />
+  )
+}
+
+function SearchProfilesFeed ({ apiUrl, planListUrl }) {
+  return (
+    <FeedList
+      {...notificationsData.searchProfiles}
+      apiUrl={apiUrl}
+      link={planListUrl}
+      renderFeedItem={({ search_profile: searchProfile, read, action }, index) => {
+        const { timestamp, project, link, ...rest } = action
+        const text = getSearchProfileText(searchProfile, { project, ...rest })
+        const filterList = toFilterList(searchProfile).map((names) => names.join(', ')).slice(0, 3)
+
+        const { title, body, linkText } = text
+
+        const thumbnail = project.tile_image
+          ? {
+              url: project.tile_image,
+              alt: project.tile_image_alt_text
+            }
+          : null
+
+        return (
+          <FeedItem
+            key={timestamp + index}
+            icon="heart"
+            title={title}
+            meta={filterList}
+            thumbnail={thumbnail}
             body={body}
             link={link}
             linkText={linkText}
@@ -133,6 +174,16 @@ function getInteractionText (action) {
             linkText: notificationsData.viewCommentText
           }
       }
+  }
+}
+
+function getSearchProfileText (searchProfile, action) {
+  const { project } = action
+
+  return {
+    title: notificationsData.searchProfiles.projectMatchesSearchProfileText(project.title, searchProfile.name),
+    body: project.title,
+    linkText: notificationsData.viewProjectText
   }
 }
 

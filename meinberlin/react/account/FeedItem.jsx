@@ -1,6 +1,7 @@
 import React from 'react'
 import django from 'django'
 import { classNames } from 'adhocracy4'
+import ImageWithPlaceholder from '../contrib/ImageWithPlaceholder'
 
 const translations = {
   nowText: django.gettext('now'),
@@ -17,7 +18,7 @@ const translations = {
   yesterdayText: django.gettext('Yesterday')
 }
 
-export default function FeedItem ({ icon, title, body, meta = [], link, linkText, isRead, timestamp }) {
+export default function FeedItem ({ icon, title, thumbnail, body, meta = [], link, linkText, isRead, timestamp }) {
   return (
     <article className={classNames('feed-item', !isRead && 'feed-item--unread')}>
       <div className="feed-item__icon">
@@ -25,7 +26,8 @@ export default function FeedItem ({ icon, title, body, meta = [], link, linkText
           className={classNames(
             'fa-solid',
             icon === 'comment' && 'fa-comment',
-            icon === 'clock' && 'fa-clock'
+            icon === 'clock' && 'fa-clock',
+            icon === 'heart' && 'fa-heart'
           )}
         />
         {!isRead && <span className="feed-item__unread" />}
@@ -50,8 +52,19 @@ export default function FeedItem ({ icon, title, body, meta = [], link, linkText
             {formatTimestamp(timestamp)}
           </time>
         </div>
-        <div className={classNames('feed-item__panel', body && 'feed-item__panel--filled')}>
-          {body && <p className="feed-item__body">{body}</p>}
+        <div className={classNames('feed-item__panel', (body || thumbnail) && 'feed-item__panel--filled')}>
+          <div className="feed-item__panel-text">
+            {thumbnail && (
+              <ImageWithPlaceholder
+                src={thumbnail.url}
+                alt={thumbnail.alt}
+                height={40}
+                width={40}
+                className="feed-item__thumbnail"
+              />
+            )}
+            {body && <p className={classNames('feed-item__body', thumbnail && 'feed-item__body--thumbnail')}>{body}</p>}
+          </div>
           <a className="feed-item__link" href={link}>{linkText}</a>
         </div>
       </div>

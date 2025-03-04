@@ -1,16 +1,26 @@
-$media-breakpoint: 1300px;
+$media-breakpoint: 1351px;
 
 .hero-home {
     color: $white;
     background-color: $secondary;
-    margin-top: $maincontent-top-margin;
     min-height: 560px;
     display: flex;
     align-items: center;
     overflow: hidden;
     position: relative;
+    margin: 0 -0.75em;
+    margin-top: $maincontent-top-margin;
 
-    @extend .fullwidth
+    @media screen and (min-width: $breakpoint-tablet-landscape) {
+        margin: 0;
+        margin-top: $maincontent-top-margin;
+    }
+
+    @extend .fullwidth;
+
+    & + :not(.panel--colored) {
+        margin-top: 3.125em;
+    }
 }
 
 .hero-home__container {

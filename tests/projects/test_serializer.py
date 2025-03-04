@@ -16,12 +16,15 @@ def test_project_serializer(
     bplan_factory,
     phase_factory,
     ImagePNG,
+    geos_point,
+    geojson_point,
 ):
     project_active = project_factory(
         name="active",
         image=ImagePNG,
         image_copyright="copyright",
         image_alt_text="img_alt",
+        point=geos_point,
     )
     project_future = project_factory(name="future")
     project_active_and_future = project_factory(name="active and future")
@@ -160,3 +163,5 @@ def test_project_serializer(
         assert project_data[3]["tile_image_alt_text"]
         assert not project_data[4]["tile_image_alt_text"]
         assert not project_data[5]["tile_image_alt_text"]
+
+        assert project_data[0]["point"] == geojson_point

@@ -70,7 +70,7 @@ class ProjectSerializer(
         self.now = kwargs.pop("now")
         super().__init__(args, kwargs)
 
-    def get_properties(self):
+    def get_geojson_properties(self):
         return {"strname": "street_name", "hsnr": "house_number", "plz": "zip_code"}
 
     class Meta:

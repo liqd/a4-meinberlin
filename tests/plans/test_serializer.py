@@ -8,7 +8,15 @@ from meinberlin.apps.plans.serializers import PlanSerializer
 
 
 @pytest.mark.django_db
-def test_serializer(client, plan_factory, project_factory, phase_factory, ImagePNG):
+def test_serializer(
+    client,
+    plan_factory,
+    project_factory,
+    phase_factory,
+    ImagePNG,
+    geos_point,
+    geojson_point,
+):
     project1 = project_factory()
     project2 = project_factory()
     project3 = project_factory(is_draft=True)
@@ -58,6 +66,7 @@ def test_serializer(client, plan_factory, project_factory, phase_factory, ImageP
             image=ImagePNG,
             image_copyright="copyright",
             image_alt_text="img_alt",
+            point=geos_point,
         )
         plan_factory.create(
             pk=2,
@@ -116,3 +125,5 @@ def test_serializer(client, plan_factory, project_factory, phase_factory, ImageP
         assert not plan_data[2]["tile_image_alt_text"]
         assert not plan_data[3]["tile_image_alt_text"]
         assert not plan_data[4]["tile_image_alt_text"]
+
+        assert plan_data[0]["point"] == geojson_point

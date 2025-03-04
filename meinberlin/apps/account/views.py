@@ -41,6 +41,7 @@ class NotificationsView(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["notifications_api_url"] = reverse("notifications-list")
         context["interactions_api_url"] = reverse("notifications-interactions")
         context["search_profiles_api_url"] = reverse("notifications-search-profiles")
         context["followed_projects_api_url"] = reverse(

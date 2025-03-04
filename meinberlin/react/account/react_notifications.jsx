@@ -5,6 +5,7 @@ import Notifications from './Notifications'
 function init () {
   const el = document.getElementById('notifications-react')
   const root = createRoot(el)
+  const notificationsApiUrl = el.getAttribute('data-notifications-api-url')
   const interactionsApiUrl = el.getAttribute('data-interactions-api-url')
   const searchProfilesApiUrl = el.getAttribute('data-search-profiles-api-url')
   const followedProjectsApiUrl = el.getAttribute('data-followed-projects-api-url')
@@ -12,6 +13,7 @@ function init () {
   root.render(
     <React.StrictMode>
       <Notifications
+        notificationsApiUrl={notificationsApiUrl}
         interactionsApiUrl={interactionsApiUrl}
         searchProfilesApiUrl={searchProfilesApiUrl}
         followedProjectsApiUrl={followedProjectsApiUrl}

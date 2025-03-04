@@ -74,6 +74,11 @@ export const notificationsData = {
       django.gettext('%(title)s will end soon. You can still participate until %(date)s'),
       { title, date },
       true
+    ),
+    offlineEvent: (eventName, title, date) => django.interpolate(
+      django.gettext('The event %(eventName)s is coming up for the project %(title)s. It will take place on %(date)s'),
+      { eventName, title, date },
+      true
     )
   },
   viewIdeaText: django.gettext('View idea'),

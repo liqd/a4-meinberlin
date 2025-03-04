@@ -1,6 +1,7 @@
 from django.template.defaultfilters import truncatechars
 from django.utils import timezone
 from django.utils.html import strip_tags
+from django.utils.timezone import localtime
 from rest_framework import serializers
 
 from adhocracy4.actions.models import Action
@@ -10,6 +11,7 @@ from meinberlin.apps.projects.serializers import ProjectSerializer
 class ActionSerializer(serializers.ModelSerializer):
     type = serializers.SerializerMethodField()
     source = serializers.SerializerMethodField()
+    source_timestamp = serializers.SerializerMethodField()
     body = serializers.SerializerMethodField()
     link = serializers.SerializerMethodField()
     item = serializers.SerializerMethodField()
@@ -114,6 +116,13 @@ class ActionSerializer(serializers.ModelSerializer):
             return trigger.name
         elif trigger and hasattr(trigger, "content_object"):
             return trigger.content_object.__class__.__name__.lower()
+
+    def get_source_timestamp(self, obj):
+        trigger, _ = self.get_cached_trigger(obj)
+
+        if trigger and hasattr(trigger, "date"):
+            return localtime(trigger.date)
+        return None
 
     def is_moderator(self, obj):
         return obj.actor in obj.project.moderators.all()

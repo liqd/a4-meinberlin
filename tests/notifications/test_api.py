@@ -73,6 +73,7 @@ def test_shows_notification_for_followed_project(
     assert response.status_code == 200
     assert len(response.data["results"]) == 1
     assert notification["action"]["type"] == "offlineevent"
+    assert notification["action"]["source_timestamp"] == event.date
 
 
 @pytest.mark.django_db

@@ -188,8 +188,9 @@ function getSearchProfileText (searchProfile, action) {
 }
 
 function getFollowedProjectsText (action) {
-  const { type, project } = action
+  const { type, source, source_timestamp: sourceTimestamp, project } = action
   const date = new Date(project.active_phase[2])
+  const sourceDate = new Date(sourceTimestamp).toLocaleString()
 
   switch (type) {
     case 'phase_started':
@@ -201,6 +202,12 @@ function getFollowedProjectsText (action) {
     case 'phase_soon_over':
       return {
         title: notificationsData.followedProjects.phaseEndedText(project.title, date.toLocaleDateString()),
+        linkText: notificationsData.viewProjectText
+      }
+
+    case 'offlineevent':
+      return {
+        title: notificationsData.followedProjects.offlineEvent(source, project.title, sourceDate.toLocaleString()),
         linkText: notificationsData.viewProjectText
       }
   }

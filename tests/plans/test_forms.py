@@ -38,15 +38,40 @@ def test_plan_form_missing_alt_text(organisation, plan_factory):
 
 
 @pytest.mark.django_db
-def test_plan_form_with_alt_text(organisation, plan_factory, geos_point):
+def test_plan_form_with_point_as_dict_and_alt_text(
+    organisation, plan_factory, geojson_point
+):
     plan = plan_factory(organisation=organisation)
     form = PlanForm(
         instance=plan,
         data={
             "title": "title",
             "description": 'description <img alt="description">',
-            "point": geos_point,
+            "point": geojson_point,
             "point_label": "somewhere",
+            "cost": "500",
+            "topics": [Topic.objects.first()],
+            "status": "0",
+            "participation": "0",
+            "participation_explanation": "exp",
+        },
+    )
+    assert "description" not in form.errors
+    assert form.is_valid()
+
+
+@pytest.mark.django_db
+def test_plan_form_with_point_as_str_and_alt_text(
+    organisation, plan_factory, geojson_point_str
+):
+    plan = plan_factory(organisation=organisation)
+    form = PlanForm(
+        instance=plan,
+        data={
+            "title": "title",
+            "description": 'description <img alt="description">',
+            "point": geojson_point_str,
+            "point_label": "somewhere else",
             "cost": "500",
             "topics": [Topic.objects.first()],
             "status": "0",

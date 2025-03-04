@@ -105,6 +105,7 @@ def geojson_point():
             "type": "Point",
             "coordinates": [13.397788148643649, 52.52958586909979],
         },
+        "properties": {"strname": None, "hsnr": None, "plz": None},
     }
 
 

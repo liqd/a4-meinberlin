@@ -39,9 +39,10 @@ def test_plan_form_missing_alt_text(organisation, plan_factory):
 
 @pytest.mark.django_db
 def test_plan_form_with_point_as_dict_and_alt_text(
-    organisation, plan_factory, geojson_point
+    organisation, plan_factory, geojson_point, administrative_district_factory
 ):
     plan = plan_factory(organisation=organisation)
+    district = administrative_district_factory()
     form = PlanForm(
         instance=plan,
         data={
@@ -54,6 +55,7 @@ def test_plan_form_with_point_as_dict_and_alt_text(
             "status": "0",
             "participation": "0",
             "participation_explanation": "exp",
+            "district": district.id,
         },
     )
     assert "description" not in form.errors
@@ -62,9 +64,10 @@ def test_plan_form_with_point_as_dict_and_alt_text(
 
 @pytest.mark.django_db
 def test_plan_form_with_point_as_str_and_alt_text(
-    organisation, plan_factory, geojson_point_str
+    organisation, plan_factory, geojson_point_str, administrative_district_factory
 ):
     plan = plan_factory(organisation=organisation)
+    district = administrative_district_factory()
     form = PlanForm(
         instance=plan,
         data={
@@ -77,6 +80,7 @@ def test_plan_form_with_point_as_str_and_alt_text(
             "status": "0",
             "participation": "0",
             "participation_explanation": "exp",
+            "district": district.id,
         },
     )
     assert "description" not in form.errors

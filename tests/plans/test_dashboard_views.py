@@ -7,8 +7,14 @@ from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.plans.models import Plan
 
 
+@pytest.fixture
+def district(administrative_district_factory):
+    district = administrative_district_factory()
+    return district.id
+
+
 @pytest.mark.django_db
-def test_initiator_can_edit(client, plan_factory):
+def test_initiator_can_edit(client, plan_factory, district):
     plan = plan_factory()
     initiator = plan.organisation.initiators.first()
     url = reverse(
@@ -30,7 +36,7 @@ def test_initiator_can_edit(client, plan_factory):
         "contact_url": "https://liqd.net/",
         "point": "",
         "point_label": "",
-        "district": "",
+        "district": district,
         "cost": "1.000",
         "description": "this is a description",
         "topics": Topic.objects.first().pk,
@@ -50,7 +56,7 @@ def test_initiator_can_edit(client, plan_factory):
 
 @pytest.mark.django_db
 def test_group_member_can_edit(
-    client, plan_factory, user_factory, group_factory, organisation
+    client, plan_factory, user_factory, group_factory, organisation, district
 ):
     group1 = group_factory()
     group2 = group_factory()
@@ -73,7 +79,7 @@ def test_group_member_can_edit(
         "contact_address_text": "me@example.com",
         "point": "",
         "point_label": "",
-        "district": "",
+        "district": district,
         "cost": "1.000",
         "description": "this is a description",
         "topics": Topic.objects.first().pk,
@@ -94,7 +100,7 @@ def test_group_member_can_edit(
 
 
 @pytest.mark.django_db
-def test_initiator_can_create(client, organisation):
+def test_initiator_can_create(client, organisation, district):
     initiator = organisation.initiators.first()
     url = reverse(
         "a4dashboard:plan-create", kwargs={"organisation_slug": organisation.slug}
@@ -114,7 +120,7 @@ def test_initiator_can_create(client, organisation):
         "contact_url": "https://liqd.net/",
         "point": "",
         "point_label": "",
-        "district": "",
+        "district": district,
         "cost": "1.000",
         "description": "this is a description",
         "topics": Topic.objects.first().pk,
@@ -135,7 +141,9 @@ def test_initiator_can_create(client, organisation):
 
 
 @pytest.mark.django_db
-def test_group_member_can_create(client, organisation, user_factory, group_factory):
+def test_group_member_can_create(
+    client, organisation, user_factory, group_factory, district
+):
     group1 = group_factory()
     group2 = group_factory()
     group_member = user_factory.create(groups=(group1, group2))
@@ -158,7 +166,7 @@ def test_group_member_can_create(client, organisation, user_factory, group_facto
         "contact_url": "https://liqd.net/",
         "point": "",
         "point_label": "",
-        "district": "",
+        "district": district,
         "cost": "1.000",
         "description": "this is a description",
         "topics": Topic.objects.first().pk,
@@ -167,6 +175,7 @@ def test_group_member_can_create(client, organisation, user_factory, group_facto
         "participation_explanation": "Some explanation",
         "duration": "1 month",
     }
+    print(data)
     response = client.post(url, data)
     assert redirect_target(response) == "plan-update"
     plan = Plan.objects.all().first()

@@ -29,8 +29,8 @@ export const getDefaultState = (searchParams, {
         .filter((organisation) => searchParams.getAll('organisation').includes(organisation.name))
         .map((organisation) => organisation.name),
       participations: participationChoices
-        .filter((participation) => searchParams.getAll('participations').includes(participation.id.toString()))
-        .map((participation) => participation.id),
+        .filter((participation) => searchParams.getAll('participations').includes(participation.value.toString()))
+        .map((participation) => participation.value),
       topics: topicChoices
         .filter((topic) => searchParams.getAll('topics').includes(topic.code))
         .map((topic) => topic.code),

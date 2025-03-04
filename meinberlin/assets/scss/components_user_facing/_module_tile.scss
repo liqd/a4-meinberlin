@@ -30,8 +30,10 @@ a.module-tile {
     }
 }
 
-.module-tile__description {
+.module-tile__insight {
     margin-bottom: auto;
+    color: $text-light;
+    font-size: $font-size-sm;
 }
 
 .module-tile__timespan {

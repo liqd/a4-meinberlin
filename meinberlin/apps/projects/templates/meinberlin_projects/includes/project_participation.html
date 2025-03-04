@@ -1,0 +1,12 @@
+{% load i18n meinberlin_project_tags %}
+<section aria-labelledby="project-participation" class="block">
+    <h2 id="project-participation">{% translate "Online Participation" %}</h2>
+    <ul class="list--clean flexgrid grid--3 grid--stretch">
+      {% get_sorted_modules as modules %}
+      {% for module in modules %}
+        <li>
+          {% include "meinberlin_projects/includes/module-tile/module_tile.html" with project=project module=module %}
+        </li>
+      {% endfor %}
+    </ul>
+  </section>

@@ -4,23 +4,23 @@ import FeedList from './FeedList'
 import { notificationsData } from './notification_data'
 import { toFilterList } from '../contrib/helpers'
 
-export default function Notifications ({ interactionsApiUrl, searchProfilesApiUrl, followedProjectsApiUrl, planListUrl }) {
+export default function Notifications (urls) {
   return (
     <>
-      <InteractionsFeed apiUrl={interactionsApiUrl} planListUrl={planListUrl} />
-      <SearchProfilesFeed apiUrl={searchProfilesApiUrl} planListUrl={planListUrl} />
-      <FollowedProjectsFeed apiUrl={followedProjectsApiUrl} planListUrl={planListUrl} />
+      <InteractionsFeed {...urls} />
+      <SearchProfilesFeed {...urls} />
+      <FollowedProjectsFeed {...urls} />
     </>
   )
 }
 
-function InteractionsFeed ({ apiUrl, planListUrl }) {
+function InteractionsFeed ({ interactionsApiUrl, notificationsApiUrl, planListUrl }) {
   return (
     <FeedList
       {...notificationsData.interactions}
-      apiUrl={apiUrl}
+      apiUrl={interactionsApiUrl}
       link={planListUrl}
-      renderFeedItem={({ read, action }, index) => {
+      renderFeedItem={({ id, read, action }, index) => {
         const { type, timestamp, link, ...rest } = action
         const text = getInteractionText({ type, ...rest })
 
@@ -33,6 +33,8 @@ function InteractionsFeed ({ apiUrl, planListUrl }) {
         return (
           <FeedItem
             key={timestamp + index}
+            id={id}
+            apiUrl={notificationsApiUrl}
             icon={type === 'comment' ? 'comment' : 'clock'}
             title={title}
             body={body}
@@ -47,13 +49,13 @@ function InteractionsFeed ({ apiUrl, planListUrl }) {
   )
 }
 
-function SearchProfilesFeed ({ apiUrl, planListUrl }) {
+function SearchProfilesFeed ({ searchProfilesApiUrl, notificationsApiUrl, planListUrl }) {
   return (
     <FeedList
       {...notificationsData.searchProfiles}
-      apiUrl={apiUrl}
+      apiUrl={searchProfilesApiUrl}
       link={planListUrl}
-      renderFeedItem={({ search_profile: searchProfile, read, action }, index) => {
+      renderFeedItem={({ id, search_profile: searchProfile, read, action }, index) => {
         const { timestamp, project, link, ...rest } = action
         const text = getSearchProfileText(searchProfile, { project, ...rest })
         const filterList = toFilterList(searchProfile).map((names) => names.join(', ')).slice(0, 3)
@@ -70,6 +72,8 @@ function SearchProfilesFeed ({ apiUrl, planListUrl }) {
         return (
           <FeedItem
             key={timestamp + index}
+            id={id}
+            apiUrl={notificationsApiUrl}
             icon="heart"
             title={title}
             meta={filterList}
@@ -86,13 +90,13 @@ function SearchProfilesFeed ({ apiUrl, planListUrl }) {
   )
 }
 
-function FollowedProjectsFeed ({ apiUrl, planListUrl }) {
+function FollowedProjectsFeed ({ followedProjectsApiUrl, notificationsApiUrl, planListUrl }) {
   return (
     <FeedList
       {...notificationsData.followedProjects}
-      apiUrl={apiUrl}
+      apiUrl={followedProjectsApiUrl}
       link={planListUrl}
-      renderFeedItem={({ read, action }, index) => {
+      renderFeedItem={({ id, read, action }, index) => {
         const { type, timestamp, link, ...rest } = action
         const text = getFollowedProjectsText({ type, ...rest })
 
@@ -105,6 +109,8 @@ function FollowedProjectsFeed ({ apiUrl, planListUrl }) {
         return (
           <FeedItem
             key={timestamp + index}
+            id={id}
+            apiUrl={notificationsApiUrl}
             icon="clock"
             title={title}
             body={body}

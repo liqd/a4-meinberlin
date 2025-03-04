@@ -2,6 +2,7 @@ import React from 'react'
 import django from 'django'
 import { classNames } from 'adhocracy4'
 import ImageWithPlaceholder from '../contrib/ImageWithPlaceholder'
+import { updateItem } from '../contrib/helpers'
 
 const translations = {
   nowText: django.gettext('now'),
@@ -18,7 +19,13 @@ const translations = {
   yesterdayText: django.gettext('Yesterday')
 }
 
-export default function FeedItem ({ icon, title, thumbnail, body, meta = [], link, linkText, isRead, timestamp }) {
+export default function FeedItem ({ id, apiUrl, icon, title, thumbnail, body, meta = [], link, linkText, isRead, timestamp }) {
+  const handleMarkAsRead = async () => {
+    if (!isRead) {
+      await updateItem({ read: true }, apiUrl + id + '/', 'PUT')
+    }
+  }
+
   return (
     <article className={classNames('feed-item', !isRead && 'feed-item--unread')}>
       <div className="feed-item__icon">
@@ -65,7 +72,7 @@ export default function FeedItem ({ icon, title, thumbnail, body, meta = [], lin
             )}
             {body && <p className={classNames('feed-item__body', thumbnail && 'feed-item__body--thumbnail')}>{body}</p>}
           </div>
-          <a className="feed-item__link" href={link}>{linkText}</a>
+          <a className="feed-item__link" href={link} onClick={handleMarkAsRead}>{linkText}</a>
         </div>
       </div>
     </article>

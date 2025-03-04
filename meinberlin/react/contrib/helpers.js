@@ -111,12 +111,7 @@ export const getDistanceBetweenPoints = (coords1, coords2) => {
   return earthRadiusInMeters * centralAngle
 }
 
-const statusNames = {
-  running: django.gettext('ongoing'),
-  future: django.gettext('upcoming'),
-  done: django.gettext('done')
-}
-
+const statusNames = [django.gettext('ongoing'), django.gettext('upcoming'), django.gettext('done')]
 const plansText = django.gettext('Plans')
 
 /*
@@ -133,7 +128,7 @@ const plansText = django.gettext('Plans')
  *   districts: [{ name: "Charlottenburg-Wilmersdorf" }, { name: "Friedrichshain-Kreuzberg" }],
  *   topics: [{ name: "Work & economy" }],
  *   project_types: [{ name: "information (no participation)" }],
-*   status: [{ name: "ongoing" }],
+ *   status: [{ name: "ongoing" }],
  *   organisations: [{ name: "liqd" }],
  *   kiezradars: [{ name: "Kiezradar 1" }],
  *   plans_only: true
@@ -159,7 +154,7 @@ export const toFilterList = (searchProfile) => {
     searchProfile.districts,
     searchProfile.topics,
     searchProfile.project_types,
-    searchProfile.status.map((status) => ({ name: statusNames[status.name] })),
+    searchProfile.status.map((status) => ({ name: statusNames[status.status] })),
     searchProfile.organisations,
     searchProfile.kiezradars
   ].map((filter) => filter.map(({ name }) => name))

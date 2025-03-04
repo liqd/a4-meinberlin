@@ -2,17 +2,16 @@ import itertools
 import re
 
 from django import template
-from django.db.models import Count
 from django.db.models import Q
-from django.db.models import Sum
 from django.utils.html import strip_tags
+from django.utils.translation import ngettext
 
 from adhocracy4.comments.models import Comment
 from adhocracy4.polls.models import Vote as Vote
-from meinberlin.apps.budgeting.models import Proposal as budget_proposal
+from adhocracy4.ratings.models import Rating
+from meinberlin.apps.budgeting.models import Proposal
 from meinberlin.apps.ideas.models import Idea
-from meinberlin.apps.kiezkasse.models import Proposal as kiezkasse_proposal
-from meinberlin.apps.likes.models import Like
+from meinberlin.apps.kiezkasse.models import Proposal as KKProposal
 from meinberlin.apps.livequestions.models import LiveQuestion
 from meinberlin.apps.mapideas.models import MapIdea
 
@@ -71,36 +70,72 @@ def has_ckeditor_content(value):
     return len(text) > 0
 
 
-@register.simple_tag
-def get_num_entries(module):
-    """Count all user-generated items."""
-    item_count = (
-        Idea.objects.filter(module=module).count()
-        + MapIdea.objects.filter(module=module).count()
-        + budget_proposal.objects.filter(module=module).count()
-        + kiezkasse_proposal.objects.filter(module=module).count()
-        + Vote.objects.filter(choice__question__poll__module=module).count()
-        + LiveQuestion.objects.filter(module=module).count()
-        + Like.objects.filter(question__module=module).count()
+@register.inclusion_tag("meinberlin_projects/includes/module-tile/module_insights.html")
+def render_module_insights(module):
+    bp_type = module.blueprint_type
+    count = 0
+    label = ""
+    icon = None
+
+    type_to_model_mapping = {
+        ("MIC", "MBS"): MapIdea,
+        ("IC", "BS"): Idea,
+        (
+            "PB",
+            "PB2",
+            "PB3",
+        ): Proposal,  # include PB3 for still existing modules
+        ("KK",): KKProposal,  # include KK for still existing modules
+        ("IE",): LiveQuestion,
+    }
+
+    rating_types = (
+        "TP",
+        "MTP",
     )
-    comment_filter = (
-        Q(idea__module=module)
-        | Q(mapidea__module=module)
-        | Q(budget_proposal__module=module)
-        | Q(kiezkasse_proposal__module=module)
-        | Q(topic__module=module)
-        | Q(maptopic__module=module)
-        | Q(paragraph__chapter__module=module)
-        | Q(chapter__module=module)
-        | Q(poll__module=module)
-    )
-    comment_count = (
-        Comment.objects.filter(comment_filter)
-        .annotate(child_comment_count=Count("child_comments__pk", distinct=True))
-        .aggregate(comment_count=Count("pk") + Sum("child_comment_count"))[
-            "comment_count"
-        ]
-    )
-    if comment_count is None:
-        comment_count = 0
-    return item_count + comment_count
+    comment_types = ("TR",)
+    vote_types = ("PO",)
+
+    for types, model in type_to_model_mapping.items():
+        if bp_type in types:
+            count = model.objects.filter(module=module).count()
+            if model == Proposal or model == KKProposal:
+                label = ngettext("Proposal", "Proposals", count)
+                icon = "fas fa-pen"
+            elif model == LiveQuestion:
+                label = ngettext("Question", "Questions", count)
+                icon = "fas fa-question"
+            else:
+                label = ngettext("Idea", "Ideas", count)
+                icon = "far fa-lightbulb"
+
+    if bp_type in rating_types:
+        rating_values = [Rating.POSITIVE, Rating.NEGATIVE]
+        count = Rating.objects.filter(
+            Q(maptopic__module=module) | Q(topic__module=module),
+            value__in=rating_values,
+        ).count()
+        label = ngettext("Rating", "Ratings", count)
+        icon = "far fa-thumbs-up"
+
+    if bp_type in comment_types:
+        count = Comment.objects.filter(
+            Q(paragraph__chapter__module=module)
+            | Q(chapter__module=module)
+            | Q(parent_comment__paragraph__chapter__module=module)
+            | Q(parent_comment__chapter__module=module)
+        ).count()
+        label = ngettext("Comment", "Comments", count)
+        icon = "far fa-comments"
+
+    if bp_type in vote_types:
+        count = (
+            Vote.objects.filter(choice__question__poll__module=module)
+            .values("creator")
+            .distinct()
+            .count()
+        )
+        label = ngettext("Participant", "Participants", count)
+        icon = "fas fa-user-group"
+
+    return {"count": count, "label": label, "icon": icon}

@@ -4,6 +4,9 @@
 <a href="{% url 'module-detail' module.slug %}" class="module-tile">
     <h3 class="module-tile__title">{{ module.name }}</h3>
     <p class="module-tile__description">{{ module.description|truncatechars:240 }}</p>
+    <span class="module-tile__insight">
+        {% render_module_insights module %}
+    </span>
 
     {% if module.module_running_time_left %}
 
@@ -21,6 +24,5 @@
         <span class="module-tile__timespan">
             {% translate 'Participation ended' %}
         </span>
-
     {% endif %}
 </a>

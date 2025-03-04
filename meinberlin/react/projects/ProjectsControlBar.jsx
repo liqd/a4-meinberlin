@@ -15,7 +15,7 @@ const translated = {
   showFilters: django.gettext('Show more'),
   hideFilters: django.gettext('Show less'),
   districtsKieze: django.gettext('Kiezes & Districts'),
-  allDistrictsKieze: django.gettext('Choose district or Kiez'),
+  allDistrictsKieze: django.gettext('All districts'),
   savedKieze: django.gettext('Your saved Kieze'),
   createKiez: django.gettext('Create a Kiez to use this filter'),
   districts: django.gettext('Districts'),
@@ -72,7 +72,8 @@ const getAlteredFilters = (
     projectState,
     organisation,
     participations,
-    kiezradars
+    kiezradars,
+    plansOnly
   },
   topicChoices,
   participationChoices
@@ -91,12 +92,16 @@ const getAlteredFilters = (
   projectState.forEach(s => filters.push({ label: statusNames[s], type: 'projectState', value: s }))
   organisation.forEach(o => filters.push({ label: o, type: 'organisation', value: o }))
   participations.forEach(participationId => {
-    const choice = participationChoices.find(choice => choice.id === participationId)
-    if (choice) {
+    const choice = participationChoices.find(choice => choice.value === participationId)
+    if (typeof choice !== 'undefined') {
       filters.push({ label: choice.name, type: 'participations', value: participationId })
     }
   })
   kiezradars.forEach(k => filters.push({ label: k, type: 'kiezradars', value: k }))
+
+  if (typeof plansOnly === 'boolean') {
+    filters.push({ label: translated.plans, type: 'plansOnly', value: plansOnly })
+  }
 
   return filters
 }
@@ -286,7 +291,7 @@ export const ProjectsControlBar = ({
                           <MultiSelect
                             label={translated.participations}
                             placeholder={translated.allParticipation}
-                            choices={participationChoices.map((choice) => ({ value: choice.id, name: choice.name }))}
+                            choices={participationChoices.map((choice) => ({ value: choice.value, name: choice.name }))}
                             onChange={(choices) => onFilterChange('participations', choices)}
                             values={filters.participations}
                           />

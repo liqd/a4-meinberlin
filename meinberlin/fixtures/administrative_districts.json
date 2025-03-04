@@ -82,5 +82,12 @@
     "fields": {
       "name": "Reinickendorf"
     }
+  },
+  {
+    "model": "a4administrative_districts.administrativedistrict",
+    "pk": 13,
+    "fields": {
+      "name": "Gesamtstädtisch"
+    }
   }
 ]

@@ -108,15 +108,11 @@ class PointForm(PointFormMixin, ProjectDashboardForm):
             "house_number",
             "zip_code",
         ]
-        required_for_project_publish = []
+        required_for_project_publish = ["administrative_district"]
         widgets = {
             "administrative_district": Select2Widget,
             "point": maps_widgets.MapChoosePointWidget(polygon=settings.BERLIN_POLYGON),
         }
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields["administrative_district"].empty_label = _("City wide")
 
     def get_geojson_properties(self):
         return {"strname": "street_name", "hsnr": "house_number", "plz": "zip_code"}

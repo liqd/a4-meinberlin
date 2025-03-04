@@ -139,9 +139,9 @@ class PlanForm(PointFormMixin, ImageMetadataMixin, forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["district"].empty_label = _("City wide")
         self.fields["contact_address_text"].widget.attrs["rows"] = 6
         self.fields["participation_explanation"].widget.attrs["rows"] = 1
+        self.fields["district"].required = True
 
     def get_geojson_properties(self):
         return {"strname": "street_name", "hsnr": "house_number", "plz": "zip_code"}

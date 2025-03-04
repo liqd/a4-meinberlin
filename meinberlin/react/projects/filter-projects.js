@@ -30,7 +30,6 @@ export const filterProjects = (items, appliedFilters, kiezradars, topics, projec
       )
 
     return (activeTopics.length === 0 || activeTopics.some(topic => item.topics.includes(topic))) &&
-           (districts.length === 0 || districts.includes(item.district)) &&
            (participations.length === 0 || participations.includes(item.participation)) &&
            (organisation.length === 0 || organisation.includes(item.organisation)) &&
            (search === '' ||
@@ -41,6 +40,9 @@ export const filterProjects = (items, appliedFilters, kiezradars, topics, projec
              isInTopic(topics, item.topics, search)) &&
            (projectState.includes(statusNames[item.status])) &&
            (!plansOnly || item.type === 'plan') &&
-           (activeKiezradars.length === 0 || isWithinAnyRadius)
+           (
+             activeKiezradars.length === 0 || isWithinAnyRadius ||
+             districts.length === 0 || districts.includes(item.district)
+           )
   })
 }

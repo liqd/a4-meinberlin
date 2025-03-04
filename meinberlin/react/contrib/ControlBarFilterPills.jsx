@@ -9,7 +9,7 @@ const getFilterRemoveText = (label) => {
 }
 
 export const ControlBarFilterPills = ({ filters: _filters, onRemove }) => {
-  const filters = _filters.filter(f => f.value && f.value !== '')
+  const filters = _filters.filter(f => f.value !== null && f.value !== false && f.value !== '')
   if (!filters.length) {
     return null
   }

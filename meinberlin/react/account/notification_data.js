@@ -30,8 +30,18 @@ export const notificationsData = {
       { title },
       true
     ),
+    usersRatedIdeaText: (title) => django.interpolate(
+      django.gettext('Users have rated your idea in %(title)s'),
+      { title },
+      true
+    ),
     userRatedIdeaText: (title) => django.interpolate(
       django.gettext('A user has rated your idea in %(title)s'),
+      { title },
+      true
+    ),
+    usersRatedCommentText: (title) => django.interpolate(
+      django.gettext('Users have rated your comment in %(title)s'),
       { title },
       true
     ),

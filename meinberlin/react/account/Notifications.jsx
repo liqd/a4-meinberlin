@@ -20,9 +20,9 @@ function InteractionsFeed ({ interactionsApiUrl, notificationsApiUrl, planListUr
       {...notificationsData.interactions}
       apiUrl={interactionsApiUrl}
       link={planListUrl}
-      renderFeedItem={({ id, read, action }, index) => {
+      renderFeedItem={({ id, read, action, total_ratings: totalRatings }, index) => {
         const { type, timestamp, link, ...rest } = action
-        const text = getInteractionText({ type, ...rest })
+        const text = getInteractionText({ type, ...rest }, totalRatings)
 
         if (!text) {
           return null
@@ -125,7 +125,7 @@ function FollowedProjectsFeed ({ followedProjectsApiUrl, notificationsApiUrl, pl
   )
 }
 
-function getInteractionText (action) {
+function getInteractionText (action, totalRatings) {
   const { type, source, body, actor, project } = action
 
   switch (type) {
@@ -168,12 +168,26 @@ function getInteractionText (action) {
       switch (source) {
         case 'idea':
         case 'mapidea':
+          if (totalRatings > 1) {
+            return {
+              title: notificationsData.interactions.usersRatedIdeaText(project.title),
+              linkText: notificationsData.viewIdeaText
+            }
+          }
+
           return {
             title: notificationsData.interactions.userRatedIdeaText(project.title),
             linkText: notificationsData.viewIdeaText
           }
 
         case 'comment':
+          if (totalRatings > 1) {
+            return {
+              title: notificationsData.interactions.usersRatedCommentText(project.title),
+              linkText: notificationsData.viewIdeaText
+            }
+          }
+
           return {
             title: notificationsData.interactions.userRatedCommentText(project.title),
             body,

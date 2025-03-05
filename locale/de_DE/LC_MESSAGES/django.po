@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-05 13:23+0100\n"
-"PO-Revision-Date: 2025-03-05 15:55+0000\n"
+"PO-Revision-Date: 2025-03-05 16:26+0000\n"
 "Last-Translator: MarleyMi <m.mittmann@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "main-design-dev/de/>\n"
@@ -1530,7 +1530,7 @@ msgstr "Ihr Nutzerprofil"
 
 #: meinberlin/apps/account/templates/meinberlin_account/notification-settings.html:8
 msgid "Notification settings"
-msgstr "Benachrichtigungseinstellungen"
+msgstr "Benachrichtigungs - Einstellungen"
 
 #: meinberlin/apps/account/templates/meinberlin_account/notifications.html:5
 #: meinberlin/apps/account/templates/meinberlin_account/notifications.html:12
@@ -4442,7 +4442,7 @@ msgstr ""
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_module_tile.html:22
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:102
 msgid "Participation ended"
-msgstr ""
+msgstr "Beteiligung abgeschlossen"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:40
 msgid "Plan"

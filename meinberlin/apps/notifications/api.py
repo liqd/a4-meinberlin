@@ -122,9 +122,13 @@ class NotificationViewSet(
         if request.method == "POST" and request.data.get("read", False):
             qs.filter(read=False).update(read=True, read_at=timezone.now())
 
+        unread_count = qs.filter(read=False).count()
+
         page = self.paginate_queryset(qs)
         serializer = self.get_serializer(page, many=True)
-        return self.get_paginated_response(serializer.data)
+        response = self.get_paginated_response(serializer.data)
+        response.data["unread_count"] = unread_count
+        return response
 
     @action(methods=["get", "post"], detail=False)
     def search_profiles(self, request):
@@ -140,9 +144,13 @@ class NotificationViewSet(
         if request.method == "POST" and request.data.get("read", False):
             qs.filter(read=False).update(read=True, read_at=timezone.now())
 
+        unread_count = qs.filter(read=False).count()
+
         page = self.paginate_queryset(qs)
         serializer = self.get_serializer(page, many=True)
-        return self.get_paginated_response(serializer.data)
+        response = self.get_paginated_response(serializer.data)
+        response.data["unread_count"] = unread_count
+        return response
 
 
 class NotificationSettingsViewSet(

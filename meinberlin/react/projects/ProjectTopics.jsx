@@ -5,7 +5,7 @@ const planStr = django.gettext('Plan')
 
 const ProjectTilePills = ({ project, topicChoices }) => {
   const topicList = project.topics.map((val) => {
-    return topicChoices[val]
+    return topicChoices.find(choice => choice.code === val)?.name
   })
 
   if (project.type === 'plan' && topicList.length > 1) {
@@ -17,8 +17,8 @@ const ProjectTilePills = ({ project, topicChoices }) => {
     return (
       <ul className="pill__list pill__list--inline">
         {project.type === 'plan' && <li className="pill pill--label">{planStr}</li>}
-        {topicChoices.filter(topic => project.topics.includes(topic.code)).map(topic =>
-          <li key={topic.code} className="pill pill--topic">{topic.name}</li>
+        {topicList.map(topic =>
+          <li key={topic} className="pill pill--topic">{topic}</li>
         )}
       </ul>
     )

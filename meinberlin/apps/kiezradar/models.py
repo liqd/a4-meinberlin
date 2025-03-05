@@ -182,7 +182,10 @@ def get_search_profiles_for_project(project: Project) -> QuerySet[SearchProfile]
         & (Q(status__status=status) | Q(status__isnull=True))
         & Q(plans_only=False)
         & (Q(organisations__in=[project.organisation]) | Q(organisations__isnull=True))
-        & (Q(districts__in=[project.administrative_district]) | Q(districts__isnull=True))
+        & (
+            Q(districts__in=[project.administrative_district])
+            | Q(districts__isnull=True)
+        )
         & (
             Q(project_types__participation=ProjectType.PARTICIPATION_CONSULTATION)
             | Q(project_types__isnull=True)
@@ -199,8 +202,12 @@ def get_search_profiles_for_project(project: Project) -> QuerySet[SearchProfile]
     if connection.vendor == "postgresql":
         # django has some postgresql-only search tools which are much better
         query = "|".join(search_term.split())
-        search_query = SearchQuery(query, search_type="raw")
-        search_profiles = search_profiles.annotate(search=SearchVector("query__text"))
+        # TODO: if we ever support more languages than german, the config would either have to depend on the user
+        #  language or use a library like nltk to sanitize multiple languages.
+        search_query = SearchQuery(query, search_type="raw", config="german")
+        search_profiles = search_profiles.annotate(
+            search=SearchVector("query__text", config="german")
+        )
         search_profiles = search_profiles.filter(
             Q(search=search_query) | Q(query__isnull=True)
         )

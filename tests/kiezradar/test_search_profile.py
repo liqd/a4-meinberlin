@@ -248,12 +248,12 @@ def test_searchprofile_filter_query(
         phase_factory,
         None,
         CollectFeedbackPhase,
-        module__project__name="A project within the city of Berlin",
+        module__project__name="Ein Projekt in der Hauptstadt Berlin",
     )
     topic1, topic2 = Topic.objects.first(), Topic.objects.last()
     project.topics.add(topic1)
     district = administrative_district_factory()
-    project.description = "Description of the project"
+    project.description = "Eine Beschreibung des Projekts"
     project.administrative_district = district
     project.save()
 
@@ -263,18 +263,16 @@ def test_searchprofile_filter_query(
 
     # Create search profiles with associated queries
     berlin_profile = search_profile_factory(
-        query=kiezradar_query_factory(text="This is Berlin")
+        query=kiezradar_query_factory(text="Das ist Berlin")
     )
-    search_profile_factory(query=kiezradar_query_factory(text="This is Leipzig"))
-    other_profile = search_profile_factory(
-        query=kiezradar_query_factory(text="Other")
-    )  # matches "the" on sqlite
+    search_profile_factory(query=kiezradar_query_factory(text="Das ist Leipzig"))
+    other_profile = search_profile_factory(query=kiezradar_query_factory(text="Andere"))
     profile_without_query = search_profile_factory()
     search_profile_factory(
         query=kiezradar_query_factory(text="Berli")
     )  # partial word not matching
     stop_word_profile = search_profile_factory(
-        query=kiezradar_query_factory(text="the")
+        query=kiezradar_query_factory(text="Ein Beispiel in der Zeitung")
     )
     organisation_name = search_profile_factory(
         query=kiezradar_query_factory(text="Liquid")
@@ -284,7 +282,7 @@ def test_searchprofile_filter_query(
     )
     search_profile_factory(query=kiezradar_query_factory(text=str(topic2)))
     project_description = search_profile_factory(
-        query=kiezradar_query_factory(text="Description")
+        query=kiezradar_query_factory(text="Beschreibung")
     )
     project_district = search_profile_factory(
         query=kiezradar_query_factory(text=district.name)

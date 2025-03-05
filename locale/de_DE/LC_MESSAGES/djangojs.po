@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-05 13:23+0100\n"
-"PO-Revision-Date: 2025-02-28 14:15+0000\n"
+"PO-Revision-Date: 2025-03-05 16:26+0000\n"
 "Last-Translator: MarleyMi <m.mittmann@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js-"
-"design-dev/de/>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
+"js-design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -316,7 +316,7 @@ msgstr "Hervorgehoben"
 #: meinberlin/react/contrib/ControlBar.jsx:12
 #: meinberlin/react/projects/ProjectsControlBar.jsx:15
 msgid "Show more"
-msgstr "mehr anzeigen"
+msgstr "Mehr anzeigen"
 
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:8
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:15
@@ -926,7 +926,7 @@ msgstr "E-Mail"
 
 #: meinberlin/react/account/NotificationToggle.jsx:6
 msgid "In-App Notification"
-msgstr "In-App-Benachrichtigungen"
+msgstr "In-App"
 
 #: meinberlin/react/account/notification_data.js:5
 msgid "Interactions"
@@ -1506,7 +1506,7 @@ msgstr ""
 #: meinberlin/react/kiezradar/KiezradarList.jsx:18
 #: meinberlin/react/kiezradar/SearchProfile.jsx:14
 msgid "View projects"
-msgstr ""
+msgstr "Projekte anzeigen"
 
 #: meinberlin/react/kiezradar/KiezradarList.jsx:21
 #: meinberlin/react/kiezradar/SearchProfile.jsx:24
@@ -1912,7 +1912,7 @@ msgstr "©"
 
 #: meinberlin/react/projects/ProjectTile.jsx:11
 msgid "Participation ended"
-msgstr ""
+msgstr "Beteiligung abgeschlossen"
 
 #: meinberlin/react/projects/ProjectTile.jsx:12
 msgid "Begins on the"

@@ -7,12 +7,12 @@ import { updateItem } from '../contrib/helpers'
 const translations = {
   nowText: django.gettext('now'),
   minutesAgoText: (minutes) => django.interpolate(
-    django.gettext('%(minutes)sm ago'),
+    django.ngettext('%(minutes)s minute ago', '%(minutes)s minutes ago', minutes),
     { minutes },
     true
   ),
   hoursAgoText: (hours) => django.interpolate(
-    django.gettext('%(hours)sh ago'),
+    django.ngettext('%(hours)s hour ago', '%(hours)s hours ago', hours),
     { hours },
     true
   ),
@@ -88,18 +88,18 @@ export default function FeedItem ({ id, apiUrl, icon, title, thumbnail, body, me
 }
 
 function formatTimestamp (timestamp) {
-  const now = new Date()
   const date = new Date(timestamp)
-  const diffMs = now - date
-  const diffSeconds = Math.floor(diffMs / 1000)
-  const diffMinutes = Math.floor(diffSeconds / 60)
-  const diffHours = Math.floor(diffMinutes / 60)
-  const diffDays = Math.floor(diffHours / 24)
+  const now = new Date()
 
-  if (diffSeconds < 60) return translations.nowText
-  if (diffMinutes < 60) return translations.minutesAgoText(diffMinutes)
-  if (diffHours < 24) return translations.hoursAgoText(diffHours)
-  if (diffDays === 1) return translations.yesterdayText
+  const diffMs = Math.abs(now - date)
+  const minutes = Math.floor(diffMs / (1000 * 60))
+  const hours = Math.floor(diffMs / (1000 * 60 * 60))
+  const days = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+
+  if (minutes < 1) return translations.nowText
+  if (minutes < 60) return translations.minutesAgoText(minutes)
+  if (hours < 24) return translations.hoursAgoText(hours)
+  if (days === 1) return translations.yesterdayText
 
   return date.toLocaleDateString()
 }

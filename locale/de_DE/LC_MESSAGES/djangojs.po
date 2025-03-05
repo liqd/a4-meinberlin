@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-25 13:14+0100\n"
+"POT-Creation-Date: 2025-03-05 13:23+0100\n"
 "PO-Revision-Date: 2025-02-28 14:15+0000\n"
 "Last-Translator: MarleyMi <m.mittmann@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
-"js-design-dev/de/>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js-"
+"design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1096,6 +1096,40 @@ msgstr ""
 "Wenn Sie diese Seite verlassen ohne zu speichern, gehen die von Ihnen "
 "vorgenommenen Änderungen verloren."
 
+#: meinberlin/react/account/FeedItem.jsx:8
+msgid "now"
+msgstr ""
+
+#: meinberlin/react/account/FeedItem.jsx:10
+msgid "%(minutes)sm ago"
+msgstr ""
+
+#: meinberlin/react/account/FeedItem.jsx:15
+msgid "%(hours)sh ago"
+msgstr ""
+
+#: meinberlin/react/account/FeedItem.jsx:19
+msgid "Yesterday"
+msgstr ""
+
+#: meinberlin/react/account/FeedList.jsx:9
+#: meinberlin/react/kiezradar/EditKiezradar.jsx:9
+#: meinberlin/react/kiezradar/Kiezradar.jsx:13
+#: meinberlin/react/kiezradar/KiezradarList.jsx:12
+#: meinberlin/react/kiezradar/Kiezradars.jsx:46
+#: meinberlin/react/kiezradar/SearchProfile.jsx:15
+#: meinberlin/react/kiezradar/SearchProfiles.jsx:11
+msgid "Error"
+msgstr "Fehler"
+
+#: meinberlin/react/account/FeedList.jsx:10
+msgid "Failed to fetch notifications"
+msgstr ""
+
+#: meinberlin/react/account/FeedList.jsx:11
+msgid "Mark All As Read"
+msgstr ""
+
 #: meinberlin/react/account/NotificationToggle.jsx:5
 msgid "E-Mail"
 msgstr "E-Mail"
@@ -1105,14 +1139,134 @@ msgid "In-App Notification"
 msgstr "In-App-Benachrichtigungen"
 
 #: meinberlin/react/account/notification_data.js:5
+msgid "Interactions"
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:7
+msgid ""
+"Here you can see all the interactions you have with other users on "
+"meinBerlin."
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:10
+msgid "No reactions to your posts yet. Get involved to get reactions."
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:12
+msgid "Find participation projects"
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:14
+msgid "A moderator has responded to your idea in %(title)s"
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:19
+msgid "A user has replied to your idea in %(title)s"
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:24
+msgid "A moderator has responded to your comment in %(title)s"
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:29
+msgid "A user has replied to your comment in %(title)s"
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:34
+msgid "Users have rated your idea in %(title)s"
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:39
+msgid "A user has rated your idea in %(title)s"
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:44
+msgid "Users have rated your comment in %(title)s"
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:49
+msgid "A user has rated your comment in %(title)s"
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:55
+#: meinberlin/react/kiezradar/SearchProfiles.jsx:7
+msgid "Search Profiles"
+msgstr "Suchprofile"
+
+#: meinberlin/react/account/notification_data.js:57
+msgid ""
+"Here you will find newly published participation projects that match your "
+"search profiles."
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:60
+msgid ""
+"No results from your saved searches yet. Add new saved searches and wait for "
+"a matching project to be published."
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:62
+msgid "Save a search"
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:64
+msgid "A new project, %(title)s, matches your search profile %(name)s"
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:70
+msgid "Followed projects"
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:72
+msgid ""
+"Here you will receive all the latest news about the projects you follow."
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:75
+msgid "No followed projects. Find projects to follow them."
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:77
+#: meinberlin/react/kiezradar/SearchProfiles.jsx:21
+msgid "Find projects"
+msgstr "Endecken Sie Projekte"
+
+#: meinberlin/react/account/notification_data.js:79
+msgid ""
+"%(title)s is now open for participation. You can participate until %(date)s"
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:84
+msgid "%(title)s will end soon. You can still participate until %(date)s"
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:89
+msgid ""
+"The event %(eventName)s is coming up for the project %(title)s. It will take "
+"place on %(date)s"
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:94
+msgid "View idea"
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:95
+msgid "View comment"
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:96
+msgid "View project"
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:101
 msgid "Project-Related Notifications"
 msgstr "Projektbezogene Benachrichtigungen"
 
-#: meinberlin/react/account/notification_data.js:8
+#: meinberlin/react/account/notification_data.js:104
 msgid "E-Mail Newsletter"
 msgstr "E-Mail Newsletter"
 
-#: meinberlin/react/account/notification_data.js:9
+#: meinberlin/react/account/notification_data.js:105
 msgid ""
 "Receive newsletters with updates and news about the projects you follow via "
 "e-mail."
@@ -1120,22 +1274,22 @@ msgstr ""
 "Erhalten Sie via E-Mail Newsletter mit Updates und Neuigkeiten aus den "
 "Projekten, denen Sie folgen."
 
-#: meinberlin/react/account/notification_data.js:12
+#: meinberlin/react/account/notification_data.js:108
 msgid "Participation Start"
 msgstr "Beteiligungsbeginn"
 
-#: meinberlin/react/account/notification_data.js:13
+#: meinberlin/react/account/notification_data.js:109
 msgid ""
 "Receive a notification when a participation begins in a project you follow."
 msgstr ""
 "Erhalten Sie eine Benachrichtigung, wenn eine Beteiligung startet in einem "
 "Projekt, dem Sie folgen."
 
-#: meinberlin/react/account/notification_data.js:17
+#: meinberlin/react/account/notification_data.js:113
 msgid "Participation End"
 msgstr "Beteiligungsende"
 
-#: meinberlin/react/account/notification_data.js:18
+#: meinberlin/react/account/notification_data.js:114
 msgid ""
 "Receive a notification when a participation is near its end in a project you "
 "follow."
@@ -1143,36 +1297,36 @@ msgstr ""
 "Erhalten Sie eine Benachrichtigung, wenn eine Beteiligung bald endet in "
 "einem Projekt, dem Sie folgen."
 
-#: meinberlin/react/account/notification_data.js:22
+#: meinberlin/react/account/notification_data.js:118
 msgid "Event"
 msgstr "Veranstaltungen"
 
-#: meinberlin/react/account/notification_data.js:23
+#: meinberlin/react/account/notification_data.js:119
 msgid "Receive notifications for upcoming events in projects you follow."
 msgstr ""
 "Erhalten Sie Benachrichtigungen über anstehende Veranstaltungen in "
 "Projekten, denen Sie folgen."
 
-#: meinberlin/react/account/notification_data.js:29
+#: meinberlin/react/account/notification_data.js:125
 msgid "Interactions with Other Users or Moderation"
 msgstr "Interaktionen mit anderen Nutzer*innen und der Moderation"
 
-#: meinberlin/react/account/notification_data.js:32
+#: meinberlin/react/account/notification_data.js:128
 msgid "Reactions of other users"
 msgstr "Reaktionen anderer Nutzer*innen"
 
-#: meinberlin/react/account/notification_data.js:33
+#: meinberlin/react/account/notification_data.js:129
 msgid ""
 "Receive a notification when someone reacts to your contribution with a "
 "comment."
 msgstr ""
 "Erhalten Sie eine Benachrichtigung, wenn jemand Ihren Beitrag kommentiert."
 
-#: meinberlin/react/account/notification_data.js:36
+#: meinberlin/react/account/notification_data.js:132
 msgid "Reactions of moderation"
 msgstr "Reaktionen der Moderation"
 
-#: meinberlin/react/account/notification_data.js:37
+#: meinberlin/react/account/notification_data.js:133
 msgid ""
 "Receive a notification for feedback and status changes of your idea from the "
 "moderation."
@@ -1180,26 +1334,26 @@ msgstr ""
 "Erhalten Sie eine Benachrichtigung, wenn es eine Rückmeldung oder eine "
 "Statusänderung Ihrer Idee durch die Moderation gibt."
 
-#: meinberlin/react/account/notification_data.js:42
+#: meinberlin/react/account/notification_data.js:138
 msgid "Notifications for Initiators and Moderators"
 msgstr "Benachrichtigungen für Initiator*innen und Moderator*innen"
 
-#: meinberlin/react/account/notification_data.js:46
+#: meinberlin/react/account/notification_data.js:142
 msgid "New Project in Your Organization"
 msgstr "Neues Projekt in Ihrer Organisation"
 
-#: meinberlin/react/account/notification_data.js:47
+#: meinberlin/react/account/notification_data.js:143
 msgid ""
 "Receive a notification when a new project is created in your organization."
 msgstr ""
 "Erhalten Sie eine Benachrichtigung, wenn in Ihrer Organisation ein neues "
 "Projekt angelegt wird."
 
-#: meinberlin/react/account/notification_data.js:50
+#: meinberlin/react/account/notification_data.js:146
 msgid "New Contribution in a Moderated Project"
 msgstr "Neuer Beitrag in einem moderierten Projekt"
 
-#: meinberlin/react/account/notification_data.js:51
+#: meinberlin/react/account/notification_data.js:147
 msgid ""
 "Receive a notification when a new contribution is added to a project you "
 "moderate."
@@ -1387,9 +1541,25 @@ msgid_plural "Votes"
 msgstr[0] "Stimme"
 msgstr[1] "Stimmen"
 
-#: meinberlin/react/contrib/card/CardStatus.jsx:8
-msgid "More"
-msgstr "Mehr"
+#: meinberlin/react/contrib/helpers.js:114
+#: meinberlin/react/projects/ProjectsControlBar.jsx:51
+msgid "ongoing"
+msgstr "laufend"
+
+#: meinberlin/react/contrib/helpers.js:114
+#: meinberlin/react/projects/ProjectsControlBar.jsx:52
+msgid "upcoming"
+msgstr "anstehend"
+
+#: meinberlin/react/contrib/helpers.js:114
+#: meinberlin/react/projects/ProjectsControlBar.jsx:53
+msgid "done"
+msgstr "abgeschlossen"
+
+#: meinberlin/react/contrib/helpers.js:115
+#: meinberlin/react/projects/ProjectsControlBar.jsx:30
+msgid "Plans"
+msgstr "Vorhaben"
 
 #: meinberlin/react/contrib/map/ItemPopup.jsx:14
 msgid "Comment"
@@ -1481,15 +1651,6 @@ msgstr "Ideenliste"
 msgid "Failed to fetch Kiez"
 msgstr ""
 
-#: meinberlin/react/kiezradar/EditKiezradar.jsx:9
-#: meinberlin/react/kiezradar/Kiezradar.jsx:13
-#: meinberlin/react/kiezradar/KiezradarList.jsx:12
-#: meinberlin/react/kiezradar/Kiezradars.jsx:46
-#: meinberlin/react/kiezradar/SearchProfile.jsx:16
-#: meinberlin/react/kiezradar/SearchProfiles.jsx:11
-msgid "Error"
-msgstr "Fehler"
-
 #: meinberlin/react/kiezradar/Kiezradar.jsx:9
 msgid "Loading map..."
 msgstr ""
@@ -1534,7 +1695,7 @@ msgid "View projects"
 msgstr ""
 
 #: meinberlin/react/kiezradar/KiezradarList.jsx:21
-#: meinberlin/react/kiezradar/SearchProfile.jsx:30
+#: meinberlin/react/kiezradar/SearchProfile.jsx:24
 msgid "Confirm deletion of %(name)s"
 msgstr ""
 
@@ -1623,35 +1784,15 @@ msgstr ""
 msgid "Rename search profile"
 msgstr ""
 
-#: meinberlin/react/kiezradar/SearchProfile.jsx:15
-#: meinberlin/react/projects/ProjectsControlBar.jsx:30
-msgid "Plans"
-msgstr "Vorhaben"
-
-#: meinberlin/react/kiezradar/SearchProfile.jsx:18
+#: meinberlin/react/kiezradar/SearchProfile.jsx:17
 msgid "Failed to delete search profile"
 msgstr "Suchprofil konnte nicht gelöscht werden"
 
-#: meinberlin/react/kiezradar/SearchProfile.jsx:21
+#: meinberlin/react/kiezradar/SearchProfile.jsx:20
 msgid "Failed to update search profile"
 msgstr ""
 
-#: meinberlin/react/kiezradar/SearchProfile.jsx:24
-#: meinberlin/react/projects/ProjectsControlBar.jsx:51
-msgid "ongoing"
-msgstr "laufend"
-
-#: meinberlin/react/kiezradar/SearchProfile.jsx:25
-#: meinberlin/react/projects/ProjectsControlBar.jsx:52
-msgid "upcoming"
-msgstr "anstehend"
-
-#: meinberlin/react/kiezradar/SearchProfile.jsx:26
-#: meinberlin/react/projects/ProjectsControlBar.jsx:53
-msgid "done"
-msgstr "abgeschlossen"
-
-#: meinberlin/react/kiezradar/SearchProfile.jsx:34
+#: meinberlin/react/kiezradar/SearchProfile.jsx:28
 msgid ""
 "You will no longer receive notifications about new participation projects "
 "with the selected filters."
@@ -1660,10 +1801,6 @@ msgstr ""
 #: meinberlin/react/kiezradar/SearchProfileButtons.jsx:4
 msgid "Rename"
 msgstr ""
-
-#: meinberlin/react/kiezradar/SearchProfiles.jsx:7
-msgid "Search Profiles"
-msgstr "Suchprofile"
 
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:9
 msgid "In this area you manage your search profiles."
@@ -1681,23 +1818,11 @@ msgstr "Suchprofil erfolgreich gelöscht"
 msgid "Your changes have been deleted."
 msgstr ""
 
-#: meinberlin/react/kiezradar/SearchProfiles.jsx:21
-msgid "No saved search profiles"
-msgstr "Keine gespeicherten Suchprofile"
-
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:22
-msgid "Find projects"
-msgstr "Endecken Sie Projekte"
-
-#: meinberlin/react/kiezradar/SearchProfiles.jsx:23
-msgid "Your saved search profiles"
-msgstr "Ihre gespeicherten Suchprofile"
-
-#: meinberlin/react/kiezradar/SearchProfiles.jsx:24
 msgid "You have reached the limit of saved search profiles"
 msgstr ""
 
-#: meinberlin/react/kiezradar/SearchProfiles.jsx:25
+#: meinberlin/react/kiezradar/SearchProfiles.jsx:23
 msgid ""
 "You are using the maximum number of 10 search profiles. To save a new one, "
 "you must delete an existing profile."

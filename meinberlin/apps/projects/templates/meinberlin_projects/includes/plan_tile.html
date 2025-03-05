@@ -1,0 +1,62 @@
+{% load i18n project_tags meinberlin_project_tags contrib_tags thumbnail static %}
+{% project_tile_image project as project_image %}
+{% project_tile_image_copyright project as project_image_copyright %}
+{% project_tile_image_alt_text project as project_image_alt_text %}
+
+<a
+    href="{{ plan.get_absolute_url }}"
+    class="project-tile project-tile--vertical"
+    aria-labelledby="project-title-{{ plan.id }}"
+>
+    <div class="project-tile__image-wrapper image">
+        <img
+            src="{{ plan.tile_image|thumbnail_url:'project_tile' | default:"/static/images/placeholder.png" }}"
+            alt="{{ plan.tile_image_alt_text }}"
+            height=490
+            width=630
+            class="project-tile__image"
+            loading="lazy"
+        />
+        <span class="image__copyright">
+            {% if plan.tile_image_copyright %}
+                {% translate 'copyright by' %} {{ plan.tile_image_copyright }}
+            {% else %}
+                {% translate 'copyright missing' %}
+            {% endif %}
+        </span>
+    </div>
+    <div class="project-tile__body">
+        <span class="project-tile__head">{{ plan.district }}</span>
+        <div class="project-tile__topics">
+            <ul class="pill__list pill__list--inline">
+                <li class="pill pill--label">{% translate "Plan" %}</li>
+                {% if plan.topic_names.0 %}
+                    <li class="pill pill--topic">{{ plan.topic_names.0 }}</li>
+                {% endif %}
+                {% if plan.topic_names.1 %}
+                    <li class="pill pill--topic">+1</li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <h3 class="project-tile__title" id="project-title-{{ plan.id }}">{{ plan.title }}</h3>
+        {% if plan.description %}
+            <div class="project-tile__description">
+                {{ plan.description | truncatechars_html:170 | safe }}
+            </div>
+        {% endif %}
+
+        <div class="project-tile__status">
+            <p>
+                <i class="fas fa-table-cells" aria-hidden="true"></i>
+
+                <span class="project-tile__plan__count">{{ plan.published_projects|length }}</span>
+                {% blocktranslate count counter=published_projects|length %}
+                    Participation project
+                {% plural %}
+                    Participation projects
+                {% endblocktranslate %}
+            </p>
+        </div>
+    </div>
+</a>

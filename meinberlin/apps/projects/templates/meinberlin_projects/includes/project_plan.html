@@ -1,0 +1,8 @@
+{% load i18n %}
+
+<section aria-labelledby="project-plan" class="block">
+    <h2 id="project-plan">{% translate "Overarching Plan" %}</h2>
+    <div class="flexgrid grid--3">
+        {% include "meinberlin_projects/includes/plan_tile.html" with plan=project.plans.first %}
+    </div>
+</section>

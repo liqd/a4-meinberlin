@@ -71,5 +71,9 @@
     {% endif %}
 
     {% include 'meinberlin_projects/includes/project_insights.html' %}
+
+    {% if project.plans.exists %}
+      {% include 'meinberlin_projects/includes/project_plan.html' %}
+    {% endif %}
   </div>
 {% endblock content %}

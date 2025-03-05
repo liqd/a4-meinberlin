@@ -92,15 +92,15 @@ def test_user_cannot_update_other_users_kiezradar(
 def test_user_can_update_kiezradar(
     apiclient, geos_point, geojson_point_str, kiez_radar_factory
 ):
-    kiezradar = kiez_radar_factory()
+    kiezradars = kiez_radar_factory.create_batch(size=5)
 
     payload = {"name": "My Kiezradar", "point": geojson_point_str, "radius": 600}
-    apiclient.force_authenticate(kiezradar.creator)
-    url = reverse("kiezradar-detail", kwargs={"pk": kiezradar.id})
+    apiclient.force_authenticate(kiezradars[0].creator)
+    url = reverse("kiezradar-detail", kwargs={"pk": kiezradars[0].id})
     response = apiclient.patch(url, data=payload, format="json")
 
     assert response.status_code == 200
-    assert KiezRadar.objects.count() == 1
+    assert KiezRadar.objects.count() == 5
     kiezradar = KiezRadar.objects.first()
     assert kiezradar.name == payload["name"]
     assert kiezradar.point.equals(geos_point)

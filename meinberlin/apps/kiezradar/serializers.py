@@ -24,11 +24,12 @@ class KiezRadarSerializer(PointSerializerMixin, serializers.ModelSerializer):
 
     def validate(self, data):
         """Ensure a user has no more than 5 kiezradar entries."""
-        user = self.context["request"].user
-        if user.kiezradar_set.count() >= self.Meta.model.KIEZRADAR_LIMIT:
-            raise serializers.ValidationError(
-                "Users can only have up to 5 kiezradar filters."
-            )
+        if not self.instance:
+            user = self.context["request"].user
+            if user.kiezradar_set.count() >= self.Meta.model.KIEZRADAR_LIMIT:
+                raise serializers.ValidationError(
+                    "Users can only have up to 5 kiezradar filters."
+                )
         return data
 
 

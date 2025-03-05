@@ -21,6 +21,10 @@ a.module-tile {
     }
 }
 
+.module-tile__content {
+    margin-bottom: auto;
+}
+
 .module-tile__title {
     margin-top: 0;
 
@@ -30,8 +34,9 @@ a.module-tile {
     }
 }
 
-.module-tile__description {
-    margin-bottom: auto;
+.module-tile__insight {
+    color: $text-light;
+    font-size: $font-size-sm;
 }
 
 .module-tile__timespan {

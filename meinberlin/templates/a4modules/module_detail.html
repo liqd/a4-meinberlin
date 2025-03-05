@@ -83,11 +83,12 @@
             {% get_sorted_modules as modules %}
             {% for module in modules %}
               <li>
-                {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=module %}
+                {% include "meinberlin_projects/includes/module-tile/module_tile.html" with project=project module=module %}
               </li>
             {% endfor %}
           </ul>
         </section>
       {% endif %}
     </section>
-  </div>{% endblock content %}
+  </div>
+  {% endblock content %}

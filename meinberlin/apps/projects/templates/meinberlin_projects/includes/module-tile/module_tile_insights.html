@@ -1,0 +1,145 @@
+{% load i18n meinberlin_project_tags %}
+{% get_num_entries module as entry_counts %}
+
+{% if counts or project.result %}
+  {% if counts %}
+        {% for count in counts %}
+            {{ count.1 }}
+            {{ count.0 }}
+        {% endfor %}
+    {% endif %}
+{% endif %}
+
+{% if entry_counts.ideas %}
+    <div class="module-tile__insight">
+        <i class="far fa-lightbulb" aria-hidden="true"></i>
+        <span class="module-insight__count">{{ entry_counts.ideas }}</span>
+        <span class="module-insight__label">
+            {% blocktranslate count counter=entry_counts.ideas %}
+                Idea
+            {% plural %}
+                Ideas
+            {% endblocktranslate %}
+        </span>
+    </div>
+{% endif %}
+
+{% if entry_counts.chapter_comments %}
+    <div class="module-tile__insight">
+        <i class="far fa-comments" aria-hidden="true"></i>
+        <span class="module-insight__count">{{ entry_counts.chapter_comments }}</span>
+        <span class="module-insight__label">
+            {% blocktranslate count counter=entry_counts.chapter_comments %}
+                Comment
+            {% plural %}
+                Comments
+            {% endblocktranslate %}
+        </span>
+    </div>
+{% elif entry_counts.paragraph_comments %}
+    <div class="module-tile__insight">
+        <i class="far fa-comments" aria-hidden="true"></i>
+        <span class="module-insight__count">{{ entry_counts.paragraph_comments }}</span>
+        <span class="module-insight__label">
+            {% blocktranslate count counter=entry_counts.paragraph_comments %}
+                Comment
+            {% plural %}
+                Comments
+            {% endblocktranslate %}
+        </span>
+    </div>
+{% endif %}
+
+{% if entry_counts.live_questions %}
+    <div class="module-tile__insight">
+        <i class="fas fa-question" aria-hidden="true"></i>
+        <span class="module-insight__count">{{ entry_counts.live_questions }}</span>
+        <span class="module-insight__label">
+            {% blocktranslate count counter=entry_counts.live_questions %}
+                Question
+            {% plural %}
+                Questions
+            {% endblocktranslate %}
+        </span>
+    </div>
+{% endif %}
+
+{% if entry_counts.votes %}
+    <div class="module-tile__insight">
+        <i class="fas fa-user-group" aria-hidden="true"></i>
+        <span class="module-insight__count">{{ entry_counts.votes }}</span>
+        <span class="module-insight__label">
+            {% blocktranslate count counter=entry_counts.votes %}
+                Participant
+            {% plural %}
+                Participants
+            {% endblocktranslate %}
+        </span>
+    </div>
+{% endif %}
+
+{% if entry_counts.likes %}
+    <div class="module-tile__insight">
+        <i class="far fa-thumbs-up" aria-hidden="true"></i>
+        <span class="module-insight__count">{{ entry_counts.likes }}</span>
+        <span class="module-insight__label">
+            {% blocktranslate count counter=entry_counts.likes %}
+                Like
+            {% plural %}
+                Likes
+            {% endblocktranslate %}
+        </span>
+    </div>
+{% endif %}
+
+{% if entry_counts.topics %}
+    <div class="module-tile__insight">
+        <i class="fas fa-thumbs-up" aria-hidden="true"></i>
+        <span class="module-insight__count">{{ entry_counts.topics }}</span>
+        <span class="module-insight__label">
+            {% blocktranslate count counter=entry_counts.topics %}
+                Rating
+            {% plural %}
+                Ratings
+            {% endblocktranslate %}
+        </span>
+    </div>
+{% elif entry_counts.map_topics %}
+    <div class="module-tile__insight">
+        <i class="fas fa-thumbs-up" aria-hidden="true"></i>
+        <span class="module-insight__count">{{ entry_counts.map_topics }}</span>
+        <span class="module-insight__label">
+            {% blocktranslate count counter=entry_counts.map_topics %}
+                Rating
+            {% plural %}
+                Ratings
+            {% endblocktranslate %}
+        </span>
+    </div>
+{% endif %}
+
+{% if entry_counts.budget_proposals %}
+    <div class="module-tile__insight">
+        <i class="fas fa-coins" aria-hidden="true"></i>
+        <span class="module-insight__count">{{ entry_counts.budget_proposals }}</span>
+        <span class="module-insight__label">
+            {% blocktranslate count counter=entry_counts.budget_proposals %}
+                Proposal
+            {% plural %}
+                Proposals
+            {% endblocktranslate %}
+        </span>
+    </div>
+{% elif entry_counts.kiezkasse_proposals %}
+    <div class="module-tile__insight">
+        <i class="fas fa-coins" aria-hidden="true"></i>
+        <span class="module-insight__count">{{ entry_counts.kiezkasse_proposals }}</span>
+        <span class="module-insight__label">
+            {% blocktranslate count counter=entry_counts.kiezkasse_proposals %}
+                Proposal
+            {% plural %}
+                Proposals
+            {% endblocktranslate %}
+        </span>
+    </div>
+{% endif %}

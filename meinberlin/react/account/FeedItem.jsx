@@ -20,9 +20,17 @@ const translations = {
 }
 
 export default function FeedItem ({ id, apiUrl, icon, title, thumbnail, body, meta = [], link, linkText, isRead, timestamp }) {
-  const handleMarkAsRead = async () => {
+  const handleMarkAsRead = async (e) => {
     if (!isRead) {
+      e.preventDefault()
+
       await updateItem({ read: true }, apiUrl + id + '/', 'PUT')
+        .catch((error) => {
+          console.error('Failed to mark as read:', error)
+        })
+        .finally(() => {
+          window.location.href = link
+        })
     }
   }
 

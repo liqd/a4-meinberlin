@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-05 13:23+0100\n"
+"POT-Creation-Date: 2025-03-06 11:24+0100\n"
 "PO-Revision-Date: 2025-03-05 16:26+0000\n"
 "Last-Translator: MarleyMi <m.mittmann@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
-"main-design-dev/de/>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main-"
+"design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -322,7 +322,7 @@ msgstr "hier können Sie alle Kommentare exportieren"
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/hero_search.html:3
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/hero_search.html:17
 #: meinberlin/apps/cms/viewsets.py:19 meinberlin/apps/extprojects/views.py:20
-#: meinberlin/apps/ideas/views.py:36 meinberlin/apps/plans/views.py:43
+#: meinberlin/apps/ideas/views.py:36 meinberlin/apps/plans/views.py:42
 #: meinberlin/apps/projects/views.py:53 meinberlin/apps/topicprio/views.py:21
 #: meinberlin/templates/a4filters/widgets/free_text_filter.html:9
 #: meinberlin/templates/a4filters/widgets/free_text_filter.html:16
@@ -516,11 +516,11 @@ msgstr "Bitte stimmen Sie den Nutzungsbedingungen der Organisation zu."
 msgid "Please choose one or more categories."
 msgstr "Bitte wählen Sie eine oder mehrere Kategorien aus."
 
-#: adhocracy4/dashboard/components/forms/views.py:24
+#: adhocracy4/dashboard/components/forms/views.py:29
 msgid "The project has been updated."
 msgstr "Das Projekt wurde aktualisiert."
 
-#: adhocracy4/dashboard/components/forms/views.py:51
+#: adhocracy4/dashboard/components/forms/views.py:59
 msgid "The module has been updated."
 msgstr "Das Modul wurde aktualisiert."
 
@@ -701,7 +701,7 @@ msgid "Project successfully created."
 msgstr "Projekt erfolgreich erstellt."
 
 #: adhocracy4/dashboard/views.py:164
-#: meinberlin/apps/dashboard/views.py:129 meinberlin/apps/plans/views.py:317
+#: meinberlin/apps/dashboard/views.py:129 meinberlin/apps/plans/views.py:319
 msgid "Invalid action"
 msgstr "Ungültige Aktion"
 
@@ -795,7 +795,7 @@ msgid "Reference No."
 msgstr "Referenznr."
 
 #: adhocracy4/exports/mixins/items.py:81
-#: meinberlin/apps/ideas/api.py:77 meinberlin/apps/kiezradar/models.py:95
+#: meinberlin/apps/ideas/api.py:77 meinberlin/apps/kiezradar/models.py:97
 #: meinberlin/apps/plans/models.py:108
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_details_summary.html:45
 msgid "Status"
@@ -1762,8 +1762,8 @@ msgstr ""
 #: meinberlin/apps/adminlog/signals.py:146
 #, python-brace-format
 msgid ""
-"module \"{module_name}\" has no longer been shown in project by "
-"\"{username}\""
+"module \"{module_name}\" has no longer been shown in project by \"{username}"
+"\""
 msgstr ""
 "das Modul \"{module_name}\" wurde durch \"{username}\" nicht mehr im Projekt "
 "angezeigt."
@@ -2422,12 +2422,14 @@ msgid "Additional Information on Accessibility"
 msgstr "Zusätzliche Information über Barrierefreiheit"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/blocks/project_teaser_block.html:22
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/plan_tile.html:22
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:28
 msgid "copyright by"
 msgstr ""
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/blocks/project_teaser_block.html:24
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:39
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/plan_tile.html:24
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:30
 #: meinberlin/templates/a4dashboard/includes/project_list_item.html:19
 msgid "copyright missing"
@@ -3302,11 +3304,11 @@ msgid ""
 "    "
 msgstr ""
 
-#: meinberlin/apps/kiezradar/models.py:30
+#: meinberlin/apps/kiezradar/models.py:32
 msgid "Where can your address be located on a map?"
 msgstr ""
 
-#: meinberlin/apps/kiezradar/models.py:32 meinberlin/apps/mapideas/models.py:16
+#: meinberlin/apps/kiezradar/models.py:34 meinberlin/apps/mapideas/models.py:16
 #: meinberlin/apps/maptopicprio/forms.py:51
 msgid ""
 "Click inside the marked area or type in an address to set the marker. A set "
@@ -3316,31 +3318,31 @@ msgstr ""
 "geben Sie eine Adresse ein. Ein gesetzter Pin kann verschoben werden, wenn "
 "Sie ihn gedrückt halten."
 
-#: meinberlin/apps/kiezradar/models.py:39
+#: meinberlin/apps/kiezradar/models.py:41
 msgid "How long should be the radius area?"
 msgstr ""
 
-#: meinberlin/apps/kiezradar/models.py:69
+#: meinberlin/apps/kiezradar/models.py:71
 msgid "information (no participation)"
 msgstr "Information (ohne Beteiligung)"
 
-#: meinberlin/apps/kiezradar/models.py:70
+#: meinberlin/apps/kiezradar/models.py:72
 msgid "consultation"
 msgstr "Mitwirkung"
 
-#: meinberlin/apps/kiezradar/models.py:71
+#: meinberlin/apps/kiezradar/models.py:73
 msgid "cooperation"
 msgstr "Mitentscheidung"
 
-#: meinberlin/apps/kiezradar/models.py:72
+#: meinberlin/apps/kiezradar/models.py:74
 msgid "decision-making"
 msgstr "Entscheidung"
 
-#: meinberlin/apps/kiezradar/models.py:76
+#: meinberlin/apps/kiezradar/models.py:78
 msgid "Type"
 msgstr ""
 
-#: meinberlin/apps/kiezradar/models.py:88 meinberlin/apps/plans/models.py:30
+#: meinberlin/apps/kiezradar/models.py:90 meinberlin/apps/plans/models.py:30
 #: meinberlin/apps/plans/models.py:160
 #: meinberlin/apps/projects/serializers.py:118
 #: meinberlin/apps/projects/serializers.py:291
@@ -3348,17 +3350,17 @@ msgstr ""
 msgid "running"
 msgstr "laufend"
 
-#: meinberlin/apps/kiezradar/models.py:89
+#: meinberlin/apps/kiezradar/models.py:91
 msgid "future"
 msgstr ""
 
-#: meinberlin/apps/kiezradar/models.py:90 meinberlin/apps/plans/models.py:30
+#: meinberlin/apps/kiezradar/models.py:92 meinberlin/apps/plans/models.py:30
 #: meinberlin/apps/projects/serializers.py:133
 #: meinberlin/apps/projects/serializers.py:345
 msgid "done"
 msgstr "abgeschlossen"
 
-#: meinberlin/apps/kiezradar/serializers.py:161
+#: meinberlin/apps/kiezradar/serializers.py:162
 #, python-format
 msgid "Searchprofile %d"
 msgstr "Suchprofil %d"
@@ -3938,10 +3940,9 @@ msgstr "Entwurf"
 msgid "Topics"
 msgstr "Themen"
 
-#: meinberlin/apps/plans/exports.py:74 meinberlin/apps/plans/forms.py:142
+#: meinberlin/apps/plans/exports.py:74
 #: meinberlin/apps/plans/templatetags/react_map_teaser.py:18
-#: meinberlin/apps/plans/views.py:106 meinberlin/apps/projects/admin.py:97
-#: meinberlin/apps/projects/forms.py:119
+#: meinberlin/apps/projects/admin.py:97
 #: meinberlin/apps/projects/serializers.py:19
 msgid "City wide"
 msgstr "Gesamtstädtisch"
@@ -4268,31 +4269,31 @@ msgstr ""
 "Es wurde noch kein Vorhaben angelegt, dies können Sie <a "
 "href=\"%(plan_create_url)s\">hier</a> tun."
 
-#: meinberlin/apps/plans/views.py:247
+#: meinberlin/apps/plans/views.py:249
 msgid "The plan was created"
 msgstr "Das Vorhaben wurde angelegt"
 
-#: meinberlin/apps/plans/views.py:272
+#: meinberlin/apps/plans/views.py:274
 msgid "The plan has been updated"
 msgstr "Das Vorhaben wurde aktualisiert"
 
-#: meinberlin/apps/plans/views.py:282
+#: meinberlin/apps/plans/views.py:284
 msgid "The plan has been deleted"
 msgstr "Das Vorhaben wurde gelöscht"
 
-#: meinberlin/apps/plans/views.py:332
+#: meinberlin/apps/plans/views.py:334
 msgid "The plan is already published"
 msgstr "Das Vorhaben wurde bereits veröffentlicht"
 
-#: meinberlin/apps/plans/views.py:338
+#: meinberlin/apps/plans/views.py:340
 msgid "The plan is published."
 msgstr "Das Vorhaben wurde veröffentlicht."
 
-#: meinberlin/apps/plans/views.py:343
+#: meinberlin/apps/plans/views.py:345
 msgid "The plan is already unpublished"
 msgstr "Das Vorhaben wurde bereits depubliziert."
 
-#: meinberlin/apps/plans/views.py:349
+#: meinberlin/apps/plans/views.py:351
 msgid "The plan is unpublished."
 msgstr "Das Vorhaben wurde depubliziert."
 
@@ -4303,8 +4304,8 @@ msgstr "Plattform-E-Mail erstellen"
 
 #: meinberlin/apps/platformemails/templates/meinberlin_platformemails/platformemail_form.html:10
 msgid ""
-"This email will be sent to all registered and verified users of mein.berlin."
-"de."
+"This email will be sent to all registered and verified users of "
+"mein.berlin.de."
 msgstr ""
 "Diese E-Mail wird an alle registrierten und verifizierten Nutzer*innen von "
 "mein.berlin.de verschickt."
@@ -4413,6 +4414,23 @@ msgstr "Verantwortliche Stelle"
 msgid "Call"
 msgstr ""
 
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/plan_tile.html:32
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:40
+msgid "Plan"
+msgstr "Vorhaben"
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/plan_tile.html:54
+msgid ""
+"\n"
+"                    Participation project\n"
+"                "
+msgid_plural ""
+"\n"
+"                    Participation projects\n"
+"                "
+msgstr[0] ""
+msgstr[1] ""
+
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_details_summary.html:3
 msgid "Project details"
 msgstr ""
@@ -4444,9 +4462,9 @@ msgstr ""
 msgid "Participation ended"
 msgstr "Beteiligung abgeschlossen"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:40
-msgid "Plan"
-msgstr "Vorhaben"
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_plan.html:4
+msgid "Overarching Plan"
+msgstr ""
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:76
 #, python-format
@@ -5029,63 +5047,63 @@ msgstr ""
 "Bitte passen Sie die Anzahl der Codes an. Pro Modul können Sie bis zu {} "
 "Codes erstellen."
 
-#: meinberlin/config/settings/base.py:490
+#: meinberlin/config/settings/base.py:491
 msgid "Pin without icon"
 msgstr "Pin ohne Icon"
 
-#: meinberlin/config/settings/base.py:491
+#: meinberlin/config/settings/base.py:492
 msgid "Diamond"
 msgstr "Diamant"
 
-#: meinberlin/config/settings/base.py:492
+#: meinberlin/config/settings/base.py:493
 msgid "Triangle up"
 msgstr "Dreieck Spitze oben"
 
-#: meinberlin/config/settings/base.py:493
+#: meinberlin/config/settings/base.py:494
 msgid "Triangle down"
 msgstr "Dreieck Spitze unten"
 
-#: meinberlin/config/settings/base.py:494
+#: meinberlin/config/settings/base.py:495
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: meinberlin/config/settings/base.py:495
+#: meinberlin/config/settings/base.py:496
 msgid "Semi circle"
 msgstr "Halbkreis"
 
-#: meinberlin/config/settings/base.py:496
+#: meinberlin/config/settings/base.py:497
 msgid "Hexagon"
 msgstr "Sechseck"
 
-#: meinberlin/config/settings/base.py:497
+#: meinberlin/config/settings/base.py:498
 msgid "Rhomboid"
 msgstr "Parallelogramm"
 
-#: meinberlin/config/settings/base.py:498
+#: meinberlin/config/settings/base.py:499
 msgid "Star"
 msgstr "Stern"
 
-#: meinberlin/config/settings/base.py:499
+#: meinberlin/config/settings/base.py:500
 msgid "Square"
 msgstr "Quadrat"
 
-#: meinberlin/config/settings/base.py:500
+#: meinberlin/config/settings/base.py:501
 msgid "Octothorpe"
 msgstr "Raute"
 
-#: meinberlin/config/settings/base.py:501
+#: meinberlin/config/settings/base.py:502
 msgid "Rectangle"
 msgstr "Viereck"
 
-#: meinberlin/config/settings/base.py:502
+#: meinberlin/config/settings/base.py:503
 msgid "Circle"
 msgstr "Kreis"
 
-#: meinberlin/config/settings/base.py:503
+#: meinberlin/config/settings/base.py:504
 msgid "Right triangle"
 msgstr "Dreieck Spitze rechts"
 
-#: meinberlin/config/settings/base.py:504
+#: meinberlin/config/settings/base.py:505
 msgid "Zigzag"
 msgstr "ZickZack"
 
@@ -5528,7 +5546,7 @@ msgid "Your password is now changed."
 msgstr "Ihr Passwort wurde geändert."
 
 #: meinberlin/templates/account/signup.html:35
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "I hereby expressly consent to the collection and processing (storage) of my "
 "data and expressly consent to the processing and publication of my ideas, "
@@ -5551,6 +5569,7 @@ msgstr ""
 "                    <a href=\"%(privacy_policy)s\" "
 "target=\"_blank\">Datenschutzbestimmungen</a>\n"
 "                    gelesen habe und akzeptiere."
+
 
 #: meinberlin/templates/account/signup.html:66
 msgid "Already have an account?"

@@ -8,6 +8,7 @@
     height: auto;
     aspect-ratio: 20 / 17;
     margin-bottom: .4em;
+    object-fit: cover;
 }
 
 .project-teaser-block__title {
@@ -52,11 +53,15 @@
     margin-top: 0;
 }
 
+.project-teaser-block__description {
+    max-width: 500px;
+}
+
 .project-teaser-block__past-project {
-    background: $primary;
+    background: $primary-400;
     border-radius: 2em;
-    color: $text-inverted;
-    padding: 1.1em 1em;
+    color: $secondary;
+    padding: 0.8em;
     display: flex;
     align-items: center;
     gap: 1em;
@@ -72,7 +77,7 @@
     }
 
     i {
-        font-size: 1.875rem;
+        font-size: 1.8rem;
         color: $secondary;
     }
 }

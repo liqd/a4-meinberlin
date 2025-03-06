@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-04 12:03+0100\n"
-"PO-Revision-Date: 2025-01-31 11:15+0000\n"
+"PO-Revision-Date: 2025-03-06 13:15+0000\n"
 "Last-Translator: MarleyMi <m.mittmann@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js/de/>\n"
 "Language: de_DE\n"
@@ -328,14 +328,14 @@ msgstr "Hervorgehoben"
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:7
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:14
 msgid "Show more"
-msgstr "mehr anzeigen"
+msgstr "Mehr anzeigen"
 
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:8
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:15
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:8
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:15
 msgid "Show less"
-msgstr "weniger anzeigen"
+msgstr "Weniger anzeigen"
 
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:9
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:17
@@ -818,12 +818,12 @@ msgstr "Ihre Wahl"
 #: adhocracy4/ratings/static/ratings/RatingBox.jsx:9
 #: adhocracy4/ratings/static/ratings/RatingBox.jsx:9
 msgid "Likes"
-msgstr "gefällt mir"
+msgstr "gefällt"
 
 #: adhocracy4/ratings/static/ratings/RatingBox.jsx:10
 #: adhocracy4/ratings/static/ratings/RatingBox.jsx:10
 msgid "Dislikes"
-msgstr "gefällt mir nicht"
+msgstr "gefällt nicht"
 
 #: adhocracy4/ratings/static/ratings/RatingButton.jsx:5
 #: adhocracy4/ratings/static/ratings/RatingButton.jsx:5

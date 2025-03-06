@@ -6,16 +6,18 @@ import { updateItem } from '../contrib/helpers'
 
 const translations = {
   nowText: django.gettext('now'),
-  minutesAgoText: (minutes) => django.interpolate(
-    django.ngettext('%(minutes)s minute ago', '%(minutes)s minutes ago', minutes),
-    { minutes },
-    true
-  ),
-  hoursAgoText: (hours) => django.interpolate(
-    django.ngettext('%(hours)s hour ago', '%(hours)s hours ago', hours),
-    { hours },
-    true
-  ),
+  minutesAgoText: (minutes) =>
+    django.interpolate(
+      django.gettext('%(minutes)sm ago'),
+      { minutes },
+      true
+    ),
+  hoursAgoText: (hours) =>
+    django.interpolate(
+      django.gettext('%(hours)sh ago'),
+      { hours },
+      true
+    ),
   yesterdayText: django.gettext('Yesterday')
 }
 

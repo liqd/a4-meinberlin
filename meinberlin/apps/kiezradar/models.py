@@ -1,4 +1,5 @@
 from functools import reduce
+from typing import Optional
 
 from django.conf import settings
 from django.contrib.gis.db import models as gis_models
@@ -170,6 +171,68 @@ class SearchProfile(UserGeneratedContentModel):
         return f"kiezradar search profile - {self.name}, disabled {self.disabled}"
 
 
+def full_text_search(
+    search_term: str,
+    search_queryset: Optional[QuerySet[SearchProfile]] = None,
+    language: str = "german",
+) -> QuerySet[SearchProfile]:
+    """
+    Performs a full-text search on the given SearchProfile QuerySet.
+    To be used with postgresql-only database connection.
+
+    Args:
+        search_term (str): The user-provided search input.
+        search_queryset (Optional[QuerySet[SearchProfile]]):
+            A base QuerySet to apply the search on (default: all SearchProfile records).
+        language (str, optional): The PostgreSQL full-text search language configuration. Defaults to "german". If more languages need to be supported than german, the config would need a library like nltk to sanitize multiple languages.
+
+    Returns:
+        QuerySet[SearchProfile]: A queryset of matching search profiles.
+    """
+
+    # Default to all search profiles if no QuerySet is provided
+    search_queryset = search_queryset or SearchProfile.objects.all()
+
+    query = " or ".join(search_term.split())
+    search_query = SearchQuery(query, search_type="websearch", config=language)
+
+    search_queryset = search_queryset.annotate(
+        search=SearchVector("query__text", config=language)
+    )
+    search_queryset = search_queryset.filter(
+        Q(search=search_query) | Q(query__isnull=True)
+    )
+    return search_queryset
+
+
+def sqlite_text_search(
+    search_term: str,
+    search_queryset: Optional[QuerySet[SearchProfile]] = None,
+) -> QuerySet[SearchProfile]:
+    """
+    Filters search profiles based on a search term using partial matches (icontains).
+    This is a hack to make full text search somewhat useful on sqlite database connections.
+
+    Args:
+        search_profiles (QuerySet): The queryset of SearchProfile to filter.
+        search_term (str): The search term to use for filtering, split into individual words.
+
+    Returns:
+        QuerySet: The filtered queryset based on the search term.
+    """
+    search_queryset = search_queryset or SearchProfile.objects.all()
+
+    query = reduce(
+        lambda a, b: a | b,
+        (
+            Q(query__text__icontains=term)
+            for term in search_term.split()
+            if len(term) > 2
+        ),
+    )
+    return search_queryset.filter(query | Q(query__isnull=True))
+
+
 def get_search_profiles_for_project(project: Project) -> QuerySet[SearchProfile]:
     status = 2
     if project.phases.active_phases():
@@ -192,36 +255,20 @@ def get_search_profiles_for_project(project: Project) -> QuerySet[SearchProfile]
         )
         & Q(disabled=False)
     )
-    search_term = (
-        project.name + " " + project.description + " " + project.organisation.name
-    )
+    search_term = f"{project.name} {project.description} {project.organisation.name}"
+
     if project.administrative_district:
-        search_term += " " + project.administrative_district.name
+        search_term += f" {project.administrative_district.name}"
     for topic in project.topic_names:
-        search_term += " " + topic
+        search_term += f" {topic}"
+
     if connection.vendor == "postgresql":
-        # django has some postgresql-only search tools which are much better
-        query = "|".join(search_term.split())
-        # TODO: if we ever support more languages than german, the config would either have to depend on the user
-        #  language or use a library like nltk to sanitize multiple languages.
-        search_query = SearchQuery(query, search_type="raw", config="german")
-        search_profiles = search_profiles.annotate(
-            search=SearchVector("query__text", config="german")
-        )
-        search_profiles = search_profiles.filter(
-            Q(search=search_query) | Q(query__isnull=True)
-        )
+        search_profiles = full_text_search(search_term, search_queryset=search_profiles)
     else:
-        # this is probably very inefficient and more hack to make the search somewhat useful on sqlite
-        query = reduce(
-            lambda a, b: a | b,
-            (
-                Q(query__text__icontains=term)
-                for term in search_term.split()
-                if len(term) > 2
-            ),
+        search_profiles = sqlite_text_search(
+            search_term, search_queryset=search_profiles
         )
-        search_profiles = search_profiles.filter(query | Q(query__isnull=True))
+
     if project.point:
         search_profiles = search_profiles.filter(
             Q(kiezradars__radius__gte=Distance("kiezradars__point", project.point))

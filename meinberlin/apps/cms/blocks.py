@@ -27,7 +27,7 @@ class ProjectTeaserBlock(blocks.StructBlock):
         help_text=_("Will be shown instead of the project title if set."),
     )
     custom_teaser = blocks.RichTextBlock(
-        max_length=500,
+        max_length=250,
         required=False,
         label=_("Overwrite teaser text"),
         help_text=_("Will be shown instead of the project teaser if set."),

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-05 13:23+0100\n"
-"PO-Revision-Date: 2025-03-05 16:26+0000\n"
+"PO-Revision-Date: 2025-03-07 10:15+0000\n"
 "Last-Translator: MarleyMi <m.mittmann@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "js-design-dev/de/>\n"
@@ -323,7 +323,7 @@ msgstr "Mehr anzeigen"
 #: meinberlin/react/contrib/ControlBar.jsx:13
 #: meinberlin/react/projects/ProjectsControlBar.jsx:16
 msgid "Show less"
-msgstr "weniger anzeigen"
+msgstr "Weniger anzeigen"
 
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:9
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:17

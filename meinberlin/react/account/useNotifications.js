@@ -25,9 +25,17 @@ const useNotifications = (initialNotifications, showRestricted) => {
   )
 
   const getMasterToggles = useCallback(() => {
+    // return the state of each master toggle
     return notificationSettingsData
+      // filter out restricted notifications (for moderators)
       .filter((n) => !n.restricted || (n.restricted && showRestricted))
-      .map((n) => Object.keys(n.notifications).some((key) => notificationsState[key]))
+      .map((n) =>
+        // go over remaining notifications
+        Object.entries(n.notifications).some(
+          // check if either the email notification or in-app notification is toggled true
+          ([key, value]) => notificationsState[key] || notificationsState[value.activityFeedName]
+        )
+      )
   }, [notificationsState, showRestricted])
 
   return {

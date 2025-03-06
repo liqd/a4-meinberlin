@@ -6,7 +6,7 @@ import { updateItem } from '../contrib/helpers'
 import { notificationSettingsData } from './notification_data'
 import useNotifications from './useNotifications'
 
-const NotificationsList = ({
+const NotificationSettings = ({
   initialNotifications,
   apiUrl,
   showRestricted = false
@@ -37,7 +37,11 @@ const NotificationsList = ({
     const newState = { ...notificationsState }
 
     Object.keys(notificationGroup.notifications).forEach(key => {
+      const notificationSetting = notificationGroup.notifications[key]
       newState[key] = newValue
+      if ('activityFeedName' in notificationSetting) {
+        newState[notificationSetting.activityFeedName] = newValue
+      }
     })
 
     setNotificationsState(newState)
@@ -83,4 +87,4 @@ const NotificationsList = ({
   )
 }
 
-export default NotificationsList
+export default NotificationSettings

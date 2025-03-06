@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import NotificationsList from '../NotificationsList'
+import NotificationSettings from '../NotificationSettings'
 import { updateItem } from '../../contrib/helpers'
 import useNotifications from '../useNotifications'
 
@@ -29,7 +29,7 @@ const defaultProps = {
   showRestricted: false
 }
 
-describe('NotificationsList', () => {
+describe('NotificationSettings', () => {
   const mockSetNotificationsState = jest.fn()
 
   beforeEach(() => {
@@ -43,7 +43,7 @@ describe('NotificationsList', () => {
   })
 
   test('renders all non-restricted notification groups', () => {
-    render(<NotificationsList {...defaultProps} />)
+    render(<NotificationSettings {...defaultProps} />)
 
     expect(screen.getByText('Project-Related Notifications')).toBeInTheDocument()
     expect(screen.getByText('Interactions with Other Users or Moderation')).toBeInTheDocument()
@@ -57,13 +57,13 @@ describe('NotificationsList', () => {
       masterToggles: [true, false, false]
     }))
 
-    render(<NotificationsList {...defaultProps} showRestricted />)
+    render(<NotificationSettings {...defaultProps} showRestricted />)
 
     expect(screen.getByText('Notifications for Initiators and Moderators')).toBeInTheDocument()
   })
 
   test('toggles individual notification settings', () => {
-    render(<NotificationsList {...defaultProps} />)
+    render(<NotificationSettings {...defaultProps} />)
 
     const toggle = screen.getAllByRole('checkbox')[1] // First toggle after master toggle
     fireEvent.click(toggle)
@@ -83,7 +83,7 @@ describe('NotificationsList', () => {
       masterToggles: [false, false, false]
     }))
 
-    render(<NotificationsList {...defaultProps} />)
+    render(<NotificationSettings {...defaultProps} />)
 
     const masterToggle = screen.getAllByRole('checkbox')[0]
     fireEvent.click(masterToggle)
@@ -102,7 +102,7 @@ describe('NotificationsList', () => {
   })
 
   test('renders correct notification titles and descriptions', () => {
-    render(<NotificationsList {...defaultProps} />)
+    render(<NotificationSettings {...defaultProps} />)
 
     expect(screen.getByText('E-Mail Newsletter')).toBeInTheDocument()
     expect(screen.getByText('Participation Start')).toBeInTheDocument()
@@ -110,7 +110,7 @@ describe('NotificationsList', () => {
   })
 
   test('updates UI and calls API when toggling notifications', async () => {
-    render(<NotificationsList {...defaultProps} />)
+    render(<NotificationSettings {...defaultProps} />)
 
     const toggle = screen.getAllByRole('checkbox')[1]
     fireEvent.click(toggle)

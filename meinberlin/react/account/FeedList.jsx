@@ -68,6 +68,22 @@ export default function FeedList ({ title, description, descriptionNoItems, butt
     }
   }
 
+  const handleMarkAsRead = async (id, link, url) => {
+    await updateItem({ read: true }, url + id + '/', 'PUT')
+      .then(() => {
+        setUnreadCount(unreadCount - 1)
+        setNotifications((prevNotifications) =>
+          prevNotifications.map((item) =>
+            item.id === id ? { ...item, read: true } : item
+          )
+        )
+      })
+      .catch((error) => setError(error))
+      .finally(() => {
+        window.location.href = link
+      })
+  }
+
   return (
     <div className="feed-list" aria-live="polite">
       {loading
@@ -102,7 +118,7 @@ export default function FeedList ({ title, description, descriptionNoItems, butt
                 <ul className="feed-list__items">
                   {notifications.map((notification, index) => (
                     <li className="feed-list__item" key={notification.id}>
-                      {renderFeedItem(notification, index)}
+                      {renderFeedItem(notification, index, handleMarkAsRead)}
                     </li>
                   ))}
                 </ul>

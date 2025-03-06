@@ -20,7 +20,7 @@ function InteractionsFeed ({ interactionsApiUrl, notificationsApiUrl, planListUr
       {...notificationsData.interactions}
       apiUrl={interactionsApiUrl}
       link={planListUrl}
-      renderFeedItem={({ id, read, action, total_ratings: totalRatings }, index) => {
+      renderFeedItem={({ id, read, action, total_ratings: totalRatings }, index, handleMarkAsRead) => {
         const { type, timestamp, link, ...rest } = action
         const text = getInteractionText({ type, ...rest }, totalRatings)
 
@@ -42,6 +42,7 @@ function InteractionsFeed ({ interactionsApiUrl, notificationsApiUrl, planListUr
             linkText={linkText}
             isRead={read}
             timestamp={timestamp}
+            onClickReadLink={handleMarkAsRead}
           />
         )
       }}
@@ -55,7 +56,7 @@ function SearchProfilesFeed ({ searchProfilesApiUrl, notificationsApiUrl, planLi
       {...notificationsData.searchProfiles}
       apiUrl={searchProfilesApiUrl}
       link={planListUrl}
-      renderFeedItem={({ id, search_profile: searchProfile, read, action }, index) => {
+      renderFeedItem={({ id, search_profile: searchProfile, read, action }, index, handleMarkAsRead) => {
         const { timestamp, project, link, ...rest } = action
         const text = getSearchProfileText(searchProfile, { project, ...rest })
         const filterList = toFilterList(searchProfile).map((names) => names.join(', ')).slice(0, 3)
@@ -83,6 +84,7 @@ function SearchProfilesFeed ({ searchProfilesApiUrl, notificationsApiUrl, planLi
             linkText={linkText}
             isRead={read}
             timestamp={timestamp}
+            onClickReadLink={handleMarkAsRead}
           />
         )
       }}
@@ -96,7 +98,7 @@ function FollowedProjectsFeed ({ followedProjectsApiUrl, notificationsApiUrl, pl
       {...notificationsData.followedProjects}
       apiUrl={followedProjectsApiUrl}
       link={planListUrl}
-      renderFeedItem={({ id, read, action }, index) => {
+      renderFeedItem={({ id, read, action }, index, handleMarkAsRead) => {
         const { type, timestamp, link, ...rest } = action
         const text = getFollowedProjectsText({ type, ...rest })
 
@@ -118,6 +120,7 @@ function FollowedProjectsFeed ({ followedProjectsApiUrl, notificationsApiUrl, pl
             linkText={linkText}
             isRead={read}
             timestamp={timestamp}
+            onClickReadLink={handleMarkAsRead}
           />
         )
       }}

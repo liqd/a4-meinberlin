@@ -8,7 +8,7 @@
   <h1>{% translate "Notification settings" %}</h1>
   <div id="notification-settings-react"
        data-initial-notifications="{{ data }}"
-       data-show-restricted="{% if show_restricted %}true{% endif %}"
+       data-show-restricted="{% if show_restricted %}true{% else %}false{% endif %}"
        data-api-url="{{ api_url }}"
   ></div>
 {% endblock content %}

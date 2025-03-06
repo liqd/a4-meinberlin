@@ -1,6 +1,6 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import NotificationsList from './NotificationsList'
+import NotificationSettings from './NotificationSettings'
 
 function init () {
   const el = document.getElementById('notification-settings-react')
@@ -10,7 +10,7 @@ function init () {
   const apiUrl = el.getAttribute('data-api-url')
   root.render(
     <React.StrictMode>
-      <NotificationsList initialNotifications={notifications} showRestricted={showRestricted} apiUrl={apiUrl} />
+      <NotificationSettings initialNotifications={notifications} showRestricted={showRestricted} apiUrl={apiUrl} />
     </React.StrictMode>)
 }
 

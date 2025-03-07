@@ -5,6 +5,7 @@ import { toFilterList, toSearchParams, updateItem } from '../contrib/helpers'
 import PushNotificationToggle from './PushNotificationToggle'
 import { alert as Alert } from 'adhocracy4'
 import Modal from '../contrib/Modal'
+import { validProjectStates } from '../projects/getDefaultState'
 
 const renameSearchProfileText = django.gettext('Rename search profile')
 const cancelText = django.gettext('Cancel')
@@ -170,8 +171,6 @@ export default function SearchProfile ({ apiUrl, planListUrl, searchProfile, onS
 }
 
 function toQueryString (searchProfile) {
-  const projectStateMapping = ['active', 'past', 'future']
-
   return toSearchParams({
     'search-profile': searchProfile.id,
     search: searchProfile.query_text || undefined,
@@ -180,7 +179,7 @@ function toQueryString (searchProfile) {
     participations: searchProfile.project_types.map(participation => participation.id),
     topics: searchProfile.topics.map((topic) => topic.code),
     plansOnly: searchProfile.plans_only,
-    projectState: searchProfile.status.map(status => projectStateMapping[status.status]),
+    projectState: searchProfile.status.map(status => validProjectStates[status.status]),
     kiezradars: searchProfile.kiezradars.map(kiezradar => kiezradar.name)
   }).toString()
 }

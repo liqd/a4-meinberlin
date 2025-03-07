@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-05 13:23+0100\n"
+"POT-Creation-Date: 2025-03-06 11:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -880,12 +880,16 @@ msgid "now"
 msgstr "now"
 
 #: meinberlin/react/account/FeedItem.jsx:10
-msgid "%(minutes)sm ago"
-msgstr "%(minutes)sm ago"
+msgid "%(minutes)s minute ago"
+msgid_plural "%(minutes)s minutes ago"
+msgstr[0] "%(minutes)s minute ago"
+msgstr[1] "%(minutes)s minutes ago"
 
 #: meinberlin/react/account/FeedItem.jsx:15
-msgid "%(hours)sh ago"
-msgstr "%(hours)sh ago"
+msgid "%(hours)s hour ago"
+msgid_plural "%(hours)s hours ago"
+msgstr[0] "%(hours)s hour ago"
+msgstr[1] "%(hours)s hours ago"
 
 #: meinberlin/react/account/FeedItem.jsx:19
 msgid "Yesterday"
@@ -1916,8 +1920,8 @@ msgid "Kiezes & Districts"
 msgstr "Kiezes & Districts"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:18
-msgid "Choose district or Kiez"
-msgstr "Choose district or Kiez"
+msgid "All districts"
+msgstr "All districts"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:19
 msgid "Your saved Kieze"
@@ -1970,12 +1974,12 @@ msgstr "Search profile created successfully"
 #: meinberlin/react/projects/ProjectsControlBar.jsx:37
 msgid ""
 "You will be informed about new projects that meet the selected filters. You "
-"can manage your search profiles in the User Settings under <a "
-"href=\"%(url)s\">Search Profiles</a>."
+"can manage your search profiles in the User Settings under <a href=\"%"
+"(url)s\">Search Profiles</a>."
 msgstr ""
 "You will be informed about new projects that meet the selected filters. You "
-"can manage your search profiles in the User Settings under <a "
-"href=\"%(url)s\">Search Profiles</a>."
+"can manage your search profiles in the User Settings under <a href=\"%"
+"(url)s\">Search Profiles</a>."
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:41
 msgid "Search profile cannot be saved"
@@ -1984,12 +1988,12 @@ msgstr "Search profile cannot be saved"
 #: meinberlin/react/projects/ProjectsControlBar.jsx:44
 msgid ""
 "You have saved the maximum number of 10 search profiles. To save a new one, "
-"delete an existing profile in the User Settings under <a "
-"href=\"%(url)s\">Search Profiles</a>."
+"delete an existing profile in the User Settings under <a href=\"%"
+"(url)s\">Search Profiles</a>."
 msgstr ""
 "You have saved the maximum number of 10 search profiles. To save a new one, "
-"delete an existing profile in the User Settings under <a "
-"href=\"%(url)s\">Search Profiles</a>."
+"delete an existing profile in the User Settings under <a href=\"%"
+"(url)s\">Search Profiles</a>."
 
 #: meinberlin/react/projects/ProjectsListMapBox.jsx:15
 msgid "Kiezradar"

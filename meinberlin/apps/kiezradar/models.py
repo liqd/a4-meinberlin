@@ -259,6 +259,9 @@ def get_search_profiles_for_project(project: Project) -> QuerySet[SearchProfile]
 
     if project.administrative_district:
         search_term += f" {project.administrative_district.name}"
+    if hasattr(project, "externalproject"):
+        if hasattr(project.externalproject, "bplan"):
+            search_term += f" {project.externalproject.bplan.identifier}"
     for topic in project.topic_names:
         search_term += f" {topic}"
 

@@ -28,21 +28,31 @@ export const filterProjects = (items, appliedFilters, kiezradars, topics, projec
         activeKiezradars.includes(kiezradar.name) &&
         getDistanceBetweenPoints(item.point.geometry.coordinates, kiezradar.point.geometry.coordinates) <= kiezradar.radius
       )
+    const hasKiezradarAndDistrict = activeKiezradars.length > 0 && districts.length > 0
 
-    return (activeTopics.length === 0 || activeTopics.some(topic => item.topics.includes(topic))) &&
-           (participations.length === 0 || participations.includes(item.participation)) &&
-           (organisation.length === 0 || organisation.includes(item.organisation)) &&
-           (search === '' ||
-             isInTitle(item.title, search) ||
-             isInTitle(item.district, search) ||
-             isInTitle(item.organisation, search) ||
-             isInTitle(item.description, search) ||
-             isInTopic(topics, item.topics, search)) &&
-           (projectState.includes(statusNames[item.status])) &&
-           (!plansOnly || item.type === 'plan') &&
-           (
-             activeKiezradars.length === 0 || isWithinAnyRadius ||
-             districts.length === 0 || districts.includes(item.district)
-           )
+    return (
+      (activeTopics.length === 0 || activeTopics.some(topic => item.topics.includes(topic))) &&
+      (participations.length === 0 || participations.includes(item.participation)) &&
+      (organisation.length === 0 || organisation.includes(item.organisation)) &&
+      (search === '' ||
+        isInTitle(item.title, search) ||
+        isInTitle(item.district, search) ||
+        isInTitle(item.organisation, search) ||
+        isInTitle(item.description, search) ||
+        isInTopic(topics, item.topics, search)) &&
+      (projectState.includes(statusNames[item.status])) &&
+      (!plansOnly || item.type === 'plan') &&
+      (hasKiezradarAndDistrict
+        // if we have both active we want to include projects that are within kiez
+        // OR projects that are in the selected district
+        ? (
+            isWithinAnyRadius || districts.includes(item.district)
+          )
+        : (
+            (activeKiezradars.length === 0 || isWithinAnyRadius) &&
+            (districts.length === 0 || districts.includes(item.district))
+          )
+      )
+    )
   })
 }

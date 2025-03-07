@@ -48,7 +48,7 @@ export const getDefaultState = (searchParams, {
 }
 
 const defaultProjectState = ['active', 'future']
-const validProjectStates = [...defaultProjectState, 'past']
+export const validProjectStates = [...defaultProjectState, 'past']
 
 export const getDefaultProjectState = (searchParams) => {
   const projectState = searchParams.getAll('projectState')

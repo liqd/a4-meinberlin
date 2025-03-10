@@ -34,7 +34,7 @@
   <div class="layout-grid__area--maincontent">
     {% url 'project-information' slug=project.slug as info_page %}
     {% include 'meinberlin_contrib/components/hero.html' with content=project show_buttons=True hero_link=info_page %}
-
+    <div id="follow-alert-wrapper"></div>
     {% include 'meinberlin_projects/project_actions.html' %}
 
     {% include 'meinberlin_projects/includes/project_details_summary.html' %}

@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n meinberlin_project_tags %}
 {% if counts or project.result %}
   <section aria-labelledby="project-insights" class="block">
     <h2 class="mt-0" id="project-insights">{% translate 'Statistics & Results' %}</h2>
@@ -12,10 +12,10 @@
         {% endfor %}
       </ul>
     {% endif %}
-    {% if project.result %}
-    <div class="u-flex-end mt-2">
-      <a href="{% url 'project-results' project.slug %}" class="button button--fullwidth-palm">{% translate 'See results' %}</a>
-    </div>
+    {% if project.result|has_ckeditor_content %}
+      <div class="u-flex-end mt-2">
+        <a href="{% url 'project-results' project.slug %}" class="button button--fullwidth-palm">{% translate 'See results' %}</a>
+      </div>
     {% endif %}
   </section>
 {% endif %}

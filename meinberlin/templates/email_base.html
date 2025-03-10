@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n static email_tags %}
 <!-- djlint:off H020, H021, H006, H005 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -14,7 +14,7 @@
                 <td colspan="3" style="border-bottom:1px solid rgb(221,221,221);padding:10px 20px;vertical-align:top">
                   <div style="margin:1px">
                     <a href="https://berlin.de/" target="_blank">
-                      <img src="cid:logo_berlin" alt="berlin.de" style="display:inline-block;vertical-align:middle" width="100">
+                      <img src="{% get_domain %}{% static "images/logo_berlin.png" %}" alt="berlin.de" style="display:inline-block;vertical-align:middle" width="100">
                     </a>
                   </div>
                 </td>
@@ -22,7 +22,7 @@
               <tr>
                 <td colspan="3" style="border-bottom:1px solid rgb(221,221,221);padding:10px 20px;vertical-align:top">
                   <div style="line-height:1.2;font-size:20px;margin:0;text-decoration:none;color:#000000">
-                    <img src="cid:logo" alt="mein.berlin.de" style="display:inline-block;vertical-align:middle;height:30px;width:146px" width="146px" height="30">
+                    <img src="{% get_domain %}{% static "images/email_logo.png" %}" alt="mein.berlin.de" style="display:inline-block;vertical-align:middle;height:30px;width:146px" width="146px" height="30">
                   </div>
                 </td>
               </tr>
@@ -51,7 +51,7 @@
                               <td align="center" style="border: #000 solid 2px; cursor:auto; vertical-align: middle; padding:0; margin:0;" valign="middle">
                                 <a href="{% block cta_url %}{% endblock cta_url %}" style="color:#000000;margin:0;text-decoration:none;text-transform:none; vertical-align: middle;font-size:0;" target="_blank">
                                   <span style="vertical-align: middle; line-height: 40px;padding: 0 20px;display:inline-block;font-size:16px;">{% block cta_label %}{% endblock cta_label %}</span>
-                                  <img src="cid:button_graphic" alt="" style="height:40px;width:40px;display:inline-block; border-left: 2px solid black;vertical-align:top;" height="40" width="40">
+                                  <img src="{% get_domain %}{% static "images/email_button.png" %}" alt="" style="height:40px;width:40px;display:inline-block; border-left: 2px solid black;vertical-align:top;" height="40" width="40">
                                 </a>
                               </td>
                             </tr>
@@ -82,8 +82,8 @@
 
                         </p>
                         <p>
-                          <a href="{{ email.get_host }}/contact">{% translate 'Contact' %}</a><br/>
-                          <a href="{{ email.get_host }}/terms-of-use">{% translate 'Terms of use' %}</a>
+                          <a href="{% get_domain %}/contact">{% translate 'Contact' %}</a><br/>
+                          <a href="{% get_domain %}/terms-of-use">{% translate 'Terms of use' %}</a>
                         </p>
                       </td>
                     </tr>
@@ -93,7 +93,7 @@
              <tr style="background-color:#545454">
                 <td colspan="3" style="text-align:left;color:rgb(255,255,255);background-color:#545454;padding:20px;vertical-align:top">
                   <div>
-                    <img alt="Berlin.de" src="cid:logo_berlin_negative" style="display:inline-block;vertical-align:middle" width="100">
+                    <img alt="Berlin.de" src="{% get_domain %}{% static "images/logo_berlin_negative.png" %}" style="display:inline-block;vertical-align:middle" width="100" height="34">
                   </div>
                 </td>
               </tr>

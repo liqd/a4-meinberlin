@@ -411,12 +411,7 @@ BLEACH_LIST = {
 # adhocracy4
 
 A4_ORGANISATIONS_MODEL = "meinberlin_organisations.Organisation"
-A4_EMAIL_ATTACHMENTS = [
-    ("logo_berlin", "images/logo_berlin.png"),
-    ("logo_berlin_negative", "images/logo_berlin_negative.png"),
-    ("button_graphic", "images/email_button.png"),
-    ("logo", "images/email_logo.png"),
-]
+A4_EMAIL_ATTACHMENTS = []
 
 A4_RATEABLES = (
     ("a4comments", "comment"),

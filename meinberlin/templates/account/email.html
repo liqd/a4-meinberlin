@@ -70,6 +70,6 @@
       {{ form.email|add_class:"form-control"|add_error_attr:"aria-invalid:true" }}
     </div>
 
-    {% include 'meinberlin_contrib/includes/form_submit_flex_end.html' with button_text='Add' %}
+    {% include 'meinberlin_contrib/includes/form_submit_flex_end.html' with button_text='Add' button_name="action_add" %}
   </form>
 {% endblock dashboard_content %}

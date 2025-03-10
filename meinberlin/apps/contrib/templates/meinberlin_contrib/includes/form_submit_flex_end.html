@@ -4,5 +4,5 @@
     {% if secondary_button_text %}
         <button class="link form-submit-flex-end__link" type="submit" name="reject">{% translate secondary_button_text %}</button>
     {% endif %}
-    <button class="button button--fullwidth-palm" type="submit" name="accept">{% translate button_text %}</button>
+    <button class="button button--fullwidth-palm" type="submit" name="{% firstof button_name "accept" %}">{% translate button_text %}</button>
 </div>

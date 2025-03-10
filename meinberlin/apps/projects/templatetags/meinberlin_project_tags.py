@@ -1,9 +1,11 @@
 import itertools
+import re
 
 from django import template
 from django.db.models import Count
 from django.db.models import Q
 from django.db.models import Sum
+from django.utils.html import strip_tags
 
 from adhocracy4.comments.models import Comment
 from adhocracy4.polls.models import Vote as Vote
@@ -51,6 +53,22 @@ def get_sorted_modules(context):
             module_qs.past_modules(),
         )
     )
+
+
+@register.filter
+def has_ckeditor_content(value):
+    """
+    Returns True if CKEditor field has meaningful content
+    """
+    if not value:
+        return False
+
+    # Strip HTML tags
+    text = strip_tags(value)
+
+    # Remove non-breaking spaces and whitespace
+    text = re.sub(r"&nbsp;|\s", "", text)
+    return len(text) > 0
 
 
 @register.simple_tag

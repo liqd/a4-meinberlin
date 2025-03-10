@@ -45,7 +45,6 @@ class BplanProjectForm(ExternalProjectForm):
             "tile_image",
             "tile_image_alt_text",
             "tile_image_copyright",
-            "is_archived",
             "office_worker_email",
             "start_date",
             "end_date",

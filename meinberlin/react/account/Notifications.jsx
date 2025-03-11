@@ -138,14 +138,14 @@ function getInteractionText (action, totalRatings) {
         case 'mapidea':
           if (actor.is_moderator) {
             return {
-              title: notificationsData.interactions.moderatorReplieIdeaText(project.title),
+              title: notificationsData.interactions.moderatorReplieIdeaText(project.title, project.url),
               body,
               linkText: notificationsData.viewCommentText
             }
           }
 
           return {
-            title: notificationsData.interactions.userRepliedIdeaText(project.title),
+            title: notificationsData.interactions.userRepliedIdeaText(project.title, project.url),
             body,
             linkText: notificationsData.viewCommentText
           }
@@ -153,14 +153,14 @@ function getInteractionText (action, totalRatings) {
         case 'comment':
           if (actor.is_moderator) {
             return {
-              title: notificationsData.interactions.moderatorRepliedCommentText(project.title),
+              title: notificationsData.interactions.moderatorRepliedCommentText(project.title, project.url),
               body,
               linkText: notificationsData.viewCommentText
             }
           }
 
           return {
-            title: notificationsData.interactions.userRepliedCommentText(project.title),
+            title: notificationsData.interactions.userRepliedCommentText(project.title, project.url),
             body,
             linkText: notificationsData.viewCommentText
           }
@@ -173,26 +173,26 @@ function getInteractionText (action, totalRatings) {
         case 'mapidea':
           if (totalRatings > 1) {
             return {
-              title: notificationsData.interactions.usersRatedIdeaText(project.title),
+              title: notificationsData.interactions.usersRatedIdeaText(project.title, project.url),
               linkText: notificationsData.viewIdeaText
             }
           }
 
           return {
-            title: notificationsData.interactions.userRatedIdeaText(project.title),
+            title: notificationsData.interactions.userRatedIdeaText(project.title, project.url),
             linkText: notificationsData.viewIdeaText
           }
 
         case 'comment':
           if (totalRatings > 1) {
             return {
-              title: notificationsData.interactions.usersRatedCommentText(project.title),
+              title: notificationsData.interactions.usersRatedCommentText(project.title, project.url),
               linkText: notificationsData.viewIdeaText
             }
           }
 
           return {
-            title: notificationsData.interactions.userRatedCommentText(project.title),
+            title: notificationsData.interactions.userRatedCommentText(project.title, project.url),
             body,
             linkText: notificationsData.viewCommentText
           }
@@ -204,7 +204,7 @@ function getSearchProfileText (searchProfile, action) {
   const { project } = action
 
   return {
-    title: notificationsData.searchProfiles.projectMatchesSearchProfileText(project.title, searchProfile.name),
+    title: notificationsData.searchProfiles.projectMatchesSearchProfileText(project.title, project.url, searchProfile.name),
     body: project.title,
     linkText: notificationsData.viewProjectText
   }
@@ -218,19 +218,19 @@ function getFollowedProjectsText (action) {
   switch (type) {
     case 'phase_started':
       return {
-        title: notificationsData.followedProjects.phaseStartedText(project.title, date.toLocaleDateString()),
+        title: notificationsData.followedProjects.phaseStartedText(project.title, project.url, date.toLocaleDateString()),
         linkText: notificationsData.viewProjectText
       }
 
     case 'phase_soon_over':
       return {
-        title: notificationsData.followedProjects.phaseEndedText(project.title, date.toLocaleDateString()),
+        title: notificationsData.followedProjects.phaseEndedText(project.title, project.url, date.toLocaleDateString()),
         linkText: notificationsData.viewProjectText
       }
 
     case 'offlineevent':
       return {
-        title: notificationsData.followedProjects.offlineEvent(source, project.title, sourceDate.toLocaleString()),
+        title: notificationsData.followedProjects.offlineEvent(source, project.title, project.url, sourceDate.toLocaleString()),
         linkText: notificationsData.viewProjectText
       }
   }

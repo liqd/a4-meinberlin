@@ -1,0 +1,83 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgis/postgis:16-3.5
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=django
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+  
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8003
+    volumes:
+      - .:/app
+      - static_data:/app/static
+      - media_data:/app/media
+    ports:
+      - "8003:8003"
+    depends_on:
+      - db
+      - redis
+    environment:
+      - DJANGO_SETTINGS_MODULE=meinberlin.config.settings.docker
+  
+  celery:
+    build: .
+    command: celery --app meinberlin worker --loglevel INFO
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
+    environment:
+      - DJANGO_SETTINGS_MODULE=meinberlin.config.settings.docker
+  
+  celery-beat:
+    build: .
+    command: celery --app meinberlin beat --loglevel INFO -S django
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
+    environment:
+      - DJANGO_SETTINGS_MODULE=meinberlin.config.settings.docker
+  
+  background:
+    build: .
+    command: python manage.py process_tasks
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
+    environment:
+      - DJANGO_SETTINGS_MODULE=meinberlin.config.settings.docker
+  
+  node:
+    image: node:20
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: npm run watch
+
+volumes:
+  postgres_data:
+  static_data:
+  media_data:

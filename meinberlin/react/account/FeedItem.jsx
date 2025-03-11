@@ -44,7 +44,7 @@ export default function FeedItem ({ id, apiUrl, icon, title, thumbnail, body, me
       <div className="feed-item__content">
         <div className="feed-item__info">
           <div>
-            <h3 className={classNames('feed-item__title', isRead && 'feed-item__title--read')}>{title}</h3>
+            <h3 className={classNames('feed-item__title', isRead && 'feed-item__title--read')} dangerouslySetInnerHTML={{ __html: title }} />
             {meta.length > 0 && (
               <ul className="feed-item__meta">
                 {meta.map((item, index) => (

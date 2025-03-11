@@ -1,35 +1,34 @@
 {% extends "base.html" %}
 {% load i18n rules thumbnail wagtailcore_tags meinberlin_project_tags offlineevent_tags contrib_tags ckeditor_tags static %}
-
 {% block extra_js %}
-  {{ block.super }}
-  <script type="text/javascript" src="{% static 'dsgvo_video_embed.js' %}"></script>
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'dsgvo_video_embed.js' %}"></script>
 {% endblock extra_js %}
-
-{% block title %}{{ project.name }} — {{ block.super }}{% endblock title %}
-
+{% block title %}
+    {{ project.name }} — {{ block.super }}
+{% endblock title %}
 {% block extra_messages %}
-  {{ block.super }}
-
-  {% if project.is_draft %}
-    {% include 'meinberlin_contrib/components/info-box.html' with info_message='This project has not yet been published.' %}
-  {% endif %}
+    {{ block.super }}
+    {% if project.is_draft %}
+        {% translate 'This project has not yet been published.' as info %}
+        {% include 'meinberlin_contrib/components/info-box.html' with info_message=info %}
+    {% endif %}
 {% endblock extra_messages %}
-
 {% block breadcrumbs %}
-  <div id="content-header">
-    <nav class="breadcrumb" aria-label='{% translate "You are here:" %}'>
-      <ol>
-        <li><a href="{% url 'wagtail_serve' '' %}">meinBerlin</a></li>
-        <li>
-          <a href="{% url 'meinberlin_plans:plan-list' %}">{% translate "Kiezradar" %}</a>
-        </li>
-        <li class="active" aria-current="page">{{ project.name|truncatechars:50 }}</li>
-      </ol>
-    </nav>
-  </div>
+    <div id="content-header">
+        <nav class="breadcrumb" aria-label='{% translate "You are here:" %}'>
+            <ol>
+                <li>
+                    <a href="{% url 'wagtail_serve' '' %}">meinBerlin</a>
+                </li>
+                <li>
+                    <a href="{% url 'meinberlin_plans:plan-list' %}">{% translate "Kiezradar" %}</a>
+                </li>
+                <li class="active" aria-current="page">{{ project.name|truncatechars:50 }}</li>
+            </ol>
+        </nav>
+    </div>
 {% endblock breadcrumbs %}
-
 {% block content %}
   <div class="layout-grid__area--maincontent">
     {% url 'project-information' slug=project.slug as info_page %}

@@ -1,27 +1,22 @@
 {% extends "base.html" %}
 {% load i18n rules thumbnail wagtailcore_tags meinberlin_project_tags offlineevent_tags contrib_tags ckeditor_tags static %}
-
 <!-- Extra blocks to ensure cookie banner for live stream -->
 {% block extra_js %}
     {{ block.super }}
     <script type="text/javascript" src="{% static 'dsgvo_video_embed.js' %}"></script>
 {% endblock extra_js %}
-
 {% block title %}
     {{ project.name }}
     –
     {{ block.super }}
 {% endblock title %}
-
 {% block extra_messages %}
     {{ block.super }}
-
     {% if project.is_draft %}
         {% translate 'This project has not yet been published.' as info %}
         {% include 'meinberlin_contrib/components/info-box.html' with info_message=info %}
     {% endif %}
 {% endblock extra_messages %}
-
 <!-- Breadcrumbs are only necessary for multimodule projects with simultaneously running modules since the project detail
      template correctly displays breadcrumbs for other project -->
 {% if module.is_in_module_cluster %}
@@ -41,7 +36,6 @@
         </div>
     {% endblock breadcrumbs %}
 {% endif %}
-
 {% block content %}
     <div id="layout-grid__area--maincontent">
         <div class="modul-video">
@@ -56,33 +50,28 @@
             <p>{{ module.description }}</p>
             <div class="video-container">
                 {% if live_stream %}
-                    <div class="ck-content">
-                        {{ live_stream.live_stream | disable_iframes | richtext }}
-                    </div>
+                    <div class="ck-content">{{ live_stream.live_stream | disable_iframes | richtext }}</div>
                 {% endif %}
             </div>
         </div>
-
         <div class="modul-servicepanel fullwidth panel--heavy phase-info">
-            <div class="servicepanel__main">
-                {% include "a4modules/includes/module_detail_phase.html" %}
-            </div>
+            <div class="servicepanel__main">{% include "a4modules/includes/module_detail_phase.html" %}</div>
             <div class="servicepanel__right phase-info__cta">
-                {% block project_action %}{% endblock project_action %}
+                {% block project_action %}
+                {% endblock project_action %}
             </div>
         </div>
-
-        {% block voting_token_field %}{% endblock voting_token_field %}
-        {% block phase_content %}{% endblock phase_content %}
+        {% block voting_token_field %}
+        {% endblock voting_token_field %}
+        {% block phase_content %}
+        {% endblock phase_content %}
         {% if module.is_in_module_cluster %}
             <section>
                 <h2>{% translate 'More from this online participation' %}</h2>
                 <ul class="list--clean flexgrid grid--3 grid--stretch">
                     {% get_sorted_modules as modules %}
                     {% for module in modules %}
-                        <li>
-                            {% include "meinberlin_projects/includes/module-tile/module_tile.html" with project=project module=module %}
-                        </li>
+                        <li>{% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=module %}</li>
                     {% endfor %}
                 </ul>
             </section>

@@ -5,6 +5,33 @@ All notable changes to this project will be documented in this file.
 Since version v2308 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2503.1
+
+### Changed
+
+- Renamed blueprint-picker.js to blueprint-dialog.js, completely removing Bootstrap and jQuery dependencies in favor of vanilla JavaScript with the native HTML dialog element
+- Fixed issue with body element being modified by Bootstrap modal code
+- Added proper AJAX request handling with `X-Requested-With: XMLHttpRequest` header to ensure only dialog content is loaded
+- Refactored modal in `nav_modules.html` to use native HTML `<dialog>` element for better performance and accessibility
+
+### Added
+
+- `/components_dashboard/_blueprint-dialog.scss` for styling the native dialog component- Added district, organisation, description and topics to kiezradar (project overview) search.
+- render_module_insights template tag for rendering insights/stats per module
+- timeline include for representation of project modules & events
+- add vorhaben tile
+
+### Fixed
+
+- Kiezradar serializer by including dict value for point field (fix comes from adhocracy4)
+- search profile filtering with postgresql full text search
+- kiez update issue when user has 5 kiezes
+
+### Removed
+
+- get_num_entries template tag
+
+
 ## v2502.1
 
 ### Changed

@@ -8,5 +8,10 @@
 }
 
 .project-actions__right {
+    color: $link-color;
     margin-left: auto;
+
+    .fa {
+        color: $link-color;
+    }
 }

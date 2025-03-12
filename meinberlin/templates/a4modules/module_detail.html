@@ -17,7 +17,8 @@
     {{ block.super }}
 
     {% if project.is_draft %}
-        {% include 'meinberlin_contrib/components/info-box.html' with info_message='This project has not yet been published.' %}
+        {% translate 'This project has not yet been published.' as info %}
+        {% include 'meinberlin_contrib/components/info-box.html' with info_message=info %}
     {% endif %}
 {% endblock extra_messages %}
 

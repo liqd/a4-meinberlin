@@ -55,15 +55,13 @@
     }
 }
 
-// Needed for due to Bo js not working
-.card__header .title:hover {
-    cursor: pointer;
-    text-decoration: underline;
-}
-
 .card__header .title--no-underline:hover {
     cursor: default;
     text-decoration: none;
+}
+
+.card__link {
+    color: $link-color;
 }
 
 .card__link--hover {
@@ -102,4 +100,23 @@
 .card__button--active i,
 .card__button:hover i {
     color: $body-bg;
+}
+
+.card--archived .card__stats,
+.card--archived .title,
+.card--archived .pill:not(.pill--archived) { 
+    filter: grayscale(100%);
+    opacity: 0.7;
+}
+
+.pill--archived,
+.card__link {
+    filter: none;
+    opacity: 1;
+}
+
+// Needed for due to Bo js not working
+.card__header .title:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }

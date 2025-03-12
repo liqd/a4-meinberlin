@@ -1,71 +1,66 @@
 {% extends "base.html" %}
 {% load i18n rules thumbnail wagtailcore_tags meinberlin_project_tags offlineevent_tags contrib_tags ckeditor_tags static %}
-
 {% block extra_js %}
-  {{ block.super }}
-  <script type="text/javascript" src="{% static 'dsgvo_video_embed.js' %}"></script>
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'dsgvo_video_embed.js' %}"></script>
 {% endblock extra_js %}
-
-{% block title %}{{ project.name }} — {{ block.super }}{% endblock title %}
-
+{% block title %}
+    {{ project.name }} — {{ block.super }}
+{% endblock title %}
 {% block extra_messages %}
-  {{ block.super }}
-
-  {% if project.is_draft %}
-    {% include 'meinberlin_contrib/components/info-box.html' with info_message='This project has not yet been published.' %}
-  {% endif %}
+    {{ block.super }}
+    {% if project.is_draft %}
+        {% translate 'This project has not yet been published.' as info %}
+        {% include 'meinberlin_contrib/components/info-box.html' with info_message=info %}
+    {% endif %}
 {% endblock extra_messages %}
-
 {% block breadcrumbs %}
-  <div id="content-header">
-    <nav class="breadcrumb" aria-label='{% translate "You are here:" %}'>
-      <ol>
-        <li><a href="{% url 'wagtail_serve' '' %}">meinBerlin</a></li>
-        <li>
-          <a href="{% url 'meinberlin_plans:plan-list' %}">{% translate "Kiezradar" %}</a>
-        </li>
-        <li class="active" aria-current="page">{{ project.name|truncatechars:50 }}</li>
-      </ol>
-    </nav>
-  </div>
+    <div id="content-header">
+        <nav class="breadcrumb" aria-label='{% translate "You are here:" %}'>
+            <ol>
+                <li>
+                    <a href="{% url 'wagtail_serve' '' %}">meinBerlin</a>
+                </li>
+                <li>
+                    <a href="{% url 'meinberlin_plans:plan-list' %}">{% translate "Kiezradar" %}</a>
+                </li>
+                <li class="active" aria-current="page">{{ project.name|truncatechars:50 }}</li>
+            </ol>
+        </nav>
+    </div>
 {% endblock breadcrumbs %}
-
 {% block content %}
-  <div class="layout-grid__area--maincontent">
-    {% url 'project-information' slug=project.slug as info_page %}
-    {% include 'meinberlin_contrib/components/hero.html' with content=project show_buttons=True hero_link=info_page %}
-    <div id="follow-alert-wrapper"></div>
-    {% include 'meinberlin_projects/project_actions.html' %}
-
-    {% include 'meinberlin_projects/includes/project_details_summary.html' %}
-
-    {% include 'meinberlin_projects/includes/project_participation.html' %}
-
-    {% if events %}
-    <section aria-labelledby="project-events">
-      <div class="actionable-list__header">
-        <h2 id="project-events">{% translate "Offline Events" %}</h2>
-      </div>
-      <ul class="actionable-list">
-        {% for event in events %}
-          <li class="actionable-list__item actionable-list__item--hide-first-line{% if event.is_past %} actionable-list__item--faded{% endif %}">
-            {% html_date event.date 'DATE_FORMAT' %} · {{ event.event_type }}
-            <a href="{{ event.get_absolute_url }}" class="actionable-list__item__body">
-              <h4 class="my-0">{{ event.name }}</h4>
-              <div class="actionable-list__item__actions actionable-list__item__actions--inline">
-                <i class="bicon bicon-arrow-right" aria-hidden="true"></i>
-              </div>
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    </section>
-    {% endif %}
-
-    {% include 'meinberlin_projects/includes/project_insights.html' %}
-
-    {% if project.plans.exists %}
-      {% include 'meinberlin_projects/includes/project_plan.html' %}
-    {% endif %}
-  </div>
+    <div class="layout-grid__area--maincontent">
+        {% url 'project-information' slug=project.slug as info_page %}
+        {% include 'meinberlin_contrib/components/hero.html' with content=project show_buttons=True hero_link=info_page %}
+        <div id="follow-alert-wrapper"></div>
+        {% include 'meinberlin_projects/project_actions.html' %}
+        {% include 'meinberlin_projects/includes/project_details_summary.html' %}
+        {% include 'meinberlin_projects/includes/project_participation.html' %}
+        {% if events %}
+            <section aria-labelledby="project-events">
+                <div class="actionable-list__header">
+                    <h2 id="project-events">{% translate "Offline Events" %}</h2>
+                </div>
+                <ul class="actionable-list">
+                    {% for event in events %}
+                        <li class="actionable-list__item actionable-list__item--hide-first-line{% if event.is_past %} actionable-list__item--faded{% endif %}">
+                            {% html_date event.date 'DATE_FORMAT' %} · {{ event.event_type }}
+                            <a href="{{ event.get_absolute_url }}"
+                               class="actionable-list__item__body">
+                                <h4 class="my-0">{{ event.name }}</h4>
+                                <div class="actionable-list__item__actions actionable-list__item__actions--inline">
+                                    <i class="bicon bicon-arrow-right" aria-hidden="true"></i>
+                                </div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        {% endif %}
+        {% include 'meinberlin_projects/includes/project_insights.html' %}
+        {% if project.plans.exists %}
+            {% include 'meinberlin_projects/includes/project_plan.html' %}
+        {% endif %}
+    </div>
 {% endblock content %}

@@ -40,6 +40,9 @@ export const CardStatus = props => {
           <li className="pill pill--label">
             {'+' + props.numOfMorePills}
           </li>}
+        {props.proposal.is_archived && (
+          <Pill pillClass="pill pill--archived">Archived</Pill>
+        )}
       </ul>
       <ModeratorStatus
         modStatus={props.proposal.moderator_status}

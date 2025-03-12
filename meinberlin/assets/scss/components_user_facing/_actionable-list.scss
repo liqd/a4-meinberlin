@@ -61,6 +61,8 @@
 }
 
 .actionable-list__item__actions {
+    display: flex;
+    flex-direction: column;
     margin-left: auto;
     text-align: right;
     margin-top: 1.5em;
@@ -80,4 +82,14 @@
 
 .actionable-list__item__details {
     margin-left: .75em;
+}
+
+.actionable-list__item__buttons {
+    margin-top: 1.19rem;
+    order: 2;
+
+    @media screen and (min-width: $breakpoint-tablet) {
+        margin-top: 0;
+        order: 0;
+    }
 }

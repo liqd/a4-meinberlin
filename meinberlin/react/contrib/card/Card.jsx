@@ -27,7 +27,7 @@ export const Card = (props) => {
   }
 
   return (
-    <article className="modul-card">
+    <article className={'modul-card ' + (item.is_archived ? 'card--archived' : '')}>
       <header className="card__header">
         {/* eslint-disable-next-line */}
         <h3
@@ -46,7 +46,7 @@ export const Card = (props) => {
           commentCount={item.comment_count}
           voteCount={item.vote_count}
         />
-        <a href={item.url} id={'card-link-' + idx} className={'more' + (hover ? ' card__link--hover' : '')} data-mainlink="true">{translated.detailsStr}
+        <a href={item.url} id={'card-link-' + idx} className={'card__link more' + (hover ? ' card__link--hover' : '')} data-mainlink="true">{translated.detailsStr}
           <span className="aural">{translated.toStr} {item.name}</span>
         </a>
       </section>

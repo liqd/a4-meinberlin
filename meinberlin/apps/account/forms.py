@@ -8,6 +8,14 @@ class ProfileForm(forms.ModelForm):
         model = User
         fields = ["username"]
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["username"].widget.attrs.update(
+            {
+                "autocomplete": "off",
+            }
+        )
+
     def clean_username(self):
         username = self.cleaned_data["username"]
         try:

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-05 13:23+0100\n"
-"PO-Revision-Date: 2025-03-10 10:42+0000\n"
-"Last-Translator: MarleyMi <m.mittmann@liqd.net>\n"
+"PO-Revision-Date: 2025-03-13 10:41+0000\n"
+"Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "main-design-dev/de/>\n"
 "Language: de_DE\n"
@@ -5677,7 +5677,7 @@ msgstr ""
 
 #: meinberlin/templates/navigation_primary.html:28
 msgid "User Account Settings"
-msgstr ""
+msgstr "Nutzerkontoeinstellungen"
 
 #: meinberlin/templates/navigation_primary.html:37
 msgid "Notification Settings"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-05 13:23+0100\n"
-"PO-Revision-Date: 2025-03-13 13:03+0000\n"
+"PO-Revision-Date: 2025-03-13 13:39+0000\n"
 "Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "js-design-dev/de/>\n"
@@ -166,7 +166,7 @@ msgid ""
 "The AI considers some of the characteristics of disinformation to be "
 "fulfilled based on the following words in the comment. The probability is "
 "given in % for each characteristic."
-msgstr "weblate."
+msgstr "%f weblate"
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:9
 msgctxt "defakts"
@@ -990,15 +990,15 @@ msgstr "Eine Person hat Ihren Kommentar in %(title)s bewertet."
 #: meinberlin/react/account/notification_data.js:55
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:7
 msgid "Search Profiles"
-msgstr "Suchprofile"
+msgstr "Gespeicherte Suchen"
 
 #: meinberlin/react/account/notification_data.js:57
 msgid ""
 "Here you will find newly published participation projects that match your "
 "search profiles."
 msgstr ""
-"Hier werden Sie neu veröffentlichte Projekte finden, die Ihren Suchprofilen "
-"entsprechen."
+"Hier werden Sie neu veröffentlichte Projekte finden, die Ihren gespeicherten "
+"Suchen entsprechen."
 
 #: meinberlin/react/account/notification_data.js:60
 msgid ""
@@ -1015,7 +1015,8 @@ msgstr "Suche speichern"
 
 #: meinberlin/react/account/notification_data.js:64
 msgid "A new project, %(title)s, matches your search profile %(name)s"
-msgstr "Ein neues Projekt, %(title)s, entspricht Ihrem Suchprofil %(name)s."
+msgstr ""
+"Ein neues Projekt, %(title)s, entspricht Ihrer gespeicherten Suche %(name)s."
 
 #: meinberlin/react/account/notification_data.js:70
 msgid "Followed projects"
@@ -1531,7 +1532,7 @@ msgstr "Projekte anzeigen"
 #: meinberlin/react/kiezradar/SearchProfile.jsx:24
 #: meinberlin/react/kiezradar/SearchProfile.jsx:30
 msgid "Confirm deletion of %(name)s"
-msgstr "Bitte bestätigen Sie, dass %(name)s gelöscht werden soll."
+msgstr "Löschen von %(name)s bestätigen"
 
 #: meinberlin/react/kiezradar/KiezradarList.jsx:25
 msgid ""
@@ -1539,7 +1540,7 @@ msgid ""
 "addition, search profiles based on this kiez will also be deleted."
 msgstr ""
 "Sie werden diesen Kiez nicht mehr im Kiezradar auswählen können. Außerdem "
-"werden Suchprofile, die diesen Kiez enthalten, gelöscht."
+"werden gespeicherte Suchen, die diesen Kiez enthalten, gelöscht."
 
 #: meinberlin/react/kiezradar/KiezradarMap.jsx:11
 msgid "Choose your radius"
@@ -1602,15 +1603,15 @@ msgstr "Kieze konnten nicht geladen werden"
 
 #: meinberlin/react/kiezradar/Kiezradars.jsx:48
 msgid "You have reached the limit of saved Kieze"
-msgstr "Sie haben das Limit für gespeicherte Kieze erreicht"
+msgstr "Sie haben die Obergrenze an gespeicherten Suchen erreicht."
 
 #: meinberlin/react/kiezradar/Kiezradars.jsx:49
 msgid ""
 "You are using the maximum number of 5 Kieze. To create a new Kiez, you must "
 "delete an existing one."
 msgstr ""
-"Sie haben die maximale Anzahl von 5 Kiezen gespeichert. Um einen weiteren "
-"Kiez zu erstellen, löschen Sie zuvor einen bereits bestehenden Kiez."
+"Sie nutzen die maximale Anzahl von 5 Kiezen. Um einen neuen Kiez zu "
+"erstellen, müssen Sie einen bestehenden Kiez löschen."
 
 #: meinberlin/react/kiezradar/NewKiezradar.jsx:5
 msgid "New Kiezradar"
@@ -1626,17 +1627,17 @@ msgstr "In-App-Benachrichtigungen konnten nicht aktualisiert werden"
 
 #: meinberlin/react/kiezradar/SearchProfile.jsx:9
 msgid "Rename search profile"
-msgstr "Suchprofil umbenennen"
+msgstr "Gespeicherte Suche umbenennen"
 
 #: meinberlin/react/kiezradar/SearchProfile.jsx:17
 #: meinberlin/react/kiezradar/SearchProfile.jsx:18
 msgid "Failed to delete search profile"
-msgstr "Suchprofil konnte nicht gelöscht werden"
+msgstr "Gespeicherte Suche konnte nicht gelöscht werden"
 
 #: meinberlin/react/kiezradar/SearchProfile.jsx:20
 #: meinberlin/react/kiezradar/SearchProfile.jsx:21
 msgid "Failed to update search profile"
-msgstr "Suchprofil konnte nicht aktualisiert werden"
+msgstr "Gespeicherte Suche konnte nicht aktualisiert werden"
 
 #: meinberlin/react/kiezradar/SearchProfile.jsx:28
 #: meinberlin/react/kiezradar/SearchProfile.jsx:34
@@ -1644,8 +1645,8 @@ msgid ""
 "You will no longer receive notifications about new participation projects "
 "with the selected filters."
 msgstr ""
-"Sie werden keine Benachrichtigungen mehr erhalten über neue "
-"Beteiligungsprojekte, die zu den ausgewählten Filtern passen."
+"Sie erhalten keine Benachrichtigungen mehr über neue Beteiligungen mit den "
+"ausgewählten Filtern."
 
 #: meinberlin/react/kiezradar/SearchProfileButtons.jsx:4
 msgid "Rename"
@@ -1653,24 +1654,24 @@ msgstr "Umbenennen"
 
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:9
 msgid "In this area you manage your search profiles."
-msgstr "In diesem Bereich verwalten Sie Ihre Suchprofile."
+msgstr "In diesem Bereich verwalten Sie Ihre gespeicherten Suchen."
 
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:13
 msgid "Failed to fetch search profiles"
-msgstr "Suchprofile konnten nicht geladen werden"
+msgstr "Gespeicherte Suchen konnten nicht geladen werden"
 
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:16
 msgid "Search profile successfully deleted"
-msgstr "Suchprofil erfolgreich gelöscht"
+msgstr "Gespeicherte Suche erfolgreich gelöscht"
 
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:19
 msgid "Your changes have been deleted."
-msgstr ""
+msgstr "Ihre Änderungen wurden gelöscht."
 
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:22
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:24
 msgid "You have reached the limit of saved search profiles"
-msgstr ""
+msgstr "Sie haben die Obergrenze an gespeicherten Suchen erreicht."
 
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:23
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:25
@@ -1678,10 +1679,12 @@ msgid ""
 "You are using the maximum number of 10 search profiles. To save a new one, "
 "you must delete an existing profile."
 msgstr ""
+"Sie nutzen die maximale Anzahl von 10 gespeicherten Suchen. Um eine neue "
+"Suche zu speichern, müssen Sie eine bestehende Suche löschen."
 
 #: meinberlin/react/kiezradar/use-create-search-profile.js:6
 msgid "Error creating search profile"
-msgstr ""
+msgstr "Fehler beim Erstellen einer gespeicherten Suche"
 
 #: meinberlin/react/livequestions/CategorySelect.jsx:4
 #: meinberlin/react/livequestions/Filters.jsx:7
@@ -1764,7 +1767,7 @@ msgstr "Vorgemerkt"
 
 #: meinberlin/react/livequestions/QuestionBox.jsx:12
 msgid "No questions available at the moment."
-msgstr ""
+msgstr "Bisher wurden keine Fragen eingereicht."
 
 #: meinberlin/react/livequestions/QuestionBox.jsx:13
 msgid "Statistics"
@@ -1837,7 +1840,7 @@ msgstr "Karten-Themenliste"
 
 #: meinberlin/react/plans/FilterNav.jsx:7
 msgid "Filter bar for Kiezradar"
-msgstr ""
+msgstr "Filter für Kiezradar"
 
 #: meinberlin/react/plans/FilterNav.jsx:8
 msgid "I am interested in projects from"
@@ -1901,37 +1904,41 @@ msgstr "Projekte anzeigen"
 
 #: meinberlin/react/plans/SaveSearchProfile.jsx:8
 msgid "Login or register to save a search profile"
-msgstr ""
+msgstr "Anmelden oder registrieren um die Suche zu speichern"
 
 #: meinberlin/react/plans/SaveSearchProfile.jsx:9
 msgid ""
 "To save your search profile and access it later, please log in or create an "
 "account."
 msgstr ""
+"Um Ihre Suche zu speichern und später darauf zuzugreifen, melden Sie sich an "
+"oder registrieren Sie sich."
 
 #: meinberlin/react/plans/SaveSearchProfile.jsx:10
 msgid "Continue to login"
-msgstr ""
+msgstr "Weiter zum Login"
 
 #: meinberlin/react/plans/SaveSearchProfile.jsx:11
 msgid "Please note, your current selection won’t be saved automatically"
 msgstr ""
+"Beachten Sie, dass Ihre derzeitige Suchauswahl nicht automatisch gespeichert "
+"wird."
 
 #: meinberlin/react/plans/SaveSearchProfile.jsx:12
 msgid "After logging in, you can create and save a new search profile."
-msgstr ""
+msgstr "Nach der Anmeldung können Sie eine neue Suche speichern."
 
 #: meinberlin/react/plans/SaveSearchProfile.jsx:13
 msgid "View search profiles"
-msgstr ""
+msgstr "gespeicherte Suchen anzeigen"
 
 #: meinberlin/react/plans/SaveSearchProfile.jsx:14
 msgid "You can only create 10 search profiles."
-msgstr ""
+msgstr "Sie können nur 10 Suchen speichern."
 
 #: meinberlin/react/plans/SaveSearchProfile.jsx:15
 msgid "Save search profile"
-msgstr ""
+msgstr "Suche Speichern"
 
 #: meinberlin/react/projects/ProjectTile.jsx:9
 msgid "copyright missing"
@@ -1963,11 +1970,11 @@ msgstr "Vorhaben"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:17
 msgid "Kiezes & Districts"
-msgstr ""
+msgstr "Kieze & Bezirke"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:18
 msgid "Choose district or Kiez"
-msgstr ""
+msgstr "Bezirk oder Kiez auswählen"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:19
 msgid "Your saved Kieze"
@@ -2015,7 +2022,7 @@ msgstr "Projekte anzeigen"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:34
 msgid "Search profile created successfully"
-msgstr ""
+msgstr "Suchprofil erfolgreich erstellt"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:37
 msgid ""
@@ -2023,10 +2030,13 @@ msgid ""
 "can manage your search profiles in the User Settings under <a "
 "href=\"%(url)s\">Search Profiles</a>."
 msgstr ""
+"Sie werden über neue Projekte mit den ausgewählten Filtern benachrichtigt. "
+"Sie können Ihre Suchprofile in den Nutzereinstellungen unter <a href=\"%(url)"
+"s\">Search Profiles</a> verwalten."
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:41
 msgid "Search profile cannot be saved"
-msgstr ""
+msgstr "Suchprofil konnte nicht gespeichert werden"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:44
 msgid ""
@@ -2034,6 +2044,9 @@ msgid ""
 "delete an existing profile in the User Settings under <a "
 "href=\"%(url)s\">Search Profiles</a>."
 msgstr ""
+"Sie haben die maximale Anzahl an 10 Suchprofilen erstellt. Um ein neues zu "
+"erstellen, löschen Sie ein bestehendes Suchprofil in den Nutzereinstellungen "
+"unter [<a href=\"%(url)s\">Search Profiles</a>."
 
 #: meinberlin/react/projects/ProjectsListMapBox.jsx:15
 msgid "Kiezradar"

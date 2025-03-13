@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-05 13:23+0100\n"
-"PO-Revision-Date: 2025-03-13 10:41+0000\n"
+"PO-Revision-Date: 2025-03-13 11:54+0000\n"
 "Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "main-design-dev/de/>\n"
@@ -3365,7 +3365,7 @@ msgstr "Suchprofil %d"
 
 #: meinberlin/apps/kiezradar/templates/meinberlin_kiezradar/kiezradar.html:4
 msgid "Kiez selection"
-msgstr ""
+msgstr "Kiezauswahl"
 
 #: meinberlin/apps/kiezradar/templates/meinberlin_kiezradar/search_profile_list.html:4
 msgid "Search profiles"

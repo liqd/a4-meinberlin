@@ -29,7 +29,9 @@ def get_public_projects() -> QuerySet[Project]:
             is_archived=False,
         )
         .order_by("created")
-        .select_related("administrative_district", "organisation")
+        .select_related(
+            "administrative_district", "organisation", "externalproject__bplan"
+        )
         .prefetch_related(
             "moderators",
             "plans",

@@ -316,6 +316,21 @@ def test_searchprofile_filter_query(
 
 
 @pytest.mark.django_db
+def test_searchprofile_filter_query_bplan(
+    search_profile_factory,
+    kiezradar_query_factory,
+    bplan_factory,
+):
+    bplan = bplan_factory(identifier="B30-1 A30-bplan 2024")
+    bplan_profile = search_profile_factory(
+        query=kiezradar_query_factory(text="A30-bplan")
+    )
+
+    result = get_search_profiles_for_project(bplan).order_by("pk")
+    assert list(result) == [bplan_profile]
+
+
+@pytest.mark.django_db
 def test_searchprofile_filter_kiezradar(
     user, phase_factory, search_profile_factory, kiez_radar_factory
 ):

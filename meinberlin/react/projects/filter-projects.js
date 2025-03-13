@@ -21,7 +21,6 @@ const statusNames = ['active', 'future', 'past']
 
 export const filterProjects = (items, appliedFilters, kiezradars, topics, projectState) => {
   const { search, topics: activeTopics, districts, organisation, participations, plansOnly, kiezradars: activeKiezradars } = appliedFilters
-
   return items.filter((item) => {
     const isWithinAnyRadius =
       item.point && kiezradars.some(kiezradar =>
@@ -39,6 +38,7 @@ export const filterProjects = (items, appliedFilters, kiezradars, topics, projec
         isInTitle(item.district, search) ||
         isInTitle(item.organisation, search) ||
         isInTitle(item.description, search) ||
+        isInTitle(item.identifier, search) ||
         isInTopic(topics, item.topics, search)) &&
       (projectState.includes(statusNames[item.status])) &&
       (!plansOnly || item.type === 'plan') &&

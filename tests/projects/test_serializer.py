@@ -35,7 +35,7 @@ def test_project_serializer(
         tile_image_alt_text="img_alt",
     )
     external_project_factory()
-    bplan_factory()
+    bplan_factory(identifier="bplan 2013-01-01")
 
     now = parse("2013-01-01 18:00:00+01:00")
     yesterday = now - timezone.timedelta(days=1)
@@ -165,3 +165,5 @@ def test_project_serializer(
         assert not project_data[5]["tile_image_alt_text"]
 
         assert project_data[0]["point"] == geojson_point
+
+        assert project_data[5]["identifier"] == "bplan 2013-01-01"

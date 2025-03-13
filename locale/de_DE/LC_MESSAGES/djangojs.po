@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-05 13:23+0100\n"
-"PO-Revision-Date: 2025-03-13 13:39+0000\n"
+"PO-Revision-Date: 2025-03-13 13:41+0000\n"
 "Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "js-design-dev/de/>\n"
@@ -1978,7 +1978,7 @@ msgstr "Bezirk oder Kiez auswählen"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:19
 msgid "Your saved Kieze"
-msgstr ""
+msgstr "Ihre gespeicherten Kieze"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:20
 msgid "Create a Kiez to use this filter"

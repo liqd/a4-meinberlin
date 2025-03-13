@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-05 13:23+0100\n"
-"PO-Revision-Date: 2025-03-13 13:41+0000\n"
+"PO-Revision-Date: 2025-03-14 14:15+0000\n"
 "Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "js-design-dev/de/>\n"
@@ -923,7 +923,7 @@ msgstr "Benachrichtigungen konnten nicht geladen werden"
 
 #: meinberlin/react/account/FeedList.jsx:11
 msgid "Mark All As Read"
-msgstr "alle als gelesen markieren"
+msgstr "Alle als gelesen markieren"
 
 #: meinberlin/react/account/NotificationToggle.jsx:5
 msgid "E-Mail"
@@ -1059,15 +1059,15 @@ msgstr "Die Veranstaltung %(eventName)s in %(title)s findet am %(date)s statt."
 
 #: meinberlin/react/account/notification_data.js:94
 msgid "View idea"
-msgstr "zur Idee"
+msgstr "Idee anzeigen"
 
 #: meinberlin/react/account/notification_data.js:95
 msgid "View comment"
-msgstr "zum Kommentar"
+msgstr "Kommentar anzeigen"
 
 #: meinberlin/react/account/notification_data.js:96
 msgid "View project"
-msgstr "zum Projekt"
+msgstr "Projekt anzeigen"
 
 #: meinberlin/react/account/notification_data.js:101
 #: meinberlin/react/account/notification_data.js:5
@@ -1946,7 +1946,7 @@ msgstr "Copyright fehlt"
 
 #: meinberlin/react/projects/ProjectTile.jsx:10
 msgid "copyright by"
-msgstr "©"
+msgstr "Urheberrecht:"
 
 #: meinberlin/react/projects/ProjectTile.jsx:11
 msgid "Participation ended"
@@ -1982,7 +1982,7 @@ msgstr "Ihre gespeicherten Kieze"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:20
 msgid "Create a Kiez to use this filter"
-msgstr ""
+msgstr "In den Nutzerkontoeinstellungen können Sie eigene Kieze erstellen."
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:21
 msgid "Districts"
@@ -2123,7 +2123,7 @@ msgstr ""
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "Link to video: "
-msgstr ""
+msgstr "Link zum Video: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
 msgid "Play video"
@@ -2131,7 +2131,7 @@ msgstr "Video abspielen"
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:16
 msgid "External video"
-msgstr ""
+msgstr "Externes Video"
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:17
 msgid ""
@@ -2139,10 +2139,15 @@ msgid ""
 "only be loaded after you give your consent. Only then will Vimeo set cookies "
 "that collect information on user behaviour."
 msgstr ""
+"Hier finden Sie ein Video von Vimeo. Zum Schutz Ihrer Daten werden die "
+"Inhalte erst nach Ihrer Einwilligung geladen. Erst dann setzt Vimeo Cookies, "
+"die Informationen zum Nutzerverhalten sammeln."
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:18
 msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr ""
+"Weitere Informationen hierzu finden Sie in der Datenschutzerklärung von "
+"Vimeo unter: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "play video"

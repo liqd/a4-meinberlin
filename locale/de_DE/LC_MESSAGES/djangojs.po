@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-05 13:23+0100\n"
-"PO-Revision-Date: 2025-03-07 10:15+0000\n"
-"Last-Translator: MarleyMi <m.mittmann@liqd.net>\n"
+"PO-Revision-Date: 2025-03-13 10:41+0000\n"
+"Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "js-design-dev/de/>\n"
 "Language: de_DE\n"
@@ -150,14 +150,14 @@ msgstr "Melden"
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:6
 msgctxt "defakts"
 msgid "The defakt AI has found evidence of disinformation."
-msgstr ""
+msgstr "weblate."
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:7
 msgctxt "defakts"
 msgid ""
 "Defakts uses artificial intelligence to check content for disinformation "
 "based on certain linguistic characteristics."
-msgstr ""
+msgstr "weblate."
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:8
 #, javascript-format
@@ -166,7 +166,7 @@ msgid ""
 "The AI considers some of the characteristics of disinformation to be "
 "fulfilled based on the following words in the comment. The probability is "
 "given in % for each characteristic."
-msgstr ""
+msgstr "weblate."
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:9
 msgctxt "defakts"
@@ -174,7 +174,7 @@ msgid ""
 "If you want to know more about what the characteristics mean, please visit "
 "our [FAQs]. Here you will also find advice on how to respond constructively "
 "to disinformation."
-msgstr ""
+msgstr "weblate."
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:10
 msgctxt "defakts"
@@ -203,12 +203,12 @@ msgstr "Weniger anzeigen"
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:14
 msgctxt "defakts"
 msgid "Show AI info to users"
-msgstr ""
+msgstr "weblate."
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:15
 msgctxt "defakts"
 msgid "Hide AI info from users"
-msgstr ""
+msgstr "weblate."
 
 #: adhocracy4/comments_async/static/comments_async/category_list.jsx:5
 msgid "Choose categories for your comment"
@@ -562,21 +562,21 @@ msgstr "Offene Frage"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:17
 msgid "Voting Options"
-msgstr ""
+msgstr "Weblate"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:18
 msgid "Allow unregistered users to vote"
-msgstr ""
+msgstr "weblate"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:19
 msgid ""
 "Enable this option to allow users who are not registered to participate in "
 "the voting process."
-msgstr ""
+msgstr "weblate."
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:20
 msgid "Add and Edit Questions"
-msgstr ""
+msgstr "Hinzufügen und Bearbeiten von Fragen"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:188
 msgid "The poll has been updated."
@@ -644,7 +644,7 @@ msgstr "Neue Antwort"
 
 #: adhocracy4/polls/static/PollDetail/CharCounter.jsx:5
 msgid "characters"
-msgstr ""
+msgstr "Zeichen"
 
 #: adhocracy4/polls/static/PollDetail/ChoiceRow.jsx:6
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:110
@@ -744,7 +744,7 @@ msgstr "Ihre Wahl"
 
 #: adhocracy4/polls/static/PollDetail/TextareaWithCounter.jsx:7
 msgid "Please specify:"
-msgstr ""
+msgstr "Bitte ergänzen:"
 
 #: adhocracy4/ratings/static/ratings/RatingBox.jsx:9
 #: meinberlin/react/livequestions/LikeCard.jsx:7
@@ -758,15 +758,15 @@ msgstr "gefällt nicht"
 
 #: adhocracy4/ratings/static/ratings/RatingButton.jsx:5
 msgid "Click to like"
-msgstr ""
+msgstr "Klicken für gefällt mir"
 
 #: adhocracy4/ratings/static/ratings/RatingButton.jsx:6
 msgid "Click to dislike"
-msgstr ""
+msgstr "Klicken für gefällt mir nicht"
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:7
 msgid "Report Content"
-msgstr ""
+msgstr "Inhalt melden"
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:8
 msgid "Report sent"
@@ -786,7 +786,7 @@ msgstr "Meldung senden"
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:13
 msgid "Please enter a message before submitting."
-msgstr ""
+msgstr "Bitte fügen Sie einen Nachricht ein."
 
 #: adhocracy4/reports/static/reports/react_reports.jsx:16
 msgid ""
@@ -794,6 +794,9 @@ msgid ""
 "moderation team. They will review the reported content, and if it violates "
 "our discussion rules (netiquette), it will be removed."
 msgstr ""
+"Sie möchten diesen Beitrag melden? Ihre Nachricht wird an die Moderation "
+"weitergeleitet. Diese prüft den gemeldeten Beitrag. Er wird gelöscht, wenn "
+"er nicht unseren Diskussionsregeln (Netiquette) entspricht."
 
 #: adhocracy4/static/Captcha.jsx:5
 #: meinberlin/apps/captcha/assets/captcheck.js:29
@@ -887,19 +890,19 @@ msgstr ""
 
 #: meinberlin/react/account/FeedItem.jsx:8
 msgid "now"
-msgstr ""
+msgstr "jetzt"
 
 #: meinberlin/react/account/FeedItem.jsx:10
 msgid "%(minutes)sm ago"
-msgstr ""
+msgstr "vor %(minutes)smin"
 
 #: meinberlin/react/account/FeedItem.jsx:15
 msgid "%(hours)sh ago"
-msgstr ""
+msgstr "vor %(hours)sh"
 
 #: meinberlin/react/account/FeedItem.jsx:19
 msgid "Yesterday"
-msgstr ""
+msgstr "gestern"
 
 #: meinberlin/react/account/FeedList.jsx:9
 #: meinberlin/react/kiezradar/EditKiezradar.jsx:9

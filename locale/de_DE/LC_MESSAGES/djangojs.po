@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-05 13:23+0100\n"
-"PO-Revision-Date: 2025-03-13 10:41+0000\n"
+"PO-Revision-Date: 2025-03-13 11:54+0000\n"
 "Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "js-design-dev/de/>\n"
@@ -921,7 +921,7 @@ msgstr ""
 
 #: meinberlin/react/account/FeedList.jsx:11
 msgid "Mark All As Read"
-msgstr ""
+msgstr "alle als gelesen markieren"
 
 #: meinberlin/react/account/NotificationToggle.jsx:5
 msgid "E-Mail"
@@ -933,53 +933,57 @@ msgstr "In-App"
 
 #: meinberlin/react/account/notification_data.js:5
 msgid "Interactions"
-msgstr ""
+msgstr "Interaktionen"
 
 #: meinberlin/react/account/notification_data.js:7
 msgid ""
 "Here you can see all the interactions you have with other users on "
 "meinBerlin."
 msgstr ""
+"Hier sehen Sie alle Interaktionen, die Sie mit anderen Nutzer*innen der "
+"Plattform haben."
 
 #: meinberlin/react/account/notification_data.js:10
 msgid "No reactions to your posts yet. Get involved to get reactions."
 msgstr ""
+"Noch keine Reaktionen auf Ihre Beiträge. Beteiligen Sie sich, um Reaktionen "
+"zu bekommen."
 
 #: meinberlin/react/account/notification_data.js:12
 msgid "Find participation projects"
-msgstr ""
+msgstr "Beteiligungsprojekte finden"
 
 #: meinberlin/react/account/notification_data.js:14
 msgid "A moderator has responded to your idea in %(title)s"
-msgstr ""
+msgstr "Die Moderation hat auf Ihre Idee in %(title)s reagiert."
 
 #: meinberlin/react/account/notification_data.js:19
 msgid "A user has replied to your idea in %(title)s"
-msgstr ""
+msgstr "Eine Person hat auf Ihre Idee in %(title)s geantwortet."
 
 #: meinberlin/react/account/notification_data.js:24
 msgid "A moderator has responded to your comment in %(title)s"
-msgstr ""
+msgstr "Die Moderation hat auf Ihren Kommentar in %(title)s reagiert."
 
 #: meinberlin/react/account/notification_data.js:29
 msgid "A user has replied to your comment in %(title)s"
-msgstr ""
+msgstr "Eine Person hat auf Ihren Kommentar in %(title)s geantwortet."
 
 #: meinberlin/react/account/notification_data.js:34
 msgid "Users have rated your idea in %(title)s"
-msgstr ""
+msgstr "Person haben Ihren Kommentar in %(title)s bewertet."
 
 #: meinberlin/react/account/notification_data.js:39
 msgid "A user has rated your idea in %(title)s"
-msgstr ""
+msgstr "Eine Person hat Ihre Idee in %(title)s bewertet."
 
 #: meinberlin/react/account/notification_data.js:44
 msgid "Users have rated your comment in %(title)s"
-msgstr ""
+msgstr "Personen haben Ihren Kommentar in %(title)s bewertet."
 
 #: meinberlin/react/account/notification_data.js:49
 msgid "A user has rated your comment in %(title)s"
-msgstr ""
+msgstr "Eine Person hat Ihren Kommentar in %(title)s bewertet."
 
 #: meinberlin/react/account/notification_data.js:55
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:7
@@ -991,33 +995,39 @@ msgid ""
 "Here you will find newly published participation projects that match your "
 "search profiles."
 msgstr ""
+"Hier werden Sie neu veröffentlichte Projekte finden, die Ihren Suchprofilen "
+"entsprechen."
 
 #: meinberlin/react/account/notification_data.js:60
 msgid ""
 "No results from your saved searches yet. Add new saved searches and wait for "
 "a matching project to be published."
 msgstr ""
+"Noch keine Ergebnisse aus Ihren gespeicherten Suchen. Fügen Sie neue "
+"gespeicherte Suchen hinzu und warten Sie, bis ein passendes Projekt "
+"veröffentlicht wird."
 
 #: meinberlin/react/account/notification_data.js:62
 msgid "Save a search"
-msgstr ""
+msgstr "Suche speichern"
 
 #: meinberlin/react/account/notification_data.js:64
 msgid "A new project, %(title)s, matches your search profile %(name)s"
-msgstr ""
+msgstr "Ein neues Projekt, %(title)s, entspricht Ihrem Suchprofil %(name)s."
 
 #: meinberlin/react/account/notification_data.js:70
 msgid "Followed projects"
-msgstr ""
+msgstr "Gefolgte Projekte"
 
 #: meinberlin/react/account/notification_data.js:72
 msgid ""
 "Here you will receive all the latest news about the projects you follow."
 msgstr ""
+"Hier werden Sie Neuigkeiten erhalten aus den Projekten, denen Sie folgen."
 
 #: meinberlin/react/account/notification_data.js:75
 msgid "No followed projects. Find projects to follow them."
-msgstr ""
+msgstr "Keine gefolgten Projekte. Finden Sie Projekte, denen Sie folgen wollen."
 
 #: meinberlin/react/account/notification_data.js:77
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:21
@@ -1029,28 +1039,32 @@ msgstr "Endecken Sie Projekte"
 msgid ""
 "%(title)s is now open for participation. You can participate until %(date)s"
 msgstr ""
+"Die Online-Beteiligung im Projekt %(title)s hat begonnen. Sie können bis "
+"%(date)s daran teilnehmen."
 
 #: meinberlin/react/account/notification_data.js:84
 msgid "%(title)s will end soon. You can still participate until %(date)s"
 msgstr ""
+"Die Online-Beteiligung im Projekt %(title)s endet bald. Sie können bis "
+"%(date)s daran teilnehmen."
 
 #: meinberlin/react/account/notification_data.js:89
 msgid ""
 "The event %(eventName)s is coming up for the project %(title)s. It will take "
 "place on %(date)s"
-msgstr ""
+msgstr "Die Veranstaltung %(eventName)s in %(title)s findet am %(date)s statt."
 
 #: meinberlin/react/account/notification_data.js:94
 msgid "View idea"
-msgstr ""
+msgstr "zur Idee"
 
 #: meinberlin/react/account/notification_data.js:95
 msgid "View comment"
-msgstr ""
+msgstr "zum Kommentar"
 
 #: meinberlin/react/account/notification_data.js:96
 msgid "View project"
-msgstr ""
+msgstr "zum Projekt"
 
 #: meinberlin/react/account/notification_data.js:101
 #: meinberlin/react/account/notification_data.js:5
@@ -1466,45 +1480,45 @@ msgstr "Ideenliste"
 
 #: meinberlin/react/kiezradar/EditKiezradar.jsx:8
 msgid "Failed to fetch Kiez"
-msgstr ""
+msgstr "Kiez konnte nicht erstellt werden."
 
 #: meinberlin/react/kiezradar/Kiezradar.jsx:9
 msgid "Loading map..."
-msgstr ""
+msgstr "Karte wird geladen..."
 
 #: meinberlin/react/kiezradar/Kiezradar.jsx:10
 msgid "Name your Kiez selection"
-msgstr ""
+msgstr "Benennen Sie Ihre Auswahl"
 
 #: meinberlin/react/kiezradar/Kiezradar.jsx:11
 msgid "Save Kiez selection"
-msgstr ""
+msgstr "Kiezauswahl Speichern"
 
 #: meinberlin/react/kiezradar/Kiezradar.jsx:12
 #: meinberlin/react/kiezradar/SearchProfile.jsx:12
 #: meinberlin/react/plans/SaveSearchProfile.jsx:16
 msgid "Saving"
-msgstr ""
+msgstr "Speichern"
 
 #: meinberlin/react/kiezradar/Kiezradar.jsx:14
 msgid "Failed to update kiezradar filter"
-msgstr ""
+msgstr "Der Kiezradar-Filter konnte nicht aktualisiert werden."
 
 #: meinberlin/react/kiezradar/KiezradarList.jsx:9
 msgid "No saved Kiezes"
-msgstr ""
+msgstr "Keine gespeicherten Kieze"
 
 #: meinberlin/react/kiezradar/KiezradarList.jsx:10
 msgid "Add Kiez"
-msgstr ""
+msgstr "Kiez hinzufügen"
 
 #: meinberlin/react/kiezradar/KiezradarList.jsx:11
 msgid "Your Kiezes"
-msgstr ""
+msgstr "Ihre Kieze"
 
 #: meinberlin/react/kiezradar/KiezradarList.jsx:14
 msgid "Failed to delete kiezradar"
-msgstr ""
+msgstr "Kiez konnte nicht gelöscht werden"
 
 #: meinberlin/react/kiezradar/KiezradarList.jsx:18
 #: meinberlin/react/kiezradar/SearchProfile.jsx:14
@@ -1515,39 +1529,43 @@ msgstr "Projekte anzeigen"
 #: meinberlin/react/kiezradar/SearchProfile.jsx:24
 #: meinberlin/react/kiezradar/SearchProfile.jsx:30
 msgid "Confirm deletion of %(name)s"
-msgstr ""
+msgstr "Bitte bestätigen Sie, dass %(name)s gelöscht werden soll."
 
 #: meinberlin/react/kiezradar/KiezradarList.jsx:25
 msgid ""
 "You will no longer be able to select this kiez in the Kiezradar. In "
 "addition, search profiles based on this kiez will also be deleted."
 msgstr ""
+"Sie werden diesen Kiez nicht mehr im Kiezradar auswählen können. Alle "
+"Suchprofile, die diesen Kiez enthalten, werden gelöscht."
 
 #: meinberlin/react/kiezradar/KiezradarMap.jsx:11
 msgid "Choose your radius"
-msgstr ""
+msgstr "Wählen Sie Ihren Radius"
 
 #: meinberlin/react/kiezradar/Kiezradars.jsx:11
 msgid "Kiez selection"
-msgstr ""
+msgstr "Kiezauswahl"
 
 #: meinberlin/react/kiezradar/Kiezradars.jsx:13
 msgid ""
 "Set up your Kiez to get notified when new projects in your area get "
 "published."
 msgstr ""
+"Erstellen Sie einen Kiez um benachrichtigt zu werden, wenn neue Projekte in "
+"Ihrem Kiez veröffentlicht werden."
 
 #: meinberlin/react/kiezradar/Kiezradars.jsx:15
 msgid "Manage Kiezes"
-msgstr ""
+msgstr "Kieze verwalten"
 
 #: meinberlin/react/kiezradar/Kiezradars.jsx:16
 msgid "Create a Kiez"
-msgstr ""
+msgstr "Kiez erstellen"
 
 #: meinberlin/react/kiezradar/Kiezradars.jsx:19
 msgid "Your Kiez %(title)s has been successfully created"
-msgstr ""
+msgstr "Ihre Kiez %(title)s wurde erfolgreich erstellt."
 
 #: meinberlin/react/kiezradar/Kiezradars.jsx:26
 msgid ""

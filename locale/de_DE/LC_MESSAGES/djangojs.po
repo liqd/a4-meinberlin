@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-05 13:23+0100\n"
-"PO-Revision-Date: 2025-03-13 11:54+0000\n"
+"PO-Revision-Date: 2025-03-13 13:03+0000\n"
 "Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "js-design-dev/de/>\n"
@@ -536,6 +536,8 @@ msgstr "Adresssuche"
 msgid ""
 "The chosen address is outside this map's bounds. Please choose another one."
 msgstr ""
+"Die gewählte Adresse befindet sich außerhalb von Berlin. Bitte wählen Sie "
+"eine andere."
 
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:9
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:70
@@ -917,7 +919,7 @@ msgstr "Fehler"
 
 #: meinberlin/react/account/FeedList.jsx:10
 msgid "Failed to fetch notifications"
-msgstr ""
+msgstr "Benachrichtigungen konnten nicht geladen werden"
 
 #: meinberlin/react/account/FeedList.jsx:11
 msgid "Mark All As Read"
@@ -1480,7 +1482,7 @@ msgstr "Ideenliste"
 
 #: meinberlin/react/kiezradar/EditKiezradar.jsx:8
 msgid "Failed to fetch Kiez"
-msgstr "Kiez konnte nicht erstellt werden."
+msgstr "Kiez konnte nicht geladen werden."
 
 #: meinberlin/react/kiezradar/Kiezradar.jsx:9
 msgid "Loading map..."
@@ -1536,8 +1538,8 @@ msgid ""
 "You will no longer be able to select this kiez in the Kiezradar. In "
 "addition, search profiles based on this kiez will also be deleted."
 msgstr ""
-"Sie werden diesen Kiez nicht mehr im Kiezradar auswählen können. Alle "
-"Suchprofile, die diesen Kiez enthalten, werden gelöscht."
+"Sie werden diesen Kiez nicht mehr im Kiezradar auswählen können. Außerdem "
+"werden Suchprofile, die diesen Kiez enthalten, gelöscht."
 
 #: meinberlin/react/kiezradar/KiezradarMap.jsx:11
 msgid "Choose your radius"
@@ -1573,40 +1575,46 @@ msgid ""
 "selecting %(title)s you can explore projects from this Kiez. Individual "
 "adjustments are possible under “Manage Kiezes”."
 msgstr ""
+"Sie finden %(title)s unter \"Kieze & Bezirke\" auf der Kiezradar-Seite. Auch "
+"Auswählen von \"Mein Kiez\" können Sie Projekte aus diesem Kiez erkunden. "
+"Individuelle Anpassungen sind in den Nutzereinstellungen unter \"Kieze "
+"verwalten\" möglich."
 
 #: meinberlin/react/kiezradar/Kiezradars.jsx:33
 msgid "%(title)s successfully updated"
-msgstr ""
+msgstr "%(title)s wurde erfolgreich erstellt"
 
 #: meinberlin/react/kiezradar/Kiezradars.jsx:37
 msgid "Your changes have been saved."
-msgstr ""
+msgstr "Ihre Änderungen wurden gespeichert."
 
 #: meinberlin/react/kiezradar/Kiezradars.jsx:39
 msgid "%(title)s deleted"
-msgstr ""
+msgstr "%(title)s wurde gelöscht"
 
 #: meinberlin/react/kiezradar/Kiezradars.jsx:42
 msgid "%(title)s has been permanently deleted."
-msgstr ""
+msgstr "%(title)s wurde unwiderruflich gelöscht."
 
 #: meinberlin/react/kiezradar/Kiezradars.jsx:47
 msgid "Failed to fetch Kiezes"
-msgstr ""
+msgstr "Kieze konnten nicht geladen werden"
 
 #: meinberlin/react/kiezradar/Kiezradars.jsx:48
 msgid "You have reached the limit of saved Kieze"
-msgstr ""
+msgstr "Sie haben das Limit für gespeicherte Kieze erreicht"
 
 #: meinberlin/react/kiezradar/Kiezradars.jsx:49
 msgid ""
 "You are using the maximum number of 5 Kieze. To create a new Kiez, you must "
 "delete an existing one."
 msgstr ""
+"Sie haben die maximale Anzahl von 5 Kiezen gespeichert. Um einen weiteren "
+"Kiez zu erstellen, löschen Sie zuvor einen bereits bestehenden Kiez."
 
 #: meinberlin/react/kiezradar/NewKiezradar.jsx:5
 msgid "New Kiezradar"
-msgstr ""
+msgstr "Neuen Kiez erstellen"
 
 #: meinberlin/react/kiezradar/PushNotificationToggle.jsx:7
 msgid "Notifications"
@@ -1614,11 +1622,11 @@ msgstr "Benachrichtigungen"
 
 #: meinberlin/react/kiezradar/PushNotificationToggle.jsx:10
 msgid "Failed to update push notification"
-msgstr ""
+msgstr "In-App-Benachrichtigungen konnten nicht aktualisiert werden"
 
 #: meinberlin/react/kiezradar/SearchProfile.jsx:9
 msgid "Rename search profile"
-msgstr ""
+msgstr "Suchprofil umbenennen"
 
 #: meinberlin/react/kiezradar/SearchProfile.jsx:17
 #: meinberlin/react/kiezradar/SearchProfile.jsx:18
@@ -1628,7 +1636,7 @@ msgstr "Suchprofil konnte nicht gelöscht werden"
 #: meinberlin/react/kiezradar/SearchProfile.jsx:20
 #: meinberlin/react/kiezradar/SearchProfile.jsx:21
 msgid "Failed to update search profile"
-msgstr ""
+msgstr "Suchprofil konnte nicht aktualisiert werden"
 
 #: meinberlin/react/kiezradar/SearchProfile.jsx:28
 #: meinberlin/react/kiezradar/SearchProfile.jsx:34
@@ -1636,10 +1644,12 @@ msgid ""
 "You will no longer receive notifications about new participation projects "
 "with the selected filters."
 msgstr ""
+"Sie werden keine Benachrichtigungen mehr erhalten über neue "
+"Beteiligungsprojekte, die zu den ausgewählten Filtern passen."
 
 #: meinberlin/react/kiezradar/SearchProfileButtons.jsx:4
 msgid "Rename"
-msgstr ""
+msgstr "Umbenennen"
 
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:9
 msgid "In this area you manage your search profiles."
@@ -1647,7 +1657,7 @@ msgstr "In diesem Bereich verwalten Sie Ihre Suchprofile."
 
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:13
 msgid "Failed to fetch search profiles"
-msgstr ""
+msgstr "Suchprofile konnten nicht geladen werden"
 
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:16
 msgid "Search profile successfully deleted"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-04 12:03+0100\n"
-"PO-Revision-Date: 2025-03-13 10:41+0000\n"
+"PO-Revision-Date: 2025-03-14 14:15+0000\n"
 "Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js/de/>\n"
 "Language: de_DE\n"
@@ -342,7 +342,7 @@ msgstr "Weniger anzeigen"
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:9
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:17
 msgid "Ordering"
-msgstr ""
+msgstr "Reihenfolge"
 
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:16
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:16
@@ -1524,15 +1524,15 @@ msgid ""
 "only be loaded after you give your consent. Only then will Vimeo set cookies "
 "that collect information on user behaviour."
 msgstr ""
-"Hier finden Sie ein Video von Vimeo. Um Ihre Daten zu schützen, wird der "
-"Inhalt erst geladen, wenn Sie Ihre Zustimmung gegeben haben. Erst dann setzt "
-"Vimeo Cookies, die Informationen über das Nutzerverhalten sammeln."
+"Hier finden Sie ein Video von Vimeo. Zum Schutz Ihrer Daten werden die "
+"Inhalte erst nach Ihrer Einwilligung geladen. Erst dann setzt Vimeo Cookies, "
+"die Informationen zum Nutzerverhalten sammeln."
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:18
 msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr ""
-"Weitere Informationen finden Sie in den Datenschutzbestimmungen von Vimeo "
-"unter: "
+"Weitere Informationen hierzu finden Sie in der Datenschutzerklärung von "
+"Vimeo unter: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "play video"

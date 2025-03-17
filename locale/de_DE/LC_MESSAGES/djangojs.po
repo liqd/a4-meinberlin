@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-05 13:23+0100\n"
-"PO-Revision-Date: 2025-03-14 14:15+0000\n"
+"PO-Revision-Date: 2025-03-17 10:47+0000\n"
 "Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "js-design-dev/de/>\n"
@@ -2076,7 +2076,7 @@ msgstr "Liste anzeigen"
 #, javascript-format
 msgid "1 Proposal found."
 msgid_plural "%s Proposals found."
-msgstr[0] "1 Suchergebniss"
+msgstr[0] "1 Suchergebnis"
 msgstr[1] "%s  Suchergebnisse"
 
 #: meinberlin/react/projects/ProjectsMapInfo.jsx:7

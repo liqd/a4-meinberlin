@@ -35,7 +35,7 @@ export const Card = (props) => {
           onMouseLeave={handleMouseLeave}
         >{item.name}
         </h3>
-        {children}
+        {children ? <>{children}</> : null}
       </header>
       <section className="card__footer--light">
         <CardStats

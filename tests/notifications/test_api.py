@@ -168,6 +168,11 @@ def test_interactions_mark_single_as_read(
     idea = idea_factory(creator=user)
     comment_factory(content_object=idea)
 
+    notifications = Notification.objects.all()
+    assert notifications.exists(), "No notification was created"
+    notification = notifications.first()
+    assert notification.read_at is None
+
     notification = Notification.objects.filter(recipient=user).first()
     assert notification.read_at is None
     url = reverse("notifications-detail", args=[notification.pk])

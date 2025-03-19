@@ -21,7 +21,7 @@ def periodic_notifications_cleanup():
 
 
 @shared_task
-def send_notifications(action_pk):
+def send_action_notifications(action_pk):
     action = Action.objects.get(pk=action_pk)
     verb = Verbs(action.verb)
     search_profiles = None

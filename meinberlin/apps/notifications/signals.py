@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db.models import signals
 from django.dispatch import receiver
@@ -9,14 +10,18 @@ from adhocracy4.follows.models import Follow
 from adhocracy4.projects.models import Project
 
 from . import emails
-from . import tasks
+from .tasks import send_action_notifications
 
 User = get_user_model()
 
 
 @receiver(signals.post_save, sender=Action)
 def send_notifications(instance, created, **kwargs):
-    tasks.send_notifications.delay(instance.pk)
+    if created:
+        if settings.TEST:
+            send_action_notifications.delay(instance.pk)
+        else:
+            send_action_notifications.delay_on_commit(instance.pk)
 
 
 @receiver(dashboard_signals.project_created)

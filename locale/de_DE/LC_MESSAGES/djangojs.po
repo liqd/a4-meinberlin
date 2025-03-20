@@ -2006,7 +2006,7 @@ msgstr "Kieze & Bezirke"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:18
 msgid "All districts"
-msgstr ""
+msgstr "Alle Bezirke"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:19
 msgid "Your saved Kieze"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-05 13:23+0100\n"
+"POT-Creation-Date: 2025-03-20 11:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,7 +87,7 @@ msgstr "Do you really want to delete this comment?"
 #: meinberlin/react/documents/ChapterNavItem.jsx:5
 #: meinberlin/react/documents/ParagraphForm.jsx:11
 #: meinberlin/react/kiezradar/KiezradarList.jsx:17
-#: meinberlin/react/kiezradar/SearchProfile.jsx:13
+#: meinberlin/react/kiezradar/SearchProfile.jsx:14
 #: meinberlin/react/kiezradar/SearchProfileButtons.jsx:5
 msgid "Delete"
 msgstr "Delete"
@@ -383,7 +383,7 @@ msgstr "Post"
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:21
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
 #: adhocracy4/static/Modal.jsx:7
-#: meinberlin/react/kiezradar/SearchProfile.jsx:10
+#: meinberlin/react/kiezradar/SearchProfile.jsx:11
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -584,7 +584,7 @@ msgstr ""
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:287
 #: meinberlin/react/documents/DocumentManagement.jsx:16
-#: meinberlin/react/kiezradar/SearchProfile.jsx:11
+#: meinberlin/react/kiezradar/SearchProfile.jsx:12
 msgid "Save"
 msgstr "Save"
 
@@ -875,7 +875,7 @@ msgstr "Encrypted"
 msgid "If you leave this page changes you made will not be saved."
 msgstr "If you leave this page changes you made will not be saved."
 
-#: meinberlin/react/account/FeedItem.jsx:8
+#: meinberlin/react/account/FeedItem.jsx:7
 msgid "now"
 msgstr "now"
 
@@ -883,11 +883,11 @@ msgstr "now"
 msgid "%(minutes)sm ago"
 msgstr "%(minutes)sm ago"
 
-#: meinberlin/react/account/FeedItem.jsx:15
+#: meinberlin/react/account/FeedItem.jsx:16
 msgid "%(hours)sh ago"
 msgstr "%(hours)sh ago"
 
-#: meinberlin/react/account/FeedItem.jsx:19
+#: meinberlin/react/account/FeedItem.jsx:20
 msgid "Yesterday"
 msgstr "Yesterday"
 
@@ -896,7 +896,7 @@ msgstr "Yesterday"
 #: meinberlin/react/kiezradar/Kiezradar.jsx:13
 #: meinberlin/react/kiezradar/KiezradarList.jsx:12
 #: meinberlin/react/kiezradar/Kiezradars.jsx:46
-#: meinberlin/react/kiezradar/SearchProfile.jsx:15
+#: meinberlin/react/kiezradar/SearchProfile.jsx:16
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:11
 msgid "Error"
 msgstr "Error"
@@ -938,36 +938,36 @@ msgid "Find participation projects"
 msgstr "Find participation projects"
 
 #: meinberlin/react/account/notification_data.js:14
-msgid "A moderator has responded to your idea in %(title)s"
-msgstr "A moderator has responded to your idea in %(title)s"
+msgid "A moderator has responded to your idea in <a href=\""
+msgstr "A moderator has responded to your idea in <a href=\""
 
 #: meinberlin/react/account/notification_data.js:19
-msgid "A user has replied to your idea in %(title)s"
-msgstr "A user has replied to your idea in %(title)s"
+msgid "A user has replied to your idea in <a href=\""
+msgstr "A user has replied to your idea in <a href=\""
 
 #: meinberlin/react/account/notification_data.js:24
-msgid "A moderator has responded to your comment in %(title)s"
-msgstr "A moderator has responded to your comment in %(title)s"
+msgid "A moderator has responded to your comment in <a href=\""
+msgstr "A moderator has responded to your comment in <a href=\""
 
 #: meinberlin/react/account/notification_data.js:29
-msgid "A user has replied to your comment in %(title)s"
-msgstr "A user has replied to your comment in %(title)s"
+msgid "A user has replied to your comment in <a href=\""
+msgstr "A user has replied to your comment in <a href=\""
 
 #: meinberlin/react/account/notification_data.js:34
-msgid "Users have rated your idea in %(title)s"
-msgstr "Users have rated your idea in %(title)s"
+msgid "Users have rated your idea in <a href=\""
+msgstr "Users have rated your idea in <a href=\""
 
 #: meinberlin/react/account/notification_data.js:39
-msgid "A user has rated your idea in %(title)s"
-msgstr "A user has rated your idea in %(title)s"
+msgid "A user has rated your idea in <a href=\""
+msgstr "A user has rated your idea in <a href=\""
 
 #: meinberlin/react/account/notification_data.js:44
-msgid "Users have rated your comment in %(title)s"
-msgstr "Users have rated your comment in %(title)s"
+msgid "Users have rated your comment in <a href=\""
+msgstr "Users have rated your comment in <a href=\""
 
 #: meinberlin/react/account/notification_data.js:49
-msgid "A user has rated your comment in %(title)s"
-msgstr "A user has rated your comment in %(title)s"
+msgid "A user has rated your comment in <a href=\""
+msgstr "A user has rated your comment in <a href=\""
 
 #: meinberlin/react/account/notification_data.js:55
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:7
@@ -995,8 +995,8 @@ msgid "Save a search"
 msgstr "Save a search"
 
 #: meinberlin/react/account/notification_data.js:64
-msgid "A new project, %(title)s, matches your search profile %(name)s"
-msgstr "A new project, %(title)s, matches your search profile %(name)s"
+msgid "A new project, <a href=\""
+msgstr "A new project, <a href=\""
 
 #: meinberlin/react/account/notification_data.js:70
 msgid "Followed projects"
@@ -1018,22 +1018,13 @@ msgid "Find projects"
 msgstr "Find projects"
 
 #: meinberlin/react/account/notification_data.js:79
-msgid ""
-"%(title)s is now open for participation. You can participate until %(date)s"
-msgstr ""
-"%(title)s is now open for participation. You can participate until %(date)s"
-
 #: meinberlin/react/account/notification_data.js:84
-msgid "%(title)s will end soon. You can still participate until %(date)s"
-msgstr "%(title)s will end soon. You can still participate until %(date)s"
+msgid "<a href=\""
+msgstr "<a href=\""
 
 #: meinberlin/react/account/notification_data.js:89
-msgid ""
-"The event %(eventName)s is coming up for the project %(title)s. It will take "
-"place on %(date)s"
-msgstr ""
-"The event %(eventName)s is coming up for the project %(title)s. It will take "
-"place on %(date)s"
+msgid "The event %(eventName)s is coming up for the project <a href=\""
+msgstr "The event %(eventName)s is coming up for the project <a href=\""
 
 #: meinberlin/react/account/notification_data.js:94
 msgid "View idea"
@@ -1450,7 +1441,7 @@ msgid "Save Kiez selection"
 msgstr "Save Kiez selection"
 
 #: meinberlin/react/kiezradar/Kiezradar.jsx:12
-#: meinberlin/react/kiezradar/SearchProfile.jsx:12
+#: meinberlin/react/kiezradar/SearchProfile.jsx:13
 #: meinberlin/react/plans/SaveSearchProfile.jsx:16
 msgid "Saving"
 msgstr "Saving"
@@ -1476,12 +1467,12 @@ msgid "Failed to delete kiezradar"
 msgstr "Failed to delete kiezradar"
 
 #: meinberlin/react/kiezradar/KiezradarList.jsx:18
-#: meinberlin/react/kiezradar/SearchProfile.jsx:14
+#: meinberlin/react/kiezradar/SearchProfile.jsx:15
 msgid "View projects"
 msgstr "View projects"
 
 #: meinberlin/react/kiezradar/KiezradarList.jsx:21
-#: meinberlin/react/kiezradar/SearchProfile.jsx:24
+#: meinberlin/react/kiezradar/SearchProfile.jsx:25
 msgid "Confirm deletion of %(name)s"
 msgstr "Confirm deletion of %(name)s"
 
@@ -1575,19 +1566,19 @@ msgstr "Notifications"
 msgid "Failed to update push notification"
 msgstr "Failed to update push notification"
 
-#: meinberlin/react/kiezradar/SearchProfile.jsx:9
+#: meinberlin/react/kiezradar/SearchProfile.jsx:10
 msgid "Rename search profile"
 msgstr "Rename search profile"
 
-#: meinberlin/react/kiezradar/SearchProfile.jsx:17
+#: meinberlin/react/kiezradar/SearchProfile.jsx:18
 msgid "Failed to delete search profile"
 msgstr "Failed to delete search profile"
 
-#: meinberlin/react/kiezradar/SearchProfile.jsx:20
+#: meinberlin/react/kiezradar/SearchProfile.jsx:21
 msgid "Failed to update search profile"
 msgstr "Failed to update search profile"
 
-#: meinberlin/react/kiezradar/SearchProfile.jsx:28
+#: meinberlin/react/kiezradar/SearchProfile.jsx:29
 msgid ""
 "You will no longer receive notifications about new participation projects "
 "with the selected filters."
@@ -1916,8 +1907,8 @@ msgid "Kiezes & Districts"
 msgstr "Kiezes & Districts"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:18
-msgid "Choose district or Kiez"
-msgstr "Choose district or Kiez"
+msgid "All districts"
+msgstr "All districts"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:19
 msgid "Your saved Kieze"
@@ -1970,12 +1961,12 @@ msgstr "Search profile created successfully"
 #: meinberlin/react/projects/ProjectsControlBar.jsx:37
 msgid ""
 "You will be informed about new projects that meet the selected filters. You "
-"can manage your search profiles in the User Settings under <a "
-"href=\"%(url)s\">Search Profiles</a>."
+"can manage your search profiles in the User Settings under <a href=\"%"
+"(url)s\">Search Profiles</a>."
 msgstr ""
 "You will be informed about new projects that meet the selected filters. You "
-"can manage your search profiles in the User Settings under <a "
-"href=\"%(url)s\">Search Profiles</a>."
+"can manage your search profiles in the User Settings under <a href=\"%"
+"(url)s\">Search Profiles</a>."
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:41
 msgid "Search profile cannot be saved"
@@ -1984,12 +1975,12 @@ msgstr "Search profile cannot be saved"
 #: meinberlin/react/projects/ProjectsControlBar.jsx:44
 msgid ""
 "You have saved the maximum number of 10 search profiles. To save a new one, "
-"delete an existing profile in the User Settings under <a "
-"href=\"%(url)s\">Search Profiles</a>."
+"delete an existing profile in the User Settings under <a href=\"%"
+"(url)s\">Search Profiles</a>."
 msgstr ""
 "You have saved the maximum number of 10 search profiles. To save a new one, "
-"delete an existing profile in the User Settings under <a "
-"href=\"%(url)s\">Search Profiles</a>."
+"delete an existing profile in the User Settings under <a href=\"%"
+"(url)s\">Search Profiles</a>."
 
 #: meinberlin/react/projects/ProjectsListMapBox.jsx:15
 msgid "Kiezradar"

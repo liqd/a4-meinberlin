@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 Since version v2308 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2503.1.2
+
+### Changed
+
+- notifications signal calling the task for search profiles. Task is now wrapped in a transaction commit, to trigger the task ony after the object that gets passed as parameter is saved in the db.
+- project-search: add bplan identifer to search field
+
+
 ## v2503.1.1
 
 ### Changed

@@ -4,112 +4,127 @@
 {% project_tile_image_alt_text project as project_image_alt_text %}
 
 <a
-  href="{{ project|project_url }}"
-  target="{{ project|is_external|yesno:"_blank,_self" }}"
-  class="project-tile project-tile--vertical"
-  aria-labelledby="project-title-{{ project.id }}"
+    href="{{ project|project_url }}"
+    target="{{ project|is_external|yesno:"_blank,_self" }}"
+    class="project-tile project-tile--vertical"
+    aria-labelledby="project-title-{{ project.id }}"
 >
-  <div class="project-tile__image-wrapper image">
-    {% if project.access.name == "SEMIPUBLIC" %}
-      <div class="project-tile__icon">
-        <i class="fa fa-eye" aria-hidden="true"></i>
-      </div>
-    {% endif %}
-    <img
-      src="{{ project.tile_image|thumbnail_url:'project_tile' | default:"/static/images/placeholder.png" }}"
-      alt="{{ project.tile_image_alt_text }}"
-      height=490
-      width=630
-      class="project-tile__image"
-      loading="lazy"
-    />
-    <span class="image__copyright">
+    <div class="project-tile__image-wrapper image">
+        {% if project.access.name == "SEMIPUBLIC" %}
+            <div class="project-tile__icon">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+            </div>
+        {% endif %}
+        <picture>
+            {% if project.tile_image %}
+                <img
+                    src="{{ project.tile_image|thumbnail_url:'project_thumbnail' }}"
+                    alt="{{ project.tile_image_alt_text }}"
+                    height=510
+                    width=600
+                    class="project-tile__image"
+                    loading="lazy"
+                />
+            {% else %}
+                <source type="image/webp" srcset="{% static "/images/placeholder_tile.webp" %}"/>
+                <source type="image/avif" srcset="{% static "/images/placeholder_tile.avif" %}"/>
+                <img
+                    src="{% static "/images/placeholder_tile.svg" %}"
+                    alt="{{ project.tile_image_alt_text }}"
+                    height=510
+                    width=600
+                    class="project-tile__image"
+                    loading="lazy"
+                />
+            {% endif %}
+        </picture>
+        <span class="image__copyright">
     {% if project.tile_image_copyright %}
-      {% translate 'copyright by' %} {{ project.tile_image_copyright }}
+        {% translate 'copyright by' %} {{ project.tile_image_copyright }}
     {% else %}
-      {% translate 'copyright missing' %}
+        {% translate 'copyright missing' %}
     {% endif %}
   </span>
-  </div>
-  <div class="project-tile__body">
-    <span class="project-tile__head">{{ project.district }}</span>
-    {% if project.topics or project.type == "plan" %}
-      <div class="project-tile__topics">
-        <ul class="pill__list pill__list--inline">
-          {% if project.type == "plan" %}
-            <li class="pill pill--label">{% translate "Plan" %}</li>
-            {% if project.topic_names.0 %}
-              <li class="pill pill--topic">{{ project.topic_names.0 }}</li>
-            {% endif %}
-          {% else %}
-            {% for topic in project.topic_names %}
-              <li class="pill pill--topic">{{ topic }}</li>
-            {% endfor %}
-          {% endif %}
-        </ul>
-      </div>
-    {% endif %}
-
-    <h3 class="project-tile__title" id="project-title-{{ project.id }}">{{ project.name }}</h3>
-    {% if project.description %}
-      <p class="project-tile__description">
-        {{ project.description | truncatechars_html:170 }}
-      </p>
-    {% endif %}
-
-    <div class="project-tile__status">
-      {% if project.running_modules and not project.type == "plan" %}
-        <progress
-          value="{{ project.module_running_progress }}"
-          max="100"
-          aria-valuenow="{{ project.module_running_progress }}"
-          aria-valuemin="0"
-          aria-valuemax="100"
-          id="status-{{ project.id }}"
-          class="status-bar"
-        >
-          {{ project.module_running_progress }}%
-        </progress>
-        <label for="status-{{ project.id }}" class="status-bar__timespan">
-          <i class="far fa-clock" aria-hidden="true"></i>
-          {% if project.module_running_days_left < 365 %}
-            {% blocktranslate with time_left=project.module_running_time_left %}
-              {{ time_left }} remaining
-            {% endblocktranslate %}
-          {% else %}
-            <span>{% translate 'More than 1 year remaining' %}</span>
-          {% endif %}
-        </label>
-      {% elif project.type == "plan" and project.running_modules %}
-        <i class="fas fa-table-cells" aria-hidden="true"></i>
-        <p>
-          <span class="project-tile__plan__count">{{ project.published_projects_count }}</span>
-          {% blocktranslate count counter=list|length %}
-            Participation project
-            {% plural %}
-            Participation projects
-          {% endblocktranslate %}
-        </p>
-      {% elif project.future_modules %}
-        {% html_date project.future_modules.first.module_start 'd.m.Y' as start_date %}
-        <p>
-          {% blocktranslate with date=start_date %}
-            Begins on the {{ date }}
-          {% endblocktranslate %}
-        </p>
-      {% elif project.has_finished %}
-        <p>
-          {% translate 'Participation ended' %}
-        </p>
-      {% endif %}
     </div>
-  </div>
+    <div class="project-tile__body">
+        <span class="project-tile__head">{{ project.district }}</span>
+        {% if project.topics or project.type == "plan" %}
+            <div class="project-tile__topics">
+                <ul class="pill__list pill__list--inline">
+                    {% if project.type == "plan" %}
+                        <li class="pill pill--label">{% translate "Plan" %}</li>
+                        {% if project.topic_names.0 %}
+                            <li class="pill pill--topic">{{ project.topic_names.0 }}</li>
+                        {% endif %}
+                    {% else %}
+                        {% for topic in project.topic_names %}
+                            <li class="pill pill--topic">{{ topic }}</li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+        {% endif %}
 
-{#  {% if project|is_external %}#}
-{#    <div class="maplist-item__corner-badge maplist-item__corner-badge--external"></div>#}
-{#  {% elif project.is_semipublic %}#}
-{#    <div class="maplist-item__corner-badge maplist-item__corner-badge--semi-public"></div>#}
-{#  {% elif project.is_private %}#}
-{#    <div class="maplist-item__corner-badge maplist-item__corner-badge--private"></div>#}
-{#  {% endif %}#}
+        <h3 class="project-tile__title" id="project-title-{{ project.id }}">{{ project.name }}</h3>
+        {% if project.description %}
+            <p class="project-tile__description">
+                {{ project.description | truncatechars_html:170 }}
+            </p>
+        {% endif %}
+
+        <div class="project-tile__status">
+            {% if project.running_modules and not project.type == "plan" %}
+                <progress
+                    value="{{ project.module_running_progress }}"
+                    max="100"
+                    aria-valuenow="{{ project.module_running_progress }}"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    id="status-{{ project.id }}"
+                    class="status-bar"
+                >
+                    {{ project.module_running_progress }}%
+                </progress>
+                <label for="status-{{ project.id }}" class="status-bar__timespan">
+                    <i class="far fa-clock" aria-hidden="true"></i>
+                    {% if project.module_running_days_left < 365 %}
+                        {% blocktranslate with time_left=project.module_running_time_left %}
+                            {{ time_left }} remaining
+                        {% endblocktranslate %}
+                    {% else %}
+                        <span>{% translate 'More than 1 year remaining' %}</span>
+                    {% endif %}
+                </label>
+            {% elif project.type == "plan" and project.running_modules %}
+                <i class="fas fa-table-cells" aria-hidden="true"></i>
+                <p>
+                    <span class="project-tile__plan__count">{{ project.published_projects_count }}</span>
+                    {% blocktranslate count counter=list|length %}
+                        Participation project
+                    {% plural %}
+                        Participation projects
+                    {% endblocktranslate %}
+                </p>
+            {% elif project.future_modules %}
+                {% html_date project.future_modules.first.module_start 'd.m.Y' as start_date %}
+                <p>
+                    {% blocktranslate with date=start_date %}
+                        Begins on the {{ date }}
+                    {% endblocktranslate %}
+                </p>
+            {% elif project.has_finished %}
+                <p>
+                    {% translate 'Participation ended' %}
+                </p>
+            {% endif %}
+        </div>
+    </div>
+
+    {#  {% if project|is_external %}#}
+    {#    <div class="maplist-item__corner-badge maplist-item__corner-badge--external"></div>#}
+    {#  {% elif project.is_semipublic %}#}
+    {#    <div class="maplist-item__corner-badge maplist-item__corner-badge--semi-public"></div>#}
+    {#  {% elif project.is_private %}#}
+    {#    <div class="maplist-item__corner-badge maplist-item__corner-badge--private"></div>#}
+    {#  {% endif %}#}
 </a>

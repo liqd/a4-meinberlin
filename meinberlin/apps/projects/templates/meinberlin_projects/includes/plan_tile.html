@@ -9,14 +9,29 @@
     aria-labelledby="project-title-{{ plan.id }}"
 >
     <div class="project-tile__image-wrapper image">
-        <img
-            src="{{ plan.tile_image|thumbnail_url:'project_tile' | default:"/static/images/placeholder.png" }}"
-            alt="{{ plan.tile_image_alt_text }}"
-            height=490
-            width=630
-            class="project-tile__image"
-            loading="lazy"
-        />
+        <picture>
+            {% if plan.tile_image %}
+                <img
+                    src="{{ plan.tile_image|thumbnail_url:'project_thumbnail' }}"
+                    alt="{{ plan.tile_image_alt_text }}"
+                    height=510
+                    width=600
+                    class="project-tile__image"
+                    loading="lazy"
+                />
+            {% else %}
+                <source type="image/webp" srcset="{% static "/images/placeholder_tile.webp" %}" />
+                <source type="image/avif" srcset="{% static "/images/placeholder_tile.avif" %}" />
+                <img
+                    src="{% static "/images/placeholder_tile.svg" %}"
+                    alt="{{ plan.tile_image_alt_text }}"
+                    height=510
+                    width=600
+                    class="project-tile__image"
+                    loading="lazy"
+                />
+            {% endif %}
+        </picture>
         <span class="image__copyright">
             {% if plan.tile_image_copyright %}
                 {% translate 'copyright by' %} {{ plan.tile_image_copyright }}

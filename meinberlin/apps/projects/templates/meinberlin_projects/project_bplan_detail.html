@@ -3,18 +3,6 @@
 
 {% block title %}{{ project.name }} — {{ block.super }}{% endblock title %}
 
-{% block breadcrumbs %}
-    <div id="content-header">
-        <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
-            <ol>
-                <li><a href="{% url 'wagtail_serve' '' %}">meinBerlin</a></li>
-                <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Kiezradar' %}</a></li>
-                <li class="active" aria-current="page">{{ project.name|truncatechars:50 }}</li>
-            </ol>
-        </nav>
-    </div>
-{% endblock breadcrumbs %}
-
 {% block content %}
 <div id="layout-grid__area--maincontent">
     <div>

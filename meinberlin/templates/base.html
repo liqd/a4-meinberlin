@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load i18n static contrib_tags wagtailuserbar %}
+{% load i18n static contrib_tags wagtailuserbar breadcrumbs_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
@@ -53,7 +53,7 @@
     <!-- FIXME we don't currently want their grid in dashboard however this does not work if someone names wagtail, project or plan page 'dashboard' -->
     <main tabindex="-1" {% if '/dashboard' not in request.path or '/components' not in request.path %} id="layout-grid" {% endif %}>
         <div id="layout-grid__area--contentheader">
-            {% block breadcrumbs %}{% endblock breadcrumbs %}
+            {% block breadcrumbs %}{% render_breadcrumbs %}{% endblock breadcrumbs %}
         </div>
 
         {% if messages %}

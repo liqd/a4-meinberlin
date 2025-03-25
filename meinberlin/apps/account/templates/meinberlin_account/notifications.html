@@ -1,8 +1,13 @@
 {% extends "base.html" %}
 
-{% load i18n static %}
+{% load i18n static breadcrumbs_tags %}
 
 {% block title %}{% translate 'Notifications' %} — {{ block.super }}{% endblock title %}
+
+{% block breadcrumbs %}
+    {% translate "Notifications" as final_title %}
+    {% render_breadcrumbs final_title=final_title %}
+{% endblock breadcrumbs %}
 
 {% block content %}
   {% url "notifications" as notifications_url %}

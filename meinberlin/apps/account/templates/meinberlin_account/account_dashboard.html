@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n socialaccount %}
+{% load i18n socialaccount breadcrumbs_tags %}
 
 {% block title %}
   {% translate "User Dashboard" %}
@@ -8,16 +8,8 @@
 {% endblock title %}
 
 {% block breadcrumbs %}
-  <div id="content-header">
-    <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
-      <ol>
-        <li>
-          <a href="{% url 'wagtail_serve' '' %}">{% translate 'meinBerlin Homepage' %}</a>
-        </li>
-        <li class="active" aria-current="page">{% translate 'Account Settings' %}</li>
-      </ol>
-    </nav>
-  </div>
+    {% translate 'Account & Security' as final_title %}
+    {% render_breadcrumbs final_title=final_title %}
 {% endblock breadcrumbs %}
 
 {% block content %}

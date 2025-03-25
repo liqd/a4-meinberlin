@@ -1,7 +1,12 @@
 {% extends "base.html" %}
-{% load static i18n react_kiezradar %}
+{% load static i18n react_kiezradar breadcrumbs_tags %}
 
 {% block title %}{% translate 'Kiez selection' %} - {{ block.super }}{% endblock title %}
+
+{% block breadcrumbs %}
+    {% translate 'Kiez selection' as final_title %}
+    {% render_breadcrumbs final_title=final_title %}
+{% endblock breadcrumbs %}
 
 {% block extra_js %}
     {{ block.super }}

@@ -1,0 +1,13 @@
+{% load i18n widget_tweaks %}
+
+<div id="content-header">
+    <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
+        <ol>
+            {% for page in pages %}
+                <li{% if forloop.last %} class="active" aria-current="page"{% endif %}>
+                    <a href="{{ page.url }}">{{ page.title }}</a>
+                </li>
+            {% endfor %}
+        </ol>
+    </nav>
+</div>

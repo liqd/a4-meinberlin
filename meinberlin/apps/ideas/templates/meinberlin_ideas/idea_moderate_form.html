@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n breadcrumbs_tags %}
 
 {% block title %}
     {{ object.name }}
@@ -8,28 +8,8 @@
 {% endblock title %}
 
 {% block breadcrumbs %}
-    <div id="content-header">
-        <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
-            <ol>
-                <li>
-                    <a href="{% url 'wagtail_serve' '' %}">meinBerlin</a>
-                </li>
-                <li>
-                    <a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Kiezradar' %}</a>
-                </li>
-                <li>
-                    <a href="{% url 'project-detail' project.slug %}">{{ project.name|truncatechars:50 }}</a>
-                </li>
-                <li>
-                    <a href="{{ module.get_absolute_url }}">{{ module.name|truncatechars:50 }}</a>
-                </li>
-                <li>
-                    <a href="{{ object.get_absolute_url }}">{% translate 'Idea' %}</a>
-                </li>
-                <li class="active" aria-current="page">{% translate 'Moderate idea' %}</li>
-            </ol>
-        </nav>
-    </div>
+    {% translate "Moderate idea" as final_title %}
+    {% render_breadcrumbs final_title=final_title %}
 {% endblock breadcrumbs %}
 
 {% block content %}

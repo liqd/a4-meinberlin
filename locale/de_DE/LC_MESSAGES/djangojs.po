@@ -1087,7 +1087,7 @@ msgstr "Projektbezogene Benachrichtigungen"
 #: meinberlin/react/account/notification_data.js:104
 #: meinberlin/react/account/notification_data.js:8
 msgid "E-Mail Newsletter"
-msgstr "E-Mail Newsletter"
+msgstr "E-Mail-Newsletter"
 
 #: meinberlin/react/account/notification_data.js:106
 #: meinberlin/react/account/notification_data.js:105
@@ -1096,7 +1096,7 @@ msgid ""
 "Receive newsletters with updates and news about the projects you follow via "
 "e-mail."
 msgstr ""
-"Erhalten Sie via E-Mail Newsletter mit Updates und Neuigkeiten aus den "
+"Erhalten Sie via E-Mail-Newsletter mit Updates und Neuigkeiten aus den "
 "Projekten, denen Sie folgen."
 
 #: meinberlin/react/account/notification_data.js:109

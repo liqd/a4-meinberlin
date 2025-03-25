@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n static rules wagtailcore_tags maps_tags thumbnail ckeditor_tags contrib_tags plan_tags %}
+{% load i18n static rules wagtailcore_tags maps_tags thumbnail ckeditor_tags contrib_tags plan_tags breadcrumbs_tags %}
 
 {% block title %}{{ object.title }} – {{ block.super }}{% endblock title %}
 
@@ -27,19 +27,9 @@
         </ul>
     {% endif %}
 {% endblock extra_messages %}
-
 {% block breadcrumbs %}
-    <div id="content-header">
-        <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
-            <ol>
-                <li><a href="{% url 'wagtail_serve' '' %}">meinBerlin</a></li>
-                <li><a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Kiezradar' %}</a></li>
-                <li class="active" aria-current="page">{{ object.title|truncatechars:50 }}</li>
-            </ol>
-        </nav>
-    </div>
+    {% render_breadcrumbs final_title=object.title %}
 {% endblock breadcrumbs %}
-
 {% block content %}
 <div id="layout-grid__area--maincontent">
     {% modify_hero_content object as modified_content %}

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n ckeditor_tags static %}
+{% load i18n ckeditor_tags static breadcrumbs_tags %}
 
 {% block title %}
     {{ project.name }} -{% trans 'Results' %}
@@ -19,22 +19,8 @@
 {% endblock extra_js %}
 
 {% block breadcrumbs %}
-    <div id="content-header">
-        <nav class="breadcrumb" aria-label='{% translate "You are here:" %}'>
-            <ol>
-                <li>
-                    <a href="{% url 'wagtail_serve' '' %}">meinBerlin</a>
-                </li>
-                <li>
-                    <a href="{% url 'meinberlin_plans:plan-list' %}">{% translate "Kiezradar" %}</a>
-                </li>
-                <li>
-                    <a href="{% url 'project-detail' project.slug %}">{{ project.name|truncatechars:50 }}</a>
-                </li>
-                <li class="active" aria-current="page">{% trans 'Results' %}</li>
-            </ol>
-        </nav>
-    </div>
+    {% trans 'Results' as final_title %}
+    {% render_breadcrumbs final_title=final_title %}
 {% endblock breadcrumbs %}
 
 {% block content %}

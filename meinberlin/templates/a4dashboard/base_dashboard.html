@@ -3,11 +3,12 @@
 
 {% block extra_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}" />
-{% endblock %}
+{% endblock extra_css %}
 
 {% block header %}
-{% endblock %}
-{% block menu %}{% endblock %}
+{% endblock header %}
+{% block menu %}{% endblock menu %}
+{% block breadcrumbs %}{% endblock breadcrumbs %}
 
 {% block content %}
 
@@ -71,14 +72,14 @@
                 </nav>
             </div>
         </div>
-    {% endblock %}
+    {% endblock dashboard_nav %}
 {% endif %}
 
 <div class="container">
-    {% block dashboard_content %}{% endblock %}
+    {% block dashboard_content %}{% endblock dashboard_content %}
 </div>
 
-{% endblock %}
+{% endblock content %}
 
 {% block footer %}
-{% endblock %}
+{% endblock footer %}

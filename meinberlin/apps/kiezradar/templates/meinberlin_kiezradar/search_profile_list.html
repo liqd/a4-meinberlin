@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static i18n react_kiezradar_search_profiles %}
+{% load static i18n react_kiezradar_search_profiles breadcrumbs_tags %}
 
 {% block title %}{% translate 'Search profiles' %} - {{ block.super }}{% endblock title %}
 
@@ -8,7 +8,10 @@
     {{ block.super }}
 {% endblock extra_js %}
 
-{% block breadcrumbs %}{% endblock breadcrumbs %}
+{% block breadcrumbs %}
+    {% translate "Search Profiles" as final_title %}
+    {% render_breadcrumbs final_title=final_title %}
+{% endblock breadcrumbs %}
 
 {% block content %}
 <div id="layout-grid__area--maincontent">

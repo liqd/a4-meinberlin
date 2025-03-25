@@ -1,8 +1,13 @@
 {% extends "base.html" %}
 
-{% load i18n static %}
+{% load i18n static breadcrumbs_tags %}
 
 {% block title %}{% translate 'Your user profile' %} — {{ block.super }}{% endblock title %}
+
+{% block breadcrumbs %}
+    {% translate "Notification settings" as final_title %}
+    {% render_breadcrumbs final_title=final_title %}
+{% endblock breadcrumbs %}
 
 {% block content %}
   <h1>{% translate "Notification settings" %}</h1>

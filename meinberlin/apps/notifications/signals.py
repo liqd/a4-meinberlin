@@ -17,8 +17,12 @@ User = get_user_model()
 
 @receiver(signals.post_save, sender=Action)
 def send_notifications(instance, created, **kwargs):
+    """
+    Testing will fail here, if you do not have set `TEST` to `True` in the
+    django settings because of the atomic transaction of `delay_on_commit`.
+    """
     if created:
-        if settings.TEST:
+        if hasattr(settings, "TEST") and settings.TEST:
             send_action_notifications.delay(instance.pk)
         else:
             send_action_notifications.delay_on_commit(instance.pk)

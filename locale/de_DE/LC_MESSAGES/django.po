@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-04 12:03+0100\n"
-"PO-Revision-Date: 2025-03-14 14:15+0000\n"
+"PO-Revision-Date: 2025-03-26 12:15+0000\n"
 "Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main/de/>"
 "\n"
@@ -656,10 +656,10 @@ msgid ""
 "approx. 80 characters. Example: A busy square with people in summer."
 msgstr ""
 "Die Projektbeschreibung wird im Info-Tab angezeigt. Wenn Sie ein Bild "
-"hinzufügen, geben Sie bitte einen alternativen Text an. Er dient als "
-"textliche Beschreibung des Bildinhaltes und wird von Screenreadern "
-"vorgelesen. Beschreiben Sie das Bild in ca. 80 Zeichen. Beispiel: Ein "
-"belebter Platz mit Menschen im Sommer."
+"hinzufügen, geben Sie bitte einen Alternativtext an. Er dient als textliche "
+"Beschreibung des Bildinhaltes und wird von Screenreadern vorgelesen. "
+"Beschreiben Sie das Bild in ca. 80 Zeichen. Beispiel: Ein belebter Platz mit "
+"Menschen im Sommer."
 
 #: adhocracy4/dashboard/forms.py:134
 msgid ""
@@ -673,10 +673,10 @@ msgstr ""
 "Die Ergebnisbeschreibung wird im Ergebnis-Tab angezeigt. Bitte beschreiben "
 "Sie vorab ein Teilnahmeversprechen (was wird mit dem Ergebnis passieren?) "
 "und informieren Sie anschließend über das Ergebnis. Wenn Sie ein Bild "
-"hinzufügen, geben Sie bitte einen alternativen Text an. Er dient als "
-"textliche Beschreibung des Bildinhaltes und wird von Screenreadern "
-"vorgelesen. Beschreiben Sie das Bild in ca. 80 Zeichen. Beispiel: Ein "
-"belebter Platz mit Menschen im Sommer."
+"hinzufügen, geben Sie bitte einen Alternativtext an. Er dient als textliche "
+"Beschreibung des Bildinhaltes und wird von Screenreadern vorgelesen. "
+"Beschreiben Sie das Bild in ca. 80 Zeichen. Beispiel: Ein belebter Platz mit "
+"Menschen im Sommer."
 
 #: adhocracy4/dashboard/forms.py:165
 #: adhocracy4/phases/models.py:66
@@ -1478,7 +1478,7 @@ msgstr "Passwort ändern"
 
 #: meinberlin/apps/account/templates/meinberlin_account/account_dashboard.html:40
 msgid "Email addresses"
-msgstr "E-Mail Adressen"
+msgstr "E-Mail-Adressen"
 
 #: meinberlin/apps/account/templates/meinberlin_account/account_dashboard.html:48
 #: meinberlin/templates/socialaccount/connections.html:5
@@ -1743,7 +1743,7 @@ msgstr ""
 
 #: meinberlin/apps/bplan/models.py:22
 msgid "Office worker email"
-msgstr "E-Mail Adresse der Sachbearbeiter*in"
+msgstr "E-Mail-Adresse der Sachbearbeiter*in"
 
 #: meinberlin/apps/bplan/models.py:48
 msgid "Your Name"
@@ -1751,7 +1751,7 @@ msgstr "Ihr Name"
 
 #: meinberlin/apps/bplan/models.py:49 meinberlin/apps/users/models.py:33
 msgid "Email address"
-msgstr "E-Mail Adresse"
+msgstr "E-Mail-Adresse"
 
 #: meinberlin/apps/bplan/models.py:50
 msgid "Statement"
@@ -3630,10 +3630,10 @@ msgid ""
 "people in summer."
 msgstr ""
 "Wenn Sie ein Bild hinzufügen, achten Sie bitte darauf, dass die Breite nicht "
-"größer als 650px ist und dass Sie einen alternativen Text zum Bild angeben. "
-"Ein Alternativtext dient als textliche Beschreibung des Bildinhaltes und "
-"wird von Screenreadern vorgelesen. Beschreiben Sie das Bild mit ca. 80 "
-"Zeichen. Beispiel: Ein belebter Platz mit Menschen im Sommer."
+"größer als 650px ist und dass Sie einen Alternativtext zum Bild angeben. Ein "
+"Alternativtext dient als textliche Beschreibung des Bildinhaltes und wird "
+"von Screenreadern vorgelesen. Beschreiben Sie das Bild mit ca. 80 Zeichen. "
+"Beispiel: Ein belebter Platz mit Menschen im Sommer."
 
 #: meinberlin/apps/newsletters/forms.py:44
 #: meinberlin/apps/newsletters/models.py:40
@@ -3916,10 +3916,10 @@ msgid ""
 "summer."
 msgstr ""
 "Sie können PDFs und Bilder hochladen, Videos einbetten und auf externe URLs "
-"verlinken. Wenn Sie ein Bild hinzufügen, geben Sie bitte einen alternativen "
-"Text an. Er dient als textliche Beschreibung des Bildinhalts und wird von "
-"Screenreadern vorgelesen. Beschreiben Sie das Bild in ca. 80 Zeichen. "
-"Beispiel: Ein belebter Platz mit Menschen im Sommer."
+"verlinken. Wenn Sie ein Bild hinzufügen, geben Sie bitte einen "
+"Alternativtext an. Er dient als textliche Beschreibung des Bildinhalts und "
+"wird von Screenreadern vorgelesen. Beschreiben Sie das Bild in ca. 80 "
+"Zeichen. Beispiel: Ein belebter Platz mit Menschen im Sommer."
 
 #: meinberlin/apps/plans/forms.py:107
 msgid "The name is displayed in the header image."
@@ -4338,11 +4338,11 @@ msgstr "Nutzer*innen aus Datei einladen"
 
 #: meinberlin/apps/projects/forms.py:57
 msgid "Upload a csv file containing email addresses."
-msgstr "Laden Sie eine CSV-Datei hoch, die E-Mail Adressen beinhaltet."
+msgstr "Laden Sie eine CSV-Datei hoch, die E-Mail-Adressen beinhaltet."
 
 #: meinberlin/apps/projects/forms.py:73
 msgid "Please enter email addresses or upload a file"
-msgstr "Bitte E-Mail Adressen eingeben oder Datei hochladen"
+msgstr "Bitte E-Mail-Adressen eingeben oder Datei hochladen"
 
 #: meinberlin/apps/projects/forms.py:79
 msgid "Project topics"
@@ -4766,11 +4766,11 @@ msgstr "Der Nutzer mit diesem Nutzernamen existiert bereits."
 
 #: meinberlin/apps/users/models.py:27
 msgid "This username is already used as an e-mail address."
-msgstr "Dieser Nutzername wird bereits als E-Mail Adresse verwendet."
+msgstr "Dieser Nutzername wird bereits als E-Mail-Adresse verwendet."
 
 #: meinberlin/apps/users/models.py:35
 msgid "A user with that email address already exists."
-msgstr "Der Nutzer mit dieser E-Mail Adresse existiert bereits."
+msgstr "Der Nutzer mit dieser E-Mail-Adresse existiert bereits."
 
 #: meinberlin/apps/users/models.py:39
 msgid "staff status"
@@ -5306,7 +5306,7 @@ msgstr "Mehr aus diesem Projekt:"
 #: meinberlin/templates/account/email.html:5
 #: meinberlin/templates/account/email.html:8
 msgid "Email Addresses"
-msgstr "E-Mail Adressen"
+msgstr "E-Mail-Adressen"
 
 #: meinberlin/templates/account/email.html:20
 msgid "Primary"
@@ -5330,7 +5330,7 @@ msgstr "Verifikationsmail senden"
 
 #: meinberlin/templates/account/email.html:49
 msgid "Add another Email"
-msgstr "E-Mail Adresse hinzufügen"
+msgstr "E-Mail-Adresse hinzufügen"
 
 #: meinberlin/templates/account/email.html:60
 msgid "Add Email"
@@ -5339,7 +5339,7 @@ msgstr "E-Mail Adresse hinzufügen"
 #: meinberlin/templates/account/email_confirm.html:4
 #: meinberlin/templates/account/email_confirm.html:7
 msgid "Confirm Email Address"
-msgstr "Bitte bestätigen Sie Ihre E-Mail Adresse."
+msgstr "Bitte bestätigen Sie Ihre E-Mail-Adresse."
 
 #: meinberlin/templates/account/email_confirm.html:11
 #, python-format
@@ -5347,8 +5347,8 @@ msgid ""
 "Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an email "
 "address for user %(user_display)s."
 msgstr ""
-"Bitte bestätigen Sie, dass <a href=\"mailto:%(email)s\">%(email)s</a> eine E-"
-"Mail Adresse der Nutzer*in %(user_display)s ist."
+"Bitte bestätigen Sie, dass <a href=\"mailto:%(email)s\">%(email)s</a> eine E"
+"-Mail-Adresse der Nutzer*in %(user_display)s ist."
 
 #: meinberlin/templates/account/email_confirm.html:15
 msgid "Confirm"

@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
-{% load i18n ckeditor_tags %}
+{% load i18n ckeditor_tags static %}
+
 {% block title %}
     {{ project.name }} -{% trans 'Information' %}
 {% endblock title %}
+
 {% block extra_messages %}
     {{ block.super }}
     {% if project.is_draft %}
@@ -10,6 +12,12 @@
         {% include 'meinberlin_contrib/components/info-box.html' with info_message=info %}
     {% endif %}
 {% endblock extra_messages %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'dsgvo_video_embed.js' %}"></script>
+{% endblock extra_js %}
+
 {% block breadcrumbs %}
     <div id="content-header">
         <nav class="breadcrumb" aria-label='{% translate "You are here:" %}'>
@@ -28,6 +36,7 @@
         </nav>
     </div>
 {% endblock breadcrumbs %}
+
 {% block content %}
     <div class="layout-grid__area--maincontent">
         {% include 'meinberlin_projects/project_actions.html' %}

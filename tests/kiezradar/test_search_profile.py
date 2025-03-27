@@ -7,10 +7,10 @@ from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import freeze_post_phase
 from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.ideas.phases import CollectFeedbackPhase
+from meinberlin.apps.kiezradar.matchers import get_search_profiles_for_obj
 from meinberlin.apps.kiezradar.models import ProjectStatus
 from meinberlin.apps.kiezradar.models import ProjectType
 from meinberlin.apps.kiezradar.models import SearchProfile
-from meinberlin.apps.kiezradar.models import get_search_profiles_for_project
 
 
 @pytest.mark.django_db
@@ -111,7 +111,7 @@ def test_searchprofile_filter_topics(phase_factory, search_profile_factory):
     search_profile1.topics.set([list(topics)[2]])
 
     with freeze_phase(phase):
-        result = get_search_profiles_for_project(project).order_by("pk")
+        result = get_search_profiles_for_obj(project).order_by("pk")
         assert len(result) == 2
         assert result.first() == search_profile
         assert result.last() == search_profile2
@@ -128,12 +128,12 @@ def test_searchprofile_filter_project_status(phase_factory, search_profile_facto
     assert search_profile1.status.first().status == ProjectStatus.STATUS_DONE
 
     with freeze_phase(phase):
-        result = get_search_profiles_for_project(project).order_by("pk")
+        result = get_search_profiles_for_obj(project).order_by("pk")
         assert len(result) == 2
         assert result.first() == search_profile
         assert result.last() == search_profile2
     with freeze_post_phase(phase):
-        result = get_search_profiles_for_project(project)
+        result = get_search_profiles_for_obj(project)
         assert len(result) == 1
         assert result.first() == search_profile1
 
@@ -148,7 +148,7 @@ def test_searchprofile_filter_plan_only(phase_factory, search_profile_factory):
     search_profile2 = search_profile_factory()
 
     with freeze_phase(phase):
-        result = get_search_profiles_for_project(project).order_by("pk")
+        result = get_search_profiles_for_obj(project).order_by("pk")
         assert len(result) == 2
         assert result.first() == search_profile
         assert result.last() == search_profile2
@@ -171,7 +171,7 @@ def test_searchprofile_filter_organisation(
     search_profile2 = search_profile_factory()
 
     with freeze_phase(phase):
-        result = get_search_profiles_for_project(project).order_by("pk")
+        result = get_search_profiles_for_obj(project).order_by("pk")
         assert len(result) == 2
         assert result.first() == search_profile
         assert result.last() == search_profile2
@@ -195,7 +195,7 @@ def test_searchprofile_filter_districts(
     search_profile2 = search_profile_factory()
 
     with freeze_phase(phase):
-        result = get_search_profiles_for_project(project).order_by("pk")
+        result = get_search_profiles_for_obj(project).order_by("pk")
         assert len(result) == 2
         assert result.first() == search_profile
         assert result.last() == search_profile2
@@ -216,7 +216,7 @@ def test_searchprofile_filter_project_type(phase_factory, search_profile_factory
     search_profile2.project_types.clear()
 
     with freeze_phase(phase):
-        result = get_search_profiles_for_project(project).order_by("pk")
+        result = get_search_profiles_for_obj(project).order_by("pk")
         assert len(result) == 2  # still two, because we also filter for isnull=True
         assert result.first() == search_profile
 
@@ -231,7 +231,7 @@ def test_searchprofile_filter_disabled(phase_factory, search_profile_factory):
     search_profile2 = search_profile_factory()
 
     with freeze_phase(phase):
-        result = get_search_profiles_for_project(project).order_by("pk")
+        result = get_search_profiles_for_obj(project).order_by("pk")
         assert len(result) == 2
         assert result.first() == search_profile
         assert result.last() == search_profile2
@@ -290,7 +290,7 @@ def test_searchprofile_filter_query(
 
     # Execute search
     with freeze_phase(phase):
-        result = get_search_profiles_for_project(project).order_by("pk")
+        result = get_search_profiles_for_obj(project).order_by("pk")
 
         if connection.vendor == "postgresql":
             expected_profiles = [
@@ -326,7 +326,7 @@ def test_searchprofile_filter_query_bplan(
         query=kiezradar_query_factory(text="A30-bplan")
     )
 
-    result = get_search_profiles_for_project(bplan).order_by("pk")
+    result = get_search_profiles_for_obj(bplan).order_by("pk")
     assert list(result) == [bplan_profile]
 
 
@@ -355,7 +355,7 @@ def test_searchprofile_filter_kiezradar(
     search_profile2 = search_profile_factory()
 
     with freeze_phase(phase):
-        result = get_search_profiles_for_project(project).order_by("pk")
+        result = get_search_profiles_for_obj(project).order_by("pk")
         assert len(result) == 2
         assert result.first() == search_profile
         assert result.last() == search_profile2

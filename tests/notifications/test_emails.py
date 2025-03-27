@@ -147,9 +147,8 @@ def test_search_profile_matches(search_factories, phase_factory, user):
 
     assert len(mail.outbox) == 2
     recipients = mail.outbox[0].recipients() + mail.outbox[1].recipients()
-    assert (
-        mail.outbox[0].subject
-        == f"New Project on meinBerlin matching your Search Profile: {project.name}"
+    assert mail.outbox[0].subject.startswith(
+        "Neues Projekt entsprechend Ihrem Suchprofil:"
     )
     assert matching_profile.creator.email in recipients
     assert matching_profile_other_user.creator.email in recipients

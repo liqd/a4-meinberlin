@@ -1,9 +1,9 @@
 import pytest
 from django.db import connection
 
+from meinberlin.apps.kiezradar.matchers import full_text_search
+from meinberlin.apps.kiezradar.matchers import sqlite_text_search
 from meinberlin.apps.kiezradar.models import SearchProfile
-from meinberlin.apps.kiezradar.models import full_text_search
-from meinberlin.apps.kiezradar.models import sqlite_text_search
 
 
 @pytest.mark.django_db

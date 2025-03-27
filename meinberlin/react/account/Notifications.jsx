@@ -57,16 +57,17 @@ function SearchProfilesFeed ({ searchProfilesApiUrl, notificationsApiUrl, planLi
       apiUrl={searchProfilesApiUrl}
       link={planListUrl}
       renderFeedItem={({ id, search_profile: searchProfile, read, action }, index, handleMarkAsRead) => {
-        const { timestamp, project, link, ...rest } = action
-        const text = getSearchProfileText(searchProfile, { project, ...rest })
+        const { timestamp, project, plan, link } = action
+        const text = getSearchProfileText(searchProfile, action)
         const filterList = toFilterList(searchProfile).map((names) => names.join(', ')).slice(0, 3)
+        const obj = project || plan
 
         const { title, body, linkText } = text
 
-        const thumbnail = project.tile_image
+        const thumbnail = obj.tile_image
           ? {
-              url: project.tile_image,
-              alt: project.tile_image_alt_text
+              url: obj.tile_image,
+              alt: obj.tile_image_alt_text
             }
           : null
 
@@ -201,12 +202,14 @@ function getInteractionText (action, totalRatings) {
 }
 
 function getSearchProfileText (searchProfile, action) {
-  const { project } = action
+  const { project, plan } = action
+  const obj = project || plan
+  const isProject = !!project
 
   return {
-    title: notificationsData.searchProfiles.projectMatchesSearchProfileText(project.title, project.url, searchProfile.name),
-    body: project.title,
-    linkText: notificationsData.viewProjectText
+    title: notificationsData.searchProfiles.projectMatchesSearchProfileText(obj.title, obj.url, searchProfile.name, isProject),
+    body: obj.title,
+    linkText: isProject ? notificationsData.viewProjectText : notificationsData.viewPlanText
   }
 }
 

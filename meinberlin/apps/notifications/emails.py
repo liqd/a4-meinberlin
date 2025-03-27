@@ -1,6 +1,6 @@
 from django.contrib import auth
 
-from adhocracy4.projects.models import Project
+from adhocracy4.actions.models import Action
 from meinberlin.apps.contrib.emails import Email
 
 User = auth.get_user_model()
@@ -166,5 +166,12 @@ class NotifyUserOnSearchProfileMatch(Email):
 
     def get_context(self):
         context = super().get_context()
-        context["project"] = Project.objects.get(pk=self.kwargs["project_pk"])
+        action = Action.objects.get(pk=self.kwargs["action_pk"])
+        if action.type == "project":
+            context["object"] = action.project
+            context["is_plan"] = False
+        else:
+            context["object"] = action.obj
+            context["is_plan"] = True
+
         return context

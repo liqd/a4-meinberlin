@@ -5,7 +5,7 @@ from django.utils import timezone
 
 from adhocracy4.actions.models import Action
 from adhocracy4.actions.verbs import Verbs
-from meinberlin.apps.kiezradar.models import get_search_profiles_for_project
+from meinberlin.apps.kiezradar.matchers import get_search_profiles_for_obj
 from meinberlin.apps.notifications import emails
 from meinberlin.apps.notifications.models import Notification
 
@@ -41,12 +41,22 @@ def send_action_notifications(action_pk):
     elif action.type == "offlineevent" and verb == Verbs.START:
         emails.NotifyFollowersOnUpcomingEventEmail.send(action)
 
-    elif action.type == "project" and verb == Verbs.PUBLISH:
-        search_profiles = get_search_profiles_for_project(action.project)
-        for profile in search_profiles:
-            emails.NotifyUserOnSearchProfileMatch.send(
-                profile, project_pk=action.project.pk
-            )
+    elif action.type in ("project", "plan") and verb == Verbs.PUBLISH:
+        search_profiles = handle_publish_emails(action)
 
     if Notification.should_notify(action):
         Notification.objects.create_from_action(action, search_profiles)
+
+
+def handle_publish_emails(action):
+    if action.type == "project":
+        search_profiles = get_search_profiles_for_obj(action.project)
+    else:
+        search_profiles = get_search_profiles_for_obj(action.obj)
+
+    for profile in search_profiles:
+        emails.NotifyUserOnSearchProfileMatch.send(
+            profile,
+            action_pk=action.pk,
+        )
+    return search_profiles

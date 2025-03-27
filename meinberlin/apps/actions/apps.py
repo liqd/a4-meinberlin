@@ -16,6 +16,8 @@ class Config(AppConfig):
             ("meinberlin_bplan", "bplan"),
             ("meinberlin_externalproject", "externalproject"),
         )
+
+        configure_type("plan", ("meinberlin_plans", "plan"))
         configure_type("phase", ("a4phases", "phase"))
         configure_type("comment", ("a4comments", "comment"))
         configure_type("rating", ("a4ratings", "rating"))

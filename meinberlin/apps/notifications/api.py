@@ -136,6 +136,7 @@ class NotificationViewSet(
             self.get_queryset()
             .filter(
                 Q(action__obj_content_type__model="project", action__verb="publish")
+                | Q(action__obj_content_type__model="plan", action__verb="publish")
             )
             .order_by("-action__timestamp")
         )

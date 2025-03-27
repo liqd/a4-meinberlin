@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.utils.module_loading import import_string
-from django.utils.translation import gettext as _
 from rest_framework import serializers
 
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
@@ -159,5 +158,5 @@ class SearchProfileSerializer(serializers.ModelSerializer):
         representation["query_text"] = instance.query.text if instance.query else ""
 
         if not instance.name:
-            representation["name"] = _("Searchprofile %d") % instance.number
+            representation["name"] = instance.get_name()
         return representation

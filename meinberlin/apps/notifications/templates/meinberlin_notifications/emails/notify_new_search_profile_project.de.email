@@ -1,25 +1,29 @@
 {% extends 'email_base.'|add:part_type %}
 
-{% block subject %}New Project on meinBerlin matching your Search Profile: {{ project.name }}{% endblock %}
+{% block subject %}Neues {% if is_plan %}Vorhaben{% else %}Projekt{% endif %} entsprechend Ihrem Suchprofil: {{ searchprofile.get_name }}{% endblock %}
 
-{% block headline %}New Project{% endblock %}
-{% block sub-headline %}{{ project.name }}{% endblock  %}
+{% block headline %}Neues {% if is_plan %}Vorhaben{% else %}Projekt{% endif %}{% endblock %}
+{% block sub-headline %}{% firstof object.name object.title %}{% endblock  %}
 
-{% block greeting %}Hello  {{ receiver.username }},{% endblock %}
+{% block greeting %}Hallo {{ receiver.username }},{% endblock %}
 
 {% block content_html %}
 <p>
-wording
-{{ searchprofile }}
-{{ project }}
+Ein neues {% if is_plan %}Vorhaben{% else %}Projekt{% endif %}, {% firstof object.name object.title %},
+entspricht Ihrem Suchprofil "{{ searchprofile.get_name }}".
+</p>
+<p>
+Möchten Sie es sich ansehen?
 </p>
 {% endblock %}
 
 {% block content_text %}
-wording
+Ein neues {% if is_plan %}Vorhaben{% else %}Projekt{% endif %}, {% firstof object.name object.title %},
+entspricht Ihrem Suchprofil "{{ searchprofile.get_name }}".
+Möchten Sie es sich ansehen?
 {% endblock %}
 
-{% block cta_url %}{{ email.get_host }}{{ project.get_absolute_url }}{% endblock %}
-{% block cta_label %}Visit the project{% endblock %}
+{% block cta_url %}{{ email.get_host }}{{ object.get_absolute_url }}{% endblock %}
+{% block cta_label %}{% if is_plan %}Vorhaben{% else %}Projekt{% endif %} anzeigen{% endblock %}
 
-{% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you added a contribution to the above project. If you no longer want to receive notifications, change the settings for your <a href="{{ email.get_host }}{% url 'account' %}">account</a>.{% endblock %}
+{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie sich ein Suchprofil angelegt haben.{% endblock %}

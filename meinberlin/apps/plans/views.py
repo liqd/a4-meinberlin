@@ -33,6 +33,7 @@ from meinberlin.apps.kiezradar.serializers import SearchProfileSerializer
 from meinberlin.apps.maps.models import MapPreset
 from meinberlin.apps.organisations.models import Organisation
 from meinberlin.apps.plans import models
+from meinberlin.apps.plans import signals
 from meinberlin.apps.plans.forms import PlanForm
 from meinberlin.apps.plans.models import Plan
 from meinberlin.apps.projects.serializers import ProjectSerializer
@@ -336,6 +337,8 @@ class PlanPublishView(
 
         plan.is_draft = False
         plan.save()
+
+        signals.plan_published.send(sender=None, plan=plan, user=self.request.user)
 
         messages.success(self.request, _("The plan is published."))
 

@@ -8,6 +8,7 @@ from adhocracy4.actions.verbs import Verbs
 from adhocracy4.dashboard import signals as dashboard_signals
 from adhocracy4.follows.models import Follow
 from adhocracy4.projects.models import Project
+from meinberlin.apps.plans import signals as plan_signals
 
 from . import emails
 from .tasks import send_action_notifications
@@ -42,6 +43,15 @@ def create_project_published_action(**kwargs):
         verb=Verbs.PUBLISH.value,
         obj=project,
         project=project,
+    )
+
+
+@receiver(plan_signals.plan_published)
+def create_plan_published_action(**kwargs):
+    plan = kwargs.get("plan")
+    Action.objects.create(
+        verb=Verbs.PUBLISH.value,
+        obj=plan,
     )
 
 

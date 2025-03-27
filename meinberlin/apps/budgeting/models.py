@@ -55,8 +55,10 @@ class Proposal(mapidea_models.AbstractMapIdea):
         default=False,
         verbose_name=_("Proposal is archived (public)"),
         help_text=_(
-            "Exclude this proposal from all listings by default. "
-            "You can still access this proposal by using filters."
+            "Archived suggestions do not appear in the ideas and proposals list "
+            "by default. They can be found using the corresponding filter. "
+            "Rating, support and voting are no longer possible, the comment "
+            "function remains."
         ),
     )
 

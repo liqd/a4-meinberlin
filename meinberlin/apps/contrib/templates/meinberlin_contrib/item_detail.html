@@ -67,10 +67,8 @@
                 {% endblock ratings %}
             </section>
             {% block vote_button %}{% endblock vote_button %}
-            {% if module.blueprint_type in 'PB3,PB2,PB' %}
-                {% if is_moderator or object.moderator_status %}
-                    {% include 'meinberlin_contrib/components/moderator_feedback.html' %}
-                {% endif %}
+            {% if is_moderator or object.moderator_status %}
+                {% include 'meinberlin_contrib/components/moderator_feedback.html' %}
             {% endif %}
             {% include 'meinberlin_contrib/components/moderator_notes.html' %}
         </article>

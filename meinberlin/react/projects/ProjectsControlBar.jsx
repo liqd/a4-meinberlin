@@ -17,7 +17,7 @@ const translated = {
   districtsKieze: django.gettext('Kiezes & Districts'),
   allDistrictsKieze: django.gettext('All districts'),
   savedKieze: django.gettext('Your saved Kieze'),
-  createKiez: django.gettext('Create a Kiez to use this filter'),
+  createKiez: django.gettext('You can create your own Kieze in the user account settings.'),
   districts: django.gettext('Districts'),
   topics: django.gettext('Topics'),
   allTopics: django.gettext('All topics'),

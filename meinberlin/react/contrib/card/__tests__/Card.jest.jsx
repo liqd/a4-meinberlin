@@ -31,7 +31,7 @@ test('Card component with item name and link and comment count', () => {
   // it just returns both so we check for both as it is a predicatble outcome
   expect(comments.textContent).toEqual('7CommentComments')
   expect(screen.getByText('My idea')).toBeTruthy()
-  expect(screen.getByText('Item details')).toBeTruthy()
+  expect(screen.getByText('Show')).toBeTruthy()
   expect(screen.queryByText('Likes')).toBeNull()
   expect(screen.queryByText('Votes')).toBeNull()
 })
@@ -66,7 +66,7 @@ test('Renders a link to item details', () => {
   // dislikes as non exact string but 1 count is enough
   expect(dislikes.textContent).toEqual('1DislikeDislikes')
   expect(screen.getByText('My idea')).toBeTruthy()
-  expect(screen.getByText('Item details')).toBeTruthy()
+  expect(screen.getByText('Show')).toBeTruthy()
 })
 
 test('clicking on the title triggers the click event on the link', () => {

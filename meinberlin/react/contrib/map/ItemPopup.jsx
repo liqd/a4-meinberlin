@@ -23,7 +23,7 @@ const translations = {
     return django.interpolate(countText, [count])
   },
   support: django.gettext('Support'),
-  detailsStr: django.gettext('Item details'),
+  detailsStr: django.gettext('Show'),
   toStr: django.gettext('to:')
 }
 

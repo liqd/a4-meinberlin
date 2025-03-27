@@ -4,7 +4,7 @@ import django from 'django'
 import { CardStats } from './CardStats'
 
 const translated = {
-  detailsStr: django.gettext('Item details'),
+  detailsStr: django.gettext('Show'),
   toStr: django.gettext('to:')
 }
 

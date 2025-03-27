@@ -110,6 +110,7 @@ class TermsSignupForm(allauth_forms.SignupForm):
             "Your username will appear publicly next to your posts."
         )
         self.fields["email"].widget.attrs["autofocus"] = True
+        self.fields["email"].label = _("Email address")
         for field in self.fields.values():
             field.widget.attrs["placeholder"] = False
         if not (hasattr(settings, "CAPTCHA_URL") and settings.CAPTCHA_URL):

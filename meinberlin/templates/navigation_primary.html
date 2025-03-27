@@ -13,7 +13,7 @@
             </li>
             {% if settings.meinberlin_cms.HeaderPages.help_page %}
                 <li class="{% if request.path == settings.meinberlin_cms.HeaderPages.help_page.get_url %}active{% endif %}">
-                    <a href="{{ settings.meinberlin_cms.HeaderPages.help_page.get_url }}">{% translate 'Help & Support' %}</a>
+                    <a href="{{ settings.meinberlin_cms.HeaderPages.help_page.get_url }}">{% translate 'FAQ & Support' %}</a>
                 </li>
             {% endif %}
             {% for item in topnav %}

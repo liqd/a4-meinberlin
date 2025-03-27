@@ -3,7 +3,7 @@ import React from 'react'
 import { ToggleSwitch } from '../contrib/ToggleSwitch'
 
 const emailStr = django.gettext('E-Mail')
-const inAppNotificationStr = django.gettext('In-App Notification')
+const inAppNotificationStr = django.gettext('In-App')
 
 const NotificationToggle = ({ notification, notificationState, name, onToggle }) => {
   const activityFeedName = notification.activityFeedName

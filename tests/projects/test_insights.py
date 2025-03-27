@@ -1,5 +1,6 @@
 import pytest
 from django.urls import reverse
+from django.utils.translation import gettext as _
 from rest_framework import status
 
 from adhocracy4.polls import phases
@@ -26,7 +27,7 @@ def test_draft_modules_do_not_trigger_show_results(
     answer_factory,
 ):
     n_answers = 2
-    expected_label = "poll answers"
+    expected_label = _("poll answers")
 
     project = project_factory()
     module = module_factory(project=project, is_draft=False, blueprint_type="PO")
@@ -59,9 +60,9 @@ def test_create_insight_context(
     module_factory,
 ):
     expected_label = {
-        "brainstorming": "written ideas",
-        "poll": "poll answers",
-        "interactive-event": "interactive event questions",
+        "brainstorming": _("written ideas"),
+        "poll": _("poll answers"),
+        "interactive-event": _("interactive event questions"),
     }
 
     blueprint_type = None

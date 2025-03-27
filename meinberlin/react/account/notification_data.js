@@ -60,9 +60,9 @@ export const notificationsData = {
       'No results from your saved searches yet. Add new saved searches and wait for a matching project to be published.'
     ),
     buttonText: django.gettext('Save a search'),
-    projectMatchesSearchProfileText: (title, url, name) => django.interpolate(
-      django.gettext('A new project, <a href="' + url + '">%(title)s</a>, matches your search profile %(name)s'),
-      { title, name },
+    projectMatchesSearchProfileText: (title, url, name, isProject) => django.interpolate(
+      django.gettext('A new %(obj)s, <a href="' + url + '">%(title)s</a>, matches your search profile %(name)s'),
+      { title, name, obj: isProject ? django.gettext('project') : django.gettext('plan') },
       true
     )
   },
@@ -93,7 +93,8 @@ export const notificationsData = {
   },
   viewIdeaText: django.gettext('View idea'),
   viewCommentText: django.gettext('View comment'),
-  viewProjectText: django.gettext('View project')
+  viewProjectText: django.gettext('View project'),
+  viewPlanText: django.gettext('View plan')
 }
 
 export const notificationSettingsData = [

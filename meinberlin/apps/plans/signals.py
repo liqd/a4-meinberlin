@@ -1,3 +1,4 @@
+from django import dispatch
 from django.db.models.signals import post_delete
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -13,3 +14,6 @@ def reset_cache(sender, instance, *args, **kwargs):
     set_cache_for_projects.delay_on_commit(
         projects=False, get_next_projects=False, ext_projects=False, plans=True
     )
+
+
+plan_published = dispatch.Signal()

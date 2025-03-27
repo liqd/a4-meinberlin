@@ -1,23 +1,29 @@
 {% extends 'email_base.'|add:part_type %}
 
-{% block subject %}New Project on meinBerlin matching your Search Profile: {{ project.name }}{% endblock %}
+{% block subject %}New {% if is_plan %}Plan{% else %}Project{% endif %} matching your search profile: {{ searchprofile.get_name }}{% endblock %}
 
-{% block headline %}New Project{% endblock %}
-{% block sub-headline %}{{ project.name }}{% endblock  %}
+{% block headline %}New {% if is_plan %}Plan{% else %}Project{% endif %}{% endblock %}
+{% block sub-headline %}{% firstof object.name object.title %}{% endblock  %}
 
-{% block greeting %}Hello  {{ receiver.username }},{% endblock %}
+{% block greeting %}Hello {{ receiver.username }},{% endblock %}
 
 {% block content_html %}
 <p>
-wording
+A new {% if is_plan %}plan{% else %}project{% endif %}, {% firstof object.name object.title %},
+matches your search profile "{{ searchprofile.get_name }}".
+</p>
+<p>
+Would you like to take a look?
 </p>
 {% endblock %}
 
 {% block content_text %}
-wording
+A new {% if is_plan %}plan{% else %}project{% endif %}, {% firstof object.name object.title %},
+matches your search profile "{{ searchprofile.get_name }}".
+Would you like to take a look?
 {% endblock %}
 
-{% block cta_url %}{{ email.get_host }}{{ project.get_absolute_url }}{% endblock %}
-{% block cta_label %}Visit the project{% endblock %}
+{% block cta_url %}{{ email.get_host }}{{ object.get_absolute_url }}{% endblock %}
+{% block cta_label %}View {% if is_plan %}plan{% else %}project{% endif %}{% endblock %}
 
-{% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you added a contribution to the above project. If you no longer want to receive notifications, change the settings for your <a href="{{ email.get_host }}{% url 'account' %}">account</a>.{% endblock %}
+{% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you created a search profile.{% endblock %}

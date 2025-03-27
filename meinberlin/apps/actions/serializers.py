@@ -5,6 +5,7 @@ from django.utils.timezone import localtime
 from rest_framework import serializers
 
 from adhocracy4.actions.models import Action
+from meinberlin.apps.plans.serializers import PlanSerializer
 from meinberlin.apps.projects.serializers import ProjectSerializer
 
 
@@ -16,6 +17,7 @@ class ActionSerializer(serializers.ModelSerializer):
     link = serializers.SerializerMethodField()
     item = serializers.SerializerMethodField()
     actor = serializers.SerializerMethodField()
+    plan = serializers.SerializerMethodField()
     target_creator = serializers.CharField(
         source="target_creator.username", default=None
     )
@@ -54,6 +56,12 @@ class ActionSerializer(serializers.ModelSerializer):
         )
 
         return target
+
+    def get_plan(self, obj):
+        obj, class_name = self.get_cached_trigger(obj)
+        if class_name == "Plan":
+            return PlanSerializer(instance=obj).data
+        return None
 
     def get_body(self, obj):
         trigger, trigger_class = self.get_cached_trigger(obj)

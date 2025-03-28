@@ -10,6 +10,21 @@ export const notificationsData = {
       'No reactions to your posts yet. Get involved to get reactions.'
     ),
     buttonText: django.gettext('Find participation projects'),
+    userSupportedProposal: (title, url) => django.interpolate(
+      django.gettext('A user supported your proposal in <a href="' + url + '">%(title)s</a>'),
+      { title },
+      true
+    ),
+    moderatorRemarkedIdeaText: (title, url) => django.interpolate(
+      django.gettext('A moderator has remarked on your idea in <a href="' + url + '">%(title)s</a>'),
+      { title },
+      true
+    ),
+    moderatorRemarkedProposalText: (title, url) => django.interpolate(
+      django.gettext('A moderator has remarked on your proposal in <a href="' + url + '">%(title)s</a>'),
+      { title },
+      true
+    ),
     moderatorReplieIdeaText: (title, url) => django.interpolate(
       django.gettext('A moderator has responded to your idea in <a href="' + url + '">%(title)s</a>'),
       { title },
@@ -17,6 +32,11 @@ export const notificationsData = {
     ),
     userRepliedIdeaText: (title, url) => django.interpolate(
       django.gettext('A user has replied to your idea in <a href="' + url + '">%(title)s</a>'),
+      { title },
+      true
+    ),
+    userRepliedProposalText: (title, url) => django.interpolate(
+      django.gettext('A user has replied to your proposal in <a href="' + url + '">%(title)s</a>'),
       { title },
       true
     ),
@@ -94,6 +114,7 @@ export const notificationsData = {
   viewIdeaText: django.gettext('View idea'),
   viewCommentText: django.gettext('View comment'),
   viewProjectText: django.gettext('View project'),
+  viewProposalText: django.gettext('View proposal'),
   viewPlanText: django.gettext('View plan')
 }
 

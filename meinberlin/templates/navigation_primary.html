@@ -9,7 +9,12 @@
             </li>
             {% url 'notifications' as notifications_url %}
             <li class="{% if request.path == notifications_url %}active{% endif %}">
-                <a href="{{ notifications_url }}">{% translate 'Notifications' %}</a>
+                <a href="{{ notifications_url }}">
+                    {% translate 'Notifications' %}
+                    {% if notifications_count > 0 %}
+                        <span class="header__notification-count">{{ notifications_count }}</span>
+                    {% endif %}
+                </a>
             </li>
             {% if settings.meinberlin_cms.HeaderPages.help_page %}
                 <li class="{% if request.path == settings.meinberlin_cms.HeaderPages.help_page.get_url %}active{% endif %}">

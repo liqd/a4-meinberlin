@@ -1,5 +1,7 @@
 {% load menu static i18n %}
 
+{% get_notifications_count as notifications_count %}
+
 <header id="header" class="header">
 
     <!-- Portallogo Berlin Brand -->
@@ -30,6 +32,9 @@
                 {% url "notifications" as notifications_url %}
                 <li class="{% if request.path == notifications_url %}active{% endif %}">
                     <a href="{{ notifications_url }}">{% translate 'Notifications' %}</a>
+                    {% if notifications_count > 0 %}
+                        <span class="header__notification-count">{{ notifications_count }}</span>
+                    {% endif %}
                 </li>
                 {% get_header_menu "topnav" as topnav %}
                 {% for item in topnav %}

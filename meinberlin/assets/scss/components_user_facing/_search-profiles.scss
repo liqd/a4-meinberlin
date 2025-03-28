@@ -87,6 +87,17 @@
     margin-bottom: 1.2rem;
 }
 
+.search-profile__form-cancel {
+    align-items: end;
+    display: flex;
+    order: 1;
+
+    @media screen and (min-width: $breakpoint-palm) {
+        order: 0;
+        align-items: start;
+    }
+}
+
 .search-profile__footer {
     @media screen and (min-width: $breakpoint-palm) {
         display: flex;

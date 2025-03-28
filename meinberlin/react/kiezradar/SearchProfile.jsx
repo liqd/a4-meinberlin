@@ -127,7 +127,7 @@ export default function SearchProfile ({ apiUrl, planListUrl, searchProfile, onS
                 />
               </div>
               <div className="form-actions">
-                <div className="form-actions__left">
+                <div className="form-actions__left search-profile__form-cancel">
                   <button type="button" className="link" onClick={() => setIsEditing(false)}>
                     {cancelText}
                   </button>

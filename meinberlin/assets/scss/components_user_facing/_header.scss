@@ -3,3 +3,15 @@
     padding-top: 0.8em !important;
     padding-bottom: 0.8em !important;
 }
+
+.header__notification-count,
+ul.navigation-tree span.header__notification-count {
+    display: inline;
+    color: $white !important;
+    border-radius: 20px;
+    padding: 0.2rem 0.4rem;
+    background-color: $link-color;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-decoration: none;
+}

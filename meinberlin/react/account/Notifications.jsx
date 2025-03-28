@@ -133,6 +133,31 @@ function getInteractionText (action, totalRatings) {
   const { type, source, body, actor, project } = action
 
   switch (type) {
+    case 'support':
+      return {
+        title: notificationsData.interactions.userSupportedProposal(project.title, project.url),
+        linkText: notificationsData.viewProposalText
+      }
+
+    case 'moderatorremark':
+      switch (source) {
+        case 'idea':
+        case 'mapidea':
+          return {
+            title: notificationsData.interactions.moderatorRemarkedIdeaText(project.title, project.url),
+            body,
+            linkText: notificationsData.viewIdeaText
+          }
+
+        case 'proposal':
+          return {
+            title: notificationsData.interactions.moderatorRemarkedProposalText(project.title, project.url),
+            body,
+            linkText: notificationsData.viewProposalText
+          }
+      }
+      break
+
     case 'comment':
       switch (source) {
         case 'idea':
@@ -147,6 +172,13 @@ function getInteractionText (action, totalRatings) {
 
           return {
             title: notificationsData.interactions.userRepliedIdeaText(project.title, project.url),
+            body,
+            linkText: notificationsData.viewCommentText
+          }
+
+        case 'proposal':
+          return {
+            title: notificationsData.interactions.userRepliedProposalText(project.title, project.url),
             body,
             linkText: notificationsData.viewCommentText
           }

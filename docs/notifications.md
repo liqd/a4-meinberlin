@@ -179,6 +179,7 @@ If you post to this endpoint, it will mark all `search_profiles` notifications a
 - `source` - The content type of the item where the action happened. For example:
   * `idea`
   * `mapidea`
+  * `proposal`
   * `comment`
 - `body` - Notification preview
 - `link` - Link to notification trigger

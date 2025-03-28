@@ -117,25 +117,11 @@
 }
 
 .search-profile__toggle-switch {
-    display: flex;
     margin-bottom: 1rem;
 
     @media screen and (min-width: $breakpoint-tablet-landscape) {
         margin-bottom: 0;
     }
-}
-
-.search-profile__toggle-switch label {
-    order: 1;
-}
-
-.search-profile__toggle-switch .toggle-switch__display {
-    transform: scale(0.75);
-    transform-origin: left;
-}
-
-.search-profile__toggle-switch .toggle-switch__label {
-    margin-left: -1.25rem;
 }
 
 .save-search-profile {

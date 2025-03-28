@@ -34,8 +34,10 @@ export default function PushNotificationToggle ({ id, apiUrl, checked: _checked,
         setChecked(!checked)
         handleToggle(!checked)
       }}
+      labelLeft={false}
       onSwitchStr={notificationsText}
       checked={checked}
+      size="small"
     />
   )
 }

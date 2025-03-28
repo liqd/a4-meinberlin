@@ -46,7 +46,7 @@ describe('NotificationSettings', () => {
     render(<NotificationSettings {...defaultProps} />)
 
     expect(screen.getByText('Project-Related Notifications')).toBeInTheDocument()
-    expect(screen.getByText('Interactions with Other Users or Moderation')).toBeInTheDocument()
+    expect(screen.getByText('Interactions with other users')).toBeInTheDocument()
     expect(screen.queryByText('Notifications for Initiators and Moderators')).not.toBeInTheDocument()
   })
 

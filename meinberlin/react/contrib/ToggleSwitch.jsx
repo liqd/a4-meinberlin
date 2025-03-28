@@ -8,7 +8,8 @@ export const ToggleSwitch = ({
   defaultChecked,
   checked,
   className,
-  labelLeft = true
+  labelLeft = true,
+  size = 'large'
 }) => (
   <div className={classNames('toggle-switch form-check', className)}>
     {labelLeft && <label className="toggle-switch__label" htmlFor={uniqueId}>{onSwitchStr}</label>}
@@ -21,10 +22,10 @@ export const ToggleSwitch = ({
       defaultChecked={defaultChecked}
       checked={checked}
     />
-    <span className="toggle-switch__display" hidden>
+    <span className={classNames('toggle-switch__display', size === 'small' && 'toggle-switch__display--small')} hidden>
       <i className="bicon bicon-check toggle-switch__icon toggle-switch__icon--on" aria-hidden="true" />
       <i className="bicon bicon-times toggle-switch__icon toggle-switch__icon--off" aria-hidden="true" />
     </span>
-    {!labelLeft && <label className="toggle-switch__label toggle-switch__label--right" htmlFor={uniqueId}>{onSwitchStr}</label>}
+    {!labelLeft && <label className={classNames('toggle-switch__label', size !== 'small' && 'toggle-switch__label--right', size === 'small' && 'toggle-switch__label--small')} htmlFor={uniqueId}>{onSwitchStr}</label>}
   </div>
 )

@@ -22,3 +22,5 @@ class NotificationSettingsFactory(factory.django.DjangoModelFactory):
     track_followers_phase_started = True
     track_followers_phase_over_soon = True
     track_followers_event_upcoming = True
+    track_creator = True
+    track_creator_on_moderator_feedback = True

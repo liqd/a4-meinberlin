@@ -7,7 +7,6 @@ NOTIFIABLES = (
     "item",
     "comment",
     "rating",
-    "moderatorremark",
 )
 
 
@@ -28,8 +27,17 @@ class NotificationManager(models.Manager):
         # For create/add actions where the target has a creator.
         elif (
             hasattr(action.target, "creator")
-            and action.type in NOTIFIABLES
             and verb in (Verbs.CREATE, Verbs.ADD)
+            and (
+                (
+                    action.type in NOTIFIABLES
+                    and action.target.creator.notification_settings.track_creator
+                )
+                or (
+                    action.type == "moderatorremark"
+                    and action.target.creator.notification_settings.track_creator_on_moderator_feedback
+                )
+            )
         ):
             notifications = [
                 Notification(recipient=action.target.creator, action=action)
@@ -100,7 +108,7 @@ class Notification(models.Model):
 
         if (
             hasattr(action.target, "creator")
-            and action.type in NOTIFIABLES
+            and action.type in NOTIFIABLES + ("moderatorremark",)
             and verb in (Verbs.CREATE, Verbs.ADD)
         ):
             return True
@@ -158,6 +166,8 @@ class NotificationSettings(models.Model):
     track_followers_phase_started = models.BooleanField(default=True)
     track_followers_phase_over_soon = models.BooleanField(default=True)
     track_followers_event_upcoming = models.BooleanField(default=True)
+    track_creator = models.BooleanField(default=True)
+    track_creator_on_moderator_feedback = models.BooleanField(default=True)
 
     def update_all_settings(self, notifications_on, **kwargs):
         for field in self._meta.get_fields():

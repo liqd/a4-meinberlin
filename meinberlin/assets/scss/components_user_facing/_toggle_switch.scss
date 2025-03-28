@@ -10,3 +10,12 @@
     margin-left: .4em;
     margin-right: 0;
 }
+
+.toggle-switch__label--small {
+    margin-left: -0.7rem;
+}
+
+.toggle-switch__display--small {
+    transform: scale(0.75);
+    transform-origin: left;
+}

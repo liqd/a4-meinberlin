@@ -123,15 +123,17 @@ export const notificationSettingsData = [
     }
   },
   {
-    header: django.gettext('Interactions with Other Users or Moderation'),
+    header: django.gettext('Interactions with other users'),
     notifications: {
       notify_creator: {
-        title: django.gettext('Reactions of other users'),
-        description: django.gettext('Receive a notification when someone reacts to your contribution with a comment.')
+        title: django.gettext('Reactions from other users to your posts'),
+        description: django.gettext('Receive a notification when someone rates or comments on your post.'),
+        activityFeedName: 'track_creator'
       },
       notify_creator_on_moderator_feedback: {
         title: django.gettext('Reactions of moderation'),
-        description: django.gettext('Receive a notification for feedback and status changes of your idea from the moderation.')
+        description: django.gettext('Receive a notification for feedback and status changes of your idea from the moderation.'),
+        activityFeedName: 'track_creator_on_moderator_feedback'
       }
     }
   },

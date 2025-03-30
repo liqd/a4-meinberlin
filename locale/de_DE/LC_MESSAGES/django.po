@@ -2479,8 +2479,8 @@ msgstr ""
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/hero_search.html:7
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/hero_search.html:12
-msgid "Search for participation projects, ideas or topics"
-msgstr "Nach Beteiligungsprojekten, Ideen oder Themen suchen"
+msgid "Search term"
+msgstr "Suchbegriff"
 
 #: meinberlin/apps/cms/viewsets.py:16
 msgid "Show past projects"

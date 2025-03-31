@@ -7,6 +7,8 @@
 {% endblock title %}
 {% block content %}
     <div id="layout-grid__area--maincontent">
+        {% include 'meinberlin_projects/project_actions.html' %}
+
         {% if object.is_archived %}
             {% translate 'This idea has been archived.' as archived_message %}
             {% translate 'Archived' as archived_title %}

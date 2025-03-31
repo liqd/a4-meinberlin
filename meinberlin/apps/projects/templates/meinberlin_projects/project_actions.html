@@ -3,7 +3,7 @@
 
 <div class="project-actions block">
   {% if request.resolver_match.url_name != 'project-detail' %}
-    <a href="{% url 'project-detail' project.slug %}" class="link--back">{% translate 'Back' %}</a>
+    <a href="javascript:history.back()" class="link--back">{% translate 'Back' %}</a>
   {% endif %}
   {% if edit_link and user_may_change %}
     <a href="{{ edit_link }}" target="_blank" class="project-actions__right">

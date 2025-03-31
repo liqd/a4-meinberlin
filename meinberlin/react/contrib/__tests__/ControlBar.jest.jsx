@@ -91,8 +91,8 @@ test('ControlBar filters create pills', async () => {
   expect(categories).toBeTruthy()
   fireEvent.change(categories, { target: { value: '2' } })
   fireEvent.click(screen.getByRole('button', { name: /Filter/ }))
-  const category = screen.getAllByText('categories')
-  expect(category).toHaveLength(2)
+  const pill = screen.getByLabelText(/category1/)
+  expect(pill).toBeTruthy()
 })
 
 test('ControlBar hides map button when there is no map', async () => {

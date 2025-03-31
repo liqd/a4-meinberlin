@@ -35,12 +35,19 @@ export const ControlBar = () => {
 
   const [filters, setFilters] = useState([])
   const appliedFilters = filters
-    .concat([{ type: 'search', label: term, value: term }])
-    .filter((f) =>
-      f.type !== 'ordering' &&
-      queryParams?.has(f.type)
-    )
-    .map((f) => ({ ...f, value: queryParams.get(f.type) || f.value }))
+    .filter(f => f.type !== 'ordering' && queryParams.has(f.type))
+    .map(f => {
+      const value = queryParams.get(f.type) || f.value
+      if (!value) return null
+
+      const matchedChoice = f.choices?.find(choice => choice[0] === value)
+
+      return matchedChoice
+        ? { label: matchedChoice[1], type: f.type, value: value.toLowerCase() }
+        : null
+    })
+    .filter(Boolean)
+    .concat(term ? [{ type: 'search', label: term, value: term }] : [])
   const nonOrderingFilters = filters.filter((f) => f.type !== 'ordering')
 
   useEffect(() => {

@@ -359,3 +359,42 @@ def test_searchprofile_filter_kiezradar(
         assert len(result) == 2
         assert result.first() == search_profile
         assert result.last() == search_profile2
+
+
+@pytest.mark.django_db
+def test_searchprofile_filter_kiezradar_and_district(
+    user,
+    phase_factory,
+    search_profile_factory,
+    kiez_radar_factory,
+    administrative_district_factory,
+):
+    district = administrative_district_factory()
+    phase, module, project, item = setup_phase(
+        phase_factory, None, CollectFeedbackPhase
+    )
+    project_location = Point(13.409476102873219, 52.520861941592365, srid=4326)
+    project.point = project_location
+    project.administrative_district = district
+    project.save()
+
+    kiez_location = Point(13.408151799858457, 52.51655612494057)
+    kiez_location_small_radius = Point(13.408151799858457, 52.51655612494057)
+    kiezradar_match = kiez_radar_factory(creator=user, point=kiez_location)
+    kiezradar_no_match = kiez_radar_factory(
+        creator=user, point=kiez_location_small_radius, radius=300
+    )
+
+    search_profile = search_profile_factory()
+    search_profile.kiezradars.add(kiezradar_match)
+    search_profile1 = search_profile_factory()
+    search_profile1.kiezradars.add(kiezradar_no_match)
+    search_profile1.districts.add(district)
+    search_profile2 = search_profile_factory()
+    search_profile2.kiezradars.add(kiezradar_no_match)
+
+    with freeze_phase(phase):
+        result = get_search_profiles_for_obj(project).order_by("pk")
+        assert len(result) == 2
+        assert result.first() == search_profile
+        assert result.last() == search_profile1

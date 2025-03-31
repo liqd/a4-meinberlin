@@ -19,10 +19,7 @@ class PlanForm(PointFormMixin, ImageMetadataMixin, forms.ModelForm):
     topics = forms.ModelMultipleChoiceField(
         label=_("Topics"),
         help_text=_(
-            "Assign your plan to 1 or 2 "
-            "topics. In the project "
-            "overview projects can be "
-            "filtered according to topics."
+            "Please add 1-2 topics to your plan. In Kiezradar plans can be filtered according to topics."
         ),
         queryset=Topic.objects.all(),
         widget=forms.CheckboxSelectMultiple,
@@ -94,8 +91,8 @@ class PlanForm(PointFormMixin, ImageMetadataMixin, forms.ModelForm):
             ),
             "district": _(
                 "Enter the district in which the plan is located or "
-                "whether it is a city-wide plan. In the project "
-                "overview projects can be filtered by district."
+                "whether it is a city-wide plan. In the Kiezradar "
+                "projects can be filtered by district."
             ),
             "cost": _(
                 "Enter details of the estimated or actual costs "

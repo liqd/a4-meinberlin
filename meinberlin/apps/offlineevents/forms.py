@@ -26,9 +26,8 @@ class OfflineEventForm(forms.ModelForm):
                 "people in summer."
             ),
             "event_type": _(
-                "The content of this field is shown in the timeline. It "
-                "should have no more than 30 characters e.g. Information "
-                "event or 3rd public workshop."
+                "Please describe in no more than 30 characters the event "
+                "type, e.g. Information event or 3rd public workshop."
             ),
         }
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-20 11:36+0100\n"
+"POT-Creation-Date: 2025-03-31 13:10+0200\n"
 "PO-Revision-Date: 2025-03-17 10:47+0000\n"
 "Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js-"
@@ -97,16 +97,12 @@ msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:27
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:6
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:72
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:77
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:154
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
 #: adhocracy4/comments/static/comments/Comment.jsx:154
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:27
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:6
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:72
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:77
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:154
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
 #: meinberlin/react/documents/ChapterNavItem.jsx:5
@@ -760,32 +756,6 @@ msgstr "Frage"
 msgid "Explanation"
 msgstr "Erklärung"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:49
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:54
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:49
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:54
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
-#: meinberlin/react/documents/ChapterNavItem.jsx:3
-#: meinberlin/react/documents/ParagraphForm.jsx:9
-msgid "Move up"
-msgstr "nach oben"
-
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:61
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:66
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:61
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:66
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
-#: meinberlin/react/documents/ChapterNavItem.jsx:4
-#: meinberlin/react/documents/ParagraphForm.jsx:10
-msgid "Move down"
-msgstr "nach unten"
-
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:47
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:47
 msgid "Participants can vote for more than one option (multiple choice)"
@@ -807,6 +777,24 @@ msgstr "Sonstige"
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:113
 msgid "New answer"
 msgstr "Neue Antwort"
+
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
+#: meinberlin/react/documents/ChapterNavItem.jsx:3
+#: meinberlin/react/documents/ParagraphForm.jsx:9
+msgid "Move up"
+msgstr "nach oben"
+
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
+#: meinberlin/react/documents/ChapterNavItem.jsx:4
+#: meinberlin/react/documents/ParagraphForm.jsx:10
+msgid "Move down"
+msgstr "nach unten"
 
 #: adhocracy4/polls/static/PollDetail/CharCounter.jsx:5
 #: adhocracy4/polls/static/PollDetail/CharCounter.jsx:5
@@ -1140,8 +1128,8 @@ msgid "E-Mail"
 msgstr "E-Mail"
 
 #: meinberlin/react/account/NotificationToggle.jsx:6
-msgid "In-App Notification"
-msgstr "In-App"
+msgid "In-App"
+msgstr ""
 
 #: meinberlin/react/account/notification_data.js:5
 msgid "Interactions"
@@ -1224,7 +1212,15 @@ msgid "Save a search"
 msgstr "Suche speichern"
 
 #: meinberlin/react/account/notification_data.js:64
-msgid "A new project, <a href=\""
+msgid "A new %(obj)s, <a href=\""
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:65
+msgid "project"
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:65
+msgid "plan"
 msgstr ""
 
 #: meinberlin/react/account/notification_data.js:70
@@ -1268,15 +1264,19 @@ msgstr "Kommentar anzeigen"
 msgid "View project"
 msgstr "Projekt anzeigen"
 
-#: meinberlin/react/account/notification_data.js:101
+#: meinberlin/react/account/notification_data.js:97
+msgid "View plan"
+msgstr ""
+
+#: meinberlin/react/account/notification_data.js:102
 msgid "Project-Related Notifications"
 msgstr "Projektbezogene Benachrichtigungen"
 
-#: meinberlin/react/account/notification_data.js:104
+#: meinberlin/react/account/notification_data.js:105
 msgid "E-Mail Newsletter"
 msgstr "E-Mail Newsletter"
 
-#: meinberlin/react/account/notification_data.js:105
+#: meinberlin/react/account/notification_data.js:106
 msgid ""
 "Receive newsletters with updates and news about the projects you follow via "
 "e-mail."
@@ -1284,22 +1284,22 @@ msgstr ""
 "Erhalten Sie via E-Mail Newsletter mit Updates und Neuigkeiten aus den "
 "Projekten, denen Sie folgen."
 
-#: meinberlin/react/account/notification_data.js:108
+#: meinberlin/react/account/notification_data.js:109
 msgid "Participation Start"
 msgstr "Beteiligungsbeginn"
 
-#: meinberlin/react/account/notification_data.js:109
+#: meinberlin/react/account/notification_data.js:110
 msgid ""
 "Receive a notification when a participation begins in a project you follow."
 msgstr ""
 "Erhalten Sie eine Benachrichtigung, wenn eine Beteiligung startet in einem "
 "Projekt, dem Sie folgen."
 
-#: meinberlin/react/account/notification_data.js:113
+#: meinberlin/react/account/notification_data.js:114
 msgid "Participation End"
 msgstr "Beteiligungsende"
 
-#: meinberlin/react/account/notification_data.js:114
+#: meinberlin/react/account/notification_data.js:115
 msgid ""
 "Receive a notification when a participation is near its end in a project you "
 "follow."
@@ -1307,36 +1307,36 @@ msgstr ""
 "Erhalten Sie eine Benachrichtigung, wenn eine Beteiligung bald endet in "
 "einem Projekt, dem Sie folgen."
 
-#: meinberlin/react/account/notification_data.js:118
+#: meinberlin/react/account/notification_data.js:119
 msgid "Event"
 msgstr "Veranstaltungen"
 
-#: meinberlin/react/account/notification_data.js:119
+#: meinberlin/react/account/notification_data.js:120
 msgid "Receive notifications for upcoming events in projects you follow."
 msgstr ""
 "Erhalten Sie Benachrichtigungen über anstehende Veranstaltungen in "
 "Projekten, denen Sie folgen."
 
-#: meinberlin/react/account/notification_data.js:125
+#: meinberlin/react/account/notification_data.js:126
 msgid "Interactions with Other Users or Moderation"
 msgstr "Interaktionen mit anderen Nutzer*innen und der Moderation"
 
-#: meinberlin/react/account/notification_data.js:128
+#: meinberlin/react/account/notification_data.js:129
 msgid "Reactions of other users"
 msgstr "Reaktionen anderer Nutzer*innen"
 
-#: meinberlin/react/account/notification_data.js:129
+#: meinberlin/react/account/notification_data.js:130
 msgid ""
 "Receive a notification when someone reacts to your contribution with a "
 "comment."
 msgstr ""
 "Erhalten Sie eine Benachrichtigung, wenn jemand Ihren Beitrag kommentiert."
 
-#: meinberlin/react/account/notification_data.js:132
+#: meinberlin/react/account/notification_data.js:133
 msgid "Reactions of moderation"
 msgstr "Reaktionen der Moderation"
 
-#: meinberlin/react/account/notification_data.js:133
+#: meinberlin/react/account/notification_data.js:134
 msgid ""
 "Receive a notification for feedback and status changes of your idea from the "
 "moderation."
@@ -1344,26 +1344,26 @@ msgstr ""
 "Erhalten Sie eine Benachrichtigung, wenn es eine Rückmeldung oder eine "
 "Statusänderung Ihrer Idee durch die Moderation gibt."
 
-#: meinberlin/react/account/notification_data.js:138
+#: meinberlin/react/account/notification_data.js:139
 msgid "Notifications for Initiators and Moderators"
 msgstr "Benachrichtigungen für Initiator*innen und Moderator*innen"
 
-#: meinberlin/react/account/notification_data.js:142
+#: meinberlin/react/account/notification_data.js:143
 msgid "New Project in Your Organization"
 msgstr "Neues Projekt in Ihrer Organisation"
 
-#: meinberlin/react/account/notification_data.js:143
+#: meinberlin/react/account/notification_data.js:144
 msgid ""
 "Receive a notification when a new project is created in your organization."
 msgstr ""
 "Erhalten Sie eine Benachrichtigung, wenn in Ihrer Organisation ein neues "
 "Projekt angelegt wird."
 
-#: meinberlin/react/account/notification_data.js:146
+#: meinberlin/react/account/notification_data.js:147
 msgid "New Contribution in a Moderated Project"
 msgstr "Neuer Beitrag in einem moderierten Projekt"
 
-#: meinberlin/react/account/notification_data.js:147
+#: meinberlin/react/account/notification_data.js:148
 msgid ""
 "Receive a notification when a new contribution is added to a project you "
 "moderate."
@@ -1501,8 +1501,8 @@ msgstr "lädt"
 
 #: meinberlin/react/contrib/card/Card.jsx:7
 #: meinberlin/react/contrib/map/ItemPopup.jsx:26
-msgid "Item details"
-msgstr "Itemdetails"
+msgid "Show"
+msgstr ""
 
 #: meinberlin/react/contrib/card/Card.jsx:8
 #: meinberlin/react/contrib/map/ItemPopup.jsx:27
@@ -2151,8 +2151,8 @@ msgid "Your saved Kieze"
 msgstr "Ihre gespeicherten Kieze"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:20
-msgid "Create a Kiez to use this filter"
-msgstr "In den Nutzerkontoeinstellungen können Sie eigene Kieze erstellen."
+msgid "You can create your own Kieze in the user account settings."
+msgstr ""
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:21
 msgid "Districts"
@@ -2288,33 +2288,31 @@ msgstr ""
 "unter: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
-#: dsgvo-video-embed/js/dsgvo-video-embed.js:20
-msgid "Link to video: "
-msgstr "Link zum Video: "
+msgid "Link to Video: "
+msgstr ""
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
 msgid "Play video"
 msgstr "Video abspielen"
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:16
-msgid "External video"
-msgstr "Externes Video"
+msgid "external video"
+msgstr ""
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:17
 msgid ""
-"Here you can find a video from Vimeo. To protect your data the content will "
-"only be loaded after you give your consent. Only then will Vimeo set cookies "
+"here you can find a video from vimeo. to protect your data the content will "
+"only be loaded after you give your consent. only then will vimeo set cookies "
 "that collect information on user behaviour."
 msgstr ""
-"Hier finden Sie ein Video von Vimeo. Zum Schutz Ihrer Daten werden die "
-"Inhalte erst nach Ihrer Einwilligung geladen. Erst dann setzt Vimeo Cookies, "
-"die Informationen zum Nutzerverhalten sammeln."
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:18
-msgid "More information can be found in the privacy policy of Vimeo under: "
+msgid "more information can be found in the privacy policy of vimeo under: "
 msgstr ""
-"Weitere Informationen hierzu finden Sie in der Datenschutzerklärung von "
-"Vimeo unter: "
+
+#: dsgvo-video-embed/js/dsgvo-video-embed.js:20
+msgid "link to video: "
+msgstr ""
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "play video"

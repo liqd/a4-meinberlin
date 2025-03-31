@@ -78,7 +78,9 @@ class InviteUsersFromEmailForm(forms.Form):
 class TopicForm(ProjectDashboardForm):
     topics = forms.ModelMultipleChoiceField(
         label=_("Project topics"),
-        help_text=_("Add topics to your project."),
+        help_text=_(
+            "Please add 1-2 topics to your project. In Kiezradar projects can be filtered according to topics."
+        ),
         queryset=Topic.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         validators=[

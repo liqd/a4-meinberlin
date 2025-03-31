@@ -109,8 +109,21 @@
 
 
 /* @ckeditor/ckeditor5-list/theme/list.css */
+// this is needed to override Berlin Online CSS which would otherwise always
+// override user-defined list styling
 .ck-content ol {
   list-style-type: decimal;
+  padding-left: 1.1em;
+
+  & > li {
+    display: list-item;
+    margin-left: 0;
+    list-style: inherit;
+
+    &:before {
+      content: none;
+    }
+  }
 }
 
 /* @ckeditor/ckeditor5-list/theme/list.css */

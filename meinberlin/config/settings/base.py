@@ -319,7 +319,10 @@ BLEACH_LIST = {
             "img": ["src", "alt", "style"],
             "div": ["class"],
             "iframe": ["src", "alt", "style"],
+            "ul": ["style"],
+            "ol": ["style"],
         },
+        "styles": ["list-style-type", "list-style"],
     },
     "image-editor": {
         "tags": [

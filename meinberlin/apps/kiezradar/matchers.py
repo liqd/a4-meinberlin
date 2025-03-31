@@ -144,16 +144,22 @@ def get_common_filters(obj: Project | Plan) -> Q:
     filters = (
         (Q(topics__in=obj.topics.all()) | Q(topics__isnull=True))
         & (Q(organisations__in=[obj.organisation]) | Q(organisations__isnull=True))
-        & (Q(districts__in=[district]) | Q(districts__isnull=True))
         & Q(disabled=False)
     )
 
     if obj.point:
-        filters = filters & (
-            Q(kiezradars__radius__gte=Distance("kiezradars__point", obj.point))
-            | Q(kiezradars__isnull=True)
+        has_both_set = Q(districts__isnull=False) & Q(kiezradars__isnull=False)
+        district_filter = Q(districts__in=[district])
+        kiezradar_filter = Q(
+            kiezradars__radius__gte=Distance("kiezradars__point", obj.point)
         )
-    return filters
+        location_filter = has_both_set & (district_filter | kiezradar_filter) | (
+            (district_filter | Q(districts__isnull=True))
+            & (kiezradar_filter | Q(kiezradars__isnull=True))
+        )
+    else:
+        location_filter = Q(districts__in=[district]) | Q(districts__isnull=True)
+    return filters & location_filter
 
 
 def get_search_profiles_for_obj(obj: Project | Plan) -> QuerySet[SearchProfile]:

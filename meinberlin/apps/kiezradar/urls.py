@@ -4,17 +4,17 @@ from . import views
 
 urlpatterns = [
     path(
-        "kiezradar/",
+        "kiezauswahl/",
         views.KiezRadarView.as_view(),
         name="kiezradar_filters",
     ),
     path(
-        "kiezradar/<int:id>/",
+        "kiezauswahl/<int:id>/",
         views.KiezRadarView.as_view(),
         name="kiezradar_edit",
     ),
     path(
-        "kiezradar/new/",
+        "kiezauswahl/new/",
         views.KiezRadarView.as_view(),
         name="kiezradar_new",
     ),

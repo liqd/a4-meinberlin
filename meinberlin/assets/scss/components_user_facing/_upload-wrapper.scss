@@ -22,9 +22,16 @@
 
 .clear-image {
     @extend .aural;
+    top: 0;
+    left: -1000px;
+
+    &:focus {
+        outline: 0;
+        border: 0;
+    }
 }
 
-.clear-image:checked + img {
+.clear-image:checked + .upload-wrapper__preview img {
     opacity: 0.2;
     filter: grayscale(100%);
 }
@@ -35,6 +42,19 @@
     right: 15px;
     z-index: 1;
     cursor: pointer;
+}
+
+.clear-image:focus ~ .upload-wrapper__fields .upload-wrapper__action {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px 0 rgba(102, 175, 233, 0.8);
+    outline: 2px solid #0076dd;
+    outline-offset: 2px;
+}
+
+.upload-wrapper .form-control-file:focus ~ .upload-wrapper__fields .form-control-file-dummy {
+    border: 2px solid #0076dd;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px 0 rgba(102, 175, 233, 0.8);
+    outline: 2px solid #fff;
+    outline-offset: 0;
 }
 
 .upload-wrapper__preview {

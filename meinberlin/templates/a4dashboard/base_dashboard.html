@@ -19,6 +19,11 @@
     {% block dashboard_nav %}
         <div class="tablist tablist--right u--bg-secondary">
             <div class="container">
+                <div class="u-align-left u-spacer-bottom">
+                    <a href="{% url 'wagtail_serve' '' %}">
+                        <img src="{% static 'images/logo_mb.svg' %}" alt="mein.berlin" height="30" width="150">
+                    </a>
+                </div>
                 <div class="u-space-between">
                     {% if view.other_organisations_of_user %}
                         <div class="dropdown">

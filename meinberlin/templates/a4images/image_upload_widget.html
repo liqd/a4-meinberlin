@@ -1,34 +1,38 @@
 {% load i18n %}
-<div class="upload-wrapper form-control-upload row">
-    <div class="upload-wrapper__fields input-group col-sm">
+<div class="upload-wrapper form-control-upload">
+    <div class="form-{{ id }} row">
         {{ file_input }}
-        {{ text_input }}
         {% if has_image_set and not is_required %}
-            <label for="{{ checkbox_id }}"
-                class="upload-wrapper__action input-group__after btn btn--danger"
-                title="{% translate 'Remove the picture' %}">
-                <i class="fas fa-trash-alt" aria-label="{% translate 'Remove the picture' %}"></i>
-            </label>
-        {% else %}
-            <label for="{{ id }}"
-                class="upload-wrapper__action input-group__after btn btn--primary"
-                title="{% translate 'Upload a picture' %}">
-                <i class="fas fa-cloud-upload-alt" aria-label="{% translate 'Upload a picture' %}"></i>
-            </label>
+            {{ checkbox_input }}
         {% endif %}
-        <span class="formgroup__help form-hint">
-            {% translate 'Your image will be uploaded/removed once you save your changes at the end of this page. ' %}
-        </span>
-    </div>
+        <div class="upload-wrapper__preview">
+            <img id="{{ file_id }}"
+                 src="{% if has_image_set %}{{ file_url }}{% else %}data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs={% endif %}"
+                 data-upload-preview="{{ id }}"
+                 alt=""
+                 width=""
+                 height=""
+            >
+        </div>
 
-    <div class="form-{{ id }} upload-wrapper__preview col-sm">
-        {{ checkbox_input }}
-        <img id="{{ file_id }}"
-             src="{% if has_image_set %}{{ file_url }}{% else %}data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs={% endif %}"
-             data-upload-preview="{{ id }}"
-             alt=""
-             width=""
-             height=""
-        >
+        <div class="upload-wrapper__fields input-group">
+            {{ text_input }}
+            {% if has_image_set and not is_required %}
+                <label for="{{ checkbox_id }}"
+                    class="upload-wrapper__action input-group__after btn btn--danger"
+                    title="{% translate 'Remove the picture' %}">
+                    <i class="fas fa-trash-alt" aria-label="{% translate 'Remove the picture' %}"></i>
+                </label>
+            {% else %}
+                <label for="{{ id }}"
+                    class="upload-wrapper__action input-group__after btn btn--primary"
+                    title="{% translate 'Upload a picture' %}">
+                    <i class="fas fa-cloud-upload-alt" aria-label="{% translate 'Upload a picture' %}"></i>
+                </label>
+            {% endif %}
+            <span class="formgroup__help form-hint">
+                {% translate 'Your image will be uploaded/removed once you save your changes at the end of this page. ' %}
+            </span>
+        </div>
     </div>
 </div>

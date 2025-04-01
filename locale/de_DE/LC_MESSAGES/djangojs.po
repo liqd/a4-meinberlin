@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-31 13:10+0200\n"
-"PO-Revision-Date: 2025-04-01 10:21+0000\n"
+"PO-Revision-Date: 2025-04-02 12:15+0000\n"
 "Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "js-design-dev/de/>\n"
@@ -996,7 +996,7 @@ msgstr ""
 #: meinberlin/react/account/notification_data.js:55
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:7
 msgid "Search Profiles"
-msgstr "Gespeicherte Suchen"
+msgstr "Gespeicherte Suchprofile"
 
 #: meinberlin/react/account/notification_data.js:57
 msgid ""

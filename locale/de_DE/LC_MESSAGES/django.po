@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-31 13:10+0200\n"
-"PO-Revision-Date: 2025-04-01 10:21+0000\n"
+"PO-Revision-Date: 2025-04-02 12:15+0000\n"
 "Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "main-design-dev/de/>\n"
@@ -2192,7 +2192,7 @@ msgstr "Anlegen eines neuen Vorschlags"
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_create_form.html:7
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_create_form.html:7
 msgid "Create proposal"
-msgstr ""
+msgstr "Vorschlag anlegen"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_create_form.html:13
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_create_form.html:13
@@ -2708,7 +2708,7 @@ msgstr ""
 
 #: meinberlin/apps/contrib/templatetags/breadcrumbs_tags.py:53
 msgid "Home page"
-msgstr ""
+msgstr "Startseite"
 
 #: meinberlin/apps/contrib/templatetags/breadcrumbs_tags.py:69
 #: meinberlin/templates/navigation_primary.html:28
@@ -3170,7 +3170,7 @@ msgstr "Sind Sie sicher, dass Sie diese Idee löschen möchten?"
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_create_form.html:7
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_create_form.html:7
 msgid "Create idea"
-msgstr ""
+msgstr "Idee anlegen"
 
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_create_form.html:13
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_create_form.html:13
@@ -3356,7 +3356,7 @@ msgstr "gespeicherte Suchen"
 
 #: meinberlin/apps/kiezradar/templates/meinberlin_kiezradar/search_profile_list.html:12
 msgid "Search Profiles"
-msgstr ""
+msgstr "Gespeicherte Suchprofile"
 
 #: meinberlin/apps/livequestions/dashboard.py:15
 msgid "Livestream"
@@ -4461,7 +4461,7 @@ msgstr "Ergebnisse anzeigen"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_plan.html:4
 msgid "Overarching Plan"
-msgstr ""
+msgstr "Übergeordnetes Vorhaben"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:76
 #, python-format

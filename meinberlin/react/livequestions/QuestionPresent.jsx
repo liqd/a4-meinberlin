@@ -12,8 +12,8 @@ const QuestionPresent = ({ id, likes, questionText }) => {
         title={likesTag}
         aria-label={likesTag}
       >
-        <i className="far fa-thumbs-up" aria-hidden="true" />
-        {likesTag} {likes.count}
+        <i className="far fa-thumbs-up mr-1" aria-hidden="true" />
+        {likesTag} ({likes.count})
       </span>
     </li>
   )

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-04 12:03+0100\n"
-"PO-Revision-Date: 2025-03-26 12:15+0000\n"
-"Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
+"PO-Revision-Date: 2025-04-02 10:15+0000\n"
+"Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main/de/>"
 "\n"
 "Language: de_DE\n"
@@ -597,7 +597,7 @@ msgstr "Archiviert"
 #: meinberlin/apps/budgeting/api.py:172 meinberlin/apps/budgeting/api.py:190
 #: meinberlin/apps/projects/views.py:61
 msgid "All"
-msgstr "Alle Beteiligungungsarten"
+msgstr "Alle"
 
 #: adhocracy4/dashboard/filter.py:20
 #: meinberlin/apps/budgeting/api.py:91 meinberlin/apps/projects/views.py:62

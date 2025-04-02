@@ -1,9 +1,12 @@
+from django.db.models import Q
 from django.db.models.signals import post_delete
 from django.db.models.signals import post_save
+from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
 from adhocracy4.comments.models import Comment
 from adhocracy4.dashboard import signals as a4dashboard_signals
+from adhocracy4.modules.models import Item
 from adhocracy4.phases.models import Phase
 from adhocracy4.polls.models import Answer
 from adhocracy4.polls.models import Vote
@@ -19,6 +22,32 @@ from meinberlin.apps.maptopicprio.models import MapTopic
 from meinberlin.apps.projects.models import ProjectInsight
 from meinberlin.apps.projects.tasks import set_cache_for_projects
 from meinberlin.apps.topicprio.models import Topic
+
+
+def is_contributor(project, creator):
+    return (
+        Item.objects.filter(
+            creator=creator, module__in=project.module_set.all()
+        ).exists()
+        or Comment.objects.filter(creator=creator, project=project).exists()
+        or Vote.objects.filter(
+            choice__question__poll__module__project=project, creator=creator
+        ).exists()
+        or Answer.objects.filter(
+            question__poll__module__project=project, creator=creator
+        ).exists()
+        or Rating.objects.filter(
+            Q(idea__module__project=project)
+            | Q(topic__module__project=project)
+            | Q(mapidea__module__project=project)
+            | Q(maptopic__module__project=project)
+            | Q(budget_proposal__module__project=project)
+            | Q(comment__project=project),
+            creator=creator,
+        )
+        .exclude(value=0)
+        .exists()
+    )
 
 
 @receiver(a4dashboard_signals.project_created)
@@ -64,6 +93,22 @@ def increase_comments_count(sender, instance, created, **kwargs):
         insight.active_participants.add(instance.creator.id)
 
 
+@receiver(post_delete, sender=Comment)
+def decrease_comments_count(sender, instance, using, origin, **kwargs):
+    """
+    Comments are normally not deleted and instead are overwritten,
+    but when deleting an item with comments, these comments also get deleted.
+    This case covers this.
+    """
+    if instance.project:
+        insight, _ = ProjectInsight.objects.get_or_create(project=instance.project)
+        insight.comments = max(0, insight.comments - 1)
+        insight.save()
+
+        if not is_contributor(instance.project, instance.creator):
+            insight.active_participants.remove(instance.creator)
+
+
 @receiver(post_save, sender=Idea)
 @receiver(post_save, sender=MapIdea)
 @receiver(post_save, sender=Proposal)
@@ -81,6 +126,31 @@ def increase_idea_count(sender, instance, created, **kwargs):
         insight.active_participants.add(instance.creator.id)
 
 
+@receiver(post_delete, sender=Idea)
+@receiver(post_delete, sender=MapIdea)
+@receiver(post_delete, sender=Proposal)
+@receiver(post_delete, sender=Topic)
+@receiver(post_delete, sender=MapTopic)
+def decrease_idea_count(sender, instance, using, origin, **kwargs):
+    project = instance.module.project
+    insight, _ = ProjectInsight.objects.get_or_create(project=project)
+    insight.written_ideas = max(0, insight.written_ideas - 1)
+    insight.save()
+
+    if not is_contributor(project, instance.creator):
+        insight.active_participants.remove(instance.creator)
+
+
+@receiver(pre_save, sender=Rating)
+def set_old_rating_value(sender, instance, **kwargs):
+    """Store the old rating value on the instance before saving, if it exists."""
+    if instance.pk:
+        old_instance = Rating.objects.get(pk=instance.pk)
+        instance._old_value = old_instance.value
+    else:
+        instance._old_value = None
+
+
 @receiver(post_save, sender=Rating)
 def increase_rating_count(sender, instance, created, **kwargs):
     insight, _ = ProjectInsight.objects.get_or_create(project=instance.module.project)
@@ -88,7 +158,16 @@ def increase_rating_count(sender, instance, created, **kwargs):
         insight.ratings += 1
         insight.active_participants.add(instance.creator.id)
         insight.save()
-    if instance.value == 0:
+        return
+
+    old_val = instance._old_value
+    new_val = instance.value
+
+    if old_val == 0 and new_val != 0:
+        insight.ratings += 1
+        insight.active_participants.add(instance.creator.id)
+        insight.save()
+    elif old_val != 0 and new_val == 0:
         insight.ratings -= 1
         insight.active_participants.remove(instance.creator.id)
         insight.save()
@@ -119,7 +198,7 @@ def increase_poll_answers_count(sender, instance, created, **kwargs):
         if sender == Answer:
             project = instance.question.poll.module.project
         else:
-            project = instance.project
+            project = instance.module.project
 
         insight, _ = ProjectInsight.objects.get_or_create(project=project)
         insight.poll_answers += 1

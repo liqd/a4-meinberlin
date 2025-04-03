@@ -102,7 +102,10 @@ class ActionSerializer(serializers.ModelSerializer):
         if target and hasattr(target, "name"):
             return target.name
         elif target and hasattr(target, "content_object"):
-            return target.content_object.name
+            if hasattr(target.content_object, "name"):
+                return target.content_object.name
+            elif hasattr(target.content_object, "module"):
+                return target.content_object.module.name
         return None
 
     def get_type(self, obj):

@@ -183,6 +183,13 @@ function getInteractionText (action, totalRatings) {
             linkText: notificationsData.viewCommentText
           }
 
+        case 'poll':
+          return {
+            title: notificationsData.interactions.userRepliedPollText(project.title, project.url),
+            body,
+            linkText: notificationsData.viewCommentText
+          }
+
         case 'comment':
           if (actor.is_moderator) {
             return {

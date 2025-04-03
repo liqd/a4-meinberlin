@@ -40,6 +40,11 @@ export const notificationsData = {
       { title },
       true
     ),
+    userRepliedPollText: (title, url) => django.interpolate(
+      django.gettext('A user has replied to your poll in <a href="' + url + '">%(title)s</a>'),
+      { title },
+      true
+    ),
     moderatorRepliedCommentText: (title, url) => django.interpolate(
       django.gettext('A moderator has responded to your comment in <a href="' + url + '">%(title)s</a>'),
       { title },

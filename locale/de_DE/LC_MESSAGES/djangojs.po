@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-31 13:10+0200\n"
-"PO-Revision-Date: 2025-04-02 12:15+0000\n"
-"Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
+"PO-Revision-Date: 2025-04-03 09:49+0000\n"
+"Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "js-design-dev/de/>\n"
 "Language: de_DE\n"
@@ -937,7 +937,7 @@ msgstr "E-Mail"
 
 #: meinberlin/react/account/NotificationToggle.jsx:6
 msgid "In-App"
-msgstr ""
+msgstr "In-App"
 
 #: meinberlin/react/account/notification_data.js:5
 msgid "Interactions"
@@ -963,35 +963,35 @@ msgstr "Beteiligungsprojekte finden"
 
 #: meinberlin/react/account/notification_data.js:14
 msgid "A moderator has responded to your idea in <a href=\""
-msgstr ""
+msgstr "Die Moderation hat auf Ihren Kommentar in <a href=\" reagiert."
 
 #: meinberlin/react/account/notification_data.js:19
 msgid "A user has replied to your idea in <a href=\""
-msgstr ""
+msgstr "Eine Person hat auf Ihre Idee in <a href=\" geantwortet."
 
 #: meinberlin/react/account/notification_data.js:24
 msgid "A moderator has responded to your comment in <a href=\""
-msgstr ""
+msgstr "Die Moderation hat auf Ihren Kommentar in <a href=\" reagiert."
 
 #: meinberlin/react/account/notification_data.js:29
 msgid "A user has replied to your comment in <a href=\""
-msgstr ""
+msgstr "Eine Person hat auf Ihren Kommentar in <a href=\" geantwortet."
 
 #: meinberlin/react/account/notification_data.js:34
 msgid "Users have rated your idea in <a href=\""
-msgstr ""
+msgstr "Personen haben Ihren Kommentar in <a href=\" bewertet."
 
 #: meinberlin/react/account/notification_data.js:39
 msgid "A user has rated your idea in <a href=\""
-msgstr ""
+msgstr "Eine Person hat Ihren Kommentar in <a href=\" bewertet."
 
 #: meinberlin/react/account/notification_data.js:44
 msgid "Users have rated your comment in <a href=\""
-msgstr ""
+msgstr "Personen haben Ihren Kommentar in <a href=\" bewertet."
 
 #: meinberlin/react/account/notification_data.js:49
 msgid "A user has rated your comment in <a href=\""
-msgstr ""
+msgstr "Eine Person hat Ihren Kommentar in <a href=\" bewertet."
 
 #: meinberlin/react/account/notification_data.js:55
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:7
@@ -1025,11 +1025,11 @@ msgstr ""
 
 #: meinberlin/react/account/notification_data.js:65
 msgid "project"
-msgstr ""
+msgstr "Projekt"
 
 #: meinberlin/react/account/notification_data.js:65
 msgid "plan"
-msgstr ""
+msgstr "Vorhaben"
 
 #: meinberlin/react/account/notification_data.js:70
 msgid "Followed projects"
@@ -1055,11 +1055,11 @@ msgstr "Endecken Sie Projekte"
 #: meinberlin/react/account/notification_data.js:79
 #: meinberlin/react/account/notification_data.js:84
 msgid "<a href=\""
-msgstr ""
+msgstr "<a href=\""
 
 #: meinberlin/react/account/notification_data.js:89
 msgid "The event %(eventName)s is coming up for the project <a href=\""
-msgstr ""
+msgstr "Die Veranstaltung %(eventName)s in <a href=\" findet bald statt."
 
 #: meinberlin/react/account/notification_data.js:94
 msgid "View idea"
@@ -1075,7 +1075,7 @@ msgstr "Projekt anzeigen"
 
 #: meinberlin/react/account/notification_data.js:97
 msgid "View plan"
-msgstr ""
+msgstr "Vorhaben ansehen"
 
 #: meinberlin/react/account/notification_data.js:102
 #: meinberlin/react/account/notification_data.js:101
@@ -1349,7 +1349,7 @@ msgstr "lädt"
 #: meinberlin/react/contrib/card/Card.jsx:7
 #: meinberlin/react/contrib/map/ItemPopup.jsx:26
 msgid "Show"
-msgstr ""
+msgstr "Anzeigen"
 
 #: meinberlin/react/contrib/card/Card.jsx:8
 #: meinberlin/react/contrib/map/ItemPopup.jsx:27
@@ -2014,7 +2014,7 @@ msgstr "Ihre gespeicherten Kieze"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:20
 msgid "You can create your own Kieze in the user account settings."
-msgstr ""
+msgstr "Erstellen Sie Ihre eigenen Kieze in den Nutzerkontoeinstellungen."
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:21
 msgid "Districts"
@@ -2154,7 +2154,7 @@ msgstr ""
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
 msgid "Link to Video: "
-msgstr ""
+msgstr "Link zum Video: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
 msgid "Play video"
@@ -2162,7 +2162,7 @@ msgstr "Video abspielen"
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:16
 msgid "external video"
-msgstr ""
+msgstr "Externes Video"
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:17
 msgid ""
@@ -2170,14 +2170,18 @@ msgid ""
 "only be loaded after you give your consent. only then will vimeo set cookies "
 "that collect information on user behaviour."
 msgstr ""
+"Hier finden Sie ein Video von vimeo. Zum Schutz Ihrer Daten wird der Inhalt "
+"erst nach Ihrer Zustimmung angezeigt. Erst dann wird vimeo Cookies setzen, "
+"die Informationen über Ihr Nutzerverhalten sammeln."
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:18
 msgid "more information can be found in the privacy policy of vimeo under: "
 msgstr ""
+"Mehr Informationen finden Sie in den Datenschutzrichtlinien von vimeo unter: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "link to video: "
-msgstr ""
+msgstr "Link zum Video: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "play video"

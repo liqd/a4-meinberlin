@@ -1,10 +1,5 @@
-.ck .ck-toolbar {
-  border: 2px solid black !important;
-  border-bottom: none !important;
-}
-
-.ck .ck-editor__editable {
-  border: 2px solid black !important;
+:root {
+  --ck-color-base-border: #737373 !important;
 }
 
 img.image_resized {

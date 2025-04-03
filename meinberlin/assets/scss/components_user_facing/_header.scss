@@ -1,3 +1,9 @@
+body,
+html {
+    // account for sticky header
+    scroll-padding-top: 6.5rem;
+}
+
 .header .header__row-pageheader,
 .header.is--sticky .header__row-pageheader {
     padding-top: 0.8em !important;

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-31 13:10+0200\n"
-"PO-Revision-Date: 2025-04-02 12:15+0000\n"
-"Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
+"PO-Revision-Date: 2025-04-03 09:49+0000\n"
+"Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "main-design-dev/de/>\n"
 "Language: de_DE\n"
@@ -2053,6 +2053,10 @@ msgid ""
 "default. They can be found using the corresponding filter. Rating, support "
 "and voting are no longer possible, the comment function remains."
 msgstr ""
+"Archivierte Vorschläge werden standardmäßig nicht in der Liste der Ideen und "
+"Vorschläge angezeigt. Sie sind über den entsprechenden Filter auffindbar. "
+"Bewertungen, Unterstützungen und Abstimmungen sind nicht mehr möglich, die "
+"Kommentarfunktion bleibt bestehen."
 
 #: meinberlin/apps/budgeting/models.py:75
 msgid "completed moderation tasks"
@@ -2700,11 +2704,11 @@ msgstr "Seitennummerierung"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:11
 msgid "This idea has been archived."
-msgstr ""
+msgstr "Diese Idee wurde archiviert."
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:31
 msgid "(Archived)"
-msgstr ""
+msgstr "(Archiviert)"
 
 #: meinberlin/apps/contrib/templatetags/breadcrumbs_tags.py:53
 msgid "Home page"
@@ -3804,6 +3808,8 @@ msgid ""
 "Please describe in no more than 30 characters the event type, e.g. "
 "Information event or 3rd public workshop."
 msgstr ""
+"Beschreiben Sie in maximal 30 Zeichen die Art der Veranstaltung, z.B. "
+"Informationsveranstaltung oder 3. öffentlicher Workshop."
 
 #: meinberlin/apps/offlineevents/forms.py:36
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_event.html:35
@@ -3939,6 +3945,8 @@ msgid ""
 "Please add 1-2 topics to your plan. In Kiezradar plans can be filtered "
 "according to topics."
 msgstr ""
+"Ordnen Sie Ihr Vorhaben 1-2 Themenfeldern zu. Im Kiezradar können Vorhaben "
+"nach Themen gefiltert werden."
 
 #: meinberlin/apps/plans/forms.py:26 meinberlin/apps/projects/forms.py:86
 msgid "Please select at least 1 topic"
@@ -3986,6 +3994,9 @@ msgid ""
 "Enter the district in which the plan is located or whether it is a city-wide "
 "plan. In the Kiezradar projects can be filtered by district."
 msgstr ""
+"Tragen Sie ein, in welchem Bezirk das Vorhaben räumlich verortet wird bzw. "
+"ob es ein gesamtstädtisches Vorhaben ist. Im Kiezradar können Projekte nach "
+"Bezirk gefiltert werden."
 
 #: meinberlin/apps/plans/forms.py:96
 msgid ""
@@ -4373,6 +4384,8 @@ msgid ""
 "Please add 1-2 topics to your project. In Kiezradar projects can be filtered "
 "according to topics."
 msgstr ""
+"Ordnen Sie Ihr Projekt 1-2 Themenfeldern zu. Im Kiezradar können Projekte "
+"nach Themen gefiltert werden."
 
 #: meinberlin/apps/projects/models.py:131
 msgid "active participants"
@@ -4436,7 +4449,13 @@ msgid_plural ""
 "                    Participation projects\n"
 "                "
 msgstr[0] ""
+"\n"
+"                    Beteiligungsprojekt\n"
+"                "
 msgstr[1] ""
+"\n"
+"                    Beteiligungsprojekte\n"
+"                "
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_details_summary.html:3
 msgid "Project details"
@@ -4656,7 +4675,7 @@ msgstr "Sie startet am %(date)s."
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_results.html:11
 #: meinberlin/templates/a4modules/module_detail.html:20
 msgid "This project has not yet been published."
-msgstr ""
+msgstr "Dieses Projekt wurde noch nicht veröffentlicht."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_event.html:24
 msgid "Event Description"
@@ -4709,14 +4728,14 @@ msgstr[1] "Idee"
 #: meinberlin/apps/projects/templatetags/meinberlin_project_tags.py:118
 msgid "Rating"
 msgid_plural "Ratings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Bewertung"
+msgstr[1] "Bewertungen"
 
 #: meinberlin/apps/projects/templatetags/meinberlin_project_tags.py:138
 msgid "Participant"
 msgid_plural "Participants"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Teilnehmer*in"
+msgstr[1] "Teilnehmer*innen"
 
 #: meinberlin/apps/projects/views.py:69
 msgid "Year"
@@ -5629,11 +5648,11 @@ msgstr "Guten Tag"
 
 #: meinberlin/templates/email_base.html:73
 msgid "mein.berlin.de is the participation platform operated by"
-msgstr ""
+msgstr "mein.Berlin.de ist die Plattform für Beteiligung, betrieben durch"
 
 #: meinberlin/templates/email_base.html:75
 msgid "on behalf of Senate Chancellery Berlin"
-msgstr ""
+msgstr "im Auftrag der Senatskanzlei Berlin"
 
 #: meinberlin/templates/footer.html:8
 msgid "To the top of the page"
@@ -5732,7 +5751,7 @@ msgstr "Overlay schließen: Menü"
 
 #: meinberlin/templates/navigation_primary.html:16
 msgid "FAQ & Support"
-msgstr ""
+msgstr "FAQ & Hilfe"
 
 #: meinberlin/templates/navigation_primary.html:37
 msgid "Notification Settings"

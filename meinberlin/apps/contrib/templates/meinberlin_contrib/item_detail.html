@@ -1,10 +1,16 @@
 {% extends 'base.html' %}
-{% load i18n module_tags rules react_comments_async react_comments_async react_ratings wagtailcore_tags item_tags contrib_tags moderatorremark_tags %}
+{% load i18n static module_tags rules react_comments_async react_comments_async react_ratings wagtailcore_tags item_tags contrib_tags moderatorremark_tags %}
 {% block title %}
     {{ object.name }}
     —
     {{ block.super }}
 {% endblock title %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'react_delete_item.js' %}"></script>
+    {{ block.super }}
+{% endblock extra_js %}
+
 {% block content %}
     <div id="layout-grid__area--maincontent">
         {% include 'meinberlin_projects/project_actions.html' %}

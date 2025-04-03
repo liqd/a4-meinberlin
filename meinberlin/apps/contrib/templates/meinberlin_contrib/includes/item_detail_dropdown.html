@@ -1,4 +1,4 @@
-{% load i18n item_tags contrib_tags moderatorremark_tags react_reports %}
+{% load i18n item_tags contrib_tags moderatorremark_tags react_reports react_delete_item %}
 
 <div class="dropdown" data-dropdown>
     <button data-dropdown-trigger title="{% translate 'Actions' %}" type="button" class="dropdown__toggle" tabindex="0" aria-haspopup="menu" aria-controls="dropdown-menu" id="idea-{{ object.pk }}-actions">
@@ -11,9 +11,8 @@
                 <li class="dropdown__item">
                     <a href="{{ change_url }}">{% translate 'Edit' %}</a>
                 </li>
-                {% get_item_delete_url object as delete_url %}
                 <li class="dropdown__item">
-                    <a href="{{ delete_url }}">{% translate 'Delete' %}</a>
+                    {% react_delete_item object %}
                 </li>
             {% endif %}
             {% get_item_url object 'moderate' False as moderate_url %}

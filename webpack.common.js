@@ -102,6 +102,9 @@ module.exports = {
     react_kiezradar_search_profiles: {
       import: './meinberlin/react/kiezradar/react_kiezradar_search_profiles_init.jsx'
     },
+    react_delete_item: {
+      import: './meinberlin/react/modules/react_delete_item_init.jsx'
+    },
     topics: {
       import: './meinberlin/react/topicprio/react_topics_init.jsx'
     },

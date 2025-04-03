@@ -99,6 +99,7 @@ INSTALLED_APPS = (
     "meinberlin.apps.moderationtasks",
     "meinberlin.apps.moderatorfeedback",
     "meinberlin.apps.moderatorremark",
+    "meinberlin.apps.modules",
     "meinberlin.apps.notifications",
     "meinberlin.apps.organisations",
     "meinberlin.apps.users",

@@ -42,10 +42,10 @@
                     />
                 {% else %}
                     <picture>
-                        <source type="image/webp" srcset="{% static "/images/placeholder_hero.webp" %}"/>
-                        <source type="image/avif" srcset="{% static "/images/placeholder_hero.avif" %}"/>
+                        <source type="image/webp" srcset="{% static "images/placeholder_hero.webp" %}"/>
+                        <source type="image/avif" srcset="{% static "images/placeholder_hero.avif" %}"/>
                         <img
-                            src="{% static "/images/placeholder_hero.svg" %}"
+                            src="{% static "images/placeholder_hero.svg" %}"
                             alt="{{ project.tile_image_alt_text }}"
                             class="hero__image"
                             loading="lazy"

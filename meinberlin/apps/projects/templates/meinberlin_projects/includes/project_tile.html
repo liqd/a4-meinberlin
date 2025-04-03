@@ -26,10 +26,10 @@
                     loading="lazy"
                 />
             {% else %}
-                <source type="image/webp" srcset="{% static "/images/placeholder_tile.webp" %}"/>
-                <source type="image/avif" srcset="{% static "/images/placeholder_tile.avif" %}"/>
+                <source type="image/webp" srcset="{% static "images/placeholder_tile.webp" %}"/>
+                <source type="image/avif" srcset="{% static "images/placeholder_tile.avif" %}"/>
                 <img
-                    src="{% static "/images/placeholder_tile.svg" %}"
+                    src="{% static "images/placeholder_tile.svg" %}"
                     alt="{{ project.tile_image_alt_text }}"
                     height=510
                     width=600

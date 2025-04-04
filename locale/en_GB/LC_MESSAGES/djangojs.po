@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-04 12:22+0200\n"
+"POT-Creation-Date: 2025-04-04 14:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -648,46 +648,46 @@ msgstr "Multiple answers are possible."
 msgid "Your answer has been saved."
 msgstr "Your answer has been saved."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:23
-msgid "In order to participate please <a href=\""
-msgstr "In order to participate please <a href=\""
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:21
+msgid "In order to participate please <a href=\"%(url)s\">log in</a>."
+msgstr "In order to participate please <a href=\"%(url)s\">log in</a>."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:30
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:42
 msgid ""
 "Your answer could not be saved. Please check the data you entered again."
 msgstr ""
 "Your answer could not be saved. Please check the data you entered again."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:37
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:49
 msgid "Your answer is invalid or empty. Please try again."
 msgstr "Your answer is invalid or empty. Please try again."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:68
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:80
 msgid "To poll"
 msgstr "To poll"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:81
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:181
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:93
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:193
 msgid "Change answer"
 msgstr "Change answer"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:182
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:194
 msgid "Submit answer"
 msgstr "Submit answer"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:191
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:203
 msgid "Please login to answer"
 msgstr "Please login to answer"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:199
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:211
 msgid "Show results"
 msgstr "Show results"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:201
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:213
 msgid "Show preliminary results"
 msgstr "Show preliminary results"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:224
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:236
 msgid "Please enter your answer in this field."
 msgstr "Please enter your answer in this field."
 
@@ -971,8 +971,8 @@ msgstr ""
 "A user has replied to your proposal in <a href=\"%(url)s\">%(title)s</a>"
 
 #: meinberlin/react/account/notification_data.js:44
-msgid "A user has replied to your poll in <a href=\""
-msgstr "A user has replied to your poll in <a href=\""
+msgid "A user has replied to your poll in <a href=\"%(url)s\">%(title)s</a>"
+msgstr "A user has replied to your poll in <a href=\"%(url)s\">%(title)s</a>"
 
 #: meinberlin/react/account/notification_data.js:49
 msgid ""
@@ -1065,27 +1065,27 @@ msgstr "Find projects"
 
 #: meinberlin/react/account/notification_data.js:109
 msgid ""
-"<a href=\"%(url)s\">%(title)s</a>. is now open for participation. You can "
+"<a href=\"%(url)s\">%(title)s</a> is now open for participation. You can "
 "participate until %(date)s"
 msgstr ""
-"<a href=\"%(url)s\">%(title)s</a>. is now open for participation. You can "
+"<a href=\"%(url)s\">%(title)s</a> is now open for participation. You can "
 "participate until %(date)s"
 
 #: meinberlin/react/account/notification_data.js:114
 msgid ""
-"<a href=\"%(url)s\">%(title)s</a>. will end soon. You can still participate "
+"<a href=\"%(url)s\">%(title)s</a> will end soon. You can still participate "
 "until %(date)s"
 msgstr ""
-"<a href=\"%(url)s\">%(title)s</a>. will end soon. You can still participate "
+"<a href=\"%(url)s\">%(title)s</a> will end soon. You can still participate "
 "until %(date)s"
 
 #: meinberlin/react/account/notification_data.js:119
 msgid ""
-"The event %(eventName)s is coming up for the project <a href=\"%(url)s\">%"
-"(title)s</a>. It will take place on %(date)s"
+"The event %(eventName)s in <a href=\"%(url)s\">%(title)s</a> is coming up "
+"soon and takes place on %(date)s"
 msgstr ""
-"The event %(eventName)s is coming up for the project <a href=\"%(url)s\">%"
-"(title)s</a>. It will take place on %(date)s"
+"The event %(eventName)s in <a href=\"%(url)s\">%(title)s</a> is coming up "
+"soon and takes place on %(date)s"
 
 #: meinberlin/react/account/notification_data.js:124
 msgid "View idea"

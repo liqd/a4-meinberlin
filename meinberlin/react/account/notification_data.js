@@ -41,8 +41,8 @@ export const notificationsData = {
       true
     ),
     userRepliedPollText: (title, url) => django.interpolate(
-      django.gettext('A user has replied to your poll in <a href="' + url + '">%(title)s</a>'),
-      { title },
+      django.gettext('A user has replied to your poll in <a href="%(url)s">%(title)s</a>'),
+      { title, url },
       true
     ),
     moderatorRepliedCommentText: (title, url) => django.interpolate(
@@ -106,17 +106,17 @@ export const notificationsData = {
     ),
     buttonText: django.gettext('Find projects'),
     phaseStartedText: (title, url, date) => django.interpolate(
-      django.gettext('<a href="%(url)s">%(title)s</a>. is now open for participation. You can participate until %(date)s'),
+      django.gettext('<a href="%(url)s">%(title)s</a> is now open for participation. You can participate until %(date)s'),
       { title, url, date },
       true
     ),
     phaseEndedText: (title, url, date) => django.interpolate(
-      django.gettext('<a href="%(url)s">%(title)s</a>. will end soon. You can still participate until %(date)s'),
+      django.gettext('<a href="%(url)s">%(title)s</a> will end soon. You can still participate until %(date)s'),
       { title, url, date },
       true
     ),
     offlineEvent: (eventName, title, url, date) => django.interpolate(
-      django.gettext('The event %(eventName)s is coming up for the project <a href="%(url)s">%(title)s</a>. It will take place on %(date)s'),
+      django.gettext('The event %(eventName)s in <a href="%(url)s">%(title)s</a> is coming up soon and takes place on %(date)s'),
       { eventName, title, url, date },
       true
     )

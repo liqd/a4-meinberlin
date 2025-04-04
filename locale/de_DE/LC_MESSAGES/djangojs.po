@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-04 14:01+0200\n"
-"PO-Revision-Date: 2025-04-04 08:30+0000\n"
+"PO-Revision-Date: 2025-04-05 15:15+0000\n"
 "Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js-"
-"design-dev/de/>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
+"js-design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -658,7 +658,7 @@ msgstr "Ihre Antwort wurde gespeichert."
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:21
 msgid "In order to participate please <a href=\"%(url)s\">log in</a>."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Bitte melden Sie sich zum Antworten an</a>."
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:42
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:30
@@ -1007,6 +1007,8 @@ msgstr ""
 #: meinberlin/react/account/notification_data.js:44
 msgid "A user has replied to your poll in <a href=\"%(url)s\">%(title)s</a>"
 msgstr ""
+"Eine Person hat auf Ihre Umfrage in <a href=\"%(url)s\">%(title)s</a> "
+"reagiert."
 
 #: meinberlin/react/account/notification_data.js:49
 msgid ""
@@ -1109,18 +1111,24 @@ msgid ""
 "<a href=\"%(url)s\">%(title)s</a> is now open for participation. You can "
 "participate until %(date)s"
 msgstr ""
+"Die Online-Beteiligung im Projekt <a href=\"%(url)s\">%(title)s</a> hat "
+"begonnen. Sie können bis zum %(date)s daran teilnehmen."
 
 #: meinberlin/react/account/notification_data.js:114
 msgid ""
 "<a href=\"%(url)s\">%(title)s</a> will end soon. You can still participate "
 "until %(date)s"
 msgstr ""
+"Die Online-Beteiligung im Projekt <a href=\"%(url)s\">%(title)s</a> endet "
+"bald. Sie können bis zum %(date)s daran teilnehmen."
 
 #: meinberlin/react/account/notification_data.js:119
 msgid ""
 "The event %(eventName)s in <a href=\"%(url)s\">%(title)s</a> is coming up "
 "soon and takes place on %(date)s"
 msgstr ""
+"Die Veranstaltung %(eventName)s in <a href=\"%(url)s\">%(title)s</a> findet "
+"am %(date)s statt."
 
 #: meinberlin/react/account/notification_data.js:124
 msgid "View idea"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-31 13:10+0200\n"
-"PO-Revision-Date: 2025-04-03 10:40+0000\n"
+"PO-Revision-Date: 2025-04-04 08:30+0000\n"
 "Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "js-design-dev/de/>\n"
@@ -1044,7 +1044,8 @@ msgstr ""
 #: meinberlin/react/account/notification_data.js:75
 msgid "No followed projects. Find projects to follow them."
 msgstr ""
-"Keine gefolgten Projekte. Finden Sie Projekte, denen Sie folgen wollen."
+"Keine Neuigkeiten in Ihren gefolgten Projekten. Finden Sie Projekte, denen "
+"Sie folgen wollen."
 
 #: meinberlin/react/account/notification_data.js:77
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:21

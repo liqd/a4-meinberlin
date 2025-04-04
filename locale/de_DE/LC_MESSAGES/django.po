@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-04 12:03+0100\n"
-"PO-Revision-Date: 2025-04-02 10:15+0000\n"
-"Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
+"PO-Revision-Date: 2025-04-04 10:15+0000\n"
+"Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main/de/>"
 "\n"
 "Language: de_DE\n"
@@ -655,11 +655,11 @@ msgid ""
 "image content and is read out by screen readers. Describe the image in "
 "approx. 80 characters. Example: A busy square with people in summer."
 msgstr ""
-"Die Projektbeschreibung wird im Info-Tab angezeigt. Wenn Sie ein Bild "
-"hinzufügen, geben Sie bitte einen Alternativtext an. Er dient als textliche "
-"Beschreibung des Bildinhaltes und wird von Screenreadern vorgelesen. "
-"Beschreiben Sie das Bild in ca. 80 Zeichen. Beispiel: Ein belebter Platz mit "
-"Menschen im Sommer."
+"Die Projektbeschreibung wird auf der Informationsseite des Projekt "
+"angezeigt. Wenn Sie ein Bild hinzufügen, geben Sie bitte einen "
+"Alternativtext an. Er dient als textliche Beschreibung des Bildinhaltes und "
+"wird von Screenreadern vorgelesen. Beschreiben Sie das Bild in ca. 80 "
+"Zeichen. Beispiel: Ein belebter Platz mit Menschen im Sommer."
 
 #: adhocracy4/dashboard/forms.py:134
 msgid ""
@@ -670,13 +670,11 @@ msgid ""
 "is read out by screen readers. Describe the image in approx. 80 characters. "
 "Example: A busy square with people in summer."
 msgstr ""
-"Die Ergebnisbeschreibung wird im Ergebnis-Tab angezeigt. Bitte beschreiben "
-"Sie vorab ein Teilnahmeversprechen (was wird mit dem Ergebnis passieren?) "
-"und informieren Sie anschließend über das Ergebnis. Wenn Sie ein Bild "
-"hinzufügen, geben Sie bitte einen Alternativtext an. Er dient als textliche "
-"Beschreibung des Bildinhaltes und wird von Screenreadern vorgelesen. "
-"Beschreiben Sie das Bild in ca. 80 Zeichen. Beispiel: Ein belebter Platz mit "
-"Menschen im Sommer."
+"Die Projektergebnisse werden auf der Ergebnisseite des Projekt angezeigt. "
+"Wenn Sie ein Bild hinzufügen, geben Sie bitte einen alternativen Text an. Er "
+"dient als textliche Beschreibung des Bildinhaltes und wird von Screenreadern "
+"vorgelesen. Beschreiben Sie das Bild in ca. 80 Zeichen. Beispiel: Ein "
+"belebter Platz mit Menschen im Sommer."
 
 #: adhocracy4/dashboard/forms.py:165
 #: adhocracy4/phases/models.py:66
@@ -868,7 +866,7 @@ msgstr "{image_name} Urheber*in"
 #: adhocracy4/images/fields.py:90
 #, python-brace-format
 msgid "Copyright shown in the {image_name}."
-msgstr "Urheber*in, die im {image_name} angezeigt wird."
+msgstr "Urheber*in des Bildes."
 
 #: adhocracy4/images/fields.py:103
 #, python-brace-format
@@ -1018,9 +1016,8 @@ msgid ""
 "This title will appear in the timeline and the header on the module and "
 "project detail pages. It should be max. 512 characters long"
 msgstr ""
-"Der Modultitel erscheint auf der Modulkachel und auf der Modulseite, sobald "
-"das Projekt mehr als ein Modul oder eine Veranstaltung hat. Er darf maximal "
-"512 Zeichen lang sein."
+"Der Modultitel wird auf der Modulkachel und auf der Modulseite angezeigt. Er "
+"darf maximal 512 Zeichen lang sein."
 
 #: adhocracy4/modules/models.py:84
 msgid "Short description of the module"
@@ -1032,9 +1029,9 @@ msgid ""
 "detail pages. It should briefly state the goal of the module in max. 512 "
 "chars."
 msgstr ""
-"Die Kurzbeschreibung des Moduls erscheint auf der Modulseite, sobald das "
-"Projekt mehr als ein Modul oder eine Veranstaltung hat. Sie sollte in "
-"maximal 512 Zeichen das Ziel des Moduls beschreiben."
+"Die Kurzbeschreibung des Moduls erscheint auf der Modulkachel und auf der "
+"Modulseite. Sie sollte in maximal 512 Zeichen das Ziel des Moduls "
+"beschreiben."
 
 #: adhocracy4/modules/models.py:223
 #: meinberlin/apps/projects/serializers.py:254
@@ -1359,10 +1356,10 @@ msgid ""
 "Locate your project. Click inside the marked area or type in an address to "
 "set the marker. A set marker can be dragged when pressed."
 msgstr ""
-"Wenn Sie Ihr Projekt verorten, wird es in der allgemeinen Projektübersicht "
-"zusätzlich zur Liste auch in der Karte angezeigt. Um einen Pin zu setzen, "
-"klicken Sie innerhalb des markierten Bereichs oder geben Sie eine Adresse "
-"ein. Ein gesetzter Pin kann verschoben werden, wenn Sie ihn gedrückt halten."
+"Wenn Sie Ihr Projekt verorten, wird es auf der Kiezradar Karte angezeigt. Um "
+"einen Pin zu setzen, klicken Sie innerhalb des markierten Bereichs oder "
+"geben Sie eine Adresse ein. Ein gesetzter Pin kann verschoben werden, wenn "
+"Sie ihn gedrückt halten."
 
 #: adhocracy4/projects/models.py:107
 msgid "Administrative district"
@@ -1413,7 +1410,10 @@ msgstr "Headerbild"
 
 #: adhocracy4/projects/models.py:237
 msgid "The image will be shown as a decorative background image."
-msgstr "Das Bild wird als dekoratives Hintergrundbild angezeigt."
+msgstr ""
+"Das Bild wird als dekoratives Hintergrundbild angezeigt. Das Bild muss "
+"mindestens 1000 Pixel breit und 500 Pixel hoch sein. Erlaubte Dateiformate: "
+"png, jpeg, gif. Die maximale Dateigröße beträgt 5 MB."
 
 #: adhocracy4/projects/models.py:246
 #: adhocracy4/projects/models.py:252

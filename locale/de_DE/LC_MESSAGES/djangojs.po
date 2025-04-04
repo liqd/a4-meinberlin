@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-04 12:22+0200\n"
+"POT-Creation-Date: 2025-04-04 14:01+0200\n"
 "PO-Revision-Date: 2025-04-04 08:30+0000\n"
 "Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js-"
@@ -819,58 +819,58 @@ msgstr "Mehrfachantworten sind möglich."
 msgid "Your answer has been saved."
 msgstr "Ihre Antwort wurde gespeichert."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:23
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:23
-msgid "In order to participate please <a href=\""
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:21
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:21
+msgid "In order to participate please <a href=\"%(url)s\">log in</a>."
 msgstr ""
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:30
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:30
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:42
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:42
 msgid ""
 "Your answer could not be saved. Please check the data you entered again."
 msgstr ""
 "Ihre Antwort konnte nicht gespeichert werden. Bitte überprüfen Sie Ihre "
 "Eingabe."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:37
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:37
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:49
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:49
 msgid "Your answer is invalid or empty. Please try again."
 msgstr "Ihre Antwort ist ungültig oder leer. Bitte versuchen Sie es erneut."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:68
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:68
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:80
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:80
 msgid "To poll"
 msgstr "Zur Umfrage"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:81
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:181
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:81
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:181
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:93
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:193
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:93
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:193
 msgid "Change answer"
 msgstr "Antwort ändern"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:182
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:182
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:194
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:194
 msgid "Submit answer"
 msgstr "Antwort senden"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:191
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:191
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:203
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:203
 msgid "Please login to answer"
 msgstr "Bitte melden Sie sich zum Antworten an."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:199
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:199
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:211
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:211
 msgid "Show results"
 msgstr "Ergebnis zeigen"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:201
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:201
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:213
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:213
 msgid "Show preliminary results"
 msgstr "Vorläufiges Ergebnis zeigen"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:224
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:224
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:236
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:236
 msgid "Please enter your answer in this field."
 msgstr "Bitte geben Sie hier Ihre Antwort ein."
 
@@ -1189,7 +1189,7 @@ msgid ""
 msgstr ""
 
 #: meinberlin/react/account/notification_data.js:44
-msgid "A user has replied to your poll in <a href=\""
+msgid "A user has replied to your poll in <a href=\"%(url)s\">%(title)s</a>"
 msgstr ""
 
 #: meinberlin/react/account/notification_data.js:49
@@ -1281,20 +1281,20 @@ msgstr "Endecken Sie Projekte"
 
 #: meinberlin/react/account/notification_data.js:109
 msgid ""
-"<a href=\"%(url)s\">%(title)s</a>. is now open for participation. You can "
+"<a href=\"%(url)s\">%(title)s</a> is now open for participation. You can "
 "participate until %(date)s"
 msgstr ""
 
 #: meinberlin/react/account/notification_data.js:114
 msgid ""
-"<a href=\"%(url)s\">%(title)s</a>. will end soon. You can still participate "
+"<a href=\"%(url)s\">%(title)s</a> will end soon. You can still participate "
 "until %(date)s"
 msgstr ""
 
 #: meinberlin/react/account/notification_data.js:119
 msgid ""
-"The event %(eventName)s is coming up for the project <a href=\"%(url)s\">%"
-"(title)s</a>. It will take place on %(date)s"
+"The event %(eventName)s in <a href=\"%(url)s\">%(title)s</a> is coming up "
+"soon and takes place on %(date)s"
 msgstr ""
 
 #: meinberlin/react/account/notification_data.js:124

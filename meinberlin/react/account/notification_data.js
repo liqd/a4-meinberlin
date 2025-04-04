@@ -11,33 +11,33 @@ export const notificationsData = {
     ),
     buttonText: django.gettext('Find participation projects'),
     userSupportedProposal: (title, url) => django.interpolate(
-      django.gettext('A user supported your proposal in <a href="' + url + '">%(title)s</a>'),
-      { title },
+      django.gettext('A user supported your proposal in <a href="%(url)s">%(title)s</a>'),
+      { title, url },
       true
     ),
     moderatorRemarkedIdeaText: (title, url) => django.interpolate(
-      django.gettext('A moderator has remarked on your idea in <a href="' + url + '">%(title)s</a>'),
-      { title },
+      django.gettext('A moderator has remarked on your idea in <a href="%(url)s">%(title)s</a>'),
+      { title, url },
       true
     ),
     moderatorRemarkedProposalText: (title, url) => django.interpolate(
-      django.gettext('A moderator has remarked on your proposal in <a href="' + url + '">%(title)s</a>'),
-      { title },
+      django.gettext('A moderator has remarked on your proposal in <a href="%(url)s">%(title)s</a>'),
+      { title, url },
       true
     ),
     moderatorReplieIdeaText: (title, url) => django.interpolate(
-      django.gettext('A moderator has responded to your idea in <a href="' + url + '">%(title)s</a>'),
-      { title },
+      django.gettext('A moderator has responded to your idea in <a href="%(url)s">%(title)s</a>'),
+      { title, url },
       true
     ),
     userRepliedIdeaText: (title, url) => django.interpolate(
-      django.gettext('A user has replied to your idea in <a href="' + url + '">%(title)s</a>'),
-      { title },
+      django.gettext('A user has replied to your idea in <a href="%(url)s">%(title)s</a>'),
+      { title, url },
       true
     ),
     userRepliedProposalText: (title, url) => django.interpolate(
-      django.gettext('A user has replied to your proposal in <a href="' + url + '">%(title)s</a>'),
-      { title },
+      django.gettext('A user has replied to your proposal in <a href="%(url)s">%(title)s</a>'),
+      { title, url },
       true
     ),
     userRepliedPollText: (title, url) => django.interpolate(
@@ -46,33 +46,33 @@ export const notificationsData = {
       true
     ),
     moderatorRepliedCommentText: (title, url) => django.interpolate(
-      django.gettext('A moderator has responded to your comment in <a href="' + url + '">%(title)s</a>'),
-      { title },
+      django.gettext('A moderator has responded to your comment in <a href="%(url)s">%(title)s</a>'),
+      { title, url },
       true
     ),
     userRepliedCommentText: (title, url) => django.interpolate(
-      django.gettext('A user has replied to your comment in <a href="' + url + '">%(title)s</a>'),
-      { title },
+      django.gettext('A user has replied to your comment in <a href="%(url)s">%(title)s</a>'),
+      { title, url },
       true
     ),
     usersRatedIdeaText: (title, url) => django.interpolate(
-      django.gettext('Users have rated your idea in <a href="' + url + '">%(title)s</a>'),
-      { title },
+      django.gettext('Users have rated your idea in <a href="%(url)s">%(title)s</a>'),
+      { title, url },
       true
     ),
     userRatedIdeaText: (title, url) => django.interpolate(
-      django.gettext('A user has rated your idea in <a href="' + url + '">%(title)s</a>'),
-      { title },
+      django.gettext('A user has rated your idea in <a href="%(url)s">%(title)s</a>'),
+      { title, url },
       true
     ),
     usersRatedCommentText: (title, url) => django.interpolate(
-      django.gettext('Users have rated your comment in <a href="' + url + '">%(title)s</a>'),
-      { title },
+      django.gettext('Users have rated your comment in <a href="%(url)s">%(title)s</a>'),
+      { title, url },
       true
     ),
     userRatedCommentText: (title, url) => django.interpolate(
-      django.gettext('A user has rated your comment in <a href="' + url + '">%(title)s</a>'),
-      { title },
+      django.gettext('A user has rated your comment in <a href="%(url)s">%(title)s</a>'),
+      { title, url },
       true
     )
   },
@@ -86,8 +86,13 @@ export const notificationsData = {
     ),
     buttonText: django.gettext('Save a search'),
     projectMatchesSearchProfileText: (title, url, name, isProject) => django.interpolate(
-      django.gettext('A new %(obj)s, <a href="' + url + '">%(title)s</a>, matches your search profile %(name)s'),
-      { title, name, obj: isProject ? django.gettext('project') : django.gettext('plan') },
+      django.gettext('A new %(obj)s, <a href="%(url)s">%(title)s</a>, matches your search profile %(name)s'),
+      {
+        title,
+        url,
+        name,
+        obj: isProject ? django.gettext('project') : django.gettext('plan')
+      },
       true
     )
   },
@@ -101,18 +106,18 @@ export const notificationsData = {
     ),
     buttonText: django.gettext('Find projects'),
     phaseStartedText: (title, url, date) => django.interpolate(
-      django.gettext('<a href="' + url + '">%(title)s</a>. is now open for participation. You can participate until %(date)s'),
-      { title, date },
+      django.gettext('<a href="%(url)s">%(title)s</a>. is now open for participation. You can participate until %(date)s'),
+      { title, url, date },
       true
     ),
     phaseEndedText: (title, url, date) => django.interpolate(
-      django.gettext('<a href="' + url + '">%(title)s</a>. will end soon. You can still participate until %(date)s'),
-      { title, date },
+      django.gettext('<a href="%(url)s">%(title)s</a>. will end soon. You can still participate until %(date)s'),
+      { title, url, date },
       true
     ),
     offlineEvent: (eventName, title, url, date) => django.interpolate(
-      django.gettext('The event %(eventName)s is coming up for the project <a href="' + url + '">%(title)s</a>. It will take place on %(date)s'),
-      { eventName, title, date },
+      django.gettext('The event %(eventName)s is coming up for the project <a href="%(url)s">%(title)s</a>. It will take place on %(date)s'),
+      { eventName, title, url, date },
       true
     )
   },

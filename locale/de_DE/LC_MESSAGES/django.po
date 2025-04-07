@@ -10,8 +10,8 @@ msgstr ""
 "POT-Creation-Date: 2025-04-04 14:01+0200\n"
 "PO-Revision-Date: 2025-04-05 15:15+0000\n"
 "Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
-"main-design-dev/de/>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main-"
+"design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1314,8 +1314,7 @@ msgstr "Headerbild"
 
 #: adhocracy4/projects/models.py:252
 msgid "The image will be shown as a decorative background image."
-msgstr ""
-"Das Bild wird als dekoratives Hintergrundbild angezeigt."
+msgstr "Das Bild wird als dekoratives Hintergrundbild angezeigt."
 
 #: adhocracy4/projects/models.py:261 adhocracy4/projects/models.py:267
 #: adhocracy4/projects/models.py:268 meinberlin/apps/plans/models.py:93
@@ -5720,7 +5719,7 @@ msgstr "Overlay schließen: Menü"
 #: meinberlin/templates/navigation_primary.html:21
 #: meinberlin/templates/navigation_primary.html:16
 msgid "FAQ & Support"
-msgstr "FAQ & Hilfe"
+msgstr "FAQ & Support"
 
 #: meinberlin/templates/navigation_primary.html:42
 #: meinberlin/templates/navigation_primary.html:37

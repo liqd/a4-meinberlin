@@ -1315,9 +1315,7 @@ msgstr "Headerbild"
 #: adhocracy4/projects/models.py:252
 msgid "The image will be shown as a decorative background image."
 msgstr ""
-"Das Bild wird als dekoratives Hintergrundbild angezeigt. Das Bild muss "
-"mindestens 1000 Pixel breit und 500 Pixel hoch sein. Erlaubte Dateiformate: "
-"png, jpeg, gif. Die maximale Dateigröße beträgt 5 MB."
+"Das Bild wird als dekoratives Hintergrundbild angezeigt."
 
 #: adhocracy4/projects/models.py:261 adhocracy4/projects/models.py:267
 #: adhocracy4/projects/models.py:268 meinberlin/apps/plans/models.py:93

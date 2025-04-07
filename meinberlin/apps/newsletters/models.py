@@ -75,6 +75,7 @@ class Newsletter(UserGeneratedContentModel):
 
     def save(self, update_fields=None, *args, **kwargs):
         self.body = transforms.clean_html_field(self.body, "image-editor")
+        self.subject = self.subject.replace("'", "")  # remove any apostrophes
         if update_fields:
-            update_fields = {"body"}.union(update_fields)
+            update_fields = {"body", "subject"}.union(update_fields)
         super().save(update_fields=update_fields, *args, **kwargs)

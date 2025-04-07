@@ -223,7 +223,7 @@ IMAGE_ALIASES = {
         "max_size": 5 * 10**6,
         "fileformats": ("image/png", "image/jpeg", "image/gif"),
     },
-    "heroimage": {"min_resolution": (1500, 500)},
+    "heroimage": {"min_resolution": (1000, 500)},
     "tileimage": {"min_resolution": (500, 300)},
     "logo": {"min_resolution": (200, 50), "max_resolution": (650, 650)},
     "avatar": {"min_resolution": (200, 200)},
@@ -233,7 +233,7 @@ IMAGE_ALIASES = {
 
 THUMBNAIL_ALIASES = {
     "": {
-        "heroimage": {"size": (1500, 500)},
+        "heroimage": {"size": (1000, 500)},
         "project_thumbnail": {"size": (600, 510)},
         "logo": {"size": (160, 160), "background": "white"},
         "item_image": {"size": (330, 0), "crop": "scale"},

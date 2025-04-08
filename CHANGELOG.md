@@ -16,7 +16,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Changed
 
 - wrap image thumbnailer method within a try/except block to handle corrupted images
-- 
+- a4 resolved hash in package-lock.json to force latest a4 version
 - plans admin changed to GISModelAdmin
 - planSerializer to return status of 2 in case it's 1 (because for projects: 2 == "past") for consistency
 

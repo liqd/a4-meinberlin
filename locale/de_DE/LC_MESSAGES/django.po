@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-04 12:03+0100\n"
-"PO-Revision-Date: 2025-04-04 10:15+0000\n"
+"PO-Revision-Date: 2025-04-08 15:15+0000\n"
 "Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main/de/>"
 "\n"
@@ -1410,10 +1410,7 @@ msgstr "Headerbild"
 
 #: adhocracy4/projects/models.py:237
 msgid "The image will be shown as a decorative background image."
-msgstr ""
-"Das Bild wird als dekoratives Hintergrundbild angezeigt. Das Bild muss "
-"mindestens 1000 Pixel breit und 500 Pixel hoch sein. Erlaubte Dateiformate: "
-"png, jpeg, gif. Die maximale Dateigröße beträgt 5 MB."
+msgstr "Das Bild wird als dekoratives Hintergrundbild angezeigt."
 
 #: adhocracy4/projects/models.py:246
 #: adhocracy4/projects/models.py:252

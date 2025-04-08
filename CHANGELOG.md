@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 Since version v2308 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2504.2
+
+### Fixed
+
+- Updated heroimage alias to represent frontend representation of 1000x500px
+- not being able to use the scrollbar in the MultiSelect dropdown 
+- wrong translation string causing a doubled helptext
+
+### Changed
+
+- wrap image thumbnailer method within a try/except block to handle corrupted images
+- 
+- plans admin changed to GISModelAdmin
+- planSerializer to return status of 2 in case it's 1 (because for projects: 2 == "past") for consistency
+
+### Added
+
+- logo_horizontal.svg to fix crash on embed pages
+
 ## v2504.1
 
 ### Added

@@ -23,6 +23,7 @@ class PlanSerializer(PointSerializerMixin, serializers.ModelSerializer, CommonFi
     topics = serializers.SerializerMethodField()
     type = serializers.ReadOnlyField(default="plan")
     url = serializers.SerializerMethodField()
+    status = serializers.SerializerMethodField()
 
     def get_geojson_properties(self):
         return {"strname": "street_name", "hsnr": "house_number", "plz": "zip_code"}
@@ -111,3 +112,8 @@ class PlanSerializer(PointSerializerMixin, serializers.ModelSerializer, CommonFi
             return instance.image_copyright
         else:
             return ""
+
+    def get_status(self, instance: Plan):
+        if instance.status == 1:
+            return 2
+        return instance.status

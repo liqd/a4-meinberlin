@@ -10,6 +10,7 @@ from adhocracy4.maps.mixins import PointSerializerMixin
 from adhocracy4.phases.models import Phase
 from adhocracy4.projects.models import Project
 from adhocracy4.projects.models import Topic
+from meinberlin.apps import logger
 from meinberlin.apps.kiezradar.models import ProjectType
 
 
@@ -158,12 +159,16 @@ class ProjectSerializer(
 
     def get_tile_image(self, instance):
         image_url = ""
-        if instance.tile_image:
-            image = get_thumbnailer(instance.tile_image)["project_tile"]
-            image_url = image.url
-        elif instance.image:
-            image = get_thumbnailer(instance.image)["project_tile"]
-            image_url = image.url
+        try:
+            if instance.tile_image:
+                image = get_thumbnailer(instance.tile_image)["project_tile"]
+                image_url = image.url
+            elif instance.image:
+                image = get_thumbnailer(instance.image)["project_tile"]
+                image_url = image.url
+        except Exception as e:
+            logger.warning(f"{e} issue with the image for project {instance.name}")
+            pass
         return image_url
 
     def get_tile_image_alt_text(self, instance):

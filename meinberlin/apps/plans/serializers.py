@@ -3,6 +3,7 @@ from rest_framework import serializers
 
 from adhocracy4.maps.mixins import PointSerializerMixin
 from adhocracy4.projects.enums import Access
+from meinberlin.apps import logger
 from meinberlin.apps.projects.serializers import CommonFields
 
 from .models import Plan
@@ -82,12 +83,18 @@ class PlanSerializer(PointSerializerMixin, serializers.ModelSerializer, CommonFi
         return not bool(instance.status)
 
     def get_tile_image(self, instance: Plan) -> str:
-        if instance.tile_image:
-            return get_thumbnailer(instance.tile_image)["project_tile"].url
-        elif instance.image:
-            return get_thumbnailer(instance.image)["project_tile"].url
-        else:
-            return ""
+        image_url = ""
+        try:
+            if instance.tile_image:
+                image = get_thumbnailer(instance.tile_image)["project_tile"]
+                image_url = image.url
+            elif instance.image:
+                image = get_thumbnailer(instance.image)["project_tile"]
+                image_url = image.url
+        except Exception as e:
+            logger.warning(f"{e} issue with the image for plan {instance.title}")
+            pass
+        return image_url
 
     def get_tile_image_alt_text(self, instance: Plan) -> str:
         if instance.tile_image:

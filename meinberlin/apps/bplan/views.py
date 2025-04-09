@@ -1,4 +1,6 @@
+from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
+from django.views.generic import DetailView
 from django.views.generic import TemplateView
 
 from adhocracy4.dashboard.blueprints import ProjectBlueprint
@@ -89,3 +91,29 @@ class BplanProjectListView(
 
     def get_permission_object(self):
         return self.organisation
+
+
+class BplanProjectDispatchMixin(DetailView):
+    @cached_property
+    def project(self):
+        return self.get_object()
+
+    @cached_property
+    def module(self):
+        if self.project.published_modules.count() == 1:
+            return self.project.published_modules.first()
+        elif len(self.project.running_modules) == 1:
+            return self.project.running_modules[0]
+
+    def dispatch(self, request, *args, **kwargs):
+        if self.project.project_type == "meinberlin_bplan.Bplan":
+            kwargs["project"] = self.project
+            kwargs["module"] = self.module
+
+            return self._dispatch_bplan_module_view()(request, *args, **kwargs)
+        return super().dispatch(request, *args, **kwargs)
+
+    def _dispatch_bplan_module_view(self):
+        if self.module and self.module.last_active_phase:
+            return self.module.last_active_phase.view.as_view()
+        return super().dispatch

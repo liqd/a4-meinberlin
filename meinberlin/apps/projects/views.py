@@ -30,6 +30,7 @@ from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.offlineevents.models import OfflineEvent
 
+from ..bplan.views import BplanProjectDispatchMixin
 from . import forms
 from . import models
 
@@ -338,7 +339,7 @@ class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
         return self.project
 
 
-class ProjectDetailView(PermissionRequiredMixin, generic.DetailView):
+class ProjectDetailView(PermissionRequiredMixin, BplanProjectDispatchMixin):
     model = models.Project
     permission_required = "a4projects.view_project"
 
@@ -353,10 +354,6 @@ class ProjectDetailView(PermissionRequiredMixin, generic.DetailView):
     @property
     def raise_exception(self):
         return self.request.user.is_authenticated
-
-    @cached_property
-    def project(self):
-        return self.get_object()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

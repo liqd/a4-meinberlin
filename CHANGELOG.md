@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 Since version v2308 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2504.3
+
+### Added
+- dispatch mixin to display statement form instead of project detail page
+
+### Fixed
+- translation typos
+
 ## v2504.2
 
 ### Fixed

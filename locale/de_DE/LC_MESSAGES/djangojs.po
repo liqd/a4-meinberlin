@@ -1046,7 +1046,7 @@ msgstr ""
 #: meinberlin/react/account/notification_data.js:80
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:7
 msgid "Search Profiles"
-msgstr "Gespeicherte Suchprofile"
+msgstr "Gespeicherte Suchen"
 
 #: meinberlin/react/account/notification_data.js:82
 msgid ""
@@ -1074,8 +1074,8 @@ msgid ""
 "A new %(obj)s, <a href=\"%(url)s\">%(title)s</a>, matches your search "
 "profile %(name)s"
 msgstr ""
-"Ein neues %(obj)s, <a href=\"%(url)s\">%(title)s</a>, entspricht Ihrem "
-"Suchprofil %(name)s."
+"Ein neues %(obj)s, <a href=\"%(url)s\">%(title)s</a>, entspricht Ihrer "
+"gespeicherten Suche %(name)s."
 
 #: meinberlin/react/account/notification_data.js:94
 msgid "project"
@@ -1104,7 +1104,7 @@ msgstr ""
 #: meinberlin/react/account/notification_data.js:107
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:21
 msgid "Find projects"
-msgstr "Endecken Sie Projekte"
+msgstr "Entdecken Sie Projekte"
 
 #: meinberlin/react/account/notification_data.js:109
 msgid ""
@@ -2108,7 +2108,7 @@ msgstr "Projekte anzeigen"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:34
 msgid "Search profile created successfully"
-msgstr "Suchprofil erfolgreich erstellt"
+msgstr "Gespeicherte Suche erfolgreich erstellt"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:37
 msgid ""
@@ -2117,12 +2117,12 @@ msgid ""
 "href=\"%(url)s\">Search Profiles</a>."
 msgstr ""
 "Sie werden über neue Projekte mit den ausgewählten Filtern benachrichtigt. "
-"Sie können Ihre Suchprofile in den Nutzerkontoeinstellungen unter <a href=\""
+"Sie können Ihre gespeicherten Suchen in den Nutzerkontoeinstellungen unter <a href=\""
 "%(url)s\">Gespeicherte Suchen</a> verwalten."
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:41
 msgid "Search profile cannot be saved"
-msgstr "Suchprofil konnte nicht gespeichert werden"
+msgstr "Suche konnte nicht gespeichert werden."
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:44
 msgid ""
@@ -2130,9 +2130,9 @@ msgid ""
 "delete an existing profile in the User Settings under <a "
 "href=\"%(url)s\">Search Profiles</a>."
 msgstr ""
-"Sie haben die maximale Anzahl an 10 Suchprofilen erstellt. Um ein neues zu "
-"erstellen, löschen Sie ein bestehendes Suchprofil in den "
-"Nutzerkontoeinstellungen unter [<a href=\"%(url)s\">Search Profiles</a>."
+"Sie haben die maximale Anzahl an 10 gespeicherten Suchen erstellt. Um ein neues zu "
+"erstellen, löschen Sie eine bestehende gespeicherte Suche in den "
+"Nutzerkontoeinstellungen unter <a href=\"%(url)s\">Gespeicherte Suchen</a>."
 
 #: meinberlin/react/projects/ProjectsListMapBox.jsx:15
 msgid "Kiezradar"

@@ -91,6 +91,7 @@ jobs:
           DJANGO_SETTINGS_MODULE='meinberlin.config.settings.travis' py.test --cov
           isort --diff -c meinberlin tests
           python manage.py makemigrations --dry-run --check --noinput
+          python manage.py clear_cache
           flake8 meinberlin tests --exclude migrations,settings
       - name: Coveralls
         env:

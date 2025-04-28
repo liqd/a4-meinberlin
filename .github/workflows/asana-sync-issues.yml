@@ -1,0 +1,13 @@
+on:
+  issues:
+    types: [opened, reopened]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: duckduckgo/native-github-asana-sync@v1.1
+        with:
+          asana-pat: ${{ secrets.GH_ASANA_SECRET }}
+          asana-project: ${{ vars.GH_ASANA_PROJECT_ID }}
+          action: 'create-asana-issue-task'

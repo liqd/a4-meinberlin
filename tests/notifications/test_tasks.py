@@ -9,7 +9,7 @@ from meinberlin.test.factories import CommentFactory
 @pytest.mark.django_db
 def test_notifications_deleted_after_180_days(idea_factory):
     with freeze_time("2020-01-01"):
-        CommentFactory.create_batch(10, content_object=idea_factory())
+        CommentFactory.create_batch(15, content_object=idea_factory())
 
     with freeze_time("2021-01-01"):
         CommentFactory.create_batch(10, content_object=idea_factory())

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import django from 'django'
 import { Card } from './Card'
 import { CardMeta } from './CardMeta'
@@ -9,6 +9,7 @@ import { ControlBar } from '../ControlBar'
 
 export const CardList = (props) => {
   const { results, currentPage, isMapAndList } = useFetchedItems()
+  const container = useRef(null)
   const data = results.list
   const translations = {
     noResults: django.gettext('Nothing to show'),
@@ -21,7 +22,7 @@ export const CardList = (props) => {
       <h2 className="aural">{props.listStr}</h2>
       {data?.results && data.results.length > 0
         ? (
-          <ul className="list--clean">
+          <ul className="list--clean" ref={container}>
             {data.results.map((item, idx) => (
               <li key={idx}>
                 <Card item={item} idx={idx} permissions={data?.permissions} currentPage={currentPage}>
@@ -50,6 +51,7 @@ export const CardList = (props) => {
           nextPage={data.next}
           prevPage={data.previous}
           pageCount={data.page_count}
+          containerTop={container.current?.offsetTop}
         />
       )}
     </>

@@ -7,18 +7,22 @@ const pageNavigationStr = django.gettext('Page navigation')
 const pageNextStr = django.gettext('next page')
 const pagePrevStr = django.gettext('prev page')
 
-export const Pagination = (props) => {
-  const {
-    elidedRange,
-    nextPage,
-    prevPage
-  } = props
+export const Pagination = ({
+  elidedRange,
+  nextPage,
+  prevPage,
+  containerTop
+}) => {
   const [queryParams, setQueryParams] = useSearchParams()
   const currPage = parseInt(queryParams.get('page')) || 1
 
   const onPaginate = (pageIndex) => {
     queryParams.set('page', pageIndex)
     setQueryParams(queryParams)
+
+    if (typeof containerTop === 'number') {
+      window.scrollTo({ top: containerTop, behavior: 'smooth' })
+    }
   }
 
   return (

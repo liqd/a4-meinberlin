@@ -1,25 +1,27 @@
 import React from 'react'
 
-export const PaginationButton = (props) => {
-  const disabledClass = props.isDisabled
+export const PaginationButton = ({
+  ariaLabel, isActive, isDisabled, isNoButton, onClick, pageIndex, prevString, type
+}) => {
+  const disabledClass = isDisabled
     ? 'disabled'
     : undefined
 
-  const itemClass = props.isActive
+  const itemClass = isActive
     ? 'active'
     : ''
 
   const getLabel = () => {
-    if (props.type === 'num') {
-      return props.pageIndex
-    } else if (props.type === 'prev') {
+    if (type === 'num') {
+      return pageIndex
+    } else if (type === 'prev') {
       return (
         <>
           <i className="fa fa-chevron-left" aria-hidden="true" />
-          <span className="aural">{props.prevString}</span>
+          <span className="aural">{prevString}</span>
         </>
       )
-    } else if (props.type === 'next') {
+    } else if (type === 'next') {
       return <i className="fa fa-chevron-right" aria-hidden="true" />
     }
   }
@@ -28,7 +30,7 @@ export const PaginationButton = (props) => {
     <li
       className={itemClass}
     >
-      {props.isNoButton
+      {isNoButton
         ? (
           <div>
             {getLabel()}
@@ -37,8 +39,9 @@ export const PaginationButton = (props) => {
         : (
           <button
             className={disabledClass}
-            onClick={() => props.onClick(props.pageIndex)}
-            aria-label={props.ariaLabel}
+            onClick={() => onClick(pageIndex)}
+            aria-label={ariaLabel}
+            disabled={isDisabled}
           >
             {getLabel()}
           </button>

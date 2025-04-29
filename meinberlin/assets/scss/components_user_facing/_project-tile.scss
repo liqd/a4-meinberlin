@@ -19,6 +19,10 @@ a.project-tile {
         padding-bottom: 1.5em;
         padding-top: 1.5em;
     }
+
+    .image__copyright {
+        font-weight: 400;
+    }
 }
 
 .project-tile__image-wrapper {
@@ -100,6 +104,7 @@ a.project-tile {
     margin-bottom: .5em;
     font-size: $font-size-sm;
     color: $text-base;
+    font-weight: 400;
 
     p:last-child {
         margin-bottom: 0;

@@ -1,11 +1,9 @@
 from django.urls import reverse
-from django.utils.functional import cached_property
 from django.views import generic
 from django_ckeditor_5.widgets import CKEditor5Widget
 
 from adhocracy4.dashboard import mixins as dashboard_mixins
 from adhocracy4.exports.views import DashboardExportView
-from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
 
@@ -35,7 +33,6 @@ class ChapterDetailView(
     ProjectMixin,
     rules_mixins.PermissionRequiredMixin,
     generic.DetailView,
-    DisplayProjectOrModuleMixin,
 ):
     model = models.Chapter
     permission_required = "meinberlin_documents.view_chapter"
@@ -49,15 +46,6 @@ class ChapterDetailView(
     @property
     def chapter_list(self):
         return models.Chapter.objects.filter(module=self.module)
-
-    @cached_property
-    def extends(self):
-        if self.url_name == "module-detail":
-            return "a4modules/module_detail.html"
-        if self.url_name == "chapter-detail":
-            if self.module.is_in_module_cluster:
-                return "a4modules/module_detail.html"
-        return "a4projects/project_detail.html"
 
 
 class DocumentDetailView(ChapterDetailView):

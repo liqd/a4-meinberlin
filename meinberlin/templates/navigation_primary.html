@@ -4,6 +4,7 @@
     <div class="tree-wrapper js-navigation-tree-wrapper">
         <h3 class="aural">{% translate 'Page navigation' %}</h3>
         <ul class="navigation-tree">
+            {% url 'meinberlin_plans:plan-list' as project_list %}
             <li class="{% if request.path == project_list %}active{% endif %}">
                 <a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Kiezradar' %}</a>
             </li>

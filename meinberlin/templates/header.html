@@ -25,8 +25,8 @@
         <!-- Quicklinks -->
         <nav class="pageheader__quicklinks" aria-label="{% translate 'Page navigation' %}">
             <ul>
+                {% url 'meinberlin_plans:plan-list' as project_list %}
                 <li class="{% if request.path == project_list %}active{% endif %}">
-                    {% url 'meinberlin_plans:plan-list' as project_list %}
                     <a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Kiezradar' %}</a>
                 </li>
                 {% url "notifications" as notifications_url %}

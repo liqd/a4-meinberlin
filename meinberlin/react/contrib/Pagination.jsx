@@ -21,7 +21,7 @@ export const Pagination = ({
     setQueryParams(queryParams)
 
     if (typeof containerTop === 'number') {
-      window.scrollTo({ top: containerTop, behavior: 'smooth' })
+      window.scrollTo({ top: containerTop })
     }
   }
 
@@ -34,6 +34,12 @@ export const Pagination = ({
           pageIndex={currPage - 1}
           isDisabled={!prevPage}
           ariaLabel={pagePrevStr}
+          onClick={onPaginate}
+        />
+        <PaginationButton
+          type="current-num"
+          pageIndex={currPage}
+          total={elidedRange.length}
           onClick={onPaginate}
         />
 

@@ -1,19 +1,30 @@
 import React from 'react'
+import { classNames } from 'adhocracy4'
 
 export const PaginationButton = ({
-  ariaLabel, isActive, isDisabled, isNoButton, onClick, pageIndex, prevString, type
+  ariaLabel, total, isActive, isDisabled, isNoButton, onClick, pageIndex, prevString, type, className = ''
 }) => {
   const disabledClass = isDisabled
     ? 'disabled'
     : undefined
 
-  const itemClass = isActive
-    ? 'active'
-    : ''
+  let itemClass = ''
+
+  itemClass += ' ' + className
+
+  if (type === 'prev') {
+    itemClass += ' pager-item-previous'
+  } else if (type === 'next') {
+    itemClass += ' pager-item-next'
+  } else if (type === 'current-num') {
+    itemClass += ' mobile-counter'
+  }
 
   const getLabel = () => {
     if (type === 'num') {
       return pageIndex
+    } else if (type === 'current-num') {
+      return pageIndex + '/' + total
     } else if (type === 'prev') {
       return (
         <>
@@ -38,7 +49,7 @@ export const PaginationButton = ({
           )
         : (
           <button
-            className={disabledClass}
+            className={classNames(disabledClass, isActive && 'active')}
             onClick={() => onClick(pageIndex)}
             aria-label={ariaLabel}
             disabled={isDisabled}

@@ -14,6 +14,6 @@ test('clicking on page 2 sets button to active', () => {
   )
   const pageButton2 = screen.getByText('2')
   fireEvent.click(pageButton2)
-  const parentPageButton2 = screen.getByText('2').closest('li')
+  const parentPageButton2 = screen.getByText('2').closest('li button')
   expect(parentPageButton2.className).toBe('active')
 })

@@ -55,11 +55,6 @@
         </div>
 
         <h3 class="project-tile__title" id="project-title-{{ plan.id }}">{{ plan.title }}</h3>
-        {% if plan.description %}
-            <div class="project-tile__description">
-                {{ plan.description | truncatechars_html:170 | safe }}
-            </div>
-        {% endif %}
 
         <div class="project-tile__status">
             <p>

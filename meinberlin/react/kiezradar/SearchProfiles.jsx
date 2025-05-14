@@ -83,9 +83,7 @@ export default function SearchProfiles (props) {
         />
       )}
       <h1>
-        {titleText + (
-          searchProfiles.length ? (' (' + searchProfiles.length + ')') : ''
-        )}
+        {titleText}
       </h1>
       <p>{descriptionText}</p>
       <div aria-live="polite">

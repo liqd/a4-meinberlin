@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-04 14:01+0200\n"
-"PO-Revision-Date: 2025-05-19 13:13+0000\n"
+"PO-Revision-Date: 2025-05-20 15:15+0000\n"
 "Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "js-design-dev/de/>\n"
@@ -149,7 +149,7 @@ msgstr "Melden"
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:6
 msgctxt "defakts"
 msgid "The defakt AI has found evidence of disinformation."
-msgstr "Die defakt KI hat Hinweise auf Desinformation gefunden."
+msgstr "Die Defakts KI hat Hinweise auf Desinformation gefunden."
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:7
 msgctxt "defakts"

@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 Since version v2308 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2505.1
+
+### Added
+
+- custom management command for clearing projects and plans cache
+- disable previous/next buttons on item lists in paginations when there is no page
+- notifications newer than 180 days being deleted instead of older than 180 days
+
+### Fixed
+
+- removed plan description from tile as it is a CKeditor field
+- set correct font weight for plan tiles on maps
+- Highlight kiezradar as active in menu when on that page
+- Show pagination also on mobile
+- scrolling issue when clicking previous and next buttons
+- Allow navigation between text review chapters
+- disable previous/next buttons on item lists in paginations when there is no page
+
+
 ## v2504.3
 
 ### Added

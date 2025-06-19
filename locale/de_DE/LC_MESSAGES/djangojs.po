@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-04 14:01+0200\n"
-"PO-Revision-Date: 2025-05-20 15:15+0000\n"
-"Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
+"PO-Revision-Date: 2025-06-20 16:15+0000\n"
+"Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "js-design-dev/de/>\n"
 "Language: de_DE\n"
@@ -1408,15 +1408,15 @@ msgstr "Pillenliste"
 #: meinberlin/react/contrib/map/ItemPopup.jsx:18
 msgid "Like"
 msgid_plural "Likes"
-msgstr[0] "Like"
-msgstr[1] "Likes"
+msgstr[0] "gefällt"
+msgstr[1] "gefällt"
 
 #: meinberlin/react/contrib/card/CardStats.jsx:8
 #: meinberlin/react/contrib/map/ItemPopup.jsx:22
 msgid "Dislike"
 msgid_plural "Dislikes"
-msgstr[0] "Dislike"
-msgstr[1] "Dislikes"
+msgstr[0] "gefällt nicht"
+msgstr[1] "gefällt nicht"
 
 #: meinberlin/react/contrib/card/CardStats.jsx:9
 msgid "Supporter"
@@ -1812,11 +1812,11 @@ msgstr "gefällt"
 
 #: meinberlin/react/livequestions/LikeCard.jsx:8
 msgid "add like"
-msgstr "like hinzufügen"
+msgstr "gefällt mir"
 
 #: meinberlin/react/livequestions/LikeCard.jsx:9
 msgid "undo like"
-msgstr "like zurück nehmen"
+msgstr "gefällt mir nicht mehr"
 
 #: meinberlin/react/livequestions/LikeCard.jsx:10
 msgid "bookmarked"

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-04 12:03+0100\n"
-"PO-Revision-Date: 2025-04-08 15:15+0000\n"
-"Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
+"PO-Revision-Date: 2025-06-20 16:15+0000\n"
+"Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main/de/>"
 "\n"
 "Language: de_DE\n"
@@ -3335,7 +3335,7 @@ msgstr "Link zur Veranstaltung eingeben"
 
 #: meinberlin/apps/livequestions/templates/meinberlin_livequestions/question_present_list.html:39
 msgid "Like questions"
-msgstr "Fragen liken"
+msgstr "Fragen bewerten"
 
 #: meinberlin/apps/livequestions/templates/meinberlin_livequestions/question_present_list.html:53
 msgid "Ask a question yourself!"

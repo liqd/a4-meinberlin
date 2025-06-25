@@ -22,7 +22,7 @@ def render_breadcrumbs(context, final_title=None):
     pages = []
 
     # Gather all the variables we need
-    request = context["request"]
+    request = context.get("request")
     project = context.get("project")
     module = context.get("module")
     obj = context.get("object")

@@ -368,6 +368,7 @@ def test_searchprofile_filter_kiezradar_and_district(
     search_profile_factory,
     kiez_radar_factory,
     administrative_district_factory,
+    project_factory,
 ):
     district = administrative_district_factory()
     phase, module, project, item = setup_phase(
@@ -398,3 +399,18 @@ def test_searchprofile_filter_kiezradar_and_district(
         assert len(result) == 2
         assert result.first() == search_profile
         assert result.last() == search_profile1
+
+    # Project without Point
+    project_no_point = project_factory(point=None, administrative_district=district)
+
+    search_profile3 = search_profile_factory()
+    search_profile3.districts.add(district)
+
+    # Expectation: No match with SearchProfiles that have a Kiezradar
+    with freeze_phase(phase):
+        result = get_search_profiles_for_obj(project_no_point).order_by("pk")
+        # search_profile and search_profile1 both have a Kiezradar
+        # search_profile2 only has a Kiezradar_no_match
+        assert (
+            len(result) == 1
+        ), "Project without Point must not be matched to Kiezradar profiles!"

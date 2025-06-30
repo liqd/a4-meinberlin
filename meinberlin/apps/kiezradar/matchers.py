@@ -158,7 +158,10 @@ def get_common_filters(obj: Project | Plan) -> Q:
             & (kiezradar_filter | Q(kiezradars__isnull=True))
         )
     else:
-        location_filter = Q(districts__in=[district]) | Q(districts__isnull=True)
+        # If the SearchProfile has a Kiezradar, but the project has no Point, then no match!
+        location_filter = (Q(districts__in=[district]) | Q(districts__isnull=True)) & Q(
+            kiezradars__isnull=True
+        )
     return filters & location_filter
 
 

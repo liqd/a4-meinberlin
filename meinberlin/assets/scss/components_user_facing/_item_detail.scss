@@ -213,12 +213,12 @@ dl.item-detail__factsheet-table dd {
 
 .item-detail--archived .moderator-feedback *,
 .item-detail--archived .moderator-notes *,
-.item-detail--archived .item-detail__header .dropdown * {
+.item-detail--archived .item-detail__header * {
     filter: none!important;
     pointer-events: auto!important;
 }
 
-.item-detail--archived *:not(.moderator-feedback, .moderator-notes, .item-detail__header .dropdown *) {
+.item-detail--archived *:not(.moderator-feedback, .moderator-notes, .item-detail__header *) {
     filter: grayscale(100%);
     pointer-events: none;
 }

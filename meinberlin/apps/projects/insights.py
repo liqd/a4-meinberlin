@@ -73,7 +73,8 @@ def create_insight(project: Project) -> ProjectInsight:
         likes,
     ]
 
-    idea_objects = [ideas, map_ideas, proposals, topics, map_topics]
+    # Nur echte Ideen zählen
+    idea_objects = [ideas, map_ideas, proposals]
 
     insight, _ = ProjectInsight.objects.get_or_create(project=project)
 

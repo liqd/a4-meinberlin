@@ -12,8 +12,18 @@ from meinberlin.apps.dashboard.blueprints import blueprints
 from meinberlin.apps.projects.insights import create_insight
 from meinberlin.apps.projects.models import ProjectInsight
 from meinberlin.apps.projects.models import create_insight_context
+from meinberlin.test.factories.maptopicprio import MaptopicFactory
 
-get_insight = ProjectInsight.objects.get
+
+def get_insight(project):
+    """Get or create insight for project"""
+    insight, _ = ProjectInsight.objects.get_or_create(project=project)
+    return insight
+
+
+@pytest.fixture
+def maptopic_factory():
+    return MaptopicFactory
 
 
 @pytest.mark.django_db
@@ -233,7 +243,7 @@ def test_complex_example(
     insight = insight_provider(project=project)
 
     assert insight.live_questions == len(live_questions)
-    assert insight.written_ideas == len(topics)
+    assert insight.written_ideas == 0
     assert insight.comments == len(comments)
     assert insight.poll_answers == len(answers) + len(votes)
     assert insight.ratings == len(ratings) + len(likes)
@@ -245,6 +255,7 @@ def test_create_insight_for_ideas(
     module_factory,
     idea_factory,
     topic_factory,
+    maptopic_factory,
     comment_factory,
     rating_factory,
     user_factory,
@@ -253,6 +264,8 @@ def test_create_insight_for_ideas(
     module = module_factory()
     users = user_factory.create_batch(size=5)
     topic = topic_factory(module=module, creator=users[0])
+    maptopic = maptopic_factory(module=module)
+
     idea = idea_factory(module=module, creator=users[2])
 
     comment = comment_factory(content_object=idea, creator=users[1])
@@ -261,13 +274,14 @@ def test_create_insight_for_ideas(
     rating_factory(content_object=comment, creator=users[4])
     rating_factory(content_object=comment, creator=users[3])
     rating_factory(content_object=topic, creator=users[4])
+    rating_factory(content_object=maptopic, creator=users[4])
 
     insight = insight_provider(project=module.project)
 
-    assert insight.written_ideas == 2
+    assert insight.written_ideas == 1
     assert insight.poll_answers == 0
     assert insight.live_questions == 0
-    assert insight.ratings == 3
+    assert insight.ratings == 4
     assert insight.comments == 3
     assert insight.active_participants.count() == 4
 

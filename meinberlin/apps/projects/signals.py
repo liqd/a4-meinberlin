@@ -18,10 +18,8 @@ from meinberlin.apps.ideas.models import Idea
 from meinberlin.apps.likes.models import Like
 from meinberlin.apps.livequestions.models import LiveQuestion
 from meinberlin.apps.mapideas.models import MapIdea
-from meinberlin.apps.maptopicprio.models import MapTopic
 from meinberlin.apps.projects.models import ProjectInsight
 from meinberlin.apps.projects.tasks import set_cache_for_projects
-from meinberlin.apps.topicprio.models import Topic
 
 
 def is_contributor(project, creator):
@@ -112,8 +110,6 @@ def decrease_comments_count(sender, instance, using, origin, **kwargs):
 @receiver(post_save, sender=Idea)
 @receiver(post_save, sender=MapIdea)
 @receiver(post_save, sender=Proposal)
-@receiver(post_save, sender=Topic)
-@receiver(post_save, sender=MapTopic)
 def increase_idea_count(sender, instance, created, **kwargs):
     if not created:
         return
@@ -122,15 +118,12 @@ def increase_idea_count(sender, instance, created, **kwargs):
     insight.written_ideas += 1
     insight.save()
 
-    if sender not in (Topic, MapTopic):
-        insight.active_participants.add(instance.creator.id)
+    insight.active_participants.add(instance.creator.id)
 
 
 @receiver(post_delete, sender=Idea)
 @receiver(post_delete, sender=MapIdea)
 @receiver(post_delete, sender=Proposal)
-@receiver(post_delete, sender=Topic)
-@receiver(post_delete, sender=MapTopic)
 def decrease_idea_count(sender, instance, using, origin, **kwargs):
     project = instance.module.project
     insight, _ = ProjectInsight.objects.get_or_create(project=project)

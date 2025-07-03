@@ -75,3 +75,10 @@
       }
     }
   }
+
+  .figures-box .organisation-name {
+    @media screen and (min-width: $breakpoint-tablet-landscape) {
+      display: block;
+      max-width: 40ch;
+      }
+  }

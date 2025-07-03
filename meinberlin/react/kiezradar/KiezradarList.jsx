@@ -14,7 +14,7 @@ const errorDeleteKiezesText = django.gettext(
   'Failed to delete kiezradar'
 )
 const editText = django.gettext('Edit')
-const deleteText = django.gettext('Delete')
+const deleteText = django.gettext('Remove')
 const viewProjectsText = django.gettext('View projects')
 const confirmDeletionText = (name) =>
   django.interpolate(
@@ -170,7 +170,7 @@ function DeleteButton ({ onDelete }) {
       className="kiezradar-list__button"
       onClick={onDelete}
     >
-      <i className="fa-classic fa-regular fa-trash-can mr-1" />
+      <i className="far fa-trash-can mr-1" />
       {deleteText}
     </button>
   )

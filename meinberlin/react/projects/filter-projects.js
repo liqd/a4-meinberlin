@@ -21,7 +21,8 @@ const statusNames = ['active', 'future', 'past']
 
 export const filterProjects = (items, appliedFilters, kiezradars, topics, projectState) => {
   const { search, topics: activeTopics, districts, organisation, participations, plansOnly, kiezradars: activeKiezradars } = appliedFilters
-  return items.filter((item) => {
+
+  const filterItem = (item) => {
     const isWithinAnyRadius =
       item.point && kiezradars.some(kiezradar =>
         activeKiezradars.includes(kiezradar.name) &&
@@ -29,19 +30,26 @@ export const filterProjects = (items, appliedFilters, kiezradars, topics, projec
       )
     const hasKiezradarAndDistrict = activeKiezradars.length > 0 && districts.length > 0
 
-    return (
-      (activeTopics.length === 0 || activeTopics.some(topic => item.topics.includes(topic))) &&
-      (participations.length === 0 || participations.includes(item.participation)) &&
-      (organisation.length === 0 || organisation.includes(item.organisation)) &&
-      (search === '' ||
+    const hasRelevantOrEmptyActiveTopics = (activeTopics.length === 0 || activeTopics.some(topic => item.topics.includes(topic)))
+    const hasRelevantOrEmptyParticipation = (participations.length === 0 || participations.includes(item.participation))
+    const hasRelevantOrEmptyOrganisation = (organisation.length === 0 || organisation.includes(item.participation))
+
+    const isTextSearchMatch = (search === '' ||
         isInTitle(item.title, search) ||
         isInTitle(item.district, search) ||
         isInTitle(item.organisation, search) ||
         isInTitle(item.description, search) ||
         isInTitle(item.identifier, search) ||
-        isInTopic(topics, item.topics, search)) &&
-      (projectState.includes(statusNames[item.status])) &&
-      (!plansOnly || item.type === 'plan') &&
+        isInTopic(topics, item.topics, search))
+
+    const isStatusMatch = (projectState.includes(statusNames[item.status])) && (!plansOnly || item.type === 'plan')
+
+    return (
+      hasRelevantOrEmptyActiveTopics &&
+      hasRelevantOrEmptyParticipation &&
+      hasRelevantOrEmptyOrganisation &&
+      isTextSearchMatch &&
+      isStatusMatch &&
       (hasKiezradarAndDistrict
         // if we have both active we want to include projects that are within kiez
         // OR projects that are in the selected district
@@ -54,5 +62,7 @@ export const filterProjects = (items, appliedFilters, kiezradars, topics, projec
           )
       )
     )
-  })
+  }
+
+  return items.filter(filterItem)
 }

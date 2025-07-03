@@ -60,6 +60,7 @@ const ProjectsListMapBox = ({
   const [projectState, setProjectState] = useState(getDefaultProjectState(searchParams))
   const [items, setItems] = useState([])
   const fetchCache = useRef({})
+  const resultRef = useRef({})
   const [appliedFilters, setAppliedFilters] = useState(getDefaultState(searchParams, { districts, organisations, participationChoices, topicChoices, kiezradars }))
   const [alert, setAlert] = useState(null)
   const [error, setError] = useState(null)
@@ -147,6 +148,7 @@ const ProjectsListMapBox = ({
         onFiltered={({ projectState, ...filters }) => {
           setProjectState(projectState)
           setAppliedFilters(filters)
+          resultRef && resultRef.current.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
         }}
         onResetClick={() => {
           setAppliedFilters(getDefaultState(null, { districts, organisations, participationChoices, topicChoices, kiezradars }))
@@ -165,6 +167,7 @@ const ProjectsListMapBox = ({
         <h1 className="aural">{pageHeader}</h1>
         <div className={classNames('projects-list__list-meta', filteredItems.length === 0 && 'projects-list__list-meta--no-results')}>
           <div
+            ref={resultRef}
             role="status"
             className="projects-list__status"
           >

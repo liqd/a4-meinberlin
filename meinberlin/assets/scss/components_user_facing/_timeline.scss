@@ -3,22 +3,76 @@ $line-thickness: 4px;
 $active-color: $primary;
 $inactive-color: $gray-lighter;
 
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-self: stretch;
+}
+
+.timeline__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 45px;
+}
+
+.timeline__header h2 {
+    margin-top: 0 !important; 
+    margin-bottom: 0 !important;
+}
+
+.timeline__navigation {
+    display: none;
+}
+
+.timeline__nav-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    padding: 4.375px 8.997px 3.616px 9px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+    
+    &:disabled img {
+        opacity: 0.13; 
+    }
+
+    &:hover:not(:disabled) {
+        border-color: $active-color;
+        color: $active-color;
+    }
+
+    i {
+        font-size: 14px;
+    }
+}
+
 .timeline__steps {
     display: flex;
     flex-direction: column;
-    padding-top: 2em;
+    margin: 0;
 }
 
 .timeline__step {
     display: flex;
     position: relative;
-
+    
     &:before {
         content: "";
         position: absolute;
         padding: 0;
         top: -150px;
-        bottom: $dot-size;
+        height: 174px;
         left: calc($dot-size / 2);
         width: $line-thickness;
         background-color: $inactive-color;
@@ -27,7 +81,7 @@ $inactive-color: $gray-lighter;
     }
 
     &:not(:last-child) {
-        height: 150px;
+        height: 174px;
     }
 
     &:first-child:before {
@@ -78,10 +132,19 @@ $inactive-color: $gray-lighter;
 }
 
 @media (min-width: $breakpoint-tablet) {
+    .timeline__navigation {
+        display: flex;
+        gap: 15.333px;
+        width: 79.333px;
+        padding-right: 0;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
     .timeline__steps {
         flex-direction: row;
         align-items: flex-start;
-        overflow-x: auto;
+        overflow-x: hidden;
         scrollbar-width: thin;
         width: 100%;
     }
@@ -91,14 +154,32 @@ $inactive-color: $gray-lighter;
         align-items: center;
         text-align: center;
         flex: 0 0 180px;
+        margin-left: -0.7em;
+    
 
-        &:before {
+        &:before, &:after {
             left: auto;
             top: calc($dot-size / 2);
             right: 50%;
             width: 100%;
             height: $line-thickness;
             transform: translateY(-50%);
+        }
+
+        &.is-last-visible:after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            right: auto;
+            width: 50%;
+            padding: 0;
+            bottom: $dot-size;
+            background-color: $inactive-color;
+            z-index: -1;    
+        }
+
+        &:last-child:after {
+            display: none;
         }
 
         &:not(:last-child) {

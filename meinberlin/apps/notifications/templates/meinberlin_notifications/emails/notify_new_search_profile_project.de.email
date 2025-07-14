@@ -1,6 +1,6 @@
 {% extends 'email_base.'|add:part_type %}
 
-{% block subject %}Neues {% if is_plan %}Vorhaben{% else %}Projekt{% endif %} entsprechend Ihrem Suchprofil: {{ searchprofile.get_name }}{% endblock %}
+{% block subject %}Neues {% if is_plan %}Vorhaben{% else %}Projekt{% endif %} entsprechend Ihrer Gespeicherten Suche: {{ searchprofile.get_name }}{% endblock %}
 
 {% block headline %}Neues {% if is_plan %}Vorhaben{% else %}Projekt{% endif %}{% endblock %}
 {% block sub-headline %}{% firstof object.name object.title %}{% endblock  %}
@@ -10,7 +10,7 @@
 {% block content_html %}
 <p>
 Ein neues {% if is_plan %}Vorhaben{% else %}Projekt{% endif %}, {% firstof object.name object.title %},
-entspricht Ihrem Suchprofil "{{ searchprofile.get_name }}".
+entspricht Ihrer Gespeicherten Suche "{{ searchprofile.get_name }}".
 </p>
 <p>
 Möchten Sie es sich ansehen?

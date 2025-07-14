@@ -1,6 +1,6 @@
 {% extends 'email_base.'|add:part_type %}
 
-{% block subject %}Einladung zum Moderieren des Projekts {{ moderatorinvite.project.name }}{% endblock %}
+{% block subject %}Einladung zum Moderieren des Projekts {{ moderatorinvite.project.name|striptags }}{% endblock %}
 
 {% block headline %}Einladung zur Moderation{% endblock %}
 

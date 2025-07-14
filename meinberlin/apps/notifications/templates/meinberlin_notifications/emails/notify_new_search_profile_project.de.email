@@ -1,6 +1,6 @@
 {% extends 'email_base.'|add:part_type %}
 
-{% block subject %}Neues {% if is_plan %}Vorhaben{% else %}Projekt{% endif %} entsprechend Ihrer Gespeicherten Suche: {{ searchprofile.get_name }}{% endblock %}
+{% block subject %}Neues {% if is_plan %}Vorhaben{% else %}Projekt{% endif %} entsprechend Ihrer Gespeicherten Suche: {{ searchprofile.get_name|striptags }}{% endblock %}
 
 {% block headline %}Neues {% if is_plan %}Vorhaben{% else %}Projekt{% endif %}{% endblock %}
 {% block sub-headline %}{% firstof object.name object.title %}{% endblock  %}

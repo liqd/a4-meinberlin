@@ -1,6 +1,6 @@
 {% extends 'email_base.'|add:part_type %}
 
-{% block subject %}Neues Projekt {{ project.name }} auf {{ site.name }}{% endblock %}
+{% block subject %}Neues Projekt {{ project.name|striptags }} auf {{ site.name }}{% endblock %}
 
 {% block headline %}Neues Projekt{% endblock  %}
 

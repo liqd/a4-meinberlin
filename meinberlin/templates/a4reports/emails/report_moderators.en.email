@@ -1,7 +1,7 @@
 {% extends 'email_base.'|add:part_type %}
 {% load reports_tags i18n %}
 
-{% block subject %}Moderation request for project {{ report.project }} on {{ site.name }}{% endblock %}
+{% block subject %}Moderation request for project {{ report.project|striptags }} on {{ site.name }}{% endblock %}
 
 {% block headline %}Reported contribution{% endblock %}
 

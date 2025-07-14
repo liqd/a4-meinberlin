@@ -1,6 +1,6 @@
 {% extends 'email_base.'|add:part_type %}
 
-{% block subject %}Beteiligung endet bald für {{ action.project.name }}{% endblock %}
+{% block subject %}Beteiligung endet bald für {{ action.project.name|striptags }}{% endblock %}
 
 {% block headline %}Beteiligung endet bald!{% endblock %}
 {% block sub-headline %}{{ action.project.name }}{% endblock %}

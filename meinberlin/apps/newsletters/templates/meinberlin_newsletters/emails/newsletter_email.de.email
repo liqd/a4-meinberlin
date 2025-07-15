@@ -2,7 +2,7 @@
 
 {% block headline %}{{ newsletter.subject }}{% endblock %}
 
-{% block subject %}{{ newsletter.subject }}{% endblock %}
+{% block subject %}{{ newsletter.subject|striptags }}{% endblock %}
 
 {% block greeting %}{% endblock %}
 {% block cta %}{% endblock %}

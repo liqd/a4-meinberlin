@@ -1,6 +1,6 @@
 {% extends 'email_base.'|add:part_type %}
 
-{% block subject %}Einladung zu einer Veranstaltung im Projekt {{ action.project.name }}{% endblock %}
+{% block subject %}Einladung zu einer Veranstaltung im Projekt {{ action.project.name|striptags }}{% endblock %}
 
 {% block headline %}Veranstaltung{% endblock %}
 {% block sub-headline %}{{ action.project.name }}{% endblock %}

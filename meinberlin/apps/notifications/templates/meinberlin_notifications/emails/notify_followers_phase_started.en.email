@@ -1,6 +1,6 @@
 {% extends 'email_base.'|add:part_type %}
 
-{% block subject %}Here we go: {{ action.project.name }} starts now!{% endblock %}
+{% block subject %}Here we go: {{ action.project.name|striptags }} starts now!{% endblock %}
 
 {% block headline %}Here we go!{% endblock %}
 {% block sub-headline %}{{ action.project.name }}{% endblock %}

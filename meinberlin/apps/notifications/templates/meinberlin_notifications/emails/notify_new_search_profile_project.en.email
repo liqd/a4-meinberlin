@@ -1,6 +1,6 @@
 {% extends 'email_base.'|add:part_type %}
 
-{% block subject %}New {% if is_plan %}Plan{% else %}Project{% endif %} matching your search profile: {{ searchprofile.get_name }}{% endblock %}
+{% block subject %}New {% if is_plan %}Plan{% else %}Project{% endif %} matching your saved search: {{ searchprofile.get_name|striptags }}{% endblock %}
 
 {% block headline %}New {% if is_plan %}Plan{% else %}Project{% endif %}{% endblock %}
 {% block sub-headline %}{% firstof object.name object.title %}{% endblock  %}
@@ -10,7 +10,7 @@
 {% block content_html %}
 <p>
 A new {% if is_plan %}plan{% else %}project{% endif %}, {% firstof object.name object.title %},
-matches your search profile "{{ searchprofile.get_name }}".
+matches your saved search "{{ searchprofile.get_name }}".
 </p>
 <p>
 Would you like to take a look?

@@ -1,6 +1,6 @@
 {% extends 'email_base.'|add:part_type %}
 
-{% block subject %}Participation ends soon for {{ action.project.name }}{% endblock %}
+{% block subject %}Participation ends soon for {{ action.project.name|striptags }}{% endblock %}
 
 {% block headline %}Participation ends soon!{% endblock %}
 {% block sub-headline %}{{ action.project.name }}{% endblock %}

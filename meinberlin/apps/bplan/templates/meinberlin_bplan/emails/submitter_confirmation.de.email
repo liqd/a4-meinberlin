@@ -2,7 +2,7 @@
 
 {% load wagtailcore_tags %}
 
-{% block subject %}Ihre Stellungnahme zum Bebauungsplan "{{ project.name }}"{% endblock %}
+{% block subject %}Ihre Stellungnahme zum Bebauungsplan "{{ project.name|striptags }}"{% endblock %}
 
 {% block headline %}Ihre Stellungnahme{% endblock %}
 

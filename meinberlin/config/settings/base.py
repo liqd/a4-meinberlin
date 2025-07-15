@@ -298,6 +298,8 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 LOGIN_URL = "account_login"
 LOGIN_REDIRECT_URL = "/"
 
+# Needed so client(s) like Gmail show sender name
+DEFAULT_FROM_EMAIL = '"meinBerlin" <no-reply@meinberlin-dev.liqd.net>'
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 BLEACH_LIST = {

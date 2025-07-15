@@ -3,6 +3,7 @@ from celery.schedules import crontab
 from .base import *
 
 DEBUG = False
+DEFAULT_FROM_EMAIL = '"meinBerlin" <no-reply@mein.berlin.de>'
 
 CACHES = {
     "default": {

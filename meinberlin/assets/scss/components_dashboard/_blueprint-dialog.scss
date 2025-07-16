@@ -1,3 +1,5 @@
+@import "../styles_user_facing/variables";
+
 .blueprint-dialog {
     border: none;
     max-width: 1000px;
@@ -11,4 +13,67 @@
     h2 {
         margin: 1em 0;
     }
+}
+
+/* Breadcrumb styles */
+.breadcrumb {
+  font-size: 14px;
+  margin: 0;
+  font-family: "Arial", sans-serif; 
+  margin-bottom: 1rem;
+}
+
+.breadcrumb ol {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.breadcrumb ol > li {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0.5em 0 0;
+  padding: 0;
+  color: $gray-darkest;
+}
+
+.breadcrumb ol > li a {
+  color: $gray-darkest;
+  text-decoration: none;
+}
+
+/* Chevron separator using the bicon system */
+.breadcrumb ol > li:before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  mask-image: var(--bicon-chevron-right);
+  mask-repeat: no-repeat;
+  mask-position: bottom center;
+  margin-right: 3px;
+  vertical-align: middle;
+}
+
+/* Remove separator from first item */
+.breadcrumb ol > li:first-child:before {
+  display: none;
+}
+
+/* Style for current/last item */
+.breadcrumb ol > li:last-child {
+  color: $black;
+  margin-right: 0;
+}
+
+.breadcrumb ol > li:last-child a {
+  color: $black;
+  font-weight: bold; /* Make current page stand out more */
+}
+
+:root {
+  --bicon-chevron-right: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512'%3E%3Cpath d='M285.5 273L91.1 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.7-22.7c-9.4-9.4-9.4-24.5 0-33.9L188.5 256 34.5 101.3c-9.3-9.4-9.3-24.5 0-33.9l22.7-22.7c9.4-9.4 24.6-9.4 33.9 0L285.5 239c9.4 9.4 9.4 24.6 0 33.9z'/%3E%3C/svg%3E");
 }

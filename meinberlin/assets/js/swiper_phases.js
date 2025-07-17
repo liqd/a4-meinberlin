@@ -37,7 +37,23 @@ const initSwiper = () => {
         clickable: true,
         bulletElement: 'button',
         renderBullet: function (index, className) {
-          return '<button class="' + className + '">' + (index + 1) + '</button>'
+          /*
+          These styles already in _swiper.scss but iOS Safari needs them inline
+          because of how swiper adds these bullets to the shadow DOM.
+          Also: width of 22px needed to make computed with 20px for some reason.
+          */
+          return (
+            '<span class="' + className + '" style="' +
+            'display: flex;' +
+            'justify-content: center;' +
+            'background: transparent;' +
+            'color: #fff;' +
+            'width: 22px !important;' +
+            'height: 22px !important;' +
+            'border: 1.5px solid #fff;' +
+            'opacity: 1;' +
+            '">' + (index + 1) + '</span>'
+          )
         }
       }
     }

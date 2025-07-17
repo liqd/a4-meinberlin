@@ -12,12 +12,15 @@ const errorText = django.gettext('Error')
 const errorSearchProfilesText = django.gettext(
   'Failed to fetch search profiles'
 )
-const searchProfileDeletedTitle = django.gettext(
-  'Search profile successfully deleted'
+const searchProfileDeletedTitle = (name) => django.interpolate(
+  django.gettext('%(name)s has been deleted successfully'),
+  { name },
+  true
 )
 const searchProfileDeletedText = django.gettext(
-  'Your changes have been deleted.'
+  'You will no longer receive notifications about projects that correspond to the filters of this Saved Search.'
 )
+
 const findProjectsText = django.gettext('Find projects')
 const limitExceededTitle = django.gettext('You have reached the limit of saved search profiles')
 const limitExceededText = django.gettext('You are using the maximum number of 10 search profiles. To save a new one, you must delete an existing profile.')
@@ -120,7 +123,7 @@ export default function SearchProfiles (props) {
                           )
 
                           handleAlert({
-                            title: searchProfileDeletedTitle,
+                            title: searchProfileDeletedTitle(searchProfile.name),
                             message: searchProfileDeletedText
                           })
                         }}

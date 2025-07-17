@@ -2,6 +2,7 @@ from django.contrib import auth
 
 from adhocracy4.actions.models import Action
 from meinberlin.apps.contrib.emails import Email
+from meinberlin.apps.extprojects.models import ExternalProject
 
 User = auth.get_user_model()
 
@@ -168,7 +169,11 @@ class NotifyUserOnSearchProfileMatch(Email):
         context = super().get_context()
         action = Action.objects.get(pk=self.kwargs["action_pk"])
         if action.type == "project":
-            context["object"] = action.project
+            try:
+                external_project = ExternalProject.objects.get(pk=action.project.pk)
+                context["object"] = external_project
+            except ExternalProject.DoesNotExist:
+                context["object"] = action.project
             context["is_plan"] = False
         else:
             context["object"] = action.obj

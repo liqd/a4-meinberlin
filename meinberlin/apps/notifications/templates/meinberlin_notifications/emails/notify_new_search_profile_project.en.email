@@ -23,7 +23,11 @@ matches your search profile "{{ searchprofile.get_name }}".
 Would you like to take a look?
 {% endblock %}
 
-{% block cta_url %}{{ email.get_host }}{{ object.get_absolute_url }}{% endblock %}
+{% block cta_url %}
+{% if object.url %}{{ object.url }}
+{% else %}{{ email.get_host }}{{ object.get_absolute_url }}
+{% endif %}
+{% endblock %}
 {% block cta_label %}View {% if is_plan %}plan{% else %}project{% endif %}{% endblock %}
 
 {% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you created a search profile.{% endblock %}

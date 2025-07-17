@@ -36,10 +36,14 @@ const translations = {
     ),
   kiezSavedText: django.gettext('Your changes have been saved.'),
   kiezDeletedTitle: (title) =>
-    django.interpolate(django.gettext('%(title)s deleted'), { title }, true),
+    django.interpolate(
+      django.gettext('%(title)s has been deleted successfully.'),
+      { title },
+      true
+    ),
   kiezDeletedText: (title) =>
     django.interpolate(
-      django.gettext('%(title)s has been permanently deleted.'),
+      django.gettext('The Kiez %(title)s will no longer be shown in the Kiezradar under the "Kieze & Bezirke" filter.'),
       { title },
       true
     ),

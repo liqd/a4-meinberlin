@@ -54,7 +54,6 @@
     <main tabindex="-1" {% if '/dashboard' not in request.path or '/components' not in request.path %} id="layout-grid" {% endif %}>
         <div id="layout-grid__area--contentheader">
             {% block breadcrumbs %}{% render_breadcrumbs %}{% endblock breadcrumbs %}
-            {% block extra_messages %}{% endblock extra_messages %}
         </div>
 
         {% if messages %}
@@ -62,6 +61,8 @@
                 {% include 'meinberlin_contrib/components/alert.html' with alert_message=message|stringformat:"s" alert_headline=message.level_headline alert_type=message.level_tag %}
             {% endfor %}
         {% endif %}
+
+        {% block extra_messages %}{% endblock extra_messages %}
 
         {% block super_content %}
             {% block content %}{% endblock content %}

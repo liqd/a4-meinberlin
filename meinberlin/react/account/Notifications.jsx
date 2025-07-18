@@ -71,8 +71,6 @@ function SearchProfilesFeed ({ searchProfilesApiUrl, notificationsApiUrl, planLi
             }
           : null
 
-        const url = (project && project.url) ? project.url : link
-
         return (
           <FeedItem
             key={timestamp + index}
@@ -83,7 +81,7 @@ function SearchProfilesFeed ({ searchProfilesApiUrl, notificationsApiUrl, planLi
             meta={filterList}
             thumbnail={thumbnail}
             body={body}
-            link={url}
+            link={link}
             linkText={linkText}
             isRead={read}
             timestamp={timestamp}

@@ -83,9 +83,6 @@ module.exports = {
     swiper_phases: {
       import: './meinberlin/assets/js/swiper_phases.js'
     },
-    timeline: {
-      import: './meinberlin/assets/js/timeline.js'
-    },
     token_download_button: {
       import: './meinberlin/apps/votes/assets/token_download_button.js'
     },

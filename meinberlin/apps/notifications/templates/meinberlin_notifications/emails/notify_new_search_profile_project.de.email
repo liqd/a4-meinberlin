@@ -23,12 +23,7 @@ entspricht Ihrem Suchprofil "{{ searchprofile.get_name }}".
 Möchten Sie es sich ansehen?
 {% endblock %}
 
-
-{% block cta_url %}
-{% if object.url %}{{ object.url }}
-{% else %}{{ email.get_host }}{{ object.get_absolute_url }}
-{% endif %}
-{% endblock %}
+{% block cta_url %}{{ email.get_host }}{{ object.get_absolute_url }}{% endblock %}
 {% block cta_label %}{% if is_plan %}Vorhaben{% else %}Projekt{% endif %} anzeigen{% endblock %}
 
 {% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie sich ein Suchprofil angelegt haben.{% endblock %}

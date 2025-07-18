@@ -3,22 +3,7 @@
 
 {% if project.display_timeline %}
     <section class="timeline" aria-labelledby="timeline-heading">
-        <div class="timeline__header">
-            <h2 id="timeline-heading">{% translate 'Participation process timeline' %}</h2>
-            {% if project.participation_dates|length > 5 %}
-                <div class="timeline__navigation">
-                    <button class="timeline__nav-btn timeline__nav-btn--prev" 
-                            aria-label="{% translate 'Previous timeline items' %}" 
-                            disabled>
-                        <img src="{% static 'images/arrow-prev.svg' %}" width="14" height="24" alt="" aria-hidden="true" />
-                    </button>
-                    <button class="timeline__nav-btn timeline__nav-btn--next" 
-                            aria-label="{% translate 'Next timeline items' %}">
-                        <img src="{% static 'images/arrow-next.svg' %}" width="15" height="25" alt="" aria-hidden="true" />
-                    </button>
-                </div>
-            {% endif %}
-        </div>
+        <h2 id="timeline-heading">{% translate 'Participation process timeline' %}</h2>
         <ol class="timeline__steps">
             {% for obj in project.participation_dates %}
                 {% is_in_past obj.date as in_past %}

@@ -105,17 +105,21 @@ class NotificationViewSet(
 
     @action(methods=["get", "post"], detail=False)
     def followed_projects(self, request):
-        qs = self.get_queryset().filter(
-            Q(action__obj_content_type__model="offlineevent", action__verb="start")
-            | (
-                Q(
-                    action__obj_content_type__model="phase",
-                    action__project__project_type="a4projects.Project",
-                )
-                & (Q(action__verb="start") | Q(action__verb="schedule"))
-            ),
-            recipient__follow__project=F("action__project"),
-            recipient__follow__enabled=True,
+        qs = (
+            self.get_queryset()
+            .filter(
+                Q(action__obj_content_type__model="offlineevent", action__verb="start")
+                | (
+                    Q(
+                        action__obj_content_type__model="phase",
+                        action__project__project_type="a4projects.Project",
+                    )
+                    & (Q(action__verb="start") | Q(action__verb="schedule"))
+                ),
+                recipient__follow__project=F("action__project"),
+                recipient__follow__enabled=True,
+            )
+            .order_by("-action__timestamp")
         )
 
         # Mark all notifications as read

@@ -14,6 +14,7 @@ from django.core.exceptions import ValidationError
 from django.core.files.images import ImageFile
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.html import strip_tags
 from django.utils.translation import gettext as _
 from rest_framework import serializers
 
@@ -128,6 +129,14 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
         if instance.is_diplan:
             ret.pop("embed_code")
         return ret
+
+    def validate(self, attrs):
+        """Only add strip_tags (leave truncation in create/update)
+        There is additional validation code repeated between create and update
+        that could be refactored into this method."""
+        if "description" in attrs:
+            attrs["description"] = strip_tags(attrs["description"])
+        return attrs
 
     def create(self, validated_data):
         orga_pk = self._context.get("organisation_pk", None)

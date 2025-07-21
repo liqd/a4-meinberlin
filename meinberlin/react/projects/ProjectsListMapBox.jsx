@@ -104,6 +104,16 @@ const ProjectsListMapBox = ({
     fetchItems()
   }, [fetchItems])
 
+  useEffect(() => {
+    if (alert) {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      })
+    }
+  }, [alert])
+
   let status = nothingStr
 
   const filteredItems = useMemo(() => filterProjects(items, appliedFilters, kiezradars, topicChoices, projectState), [items, appliedFilters, kiezradars, projectState])

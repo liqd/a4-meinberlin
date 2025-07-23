@@ -866,7 +866,7 @@ msgstr "{image_name} Urheber*in"
 #: adhocracy4/images/fields.py:90
 #, python-brace-format
 msgid "Copyright shown in the {image_name}."
-msgstr "Urheber*in des Bildes."
+msgstr "Urheber*in des Bildes: {image_name}"
 
 #: adhocracy4/images/fields.py:103
 #, python-brace-format

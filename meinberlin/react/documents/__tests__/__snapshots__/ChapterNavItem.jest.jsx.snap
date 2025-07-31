@@ -44,11 +44,11 @@ exports[`ChapterNavItem bottom renders correctly 1`] = `
       <button
         class="btn btn--light btn--small"
         disabled=""
-        title="Delete"
+        title="Remove"
         type="button"
       >
         <i
-          aria-label="Delete"
+          aria-label="Remove"
           class="fas fa-trash-alt"
         />
       </button>
@@ -101,11 +101,11 @@ exports[`ChapterNavItem middle renders correctly 1`] = `
       <button
         class="btn btn--light btn--small"
         disabled=""
-        title="Delete"
+        title="Remove"
         type="button"
       >
         <i
-          aria-label="Delete"
+          aria-label="Remove"
           class="fas fa-trash-alt"
         />
       </button>
@@ -158,11 +158,11 @@ exports[`ChapterNavItem top renders correctly 1`] = `
       <button
         class="btn btn--light btn--small"
         disabled=""
-        title="Delete"
+        title="Remove"
         type="button"
       >
         <i
-          aria-label="Delete"
+          aria-label="Remove"
           class="fas fa-trash-alt"
         />
       </button>

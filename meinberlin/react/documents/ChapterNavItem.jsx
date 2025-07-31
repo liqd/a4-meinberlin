@@ -2,7 +2,7 @@ const React = require('react')
 const django = require('django')
 const moveUpStr = django.gettext('Move up')
 const moveDownStr = django.gettext('Move down')
-const deleteStr = django.gettext('Delete')
+const deleteStr = django.gettext('Remove')
 
 function getErrorCount (props) {
   if (props.errors && Object.keys(props.errors).length > 0) {

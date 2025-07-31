@@ -5,7 +5,7 @@ import cookie from 'js-cookie'
 
 const baseTranslations = {
   errorTitle: django.gettext('An error occured'),
-  button: django.gettext('Delete')
+  button: django.gettext('Remove')
 }
 
 const translationsPerType = {

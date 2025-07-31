@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-31 17:46+0200\n"
-"PO-Revision-Date: 2025-07-31 16:43+0000\n"
+"PO-Revision-Date: 2025-07-31 16:45+0000\n"
 "Last-Translator: josh <195121232+partizipation@users.noreply.github.com>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "js-design-dev/de/>\n"
@@ -2460,7 +2460,7 @@ msgstr "Video abspielen"
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:16
 msgid "External video"
-msgstr "Externes video"
+msgstr "Externes Video"
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:17
 msgid ""

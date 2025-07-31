@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-04 14:01+0200\n"
+"POT-Creation-Date: 2025-07-31 17:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -80,14 +80,10 @@ msgstr "Do you really want to delete this comment?"
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:27
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:6
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:72
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:77
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:154
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
-#: meinberlin/react/documents/ChapterNavItem.jsx:5
-#: meinberlin/react/documents/ParagraphForm.jsx:11
-#: meinberlin/react/kiezradar/KiezradarList.jsx:17
-#: meinberlin/react/kiezradar/SearchProfile.jsx:14
-#: meinberlin/react/kiezradar/SearchProfileButtons.jsx:5
-#: meinberlin/react/modules/DeleteItemModal.jsx:8
 msgid "Delete"
 msgstr "Delete"
 
@@ -600,6 +596,24 @@ msgstr "Question"
 msgid "Explanation"
 msgstr "Explanation"
 
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:49
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:54
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
+#: meinberlin/react/documents/ChapterNavItem.jsx:3
+#: meinberlin/react/documents/ParagraphForm.jsx:9
+msgid "Move up"
+msgstr "Move up"
+
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:61
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:66
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
+#: meinberlin/react/documents/ChapterNavItem.jsx:4
+#: meinberlin/react/documents/ParagraphForm.jsx:10
+msgid "Move down"
+msgstr "Move down"
+
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:47
 msgid "Participants can vote for more than one option (multiple choice)"
 msgstr "Participants can vote for more than one option (multiple choice)"
@@ -616,20 +630,6 @@ msgstr "Other"
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:113
 msgid "New answer"
 msgstr "New answer"
-
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
-#: meinberlin/react/documents/ChapterNavItem.jsx:3
-#: meinberlin/react/documents/ParagraphForm.jsx:9
-msgid "Move up"
-msgstr "Move up"
-
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
-#: meinberlin/react/documents/ChapterNavItem.jsx:4
-#: meinberlin/react/documents/ParagraphForm.jsx:10
-msgid "Move down"
-msgstr "Move down"
 
 #: adhocracy4/polls/static/PollDetail/CharCounter.jsx:5
 msgid "characters"
@@ -894,7 +894,7 @@ msgstr "Yesterday"
 #: meinberlin/react/kiezradar/EditKiezradar.jsx:9
 #: meinberlin/react/kiezradar/Kiezradar.jsx:13
 #: meinberlin/react/kiezradar/KiezradarList.jsx:12
-#: meinberlin/react/kiezradar/Kiezradars.jsx:46
+#: meinberlin/react/kiezradar/Kiezradars.jsx:50
 #: meinberlin/react/kiezradar/SearchProfile.jsx:16
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:11
 msgid "Error"
@@ -917,10 +917,50 @@ msgid "In-app"
 msgstr "In-app"
 
 #: meinberlin/react/account/notification_data.js:5
+msgid ""
+"<a href=\"%(url)s\">%(title)s</a> is now open for participation. You can "
+"participate until %(date)s"
+msgstr ""
+"<a href=\"%(url)s\">%(title)s</a> is now open for participation. You can "
+"participate until %(date)s"
+
+#: meinberlin/react/account/notification_data.js:6
+msgid "<a href=\"%(url)s\">%(title)s</a> is now open for participation"
+msgstr "<a href=\"%(url)s\">%(title)s</a> is now open for participation"
+
+#: meinberlin/react/account/notification_data.js:9
+msgid ""
+"<a href=\"%(url)s\">%(title)s</a> will end soon. You can still participate "
+"until %(date)s"
+msgstr ""
+"<a href=\"%(url)s\">%(title)s</a> will end soon. You can still participate "
+"until %(date)s"
+
+#: meinberlin/react/account/notification_data.js:10
+msgid "<a href=\"%(url)s\">%(title)s</a> will end soon"
+msgstr "<a href=\"%(url)s\">%(title)s</a> will end soon"
+
+#: meinberlin/react/account/notification_data.js:13
+msgid ""
+"The event %(eventName)s in <a href=\"%(url)s\">%(title)s</a> is coming up "
+"soon and takes place on %(date)s"
+msgstr ""
+"The event %(eventName)s in <a href=\"%(url)s\">%(title)s</a> is coming up "
+"soon and takes place on %(date)s"
+
+#: meinberlin/react/account/notification_data.js:14
+msgid ""
+"The event %(eventName)s in <a href=\"%(url)s\">%(title)s</a> is coming up "
+"soon"
+msgstr ""
+"The event %(eventName)s in <a href=\"%(url)s\">%(title)s</a> is coming up "
+"soon"
+
+#: meinberlin/react/account/notification_data.js:34
 msgid "Interactions"
 msgstr "Interactions"
 
-#: meinberlin/react/account/notification_data.js:7
+#: meinberlin/react/account/notification_data.js:36
 msgid ""
 "Here you can see all the interactions you have with other users on "
 "meinBerlin."
@@ -928,25 +968,25 @@ msgstr ""
 "Here you can see all the interactions you have with other users on "
 "meinBerlin."
 
-#: meinberlin/react/account/notification_data.js:10
+#: meinberlin/react/account/notification_data.js:39
 msgid "No reactions to your posts yet. Get involved to get reactions."
 msgstr "No reactions to your posts yet. Get involved to get reactions."
 
-#: meinberlin/react/account/notification_data.js:12
+#: meinberlin/react/account/notification_data.js:41
 msgid "Find participation projects"
 msgstr "Find participation projects"
 
-#: meinberlin/react/account/notification_data.js:14
+#: meinberlin/react/account/notification_data.js:43
 msgid "A user supported your proposal in <a href=\"%(url)s\">%(title)s</a>"
 msgstr "A user supported your proposal in <a href=\"%(url)s\">%(title)s</a>"
 
-#: meinberlin/react/account/notification_data.js:19
+#: meinberlin/react/account/notification_data.js:48
 msgid ""
 "A moderator has remarked on your idea in <a href=\"%(url)s\">%(title)s</a>"
 msgstr ""
 "A moderator has remarked on your idea in <a href=\"%(url)s\">%(title)s</a>"
 
-#: meinberlin/react/account/notification_data.js:24
+#: meinberlin/react/account/notification_data.js:53
 msgid ""
 "A moderator has remarked on your proposal in <a href=\"%(url)s\">%(title)s</"
 "a>"
@@ -954,27 +994,27 @@ msgstr ""
 "A moderator has remarked on your proposal in <a href=\"%(url)s\">%(title)s</"
 "a>"
 
-#: meinberlin/react/account/notification_data.js:29
+#: meinberlin/react/account/notification_data.js:58
 msgid ""
 "A moderator has responded to your idea in <a href=\"%(url)s\">%(title)s</a>"
 msgstr ""
 "A moderator has responded to your idea in <a href=\"%(url)s\">%(title)s</a>"
 
-#: meinberlin/react/account/notification_data.js:34
+#: meinberlin/react/account/notification_data.js:63
 msgid "A user has replied to your idea in <a href=\"%(url)s\">%(title)s</a>"
 msgstr "A user has replied to your idea in <a href=\"%(url)s\">%(title)s</a>"
 
-#: meinberlin/react/account/notification_data.js:39
+#: meinberlin/react/account/notification_data.js:68
 msgid ""
 "A user has replied to your proposal in <a href=\"%(url)s\">%(title)s</a>"
 msgstr ""
 "A user has replied to your proposal in <a href=\"%(url)s\">%(title)s</a>"
 
-#: meinberlin/react/account/notification_data.js:44
+#: meinberlin/react/account/notification_data.js:73
 msgid "A user has replied to your poll in <a href=\"%(url)s\">%(title)s</a>"
 msgstr "A user has replied to your poll in <a href=\"%(url)s\">%(title)s</a>"
 
-#: meinberlin/react/account/notification_data.js:49
+#: meinberlin/react/account/notification_data.js:78
 msgid ""
 "A moderator has responded to your comment in <a href=\"%(url)s\">%(title)s</"
 "a>"
@@ -982,140 +1022,116 @@ msgstr ""
 "A moderator has responded to your comment in <a href=\"%(url)s\">%(title)s</"
 "a>"
 
-#: meinberlin/react/account/notification_data.js:54
+#: meinberlin/react/account/notification_data.js:83
 msgid "A user has replied to your comment in <a href=\"%(url)s\">%(title)s</a>"
 msgstr ""
 "A user has replied to your comment in <a href=\"%(url)s\">%(title)s</a>"
 
-#: meinberlin/react/account/notification_data.js:59
+#: meinberlin/react/account/notification_data.js:88
 msgid "Users have rated your idea in <a href=\"%(url)s\">%(title)s</a>"
 msgstr "Users have rated your idea in <a href=\"%(url)s\">%(title)s</a>"
 
-#: meinberlin/react/account/notification_data.js:64
+#: meinberlin/react/account/notification_data.js:93
 msgid "A user has rated your idea in <a href=\"%(url)s\">%(title)s</a>"
 msgstr "A user has rated your idea in <a href=\"%(url)s\">%(title)s</a>"
 
-#: meinberlin/react/account/notification_data.js:69
+#: meinberlin/react/account/notification_data.js:98
 msgid "Users have rated your comment in <a href=\"%(url)s\">%(title)s</a>"
 msgstr "Users have rated your comment in <a href=\"%(url)s\">%(title)s</a>"
 
-#: meinberlin/react/account/notification_data.js:74
+#: meinberlin/react/account/notification_data.js:103
 msgid "A user has rated your comment in <a href=\"%(url)s\">%(title)s</a>"
 msgstr "A user has rated your comment in <a href=\"%(url)s\">%(title)s</a>"
 
-#: meinberlin/react/account/notification_data.js:80
+#: meinberlin/react/account/notification_data.js:109
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:7
 msgid "Search Profiles"
 msgstr "Search Profiles"
 
-#: meinberlin/react/account/notification_data.js:82
+#: meinberlin/react/account/notification_data.js:111
 msgid ""
 "Here you will find newly published participation projects that match your "
 "search profiles."
 msgstr ""
 "Here you will find newly published participation projects that match your "
 "search profiles."
-
-#: meinberlin/react/account/notification_data.js:85
-msgid ""
-"No results from your saved searches yet. Add new saved searches and wait for "
-"a matching project to be published."
-msgstr ""
-"No results from your saved searches yet. Add new saved searches and wait for "
-"a matching project to be published."
-
-#: meinberlin/react/account/notification_data.js:87
-msgid "Save a search"
-msgstr "Save a search"
-
-#: meinberlin/react/account/notification_data.js:89
-msgid ""
-"A new %(obj)s, <a href=\"%(url)s\">%(title)s</a>, matches your search "
-"profile %(name)s"
-msgstr ""
-"A new %(obj)s, <a href=\"%(url)s\">%(title)s</a>, matches your search "
-"profile %(name)s"
-
-#: meinberlin/react/account/notification_data.js:94
-msgid "project"
-msgstr "project"
-
-#: meinberlin/react/account/notification_data.js:94
-msgid "plan"
-msgstr "plan"
-
-#: meinberlin/react/account/notification_data.js:100
-msgid "Followed projects"
-msgstr "Followed projects"
-
-#: meinberlin/react/account/notification_data.js:102
-msgid ""
-"Here you will receive all the latest news about the projects you follow."
-msgstr ""
-"Here you will receive all the latest news about the projects you follow."
-
-#: meinberlin/react/account/notification_data.js:105
-msgid "No followed projects. Find projects to follow them."
-msgstr "No followed projects. Find projects to follow them."
-
-#: meinberlin/react/account/notification_data.js:107
-#: meinberlin/react/kiezradar/SearchProfiles.jsx:21
-msgid "Find projects"
-msgstr "Find projects"
-
-#: meinberlin/react/account/notification_data.js:109
-msgid ""
-"<a href=\"%(url)s\">%(title)s</a> is now open for participation. You can "
-"participate until %(date)s"
-msgstr ""
-"<a href=\"%(url)s\">%(title)s</a> is now open for participation. You can "
-"participate until %(date)s"
 
 #: meinberlin/react/account/notification_data.js:114
 msgid ""
-"<a href=\"%(url)s\">%(title)s</a> will end soon. You can still participate "
-"until %(date)s"
+"No results from your saved searches yet. Add new saved searches and wait for "
+"a matching project to be published."
 msgstr ""
-"<a href=\"%(url)s\">%(title)s</a> will end soon. You can still participate "
-"until %(date)s"
+"No results from your saved searches yet. Add new saved searches and wait for "
+"a matching project to be published."
 
-#: meinberlin/react/account/notification_data.js:119
+#: meinberlin/react/account/notification_data.js:116
+msgid "Save a search"
+msgstr "Save a search"
+
+#: meinberlin/react/account/notification_data.js:118
 msgid ""
-"The event %(eventName)s in <a href=\"%(url)s\">%(title)s</a> is coming up "
-"soon and takes place on %(date)s"
+"A new %(obj)s, <a href=\"%(url)s\">%(title)s</a>, matches your search "
+"profile %(name)s"
 msgstr ""
-"The event %(eventName)s in <a href=\"%(url)s\">%(title)s</a> is coming up "
-"soon and takes place on %(date)s"
+"A new %(obj)s, <a href=\"%(url)s\">%(title)s</a>, matches your search "
+"profile %(name)s"
 
-#: meinberlin/react/account/notification_data.js:124
+#: meinberlin/react/account/notification_data.js:123
+msgid "project"
+msgstr "project"
+
+#: meinberlin/react/account/notification_data.js:123
+msgid "plan"
+msgstr "plan"
+
+#: meinberlin/react/account/notification_data.js:129
+msgid "Followed projects"
+msgstr "Followed projects"
+
+#: meinberlin/react/account/notification_data.js:131
+msgid ""
+"Here you will receive all the latest news about the projects you follow."
+msgstr ""
+"Here you will receive all the latest news about the projects you follow."
+
+#: meinberlin/react/account/notification_data.js:134
+msgid "No followed projects. Find projects to follow them."
+msgstr "No followed projects. Find projects to follow them."
+
+#: meinberlin/react/account/notification_data.js:136
+#: meinberlin/react/kiezradar/SearchProfiles.jsx:24
+msgid "Find projects"
+msgstr "Find projects"
+
+#: meinberlin/react/account/notification_data.js:155
 msgid "View idea"
 msgstr "View idea"
 
-#: meinberlin/react/account/notification_data.js:125
+#: meinberlin/react/account/notification_data.js:156
 msgid "View comment"
 msgstr "View comment"
 
-#: meinberlin/react/account/notification_data.js:126
+#: meinberlin/react/account/notification_data.js:157
 msgid "View project"
 msgstr "View project"
 
-#: meinberlin/react/account/notification_data.js:127
+#: meinberlin/react/account/notification_data.js:158
 msgid "View proposal"
 msgstr "View proposal"
 
-#: meinberlin/react/account/notification_data.js:128
+#: meinberlin/react/account/notification_data.js:159
 msgid "View plan"
 msgstr "View plan"
 
-#: meinberlin/react/account/notification_data.js:133
+#: meinberlin/react/account/notification_data.js:164
 msgid "Project-Related Notifications"
 msgstr "Project-Related Notifications"
 
-#: meinberlin/react/account/notification_data.js:136
+#: meinberlin/react/account/notification_data.js:167
 msgid "E-Mail Newsletter"
 msgstr "E-Mail Newsletter"
 
-#: meinberlin/react/account/notification_data.js:137
+#: meinberlin/react/account/notification_data.js:168
 msgid ""
 "Receive newsletters with updates and news about the projects you follow via "
 "e-mail."
@@ -1123,21 +1139,21 @@ msgstr ""
 "Receive newsletters with updates and news about the projects you follow via "
 "e-mail."
 
-#: meinberlin/react/account/notification_data.js:140
+#: meinberlin/react/account/notification_data.js:171
 msgid "Participation Start"
 msgstr "Participation Start"
 
-#: meinberlin/react/account/notification_data.js:141
+#: meinberlin/react/account/notification_data.js:172
 msgid ""
 "Receive a notification when a participation begins in a project you follow."
 msgstr ""
 "Receive a notification when a participation begins in a project you follow."
 
-#: meinberlin/react/account/notification_data.js:145
+#: meinberlin/react/account/notification_data.js:176
 msgid "Participation End"
 msgstr "Participation End"
 
-#: meinberlin/react/account/notification_data.js:146
+#: meinberlin/react/account/notification_data.js:177
 msgid ""
 "Receive a notification when a participation is near its end in a project you "
 "follow."
@@ -1145,31 +1161,31 @@ msgstr ""
 "Receive a notification when a participation is near its end in a project you "
 "follow."
 
-#: meinberlin/react/account/notification_data.js:150
+#: meinberlin/react/account/notification_data.js:181
 msgid "Event"
 msgstr "Event"
 
-#: meinberlin/react/account/notification_data.js:151
+#: meinberlin/react/account/notification_data.js:182
 msgid "Receive notifications for upcoming events in projects you follow."
 msgstr "Receive notifications for upcoming events in projects you follow."
 
-#: meinberlin/react/account/notification_data.js:157
+#: meinberlin/react/account/notification_data.js:188
 msgid "Interactions with other users"
 msgstr "Interactions with other users"
 
-#: meinberlin/react/account/notification_data.js:160
+#: meinberlin/react/account/notification_data.js:191
 msgid "Reactions from other users to your posts"
 msgstr "Reactions from other users to your posts"
 
-#: meinberlin/react/account/notification_data.js:161
+#: meinberlin/react/account/notification_data.js:192
 msgid "Receive a notification when someone rates or comments on your post."
 msgstr "Receive a notification when someone rates or comments on your post."
 
-#: meinberlin/react/account/notification_data.js:165
+#: meinberlin/react/account/notification_data.js:196
 msgid "Reactions of moderation"
 msgstr "Reactions of moderation"
 
-#: meinberlin/react/account/notification_data.js:166
+#: meinberlin/react/account/notification_data.js:197
 msgid ""
 "Receive a notification for feedback and status changes of your idea from the "
 "moderation."
@@ -1177,25 +1193,25 @@ msgstr ""
 "Receive a notification for feedback and status changes of your idea from the "
 "moderation."
 
-#: meinberlin/react/account/notification_data.js:172
+#: meinberlin/react/account/notification_data.js:203
 msgid "Notifications for Initiators and Moderators"
 msgstr "Notifications for Initiators and Moderators"
 
-#: meinberlin/react/account/notification_data.js:176
+#: meinberlin/react/account/notification_data.js:207
 msgid "New Project in Your Organization"
 msgstr "New Project in Your Organization"
 
-#: meinberlin/react/account/notification_data.js:177
+#: meinberlin/react/account/notification_data.js:208
 msgid ""
 "Receive a notification when a new project is created in your organization."
 msgstr ""
 "Receive a notification when a new project is created in your organization."
 
-#: meinberlin/react/account/notification_data.js:180
+#: meinberlin/react/account/notification_data.js:211
 msgid "New Contribution in a Moderated Project"
 msgstr "New Contribution in a Moderated Project"
 
-#: meinberlin/react/account/notification_data.js:181
+#: meinberlin/react/account/notification_data.js:212
 msgid ""
 "Receive a notification when a new contribution is added to a project you "
 "moderate."
@@ -1341,11 +1357,11 @@ msgstr "Show"
 msgid "to:"
 msgstr "to:"
 
-#: meinberlin/react/contrib/card/CardList.jsx:14
+#: meinberlin/react/contrib/card/CardList.jsx:15
 msgid "Nothing to show"
 msgstr "Nothing to show"
 
-#: meinberlin/react/contrib/card/CardList.jsx:15
+#: meinberlin/react/contrib/card/CardList.jsx:16
 msgid "Pill List"
 msgstr "Pill List"
 
@@ -1440,6 +1456,15 @@ msgstr "Chapter navigation"
 #: meinberlin/react/documents/ChapterNav.jsx:6
 msgid "Add a new chapter"
 msgstr "Add a new chapter"
+
+#: meinberlin/react/documents/ChapterNavItem.jsx:5
+#: meinberlin/react/documents/ParagraphForm.jsx:11
+#: meinberlin/react/kiezradar/KiezradarList.jsx:17
+#: meinberlin/react/kiezradar/SearchProfile.jsx:14
+#: meinberlin/react/kiezradar/SearchProfileButtons.jsx:5
+#: meinberlin/react/modules/DeleteItemModal.jsx:8
+msgid "Remove"
+msgstr "Remove"
 
 #: meinberlin/react/documents/DocumentManagement.jsx:10
 msgid "first chapter"
@@ -1595,23 +1620,27 @@ msgstr "%(title)s successfully updated"
 msgid "Your changes have been saved."
 msgstr "Your changes have been saved."
 
-#: meinberlin/react/kiezradar/Kiezradars.jsx:39
-msgid "%(title)s deleted"
-msgstr "%(title)s deleted"
+#: meinberlin/react/kiezradar/Kiezradars.jsx:40
+msgid "%(title)s has been deleted successfully."
+msgstr "%(title)s has been deleted successfully."
 
-#: meinberlin/react/kiezradar/Kiezradars.jsx:42
-msgid "%(title)s has been permanently deleted."
-msgstr "%(title)s has been permanently deleted."
+#: meinberlin/react/kiezradar/Kiezradars.jsx:46
+msgid ""
+"The Kiez %(title)s will no longer be shown in the Kiezradar under the "
+"\"Kieze & Bezirke\" filter."
+msgstr ""
+"The Kiez %(title)s will no longer be shown in the Kiezradar under the "
+"\"Kieze & Bezirke\" filter."
 
-#: meinberlin/react/kiezradar/Kiezradars.jsx:47
+#: meinberlin/react/kiezradar/Kiezradars.jsx:51
 msgid "Failed to fetch Kiezes"
 msgstr "Failed to fetch Kiezes"
 
-#: meinberlin/react/kiezradar/Kiezradars.jsx:48
+#: meinberlin/react/kiezradar/Kiezradars.jsx:52
 msgid "You have reached the limit of saved Kieze"
 msgstr "You have reached the limit of saved Kieze"
 
-#: meinberlin/react/kiezradar/Kiezradars.jsx:49
+#: meinberlin/react/kiezradar/Kiezradars.jsx:53
 msgid ""
 "You are using the maximum number of 5 Kieze. To create a new Kiez, you must "
 "delete an existing one."
@@ -1664,18 +1693,22 @@ msgid "Failed to fetch search profiles"
 msgstr "Failed to fetch search profiles"
 
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:16
-msgid "Search profile successfully deleted"
-msgstr "Search profile successfully deleted"
+msgid "%(name)s has been deleted successfully"
+msgstr "%(name)s has been deleted successfully"
 
-#: meinberlin/react/kiezradar/SearchProfiles.jsx:19
-msgid "Your changes have been deleted."
-msgstr "Your changes have been deleted."
+#: meinberlin/react/kiezradar/SearchProfiles.jsx:21
+msgid ""
+"You will no longer receive notifications about projects that correspond to "
+"the filters of this Saved Search."
+msgstr ""
+"You will no longer receive notifications about projects that correspond to "
+"the filters of this Saved Search."
 
-#: meinberlin/react/kiezradar/SearchProfiles.jsx:22
+#: meinberlin/react/kiezradar/SearchProfiles.jsx:25
 msgid "You have reached the limit of saved search profiles"
 msgstr "You have reached the limit of saved search profiles"
 
-#: meinberlin/react/kiezradar/SearchProfiles.jsx:23
+#: meinberlin/react/kiezradar/SearchProfiles.jsx:26
 msgid ""
 "You are using the maximum number of 10 search profiles. To save a new one, "
 "you must delete an existing profile."
@@ -2151,34 +2184,31 @@ msgid "More information can be found in the privacy policy of Google under: "
 msgstr "More information can be found in the privacy policy of Google under: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
-msgid "Link to Video: "
-msgstr "Link to Video: "
+#: dsgvo-video-embed/js/dsgvo-video-embed.js:20
+msgid "Link to video: "
+msgstr "Link to video: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
 msgid "Play video"
 msgstr "Play video"
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:16
-msgid "external video"
-msgstr "external video"
+msgid "External video"
+msgstr "External video"
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:17
 msgid ""
-"here you can find a video from vimeo. to protect your data the content will "
-"only be loaded after you give your consent. only then will vimeo set cookies "
+"Here you can find a video from Vimeo. To protect your data the content will "
+"only be loaded after you give your consent. Only then will Vimeo set cookies "
 "that collect information on user behaviour."
 msgstr ""
-"here you can find a video from vimeo. to protect your data the content will "
-"only be loaded after you give your consent. only then will vimeo set cookies "
+"Here you can find a video from Vimeo. To protect your data the content will "
+"only be loaded after you give your consent. Only then will Vimeo set cookies "
 "that collect information on user behaviour."
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:18
-msgid "more information can be found in the privacy policy of vimeo under: "
-msgstr "more information can be found in the privacy policy of vimeo under: "
-
-#: dsgvo-video-embed/js/dsgvo-video-embed.js:20
-msgid "link to video: "
-msgstr "link to video: "
+msgid "More information can be found in the privacy policy of Vimeo under: "
+msgstr "More information can be found in the privacy policy of Vimeo under: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "play video"

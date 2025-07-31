@@ -8,7 +8,7 @@ const translations = {
   paragraph: django.gettext('Paragraph'),
   moveUp: django.gettext('Move up'),
   moveDown: django.gettext('Move down'),
-  delete: django.gettext('Delete'),
+  delete: django.gettext('Remove'),
   helpText: django.gettext(
     'If you add an image, please provide an ' +
       'alternate text. It serves as a textual description of the image ' +

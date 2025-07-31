@@ -2,7 +2,7 @@ import React from 'react'
 import django from 'django'
 
 const renameText = django.gettext('Rename')
-const deleteText = django.gettext('Delete')
+const deleteText = django.gettext('Remove')
 
 export default function SearchProfileButtons ({ onEdit, onDelete, loading }) {
   return (

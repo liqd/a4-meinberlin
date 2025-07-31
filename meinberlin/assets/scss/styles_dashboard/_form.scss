@@ -117,6 +117,10 @@ div.cke_focus {
     }
 }
 
+.form-check-input__mb:not(:checked) {
+    border: 2px solid $text-color-gray !important;
+}
+
 .form-hint {
     font-style: italic;
     color: $text-color-gray;

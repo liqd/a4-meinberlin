@@ -11,7 +11,7 @@ djangorestframework-gis==1.1.0
 redis==5.2.0
 requests==2.32.4
 requests-mock==1.11.0
-sentry-sdk[django]==2.19.0
+sentry-sdk[django]==2.34.1
 urllib3==2.5.0
 wagtail==6.3.1
 whitenoise==6.8.2

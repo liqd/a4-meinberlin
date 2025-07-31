@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-31 17:46+0200\n"
-"PO-Revision-Date: 2025-05-19 13:13+0000\n"
-"Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js-"
-"design-dev/de/>\n"
+"PO-Revision-Date: 2025-07-31 16:45+0000\n"
+"Last-Translator: josh <195121232+partizipation@users.noreply.github.com>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
+"js-design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1160,6 +1160,8 @@ msgstr ""
 #: meinberlin/react/account/notification_data.js:6
 msgid "<a href=\"%(url)s\">%(title)s</a> is now open for participation"
 msgstr ""
+"Die Online-Beteiligung im Projekt <a href=\"%(url)s\">%(title)s</a> hat "
+"begonnen"
 
 #: meinberlin/react/account/notification_data.js:9
 msgid ""
@@ -1171,7 +1173,7 @@ msgstr ""
 
 #: meinberlin/react/account/notification_data.js:10
 msgid "<a href=\"%(url)s\">%(title)s</a> will end soon"
-msgstr ""
+msgstr "Die Online im Projekt <a href=\"%(url)s\">%(title)s</a> endet bald"
 
 #: meinberlin/react/account/notification_data.js:13
 msgid ""
@@ -1186,6 +1188,8 @@ msgid ""
 "The event %(eventName)s in <a href=\"%(url)s\">%(title)s</a> is coming up "
 "soon"
 msgstr ""
+"Die Veranstaltung %(eventName)s in <a href=\"%(url)s\">%(title)s</a> findet "
+"bald statt"
 
 #: meinberlin/react/account/notification_data.js:34
 msgid "Interactions"
@@ -1719,7 +1723,7 @@ msgstr "Neues Kapitel hinzufügen"
 #: meinberlin/react/kiezradar/SearchProfileButtons.jsx:5
 #: meinberlin/react/modules/DeleteItemModal.jsx:8
 msgid "Remove"
-msgstr ""
+msgstr "Entfernen"
 
 #: meinberlin/react/documents/DocumentManagement.jsx:10
 msgid "first chapter"
@@ -1878,13 +1882,15 @@ msgstr "Ihre Änderungen wurden gespeichert."
 
 #: meinberlin/react/kiezradar/Kiezradars.jsx:40
 msgid "%(title)s has been deleted successfully."
-msgstr ""
+msgstr "%(title)s wurde erfolgreich gelöscht."
 
 #: meinberlin/react/kiezradar/Kiezradars.jsx:46
 msgid ""
 "The Kiez %(title)s will no longer be shown in the Kiezradar under the "
 "\"Kieze & Bezirke\" filter."
 msgstr ""
+"Der Kiez %(title)s wird im Kiezradar unter dem Filter ‚Kieze & Bezirke‘ "
+"nicht mehr angezeigt."
 
 #: meinberlin/react/kiezradar/Kiezradars.jsx:51
 msgid "Failed to fetch Kiezes"
@@ -1948,13 +1954,15 @@ msgstr "Gespeicherte Suchen konnten nicht geladen werden"
 
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:16
 msgid "%(name)s has been deleted successfully"
-msgstr ""
+msgstr "%(name)s wurde erfolgreich gelöscht"
 
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:21
 msgid ""
 "You will no longer receive notifications about projects that correspond to "
 "the filters of this Saved Search."
 msgstr ""
+"Sie erhalten keine Benachrichtigungen mehr über Projekte, die den Filtern "
+"dieser Gespeicherten Suche entsprechen."
 
 #: meinberlin/react/kiezradar/SearchProfiles.jsx:25
 msgid "You have reached the limit of saved search profiles"
@@ -2444,7 +2452,7 @@ msgstr ""
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "Link to video: "
-msgstr ""
+msgstr "Link zum Video: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
 msgid "Play video"
@@ -2452,7 +2460,7 @@ msgstr "Video abspielen"
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:16
 msgid "External video"
-msgstr ""
+msgstr "Externes Video"
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:17
 msgid ""
@@ -2460,10 +2468,15 @@ msgid ""
 "only be loaded after you give your consent. Only then will Vimeo set cookies "
 "that collect information on user behaviour."
 msgstr ""
+"Hier finden Sie ein Video von Vimeo. Zum Schutz Ihrer Daten werden die "
+"Inhalte erst nach Ihrer Einwilligung geladen. Erst dann setzt Vimeo Cookies, "
+"die Informationen zum Nutzerverhalten sammeln."
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:18
 msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr ""
+"Weitere Informationen hierzu finden Sie in der Datenschutzerklärung von "
+"Vimeo unter: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "play video"

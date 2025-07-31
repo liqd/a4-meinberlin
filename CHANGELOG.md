@@ -5,6 +5,51 @@ All notable changes to this project will be documented in this file.
 Since version v2308 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2507.1
+
+### Added
+
+- Added a Line Wrap for the Organisation Name in Desktop View after ~40 Characters
+- custom management command for clearing projects and plans cache
+- Scroll to top of list when changing page in item lists
+
+
+### Changed
+
+- how to set the request inside the context for the breadcrumbs
+- In Kiezradar, when the user clicks 'filter', the page will auto scroll to the results
+- Timline is now Step-based (desktop only) instead of using a scroller (#630)
+- Move alerts to top of page
+- Remove breadcrumbs from blueprint dialog dashboard.
+- Remove Button for a Custom Kiez now named Remove + diffrent Trash Icon for consistency
+- Changed wording of deletion alerts (Saved Search, custom Kiez) to make them consistent
+- Sort 'Followed Projects' by date descending
+- Scroll to top of page when user Saves a Search
+- Correct tab focus styling on answer navigation arrows
+- Helper functions for notifications handle invalid dates in meinberlin/react/account/notification_data.js
+- emails: add default sender "meinBerlin" <no-reply@mein.berlin.de> so sender is named in clients like gmail
+- emails: added striptags to email subject containing project name and kiezradar name so special characters display properly
+- emails: added white background mB logo
+- search profile notification email: updated text in German and English
+- apps/projects:statistics topic/maptopic no longer get counted as ideas
+
+### Fixed
+
+- Styling for dropdown menu in archived proposals
+- Custom Kieze dont get Notifications for Projects without Points anymore. #622 
+- Fixed styling of checkbox form fields
+- When getting Notifications for External Projects these now provide the external Url (#773)
+- Show pagination also on mobile
+- scrolling issue when clicking previous and next buttons
+- Highlight kiezradar as active in menu when on that page
+- set correct font weight for plan tiles on maps
+- removed plan description from tile as it is a CKeditor field
+- Allow navigation between text review chapters
+- fix swiper pagination bullets for multi-phase participatory budgeting wrong size on ios safari due to shadow dom, by adding inline css injection
+- notifications newer than 180 days being deleted instead of older than 180 days
+- disable previous/next buttons on item lists in paginations when there is no page
+
+
 ## v2504.3
 
 ### Added

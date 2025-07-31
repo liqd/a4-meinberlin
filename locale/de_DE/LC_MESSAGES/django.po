@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-31 17:46+0200\n"
-"PO-Revision-Date: 2025-04-05 15:15+0000\n"
-"Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main-"
-"design-dev/de/>\n"
+"PO-Revision-Date: 2025-07-31 16:43+0000\n"
+"Last-Translator: josh <195121232+partizipation@users.noreply.github.com>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
+"main-design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4567,11 +4567,11 @@ msgstr "Beteiligungsverlauf"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:11
 msgid "Previous timeline items"
-msgstr ""
+msgstr "Vorherige Zeitleistenkacheln"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:16
 msgid "Next timeline items"
-msgstr ""
+msgstr "Nächste Zeitleistenkacheln"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/users_from_email_form.html:23
 msgid "Add"

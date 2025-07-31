@@ -1,5 +1,19 @@
 import django from 'django'
 
+// Helper function that handles date validation and message interpolation
+const getDateAwareMessage = (fullMessage, fallbackMessage, data) => {
+  try {
+    if (data.date && !isNaN(new Date(data.date).getTime())) {
+      return django.interpolate(django.gettext(fullMessage), data, true)
+    }
+  } catch (e) {
+    // Fall through to fallback message
+  }
+  // Remove date from data object for fallback message
+  const { date, ...fallbackData } = data
+  return django.interpolate(django.gettext(fallbackMessage), fallbackData, true)
+}
+
 export const notificationsData = {
   interactions: {
     title: django.gettext('Interactions'),
@@ -105,20 +119,22 @@ export const notificationsData = {
       'No followed projects. Find projects to follow them.'
     ),
     buttonText: django.gettext('Find projects'),
-    phaseStartedText: (title, url, date) => django.interpolate(
-      django.gettext('<a href="%(url)s">%(title)s</a> is now open for participation. You can participate until %(date)s'),
-      { title, url, date },
-      true
+    phaseStartedText: (title, url, date) => getDateAwareMessage(
+      '<a href="%(url)s">%(title)s</a> is now open for participation. You can participate until %(date)s',
+      '<a href="%(url)s">%(title)s</a> is now open for participation',
+      { title, url, date }
     ),
-    phaseEndedText: (title, url, date) => django.interpolate(
-      django.gettext('<a href="%(url)s">%(title)s</a> will end soon. You can still participate until %(date)s'),
-      { title, url, date },
-      true
+
+    phaseEndedText: (title, url, date) => getDateAwareMessage(
+      '<a href="%(url)s">%(title)s</a> will end soon. You can still participate until %(date)s',
+      '<a href="%(url)s">%(title)s</a> will end soon',
+      { title, url, date }
     ),
-    offlineEvent: (eventName, title, url, date) => django.interpolate(
-      django.gettext('The event %(eventName)s in <a href="%(url)s">%(title)s</a> is coming up soon and takes place on %(date)s'),
-      { eventName, title, url, date },
-      true
+
+    offlineEvent: (eventName, title, url, date) => getDateAwareMessage(
+      'The event %(eventName)s in <a href="%(url)s">%(title)s</a> is coming up soon and takes place on %(date)s',
+      'The event %(eventName)s in <a href="%(url)s">%(title)s</a> is coming up soon',
+      { eventName, title, url, date }
     )
   },
   viewIdeaText: django.gettext('View idea'),

@@ -1,17 +1,32 @@
 import django from 'django'
 
+export const messages = {
+  phaseStarted: {
+    full: django.gettext('<a href="%(url)s">%(title)s</a> is now open for participation. You can participate until %(date)s'),
+    fallback: django.gettext('<a href="%(url)s">%(title)s</a> is now open for participation')
+  },
+  phaseEnded: {
+    full: django.gettext('<a href="%(url)s">%(title)s</a> will end soon. You can still participate until %(date)s'),
+    fallback: django.gettext('<a href="%(url)s">%(title)s</a> will end soon')
+  },
+  offlineEvent: {
+    full: django.gettext('The event %(eventName)s in <a href="%(url)s">%(title)s</a> is coming up soon and takes place on %(date)s'),
+    fallback: django.gettext('The event %(eventName)s in <a href="%(url)s">%(title)s</a> is coming up soon')
+  }
+}
+
 // Helper function that handles date validation and message interpolation
 const getDateAwareMessage = (fullMessage, fallbackMessage, data) => {
   try {
     if (data.date && !isNaN(new Date(data.date).getTime())) {
-      return django.interpolate(django.gettext(fullMessage), data, true)
+      return django.interpolate(fullMessage, data, true)
     }
   } catch (e) {
     // Fall through to fallback message
   }
-  // Remove date from data object for fallback message
+
   const { date, ...fallbackData } = data
-  return django.interpolate(django.gettext(fallbackMessage), fallbackData, true)
+  return django.interpolate(fallbackMessage, fallbackData, true)
 }
 
 export const notificationsData = {
@@ -120,20 +135,20 @@ export const notificationsData = {
     ),
     buttonText: django.gettext('Find projects'),
     phaseStartedText: (title, url, date) => getDateAwareMessage(
-      '<a href="%(url)s">%(title)s</a> is now open for participation. You can participate until %(date)s',
-      '<a href="%(url)s">%(title)s</a> is now open for participation',
+      messages.phaseStarted.full,
+      messages.phaseStarted.fallback,
       { title, url, date }
     ),
 
     phaseEndedText: (title, url, date) => getDateAwareMessage(
-      '<a href="%(url)s">%(title)s</a> will end soon. You can still participate until %(date)s',
-      '<a href="%(url)s">%(title)s</a> will end soon',
+      messages.phaseEnded.full,
+      messages.phaseEnded.fallback,
       { title, url, date }
     ),
 
     offlineEvent: (eventName, title, url, date) => getDateAwareMessage(
-      'The event %(eventName)s in <a href="%(url)s">%(title)s</a> is coming up soon and takes place on %(date)s',
-      'The event %(eventName)s in <a href="%(url)s">%(title)s</a> is coming up soon',
+      messages.offlineEvent.full,
+      messages.offlineEvent.fallback,
       { eventName, title, url, date }
     )
   },

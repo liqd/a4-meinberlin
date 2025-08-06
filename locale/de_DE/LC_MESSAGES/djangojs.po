@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-31 17:46+0200\n"
-"PO-Revision-Date: 2025-07-31 16:45+0000\n"
-"Last-Translator: josh <195121232+partizipation@users.noreply.github.com>\n"
+"PO-Revision-Date: 2025-08-07 07:56+0000\n"
+"Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "js-design-dev/de/>\n"
 "Language: de_DE\n"
@@ -1173,7 +1173,9 @@ msgstr ""
 
 #: meinberlin/react/account/notification_data.js:10
 msgid "<a href=\"%(url)s\">%(title)s</a> will end soon"
-msgstr "Die Online im Projekt <a href=\"%(url)s\">%(title)s</a> endet bald"
+msgstr ""
+"Die Online-Beteiligung im Projekt <a href=\"%(url)s\">%(title)s</a> endet "
+"bald"
 
 #: meinberlin/react/account/notification_data.js:13
 msgid ""

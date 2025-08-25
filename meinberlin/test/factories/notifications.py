@@ -1,8 +1,8 @@
 import factory
 from django.db.models.signals import post_save
 
+from adhocracy4.notifications.models import NotificationSettings
 from adhocracy4.test import factories as a4_factories
-from meinberlin.apps.notifications.models import NotificationSettings
 
 
 @factory.django.mute_signals(post_save)

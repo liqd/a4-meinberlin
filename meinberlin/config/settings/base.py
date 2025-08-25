@@ -87,6 +87,7 @@ INSTALLED_APPS = (
     "adhocracy4.ratings",
     "adhocracy4.reports",
     "adhocracy4.rules",
+    "adhocracy4.notifications",
     # General components that define models or helpers
     "meinberlin.apps.actions",
     "meinberlin.apps.captcha",

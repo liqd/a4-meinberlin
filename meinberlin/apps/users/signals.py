@@ -2,7 +2,7 @@ from allauth.account.signals import email_confirmed
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from meinberlin.apps.notifications.models import NotificationSettings
+from adhocracy4.notifications.models import NotificationSettings
 
 from . import emails
 from .models import User

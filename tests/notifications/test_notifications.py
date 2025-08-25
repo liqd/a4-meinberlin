@@ -7,11 +7,11 @@ from django.core.management import call_command
 from freezegun import freeze_time
 
 from adhocracy4.actions.verbs import Verbs
+from adhocracy4.notifications.models import Notification
 from adhocracy4.phases.models import Phase
 from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.budgeting import phases
-from meinberlin.apps.notifications.models import Notification
 from meinberlin.config import settings
 
 START = Verbs.START.value

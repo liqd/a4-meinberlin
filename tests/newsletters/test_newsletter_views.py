@@ -6,10 +6,10 @@ from django.urls import reverse
 
 from adhocracy4.follows import models as follow_models
 from adhocracy4.images.validators import ImageAltTextValidator
+from adhocracy4.notifications.models import NotificationSettings
 from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.newsletters import models as newsletter_models
-from meinberlin.apps.notifications.models import NotificationSettings
 
 User = get_user_model()
 

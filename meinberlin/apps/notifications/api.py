@@ -12,10 +12,10 @@ from rest_framework.decorators import action
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.viewsets import GenericViewSet
 
-from meinberlin.apps.notifications.models import Notification
+from adhocracy4.notifications.models import Notification
+from adhocracy4.notifications.models import NotificationSettings
 from meinberlin.apps.notifications.serializers import NotificationSerializer
 
-from .models import NotificationSettings
 from .serializers import NotificationSettingsSerializer
 
 

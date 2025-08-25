@@ -1,7 +1,7 @@
 from django import template
 
+from adhocracy4.notifications.models import Notification
 from meinberlin.apps.cms import models as cms_models
-from meinberlin.apps.notifications.models import Notification
 
 register = template.Library()
 

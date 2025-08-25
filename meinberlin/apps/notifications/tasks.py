@@ -5,9 +5,9 @@ from django.utils import timezone
 
 from adhocracy4.actions.models import Action
 from adhocracy4.actions.verbs import Verbs
+from adhocracy4.notifications.models import Notification
 from meinberlin.apps.kiezradar.matchers import get_search_profiles_for_obj
 from meinberlin.apps.notifications import emails
-from meinberlin.apps.notifications.models import Notification
 
 
 @shared_task(name="periodic_notifications_cleanup")

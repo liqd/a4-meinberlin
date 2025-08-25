@@ -1,7 +1,7 @@
 import pytest
 from freezegun import freeze_time
 
-from meinberlin.apps.notifications.models import Notification
+from adhocracy4.notifications.models import Notification
 from meinberlin.apps.notifications.tasks import periodic_notifications_cleanup
 from meinberlin.test.factories import CommentFactory
 

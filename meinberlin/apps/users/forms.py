@@ -9,8 +9,8 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext
 
+from adhocracy4.notifications.models import NotificationSettings
 from meinberlin.apps.captcha.fields import CaptcheckCaptchaField
-from meinberlin.apps.notifications.models import NotificationSettings
 from meinberlin.apps.organisations.models import Organisation
 from meinberlin.apps.users.models import User
 

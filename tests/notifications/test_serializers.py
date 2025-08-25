@@ -4,7 +4,7 @@ from django.utils import timezone
 from freezegun import freeze_time
 
 from adhocracy4.actions.signals import _add_action
-from meinberlin.apps.notifications.models import Notification
+from adhocracy4.notifications.models import Notification
 from meinberlin.apps.notifications.serializers import NotificationSerializer
 
 

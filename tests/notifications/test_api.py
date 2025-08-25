@@ -7,9 +7,9 @@ from rest_framework.reverse import reverse
 
 from adhocracy4.dashboard import signals
 from adhocracy4.follows.models import Follow
+from adhocracy4.notifications.models import Notification
 from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.ideas import phases
-from meinberlin.apps.notifications.models import Notification
 from meinberlin.test.factories import CommentFactory
 
 

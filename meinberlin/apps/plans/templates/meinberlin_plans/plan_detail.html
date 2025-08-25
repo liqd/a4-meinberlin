@@ -62,6 +62,12 @@
                         <dt>{% translate 'Cost' %}</dt><dd>{{ object.cost }}</dd>
                     </div>
                     {% endif %}
+                    {% if object.topics.all %}
+                    <div>
+                        <dt>{% translate 'Topics' %}</dt>
+                        <dd>{{ object.topic_names|join:"; " }}</dd>
+                    </div>
+                    {% endif %}
                     <div>
                         <dt>{% translate 'Level of participation' %}</dt>
                         <dd>

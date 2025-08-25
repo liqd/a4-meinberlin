@@ -15,7 +15,7 @@ function init () {
         <React.StrictMode>
           <BrowserRouter>
             <FetchItemsProvider {...props} isMapAndList>
-              <ListMapView {...props} listStr={django.gettext('Map Ideas list')} />
+              <ListMapView {...props} listStr={django.gettext('Map Ideas list')} mode="map" />
             </FetchItemsProvider>
           </BrowserRouter>
         </React.StrictMode>

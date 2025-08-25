@@ -26,7 +26,7 @@ const getResultCountText = (count) => {
   return django.interpolate(foundProposalsText, [count])
 }
 
-export const ControlBar = () => {
+export const ControlBar = ({ mapListViewMode }) => {
   // grab the results for the list from the useFetchedItems hook
   const { results: { list }, isMapAndList, viewMode } = useFetchedItems()
   const [expandFilters, setExpandFilters] = useState(true)
@@ -196,7 +196,7 @@ export const ControlBar = () => {
         </div>
         {isMapAndList &&
           <div className="span6 align--right">
-            <ControlBarListMapSwitch query={queryParams} />
+            <ControlBarListMapSwitch mapListViewMode={mapListViewMode} query={queryParams} />
           </div>}
       </div>
     </nav>

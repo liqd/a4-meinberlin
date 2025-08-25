@@ -11,10 +11,10 @@ import { MapWithMarkers } from './Map'
  * @param {Object} map - props that are passed to the Map component.
  * @param {string} listStr - accessible text for the list
  */
-export const ListMapView = ({ map, listStr }) => {
+export const ListMapView = ({ map, listStr, mode }) => {
   const [queryParams] = useSearchParams()
   const { results } = useFetchedItems()
-  const viewMode = queryParams.get('mode') || 'list'
+  const viewMode = queryParams.get('mode') || mode || 'list'
 
   const switchDisplays = () => {
     if (viewMode === 'map') {
@@ -34,7 +34,7 @@ export const ListMapView = ({ map, listStr }) => {
   return (
     <>
       <div className="block block--halfgap">
-        <ControlBar />
+        <ControlBar mapListViewMode={viewMode} />
       </div>
       {switchDisplays()}
     </>

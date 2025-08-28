@@ -5,8 +5,6 @@ import { MultiSelect } from '../contrib/forms/MultiSelect'
 import { classNames } from 'adhocracy4'
 import { ControlBarFilterPills } from '../contrib/ControlBarFilterPills'
 import SaveSearchProfile from '../plans/SaveSearchProfile'
-// import { toSearchParams } from '../contrib/helpers'
-// import { useSearchParams } from 'react-router-dom'
 import { GroupMultiSelect } from '../contrib/forms/GroupMultiSelect'
 
 const translated = {

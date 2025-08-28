@@ -170,7 +170,7 @@ function DeleteButton ({ onDelete }) {
       className="kiezradar-list__button"
       onClick={onDelete}
     >
-      <i className="far fa-trash-can mr-1" />
+      <i className="far fa-trash-alt mr-1" />
       {deleteText}
     </button>
   )

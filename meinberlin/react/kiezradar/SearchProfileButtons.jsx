@@ -16,7 +16,7 @@ export default function SearchProfileButtons ({ onEdit, onDelete, loading }) {
         onClick={onDelete}
         disabled={loading}
       >
-        <i className="fa-classic fa-regular fa-trash-can mr-1" />
+        <i className="fa-classic fa-regular fa-trash-alt mr-1" />
         {deleteText}
       </button>
     </div>

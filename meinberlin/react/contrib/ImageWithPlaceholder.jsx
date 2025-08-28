@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ImageWithPlaceholder = ({ src, alt, lazy = true, ...rest }) => {
+const ImageWithPlaceholder = ({ src, alt, lazy = true, className, ...rest }) => {
   const hasImage = src && src.length
   return hasImage
     ? (
@@ -12,7 +12,7 @@ const ImageWithPlaceholder = ({ src, alt, lazy = true, ...rest }) => {
       />
       )
     : (
-      <picture>
+      <picture className={className}>
         <source type="image/webp" srcSet="/static/images/placeholder_tile.webp" />
         <source type="image/avif" srcSet="/static/images/placeholder_tile.avif" />
         <img
@@ -20,6 +20,7 @@ const ImageWithPlaceholder = ({ src, alt, lazy = true, ...rest }) => {
           alt={alt}
           loading={lazy ? 'lazy' : 'eager'}
           {...rest}
+          className="project-tile__placeholder"
         />
       </picture>
       )

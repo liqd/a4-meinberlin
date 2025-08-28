@@ -26,9 +26,13 @@ a.project-tile {
 }
 
 .project-tile__image-wrapper {
-    flex: 1;
+    flex: 2;
     min-width: 0;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     .project-tile--map & {
         flex: 0 0 145px;
@@ -61,10 +65,15 @@ a.project-tile {
     max-width: 100%;
     height: auto;
     aspect-ratio: 4 / 3;
+    width: 100%;
 
     .project-tile--horizontal & {
-        aspect-ratio: 112 / 115;
+        height: 100%;
     }
+}
+
+.project-tile__placeholder {
+    max-height: 100%;
 }
 
 .project-tile__body {
@@ -72,7 +81,7 @@ a.project-tile {
     position: relative;
     display: flex;
     flex-direction: column;
-
+    
     .project-tile--horizontal & {
         margin-left: 1.25em;
     }

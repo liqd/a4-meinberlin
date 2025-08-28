@@ -2,14 +2,14 @@
     color: $text-base!important;
     font-weight: 400;
 
-    &:before {
-        background-color: $primary;
-        color: $text-base;
-    }
+    // &:before {
+    //     background-color: $primary;
+    //     color: $text-base;
+    // }
 
-    &:after {
-        color: $text-base;
-    }
+    // &:after {
+    //     color: $text-base;
+    // }
 }
 
 .button--full-width {

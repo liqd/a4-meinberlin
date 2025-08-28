@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import django from 'django'
 import { TypeaheadField } from '../contrib/TypeaheadField'
 import { MultiSelect } from '../contrib/forms/MultiSelect'
 import { classNames } from 'adhocracy4'
 import { ControlBarFilterPills } from '../contrib/ControlBarFilterPills'
 import SaveSearchProfile from '../plans/SaveSearchProfile'
-import { toSearchParams } from '../contrib/helpers'
-import { useSearchParams } from 'react-router-dom'
+// import { toSearchParams } from '../contrib/helpers'
+// import { useSearchParams } from 'react-router-dom'
 import { GroupMultiSelect } from '../contrib/forms/GroupMultiSelect'
 
 const translated = {
@@ -122,11 +122,14 @@ export const ProjectsControlBar = ({
   searchProfilesApiUrl,
   searchProfilesUrl,
   searchProfilesCount: initialSearchProfilesCount,
+  setParams,
+  syncTrigger,
+  defaultFilters,
   isAuthenticated,
   projectStatus
 }) => {
-  const [, setSearchParams] = useSearchParams()
-  const [expandFilters, setExpandFilters] = useState(false)
+  // const [, setSearchParams] = useSearchParams()
+  const [expandFilters, setExpandFilters] = useState(true)
   const [filters, setFilters] = useState(appliedFilters)
   const onFilterChange = (type, choice) => {
     setFilters({ ...filters, [type]: choice })
@@ -136,6 +139,12 @@ export const ProjectsControlBar = ({
   const [searchProfilesCount, setSearchProfilesCount] = useState(initialSearchProfilesCount)
 
   const isFiltersInitialState = JSON.stringify(appliedFilters) === JSON.stringify(initialState)
+
+  useEffect(() => {
+    if (JSON.stringify(appliedFilters) !== JSON.stringify(filters)) {
+      setFilters(appliedFilters)
+    }
+  }, [syncTrigger])
 
   const handleCreateSearchProfile = (searchProfile, limitExceeded) => {
     if (limitExceeded) {
@@ -188,10 +197,13 @@ export const ProjectsControlBar = ({
     setParams({})
   }
 
-  const setParams = (params) => {
-    const searchParams = toSearchParams(params)
-    setSearchParams(searchParams, { replace: true })
-  }
+  // const setParams = (params) => {
+  //   const searchParams = toSearchParams(params)
+  //   setSearchParams(searchParams, { replace: true })
+  // }
+
+  console.log('controlbar:')
+  console.log(appliedFilters.projectState)
 
   return (
     <nav aria-label={translated.nav}>
@@ -374,12 +386,18 @@ export const ProjectsControlBar = ({
               <ControlBarFilterPills
                 filters={alteredFilters}
                 onRemove={(type, value) => {
-                  const newFilters = { ...filters }
+                  let newFilters = { ...filters }
 
                   if (Array.isArray(newFilters[type])) {
                     newFilters[type] = newFilters[type].filter(f => f !== value)
                   } else {
                     newFilters[type] = initialState[type]
+                  }
+
+                  // If no more projectState filter, this avoids showing 0 results
+                  if (newFilters.projectState.length === 0) {
+                    console.log('made it')
+                    newFilters.projectState = ['active', 'future']
                   }
 
                   setFilters(newFilters)

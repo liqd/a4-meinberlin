@@ -11,6 +11,7 @@ import { ProjectsControlBar } from './ProjectsControlBar'
 import { filterProjects } from './filter-projects'
 import { getDefaultProjectState, getDefaultState } from './getDefaultState'
 import { useSearchParams } from 'react-router-dom'
+import { toSearchParams } from '../contrib/helpers'
 
 const pageHeader = django.gettext('Kiezradar')
 const showMapStr = django.gettext('Show map')
@@ -54,16 +55,26 @@ const ProjectsListMapBox = ({
   searchProfilesCount,
   isAuthenticated
 }) => {
-  const [searchParams] = useSearchParams()
+  // const [searchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams()
   const [showMap, setShowMap] = useState(true)
   const [loading, setLoading] = useState(true)
   const [projectState, setProjectState] = useState(getDefaultProjectState(searchParams))
   const [items, setItems] = useState([])
   const fetchCache = useRef({})
   const resultRef = useRef({})
-  const [appliedFilters, setAppliedFilters] = useState(getDefaultState(searchParams, { districts, organisations, participationChoices, topicChoices, kiezradars }))
+  const defaultFilters = { districts, organisations, participationChoices, topicChoices, kiezradars }
+  const [appliedFilters, setAppliedFilters] = useState(getDefaultState(searchParams, { ...defaultFilters }))
   const [alert, setAlert] = useState(null)
   const [error, setError] = useState(null)
+
+  const setParams = (params) => {
+    console.log(params)
+    const searchParams = toSearchParams(params)
+    setSearchParams(searchParams, { replace: true })
+  }
+
+  const [syncTrigger, setSyncTrigger] = useState(0)
 
   const fetchItems = useCallback(async () => {
     setLoading(true)
@@ -147,6 +158,7 @@ const ProjectsListMapBox = ({
           )}
         </div>
       )}
+      {console.log(projectState)}
       <ProjectsControlBar
         participationChoices={participationChoices}
         organisations={organisations}
@@ -170,6 +182,9 @@ const ProjectsListMapBox = ({
         searchProfilesApiUrl={searchProfilesApiUrl}
         searchProfilesUrl={searchProfilesUrl}
         searchProfilesCount={searchProfilesCount}
+        setParams={setParams}
+        syncTrigger={syncTrigger}
+        defaultFilters={defaultFilters}
         isAuthenticated={isAuthenticated}
         projectStatus={projectStatus}
       />
@@ -230,6 +245,21 @@ const ProjectsListMapBox = ({
               isHorizontal={showMap}
               topicChoices={topicChoices}
               loading={loading}
+              searchCompletedProjects={() => {
+                const newFilters = {
+                  ...appliedFilters,
+                  projectState: ['past']
+                }
+
+                // console.log(filters)
+                setAppliedFilters(newFilters)
+                setProjectState(['past'])
+                // console.log(filters)
+                setParams(newFilters)
+
+                setSyncTrigger(prev => prev + 1)
+              }}
+              // setAppliedFilters={setAppliedFilters}
             />
           </div>
           {showMap &&

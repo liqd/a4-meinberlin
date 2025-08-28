@@ -55,7 +55,7 @@ const ProjectTile = forwardRef(function ProjectTile ({ project, isHorizontal, to
           src={project.tile_image}
           alt={project.tile_image_alt_text ?? ''}
           height={490}
-          width={isHorizontal ? 490 : 630}
+          width={653}
           className="project-tile__image"
         />
         <span className="image__copyright">

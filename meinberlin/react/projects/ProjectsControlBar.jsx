@@ -124,7 +124,6 @@ export const ProjectsControlBar = ({
   searchProfilesCount: initialSearchProfilesCount,
   setParams,
   syncTrigger,
-  defaultFilters,
   isAuthenticated,
   projectStatus
 }) => {

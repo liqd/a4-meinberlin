@@ -63,8 +63,7 @@ const ProjectsListMapBox = ({
   const [items, setItems] = useState([])
   const fetchCache = useRef({})
   const resultRef = useRef({})
-  const defaultFilters = { districts, organisations, participationChoices, topicChoices, kiezradars }
-  const [appliedFilters, setAppliedFilters] = useState(getDefaultState(searchParams, { ...defaultFilters }))
+  const [appliedFilters, setAppliedFilters] = useState(getDefaultState(searchParams, { districts, organisations, participationChoices, topicChoices, kiezradars }))
   const [alert, setAlert] = useState(null)
   const [error, setError] = useState(null)
 
@@ -184,7 +183,6 @@ const ProjectsListMapBox = ({
         searchProfilesCount={searchProfilesCount}
         setParams={setParams}
         syncTrigger={syncTrigger}
-        defaultFilters={defaultFilters}
         isAuthenticated={isAuthenticated}
         projectStatus={projectStatus}
       />
@@ -245,6 +243,10 @@ const ProjectsListMapBox = ({
               isHorizontal={showMap}
               topicChoices={topicChoices}
               loading={loading}
+              showSearchCompletedProjectsButton={
+                !(projectState.length > 0 &&
+                  projectState.includes('past'))
+              }
               searchCompletedProjects={() => {
                 const newFilters = {
                   ...appliedFilters,

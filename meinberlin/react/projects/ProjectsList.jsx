@@ -2,7 +2,13 @@ import React from 'react'
 import ProjectTile from './ProjectTile'
 import { classNames } from 'adhocracy4'
 
-const ProjectsList = ({ projects, topicChoices, isHorizontal, searchCompletedProjects }) => {
+const ProjectsList = ({
+  projects,
+  topicChoices,
+  isHorizontal,
+  searchCompletedProjects,
+  showSearchCompletedProjectsButton
+}) => {
   return (
     <ul className={classNames('projects-list', isHorizontal ? 'projects-list--horizontal' : 'projects-list--vertical')}>
       {
@@ -17,20 +23,24 @@ const ProjectsList = ({ projects, topicChoices, isHorizontal, searchCompletedPro
           </li>
         ))
       }
-      <li>
-        <p>
-          Show completed projects too?
-        </p>
-        <button
-          onClick={searchCompletedProjects}
-          className="button button--light"
-          // aria-controls="filters"
-          // aria-expanded={expandFilters}
-          type="button"
-        >
-          Show completed
-        </button>
-      </li>
+      {
+        showSearchCompletedProjectsButton && (
+          <li>
+            <p>
+              Show completed projects too?
+            </p>
+            <button
+              onClick={searchCompletedProjects}
+              className="button button--light"
+              // aria-controls="filters"
+              // aria-expanded={expandFilters}
+              type="button"
+            >
+              Show completed
+            </button>
+          </li>
+        )
+      }
     </ul>
   )
 }

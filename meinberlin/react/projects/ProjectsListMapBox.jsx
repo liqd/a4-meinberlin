@@ -250,7 +250,6 @@ const ProjectsListMapBox = ({
                   ...appliedFilters,
                   projectState: ['past']
                 }
-                console.log(resultRef)
 
                 setAppliedFilters(newFilters)
                 setProjectState(['past'])

@@ -127,7 +127,7 @@ export const ProjectsControlBar = ({
   isAuthenticated,
   projectStatus
 }) => {
-  const [expandFilters, setExpandFilters] = useState(true)
+  const [expandFilters, setExpandFilters] = useState(false)
   const [filters, setFilters] = useState(appliedFilters)
   const onFilterChange = (type, choice) => {
     setFilters({ ...filters, [type]: choice })

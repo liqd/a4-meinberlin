@@ -250,6 +250,7 @@ const ProjectsListMapBox = ({
                   ...appliedFilters,
                   projectState: ['past']
                 }
+                console.log(resultRef)
 
                 setAppliedFilters(newFilters)
                 setProjectState(['past'])
@@ -257,6 +258,13 @@ const ProjectsListMapBox = ({
 
                 // Tells child ProjectsControlBar to update
                 setSyncTrigger(prev => prev + 1)
+
+                setTimeout(() => {
+                  resultRef?.current?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                  })
+                }, 100)
               }}
             />
           </div>

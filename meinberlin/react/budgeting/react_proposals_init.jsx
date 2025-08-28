@@ -19,7 +19,7 @@ function init () {
         <React.StrictMode>
           <BrowserRouter>
             <FetchItemsProvider {...props} isMapAndList>
-              <ListMapView {...props} listStr={translations.list} />
+              <ListMapView {...props} listStr={translations.list} mode="list" />
             </FetchItemsProvider>
           </BrowserRouter>
         </React.StrictMode>

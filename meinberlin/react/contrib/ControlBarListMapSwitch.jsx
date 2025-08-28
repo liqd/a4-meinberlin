@@ -11,9 +11,9 @@ const translated = {
   map: django.gettext('Map')
 }
 
-export const ControlBarListMapSwitch = () => {
+export const ControlBarListMapSwitch = ({ mapListViewMode }) => {
   const [queryParams, setQueryParams] = useSearchParams()
-  const viewMode = queryParams.get('mode') || 'list'
+  const viewMode = queryParams.get('mode') || mapListViewMode || 'list'
 
   const handleClick = () => {
     queryParams.set('mode', viewMode === 'list' ? 'map' : 'list')

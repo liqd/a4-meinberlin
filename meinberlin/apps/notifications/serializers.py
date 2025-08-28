@@ -1,10 +1,11 @@
 from django.utils import timezone
 from rest_framework import serializers
 
-from adhocracy4.notifications.models import Notification
-from adhocracy4.notifications.models import NotificationSettings
 from meinberlin.apps.actions.serializers import ActionSerializer
 from meinberlin.apps.kiezradar.serializers import SearchProfileSerializer
+
+from .models import Notification
+from .models import NotificationSettings
 
 
 class NotificationSerializer(serializers.ModelSerializer):

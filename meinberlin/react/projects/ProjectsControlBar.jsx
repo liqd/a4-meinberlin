@@ -127,7 +127,6 @@ export const ProjectsControlBar = ({
   isAuthenticated,
   projectStatus
 }) => {
-  // const [, setSearchParams] = useSearchParams()
   const [expandFilters, setExpandFilters] = useState(true)
   const [filters, setFilters] = useState(appliedFilters)
   const onFilterChange = (type, choice) => {
@@ -195,14 +194,6 @@ export const ProjectsControlBar = ({
     setSearchProfile(null)
     setParams({})
   }
-
-  // const setParams = (params) => {
-  //   const searchParams = toSearchParams(params)
-  //   setSearchParams(searchParams, { replace: true })
-  // }
-
-  console.log('controlbar:')
-  console.log(appliedFilters.projectState)
 
   return (
     <nav aria-label={translated.nav}>
@@ -393,9 +384,8 @@ export const ProjectsControlBar = ({
                     newFilters[type] = initialState[type]
                   }
 
-                  // If no more projectState filter, this avoids showing 0 results
+                  // If no more value for projectState filter, this avoids showing 0 results
                   if (newFilters.projectState.length === 0) {
-                    console.log('made it')
                     newFilters.projectState = ['active', 'future']
                   }
 

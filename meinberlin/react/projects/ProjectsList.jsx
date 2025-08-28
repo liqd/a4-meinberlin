@@ -25,15 +25,13 @@ const ProjectsList = ({
       }
       {
         showSearchCompletedProjectsButton && (
-          <li>
+          <li key="showCompleted">
             <p>
               Show completed projects too?
             </p>
             <button
               onClick={searchCompletedProjects}
               className="button button--light"
-              // aria-controls="filters"
-              // aria-expanded={expandFilters}
               type="button"
             >
               Show completed

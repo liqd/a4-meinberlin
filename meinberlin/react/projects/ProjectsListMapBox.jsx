@@ -55,7 +55,6 @@ const ProjectsListMapBox = ({
   searchProfilesCount,
   isAuthenticated
 }) => {
-  // const [searchParams] = useSearchParams()
   const [searchParams, setSearchParams] = useSearchParams()
   const [showMap, setShowMap] = useState(true)
   const [loading, setLoading] = useState(true)
@@ -157,7 +156,6 @@ const ProjectsListMapBox = ({
           )}
         </div>
       )}
-      {console.log(projectState)}
       <ProjectsControlBar
         participationChoices={participationChoices}
         organisations={organisations}
@@ -253,15 +251,13 @@ const ProjectsListMapBox = ({
                   projectState: ['past']
                 }
 
-                // console.log(filters)
                 setAppliedFilters(newFilters)
                 setProjectState(['past'])
-                // console.log(filters)
                 setParams(newFilters)
 
+                // Tells child ProjectsControlBar to update
                 setSyncTrigger(prev => prev + 1)
               }}
-              // setAppliedFilters={setAppliedFilters}
             />
           </div>
           {showMap &&

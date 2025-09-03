@@ -41,6 +41,7 @@ class MapIdeaFilterSet(a4_filters.DefaultsFilterSet):
 class MapIdeaListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMixin):
     model = models.MapIdea
     filter_set = MapIdeaFilterSet
+    paginate_by = 7
 
     def dispatch(self, request, **kwargs):
         self.mode = request.GET.get("mode", "map")

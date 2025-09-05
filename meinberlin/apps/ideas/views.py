@@ -64,7 +64,7 @@ class IdeaFilterSet(a4_filters.DefaultsFilterSet):
 
 
 class AbstractIdeaListView(ProjectMixin, filter_views.FilteredListView):
-    paginate_by = 15
+    paginate_by = 2
 
     def get_queryset(self):
         """Annotations normally happen in the filters, but if e.g. filtering is called with an invalid
@@ -92,8 +92,12 @@ class AbstractIdeaListView(ProjectMixin, filter_views.FilteredListView):
 class IdeaListView(AbstractIdeaListView, DisplayProjectOrModuleMixin):
     model = models.Idea
     filter_set = IdeaFilterSet
+    paginate_by = 2
 
     def get_queryset(self):
+        print(
+            f"DEBUG: IdeaListView loaded with paginate_by = {self.paginate_by}"
+        )  # ← Diese Zeile hinzufügen
         return super().get_queryset().filter(module=self.module)
 
 

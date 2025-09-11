@@ -68,7 +68,8 @@ const ProjectsMap = ({ items, topicChoices, ...props }) => {
         style={{ minHeight: '100%', height: '100%' }}
         className="projects-map__map"
       >
-        <SearchAndShowAddress apiUrl="https://bplan-prod.liqd.net/api/addresses/" />
+        <SearchAndShowAddress apiUrl="/api/geodaten/search" />
+        {/* <SearchAndShowAddress apiUrl="https://bplan-prod.liqd.net/api/addresses/" /> */}
         <ControlWrapper position="bottomleft" className="projects-map-info__wrapper">
           <ProjectsMapInfo />
         </ControlWrapper>

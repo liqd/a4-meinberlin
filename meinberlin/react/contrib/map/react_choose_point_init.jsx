@@ -14,7 +14,7 @@ function init () {
         <ChoosePointMap
           BaseMap={Map}
           input={el.nextElementSibling}
-          apiUrl="https://bplan-prod.liqd.net/api/addresses/"
+          apiUrl="/api/geodaten/search"
           {...props.map}
         />
       </React.StrictMode>

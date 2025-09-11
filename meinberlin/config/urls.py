@@ -123,6 +123,10 @@ urlpatterns = [
     path("documents/", include("wagtail.documents.urls")),
     path("projekte/", include("meinberlin.apps.projects.urls")),
     path(
+        "api/geodaten/",
+        include(("meinberlin.apps.geodaten.urls", "meinberlin_geodaten"), "meinberlin_geodaten"),
+    ),
+    path(
         "ideas/",
         include(("meinberlin.apps.ideas.urls", "meinberlin_ideas"), "meinberlin_ideas"),
     ),

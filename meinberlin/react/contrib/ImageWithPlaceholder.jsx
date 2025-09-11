@@ -8,6 +8,7 @@ const ImageWithPlaceholder = ({ src, alt, lazy = true, className, ...rest }) => 
         src={src}
         alt={alt}
         loading={lazy ? 'lazy' : 'eager'}
+        className={className}
         {...rest}
       />
       )

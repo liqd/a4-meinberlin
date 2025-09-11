@@ -51,16 +51,20 @@ const ProjectTile = forwardRef(function ProjectTile ({ project, isHorizontal, to
     >
       <div className="project-tile__image-wrapper image">
         <ProjectTileIcon access={project.access} />
-        <ImageWithPlaceholder
-          src={project.tile_image}
-          alt={project.tile_image_alt_text ?? ''}
-          height={490}
-          width={653}
-          className="project-tile__image"
-        />
-        <span className="image__copyright">
-          {project.tile_image_copyright ? copyrightStr + ' ' + project.tile_image_copyright : copyrightMissingStr}
-        </span>
+        <div className="image-ratio-wrapper">
+          <ImageWithPlaceholder
+            src={project.tile_image}
+            alt={project.tile_image_alt_text ?? ''}
+            height={490}
+            width={653}
+            className="project-tile__image"
+          />
+        </div>
+        <div className="copyright-wrapper">
+          <span className="image__copyright">
+            {project.tile_image_copyright ? copyrightStr + ' ' + project.tile_image_copyright : copyrightMissingStr}
+          </span>
+        </div>
       </div>
 
       <div className="project-tile__body">

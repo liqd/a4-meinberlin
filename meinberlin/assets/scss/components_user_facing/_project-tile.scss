@@ -33,12 +33,27 @@ a.project-tile {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden;  // Verhindert Überlauf des Containers
 
     .project-tile--map & {
         flex: 0 0 145px;
 
         @media screen and (min-width: $breakpoint-tablet) {
             flex: 0 0 120px;
+        }
+    }
+    .copyright-wrapper {
+        width: 100%;
+        text-align: left;
+    }
+    .image-ratio-wrapper {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 75%;
+        img {
+            object-fit: cover;
+            object-position: 50% 50%;
         }
     }
 }
@@ -62,13 +77,17 @@ a.project-tile {
 
 .project-tile__image {
     object-fit: cover;
+    object-position: center;  // Zentriert das Bild beim Abschneiden
     max-width: 100%;
     height: auto;
     aspect-ratio: 4 / 3;
     width: 100%;
+    overflow: hidden;  // Verhindert Überlauf
 
     .project-tile--horizontal & {
         height: 100%;
+        object-fit: cover;
+        object-position: center;
     }
 }
 

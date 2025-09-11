@@ -18,6 +18,10 @@ export const ListMapView = ({ map, listStr, mode }) => {
 
   const switchDisplays = () => {
     if (viewMode === 'map') {
+      // If results are not jet loaded show a loading message and wait to prevent JS Errors
+      if (!results.map || !results.map.results) {
+        return <div>Loading map...</div>
+      }
       return (
         <MapWithMarkers
           {...map}

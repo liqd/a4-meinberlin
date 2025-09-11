@@ -16,12 +16,12 @@ a.project-tile {
 
     &--horizontal:not(.project-tile--map) {
         border-bottom: 1px solid $gray-lighter;
-        padding-bottom: 1.5em;
-        padding-top: 1.5em;
+        padding: 24px 0 16px; // should be 16 top/bottom, but other el's need adjust
     }
 
     .image__copyright {
         font-weight: 400;
+        line-height: 18px;
     }
 }
 
@@ -32,7 +32,7 @@ a.project-tile {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;;
 
     .project-tile--map & {
         flex: 0 0 145px;
@@ -60,20 +60,13 @@ a.project-tile {
     }
 }
 
-.project-tile__image {
+.project-tile__image, .project-tile__placeholder {
     object-fit: cover;
+    object-position: center;
     max-width: 100%;
     height: auto;
     aspect-ratio: 4 / 3;
     width: 100%;
-
-    .project-tile--horizontal & {
-        height: 100%;
-    }
-}
-
-.project-tile__placeholder {
-    max-height: 100%;
 }
 
 .project-tile__body {
@@ -84,6 +77,7 @@ a.project-tile {
     
     .project-tile--horizontal & {
         margin-left: 1.25em;
+        padding-bottom: 16px;
     }
 }
 

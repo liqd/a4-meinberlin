@@ -86,7 +86,7 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
     )
 
     def get_geojson_properties(self):
-        return {"str_name": "street_name", "hnr": "house_number", "plz": "zip_code"}
+        return {"strasse": "street_name", "haus": "house_number", "plz": "zip_code"}
 
     class Meta:
         model = Bplan

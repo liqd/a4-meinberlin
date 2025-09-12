@@ -105,7 +105,7 @@ def geojson_point():
             "type": "Point",
             "coordinates": [13.397788148643649, 52.52958586909979],
         },
-        "properties": {"str_name": None, "hnr": None, "plz": None},
+        "properties": {"strasse": None, "haus": None, "plz": None},
     }
 
 

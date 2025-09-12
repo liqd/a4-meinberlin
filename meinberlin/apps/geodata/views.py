@@ -5,8 +5,8 @@ from rest_framework.decorators import permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
+from .geosearch_client import GeoSearchClient
 from .serializers import AddressSearchSerializer
-from .wfs_client import WFSClient
 
 
 @api_view(["GET"])
@@ -20,7 +20,7 @@ def search_addresses(request):
 
     validated_data = serializer.validated_data
     search_term = validated_data.get("search", "").strip()
-    limit = validated_data.get("limit", 100)
+    limit = validated_data.get("limit", 10)
     offset = validated_data.get("offset", 0)
 
     # Create cache key based on search parameters
@@ -43,10 +43,8 @@ def search_addresses(request):
         )
 
     try:
-        wfs_client = WFSClient()
-        results = wfs_client.search_addresses(
-            search_term=search_term, limit=limit, offset=offset
-        )
+        geosearch_client = GeoSearchClient()
+        results = geosearch_client.search_addresses(query=search_term, limit=limit)
 
         # # Get total count for pagination (optional - might be expensive)
         # total_count = len(results)  # Default to current result count
@@ -74,31 +72,3 @@ def search_addresses(request):
             {"error": str(e), "search_term": search_term},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
-
-
-@api_view(["GET"])
-@permission_classes([AllowAny])
-def get_address(request, feature_id):
-    """Get specific address by feature ID"""
-    cache_key = f"address_{feature_id}"
-
-    # Try to get from cache first
-    cached_result = cache.get(cache_key)
-    if cached_result:
-        return Response(cached_result)
-
-    try:
-        wfs_client = WFSClient()
-        address = wfs_client.get_by_id(feature_id)
-
-        if address:
-            # Cache for 24 hours
-            cache.set(cache_key, address, timeout=86400)
-            return Response(address)
-        else:
-            return Response(
-                {"error": "Address not found"}, status=status.HTTP_404_NOT_FOUND
-            )
-
-    except Exception as e:
-        return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

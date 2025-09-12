@@ -9,7 +9,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
-- New Address Search api client apps/geodaten/wfs_clients [PR #6537]
+- New Address Search api client apps/geodata/wfs_clients [PR #6537]
 
 ### Changed
 

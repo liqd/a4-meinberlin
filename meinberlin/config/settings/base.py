@@ -120,7 +120,7 @@ INSTALLED_APPS = (
     "meinberlin.apps.budgeting",
     "meinberlin.apps.documents",
     "meinberlin.apps.extprojects",
-    "meinberlin.apps.geodaten",
+    "meinberlin.apps.geodata",
     "meinberlin.apps.ideas",
     "meinberlin.apps.kiezkasse",
     "meinberlin.apps.mapideas",

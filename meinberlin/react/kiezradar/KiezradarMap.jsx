@@ -203,7 +203,7 @@ function Search ({ onChange }) {
   return (
     <ControlWrapper position="topleft" className="kiezradar__map-search">
       <AddressSearch
-        apiUrl="/api/geodaten/search"
+        apiUrl="/api/geodata/search"
         // apiUrl="https://bplan-prod.liqd.net/api/addresses/"
         onSelectAddress={handleAddressChange}
       />

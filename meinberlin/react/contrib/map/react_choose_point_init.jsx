@@ -14,7 +14,7 @@ function init () {
         <ChoosePointMap
           BaseMap={Map}
           input={el.nextElementSibling}
-          apiUrl="/api/geodaten/search"
+          apiUrl="/api/geodata/search"
           {...props.map}
         />
       </React.StrictMode>

@@ -26,7 +26,7 @@ class PlanSerializer(PointSerializerMixin, serializers.ModelSerializer, CommonFi
     status = serializers.SerializerMethodField()
 
     def get_geojson_properties(self):
-        return {"strasse": "street_name", "hnr": "house_number", "plz": "zip_code"}
+        return {"strasse": "street_name", "haus": "house_number", "plz": "zip_code"}
 
     class Meta:
         model = Plan

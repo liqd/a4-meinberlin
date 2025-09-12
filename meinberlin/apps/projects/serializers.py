@@ -77,7 +77,7 @@ class ProjectSerializer(
             "strasse": "street_name",
             "haus": "house_number",
             "plz": "zip_code",
-            "bez_name": "administrative_district.name",
+            "ortsteil": "administrative_district.name",
         }
 
     class Meta:

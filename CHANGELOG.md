@@ -7,8 +7,13 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## Unreleased
 
+### Added
+
+- New Address Search api client apps/geodata/wfs_clients [PR #6537]
+
 ### Changed
 
+- Address search endpoints, properties like strname -> street_name 
 - Make tile images 4:3 (#716)
 
 ## v2507.1

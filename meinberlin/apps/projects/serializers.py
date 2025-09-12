@@ -73,7 +73,12 @@ class ProjectSerializer(
         super().__init__(args, kwargs)
 
     def get_geojson_properties(self):
-        return {"strname": "street_name", "hsnr": "house_number", "plz": "zip_code"}
+        return {
+            "str_name": "street_name",
+            "hnr": "house_number",
+            "plz": "zip_code",
+            "bez_name": "district",
+        }
 
     class Meta:
         geo_field = "point"

@@ -19,8 +19,8 @@ Address search requests are handled by `meinberlin/apps/geodata/wfs_client.py`
 
 ## Field Definitions
 
-- `str_name`: Street name
-- `hnr`: House number (Hausnummer)
+- `strasse`: Street name
+- `haus`: House number (Hausnummer)
 - `plz`: Postal code (Postleitzahl)
 - `bez_name`: District name (Bezirk)
 - `ort_name`: Neighbourhood name (Ortsteil)
@@ -50,8 +50,8 @@ Returns GeoJSON feature collection with the following structure:
     {
       "type": "Feature",
       "properties": {
-        "str_name": "Hauptstraße",
-        "hnr": "123",
+        "strasse": "Hauptstraße",
+        "haus": "123",
         "plz": "10115",
         "bez_name": "Mitte",
         "ort_name": "Berlin-Mitte"

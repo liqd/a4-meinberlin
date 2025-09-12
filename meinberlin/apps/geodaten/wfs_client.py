@@ -28,7 +28,6 @@ class WFSClient:
             # hnr = hausnummer
             numeric_fields = ["hnr", "plz"]
             for field in numeric_fields:
-                print("appending some fucking shit")
                 filters.append(f"{field} = '{search_term}'")
 
         if not filters:

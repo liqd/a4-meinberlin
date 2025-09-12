@@ -1,5 +1,5 @@
 # A4
-git+https://github.com/liqd/adhocracy4.git@so-202509-new-address-search-api#egg=adhocracy4
+git+https://github.com/liqd/adhocracy4.git@so-202509-debug-new-address#egg=adhocracy4
 
 # Additional requirements
 beautifulsoup4==4.12.3

@@ -141,7 +141,7 @@ class PlanForm(PointFormMixin, ImageMetadataMixin, forms.ModelForm):
         self.fields["district"].required = True
 
     def get_geojson_properties(self):
-        return {"strname": "street_name", "hsnr": "house_number", "plz": "zip_code"}
+        return {"str_name": "street_name", "hnr": "house_number", "plz": "zip_code"}
 
     def save(self, commit=True):
         plan = super().save(commit=False)

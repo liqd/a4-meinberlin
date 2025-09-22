@@ -7,6 +7,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## Unreleased
 
+### Fixed
+
+- Kiezradar filter projects by organisation
+
 ## v2509.1
 
 ### Added

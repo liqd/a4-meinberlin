@@ -32,7 +32,7 @@ export const filterProjects = (items, appliedFilters, kiezradars, topics, projec
 
     const hasRelevantOrEmptyActiveTopics = (activeTopics.length === 0 || activeTopics.some(topic => item.topics.includes(topic)))
     const hasRelevantOrEmptyParticipation = (participations.length === 0 || participations.includes(item.participation))
-    const hasRelevantOrEmptyOrganisation = (organisation.length === 0 || organisation.includes(item.participation))
+    const hasRelevantOrEmptyOrganisation = (organisation.length === 0 || organisation.includes(item.organisation))
 
     const isTextSearchMatch = (search === '' ||
         isInTitle(item.title, search) ||

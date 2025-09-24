@@ -1,12 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import django from 'django'
 import { TypeaheadField } from '../contrib/TypeaheadField'
 import { MultiSelect } from '../contrib/forms/MultiSelect'
 import { classNames } from 'adhocracy4'
 import { ControlBarFilterPills } from '../contrib/ControlBarFilterPills'
 import SaveSearchProfile from '../plans/SaveSearchProfile'
-import { toSearchParams } from '../contrib/helpers'
-import { useSearchParams } from 'react-router-dom'
 import { GroupMultiSelect } from '../contrib/forms/GroupMultiSelect'
 
 const translated = {
@@ -122,10 +120,11 @@ export const ProjectsControlBar = ({
   searchProfilesApiUrl,
   searchProfilesUrl,
   searchProfilesCount: initialSearchProfilesCount,
+  setParams,
+  syncTrigger,
   isAuthenticated,
   projectStatus
 }) => {
-  const [, setSearchParams] = useSearchParams()
   const [expandFilters, setExpandFilters] = useState(false)
   const [filters, setFilters] = useState(appliedFilters)
   const onFilterChange = (type, choice) => {
@@ -136,6 +135,12 @@ export const ProjectsControlBar = ({
   const [searchProfilesCount, setSearchProfilesCount] = useState(initialSearchProfilesCount)
 
   const isFiltersInitialState = JSON.stringify(appliedFilters) === JSON.stringify(initialState)
+
+  useEffect(() => {
+    if (JSON.stringify(appliedFilters) !== JSON.stringify(filters)) {
+      setFilters(appliedFilters)
+    }
+  }, [syncTrigger])
 
   const handleCreateSearchProfile = (searchProfile, limitExceeded) => {
     if (limitExceeded) {
@@ -186,11 +191,6 @@ export const ProjectsControlBar = ({
     onResetClick()
     setSearchProfile(null)
     setParams({})
-  }
-
-  const setParams = (params) => {
-    const searchParams = toSearchParams(params)
-    setSearchParams(searchParams, { replace: true })
   }
 
   return (
@@ -380,6 +380,11 @@ export const ProjectsControlBar = ({
                     newFilters[type] = newFilters[type].filter(f => f !== value)
                   } else {
                     newFilters[type] = initialState[type]
+                  }
+
+                  // If no more value for projectState filter, this avoids showing 0 results
+                  if (newFilters.projectState.length === 0) {
+                    newFilters.projectState = ['active', 'future']
                   }
 
                   setFilters(newFilters)

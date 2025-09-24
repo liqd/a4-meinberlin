@@ -67,7 +67,6 @@ const ProjectsListMapBox = ({
   const [error, setError] = useState(null)
 
   const setParams = (params) => {
-    console.log(params)
     const searchParams = toSearchParams(params)
     setSearchParams(searchParams, { replace: true })
   }

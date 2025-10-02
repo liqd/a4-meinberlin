@@ -21,3 +21,8 @@ ul.navigation-tree span.header__notification-count {
     font-weight: bold;
     text-decoration: none;
 }
+
+// Navigation primary: make toggles clickable
+.dropdown-toggle {
+    cursor: pointer;
+}

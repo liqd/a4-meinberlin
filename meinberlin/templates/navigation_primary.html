@@ -29,11 +29,11 @@
             {% endfor %}
             {% if request.user.is_authenticated %}
                 <li>
-                    <span>
+                    <span class="dropdown-toggle" onclick="toggleDropdown(document.getElementById('user-account-settings-dropdown'))" >
                         <i class="fa fa-solid fa-user"></i>
                         {% translate "User Account Settings" %}
                     </span>
-                    <ul class="navigation-tree">
+                    <ul class="navigation-tree" id="user-account-settings-dropdown">
                         <li>
                             {% url 'account_profile' as account_url %}
                             <a href="{{ account_url }}" class="{% if request.path == account_url %}active{% endif %}">{% translate "Account & Security" %}</a>
@@ -55,11 +55,11 @@
             {% endif %}
             {% if request.user.organisations or request.user.is_superuser %}
                 <li>
-                    <span>
+                    <span class="dropdown-toggle" onclick="toggleDropdown(document.getElementById('dashboard-dropdown'))">
                         <i class="fa-solid fa-pen-to-square"></i>
                         {% translate 'Dashboard' %}
                     </span>
-                    <ul class="navigation-tree">
+                    <ul class="navigation-tree" id="dashboard-dropdown">
                         {% for organisation in request.user.organisations %}
                             <li>
                                 <a href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">{{ organisation.name }}</a>

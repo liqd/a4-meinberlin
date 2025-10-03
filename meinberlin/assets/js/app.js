@@ -5,6 +5,7 @@ import 'select2' // used to select projects in containers
 import '../../apps/actions/assets/timestamps.js'
 import '../../apps/newsletters/assets/dynamic_fields.js'
 import '../../apps/contrib/assets/dropdown.js'
+import './navigation_primary.js'
 
 // map search function
 import 'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_address.js'

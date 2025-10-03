@@ -6,9 +6,9 @@
             <div class="hero__content">
                 <h1 class="hero__title">
                     {% if show_buttons %}
-                        <a href="{{ hero_link }}">{{ content.name|truncatechars:70 }}</a>
+                        <a href="{{ hero_link }}">{{ content.name }}</a>
                     {% else %}
-                        {{ content.name|truncatechars:70 }}
+                        {{ content.name }}
                     {% endif %}
                 </h1>
                 <div class="hero__description">

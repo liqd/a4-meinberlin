@@ -226,8 +226,8 @@ blueprints = [
             # Keine Phasen im Offline-Event-Modul
             content=[offlineevents_phases.OfflineEventPhase()],
             image="images/offline-event.svg",
-            # Settings-Modell mit denselben Feldern wie die Offline-Event-Komponente
-            settings_model=None,
+            # Settings mit Datumsfeld fr das Offline-Event-Modul
+            settings_model=("meinberlin_offlineevents", "OfflineEventSettings"),
             type="OE",
         ),
     ),

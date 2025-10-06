@@ -1,6 +1,7 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
+from adhocracy4.dashboard.components.forms import ModuleDashboardForm
 from adhocracy4.forms.fields import DateTimeField
 
 from . import models
@@ -34,3 +35,29 @@ class OfflineEventForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["date"].label = _("Date and time")
+
+
+class OfflineEventSettingsForm(ModuleDashboardForm):
+    event_date = DateTimeField(
+        time_format="%H:%M",
+        required=False,
+        require_all_fields=False,
+        label=(_("Date"), _("Time")),
+    )
+
+    def __init__(self, *args, **kwargs):
+        self.module = kwargs["instance"]
+        kwargs["instance"] = self.module.settings_instance
+        super().__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        super().save(commit)
+        return self.module
+
+    def get_project(self):
+        return self.module.project
+
+    class Meta:
+        model = models.OfflineEventSettings
+        fields = ["event_date"]
+        required_for_project_publish = []

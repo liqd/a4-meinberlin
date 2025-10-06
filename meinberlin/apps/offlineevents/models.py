@@ -11,6 +11,7 @@ from django_ckeditor_5.fields import CKEditor5Field
 from adhocracy4 import transforms
 from adhocracy4.images.validators import ImageAltTextValidator
 from adhocracy4.models.base import UserGeneratedContentModel
+from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
 
 
@@ -68,3 +69,7 @@ class OfflineEvent(UserGeneratedContentModel):
     @cached_property
     def is_past(self):
         return self.date < timezone.now()
+
+
+class OfflineEventSettings(module_models.AbstractSettings):
+    event_date = models.DateTimeField(verbose_name=_("Date"), null=True, blank=True)

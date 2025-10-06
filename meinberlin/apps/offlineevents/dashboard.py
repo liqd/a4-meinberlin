@@ -3,7 +3,9 @@ from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.dashboard import DashboardComponent
 from adhocracy4.dashboard import components
+from adhocracy4.dashboard.components.forms import ModuleFormComponent
 
+from . import forms as offline_forms
 from . import views
 
 
@@ -49,3 +51,15 @@ class OfflineEventsComponent(DashboardComponent):
 
 
 components.register_project(OfflineEventsComponent())
+
+
+class OfflineEventSettingsComponent(ModuleFormComponent):
+    identifier = "offlineevent_settings"
+    weight = 12
+    label = _("Date And Time")
+    form_title = _("Edit Date and Time")
+    form_class = offline_forms.OfflineEventSettingsForm
+    form_template_name = "a4dashboard/includes/module_offlineevent_settings_form.html"
+
+
+components.register_module(OfflineEventSettingsComponent())

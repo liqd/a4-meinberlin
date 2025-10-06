@@ -558,7 +558,7 @@ CKEDITOR_5_PATH_FROM_USERNAME = True
 CKEDITOR_5_UNRESTRICTED_UPLOADS = True
 CKEDITOR_5_ALLOW_ALL_FILE_TYPES = True
 CKEDITOR_5_UPLOAD_FILE_TYPES = ["jpg", "jpeg", "png", "gif", "pdf", "doc", "docx"]
-CKEDITOR_5_MAX_FILE_SIZE = 5  # restrict to 5 MB
+CKEDITOR_5_MAX_FILE_SIZE = 20  # restrict to 20 MB
 CKEDITOR_5_CONFIGS = {
     "default": {
         "removePlugins": ["WordCount"],

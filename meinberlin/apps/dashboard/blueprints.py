@@ -8,6 +8,7 @@ from meinberlin.apps.ideas import phases as ideas_phases
 from meinberlin.apps.livequestions import phases as livequestion_phases
 from meinberlin.apps.mapideas import phases as mapideas_phases
 from meinberlin.apps.maptopicprio import phases as maptopicprio_phases
+from meinberlin.apps.offlineevents import phases as offlineevents_phases
 from meinberlin.apps.topicprio import phases as topicprio_phases
 
 blueprints = [
@@ -212,6 +213,22 @@ blueprints = [
             image="images/interactive-event.svg",
             settings_model=None,
             type="IE",
+        ),
+    ),
+    (
+        "offline-event",
+        ProjectBlueprint(
+            title=_("Offline Event"),
+            description=_(
+                "Create a single offline event for the project. Participants can view "
+                "and get information about this event."
+            ),
+            # Keine Phasen im Offline-Event-Modul
+            content=[offlineevents_phases.OfflineEventPhase()],
+            image="images/offline-event.svg",
+            # Settings-Modell mit denselben Feldern wie die Offline-Event-Komponente
+            settings_model=None,
+            type="OE",
         ),
     ),
 ]

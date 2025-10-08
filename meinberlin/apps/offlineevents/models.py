@@ -73,3 +73,15 @@ class OfflineEvent(UserGeneratedContentModel):
 
 class OfflineEventSettings(module_models.AbstractSettings):
     event_date = models.DateTimeField(verbose_name=_("Date"), null=True, blank=True)
+    event_type = models.CharField(max_length=30, verbose_name=_("Event type"), null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)  # erst sich selbst speichern (damit module gesetzt ist)
+        if not self.event_date or not self.module_id:
+            return
+        phase = self.module.phase_set.order_by("weight").first()
+        if not phase:
+            return
+        phase.start_date = self.event_date
+        phase.end_date = self.event_date
+        phase.save(update_fields=["start_date", "end_date"])

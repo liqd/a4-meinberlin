@@ -102,10 +102,18 @@ class ModuleCreateView(
             phase.save()
 
     def get_next(self, module):
-        return reverse(
-            "a4dashboard:dashboard-module_basic-edit",
-            kwargs={"module_slug": module.slug},
-        )
+        from adhocracy4.dashboard import get_project_dashboard
+        
+        dashboard = get_project_dashboard(module.project)
+        module_components = dashboard.get_module_components()
+        
+        # Erste effektive Komponente finden (nach weight sortiert)
+        for component in module_components:
+            if component.is_effective(module):
+                return component.get_base_url(module)
+        
+        # Fallback falls keine Komponente effektiv ist
+        return reverse("a4dashboard:dashboard-module_basic-edit", kwargs={"module_slug": module.slug})
 
     def get_permission_object(self):
         return self.project

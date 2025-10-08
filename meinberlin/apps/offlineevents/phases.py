@@ -15,7 +15,7 @@ class OfflineEventPhase(phases.PhaseContent):
     view = views.OfflineEventDetailView
 
     name = _("Offline Event")
-    description = _("Maqnage a single offline event")
+    description = _("Manage a single offline event")
     module_name = _("Offline Event")
 
     features = {

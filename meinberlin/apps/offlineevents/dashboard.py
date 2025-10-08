@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from adhocracy4.dashboard import DashboardComponent
 from adhocracy4.dashboard import components
 from adhocracy4.dashboard.components.forms import ModuleFormComponent
+from adhocracy4.dashboard.dashboard import ModulePhasesComponent, ModuleBasicComponent
 
 from . import forms as offline_forms
 from . import views
@@ -52,6 +53,19 @@ class OfflineEventsComponent(DashboardComponent):
 
 components.register_project(OfflineEventsComponent())
 
+# Hides the Phase Component for Offline Event Modules
+class OfflineEventModuleComponent(ModuleBasicComponent):
+    identifier = "module_offlineevent"    
+    label = _("Offline Event")
+    weight = 1
+    form_class = offline_forms.OfflineEventBasicForm
+    form_template_name = "a4dashboard/includes/module_offlineevent_basic_form.html"
+
+    def is_effective(self, module):
+        return module.blueprint_type == "OE"
+
+components.register_module(OfflineEventModuleComponent())
+
 
 class OfflineEventSettingsComponent(ModuleFormComponent):
     identifier = "offlineevent_settings"
@@ -61,5 +75,23 @@ class OfflineEventSettingsComponent(ModuleFormComponent):
     form_class = offline_forms.OfflineEventSettingsForm
     form_template_name = "a4dashboard/includes/module_offlineevent_settings_form.html"
 
+    def is_effective(self, module):
+        return module.blueprint_type == "OE"
 
 components.register_module(OfflineEventSettingsComponent())
+
+# Hides the Phase Component for Offline Event Modules
+class OfflineEventPhasesComponent(ModulePhasesComponent):
+    identifier = "phases"
+    def is_effective(self, module):
+        return module.blueprint_type != "OE"
+
+components.replace_module(OfflineEventPhasesComponent())
+
+# Hides the Basic Component for Offline Event Modules
+class OfflineEventBasicComponent(ModuleBasicComponent):
+    identifier = "module_basic"
+    def is_effective(self, module):
+        return module.blueprint_type != "OE"
+
+components.replace_module(OfflineEventBasicComponent())

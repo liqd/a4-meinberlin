@@ -1,3 +1,4 @@
+from trace import Trace
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
@@ -40,14 +41,15 @@ class OfflineEventForm(forms.ModelForm):
 class OfflineEventSettingsForm(ModuleDashboardForm):
     event_date = DateTimeField(
         time_format="%H:%M",
-        required=False,
+        required=True,
         require_all_fields=False,
         label=(_("Date"), _("Time")),
     )
 
     def __init__(self, *args, **kwargs):
         self.module = kwargs["instance"]
-        kwargs["instance"] = self.module.settings_instance
+        settings_instance = getattr(self.module, "settings_instance", None)
+        kwargs["instance"] = settings_instance
         super().__init__(*args, **kwargs)
 
     def save(self, commit=True):
@@ -59,5 +61,33 @@ class OfflineEventSettingsForm(ModuleDashboardForm):
 
     class Meta:
         model = models.OfflineEventSettings
-        fields = ["event_date"]
+        fields = ["event_date", "event_type"]
         required_for_project_publish = []
+
+
+class OfflineEventBasicForm(ModuleDashboardForm):
+    event_type = forms.CharField(
+        max_length=30,
+        required=True,
+        label=_("Event type"),
+    )
+
+    class Meta:
+        from adhocracy4.modules import models as module_models
+        model = module_models.Module
+        fields = ["name", "description"]
+        required_for_project_publish = "__all__"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        settings_instance = getattr(self.instance, "settings_instance", None)
+        if settings_instance and settings_instance.event_type is not None:
+            self.fields["event_type"].initial = settings_instance.event_type
+
+    def save(self, commit=True):
+        module = super().save(commit)
+        settings_instance = getattr(module, "settings_instance", None)
+        if settings_instance:
+            settings_instance.event_type = self.cleaned_data.get("event_type")
+            settings_instance.save(update_fields=["event_type"])
+        return module

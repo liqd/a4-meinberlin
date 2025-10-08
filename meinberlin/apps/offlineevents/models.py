@@ -72,8 +72,16 @@ class OfflineEvent(UserGeneratedContentModel):
 
 
 class OfflineEventSettings(module_models.AbstractSettings):
+    name = models.CharField(max_length=30, verbose_name=_("Name"), null=True, blank=True)
     event_date = models.DateTimeField(verbose_name=_("Date"), null=True, blank=True)
     event_type = models.CharField(max_length=30, verbose_name=_("Event type"), null=True, blank=True)
+    description = CKEditor5Field(
+        config_name="collapsible-image-editor",
+        verbose_name=_("Description"),
+        validators=[ImageAltTextValidator()],
+        null=True,
+        blank=True,
+    )
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)  # erst sich selbst speichern (damit module gesetzt ist)

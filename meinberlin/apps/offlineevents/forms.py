@@ -1,9 +1,11 @@
-from trace import Trace
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.dashboard.components.forms import ModuleDashboardForm
 from adhocracy4.forms.fields import DateTimeField
+from django_ckeditor_5.fields import CKEditor5Field
+from django_ckeditor_5.widgets import CKEditor5Widget
+
 
 from . import models
 
@@ -61,21 +63,15 @@ class OfflineEventSettingsForm(ModuleDashboardForm):
 
     class Meta:
         model = models.OfflineEventSettings
-        fields = ["event_date", "event_type"]
+        fields = ["event_date"]
         required_for_project_publish = []
 
 
 class OfflineEventBasicForm(ModuleDashboardForm):
-    event_type = forms.CharField(
-        max_length=30,
-        required=True,
-        label=_("Event type"),
-    )
-
     class Meta:
         from adhocracy4.modules import models as module_models
-        model = module_models.Module
-        fields = ["name", "description"]
+        model = models.OfflineEventSettings
+        fields = ["event_type","name", "description"] # description wird als CKEditor5Field überschrieben
         required_for_project_publish = "__all__"
 
     def __init__(self, *args, **kwargs):

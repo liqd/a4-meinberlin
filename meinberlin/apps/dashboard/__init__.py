@@ -1,6 +1,18 @@
 from adhocracy4.dashboard import ProjectDashboard
 from adhocracy4.dashboard import components
 
+# Registry: blueprint_type-Werte, die als "offline" gelten und nicht in der
+# Modul-Navigation (Online Participation) angezeigt werden sollen.
+OFFLINE_MODULE_BLUEPRINT_TYPES = set()
+
+
+def register_offline_module_blueprint_type(blueprint_type: str) -> None:
+    OFFLINE_MODULE_BLUEPRINT_TYPES.add(blueprint_type)
+
+
+def is_offline_module(module) -> bool:
+    return getattr(module, "blueprint_type", None) in OFFLINE_MODULE_BLUEPRINT_TYPES
+
 
 class TypedProjectDashboard(ProjectDashboard):
     def __init__(self, project):

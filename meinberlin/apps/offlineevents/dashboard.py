@@ -9,6 +9,10 @@ from adhocracy4.dashboard.dashboard import ModulePhasesComponent, ModuleBasicCom
 from . import forms as offline_forms
 from . import views
 
+# Registry für offline Modulklassen registrieren (Blueprint-Typ "OE")
+from meinberlin.apps.dashboard import register_offline_module_blueprint_type
+register_offline_module_blueprint_type("OE")
+
 
 class OfflineEventsComponent(DashboardComponent):
     identifier = "offlineevents"

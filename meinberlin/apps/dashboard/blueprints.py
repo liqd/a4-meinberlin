@@ -223,7 +223,7 @@ blueprints = [
                 "Create a single offline event for the project. Participants can view "
                 "and get information about this event."
             ),
-            # Keine Phasen im Offline-Event-Modul
+            # Leere Phase im Offline-Event-Modul
             content=[offlineevents_phases.OfflineEventPhase()],
             image="images/offline-event.svg",
             # Settings mit Datumsfeld fr das Offline-Event-Modul

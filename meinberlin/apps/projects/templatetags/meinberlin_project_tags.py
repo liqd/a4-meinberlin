@@ -14,6 +14,7 @@ from meinberlin.apps.ideas.models import Idea
 from meinberlin.apps.kiezkasse.models import Proposal as KKProposal
 from meinberlin.apps.livequestions.models import LiveQuestion
 from meinberlin.apps.mapideas.models import MapIdea
+from meinberlin.apps.dashboard import is_offline_module
 
 register = template.Library()
 
@@ -45,13 +46,15 @@ def get_sorted_modules(context):
     if module:
         module_qs = module.other_modules
 
-    return list(
+    modules = list(
         itertools.chain(
             module_qs.running_modules(),
             module_qs.future_modules(),
             module_qs.past_modules(),
         )
     )
+    # Offline-Module in der Projektansicht aus dem Modulbereich entfernen
+    return [m for m in modules if not is_offline_module(m)]
 
 
 @register.filter
@@ -68,6 +71,20 @@ def has_ckeditor_content(value):
     # Remove non-breaking spaces and whitespace
     text = re.sub(r"&nbsp;|\s", "", text)
     return len(text) > 0
+
+@register.simple_tag(takes_context=True)
+def get_offline_modules(context):
+    project = context["project"]
+    module_qs = project.modules
+    modules = list(
+        itertools.chain(
+            module_qs.running_modules(),
+            module_qs.future_modules(),
+            module_qs.past_modules(),
+        )
+    )
+    return [m for m in modules if is_offline_module(m)]
+
 
 
 @register.inclusion_tag("meinberlin_projects/includes/module-tile/module_insights.html")

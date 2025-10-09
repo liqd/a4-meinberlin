@@ -40,7 +40,7 @@ class OfflineEventForm(forms.ModelForm):
         self.fields["date"].label = _("Date and time")
 
 
-class OfflineEventSettingsForm(ModuleDashboardForm):
+class OfflineEventItemForm(ModuleDashboardForm):
     event_date = DateTimeField(
         time_format="%H:%M",
         required=True,
@@ -48,42 +48,26 @@ class OfflineEventSettingsForm(ModuleDashboardForm):
         label=(_("Date"), _("Time")),
     )
 
-    def __init__(self, *args, **kwargs):
-        self.module = kwargs["instance"]
-        settings_instance = getattr(self.module, "settings_instance", None)
-        kwargs["instance"] = settings_instance
-        super().__init__(*args, **kwargs)
-
-    def save(self, commit=True):
-        super().save(commit)
-        return self.module
-
-    def get_project(self):
-        return self.module.project
-
     class Meta:
-        model = models.OfflineEventSettings
+        model = models.OfflineEventItem
         fields = ["event_date"]
         required_for_project_publish = []
 
 
-class OfflineEventBasicForm(ModuleDashboardForm):
+class OfflineEventBasicForm(forms.ModelForm):
     class Meta:
         from adhocracy4.modules import models as module_models
-        model = models.OfflineEventSettings
+        model = models.OfflineEventItem
         fields = ["event_type","name", "description"] # description wird als CKEditor5Field überschrieben
         required_for_project_publish = "__all__"
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        settings_instance = getattr(self.instance, "settings_instance", None)
-        if settings_instance and settings_instance.event_type is not None:
-            self.fields["event_type"].initial = settings_instance.event_type
-
     def save(self, commit=True):
+        print("=== OfflineEventBasicForm.save() DEBUG ===")
+        print(f"cleaned_data: {self.cleaned_data}")
+        print(f"instance: {self.instance}")
+        print(f"instance content: {self.instance.__dict__}")
+ 
         module = super().save(commit)
-        settings_instance = getattr(module, "settings_instance", None)
-        if settings_instance:
-            settings_instance.event_type = self.cleaned_data.get("event_type")
-            settings_instance.save(update_fields=["event_type"])
+        print(f"module after super().save(): {module}")
+
         return module

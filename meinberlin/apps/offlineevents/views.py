@@ -118,3 +118,53 @@ class OfflineEventDeleteView(
 
     def get_permission_object(self):
         return self.project
+
+
+
+# Offline Events Modul Area
+
+class OfflineEventModuleDashboardView(
+    ProjectMixin,
+    mixins.DashboardBaseMixin,
+    mixins.DashboardComponentMixin,
+    generic.UpdateView,
+):
+    model = models.OfflineEventItem
+    template_name = "meinberlin_offlineevents/offlineevent_module_dashboard_form.html"
+    permission_required = "a4projects.change_project"
+    form_class = forms.OfflineEventBasicForm
+
+    def get_permission_object(self):
+        return self.project
+
+    def form_valid(self, form):
+        form.instance.creator = self.request.user
+        form.instance.module = self.module
+        return super().form_valid(form)
+
+    def get_object(self, queryset=None):
+        return models.OfflineEventItem.objects.filter(module=self.module).first()
+
+
+class OfflineEventSettingsDashboardView(
+    ProjectMixin,
+    mixins.DashboardBaseMixin,
+    mixins.DashboardComponentMixin,
+    generic.UpdateView,
+):
+    model = models.OfflineEventItem
+    template_name = "meinberlin_offlineevents/offlineevent_settings_dashboard_form.html"
+    permission_required = "a4projects.change_project"
+    form_class = forms.OfflineEventItemForm
+
+    def get_permission_object(self):
+        return self.project
+
+    def form_valid(self, form):
+        form.instance.creator = self.request.user
+        form.instance.module = self.module
+        return super().form_valid(form)
+
+    def get_object(self, queryset=None):
+        return models.OfflineEventItem.objects.filter(module=self.module).first()
+

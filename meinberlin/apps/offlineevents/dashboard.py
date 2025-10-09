@@ -57,30 +57,64 @@ class OfflineEventsComponent(DashboardComponent):
 
 components.register_project(OfflineEventsComponent())
 
-# Hides the Phase Component for Offline Event Modules
-class OfflineEventModuleComponent(ModuleBasicComponent):
+class OfflineEventModuleComponent(DashboardComponent):
     identifier = "module_offlineevent"    
     label = _("Offline Event")
     weight = 1
-    form_class = offline_forms.OfflineEventBasicForm
-    form_template_name = "a4dashboard/includes/module_offlineevent_basic_form.html"
 
     def is_effective(self, module):
         return module.blueprint_type == "OE"
+
+    def get_progress(self, module):
+        return 0, 0
+
+    def get_base_url(self, module):
+        return reverse(
+            "a4dashboard:offlineevent-module",
+            kwargs={
+                "module_slug": module.slug,
+            },
+        )
+
+    def get_urls(self):
+        return [
+            (
+                r"^modules/(?P<module_slug>[-\w_]+)/offlineevent-module/$",
+                views.OfflineEventModuleDashboardView.as_view(component=self),
+                "offlineevent-module",
+            )
+        ]
 
 components.register_module(OfflineEventModuleComponent())
 
 
-class OfflineEventSettingsComponent(ModuleFormComponent):
+class OfflineEventSettingsComponent(DashboardComponent):
     identifier = "offlineevent_settings"
     weight = 12
     label = _("Date And Time")
-    form_title = _("Edit Date and Time")
-    form_class = offline_forms.OfflineEventSettingsForm
-    form_template_name = "a4dashboard/includes/module_offlineevent_settings_form.html"
 
     def is_effective(self, module):
         return module.blueprint_type == "OE"
+
+    def get_progress(self, module):
+        return 0, 0
+
+    def get_base_url(self, module):
+        return reverse(
+            "a4dashboard:offlineevent-settings",
+            kwargs={
+                "module_slug": module.slug,
+            },
+        )
+
+    def get_urls(self):
+        return [
+            (
+                r"^modules/(?P<module_slug>[-\w_]+)/offlineevent-settings/$",
+                views.OfflineEventSettingsDashboardView.as_view(component=self),
+                "offlineevent-settings",
+            )
+        ]
 
 components.register_module(OfflineEventSettingsComponent())
 

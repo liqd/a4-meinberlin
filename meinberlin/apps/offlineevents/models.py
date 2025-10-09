@@ -71,7 +71,7 @@ class OfflineEvent(UserGeneratedContentModel):
         return self.date < timezone.now()
 
 
-class OfflineEventSettings(module_models.AbstractSettings):
+class OfflineEventItem(module_models.Item):
     name = models.CharField(max_length=30, verbose_name=_("Name"), null=True, blank=True)
     event_date = models.DateTimeField(verbose_name=_("Date"), null=True, blank=True)
     event_type = models.CharField(max_length=30, verbose_name=_("Event type"), null=True, blank=True)

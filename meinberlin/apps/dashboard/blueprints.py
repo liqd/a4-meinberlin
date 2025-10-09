@@ -227,7 +227,7 @@ blueprints = [
             content=[offlineevents_phases.OfflineEventPhase()],
             image="images/offline-event.svg",
             # Settings mit Datumsfeld fr das Offline-Event-Modul
-            settings_model=("meinberlin_offlineevents", "OfflineEventSettings"),
+            settings_model=None,
             type="OE",
         ),
     ),

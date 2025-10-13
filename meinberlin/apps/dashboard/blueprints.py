@@ -220,13 +220,12 @@ blueprints = [
         ProjectBlueprint(
             title=_("Offline Event"),
             description=_(
-                "Create a single offline event for the project. Participants can view "
+                "Create a offline event for the project. Participants can view "
                 "and get information about this event."
             ),
-            # Leere Phase im Offline-Event-Modul
+            # Add a Phase for the Module to work Properly even we dont really need it
             content=[offlineevents_phases.OfflineEventPhase()],
             image="images/offline-event.svg",
-            # Settings mit Datumsfeld fr das Offline-Event-Modul
             settings_model=None,
             type="OE",
         ),

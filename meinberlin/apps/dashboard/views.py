@@ -101,19 +101,21 @@ class ModuleCreateView(
             )
             phase.save()
 
+    # Now get_next returns the first effective component instead of the module_basic component
     def get_next(self, module):
-        from adhocracy4.dashboard import get_project_dashboard
-        
         dashboard = get_project_dashboard(module.project)
         module_components = dashboard.get_module_components()
-        
-        # Erste effektive Komponente finden (nach weight sortiert)
+
+        # Find the first effective component (sorted by weight)
         for component in module_components:
             if component.is_effective(module):
                 return component.get_base_url(module)
-        
-        # Fallback falls keine Komponente effektiv ist
-        return reverse("a4dashboard:dashboard-module_basic-edit", kwargs={"module_slug": module.slug})
+
+        # Fallback if no component is effective
+        return reverse(
+            "a4dashboard:dashboard-module_basic-edit",
+            kwargs={"module_slug": module.slug},
+        )
 
     def get_permission_object(self):
         return self.project

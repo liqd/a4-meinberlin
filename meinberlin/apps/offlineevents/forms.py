@@ -52,7 +52,7 @@ class OfflineEventItemForm(ModuleDashboardForm):
     class Meta:
         model = models.OfflineEventItem
         fields = ["event_date"]
-        required_for_project_publish = []
+        required_for_project_publish = ["event_date"]
 
 
 class OfflineEventBasicForm(forms.ModelForm):
@@ -70,16 +70,5 @@ class OfflineEventBasicForm(forms.ModelForm):
             "event_type",
             "name",
             "description",
-        ]  # description wird als CKEditor5Field überschrieben
+        ]
         required_for_project_publish = "__all__"
-
-    def save(self, commit=True):
-        print("=== OfflineEventBasicForm.save() DEBUG ===")
-        print(f"cleaned_data: {self.cleaned_data}")
-        print(f"instance: {self.instance}")
-        print(f"instance content: {self.instance.__dict__}")
-
-        module = super().save(commit)
-        print(f"module after super().save(): {module}")
-
-        return module

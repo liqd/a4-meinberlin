@@ -94,9 +94,7 @@ class OfflineEventItem(module_models.Item):
         print("=== OfflineEventItem.save() DEBUG ===")
         print(f"self: {self}")
         print(f"self.dict: {self.__dict__}")
-        super().save(
-            *args, **kwargs
-        )  # erst sich selbst speichern (damit module gesetzt ist)
+        super().save(*args, **kwargs)  # save first so that module is set
         if not self.event_date or not self.module_id:
             return
         phase = self.module.phase_set.order_by("weight").first()

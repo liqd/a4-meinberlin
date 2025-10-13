@@ -1,17 +1,18 @@
 from adhocracy4.dashboard import ProjectDashboard
 from adhocracy4.dashboard import components
 
-# Registry: blueprint_type-Werte, die als "offline" gelten und nicht in der
-# Modul-Navigation (Online Participation) angezeigt werden sollen.
-OFFLINE_MODULE_BLUEPRINT_TYPES = set()
+# Registry: blueprint_type values considered "Events" and hidden in the
+# module navigation (Online Participation).
+# Should that be moved to A4 ?
+EVENT_MODULES = set()
 
 
-def register_offline_module_blueprint_type(blueprint_type: str) -> None:
-    OFFLINE_MODULE_BLUEPRINT_TYPES.add(blueprint_type)
+def register_event_module(blueprint_type: str) -> None:
+    EVENT_MODULES.add(blueprint_type)
 
 
-def is_offline_module(module) -> bool:
-    return getattr(module, "blueprint_type", None) in OFFLINE_MODULE_BLUEPRINT_TYPES
+def is_event_module(module) -> bool:
+    return getattr(module, "blueprint_type", None) in EVENT_MODULES
 
 
 class TypedProjectDashboard(ProjectDashboard):

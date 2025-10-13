@@ -5,7 +5,7 @@ from adhocracy4.dashboard import DashboardComponent
 from adhocracy4.dashboard import components
 from adhocracy4.dashboard.dashboard import ModuleBasicComponent
 from adhocracy4.dashboard.dashboard import ModulePhasesComponent
-from meinberlin.apps.dashboard import register_offline_module_blueprint_type
+from meinberlin.apps.dashboard import register_event_module
 
 from . import models as offline_models
 from . import views
@@ -53,6 +53,7 @@ class OfflineEventsComponent(DashboardComponent):
 
 
 components.register_project(OfflineEventsComponent())
+
 
 # Offline Event Module Component Area
 
@@ -134,5 +135,4 @@ components.register_module(OfflineEventSettingsComponent())
 
 ModulePhasesComponent.hide_for("OE")
 ModuleBasicComponent.hide_for("OE")
-
-register_offline_module_blueprint_type("OE")
+register_event_module("OE")

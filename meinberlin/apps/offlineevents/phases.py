@@ -7,8 +7,9 @@ from . import models
 from . import views
 
 
+# Even though the OfflineEventPhase is never used show need one PhaseContent in order for the Module to work properly
 class OfflineEventPhase(phases.PhaseContent):
-    """Phase for a single offline event."""
+    """Phase for a offline event."""
 
     app = apps.Config.label
     phase = "offline-event"

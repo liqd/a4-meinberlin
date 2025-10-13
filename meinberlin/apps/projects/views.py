@@ -396,12 +396,35 @@ class ModuleDetailview(PermissionRequiredMixin, PhaseDispatchMixin):
     def get_permission_object(self):
         return self.project
 
+    def get_template_names(self):
+        # Spezielles Template für Offline-Event-Module (blueprint_type "OE")
+        if self.module.blueprint_type == "OE":
+            return ["meinberlin_projects/module_offline_event_detail.html"]
+        # Standard-Template für alle anderen Module
+        return ["a4modules/module_detail.html"]
+
     def get_context_data(self, **kwargs):
         """Append project and module to the template context."""
         if "project" not in kwargs:
             kwargs["project"] = self.project
         if "module" not in kwargs:
             kwargs["module"] = self.module
+
+        # Zusätzliche Kontextdaten für Offline-Event-Module
+        if self.module.blueprint_type == "OE":
+            from meinberlin.apps.offlineevents.models import OfflineEventItem
+
+            offline_event_item = OfflineEventItem.objects.filter(
+                module=self.module
+            ).first()
+            if offline_event_item:
+                kwargs["offline_event_item"] = offline_event_item
+
+            # Verknüpfte Offline-Events aus dem Projekt
+            kwargs["project_events"] = self.project.offlineevent_set.all().order_by(
+                "date"
+            )
+
         return super().get_context_data(**kwargs)
 
 

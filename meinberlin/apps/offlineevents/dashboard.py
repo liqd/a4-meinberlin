@@ -3,15 +3,11 @@ from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.dashboard import DashboardComponent
 from adhocracy4.dashboard import components
-from adhocracy4.dashboard.components.forms import ModuleFormComponent
-from adhocracy4.dashboard.dashboard import ModulePhasesComponent, ModuleBasicComponent
-
-from . import forms as offline_forms
-from . import views
-
-# Registry für offline Modulklassen registrieren (Blueprint-Typ "OE")
+from adhocracy4.dashboard.dashboard import ModuleBasicComponent
+from adhocracy4.dashboard.dashboard import ModulePhasesComponent
 from meinberlin.apps.dashboard import register_offline_module_blueprint_type
-register_offline_module_blueprint_type("OE")
+
+from . import views
 
 
 class OfflineEventsComponent(DashboardComponent):
@@ -57,8 +53,11 @@ class OfflineEventsComponent(DashboardComponent):
 
 components.register_project(OfflineEventsComponent())
 
+# Offline Event Module Component Area
+
+
 class OfflineEventModuleComponent(DashboardComponent):
-    identifier = "module_offlineevent"    
+    identifier = "module_offlineevent"
     label = _("Offline Event")
     weight = 1
 
@@ -84,6 +83,7 @@ class OfflineEventModuleComponent(DashboardComponent):
                 "offlineevent-module",
             )
         ]
+
 
 components.register_module(OfflineEventModuleComponent())
 
@@ -116,20 +116,10 @@ class OfflineEventSettingsComponent(DashboardComponent):
             )
         ]
 
+
 components.register_module(OfflineEventSettingsComponent())
 
-# Hides the Phase Component for Offline Event Modules
-class OfflineEventPhasesComponent(ModulePhasesComponent):
-    identifier = "phases"
-    def is_effective(self, module):
-        return module.blueprint_type != "OE"
+ModulePhasesComponent.hide_for("OE")
+ModuleBasicComponent.hide_for("OE")
 
-components.replace_module(OfflineEventPhasesComponent())
-
-# Hides the Basic Component for Offline Event Modules
-class OfflineEventBasicComponent(ModuleBasicComponent):
-    identifier = "module_basic"
-    def is_effective(self, module):
-        return module.blueprint_type != "OE"
-
-components.replace_module(OfflineEventBasicComponent())
+register_offline_module_blueprint_type("OE")

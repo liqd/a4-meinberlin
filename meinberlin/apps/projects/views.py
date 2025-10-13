@@ -397,10 +397,10 @@ class ModuleDetailview(PermissionRequiredMixin, PhaseDispatchMixin):
         return self.project
 
     def get_template_names(self):
-        # Spezielles Template für Offline-Event-Module (blueprint_type "OE")
+        # Special template for Offline-Event modules (blueprint_type "OE")
         if self.module.blueprint_type == "OE":
             return ["meinberlin_projects/module_offline_event_detail.html"]
-        # Standard-Template für alle anderen Module
+        # Standard template for all other modules
         return ["a4modules/module_detail.html"]
 
     def get_context_data(self, **kwargs):
@@ -410,7 +410,8 @@ class ModuleDetailview(PermissionRequiredMixin, PhaseDispatchMixin):
         if "module" not in kwargs:
             kwargs["module"] = self.module
 
-        # Zusätzliche Kontextdaten für Offline-Event-Module
+        # Additional context for Offline-Event modules
+        # Better use Django Polymorphic to handle this ?
         if self.module.blueprint_type == "OE":
             from meinberlin.apps.offlineevents.models import OfflineEventItem
 
@@ -420,7 +421,6 @@ class ModuleDetailview(PermissionRequiredMixin, PhaseDispatchMixin):
             if offline_event_item:
                 kwargs["offline_event_item"] = offline_event_item
 
-            # Verknüpfte Offline-Events aus dem Projekt
             kwargs["project_events"] = self.project.offlineevent_set.all().order_by(
                 "date"
             )

@@ -47,7 +47,6 @@ class OfflineEventItemForm(ModuleDashboardForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # event_date als Pflichtfeld markieren (ist bereits durch required=True im DateTimeField gesetzt)
 
     class Meta:
         model = models.OfflineEventItem
@@ -58,7 +57,6 @@ class OfflineEventItemForm(ModuleDashboardForm):
 class OfflineEventBasicForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Felder als Pflichtfelder markieren
         self.fields["name"].required = True
         self.fields["event_type"].required = True
 

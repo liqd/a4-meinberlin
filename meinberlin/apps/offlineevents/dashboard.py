@@ -7,6 +7,7 @@ from adhocracy4.dashboard.dashboard import ModuleBasicComponent
 from adhocracy4.dashboard.dashboard import ModulePhasesComponent
 from meinberlin.apps.dashboard import register_offline_module_blueprint_type
 
+from . import models as offline_models
 from . import views
 
 
@@ -65,7 +66,16 @@ class OfflineEventModuleComponent(DashboardComponent):
         return module.blueprint_type == "OE"
 
     def get_progress(self, module):
-        return 0, 0
+        required_fields = ["name", "event_type", "description"]
+        item = offline_models.OfflineEventItem.objects.filter(module=module).first()
+        if not item:
+            return 0, len(required_fields)
+        num_valid = 0
+        for field in required_fields:
+            value = getattr(item, field, None)
+            if value:
+                num_valid += 1
+        return num_valid, len(required_fields)
 
     def get_base_url(self, module):
         return reverse(
@@ -97,7 +107,10 @@ class OfflineEventSettingsComponent(DashboardComponent):
         return module.blueprint_type == "OE"
 
     def get_progress(self, module):
-        return 0, 0
+        item = offline_models.OfflineEventItem.objects.filter(module=module).first()
+        if not item:
+            return 0, 1
+        return (1, 1) if getattr(item, "event_date", None) else (0, 1)
 
     def get_base_url(self, module):
         return reverse(

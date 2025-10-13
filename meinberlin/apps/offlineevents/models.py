@@ -91,10 +91,7 @@ class OfflineEventItem(module_models.Item):
     )
 
     def save(self, *args, **kwargs):
-        print("=== OfflineEventItem.save() DEBUG ===")
-        print(f"self: {self}")
-        print(f"self.dict: {self.__dict__}")
-        super().save(*args, **kwargs)  # save first so that module is set
+        super().save(*args, **kwargs)
         if not self.event_date or not self.module_id:
             return
         phase = self.module.phase_set.order_by("weight").first()
@@ -102,7 +99,6 @@ class OfflineEventItem(module_models.Item):
         phase.end_date = self.event_date
         phase.save(update_fields=["start_date", "end_date"])
 
-        # Modulname nur setzen, wenn name vorhanden ist
         if self.name:
             self.module.name = self.name
             self.module.save()

@@ -37,6 +37,9 @@ class OfflineEventForm(forms.ModelForm):
         self.fields["date"].label = _("Date and time")
 
 
+# Module Area
+
+
 class OfflineEventItemForm(ModuleDashboardForm):
     event_date = DateTimeField(
         time_format="%H:%M",
@@ -59,6 +62,20 @@ class OfflineEventBasicForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields["name"].required = True
         self.fields["event_type"].required = True
+
+    help_texts = {
+        "description": _(
+            "If you add an image, please provide an alternate text. "
+            "It serves as a textual description of the image content "
+            "and is read out by screen readers. Describe the image "
+            "in approx. 80 characters. Example: A busy square with "
+            "people in summer."
+        ),
+        "event_type": _(
+            "Please describe in no more than 30 characters the event "
+            "type, e.g. Information event or 3rd public workshop."
+        ),
+    }
 
     class Meta:
         from adhocracy4.modules import models as module_models

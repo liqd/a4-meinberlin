@@ -10,7 +10,7 @@ from adhocracy4.comments.models import Comment
 from adhocracy4.polls.models import Vote as Vote
 from adhocracy4.ratings.models import Rating
 from meinberlin.apps.budgeting.models import Proposal
-from meinberlin.apps.dashboard import is_offline_module
+from meinberlin.apps.dashboard import is_event_module
 from meinberlin.apps.ideas.models import Idea
 from meinberlin.apps.kiezkasse.models import Proposal as KKProposal
 from meinberlin.apps.livequestions.models import LiveQuestion
@@ -53,8 +53,8 @@ def get_sorted_modules(context):
             module_qs.past_modules(),
         )
     )
-    # Offline-Module in der Projektansicht aus dem Modulbereich entfernen
-    return [m for m in modules if not is_offline_module(m)]
+    # Remove offline modules from the module section in the project view
+    return [m for m in modules if not is_event_module(m)]
 
 
 @register.filter
@@ -84,12 +84,12 @@ def get_offline_modules(context):
             module_qs.past_modules(),
         )
     )
-    return [m for m in modules if is_offline_module(m)]
+    return [m for m in modules if is_event_module(m)]
 
 
 @register.simple_tag
 def get_first_item_event_type(module):
-    """Gibt den event_type des ersten OfflineEventItem eines Moduls zurück, falls vorhanden."""
+    """Return the event_type of the first OfflineEventItem of a module, if present."""
     from meinberlin.apps.offlineevents.models import OfflineEventItem
 
     first_item = module.item_set.first()

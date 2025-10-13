@@ -166,4 +166,9 @@ class OfflineEventSettingsDashboardView(
         return super().form_valid(form)
 
     def get_object(self, queryset=None):
-        return models.OfflineEventItem.objects.filter(module=self.module).first()
+        obj = models.OfflineEventItem.objects.filter(module=self.module).first()
+        if obj is None:
+            obj = models.OfflineEventItem.objects.create(
+                module=self.module, creator=self.request.user
+            )
+        return obj

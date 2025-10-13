@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load i18n rules thumbnail wagtailcore_tags meinberlin_project_tags offlineevent_tags contrib_tags ckeditor_tags static %}
+
+{% block title %}
+    {{ module.name }}
+    –
+    {{ block.super }}
+{% endblock title %}
+
+{% block extra_messages %}
+    {{ block.super }}
+
+    {% if project.is_draft %}
+        {% translate 'This project has not yet been published.' as info %}
+        {% include 'meinberlin_contrib/components/info-box.html' with info_message=info %}
+    {% endif %}
+{% endblock extra_messages %}
+
+{% block content %}
+    <div id="layout-grid__area--maincontent">
+        {% include 'meinberlin_projects/project_actions.html' %}
+        
+        <div class="modul-video">
+            <h1>
+                {{ module.name }}
+                <span class="pill pill--live">{% translate 'Offline Event' %}</span>
+            </h1>
+            {% if offline_event_item.description %}
+            <div class="ck-content">
+                {{ offline_event_item.description | richtext }}
+            </div>
+            {% endif %}
+    
+            <!-- Offline-Event-spezifische Informationen -->
+            {% if offline_event_item %}
+                    <div>
+                        <strong>{% translate 'Event Type:' %}</strong> 
+                        {{ offline_event_item.event_type }}
+                    </div>
+                    <div>
+                        <strong>{% translate 'Date:' %}</strong> 
+                        {{ offline_event_item.event_date|date:"d.m.Y H:i" }}
+                    </div>
+                
+            {% endif %}
+        </div>
+
+        <div class="modul-servicepanel fullwidth panel--heavy phase-info">
+            <div class="servicepanel__main">
+            </div>
+            <div class="servicepanel__right phase-info__cta">
+                {% block project_action %}{% endblock project_action %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

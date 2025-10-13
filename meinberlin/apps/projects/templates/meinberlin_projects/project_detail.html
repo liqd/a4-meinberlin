@@ -46,11 +46,9 @@
                     {# Offline-Module mit Datum (z. B. OE) #}
                     {% for module in offline_modules %}
                         <li class="actionable-list__item actionable-list__item--hide-first-line">
-                            {# Wenn Datum vorhanden, anzeigen; sonst nur Name #}
-                            {% if module.first_phase_start_date %}
-                                {% html_date module.first_phase_start_date 'DATE_FORMAT' %}
-                            {% endif %}
-                            <a href="{{ module.get_absolute_url }}"
+                            {% html_date module.first_phase_start_date 'DATE_FORMAT' %}
+                            {% get_first_item_event_type module as first_item_event_type %} · {{ first_item_event_type }}
+                        <a href="{{ module.get_absolute_url }}"
                                class="actionable-list__item__body">
                                 <h4 class="my-0">{{ module.name }}</h4>
                                 <div class="actionable-list__item__actions actionable-list__item__actions--inline">

@@ -3,9 +3,6 @@ from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.dashboard.components.forms import ModuleDashboardForm
 from adhocracy4.forms.fields import DateTimeField
-from django_ckeditor_5.fields import CKEditor5Field
-from django_ckeditor_5.widgets import CKEditor5Widget
-
 
 from . import models
 
@@ -48,6 +45,10 @@ class OfflineEventItemForm(ModuleDashboardForm):
         label=(_("Date"), _("Time")),
     )
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # event_date als Pflichtfeld markieren (ist bereits durch required=True im DateTimeField gesetzt)
+
     class Meta:
         model = models.OfflineEventItem
         fields = ["event_date"]
@@ -55,10 +56,21 @@ class OfflineEventItemForm(ModuleDashboardForm):
 
 
 class OfflineEventBasicForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Felder als Pflichtfelder markieren
+        self.fields["name"].required = True
+        self.fields["event_type"].required = True
+
     class Meta:
         from adhocracy4.modules import models as module_models
+
         model = models.OfflineEventItem
-        fields = ["event_type","name", "description"] # description wird als CKEditor5Field überschrieben
+        fields = [
+            "event_type",
+            "name",
+            "description",
+        ]  # description wird als CKEditor5Field überschrieben
         required_for_project_publish = "__all__"
 
     def save(self, commit=True):
@@ -66,7 +78,7 @@ class OfflineEventBasicForm(forms.ModelForm):
         print(f"cleaned_data: {self.cleaned_data}")
         print(f"instance: {self.instance}")
         print(f"instance content: {self.instance.__dict__}")
- 
+
         module = super().save(commit)
         print(f"module after super().save(): {module}")
 

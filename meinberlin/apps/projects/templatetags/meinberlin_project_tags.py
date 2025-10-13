@@ -10,11 +10,11 @@ from adhocracy4.comments.models import Comment
 from adhocracy4.polls.models import Vote as Vote
 from adhocracy4.ratings.models import Rating
 from meinberlin.apps.budgeting.models import Proposal
+from meinberlin.apps.dashboard import is_offline_module
 from meinberlin.apps.ideas.models import Idea
 from meinberlin.apps.kiezkasse.models import Proposal as KKProposal
 from meinberlin.apps.livequestions.models import LiveQuestion
 from meinberlin.apps.mapideas.models import MapIdea
-from meinberlin.apps.dashboard import is_offline_module
 
 register = template.Library()
 
@@ -72,6 +72,7 @@ def has_ckeditor_content(value):
     text = re.sub(r"&nbsp;|\s", "", text)
     return len(text) > 0
 
+
 @register.simple_tag(takes_context=True)
 def get_offline_modules(context):
     project = context["project"]
@@ -85,6 +86,21 @@ def get_offline_modules(context):
     )
     return [m for m in modules if is_offline_module(m)]
 
+
+@register.simple_tag
+def get_first_item_event_type(module):
+    """Gibt den event_type des ersten OfflineEventItem eines Moduls zurück, falls vorhanden."""
+    from meinberlin.apps.offlineevents.models import OfflineEventItem
+
+    first_item = module.item_set.first()
+    if not first_item:
+        return None
+
+    try:
+        offline_event_item = OfflineEventItem.objects.get(id=first_item.id)
+        return offline_event_item.event_type
+    except OfflineEventItem.DoesNotExist:
+        return None
 
 
 @register.inclusion_tag("meinberlin_projects/includes/module-tile/module_insights.html")

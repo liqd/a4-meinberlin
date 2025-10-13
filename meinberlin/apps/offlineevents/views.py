@@ -120,8 +120,8 @@ class OfflineEventDeleteView(
         return self.project
 
 
-
 # Offline Events Modul Area
+
 
 class OfflineEventModuleDashboardView(
     ProjectMixin,
@@ -167,4 +167,3 @@ class OfflineEventSettingsDashboardView(
 
     def get_object(self, queryset=None):
         return models.OfflineEventItem.objects.filter(module=self.module).first()
-

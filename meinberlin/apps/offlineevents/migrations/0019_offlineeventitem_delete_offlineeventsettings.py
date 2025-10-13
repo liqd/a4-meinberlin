@@ -9,26 +9,62 @@ import django_ckeditor_5.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4modules', '0008_alter_module_blueprint_type'),
-        ('meinberlin_offlineevents', '0012_offlineeventsettings_squashed_0018_offlineeventsettings_name'),
+        ("a4modules", "0008_alter_module_blueprint_type"),
+        (
+            "meinberlin_offlineevents",
+            "0012_offlineeventsettings_squashed_0018_offlineeventsettings_name",
+        ),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='OfflineEventItem',
+            name="OfflineEventItem",
             fields=[
-                ('item_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='a4modules.item')),
-                ('name', models.CharField(blank=True, max_length=30, null=True, verbose_name='Name')),
-                ('event_date', models.DateTimeField(blank=True, null=True, verbose_name='Date')),
-                ('event_type', models.CharField(blank=True, max_length=30, null=True, verbose_name='Event type')),
-                ('description', django_ckeditor_5.fields.CKEditor5Field(blank=True, null=True, validators=[adhocracy4.images.validators.ImageAltTextValidator()], verbose_name='Description')),
+                (
+                    "item_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="a4modules.item",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        blank=True, max_length=30, null=True, verbose_name="Name"
+                    ),
+                ),
+                (
+                    "event_date",
+                    models.DateTimeField(blank=True, null=True, verbose_name="Date"),
+                ),
+                (
+                    "event_type",
+                    models.CharField(
+                        blank=True, max_length=30, null=True, verbose_name="Event type"
+                    ),
+                ),
+                (
+                    "description",
+                    django_ckeditor_5.fields.CKEditor5Field(
+                        blank=True,
+                        null=True,
+                        validators=[
+                            adhocracy4.images.validators.ImageAltTextValidator()
+                        ],
+                        verbose_name="Description",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('a4modules.item',),
+            bases=("a4modules.item",),
         ),
         migrations.DeleteModel(
-            name='OfflineEventSettings',
+            name="OfflineEventSettings",
         ),
     ]

@@ -8,26 +8,72 @@ import django_ckeditor_5.fields
 
 class Migration(migrations.Migration):
 
-    replaces = [('meinberlin_offlineevents', '0012_offlineeventsettings'), ('meinberlin_offlineevents', '0013_alter_offlineeventsettings_event_date'), ('meinberlin_offlineevents', '0014_offlineeventsettings_event_type'), ('meinberlin_offlineevents', '0015_offlineeventsettings_desc2'), ('meinberlin_offlineevents', '0016_alter_offlineeventsettings_desc2'), ('meinberlin_offlineevents', '0017_remove_offlineeventsettings_desc2_and_more'), ('meinberlin_offlineevents', '0018_offlineeventsettings_name')]
+    replaces = [
+        ("meinberlin_offlineevents", "0012_offlineeventsettings"),
+        ("meinberlin_offlineevents", "0013_alter_offlineeventsettings_event_date"),
+        ("meinberlin_offlineevents", "0014_offlineeventsettings_event_type"),
+        ("meinberlin_offlineevents", "0015_offlineeventsettings_desc2"),
+        ("meinberlin_offlineevents", "0016_alter_offlineeventsettings_desc2"),
+        ("meinberlin_offlineevents", "0017_remove_offlineeventsettings_desc2_and_more"),
+        ("meinberlin_offlineevents", "0018_offlineeventsettings_name"),
+    ]
 
     dependencies = [
-        ('a4modules', '0008_alter_module_blueprint_type'),
-        ('meinberlin_offlineevents', '0011_ckeditor_iframes'),
+        ("a4modules", "0008_alter_module_blueprint_type"),
+        ("meinberlin_offlineevents", "0011_ckeditor_iframes"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='OfflineEventSettings',
+            name="OfflineEventSettings",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('event_date', models.DateTimeField(blank=True, null=True, verbose_name='Date')),
-                ('module', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='%(class)s_settings', to='a4modules.module')),
-                ('event_type', models.CharField(blank=True, max_length=30, null=True, verbose_name='Event type')),
-                ('description', django_ckeditor_5.fields.CKEditor5Field(blank=True, null=True, validators=[adhocracy4.images.validators.ImageAltTextValidator()], verbose_name='Description')),
-                ('name', models.CharField(blank=True, max_length=30, null=True, verbose_name='Name')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "event_date",
+                    models.DateTimeField(blank=True, null=True, verbose_name="Date"),
+                ),
+                (
+                    "module",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="%(class)s_settings",
+                        to="a4modules.module",
+                    ),
+                ),
+                (
+                    "event_type",
+                    models.CharField(
+                        blank=True, max_length=30, null=True, verbose_name="Event type"
+                    ),
+                ),
+                (
+                    "description",
+                    django_ckeditor_5.fields.CKEditor5Field(
+                        blank=True,
+                        null=True,
+                        validators=[
+                            adhocracy4.images.validators.ImageAltTextValidator()
+                        ],
+                        verbose_name="Description",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        blank=True, max_length=30, null=True, verbose_name="Name"
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]

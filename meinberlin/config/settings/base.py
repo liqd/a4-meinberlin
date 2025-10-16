@@ -619,14 +619,25 @@ CKEDITOR_5_CONFIGS = {
             "toolbar": [
                 "imageUpload",
                 "imageTextAlternative",
-                "toggleImageCaption",
-                "imageStyle:inline",
-                "imageStyle:wrapText",
-                "imageStyle:breakText",
-                "imageStyle:alignLeft",
-                "imageStyle:alignRight",
+                # "toggleImageCaption",
+                # "imageStyle:alignLeft",
+                # "imageStyle:alignRight",
+                "imageAspectRatio43",
+                "imageAspectRatio21",
             ],
             "insert": {"type": "auto"},
+        },
+        "htmlSupport": {
+            "allow": [
+                {
+                    "name": "figure",
+                    "classes": [
+                        "image",
+                        "image-aspect-ratio-43",
+                        "image-aspect-ratio-21",
+                    ],
+                }
+            ]
         },
         "list": {
             "properties": {
@@ -666,14 +677,25 @@ CKEDITOR_5_CONFIGS = {
             "toolbar": [
                 "imageUpload",
                 "imageTextAlternative",
-                "toggleImageCaption",
-                "imageStyle:inline",
-                "imageStyle:wrapText",
-                "imageStyle:breakText",
-                "imageStyle:alignLeft",
-                "imageStyle:alignRight",
+                # "toggleImageCaption",
+                # "imageStyle:alignLeft",
+                # "imageStyle:alignRight",
+                "imageAspectRatio43",
+                "imageAspectRatio21",
             ],
             "insert": {"type": "auto"},
+        },
+        "htmlSupport": {
+            "allow": [
+                {
+                    "name": "figure",
+                    "classes": [
+                        "image",
+                        "image-aspect-ratio-43",
+                        "image-aspect-ratio-21",
+                    ],
+                }
+            ]
         },
         "list": {
             "properties": {

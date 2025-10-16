@@ -52,7 +52,7 @@ class OfflineEventsComponent(DashboardComponent):
         ]
 
 
-components.register_project(OfflineEventsComponent())
+# components.register_project(OfflineEventsComponent())
 
 
 # Offline Event Module Component Area

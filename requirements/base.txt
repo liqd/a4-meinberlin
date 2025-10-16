@@ -1,5 +1,9 @@
 # A4
+<<<<<<< HEAD
 git+https://github.com/liqd/adhocracy4.git@main
+=======
+git+https://github.com/liqd/adhocracy4.git@gg_2025_10_offline_events
+>>>>>>> cc51b66b7 (Documentation and Refactoring)
 
 # Additional requirements
 beautifulsoup4==4.12.3

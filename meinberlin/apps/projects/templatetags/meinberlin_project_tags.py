@@ -90,13 +90,15 @@ def get_offline_modules(context):
 @register.simple_tag
 def get_first_item_event_type(module):
     """Return the event_type of the first OfflineEventItem of a module, if present."""
-    from meinberlin.apps.offlineevents.models import OfflineEventItem
 
+    # maybe better use Django Polymorphic to handle this ?
     first_item = module.item_set.first()
     if not first_item:
         return None
 
     try:
+        from meinberlin.apps.offlineevents.models import OfflineEventItem
+
         offline_event_item = OfflineEventItem.objects.get(id=first_item.id)
         return offline_event_item.event_type
     except OfflineEventItem.DoesNotExist:

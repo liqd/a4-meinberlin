@@ -10,6 +10,7 @@ from adhocracy4.comments.models import Comment
 from adhocracy4.polls.models import Vote as Vote
 from adhocracy4.ratings.models import Rating
 from meinberlin.apps.budgeting.models import Proposal
+from meinberlin.apps.dashboard import is_event_module
 from meinberlin.apps.ideas.models import Idea
 from meinberlin.apps.kiezkasse.models import Proposal as KKProposal
 from meinberlin.apps.livequestions.models import LiveQuestion
@@ -45,13 +46,15 @@ def get_sorted_modules(context):
     if module:
         module_qs = module.other_modules
 
-    return list(
+    modules = list(
         itertools.chain(
             module_qs.running_modules(),
             module_qs.future_modules(),
             module_qs.past_modules(),
         )
     )
+    # Remove offline modules from the module section in the project view
+    return [m for m in modules if not is_event_module(m)]
 
 
 @register.filter
@@ -68,6 +71,38 @@ def has_ckeditor_content(value):
     # Remove non-breaking spaces and whitespace
     text = re.sub(r"&nbsp;|\s", "", text)
     return len(text) > 0
+
+
+@register.simple_tag(takes_context=True)
+def get_offline_modules(context):
+    project = context["project"]
+    module_qs = project.modules
+    modules = list(
+        itertools.chain(
+            module_qs.running_modules(),
+            module_qs.future_modules(),
+            module_qs.past_modules(),
+        )
+    )
+    return [m for m in modules if is_event_module(m)]
+
+
+@register.simple_tag
+def get_first_item_event_type(module):
+    """Return the event_type of the first OfflineEventItem of a module, if present."""
+
+    # maybe better use Django Polymorphic to handle this ?
+    first_item = module.item_set.first()
+    if not first_item:
+        return None
+
+    try:
+        from meinberlin.apps.offlineevents.models import OfflineEventItem
+
+        offline_event_item = OfflineEventItem.objects.get(id=first_item.id)
+        return offline_event_item.event_type
+    except OfflineEventItem.DoesNotExist:
+        return None
 
 
 @register.inclusion_tag("meinberlin_projects/includes/module-tile/module_insights.html")

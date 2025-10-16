@@ -28,6 +28,7 @@ from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
+from meinberlin.apps.dashboard import is_event_module
 from meinberlin.apps.offlineevents.models import OfflineEvent
 
 from ..bplan.views import BplanProjectDispatchMixin
@@ -398,7 +399,7 @@ class ModuleDetailview(PermissionRequiredMixin, PhaseDispatchMixin):
 
     def get_template_names(self):
         # Special template for Offline-Event modules (blueprint_type "OE")
-        if self.module.blueprint_type == "OE":
+        if is_event_module(self.module):
             return ["meinberlin_projects/module_offline_event_detail.html"]
         # Standard template for all other modules
         return ["a4modules/module_detail.html"]
@@ -412,18 +413,17 @@ class ModuleDetailview(PermissionRequiredMixin, PhaseDispatchMixin):
 
         # Additional context for Offline-Event modules
         # Better use Django Polymorphic to handle this ?
-        if self.module.blueprint_type == "OE":
-            from meinberlin.apps.offlineevents.models import OfflineEventItem
+        if is_event_module(self.module):
+            try:
+                from meinberlin.apps.offlineevents.models import OfflineEventItem
 
-            offline_event_item = OfflineEventItem.objects.filter(
-                module=self.module
-            ).first()
-            if offline_event_item:
-                kwargs["offline_event_item"] = offline_event_item
-
-            kwargs["project_events"] = self.project.offlineevent_set.all().order_by(
-                "date"
-            )
+                offline_event_item = OfflineEventItem.objects.filter(
+                    module=self.module
+                ).first()
+                if offline_event_item:
+                    kwargs["offline_event_item"] = offline_event_item
+            except Exception:
+                pass
 
         return super().get_context_data(**kwargs)
 

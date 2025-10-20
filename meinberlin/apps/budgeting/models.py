@@ -3,6 +3,7 @@ from django.core.validators import MaxValueValidator
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from polymorphic.managers import PolymorphicManager
 
 from adhocracy4.comments import models as comment_models
 from adhocracy4.projects.models import ProjectContactDetailMixin as contact_mixin
@@ -76,7 +77,7 @@ class Proposal(mapidea_models.AbstractMapIdea):
         related_name=("%(app_label)s_" "%(class)s" "_completed"),
     )
 
-    objects = ProposalQuerySet.as_manager()
+    objects = PolymorphicManager.from_queryset(ProposalQuerySet)()
 
     def get_absolute_url(self):
         return reverse(

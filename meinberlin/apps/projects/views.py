@@ -359,6 +359,21 @@ class ProjectDetailView(PermissionRequiredMixin, BplanProjectDispatchMixin):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["events"] = self.project.offlineevent_set.all().order_by("date")
+
+        # Load all modules with items prefetched
+        modules_qs = self.project.modules.prefetch_related("item_set")
+        all_modules = list(
+            itertools.chain(
+                modules_qs.running_modules(),
+                modules_qs.future_modules(),
+                modules_qs.past_modules(),
+            )
+        )
+
+        # Separate online and offline modules
+        context["modules"] = [m for m in all_modules if not is_event_module(m)]
+        context["offline_modules"] = [m for m in all_modules if is_event_module(m)]
+
         context["edit_link"] = reverse(
             "a4dashboard:project-edit", kwargs={"project_slug": self.project.slug}
         )
@@ -414,16 +429,8 @@ class ModuleDetailview(PermissionRequiredMixin, PhaseDispatchMixin):
         # Additional context for Offline-Event modules
         # Better use Django Polymorphic to handle this ?
         if is_event_module(self.module):
-            try:
-                from meinberlin.apps.offlineevents.models import OfflineEventItem
-
-                offline_event_item = OfflineEventItem.objects.filter(
-                    module=self.module
-                ).first()
-                if offline_event_item:
-                    kwargs["offline_event_item"] = offline_event_item
-            except Exception:
-                pass
+            item = self.module.item_set.first()
+            kwargs["offline_event_item"] = item
 
         return super().get_context_data(**kwargs)
 

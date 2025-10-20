@@ -23,7 +23,6 @@
         {% include 'meinberlin_projects/project_actions.html' %}
         {% include 'meinberlin_projects/includes/project_details_summary.html' %}
         {% include 'meinberlin_projects/includes/project_participation.html' %}
-        {% get_offline_modules as offline_modules %}
         {% if events or offline_modules %}
             <section aria-labelledby="project-events">
                 <div class="actionable-list__header">
@@ -47,7 +46,7 @@
                     {% for module in offline_modules %}
                         <li class="actionable-list__item actionable-list__item--hide-first-line">
                             {% html_date module.first_phase_start_date 'DATE_FORMAT' %}
-                            {% get_first_item_event_type module as first_item_event_type %} · {{ first_item_event_type }}
+                            {{ module.item_set.first.event_type }}
                         <a href="{{ module.get_absolute_url }}"
                                class="actionable-list__item__body">
                                 <h4 class="my-0">{{ module.name }}</h4>

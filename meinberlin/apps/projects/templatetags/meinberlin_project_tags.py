@@ -73,38 +73,6 @@ def has_ckeditor_content(value):
     return len(text) > 0
 
 
-@register.simple_tag(takes_context=True)
-def get_offline_modules(context):
-    project = context["project"]
-    module_qs = project.modules
-    modules = list(
-        itertools.chain(
-            module_qs.running_modules(),
-            module_qs.future_modules(),
-            module_qs.past_modules(),
-        )
-    )
-    return [m for m in modules if is_event_module(m)]
-
-
-@register.simple_tag
-def get_first_item_event_type(module):
-    """Return the event_type of the first OfflineEventItem of a module, if present."""
-
-    # maybe better use Django Polymorphic to handle this ?
-    first_item = module.item_set.first()
-    if not first_item:
-        return None
-
-    try:
-        from meinberlin.apps.offlineevents.models import OfflineEventItem
-
-        offline_event_item = OfflineEventItem.objects.get(id=first_item.id)
-        return offline_event_item.event_type
-    except OfflineEventItem.DoesNotExist:
-        return None
-
-
 @register.inclusion_tag("meinberlin_projects/includes/module-tile/module_insights.html")
 def render_module_insights(module):
     bp_type = module.blueprint_type

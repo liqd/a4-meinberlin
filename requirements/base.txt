@@ -1,9 +1,13 @@
 # A4
 <<<<<<< HEAD
+<<<<<<< HEAD
 git+https://github.com/liqd/adhocracy4.git@main
 =======
 git+https://github.com/liqd/adhocracy4.git@gg_2025_10_offline_events
 >>>>>>> cc51b66b7 (Documentation and Refactoring)
+=======
+git+https://github.com/liqd/adhocracy4.git@03414241698e14703be4ec82d770303f09461731
+>>>>>>> fa4863290 (Add Django Polymorphic)
 
 # Additional requirements
 beautifulsoup4==4.12.3

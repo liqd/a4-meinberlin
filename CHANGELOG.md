@@ -7,6 +7,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## Unreleased
 
+### Changed
+
+- Password visibility toggle added to login and signup forms
+
 ### Fixed
 
 - Kiezradar filter projects by organisation

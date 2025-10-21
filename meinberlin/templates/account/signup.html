@@ -23,8 +23,8 @@
 
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.email %}
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.username %}
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.password1 %}
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.password2 %}
+            {% include "meinberlin_contrib/includes/form_password_field.html" with field=form.password1 %}
+            {% include "meinberlin_contrib/includes/form_password_field.html" with field=form.password2 %}
 
             {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_notifications %}
             {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_newsletters %}

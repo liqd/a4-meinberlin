@@ -49,3 +49,27 @@ textarea.form-control {
   // causing scrollbars in some scenarios, this fixes it
   min-width: auto;
 }
+
+.form-group.password-field-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.form-group.password-field-wrapper .password-toggle-btn {
+    position: absolute;
+    right: 12px;
+    top: 40px;
+    transform: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: $text-color-gray;
+    padding: 0;
+    z-index: 2;
+}
+
+.form-group.password-field-wrapper input[type="password"],
+.form-group.password-field-wrapper input[type="text"] {
+    padding-right: 40px;
+    width: 100%;
+}

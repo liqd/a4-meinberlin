@@ -35,6 +35,26 @@ function init () {
 
 document.addEventListener('DOMContentLoaded', init, false)
 document.addEventListener('a4.embed.ready', init, false)
+document.addEventListener('DOMContentLoaded', function () {
+  // Password toggle functionality
+  document.querySelectorAll('.password-toggle-btn').forEach(function (button) {
+    button.addEventListener('click', function () {
+      const wrapper = this.closest('.password-field-wrapper')
+      const passwordInput = wrapper.querySelector('input')
+      const icon = this.querySelector('i')
+
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text'
+        icon.className = 'fas fa-eye-slash'
+        this.setAttribute('aria-label', '{% translate "Hide password" %}')
+      } else {
+        passwordInput.type = 'password'
+        icon.className = 'fas fa-eye'
+        this.setAttribute('aria-label', '{% translate "Show password" %}')
+      }
+    })
+  })
+})
 
 // This function is overwritten with custom behavior in embed.js.
 export function getCurrentPath () {

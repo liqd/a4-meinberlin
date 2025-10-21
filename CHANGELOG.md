@@ -7,6 +7,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## Unreleased
 
+### Changed
+
+- External projects/plans show icon to indicate external link
+
 ### Fixed
 
 - Kiezradar filter projects by organisation

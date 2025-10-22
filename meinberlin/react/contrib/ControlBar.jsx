@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { ControlBarDropdown, ControlBarSearch } from 'adhocracy4'
 import { ControlBarListMapSwitch } from './ControlBarListMapSwitch'
+import { ToggleSwitch } from './ToggleSwitch'
 import django from 'django'
 import { useSearchParams } from 'react-router'
 import { ControlBarFilterPills } from './ControlBarFilterPills'
@@ -26,7 +27,7 @@ const getResultCountText = (count) => {
   return django.interpolate(foundProposalsText, [count])
 }
 
-export const ControlBar = ({ mapListViewMode }) => {
+export const ControlBar = ({ mapListViewMode, showViewModeSwitch = true, desktopViewMode, handleToggle }) => {
   // grab the results for the list from the useFetchedItems hook
   const { results: { list }, isMapAndList, viewMode } = useFetchedItems()
   const [expandFilters, setExpandFilters] = useState(true)
@@ -196,7 +197,19 @@ export const ControlBar = ({ mapListViewMode }) => {
         </div>
         {isMapAndList &&
           <div className="span6 align--right">
-            <ControlBarListMapSwitch mapListViewMode={mapListViewMode} query={queryParams} />
+            {showViewModeSwitch
+              ? (
+                <ControlBarListMapSwitch mapListViewMode={mapListViewMode} query={queryParams} />
+                )
+              : (
+                <ToggleSwitch
+                  uniqueId="map-switch"
+                  onSwitchStr="Show map"
+                  defaultChecked
+                  isChecked={desktopViewMode === 'map'}
+                  toggleSwitch={handleToggle}
+                />
+                )}
           </div>}
       </div>
     </nav>

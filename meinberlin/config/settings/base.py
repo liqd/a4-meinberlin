@@ -61,6 +61,7 @@ INSTALLED_APPS = (
     "easy_thumbnails",
     "rest_framework",
     "rest_framework_gis",
+    "drf_spectacular",
     "rules.apps.AutodiscoverRulesConfig",
     "taggit",  # wagtail dependency
     "widget_tweaks",
@@ -724,4 +725,22 @@ CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
     }
+}
+
+# Django REST Framework
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+# drf-spectacular
+SPECTACULAR_SETTINGS = {
+    "TITLE": "meinBerlin API",
+    "DESCRIPTION": "API for the meinBerlin platform",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "COMPONENT_SPLIT_REQUEST": True,
+    "SCHEMA_PATH_PREFIX": "/api/",
+    "EXCLUDE_PATH_PATTERNS": [
+        r"^/api/notifications/",
+    ],
 }

@@ -8,6 +8,9 @@ from django.urls import re_path
 from django.views.generic import TemplateView
 from django.views.i18n import JavaScriptCatalog
 from django_ckeditor_5 import views as ckeditor5_views
+from drf_spectacular.views import SpectacularAPIView
+from drf_spectacular.views import SpectacularRedocView
+from drf_spectacular.views import SpectacularSwaggerView
 from rest_framework import routers
 from wagtail.contrib.sitemaps import views as wagtail_sitemap_views
 from wagtail.contrib.sitemaps.sitemap_generator import Sitemap as WagtailSitemap
@@ -209,6 +212,14 @@ urlpatterns = [
     path("api/", include(orga_router.urls)),
     path("api/", include(tokenvote_router.urls)),
     path("api/", include(router.urls)),
+    # API Documentation
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path(
+        "api/docs/",
+        SpectacularSwaggerView.as_view(url_name="schema"),
+        name="swagger-ui",
+    ),
+    path("api/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
     path(
         "ckeditor5/image_upload/",
         user_is_project_admin(ckeditor5_views.upload_file),

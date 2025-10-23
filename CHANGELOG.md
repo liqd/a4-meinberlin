@@ -22,6 +22,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - New Address Search api client apps/geodata/geosearch_client [PR #6537]
 - Showing Map for Modules where Map is the default view now (#738)
+- Add generic OpenApi Documentation at /api/docs
 
 ### Changed
 

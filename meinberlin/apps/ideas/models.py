@@ -8,6 +8,8 @@ from django.db.models.functions import ExtractYear
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
+from polymorphic.managers import PolymorphicManager
+from polymorphic.query import PolymorphicQuerySet
 
 from adhocracy4 import transforms
 from adhocracy4.categories.fields import CategoryField
@@ -23,7 +25,9 @@ from meinberlin.apps.moderatorremark import models as remark_models
 BADGES_LIMIT = 3
 
 
-class IdeaQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
+class IdeaQuerySet(
+    query.RateableQuerySet, query.CommentableQuerySet, PolymorphicQuerySet
+):
     def annotate_reference_number(self):
         return self.annotate(
             ref_number=models.Case(
@@ -146,7 +150,7 @@ class AbstractIdea(module_models.Item, Moderateable, ItemBadgesPropertyMixin):
         related_name=("%(app_label)s_" "%(class)s_label"),
     )
 
-    objects = IdeaQuerySet.as_manager()
+    objects = PolymorphicManager.from_queryset(IdeaQuerySet)()
 
     @property
     def reference_number(self):

@@ -1,6 +1,19 @@
 from adhocracy4.dashboard import ProjectDashboard
 from adhocracy4.dashboard import components
 
+# Registry: blueprint_type values considered "Events" and hidden in the
+# module navigation (Online Participation).
+# Should that be moved to A4 ?
+EVENT_MODULES = set()
+
+
+def register_event_module(blueprint_type: str) -> None:
+    EVENT_MODULES.add(blueprint_type)
+
+
+def is_event_module(module) -> bool:
+    return getattr(module, "blueprint_type", None) in EVENT_MODULES
+
 
 class TypedProjectDashboard(ProjectDashboard):
     def __init__(self, project):

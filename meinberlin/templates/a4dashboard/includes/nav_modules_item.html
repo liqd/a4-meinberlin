@@ -17,7 +17,7 @@
                         <i class="fa fa-caret-down" aria-hidden="true"></i>
                     </span>
                 </div>
-                {{ module_menu.module.name }} {% if module_menu.module.module_start and module_menu.module.module_end  %} <br> <small>{{ module_menu.module.module_start | date:"SHORT_DATE_FORMAT" }} - {{ module_menu.module.module_end | date:"SHORT_DATE_FORMAT"}}</small>{% endif %}
+                {{ module_menu.module.name }} {% if module_menu.module.module_start and module_menu.module.module_end %} <br> <small>{% if module_menu.module.module_start == module_menu.module.module_end %}{{ module_menu.module.module_start | date:"SHORT_DATE_FORMAT" }}{% else %}{{ module_menu.module.module_start | date:"SHORT_DATE_FORMAT" }} - {{ module_menu.module.module_end | date:"SHORT_DATE_FORMAT" }}{% endif %}</small>{% endif %}
             </div>
         </label>
         <div class="dashboard-nav__menu-content">
@@ -66,7 +66,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="u-no-margin-bottom u-spacer-top-one-half" id="delete-modal-label">{% translate 'Delete' %}</h2>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="{% translate 'Close'%}">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="{% translate 'Close' %}">
                     <i class="fa fa-times" aria-hidden="true"></i>
                 </button>
             </div>
@@ -85,7 +85,7 @@
                             {% translate 'Delete module' %}
                         </button>
                     </form>
-                    <button type="button" data-bs-dismiss="modal" class="btn btn--light">{% translate 'Cancel'%}
+                    <button type="button" data-bs-dismiss="modal" class="btn btn--light">{% translate 'Cancel' %}
                     </button>
                 </div>
             </div>

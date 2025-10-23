@@ -10,6 +10,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Changed
 
 - Password visibility toggle added to login and signup forms
+- External projects/plans show icon to indicate external link
 
 ### Fixed
 

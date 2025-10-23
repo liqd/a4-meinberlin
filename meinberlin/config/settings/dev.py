@@ -85,3 +85,6 @@ try:
     CKEDITOR_CONFIGS["video-editor"]["embed_provider"] = CKEDITOR_URL
 except NameError:
     pass
+
+# In settings.py für Development:
+CSRF_TRUSTED_ORIGINS = ["http://localhost:8003"]

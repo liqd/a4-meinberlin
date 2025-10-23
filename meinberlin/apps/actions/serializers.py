@@ -21,7 +21,7 @@ class ActionSerializer(serializers.ModelSerializer):
     target_creator = serializers.CharField(
         source="target_creator.username", default=None
     )
-    project = ProjectSerializer(source="project", now=timezone.now())
+    project = ProjectSerializer(now=timezone.now())
 
     _cache = {}
 

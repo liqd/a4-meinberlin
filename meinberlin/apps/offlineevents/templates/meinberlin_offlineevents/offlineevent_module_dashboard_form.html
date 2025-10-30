@@ -1,0 +1,30 @@
+{% extends "a4dashboard/base_dashboard_project.html" %}
+{% load i18n static %}
+{% block dashboard_project_content %}
+    <h1 class="u-first-heading">{% translate 'Edit offline event' %}</h1>
+    {% if form.non_field_errors %}
+        <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+            {% for error in form.non_field_errors %}<li>{{ error|escape }}</li>{% endfor %}
+        </ul>
+    {% endif %}
+    <form novalidate
+          enctype="multipart/form-data"
+          action="{{ request.path }}"
+          method="post">
+        {% csrf_token %}
+        {% include 'a4forms/includes/form_field.html' with field=form.event_type %}
+        {% include 'a4forms/includes/form_field.html' with field=form.name %}
+        {% include 'a4forms/includes/form_field.html' with field=form.description %}
+        <div class="u-spacer-bottom">
+            <input type="submit" class="btn btn--primary" value="{% translate 'Save' %}" />
+        </div>
+    </form>
+{% endblock dashboard_project_content %}
+{% block extra_js %}
+    {{ block.super }}
+    {{ form.media.js }}
+{% endblock extra_js %}
+{% block extra_css %}
+    {{ block.super }}
+    {{ form.media.css }}
+{% endblock extra_css %}

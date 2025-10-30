@@ -69,8 +69,8 @@ class ProjectSerializer(
     identifier = serializers.SerializerMethodField()
 
     def __init__(self, *args, **kwargs):
-        self.now = kwargs.pop("now")
-        super().__init__(args, kwargs)
+        self.now = kwargs.pop("now", timezone.now())
+        super().__init__(*args, **kwargs)
 
     def get_geojson_properties(self):
         return {

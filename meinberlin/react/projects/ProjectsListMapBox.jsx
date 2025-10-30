@@ -98,8 +98,8 @@ const ProjectsListMapBox = ({
           setItems(
             // filter out duplicates by title (id is not unique as there are
             // different models in items that can have the same id)
-            [...new Map(tempItems.map(v => [v.title, v])).values()]
-              .sort(sortProjects)
+            // [...new Map(tempItems.map(v => [v.title, v])).values()]
+            tempItems.sort(sortProjects)
           )
         } catch (e) {
           console.error(e)

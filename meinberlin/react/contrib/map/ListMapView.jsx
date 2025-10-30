@@ -5,7 +5,6 @@ import { CardList } from '../card/CardList'
 import { useFetchedItems } from '../contexts/FetchItemsProvider'
 import { MapWithMarkers } from './Map'
 import { useMediaQuery } from 'react-responsive'
-import { ToggleSwitch } from '../ToggleSwitch'
 
 /**
  * Component that displays a list or map view based on the selected mode. It
@@ -17,7 +16,7 @@ export const ListMapView = ({ map, listStr, mode, desktopMode }) => {
   const [queryParams, setQueryParams] = useSearchParams()
   const { results } = useFetchedItems()
   const viewMode = queryParams.get('mode') || mode || 'list'
-  const desktopViewMode = queryParams.get('desktopMode') || mode || 'map'
+  const desktopViewMode = queryParams.get('desktopMode') || 'map'
 
   // Responsive Hook
   const isDesktop = useMediaQuery({ minWidth: 768 })
@@ -27,7 +26,7 @@ export const ListMapView = ({ map, listStr, mode, desktopMode }) => {
     if (isDesktop && !queryParams.get('page_size')) {
       const newSearchParams = new URLSearchParams(queryParams.toString())
       newSearchParams.set('page_size', '8')
-      setQueryParams(newSearchParams)
+      setQueryParams(newSearchParams, { replace: true })
     }
   }, [isDesktop, queryParams, setQueryParams])
 
@@ -39,7 +38,7 @@ export const ListMapView = ({ map, listStr, mode, desktopMode }) => {
     } else {
       newSearchParams.set('desktopMode', 'map')
     }
-    setQueryParams(newSearchParams)
+    setQueryParams(newSearchParams, { replace: true })
   }
 
   if (!results || !results.map || !results.list) {
@@ -56,16 +55,12 @@ export const ListMapView = ({ map, listStr, mode, desktopMode }) => {
     return (
       <>
         <div className="block block--halfgap">
-          {/* Toggle switch for map view */}
-          <div className="u-flex-end mb-3"> {/* Optional: For top right positioning */}
-            <ToggleSwitch
-              uniqueId="map-switch"
-              onSwitchStr="Show map"
-              defaultChecked
-              isChecked={desktopViewMode === 'map'}
-              toggleSwitch={handleToggle}
-            />
-          </div>
+          <ControlBar
+            mapListViewMode={viewMode}
+            showViewModeSwitch={false}
+            desktopViewMode={desktopViewMode}
+            handleToggle={handleToggle}
+          />
         </div>
         <div className="desktop-combined-view">
           {desktopViewMode === 'map' && (

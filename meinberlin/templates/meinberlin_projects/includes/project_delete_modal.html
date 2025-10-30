@@ -1,0 +1,42 @@
+{% load i18n %}
+<div class="modal fade" id="project-delete-modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{% translate 'Delete' %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{% translate 'Close' %}"></button>
+      </div>
+      <div class="modal-body">
+        <p>{% blocktrans %}Sind Sie sicher dass Sie das Projekt '<span id="project-delete-name"></span>' löschen wollen?{% endblocktrans %}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn--light" data-bs-dismiss="modal">{% translate 'Cancel' %}</button>
+        <form id="project-delete-form" method="post" action="">
+          {% csrf_token %}
+          <button type="submit" class="btn btn--primary">
+            <i class="fas fa-trash-alt" aria-hidden="true"></i> {% translate 'Delete' %}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var modal = document.getElementById('project-delete-modal');
+    if (!modal) return;
+    modal.addEventListener('show.bs.modal', function (event) {
+      var trigger = event.relatedTarget;
+      if (!trigger) return;
+      var url = trigger.getAttribute('data-delete-url');
+      var name = trigger.getAttribute('data-project-name');
+      var form = document.getElementById('project-delete-form');
+      var nameEl = document.getElementById('project-delete-name');
+      if (form) form.setAttribute('action', url || '');
+      if (nameEl) nameEl.textContent = name || '';
+    });
+  })();
+  </script>
+
+

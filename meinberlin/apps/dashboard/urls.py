@@ -102,6 +102,11 @@ urlpatterns = [
         name="project-list",
     ),
     re_path(
+        r"^organisations/(?P<organisation_slug>[-\w_]+)/projects/(?P<project_slug>[-\w_]+)/delete/$",
+        views.DashboardProjectDeleteView.as_view(),
+        name="project-delete",
+    ),
+    re_path(
         r"^organisations/(?P<organisation_slug>[-\w_]+)/projects/create$",
         views.ProjectCreateView.as_view(),
         name="project-create",

@@ -1,0 +1,17 @@
+{% extends "a4dashboard/base_project_list.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Confirm Project Deletion" %} — {{ block.super }}{% endblock title %}
+
+{% block project_list %}
+  <h1 class="u-first-heading">{% translate 'Are you sure you want to delete the project?' %}</h1>
+
+  <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+      {% csrf_token %}
+      <input type="submit" class="btn btn--primary" value="{% translate 'Yes' %}" />
+
+      <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}" class="btn btn--light">
+          {% translate 'Cancel' %}
+      </a>
+  </form>
+{% endblock project_list %}

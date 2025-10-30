@@ -15,6 +15,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Fixed
 
 - Kiezradar filter projects by organisation
+- Kiezradar show projects/plans with the same name in Projects List
 
 ## v2509.1
 

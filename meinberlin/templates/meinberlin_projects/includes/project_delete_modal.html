@@ -1,23 +1,26 @@
 {% load i18n %}
-<div class="modal fade" id="project-delete-modal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal" tabindex="-1" role="dialog" id="project-delete-modal" aria-labelledby="project-delete-modal-label">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{% translate 'Delete' %}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{% translate 'Close' %}"></button>
-      </div>
-      <div class="modal-body">
-        <p>{% blocktrans %}Sind Sie sicher dass Sie das Projekt '<span id="project-delete-name"></span>' löschen wollen?{% endblocktrans %}</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn--light" data-bs-dismiss="modal">{% translate 'Cancel' %}</button>
-        <form id="project-delete-form" method="post" action="">
-          {% csrf_token %}
-          <button type="submit" class="btn btn--primary">
-            <i class="fas fa-trash-alt" aria-hidden="true"></i> {% translate 'Delete' %}
+        <div class="modal-header">
+          <h2 id="project-delete-modal-label">{% translate 'Delete' %}</h2>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="{% translate 'Close' %}">
+            <i class="fa fa-times" aria-hidden="true"></i>
           </button>
-        </form>
-      </div>
+        </div>
+        <div class="modal-body">
+            {% blocktrans %}Sind Sie sicher dass Sie das Projekt '<span id="project-delete-name"></span>' löschen wollen?{% endblocktrans %}
+        </div>
+        <div class="modal-buttons">
+            <button type="button" data-bs-dismiss="modal" class="link">{% translate 'Cancel' %}</button>
+            <form id="project-delete-form" enctype="multipart/form-data" action="" method="post" class="u-inline">
+              {% csrf_token %}
+              <button type="submit" class="dashboard-delete-btn">
+                <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                {% translate 'Delete' %}
+              </button>
+            </form>
+        </div>
     </div>
   </div>
 </div>
@@ -40,3 +43,50 @@
   </script>
 
 
+<style>
+#project-delete-modal .modal-content {
+  padding: 18px 32px;
+}
+#project-delete-modal .modal-body, #project-delete-modal .modal-buttons, #project-delete-modal .modal-header {
+  padding: 0;
+}
+#project-delete-modal h2{
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 26px;
+  margin: 0;
+}  
+
+#project-delete-modal .modal-body {
+  line-height: 24px;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
+#project-delete-modal .modal-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+#project-delete-modal .dashboard-delete-btn {
+  background-color: #000; 
+  color: #fff; 
+  padding: 9px 16px;
+}
+#project-delete-modal .link {
+  margin-right: 28px;
+}
+/* Mobile */
+@media (max-width: 600px) {
+  #project-delete-modal .modal-buttons {
+    flex-direction: column;
+  }
+
+  #project-delete-modal .modal-buttons #project-delete-form .dashboard-delete-btn {
+    width: 100%;
+    padding: 9px 16px;
+    margin-top: 32px;
+  }
+}
+</style>

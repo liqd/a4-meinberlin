@@ -1,6 +1,7 @@
 from django.db.models import Q
 from django.db.models.signals import post_delete
 from django.db.models.signals import post_save
+from django.db.models.signals import pre_delete
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
@@ -121,10 +122,11 @@ def increase_idea_count(sender, instance, created, **kwargs):
     insight.active_participants.add(instance.creator.id)
 
 
-@receiver(post_delete, sender=Idea)
-@receiver(post_delete, sender=MapIdea)
-@receiver(post_delete, sender=Proposal)
-def decrease_idea_count(sender, instance, using, origin, **kwargs):
+@receiver(pre_delete, sender=Idea)
+@receiver(pre_delete, sender=MapIdea)
+@receiver(pre_delete, sender=Proposal)
+def decrease_idea_count(sender, instance, using, **kwargs):
+    # Determine project before deletion, because after delete the relation may no longer resolve
     project = instance.module.project
     insight, _ = ProjectInsight.objects.get_or_create(project=project)
     insight.written_ideas = max(0, insight.written_ideas - 1)

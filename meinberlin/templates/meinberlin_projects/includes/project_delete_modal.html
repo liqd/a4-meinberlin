@@ -1,5 +1,5 @@
 {% load i18n %}
-<div class="modal" tabindex="-1" role="dialog" id="project-delete-modal" aria-labelledby="project-delete-modal-label">
+<div class="modal project-delete-modal" tabindex="-1" role="dialog" id="project-delete-modal" aria-labelledby="project-delete-modal-label">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
         <div class="modal-header">
@@ -41,52 +41,5 @@
     });
   })();
   </script>
-
-
-<style>
-#project-delete-modal .modal-content {
-  padding: 18px 32px;
-}
-#project-delete-modal .modal-body, #project-delete-modal .modal-buttons, #project-delete-modal .modal-header {
-  padding: 0;
-}
-#project-delete-modal h2{
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 26px;
-  margin: 0;
-}  
-
-#project-delete-modal .modal-body {
-  line-height: 24px;
-  margin-top: 10px;
-  margin-bottom: 40px;
-}
-
-#project-delete-modal .modal-buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: end;
-}
-
-#project-delete-modal .dashboard-delete-btn {
-  background-color: #000; 
-  color: #fff; 
-  padding: 9px 16px;
-}
-#project-delete-modal .link {
-  margin-right: 28px;
-}
-/* Mobile */
-@media (max-width: 600px) {
-  #project-delete-modal .modal-buttons {
-    flex-direction: column;
-  }
-
-  #project-delete-modal .modal-buttons #project-delete-form .dashboard-delete-btn {
-    width: 100%;
-    padding: 9px 16px;
-    margin-top: 32px;
-  }
-}
-</style>
+ 
+ 

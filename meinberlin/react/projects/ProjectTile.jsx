@@ -49,71 +49,68 @@ const ProjectTile = forwardRef(function ProjectTile ({ project, isHorizontal, to
       aria-describedby={describedById}
       className={classNames('project-tile', isHorizontal ? 'project-tile--horizontal' : 'project-tile--vertical', isMapTile && 'project-tile--map')}
     >
-      <div className="project-tile__image-wrapper image">
-        <ProjectTileIcon access={project.access} />
-        {project.type === 'project' && (
-          <div className="project-tile__external-indicator" aria-hidden="true">
-            <i className="fas fa-external-link-alt" />
-          </div>
-        )}
-        <ImageWithPlaceholder
-          src={project.tile_image}
-          alt={project.tile_image_alt_text ?? ''}
-          height={490}
-          width={653}
-          className="project-tile__image"
-        />
-        <span className="image__copyright">
-          {project.tile_image_copyright ? copyrightStr + ' ' + project.tile_image_copyright : copyrightMissingStr}
-        </span>
-      </div>
+      <div className="project-tile__content-wrapper">
+        <div className="project-tile__image-wrapper image">
+          <ProjectTileIcon access={project.access} />
+          <ImageWithPlaceholder
+            src={project.tile_image}
+            alt={project.tile_image_alt_text ?? ''}
+            height={490}
+            width={653}
+            className="project-tile__image"
+          />
+          <span className="image__copyright">
+            {project.tile_image_copyright ? copyrightStr + ' ' + project.tile_image_copyright : copyrightMissingStr}
+          </span>
+        </div>
 
-      <div className="project-tile__body">
-        {!isMapTile && <span className="project-tile__head">{project.district}</span>}
-        {project.topics?.length > 0 &&
-          <div className="project-tile__topics">
-            <ProjectTilePills project={project} topicChoices={topicChoices} />
-          </div>}
-        <h3 className="project-tile__title" id={labelId}>{project.title}</h3>
-        {project.description && !isMapTile && (
-          <p className="project-tile__description">
-            {truncateText(project.description)}
-          </p>
-        )}
-
-        <div className="project-tile__status">
-          {state === 'active' && project.type !== 'plan' && (
-            <>
-              <progress
-                value={project.active_phase[0]}
-                max="100"
-                aria-valuenow={project.active_phase[0]}
-                aria-valuemin="0"
-                aria-valuemax="100"
-                id={statusId}
-                className="status-bar"
-              >
-                {statusBarProgress}
-              </progress>
-              <label htmlFor={statusId} className="status-bar__timespan">
-                <i className="far fa-clock" aria-hidden="true" />
-                {getTimespan(project)}
-              </label>
-            </>
-          )}
-          {state === 'active' && project.type === 'plan' && (
-            <p>
-              <i className="fas fa-table-cells" aria-hidden="true" />
-
-              <span className="project-tile__plan__count">{project.published_projects_count}</span>
-              {project.published_projects_count === 1
-                ? participationProjectStr
-                : participationProjectsStr}
+        <div className="project-tile__body">
+          {!isMapTile && <span className="project-tile__head">{project.district}</span>}
+          {project.topics?.length > 0 &&
+            <div className="project-tile__topics">
+              <ProjectTilePills project={project} topicChoices={topicChoices} />
+            </div>}
+          <h3 className="project-tile__title" id={labelId}>{project.title}</h3>
+          {project.description && !isMapTile && (
+            <p className="project-tile__description">
+              {truncateText(project.description)}
             </p>
           )}
-          {state === 'past' && <p>{participationEndedStr}</p>}
-          {state === 'future' && <p>{beginsOnStr} {toLocaleDate(project.future_phase, undefined, { month: 'numeric', year: 'numeric', day: 'numeric' })}</p>}
         </div>
+      </div>
+
+      <div className="project-tile__status">
+        {state === 'active' && project.type !== 'plan' && (
+          <>
+            <progress
+              value={project.active_phase[0]}
+              max="100"
+              aria-valuenow={project.active_phase[0]}
+              aria-valuemin="0"
+              aria-valuemax="100"
+              id={statusId}
+              className="status-bar"
+            >
+              {statusBarProgress}
+            </progress>
+            <label htmlFor={statusId} className="status-bar__timespan">
+              <i className="far fa-clock" aria-hidden="true" />
+              {getTimespan(project)}
+            </label>
+          </>
+        )}
+        {state === 'active' && project.type === 'plan' && (
+          <p>
+            <i className="fas fa-table-cells" aria-hidden="true" />
+
+            <span className="project-tile__plan__count">{project.published_projects_count}</span>
+            {project.published_projects_count === 1
+              ? participationProjectStr
+              : participationProjectsStr}
+          </p>
+        )}
+        {state === 'past' && <p>{participationEndedStr}</p>}
+        {state === 'future' && <p>{beginsOnStr} {toLocaleDate(project.future_phase, undefined, { month: 'numeric', year: 'numeric', day: 'numeric' })}</p>}
       </div>
     </a>
   )

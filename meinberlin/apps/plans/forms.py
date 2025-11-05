@@ -1,4 +1,5 @@
 from django import forms
+from django.apps import apps
 from django.conf import settings
 from django.core.validators import MaxLengthValidator
 from django.core.validators import MinLengthValidator
@@ -164,6 +165,12 @@ class CustomMultipleChoiceField(forms.ModelMultipleChoiceField):
 
 
 class ProjectPlansDashboardForm(ProjectDashboardForm):
+    organisation = forms.ModelChoiceField(
+        queryset=None,
+        label=_("Organisation"),
+        required=False,
+        widget=forms.Select,
+    )
     plans = CustomMultipleChoiceField(queryset=None, label=_("Plans"))
 
     class Meta:
@@ -180,7 +187,38 @@ class ProjectPlansDashboardForm(ProjectDashboardForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.initial["plans"] = self.instance.plans.all()
+        Organisation = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
+
+        # Determine default organisation:
+        assigned_plans = self.instance.plans.all()
+        if assigned_plans.exists():
+            default_organisation = assigned_plans.first().organisation
+        else:
+            default_organisation = self.instance.organisation
+
+        self.initial["organisation"] = default_organisation
+        self.initial["plans"] = assigned_plans
+
+        self.fields["organisation"].queryset = Organisation.objects.all().order_by(
+            "name"
+        )
+
         self.fields["plans"].required = False
         self.fields["plans"].empty_label = "----------"
-        self.fields["plans"].queryset = self.instance.organisation.plan_set.all()
+
+        # Determine organisation for plans queryset
+        if self.data and "organisation" in self.data:
+            try:
+                organisation_id = self.data.get("organisation")
+                if organisation_id:
+                    selected_organisation = Organisation.objects.get(id=organisation_id)
+                    plans_queryset = selected_organisation.plan_set.all()
+                    self.initial["organisation"] = selected_organisation
+                else:
+                    plans_queryset = default_organisation.plan_set.all()
+            except (Organisation.DoesNotExist, ValueError):
+                plans_queryset = default_organisation.plan_set.all()
+        else:
+            plans_queryset = default_organisation.plan_set.all()
+
+        self.fields["plans"].queryset = plans_queryset.distinct()

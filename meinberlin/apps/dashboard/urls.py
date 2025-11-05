@@ -64,6 +64,11 @@ urlpatterns = [
         name="plan-publish",
     ),
     re_path(
+        r"^projects/(?P<project_slug>[-\w_]+)/plans-dropdown/$",
+        plan_views.PlansDropdownView.as_view(),
+        name="plans-dropdown",
+    ),
+    re_path(
         r"^projects/(?P<project_slug>[-\w_]+)/blueprints/$",
         views.ModuleBlueprintListView.as_view(),
         name="module-blueprint-list",

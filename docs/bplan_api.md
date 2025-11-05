@@ -104,11 +104,12 @@ The following fields need to be provided:
 - *point*: string containing valid geojson
   - Location of the bplan
   - Projection: WGS84 / EPSG:4326
-- *(diplan only) tile_image*: string
+- *(diplan only) tile_image*: string (optional)
   - Base64 encoded image
   - Minimal resolution 500x300 px (width x height)
   - Maximum file size 10MB
   - Allowed formats: png, jpeg, gif
+  - If not provided, the placeholder image will be automatically used in the frontend
 - *(imperia only) image_url*: string
   - URL of the image that is used in the project tile
   - Minimal resolution 500x300 px (width x height)

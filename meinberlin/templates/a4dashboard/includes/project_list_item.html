@@ -86,10 +86,11 @@
                                 <li>
                                     <button type="button"
                                             class="dropdown-item"
+                                            hx-get="{% url 'a4dashboard:project-delete-modal' organisation_slug=view.organisation.slug project_slug=project.slug %}"
+                                            hx-target="#modal-root .modal-content"
+                                            hx-swap="innerHTML"
                                             data-bs-toggle="modal"
-                                            data-bs-target="#project-delete-modal"
-                                            data-delete-url="{% url 'a4dashboard:project-delete' organisation_slug=view.organisation.slug project_slug=project.slug %}"
-                                            data-project-name="{{ project.name }}">
+                                            data-bs-target="#modal-root">
                                         <i class="fas fa-trash-alt" aria-hidden="true"></i>
                                         {% translate 'Delete' %}
                                     </button>

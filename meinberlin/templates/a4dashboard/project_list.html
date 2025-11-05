@@ -26,9 +26,12 @@
     </ul>
 
     {% include "meinberlin_contrib/includes/pagination.html" %}
+    
+    <div id="modal-root"
+         class="modal modal-blur fade"
+         tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
 {% endblock project_list %}
-
-{% block footer %}
-  {{ block.super }}
-  {% include "meinberlin_projects/includes/project_delete_modal.html" %}
-{% endblock footer %}

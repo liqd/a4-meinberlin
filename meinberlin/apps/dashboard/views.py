@@ -267,6 +267,31 @@ class DashboardProjectListView(
         return super().get_queryset().filter(externalproject=None)
 
 
+class DashboardProjectDeleteModalView(
+    ProjectMixin, mixins.DashboardBaseMixin, PermissionRequiredMixin, generic.DetailView
+):
+    """View to load the delete modal via HTMX."""
+
+    permission_required = "a4projects.delete_project"
+    model = project_models.Project
+    slug_url_kwarg = "project_slug"
+    template_name = "meinberlin_projects/partials/project_delete_modal_htmx.html"
+
+    def get_permission_object(self):
+        return self.get_object()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["delete_url"] = reverse(
+            "a4dashboard:project-delete",
+            kwargs={
+                "organisation_slug": self.organisation.slug,
+                "project_slug": self.project.slug,
+            },
+        )
+        return context
+
+
 class DashboardProjectDeleteView(
     ProjectMixin, mixins.DashboardBaseMixin, PermissionRequiredMixin, generic.DeleteView
 ):

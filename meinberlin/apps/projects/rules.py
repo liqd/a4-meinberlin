@@ -39,7 +39,7 @@ rules.set_perm(
 
 @rules.predicate
 def no_non_initiator_contributions(user, project):
-    """True, wenn es im Projekt keine Beiträge von Nicht‑Initiator:innen gibt."""
+    """True, if there are no contributions from non-initiators in the project."""
     initiator_ids = list(project.organisation.initiators.values_list("id", flat=True))
 
     # Wenn es keine Initiator:innen gibt, gelten alle Beiträge als Nicht‑Initiator‑Beiträge

@@ -86,7 +86,7 @@
                     {{ project.module_running_progress }}%
                 </progress>
                 <label for="status-{{ project.id }}" class="status-bar__timespan">
-                    <i class="far fa-clock" aria-hidden="true"></i>
+                    <i class="far fa-clock" role="img" aria-label="{% translate 'Uhr' %}"></i>
                     {% if project.module_running_days_left < 365 %}
                         {% blocktranslate with time_left=project.module_running_time_left %}
                             {{ time_left }} remaining

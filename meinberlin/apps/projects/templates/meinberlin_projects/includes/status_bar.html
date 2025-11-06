@@ -15,6 +15,6 @@
   <p class="message--error">Please add a uniqueId to status_bar.html includes!</p>
 {% endif %}
 <label for="{{ uniqueId }}" class="status-bar__timespan">
-  <i class="far fa-clock" aria-hidden="true"></i>
+  <i class="far fa-clock" role="img" aria-label="{% translate 'Uhr' %}"></i>
   {% blocktranslate %}remaining {{ time_left }}{% endblocktranslate %}
 </label>

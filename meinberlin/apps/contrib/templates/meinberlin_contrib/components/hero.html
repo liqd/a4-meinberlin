@@ -38,7 +38,7 @@
                         <img
                             class="hero__image"
                             src="{{ content.image|thumbnail_url:'heroimage' }}"
-                            alt="{{ content.image_alt_text|default:'' }}"
+                            alt="{% if show_buttons %}{% blocktranslate with name=content.name %}Weitere Informationen zu {{ name }}{% endblocktranslate %}{% else %}{{ content.image_alt_text|default:'' }}{% endif %}"
                             loading="lazy"
                         />
                     {% else %}
@@ -47,7 +47,7 @@
                             <source type="image/avif" srcset="{% static "images/placeholder_hero.avif" %}"/>
                             <img
                                 src="{% static "images/placeholder_hero.svg" %}"
-                                alt="{{ project.tile_image_alt_text }}"
+                                alt="{% if show_buttons %}{% blocktranslate with name=content.name %}Weitere Informationen zu {{ name }}{% endblocktranslate %}{% else %}{{ project.tile_image_alt_text }}{% endif %}"
                                 class="hero__image"
                                 loading="lazy"
                             />

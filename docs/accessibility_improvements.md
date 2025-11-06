@@ -148,3 +148,17 @@ Die Website meinberlin.de basiert auf der adhocracy-plus Plattform (Django-basie
 - `/var/liqd/a4-meinberlin/meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html` (Zeile 89)
 - `/var/liqd/a4-meinberlin/meinberlin/apps/projects/templates/meinberlin_projects/includes/module-tile/module_tile.html` (Zeile 18)
 
+### User Journey 3: Teilnahme an einer Umfrage
+
+#### Schritt 5: Projekt Detailseite mit Umfrage
+
+**Fehler:** Unter den Breadcrumb-Links befinden sich ein Linktext und ein Bild, die auf dasselbe Ziel verweisen, aber über separate `<a>`-Tags definiert sind. Zudem ist der Alternativtext des Bildlinks unpassend.
+
+**Status:** ✅ Behoben
+
+**Korrektur:**
+- `meinberlin/apps/contrib/templates/meinberlin_contrib/components/hero.html` - Passenden Alternativtext für das Bild hinzugefügt, der das Ziel des Links beschreibt ("Weitere Informationen zu [Projektname]"). Der Link um das Bild bleibt erhalten, hat aber jetzt einen beschreibenden Alt-Text.
+
+**Geänderte Dateien:**
+- `/var/liqd/a4-meinberlin/meinberlin/apps/contrib/templates/meinberlin_contrib/components/hero.html` (Zeile 32-54)
+

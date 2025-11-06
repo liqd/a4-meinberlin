@@ -30,6 +30,7 @@ const ariaLabelImage = django.gettext('Click for image-based question')
 const ariaLabelText = django.gettext('Click for text-based question')
 const textImageMode = '&gt; ' + django.gettext('Image mode')
 const textTextMode = '&gt; ' + django.gettext('Text mode')
+const captchaImageAlt = django.gettext('Captcha-Bild')
 
 function initializeCaptcha () {
   function chooseAnswer (idp, ans, session, combinedAnswerId) {
@@ -114,7 +115,7 @@ function initializeCaptcha () {
             answers +=
             "<a class='captcheck_answer_label' href='' data-prefix='" + idp + "' data-answer='" + data.answers[i] + "' tabindex='0' aria-role='button'>" +
             "<input id='captcheck_" + idp + '_answer_' + data.answers[i] + "' aria-labelledby='captcheck_" + idp + "_question_image' type='radio' name='captcheck_selected_answer' value='" + data.answers[i] + "' data-prefix='" + idp + "' data-answer='" + data.answers[i] + "' />" +
-            "<img src='" + src + "' data-prefix='" + idp + "' data-answer='" + data.answers[i] + "'/></a>"
+            "<img src='" + src + "' alt='" + captchaImageAlt + "' data-prefix='" + idp + "' data-answer='" + data.answers[i] + "'/></a>"
           }
           answers += '</div>'
           const answerDiv = document.createElement('div')

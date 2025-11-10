@@ -76,7 +76,7 @@ const ProjectTile = forwardRef(function ProjectTile ({ project, isHorizontal, to
             <div className="project-tile__topics">
               <ProjectTilePills project={project} topicChoices={topicChoices} />
             </div>}
-          <h3 className="project-tile__title" id={labelId}>{project.title}</h3>
+          <p className="project-tile__title title-3" id={labelId}>{project.title}</p>
           {project.description && !isMapTile && (
             <p className="project-tile__description">
               {truncateText(project.description)}

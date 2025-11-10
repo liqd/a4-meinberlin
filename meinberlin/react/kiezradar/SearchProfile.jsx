@@ -95,7 +95,7 @@ export default function SearchProfile ({ apiUrl, planListUrl, searchProfile, onS
       <div className="search-profile">
         <div className="search-profile__header">
           <div>
-            <h3 className="search-profile__title">{searchProfile.name}</h3>
+            <h2 className="search-profile__title title-3">{searchProfile.name}</h2>
             <ul className="search-profile__filters">
               {selection.map((filter) => (
                 <li key={filter} className="search-profile__filter">{filter}</li>

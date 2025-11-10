@@ -30,11 +30,11 @@ export const Card = (props) => {
     <article className={'modul-card ' + (item.is_archived ? 'card--archived' : '')}>
       <header className="card__header">
         {/* eslint-disable-next-line */}
-        <h3
-          className="title" onClick={handleClick} onMouseEnter={handleMouseEnter}
+        <h2
+          className="title title-3" onClick={handleClick} onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >{item.name}
-        </h3>
+        </h2>
         {children ? <>{children}</> : null}
       </header>
       <section className="card__footer--light">

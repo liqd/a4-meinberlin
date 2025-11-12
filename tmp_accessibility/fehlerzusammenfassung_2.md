@@ -1109,3 +1109,4 @@ Verwenden Sie die ARIA-Liveregion, um sicherzustellen, dass das dynamische Updat
 
 Weitere Informationen zur Implementierung der Live-Regionen finden Sie unter https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions
 
+

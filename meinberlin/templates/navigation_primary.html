@@ -43,6 +43,10 @@
                             <a href="{{ notification_settings_url }}" class="{% if request.path == notification_settings_url %}active{% endif %}">{% translate "Notification Settings" %}</a>
                         </li>
                         <li>
+                            {% url 'followed_projects' as followed_projects_url %}
+                            <a href="{{ followed_projects_url }}" class="{% if request.path == followed_projects_url %}active{% endif %}">{% translate "Followed Projects" %}</a>
+                        </li>
+                        <li>
                             {% url 'search_profiles' as search_profiles_url %}
                             <a href="{{ search_profiles_url }}" class="{% if request.path == search_profiles_url %}active{% endif %}">{% translate "Searchprofiles" %}</a>
                         </li>

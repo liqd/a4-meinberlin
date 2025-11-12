@@ -7,6 +7,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## Unreleased
 
+### Added
+
+- Followed Projects Page at /account/followed-projects
+
 ### Changed
 
 - Password visibility toggle added to login and signup forms

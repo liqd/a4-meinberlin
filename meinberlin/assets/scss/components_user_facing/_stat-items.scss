@@ -1,0 +1,24 @@
+.stat-items {
+    display: flex;
+
+    dt {
+        margin:0;
+        margin-right: 0.25 * $spacer;
+        font-weight: normal;        
+    }
+
+    dd {
+        margin:0;
+        margin-right: 0.25 * $spacer;
+        font-weight: bold;
+    }
+}
+
+.stats-dl {
+    margin-bottom:0;
+    margin-top:0;
+    display: flex;
+}
+.maps-popups-popup-meta .stat-items {
+    margin-right: $spacer;
+}

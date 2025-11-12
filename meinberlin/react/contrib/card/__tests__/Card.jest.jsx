@@ -25,10 +25,12 @@ test('Card component with item name and link and comment count', () => {
     <Card item={proposal} permissions={permissions} />
   )
 
-  const comments = screen.getByText('Comments', { exact: false })
+  const commentsLabel = screen.getByText('Comments', { exact: false })
 
   // strings constructed by ngettext will render both options as jest does not mock ngettext functionality,
   // it just returns both so we check for both as it is a predicatble outcome
+  // With <dl><dt><dd> structure, we need to get the parent div to access both dt and dd
+  const comments = commentsLabel.closest('.stat-items')
   expect(comments.textContent).toEqual('7CommentComments')
   expect(screen.getByText('My idea')).toBeTruthy()
   expect(screen.getByText('Show')).toBeTruthy()
@@ -58,9 +60,12 @@ test('Renders a link to item details', () => {
     <Card item={proposal} permissions={permissions} />
   )
 
-  const comments = screen.getByText('Comments', { exact: false })
-  const dislikes = screen.getByText('Dislikes', { exact: false })
+  const commentsLabel = screen.getByText('Comments', { exact: false })
+  const dislikesLabel = screen.getByText('Dislikes', { exact: false })
 
+  // With <dl><dt><dd> structure, we need to get the parent div to access both dt and dd
+  const comments = commentsLabel.closest('.stat-items')
+  const dislikes = dislikesLabel.closest('.stat-items')
   expect(comments.textContent).toEqual('7CommentComments')
   // don't do same check for likes count as it also finds the
   // dislikes as non exact string but 1 count is enough

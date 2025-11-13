@@ -21,14 +21,25 @@ const ProjectsList = ({
   const [loading, setLoading] = React.useState(!initialProjects)
 
   React.useEffect(() => {
-    if (projectsUrl) {
-      fetch(projectsUrl)
-        .then(response => response.json())
-        .then(data => {
-          setProjects(data)
-          setLoading(false)
-        })
+    if (!projectsUrl) return
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch(projectsUrl)
+        // eslint-disable-next-line no-restricted-syntax
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
+
+        const data = await response.json()
+        setProjects(data)
+      } catch (error) {
+        console.error('Failed to fetch projects:', error)
+        setProjects([])
+      } finally {
+        setLoading(false)
+      }
     }
+
+    fetchData()
   }, [projectsUrl])
 
   if (loading) return <Spinner />

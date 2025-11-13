@@ -194,7 +194,7 @@ export const ProjectsControlBar = ({
   }
 
   return (
-    <nav aria-label={translated.nav}>
+    <div aria-label={translated.nav}>
       <form
         className={classNames('modul-facetingform js-facetingform', alteredFilters.length ? 'control-bar--no-spacing' : 'control-bar--spacing')}
         onSubmit={handleSubmit}
@@ -412,6 +412,6 @@ export const ProjectsControlBar = ({
           </div>
           )
         : null}
-    </nav>
+    </div>
   )
 }

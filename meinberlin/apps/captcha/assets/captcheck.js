@@ -70,7 +70,7 @@ function initializeCaptcha () {
       imgA.style.display = 'none'
       accA.style.display = 'initial'
 
-      accA.innerHTML = "<input id='captcheck_" + idp + "_question_access-answer' type='text' name='captcheck_selected_answer' aria-label='Type your answer here.' autocomplete='off' autofill='off'/>"
+      accA.innerHTML = "<input id='captcheck_" + idp + "_question_access-answer' type='text' name='captcheck_selected_answer' aria-labelledby='captcheck_" + idp + "_question_access' autocomplete='off' autofill='off'/>"
       accA.firstElementChild.addEventListener('input', function (ev) {
         ev.preventDefault()
         chooseAnswer(idp, this.value, session, combinedAnswerId)

@@ -57,15 +57,17 @@ const NotificationSettings = ({
       {notificationSettingsData.map((notification, index) => {
         if (notification.restricted && !showRestricted) return null
 
+        const headerId = 'notification-header-' + index
         return (
           <li key={notification.header}>
             <div className="actionable-list__header">
-              <h2>{notification.header}</h2>
+              <h2 id={headerId}>{notification.header}</h2>
               <ToggleSwitch
                 className="actionable-list__header__action"
                 uniqueId={'masterToggle' + index}
                 checked={masterToggles[index]}
                 toggleSwitch={() => onMasterToggle(notification, index)}
+                ariaLabelledBy={headerId}
               />
             </div>
             <ul className="actionable-list">

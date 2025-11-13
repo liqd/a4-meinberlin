@@ -106,7 +106,7 @@ export const ControlBar = ({ mapListViewMode, showViewModeSwitch = true, desktop
   }
 
   return (
-    <nav
+    <div
       className="container u-spacer-bottom u-spacer-top-double"
       aria-label={translated.nav}
     >
@@ -212,6 +212,6 @@ export const ControlBar = ({ mapListViewMode, showViewModeSwitch = true, desktop
                 )}
           </div>}
       </div>
-    </nav>
+    </div>
   )
 }

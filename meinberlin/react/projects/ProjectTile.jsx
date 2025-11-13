@@ -37,7 +37,6 @@ const ProjectTile = forwardRef(function ProjectTile ({ project, isHorizontal, to
   } else if (project.future_phase) {
     state = 'future'
   }
-  console.log(project)
   return (
     <a
       href={project.url}

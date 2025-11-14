@@ -1,7 +1,7 @@
 {% extends "a4dashboard/base_project_list.html" %}
 {% load i18n rules %}
 
-{% block title %}{% translate "Projects" %} &mdash; {{ block.super }}{% endblock%}
+{% block title %}{% translate "Projects" %} — {{ block.super }}{% endblock title %}
 
 {% block project_list %}
     <div class="lr-bar lr-bar--with-margin">
@@ -26,4 +26,12 @@
     </ul>
 
     {% include "meinberlin_contrib/includes/pagination.html" %}
-{% endblock %}
+    
+    <div id="modal-root"
+         class="modal modal-blur fade"
+         tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+{% endblock project_list %}

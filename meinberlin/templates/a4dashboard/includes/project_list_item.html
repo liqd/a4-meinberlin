@@ -1,4 +1,4 @@
-{% load i18n project_tags meinberlin_project_tags thumbnail %}
+{% load i18n project_tags meinberlin_project_tags thumbnail rules %}
 {% project_tile_image project as project_image %}
 {% project_tile_image_copyright project as project_image_copyright %}
 {% project_tile_image_alt_text project as project_image_alt_text %}
@@ -53,7 +53,7 @@
                     <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}"
                        class="btn btn--light btn--small">
                         <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                        {% translate 'Edit'%}
+                        {% translate 'Edit' %}
                     </a>
                     {% if project.project_type == 'a4projects.Project' %}
                         <div class="dropdown">
@@ -81,6 +81,21 @@
                                         </button>
                                     </form>
                                 </li>
+                                {% has_perm 'a4projects.delete_project' request.user project as can_delete_project %}
+                                {% if can_delete_project %}
+                                <li>
+                                    <button type="button"
+                                            class="dropdown-item"
+                                            hx-get="{% url 'a4dashboard:project-delete-modal' organisation_slug=view.organisation.slug project_slug=project.slug %}"
+                                            hx-target="#modal-root .modal-content"
+                                            hx-swap="innerHTML"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modal-root">
+                                        <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                                        {% translate 'Delete' %}
+                                    </button>
+                                </li>
+                                {% endif %}
                             </ul>
                         </div>
                     {% endif %}

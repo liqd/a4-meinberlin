@@ -28,6 +28,7 @@ from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
+from meinberlin.apps.dashboard import is_event_module
 from meinberlin.apps.offlineevents.models import OfflineEvent
 
 from ..bplan.views import BplanProjectDispatchMixin
@@ -358,6 +359,21 @@ class ProjectDetailView(PermissionRequiredMixin, BplanProjectDispatchMixin):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["events"] = self.project.offlineevent_set.all().order_by("date")
+
+        # Load all modules with items prefetched
+        modules_qs = self.project.modules.prefetch_related("item_set")
+        all_modules = list(
+            itertools.chain(
+                modules_qs.running_modules(),
+                modules_qs.future_modules(),
+                modules_qs.past_modules(),
+            )
+        )
+
+        # Separate online and offline modules
+        context["modules"] = [m for m in all_modules if not is_event_module(m)]
+        context["offline_modules"] = [m for m in all_modules if is_event_module(m)]
+
         context["edit_link"] = reverse(
             "a4dashboard:project-edit", kwargs={"project_slug": self.project.slug}
         )
@@ -396,12 +412,26 @@ class ModuleDetailview(PermissionRequiredMixin, PhaseDispatchMixin):
     def get_permission_object(self):
         return self.project
 
+    def get_template_names(self):
+        # Special template for Offline-Event modules (blueprint_type "OE")
+        if is_event_module(self.module):
+            return ["meinberlin_projects/module_offline_event_detail.html"]
+        # Standard template for all other modules
+        return ["a4modules/module_detail.html"]
+
     def get_context_data(self, **kwargs):
         """Append project and module to the template context."""
         if "project" not in kwargs:
             kwargs["project"] = self.project
         if "module" not in kwargs:
             kwargs["module"] = self.module
+
+        # Additional context for Offline-Event modules
+        # Better use Django Polymorphic to handle this ?
+        if is_event_module(self.module):
+            item = self.module.item_set.first()
+            kwargs["offline_event_item"] = item
+
         return super().get_context_data(**kwargs)
 
 

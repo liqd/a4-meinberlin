@@ -101,7 +101,17 @@ class ModuleCreateView(
             )
             phase.save()
 
+    # Now get_next returns the first effective component instead of the module_basic component
     def get_next(self, module):
+        dashboard = get_project_dashboard(module.project)
+        module_components = dashboard.get_module_components()
+
+        # Find the first effective component (sorted by weight)
+        for component in module_components:
+            if component.is_effective(module):
+                return component.get_base_url(module)
+
+        # Fallback if no component is effective
         return reverse(
             "a4dashboard:dashboard-module_basic-edit",
             kwargs={"module_slug": module.slug},

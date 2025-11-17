@@ -4,6 +4,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
+from polymorphic.query import PolymorphicQuerySet
 
 from adhocracy4 import transforms
 from adhocracy4.categories.fields import CategoryField
@@ -18,7 +19,9 @@ from adhocracy4.ratings import models as rating_models
 from meinberlin.apps.ideas.models import ItemBadgesPropertyMixin
 
 
-class MapTopicQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
+class MapTopicQuerySet(
+    query.RateableQuerySet, query.CommentableQuerySet, PolymorphicQuerySet
+):
     pass
 
 

@@ -13,11 +13,13 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Password visibility toggle added to login and signup forms
 - External projects/plans show icon to indicate external link
 - Offline Event is now A Module
+- More fuctions for Devtools
 
 ### Fixed
 
 - Kiezradar filter projects by organisation
 - Kiezradar show projects/plans with the same name in Projects List
+
 
 ## v2509.1
 

@@ -1,4 +1,5 @@
 from django.contrib.auth.models import Group
+from django.contrib.gis.geos import Point
 from django.core.management.base import BaseCommand
 from django.db.models import QuerySet
 
@@ -21,6 +22,8 @@ class Command(BaseCommand):
     The argument --plans makes sure that at exactly n fake plans exist.
     The argument --projects makes sure that at exactly n fake projects exist.
     The argument --ext-projects makes sure that at exactly n fake external projects exist.
+    The argument --organisations makes sure that at exactly n fake organisations exist.
+    The argument --org allows to specify which organisation to use for plans (by name or ID).
 
     Usage:
 
@@ -28,6 +31,9 @@ class Command(BaseCommand):
         $ ./manage.py devtools --projects 0
         $ ./manage.py devtools --plans 550
         $ ./manage.py devtools --ext-projects 100
+        $ ./manage.py devtools --organisations 2
+        $ ./manage.py devtools --plans 10 --org "Test Organisation A"
+        $ ./manage.py devtools --plans 10 --org 1
     """
 
     def add_arguments(self, parser):
@@ -55,12 +61,25 @@ class Command(BaseCommand):
             default=False,
             help="remove all fake data",
         )
+        parser.add_argument(
+            "--org",
+            type=str,
+            default=None,
+            help="organisation name or ID to use for plans (default: first organisation)",
+        )
+        parser.add_argument(
+            "--organisations",
+            default=-1,
+            type=int,
+            help="number of fake organisations to have in database",
+        )
 
     def handle(self, *args, **options):
         for key, model, identifier in [
             ("plans", Plan, "title"),
             ("projects", Project, "name"),
             ("ext_projects", ExternalProject, "name"),
+            ("organisations", Organisation, "name"),
         ]:
             identifier_prefix = f"fake {key.rstrip('s')}"
             fake_objects = model.objects.filter(
@@ -68,6 +87,11 @@ class Command(BaseCommand):
             )
             count = fake_objects.count()
             print(f"fake {key} in database: {count=}")
+
+            # Show organisation names for better usability
+            if key == "organisations" and count > 0:
+                org_names = list(fake_objects.values_list("name", flat=True))
+                print(f"  Organisation names: {org_names}")
 
             if options["delete"]:
                 deleted, count = fake_objects.delete()
@@ -81,10 +105,17 @@ class Command(BaseCommand):
                 key=key,
                 identifier_prefix=identifier_prefix,
                 fake_objects=fake_objects,
+                organisation=options.get("org"),
             )
 
     @staticmethod
-    def run(n_target: int, key: str, identifier_prefix: str, fake_objects: QuerySet):
+    def run(
+        n_target: int,
+        key: str,
+        identifier_prefix: str,
+        fake_objects: QuerySet,
+        organisation=None,
+    ):
         if n_target == 0:
             deleted, count = fake_objects.delete()
             print(f"deleted fake {key}: {deleted=}, {count=}")
@@ -99,11 +130,19 @@ class Command(BaseCommand):
             elif n_todo > 0:
                 print(f"need to create additional fake {key}: {n_todo}")
                 if key == "plans":
-                    create_fake_plans(n=n_todo, identifier_prefix=identifier_prefix)
+                    create_fake_plans(
+                        n=n_todo,
+                        identifier_prefix=identifier_prefix,
+                        organisation_name_or_id=organisation,
+                    )
                 elif key == "projects":
                     create_fake_projects(n=n_todo, identifier_prefix=identifier_prefix)
                 elif key == "ext_projects":
                     create_fake_external_projects(
+                        n=n_todo, identifier_prefix=identifier_prefix
+                    )
+                elif key == "organisations":
+                    create_fake_organisations(
                         n=n_todo, identifier_prefix=identifier_prefix
                     )
 
@@ -161,19 +200,68 @@ def create_fake_projects(
     Project.objects.bulk_create(projects)
 
 
-def create_fake_plans(
-    n: int,
-    identifier_prefix: str,
-):
+def _get_user():
+    """Get admin user or first available user."""
     user = User.objects.filter(username__contains="admin").first()
-    if not user:
-        user = User.objects.first()
+    return user or User.objects.first()
+
+
+def _find_organisation_by_param(organisation_name_or_id: str):
+    """Try to find organisation by ID or name."""
+    # Try to find by ID first
+    try:
+        organisation_id = int(organisation_name_or_id)
+        organisation = Organisation.objects.filter(pk=organisation_id).first()
+        if organisation:
+            return organisation
+    except ValueError:
+        pass
+
+    # If not found by ID, try by name
+    organisation = Organisation.objects.filter(name=organisation_name_or_id).first()
+    if not organisation:
+        print(
+            f"Warning: Organisation '{organisation_name_or_id}' not found. Using default."
+        )
+    return organisation
+
+
+def _get_default_organisation(user):
+    """Get default organisation for user."""
     organisation = user.organisations.first()
     if not organisation:
         organisation = Organisation.objects.first()
-        user.organisation_set.add(organisation)
-        user.save()
+        if organisation:
+            user.organisation_set.add(organisation)
+            user.save()
+    return organisation
+
+
+def create_fake_plans(
+    n: int,
+    identifier_prefix: str,
+    organisation_name_or_id: str = None,
+):
+    user = _get_user()
+
+    # Get organisation from parameter or use default logic
+    if organisation_name_or_id:
+        organisation = _find_organisation_by_param(organisation_name_or_id)
+    else:
+        organisation = None
+
+    # Fallback to default logic
+    if not organisation:
+        organisation = _get_default_organisation(user)
+
+    if not organisation:
+        raise ValueError("No organisation found. Please create an organisation first.")
+
     district = AdministrativeDistrict.objects.first()
+    if not district:
+        raise ValueError(
+            "No administrative district found. Please create a district first."
+        )
 
     plans = []
     for i in range(n):
@@ -182,15 +270,11 @@ def create_fake_plans(
             creator=user,
             organisation=organisation,
             district=district,
-            point={
-                "type": "Feature",
-                "properties": {},
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [13.447437286376953, 52.51518602243137],
-                },
-            },
+            point=Point(13.447437286376953, 52.51518602243137),
             contact_address_text="",
+            cost="10000 EUR",
+            description=f"Fake description for {identifier_prefix} {i :0>3}",
+            participation_explanation="Fake participation explanation",
             status=Plan.STATUS_ONGOING,
             participation=ProjectType.PARTICIPATION_INFORMATION,
             is_draft=False,
@@ -199,3 +283,33 @@ def create_fake_plans(
         plans.append(plan)
 
     Plan.objects.bulk_create(plans)
+
+
+def create_fake_organisations(
+    n: int,
+    identifier_prefix: str,
+):
+    user = User.objects.filter(username__contains="admin").first()
+    if not user:
+        user = User.objects.first()
+    group = Group.objects.first()
+
+    organisations = []
+    for i in range(n):
+        organisation = Organisation(
+            name=f"{identifier_prefix} {i :0>3}",
+        )
+        organisations.append(organisation)
+
+    Organisation.objects.bulk_create(organisations)
+
+    # Add user and group to created organisations
+    created_names = []
+    for organisation in organisations:
+        if user:
+            organisation.initiators.add(user)
+        if group:
+            organisation.groups.add(group)
+        created_names.append(organisation.name)
+
+    print(f"Created organisations: {created_names}")

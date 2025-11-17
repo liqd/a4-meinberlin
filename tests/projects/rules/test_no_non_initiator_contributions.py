@@ -1,6 +1,6 @@
 import pytest
 
-from meinberlin.apps.projects.rules import no_non_initiator_contributions
+from meinberlin.apps.projects.rules import has_no_non_initiator_contributions
 
 
 @pytest.mark.django_db
@@ -12,7 +12,7 @@ def test_no_non_initiator_contributions_with_initiators_no_contributions(
     organisation.initiators.add(initiator)
     project = project_factory(organisation=organisation)
 
-    assert no_non_initiator_contributions.test(initiator, project) is True
+    assert has_no_non_initiator_contributions.test(initiator, project) is True
 
 
 @pytest.mark.django_db
@@ -26,7 +26,7 @@ def test_no_non_initiator_contributions_only_initiator_items(
     module = module_factory(project=project)
     idea_factory(module=module, creator=initiator)
 
-    assert no_non_initiator_contributions.test(initiator, project) is True
+    assert has_no_non_initiator_contributions.test(initiator, project) is True
 
 
 @pytest.mark.django_db
@@ -41,7 +41,7 @@ def test_no_non_initiator_contributions_non_initiator_items(
     module = module_factory(project=project)
     idea_factory(module=module, creator=non_initiator)
 
-    assert no_non_initiator_contributions.test(initiator, project) is False
+    assert has_no_non_initiator_contributions.test(initiator, project) is False
 
 
 @pytest.mark.django_db
@@ -62,7 +62,7 @@ def test_no_non_initiator_contributions_non_initiator_comments(
     topic = topic_factory(module=module)
     comment_factory(content_object=topic, creator=non_initiator)
 
-    assert no_non_initiator_contributions.test(initiator, project) is False
+    assert has_no_non_initiator_contributions.test(initiator, project) is False
 
 
 @pytest.mark.django_db
@@ -85,7 +85,7 @@ def test_no_non_initiator_contributions_only_initiator_comments(
     topic = topic_factory(module=module, creator=initiator)
     comment_factory(content_object=topic, creator=initiator)
 
-    assert no_non_initiator_contributions.test(initiator, project) is True
+    assert has_no_non_initiator_contributions.test(initiator, project) is True
 
 
 @pytest.mark.django_db
@@ -110,7 +110,7 @@ def test_no_non_initiator_contributions_non_initiator_votes(
     choice = choice_factory(question=question)
     vote_factory(choice=choice, creator=non_initiator)
 
-    assert no_non_initiator_contributions.test(initiator, project) is False
+    assert has_no_non_initiator_contributions.test(initiator, project) is False
 
 
 @pytest.mark.django_db
@@ -133,7 +133,7 @@ def test_no_non_initiator_contributions_non_initiator_answers(
     question = question_factory(poll=poll, is_open=True)
     answer_factory(question=question, creator=non_initiator)
 
-    assert no_non_initiator_contributions.test(initiator, project) is False
+    assert has_no_non_initiator_contributions.test(initiator, project) is False
 
 
 @pytest.mark.django_db
@@ -154,4 +154,4 @@ def test_no_non_initiator_contributions_non_initiator_ratings(
     idea = idea_factory(module=module)
     rating_factory(content_object=idea, creator=non_initiator, value=1)
 
-    assert no_non_initiator_contributions.test(initiator, project) is False
+    assert has_no_non_initiator_contributions.test(initiator, project) is False

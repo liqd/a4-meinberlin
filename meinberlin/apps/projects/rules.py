@@ -38,7 +38,7 @@ rules.set_perm(
 
 
 @rules.predicate
-def no_non_initiator_contributions(user, project):
+def has_no_non_initiator_contributions(user, project):
     """True, if there are no contributions from non-initiators in the project."""
     initiator_ids = list(project.organisation.initiators.values_list("id", flat=True))
 
@@ -80,8 +80,7 @@ def no_non_initiator_contributions(user, project):
     return not (has_items or has_comments or has_votes or has_answers or has_ratings)
 
 
-# Erlaube Löschen nur für Superuser oder Initiator:in ohne Nicht‑Initiator‑Beiträge
 rules.set_perm(
     "a4projects.delete_project",
-    is_superuser | (is_initiator & no_non_initiator_contributions),
+    is_superuser | (is_initiator & has_no_non_initiator_contributions),
 )

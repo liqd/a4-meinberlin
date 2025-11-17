@@ -107,6 +107,7 @@ export default function Kiezradar ({
               type="text"
               defaultValue={kiezradar?.name}
               required
+              autoComplete="organization"
             />
           </div>
           <div className="kiezradar__form-button">

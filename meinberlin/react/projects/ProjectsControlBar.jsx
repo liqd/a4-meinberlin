@@ -218,6 +218,7 @@ export const ProjectsControlBar = ({
                             placeholder={translated.searchPlaceholder}
                             value={filters.search}
                             id="searchterm"
+                            autoComplete="on"
                             onChange={(e) => onFilterChange('search', e.target.value)}
                           />
                         </div>

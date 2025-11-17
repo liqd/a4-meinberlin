@@ -52,6 +52,11 @@ const ProjectTile = forwardRef(function ProjectTile ({ project, isHorizontal, to
       <div className="project-tile__content-wrapper">
         <div className="project-tile__image-wrapper image">
           <ProjectTileIcon access={project.access} />
+          {project.subtype === 'external' && (
+            <div className="project-tile__external-indicator" aria-hidden="true">
+              <i className="fas fa-external-link-alt" />
+            </div>
+          )}
           <ImageWithPlaceholder
             src={project.tile_image}
             alt={project.tile_image_alt_text ?? ''}

@@ -561,6 +561,40 @@ def test_bplan_api_accepts_valid_base64_image(
 
 
 @pytest.mark.django_db
+def test_bplan_api_accepts_bplan_without_tile_image(
+    apiclient,
+    districts,
+    organisation,
+    django_capture_on_commit_callbacks,
+    geojson_point_str,
+    geos_point,
+):
+    """Test that Bplans can be created without tile_image (optional field)."""
+    url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
+    data = {
+        "name": "bplan-1",
+        "description": "desc",
+        "url": "https://bplan.net",
+        "start_date": "2013-01-01 18:00",
+        "end_date": "2021-01-01 18:00",
+        "bplan_id": "1-234",
+        "point": geojson_point_str,
+    }
+
+    user = organisation.initiators.first()
+    apiclient.force_authenticate(user=user)
+    with django_capture_on_commit_callbacks(execute=True):
+        response = apiclient.post(url, data, format="json")
+        assert response.status_code == status.HTTP_201_CREATED
+        bplan = bplan_models.Bplan.objects.first()
+        assert bplan.is_draft is False
+        assert bplan.is_diplan is True
+        assert bplan.point.equals(geos_point)
+        # Verify that tile_image is not set (empty or None)
+        assert not bplan.tile_image
+
+
+@pytest.mark.django_db
 def test_bplan_api_rejects_small_base64_image(
     apiclient,
     districts,

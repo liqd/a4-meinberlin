@@ -8,9 +8,25 @@ import ProjectTile from './ProjectTile'
 const ProjectMarker = ({ project, onOpen, onClose, topicChoices }) => {
   const ref = useRef(null)
   const tileRef = useRef(null)
+  const markerElementRef = useRef(null)
 
   const focusFirstInteractiveElement = () => {
     setTimeout(() => { if (tileRef.current) { tileRef.current.focus() } }, 100)
+  }
+
+  const setMarkerElementRef = () => {
+    const markerElement = ref.current?.getElement?.()
+    if (markerElement) {
+      markerElement.tabIndex = -1
+      markerElementRef.current = markerElement
+    }
+  }
+
+  const focusMarkerElement = () => {
+    const element = markerElementRef.current ?? ref.current?.getElement?.()
+    if (element) {
+      element.focus()
+    }
   }
 
   return (
@@ -21,11 +37,13 @@ const ProjectMarker = ({ project, onOpen, onClose, topicChoices }) => {
       eventHandlers={{
         popupopen: (e) => {
           ref.current?.setIcon(makeIcon('/static/images/map_pin_active.svg'))
+          setMarkerElementRef()
           onOpen(e)
           focusFirstInteractiveElement()
         },
         popupclose: (e) => {
           ref.current?.setIcon(makeIcon())
+          focusMarkerElement()
           onClose(e)
         }
       }}

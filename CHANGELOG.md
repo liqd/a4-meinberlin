@@ -7,6 +7,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## Unreleased
 
+### Added
+
+- Followed Projects Page at /account/followed-projects
+
 ### Changed
 
 - Make tile_image field optional in DiPlan API - Bplans sent without an image automatically receive the placeholder image

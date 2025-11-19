@@ -7,6 +7,11 @@ import ProjectTile from './ProjectTile'
 
 const ProjectMarker = ({ project, onOpen, onClose, topicChoices }) => {
   const ref = useRef(null)
+  const tileRef = useRef(null)
+
+  const focusFirstInteractiveElement = () => {
+    setTimeout(() => { if (tileRef.current) { tileRef.current.focus() } }, 100)
+  }
 
   return (
     <GeoJsonMarker
@@ -17,6 +22,7 @@ const ProjectMarker = ({ project, onOpen, onClose, topicChoices }) => {
         popupopen: (e) => {
           ref.current?.setIcon(makeIcon('/static/images/map_pin_active.svg'))
           onOpen(e)
+          focusFirstInteractiveElement()
         },
         popupclose: (e) => {
           ref.current?.setIcon(makeIcon())
@@ -35,6 +41,7 @@ const ProjectMarker = ({ project, onOpen, onClose, topicChoices }) => {
           isHorizontal
           topicChoices={topicChoices}
           isMapTile
+          ref={tileRef}
         />
       </Popup>
     </GeoJsonMarker>

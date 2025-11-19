@@ -19,6 +19,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Kiezradar filter projects by organisation
 - Kiezradar show projects/plans with the same name in Projects List
 
+### Added
+
+- Initiators can delete projects with no contributions 
+
 ## v2509.1
 
 ### Added

@@ -2,7 +2,7 @@
 
 <nav id="navigation-primary" class="js-navigation-primary">
     <div class="tree-wrapper js-navigation-tree-wrapper">
-        <h3 class="aural">{% translate 'Page navigation' %}</h3>
+        <h3 class="aural" tabindex="-1">{% translate 'Page navigation' %}</h3>
         <ul class="navigation-tree">
             {% url 'meinberlin_plans:plan-list' as project_list %}
             <li class="{% if request.path == project_list %}active{% endif %}">

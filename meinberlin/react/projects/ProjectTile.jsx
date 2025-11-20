@@ -45,7 +45,6 @@ const ProjectTile = forwardRef(function ProjectTile ({ project, isHorizontal, to
       target={project.subtype === 'external' ? '_blank' : '_self'}
       rel="noreferrer"
       ref={ref}
-      aria-labelledby={labelId}
       id={describedById}
       aria-describedby={describedById}
       className={classNames('project-tile', isHorizontal ? 'project-tile--horizontal' : 'project-tile--vertical', isMapTile && 'project-tile--map')}

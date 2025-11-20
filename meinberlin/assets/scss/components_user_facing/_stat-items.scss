@@ -1,13 +1,16 @@
 .stat-items {
-    display: flex;
+    display: inline-flex;
+    align-items: baseline;
 
     dt {
+        order: 2;
         margin:0;
-        margin-right: 0.25 * $spacer;
-        font-weight: normal;        
+        margin-left: 0.25 * $spacer;
+        font-weight: normal;
     }
 
     dd {
+        order: 1;
         margin:0;
         margin-right: 0.25 * $spacer;
         font-weight: bold;
@@ -19,6 +22,7 @@
     margin-top:0;
     display: flex;
 }
+
 .maps-popups-popup-meta .stat-items {
     margin-right: $spacer;
 }

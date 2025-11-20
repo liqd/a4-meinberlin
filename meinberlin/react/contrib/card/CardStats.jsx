@@ -16,32 +16,32 @@ export const CardStats = (props) => {
       {permissions.view_rate_count && (
         <>
           <div className="stat-items card__stat ">
-          <dd>{props.positiveCount}</dd>
-          <dt>{positiveRatingsStr}</dt>
+            <dt>{positiveRatingsStr}</dt>
+            <dd>{props.positiveCount}</dd>
           </div>
           <div className="card__stat stat-items">
-          <dd>{props.negativeCount}</dd>
-          <dt>{negativeRatingsStr}</dt>
+            <dt>{negativeRatingsStr}</dt>
+            <dd>{props.negativeCount}</dd>
           </div>
         </>
       )}
 
       {permissions.view_support_count && (
         <div className="stat-items card__stat ">
-          <dd>{props.positiveCount}</dd>
           <dt>{supportStr}</dt>
+          <dd>{props.positiveCount}</dd>
         </div>
       )}
       {permissions.view_vote_count && (
         <div className="stat-items card__stat ">
-          <dd>{props.voteCount}</dd>
           <dt>{votesStr}</dt>
+          <dd>{props.voteCount}</dd>
         </div>
       )}
       {permissions.view_comment_count && (
         <div className="stat-items card__stat ">
-          <dd>{props.commentCount}</dd>
           <dt>{commentsStr}</dt>
+          <dd>{props.commentCount}</dd>
         </div>
       )}
     </dl>

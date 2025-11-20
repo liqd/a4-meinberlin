@@ -15,6 +15,7 @@
             name="{{ name }}"
             placeholder="{% translate 'Search' %}"
             value="{{ value }}"
+            autocomplete="on"
         />
         {% for par_name, value in url_par.items %}
             {% if par_name != name %}

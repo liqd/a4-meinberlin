@@ -11,24 +11,39 @@ export const CardStats = (props) => {
   const votesStr = django.ngettext('Vote', 'Votes', props.voteCount)
 
   return (
-    <div className="card__stats">
+    <dl className="card__stats stats-dl">
       {/* ratings visible to admins in 1 and 2 phase budgeting due to `has_perm`  */}
       {permissions.view_rate_count && (
         <>
-          <p className="card__stat"><b>{props.positiveCount}</b>{positiveRatingsStr}</p>
-          <p className="card__stat"><b>{props.negativeCount}</b>{negativeRatingsStr}</p>
+          <div className="stat-items card__stat ">
+            <dt>{positiveRatingsStr}</dt>
+            <dd>{props.positiveCount}</dd>
+          </div>
+          <div className="card__stat stat-items">
+            <dt>{negativeRatingsStr}</dt>
+            <dd>{props.negativeCount}</dd>
+          </div>
         </>
       )}
 
       {permissions.view_support_count && (
-        <p className="card__stat"><b>{props.positiveCount}</b>{supportStr}</p>
+        <div className="stat-items card__stat ">
+          <dt>{supportStr}</dt>
+          <dd>{props.positiveCount}</dd>
+        </div>
       )}
       {permissions.view_vote_count && (
-        <p className="card__stat"><b>{props.voteCount}</b>{votesStr}</p>
+        <div className="stat-items card__stat ">
+          <dt>{votesStr}</dt>
+          <dd>{props.voteCount}</dd>
+        </div>
       )}
       {permissions.view_comment_count && (
-        <p className="card__stat"><b>{props.commentCount}</b>{commentsStr}</p>
+        <div className="stat-items card__stat ">
+          <dt>{commentsStr}</dt>
+          <dd>{props.commentCount}</dd>
+        </div>
       )}
-    </div>
+    </dl>
   )
 }

@@ -1,10 +1,17 @@
 {% load i18n widget_tweaks %}
 
+{% with field.id_for_label|add:"_helptext" as helptext_id %}
 <div class="form-group {% if add_class %}{{ add_class }}{% endif %} mb-3">
     <div class="form-check">
         <div class="d-flex align-items-start">
             <div class="flex-shrink-0" style="width: 1.25rem;">
-                {{ field|add_class:"form-check-input form-check-input__mb m-0"|add_error_attr:"aria-invalid:true" }}
+                {% if field.help_text %}
+                    {% with 'aria-describedby:'|add:helptext_id as describedby_attr %}
+                        {{ field|add_class:"form-check-input form-check-input__mb m-0"|add_error_attr:"aria-invalid:true"|attr:describedby_attr }}
+                    {% endwith %}
+                {% else %}
+                    {{ field|add_class:"form-check-input form-check-input__mb m-0"|add_error_attr:"aria-invalid:true" }}
+                {% endif %}
             </div>
             <label class="form-check-label ms-4 pl-1" for="{{ field.id_for_label }}">
                 {{ field.label }}
@@ -12,7 +19,7 @@
         </div>
 
         {% if field.help_text %}
-            <div class="form-hint ms-5 mt-1">
+            <div class="form-hint ms-5 mt-1" id="{{ helptext_id }}">
                 {{ field.help_text }}
             </div>
         {% endif %}
@@ -31,3 +38,4 @@
         {% endif %}
     </div>
 </div>
+{% endwith %}

@@ -12,7 +12,7 @@
 
             {% for footermenuitem in footer_nav %}
             <li {% if forloop.first %}class="initial-open"{% endif %}>
-              <h3 class="heading js-trigger">{{ footermenuitem.column_title }}</h3>
+              <h2 class="heading js-trigger title-3">{{ footermenuitem.column_title }}</h2>
               <ul>
                 {% for page_link in footermenuitem.page_link %}
                 <li><a href="{% if page_link.value.link.url %} {{ page_link.value.link.url }} {% else %}{{ page_link.value.link }}{% endif %}">

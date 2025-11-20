@@ -11,18 +11,18 @@
       {% endif %}
     {% endspaceless %}">
       <li class="figures-box__item">
-        <h3>
+        <p class="title-3">
           <i class="fas fa-globe" aria-hidden="true"></i>
           {% translate "Organisation" %}
-        </h3>
+        </p>
         <strong class="organisation-name">{{ project.organisation }}</strong>
       </li>
       {% if project.topics %}
         <li class="figures-box__item">
-          <h3>
+          <p class="title-3">
             <i class="fas fa-table-cells" aria-hidden="true"></i>
             {% translate "Topics" %}
-          </h3>
+          </p>
           <strong>
             {% for topic in project.topics.all %}
               {{ topic }} <br/>
@@ -32,18 +32,18 @@
       {% endif %}
       {% if project.administrative_district %}
         <li class="figures-box__item">
-          <h3>
+          <p class="title-3">
             <i class="fas fa-map-location-dot" aria-hidden="true"></i>
             {% translate "District" %}
-          </h3>
+          </p>
           <strong>{{ project.administrative_district }}</strong>
         </li>
       {% endif %}
       <li class="figures-box__item">
-        <h3>
+        <p class="title-3">
           <i class="fas fa-circle" aria-hidden="true"></i>
           {% translate "Status" %}
-        </h3>
+        </p>
         <strong>
           {% if project.phases.active_phases %}
             {% translate 'running' %}

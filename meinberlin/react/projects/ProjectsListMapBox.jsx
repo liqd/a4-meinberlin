@@ -184,7 +184,7 @@ const ProjectsListMapBox = ({
         projectStatus={projectStatus}
       />
       <div className={classNames('projects-list', !showMap && 'container')}>
-        <h1 className="aural">{pageHeader}</h1>
+        <h1 className="aural" tabIndex="-1">{pageHeader}</h1>
         <div className={classNames('projects-list__list-meta', filteredItems.length === 0 && 'projects-list__list-meta--no-results')}>
           <div
             ref={resultRef}

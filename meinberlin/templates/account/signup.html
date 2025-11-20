@@ -47,9 +47,7 @@
             </div>
 
             {% if form.captcha %}
-                {% with tabindex="0" %}
                 {% include 'meinberlin_contrib/includes/form_field.html' with field=form.captcha %}
-                {% endwith %}
             {% endif %}
 
             {% if redirect_field_value %}

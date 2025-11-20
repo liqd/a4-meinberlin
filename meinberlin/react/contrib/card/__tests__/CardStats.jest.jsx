@@ -19,12 +19,17 @@ test('2 phase: rating phase - can view comments and ratings count', () => {
       voteCount="7"
     />
   )
-  const comments = screen.getByText('Comments', { exact: false })
-  const dislikes = screen.getByText('Dislikes', { exact: false })
+  const commentsLabel = screen.getByText('Comments', { exact: false })
+  const dislikesLabel = screen.getByText('Dislikes', { exact: false })
   // strings constructed by ngettext will render both options as jest does not mock ngettext functionality,
   // it just returns both so we check for both as it is a predicatble outcome
-  expect(comments.textContent).toEqual('18CommentComments')
-  expect(dislikes.textContent).toEqual('1DislikeDislikes')
+  // With <dl><dt><dd> structure, we need to get the parent div to access both dt and dd
+  const comments = commentsLabel.closest('.stat-items')
+  const dislikes = dislikesLabel.closest('.stat-items')
+  expect(comments.textContent).toContain('18')
+  expect(comments.textContent).toContain('Comment')
+  expect(dislikes.textContent).toContain('1')
+  expect(dislikes.textContent).toContain('Dislike')
   expect(screen.queryByText('Votes')).toBeNull()
 })
 
@@ -45,11 +50,16 @@ test('3 phase: support phase - can view comments and support count', () => {
       voteCount="7"
     />
   )
-  const comments = screen.getByText('Comments', { exact: false })
-  const likes = screen.getByText('Support', { exact: false })
+  const commentsLabel = screen.getByText('Comments', { exact: false })
+  const likesLabel = screen.getByText('Support', { exact: false })
 
-  expect(comments.textContent).toEqual('18CommentComments')
-  expect(likes.textContent).toEqual('4SupporterSupporters')
+  // With <dl><dt><dd> structure, we need to get the parent div to access both dt and dd
+  const comments = commentsLabel.closest('.stat-items')
+  const likes = likesLabel.closest('.stat-items')
+  expect(comments.textContent).toContain('18')
+  expect(comments.textContent).toContain('Comment')
+  expect(likes.textContent).toContain('4')
+  expect(likes.textContent).toContain('Supporter')
   expect(screen.queryByText('Dislikes')).toBeNull()
   expect(screen.queryByText('Likes')).toBeNull()
   expect(screen.queryByText('Votes')).toBeNull()
@@ -74,11 +84,16 @@ test('3 phase: finished - can view comments and vote count', () => {
       voteCount="7"
     />
   )
-  const comments = screen.getByText('Comments', { exact: false })
-  const votes = screen.getByText('Votes', { exact: false })
+  const commentsLabel = screen.getByText('Comments', { exact: false })
+  const votesLabel = screen.getByText('Votes', { exact: false })
 
-  expect(comments.textContent).toEqual('18CommentComments')
-  expect(votes.textContent).toEqual('7VoteVotes')
+  // With <dl><dt><dd> structure, we need to get the parent div to access both dt and dd
+  const comments = commentsLabel.closest('.stat-items')
+  const votes = votesLabel.closest('.stat-items')
+  expect(comments.textContent).toContain('18')
+  expect(comments.textContent).toContain('Comment')
+  expect(votes.textContent).toContain('7')
+  expect(votes.textContent).toContain('Vote')
   expect(screen.queryByText('Likes')).toBeNull()
   expect(screen.queryByText('Dislikes')).toBeNull()
   expect(screen.queryByText('4 Likes')).toBeNull()

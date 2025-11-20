@@ -7,13 +7,17 @@ const inAppNotificationStr = django.gettext('In-app')
 
 const NotificationToggle = ({ notification, notificationState, name, onToggle }) => {
   const activityFeedName = notification.activityFeedName
+  const emailToggleId = name + '-email'
+  const inAppToggleId = name + '-inapp'
   return (
-    <>
-      <h3>{notification.title}</h3>
+    <fieldset>
+      <legend>
+        <h3>{notification.title}</h3>
+      </legend>
       <p>{notification.description}</p>
       <div className="flexbox">
         <ToggleSwitch
-          uniqueId={name}
+          uniqueId={emailToggleId}
           onSwitchStr={emailStr}
           labelLeft={false}
           checked={notificationState[name]}
@@ -23,7 +27,7 @@ const NotificationToggle = ({ notification, notificationState, name, onToggle })
         {activityFeedName &&
           <ToggleSwitch
             className="ml-1"
-            uniqueId={name}
+            uniqueId={inAppToggleId}
             onSwitchStr={inAppNotificationStr}
             labelLeft={false}
             checked={notificationState[activityFeedName]}
@@ -31,7 +35,7 @@ const NotificationToggle = ({ notification, notificationState, name, onToggle })
             size="small"
           />}
       </div>
-    </>
+    </fieldset>
   )
 }
 

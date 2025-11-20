@@ -29,36 +29,43 @@ const translations = {
 
 const Ratings = ({ feature }) => (
   <>
-    <span className="map-popup-upvotes">
-      <strong>{feature.properties.positive_rating_count}</strong>&nbsp;
-      {translations.getLikes(feature.properties.positive_rating_count)}
-    </span>
-    <span className="map-popup-downvotes">
-      <strong>{feature.properties.negative_rating_count}</strong>&nbsp;
-      {translations.getDislikes(feature.properties.negative_rating_count)}
-    </span>
+    <div className="stat-items">
+      <dt>{translations.getLikes(feature.properties.positive_rating_count)}</dt>
+      <dd>{feature.properties.positive_rating_count}</dd>
+    </div>
+    <div className="map-popup-downvotes stat-items">
+      <dt>{translations.getDislikes(feature.properties.negative_rating_count)}</dt>
+      <dd>{feature.properties.negative_rating_count}</dd>
+    </div>
   </>
 )
 
 const Support = ({ feature }) => (
-  <span className="map-popup-upvotes">
-    <strong>{feature.properties.positive_rating_count}</strong> {translations.support}
-  </span>
+  <>
+    <div className="map-popup-upvotes stat-items">
+      <dt>{translations.support}</dt>
+      <dd>{feature.properties.positive_rating_count}</dd>
+    </div>
+  </>
 )
 
 // FIXME: This might not be needed anymore, it's not visible in the design
 const VoteCount = ({ feature }) => (
-  <span className="map-popup-vote-count">
-    <strong>{feature.properties.vote_count}</strong>&nbsp;
-    {translations.getVotes(feature.properties.vote_count)}
-  </span>
+  <>
+    <div className="stat-items">
+      <dt>{translations.getVotes(feature.properties.vote_count)}</dt>
+      <dd>{feature.properties.vote_count}</dd>
+    </div>
+  </>
 )
 
 const CommentCount = ({ feature }) => (
-  <span className="map-popup-comments-count">
-    <strong>{feature.properties.comment_count}</strong>&nbsp;
-    {translations.getComments(feature.properties.comment_count)}
-  </span>
+  <>
+    <div className="stat-items">
+      <dt>{translations.getComments(feature.properties.comment_count)}</dt>
+      <dd>{feature.properties.comment_count}</dd>
+    </div>
+  </>
 )
 
 /**
@@ -81,12 +88,12 @@ export const ItemPopup = ({ feature }) => {
           {feature.properties.name}
         </a>
       </div>
-      <div className="maps-popups-popup-meta">
+      <dl className="maps-popups-popup-meta stats-dl">
         {viewRates && <Ratings feature={feature} />}
         {viewSupport && <Support feature={feature} />}
         {viewVoteCount && <VoteCount feature={feature} />}
         <CommentCount feature={feature} />
-      </div>
+      </dl>
       <a href={feature.properties.url} className="more">{translations.detailsStr}
         <span className="aural">{translations.toStr} {feature.properties.name}</span>
       </a>

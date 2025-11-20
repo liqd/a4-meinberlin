@@ -25,11 +25,15 @@ test('Card component with item name and link and comment count', () => {
     <Card item={proposal} permissions={permissions} />
   )
 
-  const comments = screen.getByText('Comments', { exact: false })
+  const commentsLabel = screen.getByText('Comments', { exact: false })
 
   // strings constructed by ngettext will render both options as jest does not mock ngettext functionality,
   // it just returns both so we check for both as it is a predicatble outcome
-  expect(comments.textContent).toEqual('7CommentComments')
+  // With <dl><dt><dd> structure, we need to get the parent div to access both dt and dd
+  const comments = commentsLabel.closest('.stat-items')
+  const [dtComments, ddComments] = comments.querySelectorAll('dt, dd')
+  expect(dtComments.textContent).toContain('Comment')
+  expect(ddComments.textContent).toEqual('7')
   expect(screen.getByText('My idea')).toBeTruthy()
   expect(screen.getByText('Show')).toBeTruthy()
   expect(screen.queryByText('Likes')).toBeNull()
@@ -58,13 +62,18 @@ test('Renders a link to item details', () => {
     <Card item={proposal} permissions={permissions} />
   )
 
-  const comments = screen.getByText('Comments', { exact: false })
-  const dislikes = screen.getByText('Dislikes', { exact: false })
+  const commentsLabel = screen.getByText('Comments', { exact: false })
+  const dislikesLabel = screen.getByText('Dislikes', { exact: false })
 
-  expect(comments.textContent).toEqual('7CommentComments')
-  // don't do same check for likes count as it also finds the
-  // dislikes as non exact string but 1 count is enough
-  expect(dislikes.textContent).toEqual('1DislikeDislikes')
+  // With <dl><dt><dd> structure, we need to get the parent div to access both dt and dd
+  const comments = commentsLabel.closest('.stat-items')
+  const dislikes = dislikesLabel.closest('.stat-items')
+  const [dtComments, ddComments] = comments.querySelectorAll('dt, dd')
+  const [dtDislikes, ddDislikes] = dislikes.querySelectorAll('dt, dd')
+  expect(dtComments.textContent).toContain('Comment')
+  expect(ddComments.textContent).toEqual('7')
+  expect(dtDislikes.textContent).toContain('Dislike')
+  expect(ddDislikes.textContent).toEqual('1')
   expect(screen.getByText('My idea')).toBeTruthy()
   expect(screen.getByText('Show')).toBeTruthy()
 })

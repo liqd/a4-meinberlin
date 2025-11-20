@@ -28,23 +28,23 @@ const translations = {
 }
 
 const Ratings = ({ feature }) => (
-<>
+  <>
     <div className="stat-items">
-    <dd>{feature.properties.positive_rating_count}</dd>
-    <dt>{translations.getLikes(feature.properties.positive_rating_count)}</dt>
+      <dt>{translations.getLikes(feature.properties.positive_rating_count)}</dt>
+      <dd>{feature.properties.positive_rating_count}</dd>
     </div>
     <div className="map-popup-downvotes stat-items">
-    <dd>{feature.properties.negative_rating_count}</dd>
-    <dt>{translations.getDislikes(feature.properties.negative_rating_count)}</dt>
+      <dt>{translations.getDislikes(feature.properties.negative_rating_count)}</dt>
+      <dd>{feature.properties.negative_rating_count}</dd>
     </div>
-</>
+  </>
 )
 
 const Support = ({ feature }) => (
   <>
     <div className="map-popup-upvotes stat-items">
-    <dd>{feature.properties.positive_rating_count}</dd>
-    <dt>{translations.support}</dt>
+      <dt>{translations.support}</dt>
+      <dd>{feature.properties.positive_rating_count}</dd>
     </div>
   </>
 )
@@ -53,8 +53,8 @@ const Support = ({ feature }) => (
 const VoteCount = ({ feature }) => (
   <>
     <div className="stat-items">
-    <dd>{feature.properties.vote_count}</dd>
-    <dt>{translations.getVotes(feature.properties.vote_count)}</dt>
+      <dt>{translations.getVotes(feature.properties.vote_count)}</dt>
+      <dd>{feature.properties.vote_count}</dd>
     </div>
   </>
 )
@@ -62,8 +62,8 @@ const VoteCount = ({ feature }) => (
 const CommentCount = ({ feature }) => (
   <>
     <div className="stat-items">
-    <dd>{feature.properties.comment_count}</dd>
-    <dt>{translations.getComments(feature.properties.comment_count)}</dt>
+      <dt>{translations.getComments(feature.properties.comment_count)}</dt>
+      <dd>{feature.properties.comment_count}</dd>
     </div>
   </>
 )

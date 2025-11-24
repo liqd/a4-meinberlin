@@ -98,6 +98,7 @@ class FilterSecondary extends React.Component {
             placeholder={searchTitleStr}
             onChange={(e) => this.changeTitleSearch(e)}
             value={this.state.titleSearchChoice}
+            autoComplete="on"
           />
           <button
             className="btn btn--light input-group__after"

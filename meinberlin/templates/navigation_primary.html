@@ -2,7 +2,7 @@
 
 <nav class="hamburger-nav hamburger-nav--primary js-navigation-primary" id="navigation-primary">
     <div class="hamburger-nav__tree-wrapper js-navigation-tree-wrapper">
-        <h3 class="hamburger-nav__heading hamburger-nav__heading--aural">{% translate 'Page navigation' %}</h3>
+        <h3 class="hamburger-nav__heading hamburger-nav__heading--aural" tabindex="-1">{% translate 'Page navigation' %}</h3>
         <ul class="hamburger-nav__list">
             {% url 'meinberlin_plans:plan-list' as project_list %}
             <li class="hamburger-nav__item {% if request.path == project_list %}hamburger-nav__item--active{% endif %}">

@@ -12,6 +12,7 @@ const participationEndedStr = django.gettext('Participation ended')
 const beginsOnStr = django.gettext('Begins on the')
 const participationProjectsStr = django.gettext('Participation projects')
 const participationProjectStr = django.gettext('Participation project')
+const clockIconLabel = django.gettext('Clock')
 
 function truncateText (item) {
   if (item.length > 170) {
@@ -44,7 +45,6 @@ const ProjectTile = forwardRef(function ProjectTile ({ project, isHorizontal, to
       target={project.subtype === 'external' ? '_blank' : '_self'}
       rel="noreferrer"
       ref={ref}
-      aria-labelledby={labelId}
       id={describedById}
       aria-describedby={describedById}
       className={classNames('project-tile', isHorizontal ? 'project-tile--horizontal' : 'project-tile--vertical', isMapTile && 'project-tile--map')}
@@ -75,7 +75,7 @@ const ProjectTile = forwardRef(function ProjectTile ({ project, isHorizontal, to
             <div className="project-tile__topics">
               <ProjectTilePills project={project} topicChoices={topicChoices} />
             </div>}
-          <h3 className="project-tile__title" id={labelId}>{project.title}</h3>
+          <p className="project-tile__title title-3" id={labelId}>{project.title}</p>
           {project.description && !isMapTile && (
             <p className="project-tile__description">
               {truncateText(project.description)}
@@ -99,7 +99,7 @@ const ProjectTile = forwardRef(function ProjectTile ({ project, isHorizontal, to
               {statusBarProgress}
             </progress>
             <label htmlFor={statusId} className="status-bar__timespan">
-              <i className="far fa-clock" aria-hidden="true" />
+              <i className="far fa-clock" role="img" aria-label={clockIconLabel} />
               {getTimespan(project)}
             </label>
           </>

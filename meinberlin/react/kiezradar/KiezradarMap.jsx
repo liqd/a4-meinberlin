@@ -179,6 +179,7 @@ function RadiusControls ({ minRadius, maxRadius, radius, onChange }) {
         </div>
       </div>
       <input
+        id="radius"
         className="kiezradar__range-slider"
         style={rangeBackgroundStyle}
         type="range"

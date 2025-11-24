@@ -13,13 +13,20 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Changed
 
+- Make tile_image field optional in DiPlan API - Bplans sent without an image automatically receive the placeholder image
 - Password visibility toggle added to login and signup forms
 - External projects/plans show icon to indicate external link
+- Offline Event is now A Module
+- Option to select plans from different organisations in projects
 
 ### Fixed
 
 - Kiezradar filter projects by organisation
 - Kiezradar show projects/plans with the same name in Projects List
+
+### Added
+
+- Initiators can delete projects with no contributions 
 
 ## v2509.1
 

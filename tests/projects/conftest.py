@@ -6,6 +6,8 @@ from meinberlin.test.factories import ideas
 from meinberlin.test.factories.documents import ChapterFactory
 from meinberlin.test.factories.likes import LikeFactory
 from meinberlin.test.factories.livequestions import LiveQuestionFactory
+from meinberlin.test.factories.mapideas import MapIdeaFactory
+from meinberlin.test.factories.maptopicprio import MaptopicFactory
 from meinberlin.test.factories.topicprio import TopicFactory
 
 from . import factories as invites
@@ -24,3 +26,5 @@ register(TopicFactory)
 register(LiveQuestionFactory)
 register(LikeFactory)
 register(ChapterFactory)
+register(MapIdeaFactory)
+register(MaptopicFactory)

@@ -101,7 +101,17 @@ class ModuleCreateView(
             )
             phase.save()
 
+    # Now get_next returns the first effective component instead of the module_basic component
     def get_next(self, module):
+        dashboard = get_project_dashboard(module.project)
+        module_components = dashboard.get_module_components()
+
+        # Find the first effective component (sorted by weight)
+        for component in module_components:
+            if component.is_effective(module):
+                return component.get_base_url(module)
+
+        # Fallback if no component is effective
         return reverse(
             "a4dashboard:dashboard-module_basic-edit",
             kwargs={"module_slug": module.slug},
@@ -255,6 +265,50 @@ class DashboardProjectListView(
 ):
     def get_queryset(self):
         return super().get_queryset().filter(externalproject=None)
+
+
+class DashboardProjectDeleteModalView(
+    ProjectMixin, mixins.DashboardBaseMixin, PermissionRequiredMixin, generic.DetailView
+):
+    """View to load the delete modal via HTMX."""
+
+    permission_required = "a4projects.delete_project"
+    model = project_models.Project
+    slug_url_kwarg = "project_slug"
+    template_name = "meinberlin_projects/partials/project_delete_modal_htmx.html"
+
+    def get_permission_object(self):
+        return self.get_object()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["delete_url"] = reverse(
+            "a4dashboard:project-delete",
+            kwargs={
+                "organisation_slug": self.organisation.slug,
+                "project_slug": self.project.slug,
+            },
+        )
+        return context
+
+
+class DashboardProjectDeleteView(
+    ProjectMixin, mixins.DashboardBaseMixin, PermissionRequiredMixin, generic.DeleteView
+):
+    permission_required = "a4projects.delete_project"
+    model = project_models.Project
+    slug_url_kwarg = "project_slug"
+    template_name = "meinberlin_projects/project_confirm_delete.html"
+    menu_item = "project"
+
+    def get_permission_object(self):
+        return self.get_object()
+
+    def get_success_url(self):
+        return reverse(
+            "a4dashboard:project-list",
+            kwargs={"organisation_slug": self.organisation.slug},
+        )
 
 
 class ProjectCreateView(

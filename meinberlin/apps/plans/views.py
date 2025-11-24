@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils import timezone
@@ -19,6 +20,7 @@ from adhocracy4.filters import views as filter_views
 from adhocracy4.filters import widgets as filter_widgets
 from adhocracy4.filters.filters import DefaultsFilterSet
 from adhocracy4.filters.filters import FreeTextFilter
+from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.projects.models import Topic
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.enums import TopicEnum
@@ -35,6 +37,7 @@ from meinberlin.apps.organisations.models import Organisation
 from meinberlin.apps.plans import models
 from meinberlin.apps.plans import signals
 from meinberlin.apps.plans.forms import PlanForm
+from meinberlin.apps.plans.forms import ProjectPlansDashboardForm
 from meinberlin.apps.plans.models import Plan
 from meinberlin.apps.projects.serializers import ProjectSerializer
 
@@ -352,3 +355,53 @@ class PlanPublishView(
         plan.save()
 
         messages.success(self.request, _("The plan is unpublished."))
+
+
+class PlansDropdownView(
+    ProjectMixin,
+    a4dashboard_mixins.DashboardBaseMixin,
+    rules_mixins.PermissionRequiredMixin,
+    generic.View,
+):
+    """HTMX View for dynamically loading plans dropdown based on selected organisation."""
+
+    permission_required = "a4projects.change_project"
+    template_name = "meinberlin_plans/includes/plans_dropdown.html"
+
+    def get_permission_object(self):
+        return self.project
+
+    def get(self, request, *args, **kwargs):
+        from django.apps import apps
+        from django.template.loader import render_to_string
+
+        organisation_id = request.GET.get("organisation")
+        project = self.project
+
+        # Create form instance with project and organisation data
+        form_data = {}
+        if organisation_id:
+            form_data["organisation"] = organisation_id
+
+        form = ProjectPlansDashboardForm(
+            instance=project, data=form_data if form_data else None
+        )
+
+        # Update plans queryset based on selected organisation or default to project's organisation
+        Organisation = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
+        selected_organisation = (
+            project.organisation
+        )  # Default to project's organisation
+
+        if organisation_id:
+            try:
+                selected_organisation = Organisation.objects.get(id=organisation_id)
+                form.initial["organisation"] = selected_organisation
+            except (Organisation.DoesNotExist, ValueError):
+                pass
+
+        form.fields["plans"].queryset = selected_organisation.plan_set.all()
+
+        context = {"form": form}
+        rendered = render_to_string(self.template_name, context, request=request)
+        return HttpResponse(rendered)

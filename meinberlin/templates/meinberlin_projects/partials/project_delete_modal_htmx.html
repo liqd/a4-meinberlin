@@ -1,0 +1,24 @@
+{% load i18n %}
+<div class="project-delete-modal">
+  <div class="modal-content"> 
+  <div class="modal-header">
+    <h2 id="project-delete-modal-label" class="modal-title">{% translate 'Delete' %}</h2>
+    <button type="button" class="close" data-bs-dismiss="modal" aria-label="{% translate 'Close' %}">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="modal-body">
+      {% blocktrans with project_name=project.name %}Sind Sie sicher dass Sie das Projekt '{{ project_name }}' löschen wollen?{% endblocktrans %}
+  </div>
+  <div class="modal-buttons">
+      <button type="button" data-bs-dismiss="modal" class="link">{% translate 'Cancel' %}</button>
+      <form id="project-delete-form-{{ project.slug }}" enctype="multipart/form-data" action="{{ delete_url }}" method="post" class="u-inline">
+        {% csrf_token %}
+        <button type="submit" class="dashboard-delete-btn">
+          <i class="fas fa-trash-alt" aria-hidden="true"></i>
+          {% translate 'Delete' %}
+        </button>
+      </form>
+  </div>
+</div>
+</div>

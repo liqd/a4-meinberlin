@@ -10,6 +10,7 @@ from adhocracy4.comments.models import Comment
 from adhocracy4.polls.models import Vote as Vote
 from adhocracy4.ratings.models import Rating
 from meinberlin.apps.budgeting.models import Proposal
+from meinberlin.apps.dashboard import is_event_module
 from meinberlin.apps.ideas.models import Idea
 from meinberlin.apps.kiezkasse.models import Proposal as KKProposal
 from meinberlin.apps.livequestions.models import LiveQuestion
@@ -45,13 +46,15 @@ def get_sorted_modules(context):
     if module:
         module_qs = module.other_modules
 
-    return list(
+    modules = list(
         itertools.chain(
             module_qs.running_modules(),
             module_qs.future_modules(),
             module_qs.past_modules(),
         )
     )
+    # Remove offline modules from the module section in the project view
+    return [m for m in modules if not is_event_module(m)]
 
 
 @register.filter

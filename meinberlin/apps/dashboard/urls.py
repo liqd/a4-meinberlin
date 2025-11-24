@@ -64,6 +64,11 @@ urlpatterns = [
         name="plan-publish",
     ),
     re_path(
+        r"^projects/(?P<project_slug>[-\w_]+)/plans-dropdown/$",
+        plan_views.PlansDropdownView.as_view(),
+        name="plans-dropdown",
+    ),
+    re_path(
         r"^projects/(?P<project_slug>[-\w_]+)/blueprints/$",
         views.ModuleBlueprintListView.as_view(),
         name="module-blueprint-list",
@@ -100,6 +105,16 @@ urlpatterns = [
         r"^organisations/(?P<organisation_slug>[-\w_]+)/projects/$",
         views.DashboardProjectListView.as_view(),
         name="project-list",
+    ),
+    re_path(
+        r"^organisations/(?P<organisation_slug>[-\w_]+)/projects/(?P<project_slug>[-\w_]+)/delete/modal/$",
+        views.DashboardProjectDeleteModalView.as_view(),
+        name="project-delete-modal",
+    ),
+    re_path(
+        r"^organisations/(?P<organisation_slug>[-\w_]+)/projects/(?P<project_slug>[-\w_]+)/delete/$",
+        views.DashboardProjectDeleteView.as_view(),
+        name="project-delete",
     ),
     re_path(
         r"^organisations/(?P<organisation_slug>[-\w_]+)/projects/create$",

@@ -1,77 +1,88 @@
 {% load i18n %}
 
-<nav id="navigation-primary" class="js-navigation-primary">
-    <div class="tree-wrapper js-navigation-tree-wrapper">
-        <h3 class="aural" tabindex="-1">{% translate 'Page navigation' %}</h3>
-        <ul class="navigation-tree">
+<nav class="hamburger-nav hamburger-nav--primary js-navigation-primary" id="navigation-primary">
+    <div class="hamburger-nav__tree-wrapper js-navigation-tree-wrapper">
+        <h3 class="hamburger-nav__heading hamburger-nav__heading--aural" tabindex="-1">{% translate 'Page navigation' %}</h3>
+        <ul class="hamburger-nav__list">
             {% url 'meinberlin_plans:plan-list' as project_list %}
-            <li class="{% if request.path == project_list %}active{% endif %}">
-                <a href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Kiezradar' %}</a>
+            <li class="hamburger-nav__item {% if request.path == project_list %}hamburger-nav__item--active{% endif %}">
+                <a href="{{ project_list }}" class="hamburger-nav__link">{% translate 'Kiezradar' %}</a>
             </li>
+            
             {% url 'notifications' as notifications_url %}
-            <li class="{% if request.path == notifications_url %}active{% endif %}">
-                <a href="{{ notifications_url }}">
+            <li class="hamburger-nav__item {% if request.path == notifications_url %}hamburger-nav__item--active{% endif %}">
+                <a href="{{ notifications_url }}" class="hamburger-nav__link">
                     {% translate 'Notifications' %}
                     {% if notifications_count > 0 %}
-                        <span class="header__notification-count">{{ notifications_count }}</span>
+                        <span class="hamburger-nav__badge">{{ notifications_count }}</span>
                     {% endif %}
                 </a>
             </li>
+
             {% if settings.meinberlin_cms.HeaderPages.help_page %}
-                <li class="{% if request.path == settings.meinberlin_cms.HeaderPages.help_page.get_url %}active{% endif %}">
-                    <a href="{{ settings.meinberlin_cms.HeaderPages.help_page.get_url }}">{% translate 'FAQ & Support' %}</a>
+                {% with help_url=settings.meinberlin_cms.HeaderPages.help_page.get_url %}
+                <li class="hamburger-nav__item {% if request.path == help_url %}hamburger-nav__item--active{% endif %}">
+                    <a href="{{ help_url }}" class="hamburger-nav__link">{% translate 'FAQ & Support' %}</a>
                 </li>
+                {% endwith %}
             {% endif %}
+
             {% for item in topnav %}
-                <li class="{% if request.path == item.url %}active{% endif %}">
-                    <a href="{{ item.url }}">{{ item.title }}</a>
+                <li class="hamburger-nav__item {% if request.path == item.url %}hamburger-nav__item--active{% endif %}">
+                    <a href="{{ item.url }}" class="hamburger-nav__link">{{ item.title }}</a>
                 </li>
             {% endfor %}
+
             {% if request.user.is_authenticated %}
-                <li>
-                    <span class="dropdown-toggle" onclick="toggleDropdown(document.getElementById('user-account-settings-dropdown'))" >
-                        <i class="fa fa-solid fa-user"></i>
+                <li class="hamburger-nav__item hamburger-nav__item--dropdown">
+                    <button class="hamburger-nav__toggle" onclick="toggleDropdown(document.getElementById('user-account-settings-dropdown'), this)">
+                        <i class="hamburger-nav__icon fa fa-solid fa-user"></i>
                         {% translate "User Account Settings" %}
-                    </span>
-                    <ul class="navigation-tree" id="user-account-settings-dropdown">
-                        <li>
-                            {% url 'account_profile' as account_url %}
-                            <a href="{{ account_url }}" class="{% if request.path == account_url %}active{% endif %}">{% translate "Account & Security" %}</a>
+                        <i class="hamburger-nav__chevron fa-solid fa-chevron-down"></i>
+                    </button>
+                    <ul class="hamburger-nav__list hamburger-nav__list--sub {% if request.path == account_url or request.path == notification_settings_url or request.path == search_profiles_url or request.path == kiezradar_filters_url %}active{% endif %}" id="user-account-settings-dropdown">
+                        {% url 'account_profile' as account_url %}
+                        <li class="hamburger-nav__item">
+                            <a href="{{ account_url }}" class="hamburger-nav__link {% if request.path == account_url %}hamburger-nav__link--active{% endif %}">{% translate "Account & Security" %}</a>
                         </li>
-                        <li>
-                            {% url 'notification_settings' as notification_settings_url %}
-                            <a href="{{ notification_settings_url }}" class="{% if request.path == notification_settings_url %}active{% endif %}">{% translate "Notification Settings" %}</a>
+                        
+                        {% url 'notification_settings' as notification_settings_url %}
+                        <li class="hamburger-nav__item">
+                            <a href="{{ notification_settings_url }}" class="hamburger-nav__link {% if request.path == notification_settings_url %}hamburger-nav__link--active{% endif %}">{% translate "Notification Settings" %}</a>
                         </li>
-                        <li>
-                            {% url 'followed_projects' as followed_projects_url %}
+                        {% url 'followed_projects' as followed_projects_url %}
+                        <li class="hamburger-nav__item">
                             <a href="{{ followed_projects_url }}" class="{% if request.path == followed_projects_url %}active{% endif %}">{% translate "Followed Projects" %}</a>
                         </li>
-                        <li>
-                            {% url 'search_profiles' as search_profiles_url %}
-                            <a href="{{ search_profiles_url }}" class="{% if request.path == search_profiles_url %}active{% endif %}">{% translate "Searchprofiles" %}</a>
+                        {% url 'search_profiles' as search_profiles_url %}
+                        <li class="hamburger-nav__item">
+                            <a href="{{ search_profiles_url }}" class="hamburger-nav__link {% if request.path == search_profiles_url %}hamburger-nav__link--active{% endif %}">{% translate "Searchprofiles" %}</a>
                         </li>
-                        <li>
-                            {% url 'kiezradar_filters' as kiezradar_filters_url %}
-                            <a href="{{ kiezradar_filters_url }}" class="{% if request.path == kiezradar_filters_url %}active{% endif %}">{% translate "Kiez Selection" %}</a>
+                        
+                        {% url 'kiezradar_filters' as kiezradar_filters_url %}
+                        <li class="hamburger-nav__item">
+                            <a href="{{ kiezradar_filters_url }}" class="hamburger-nav__link {% if request.path == kiezradar_filters_url %}hamburger-nav__link--active{% endif %}">{% translate "Kiez Selection" %}</a>
                         </li>
                     </ul>
                 </li>
             {% endif %}
+
             {% if request.user.organisations or request.user.is_superuser %}
-                <li>
-                    <span class="dropdown-toggle" onclick="toggleDropdown(document.getElementById('dashboard-dropdown'))">
-                        <i class="fa-solid fa-pen-to-square"></i>
+                <li class="hamburger-nav__item hamburger-nav__item--dropdown">
+                    <button class="hamburger-nav__toggle" onclick="toggleDropdown(document.getElementById('dashboard-dropdown'), this)">
+                        <i class="hamburger-nav__icon fa-solid fa-pen-to-square"></i>
                         {% translate 'Dashboard' %}
-                    </span>
-                    <ul class="navigation-tree" id="dashboard-dropdown">
+                        <i class="hamburger-nav__chevron fa-solid fa-chevron-down"></i>
+                    </button>
+                    <ul class="hamburger-nav__list hamburger-nav__list--sub" id="dashboard-dropdown">
                         {% for organisation in request.user.organisations %}
-                            <li>
-                                <a href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">{{ organisation.name }}</a>
+                            <li class="hamburger-nav__item">
+                                <a href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}" class="hamburger-nav__link">{{ organisation.name }}</a>
                             </li>
                         {% endfor %}
                         {% if request.user.is_superuser %}
-                            <li>
-                                <a href="{% url 'meinberlin_platformemails:create' %}">{% translate "Platform Mail" %}</a>
+                            <li class="hamburger-nav__item">
+                                <a href="{% url 'meinberlin_platformemails:create' %}" class="hamburger-nav__link">{% translate "Platform Mail" %}</a>
                             </li>
                         {% endif %}
                     </ul>
@@ -79,29 +90,46 @@
             {% endif %}
         </ul>
     </div>
-    <div class="navigation-meta">
-        <h3 class="heading"></h3>
-        <ul>
+
+    <div class="hamburger-nav__meta">
+        <ul class="hamburger-nav__list hamburger-nav__list--meta">
+            <li class="hamburger-nav__item hamburger-nav__item--heading">{% translate "Account" %}</li>
+            
             {% if request.user.is_authenticated %}
-                <li>
-                    <form class="block--nogap text--color-dark" action="{% url 'account_logout' %}" method="post" aria-label="{% translate 'Log out' %}">
+                <li class="hamburger-nav__item">
+                    <form class="hamburger-nav__form" action="{% url 'account_logout' %}" method="post" aria-label="{% translate 'Log out' %}">
                         {% csrf_token %}
                         <input type="hidden" name="next" value="{{ redirect_field_value }}">
-                        <button class="link navigation-meta__link" type="submit">{% translate "Log out" %}</button>
+                        <button class="hamburger-nav__link hamburger-nav__link--button" type="submit">{% translate "Log out" %}</button>
                     </form>
                 </li>
-            {% endif %}
-            {% if not request.user.is_authenticated %}
-                <li>
-                    <a href="{% url 'account_login' %}?next={{ redirect_field_value|urlencode }}">{% translate "Log in" %}</a>
+            {% else %}
+                <li class="hamburger-nav__item">
+                    <a href="{% url 'account_login' %}?next={{ redirect_field_value|urlencode }}" class="hamburger-nav__link">{% translate "Log in" %}</a>
                 </li>
-                <li>
-                    <a href="{% url 'account_signup' %}?next={{ redirect_field_value|urlencode }}">{% translate "Register" %}</a>
+                <li class="hamburger-nav__item">
+                    <a href="{% url 'account_signup' %}?next={{ redirect_field_value|urlencode }}" class="hamburger-nav__link">{% translate "Register" %}</a>
                 </li>
-                <li>
-                    <a href="{% url 'account_reset_password' %}?next={{ redirect_field_value|urlencode }}">{% translate "Forgot Password" %}</a>
+                <li class="hamburger-nav__item">
+                    <a href="{% url 'account_reset_password' %}?next={{ redirect_field_value|urlencode }}" class="hamburger-nav__link">{% translate "Forgot Password?" %}</a>
                 </li>
             {% endif %}
         </ul>
     </div>
 </nav>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Open dropdowns that contain active links
+  document.querySelectorAll('.hamburger-nav__list--sub .hamburger-nav__link--active').forEach(activeLink => {
+    const dropdown = activeLink.closest('.hamburger-nav__list--sub');
+    if (dropdown) {
+      dropdown.style.display = 'block';
+      const button = dropdown.previousElementSibling;
+      if (button && button.classList.contains('hamburger-nav__toggle')) {
+        button.setAttribute('data-dropdown-open', 'true');
+      }
+    }
+  });
+});
+</script>

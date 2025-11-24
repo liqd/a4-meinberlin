@@ -1,34 +1,143 @@
-.navigation-meta .heading {
-    padding-bottom: 1.5em;
-    padding-top: 1.5em;
-    border-top: 1px solid $gray-lighter;
-    border-bottom: 1px solid $gray-lighter;
-    margin: 0;
+.hamburger-nav {
+  padding-bottom: 0;
 }
 
-.navigation-meta a {
-    border-bottom: 1px solid $gray-lighter;
+.hamburger-nav__heading--aural {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
-.navigation-meta li:last-child a {
-    border-bottom: 0;
+.hamburger-nav__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: $white;
+  overflow: hidden;
 }
 
-.navigation-meta:last-child li:last-child {
-    border-bottom: 1px solid $gray-lighter;
+.hamburger-nav__list--meta > li {
+  border-top: 0;
 }
 
-.navigation-meta .heading:empty {
-    height: 1.375em;
-    padding: 1em;
+.hamburger-nav__list--meta > li > a {
+  color: $link-color;
 }
 
-.navigation-meta .navigation-meta__link {
-    margin: 3px;
-    display: block;
-    padding: 1em 0 1em 12px;
+.hamburger-nav__item {
+  position: relative;
+  border-top: 1px solid $gray-lighter;
+  margin: 0;
+}
 
-    @media screen and (min-width: $breakpoint-tablet-landscape) {
-        padding: 1em 24px;
-    }
+.hamburger-nav__list--sub {
+  display: none;
+  overflow: hidden !important;
+}
+
+.hamburger-nav__list--sub > .hamburger-nav__item {
+  border-top: 1px solid $gray-lighter;
+  background-color: $gray-lightest;
+}
+
+
+
+.hamburger-nav__item--active {
+  font-weight: bold;
+}
+
+.hamburger-nav__item--heading {
+  padding: 1em 24px;
+  border-top: 1px solid $white;
+  border-bottom: 1px solid $white;
+  background-color: $gray-lightest;
+  font-weight: bold;
+  border: none;
+}
+
+.hamburger-nav__link {
+  display: block;
+  padding: 1em 24px;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.2s ease;
+}
+
+.hamburger-nav__link--active {
+  font-weight: bold;
+}
+
+.hamburger-nav__link--button {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: $link-color;
+}
+
+.hamburger-nav__toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  transition: background-color 0.2s ease;
+  padding: 1em 24px;
+}
+
+.hamburger-nav__chevron {
+  margin-left: auto;
+  transition: transform 0.3s ease;
+  width: 1rem;
+  text-align: center;
+}
+
+.hamburger-nav__toggle[data-dropdown-open="true"] .hamburger-nav__chevron {
+  transform: rotate(180deg);
+}
+
+.hamburger-nav__icon {
+  width: 1rem;
+  text-align: center;
+}
+
+.hamburger-nav__badge {
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  background-color: $feedback-color-rejected;
+  color: $white;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+.hamburger-nav__meta {
+  border-top: 2px solid $white;
+}
+
+.hamburger-nav__form {
+  margin: 0;
+}
+
+.close-button {
+  font-size: 1em;
+  color: $black;
+  background: $white;
+  padding: 0 1em;
+  border: 0 none;
+  width: auto;
+  margin-left: auto;
 }

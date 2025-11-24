@@ -13,4 +13,9 @@ urlpatterns = [
     ),
     path("notifications/", views.NotificationsView.as_view(), name="notifications"),
     path("end-session/", api.EndSessionView.as_view(), name="end_session"),
+    path(
+        "followed-projects/",
+        views.FollowedProjectsListView.as_view(),
+        name="followed_projects",
+    ),
 ]

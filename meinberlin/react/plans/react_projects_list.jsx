@@ -6,11 +6,16 @@ function init () {
   const projectsList = document.querySelectorAll('[data-projects-list]')
   projectsList.forEach(el => {
     const root = createRoot(el)
-    const projects = JSON.parse(el.getAttribute('data-projects'))
+    const projects = JSON.parse(el.getAttribute('data-projects') || '[]')
+    const projectsUrl = el.getAttribute('data-projects-url')
     const topicChoices = JSON.parse(el.getAttribute('data-topic-choices'))
     root.render(
       <React.StrictMode>
-        <ProjectsList projects={projects} topicChoices={topicChoices} />
+        <ProjectsList
+          projects={projects}
+          projectsUrl={projectsUrl}
+          topicChoices={topicChoices}
+        />
       </React.StrictMode>)
   })
 }

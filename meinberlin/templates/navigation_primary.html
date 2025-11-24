@@ -52,7 +52,7 @@
                         </li>
                         {% url 'followed_projects' as followed_projects_url %}
                         <li class="hamburger-nav__item">
-                            <a href="{{ followed_projects_url }}" class="{% if request.path == followed_projects_url %}active{% endif %}">{% translate "Followed Projects" %}</a>
+                            <a href="{{ followed_projects_url }}" class="hamburger-nav__link {% if request.path == followed_projects_url %}active{% endif %}">{% translate "Followed Projects" %}</a>
                         </li>
                         {% url 'search_profiles' as search_profiles_url %}
                         <li class="hamburger-nav__item">

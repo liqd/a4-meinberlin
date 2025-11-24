@@ -31,7 +31,7 @@ export default function Modal ({ title, message, buttonText, onConfirm, onClose,
       <button type="button" className="modal__close" aria-label={closeText} onClick={closeModal}>
         <span className="fa fa-times" aria-hidden="true" />
       </button>
-      <h3 id="modal__title" className="modal__title">{title}</h3>
+      <h2 id="modal__title" className="modal__title title-3">{title}</h2>
       <p className="modal__text">{message}</p>
       {children && <div className="modal__content">{children}</div>}
       <div className="modal__buttons">

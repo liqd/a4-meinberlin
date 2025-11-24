@@ -30,6 +30,7 @@ const ariaLabelImage = django.gettext('Click for image-based question')
 const ariaLabelText = django.gettext('Click for text-based question')
 const textImageMode = '&gt; ' + django.gettext('Image mode')
 const textTextMode = '&gt; ' + django.gettext('Text mode')
+const captchaImageAlt = django.gettext('Captcha image')
 
 function initializeCaptcha () {
   function chooseAnswer (idp, ans, session, combinedAnswerId) {
@@ -69,7 +70,7 @@ function initializeCaptcha () {
       imgA.style.display = 'none'
       accA.style.display = 'initial'
 
-      accA.innerHTML = "<input id='captcheck_" + idp + "_question_access-answer' type='text' name='captcheck_selected_answer' aria-label='Type your answer here.' autocomplete='off' autofill='off'/>"
+      accA.innerHTML = "<input id='captcheck_" + idp + "_question_access-answer' type='text' name='captcheck_selected_answer' aria-labelledby='captcheck_" + idp + "_question_access' autocomplete='off' autofill='off'/>"
       accA.firstElementChild.addEventListener('input', function (ev) {
         ev.preventDefault()
         chooseAnswer(idp, this.value, session, combinedAnswerId)
@@ -114,7 +115,7 @@ function initializeCaptcha () {
             answers +=
             "<a class='captcheck_answer_label' href='' data-prefix='" + idp + "' data-answer='" + data.answers[i] + "' tabindex='0' aria-role='button'>" +
             "<input id='captcheck_" + idp + '_answer_' + data.answers[i] + "' aria-labelledby='captcheck_" + idp + "_question_image' type='radio' name='captcheck_selected_answer' value='" + data.answers[i] + "' data-prefix='" + idp + "' data-answer='" + data.answers[i] + "' />" +
-            "<img src='" + src + "' data-prefix='" + idp + "' data-answer='" + data.answers[i] + "'/></a>"
+            "<img src='" + src + "' alt='" + captchaImageAlt + "' data-prefix='" + idp + "' data-answer='" + data.answers[i] + "'/></a>"
           }
           answers += '</div>'
           const answerDiv = document.createElement('div')
@@ -124,8 +125,8 @@ function initializeCaptcha () {
           questionDiv.setAttribute('class', 'captcheck_label_message')
           questionDiv.setAttribute('id', 'captcheck_' + idp + '_label_message')
           questionDiv.innerHTML =
-          "<label class='captcheck_question_image' id='captcheck_" + idp + "_question_image' tabindex='0'>" + data.question_i + '</label>' +
-          "<label class='captcheck_question_access' id='captcheck_" + idp + "_question_access' tabindex='0'>" + data.question_a + '</label>' +
+          "<label class='captcheck_question_image' id='captcheck_" + idp + "_question_image'>" + data.question_i + '</label>' +
+          "<label class='captcheck_question_access' id='captcheck_" + idp + "_question_access'>" + data.question_a + '</label>' +
           "<a href='' class='captcheck_alt_question_button' data-prefix='" + idp + "' id='captcheck_" + idp + "_alt_question_button' aria-role='button' tabindex='0' aria-label='" + ariaLabelText + "'>" + textTextMode + '</a>'
 
           /* Add question and answers */

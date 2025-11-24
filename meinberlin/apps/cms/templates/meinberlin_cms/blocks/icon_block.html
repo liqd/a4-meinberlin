@@ -1,8 +1,8 @@
 {% load rules i18n wagtailcore_tags wagtailimages_tags %}
 
-<article class="icon-list__single">
+<div class="icon-list__single">
   {% image value.image max-170x170 class="icon-list__single__img" %}
   <div class="icon-list__single__body">
     {{ value.body|richtext }}
   </div>
-</article>
+</div>

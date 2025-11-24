@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import django from 'django'
 import { TypeaheadField } from '../contrib/TypeaheadField'
 import { MultiSelect } from '../contrib/forms/MultiSelect'
@@ -133,6 +133,7 @@ export const ProjectsControlBar = ({
   const alteredFilters = getAlteredFilters(appliedFilters, topicChoices, participationChoices)
   const [searchProfile, setSearchProfile] = useState(initialSearchProfile)
   const [searchProfilesCount, setSearchProfilesCount] = useState(initialSearchProfilesCount)
+  const filtersContainerRef = useRef(null)
 
   const isFiltersInitialState = JSON.stringify(appliedFilters) === JSON.stringify(initialState)
 
@@ -141,6 +142,12 @@ export const ProjectsControlBar = ({
       setFilters(appliedFilters)
     }
   }, [syncTrigger])
+
+  useEffect(() => {
+    if (expandFilters && filtersContainerRef.current) {
+      filtersContainerRef.current.focus()
+    }
+  }, [expandFilters])
 
   const handleCreateSearchProfile = (searchProfile, limitExceeded) => {
     if (limitExceeded) {
@@ -194,7 +201,7 @@ export const ProjectsControlBar = ({
   }
 
   return (
-    <nav aria-label={translated.nav}>
+    <div aria-label={translated.nav}>
       <form
         className={classNames('modul-facetingform js-facetingform', alteredFilters.length ? 'control-bar--no-spacing' : 'control-bar--spacing')}
         onSubmit={handleSubmit}
@@ -218,6 +225,7 @@ export const ProjectsControlBar = ({
                             placeholder={translated.searchPlaceholder}
                             value={filters.search}
                             id="searchterm"
+                            autoComplete="on"
                             onChange={(e) => onFilterChange('search', e.target.value)}
                           />
                         </div>
@@ -285,7 +293,7 @@ export const ProjectsControlBar = ({
                     </div>
                   </div>
                   {expandFilters && (
-                    <>
+                    <div ref={filtersContainerRef} tabIndex="-1">
                       <div className="flexgrid grid--2">
                         <div className="span--1">
                           <MultiSelect
@@ -329,7 +337,7 @@ export const ProjectsControlBar = ({
                           </label>
                         </div>
                       </fieldset>
-                    </>
+                    </div>
                   )}
                   <button
                     onClick={() => setExpandFilters(!expandFilters)}
@@ -412,6 +420,6 @@ export const ProjectsControlBar = ({
           </div>
           )
         : null}
-    </nav>
+    </div>
   )
 }

@@ -21,6 +21,7 @@ from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.polls.api import PollViewSet
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
+from meinberlin.apps.account.api import FollowedProjectsListViewSet
 from meinberlin.apps.bplan.api import BplanViewSet
 from meinberlin.apps.budgeting.api import ProposalViewSet
 from meinberlin.apps.contrib import views as contrib_views
@@ -57,6 +58,9 @@ router = routers.DefaultRouter()
 router.register(r"notifications", NotificationViewSet, basename="notifications")
 router.register(r"follows", FollowViewSet, basename="follows")
 router.register(r"kiezradar", KiezRadarViewSet, basename="kiezradar")
+router.register(
+    r"followed-projects", FollowedProjectsListViewSet, basename="followed-projects"
+),
 router.register(r"searchprofiles", SearchProfileViewSet, basename="searchprofiles")
 router.register(r"reports", ReportViewSet, basename="reports")
 router.register(r"polls", PollViewSet, basename="polls")

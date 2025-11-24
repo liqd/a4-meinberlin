@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-31 17:46+0200\n"
+"POT-Creation-Date: 2025-11-20 16:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -80,8 +80,6 @@ msgstr "Do you really want to delete this comment?"
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:27
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:6
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:72
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:77
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:154
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
 msgid "Delete"
@@ -140,6 +138,11 @@ msgstr "Edit"
 #: adhocracy4/reports/static/reports/ReportModal.jsx:12
 msgid "Report"
 msgstr "Report"
+
+#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:8
+#: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:7
+msgid "Kommentar-Aktionen"
+msgstr "Kommentar-Aktionen"
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:6
 msgctxt "defakts"
@@ -311,15 +314,15 @@ msgstr "Highlighted"
 
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:7
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:14
-#: meinberlin/react/contrib/ControlBar.jsx:12
-#: meinberlin/react/projects/ProjectsControlBar.jsx:15
+#: meinberlin/react/contrib/ControlBar.jsx:13
+#: meinberlin/react/projects/ProjectsControlBar.jsx:13
 msgid "Show more"
 msgstr "Show more"
 
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:8
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:15
-#: meinberlin/react/contrib/ControlBar.jsx:13
-#: meinberlin/react/projects/ProjectsControlBar.jsx:16
+#: meinberlin/react/contrib/ControlBar.jsx:14
+#: meinberlin/react/projects/ProjectsControlBar.jsx:14
 msgid "Show less"
 msgstr "Show less"
 
@@ -329,7 +332,7 @@ msgid "Ordering"
 msgstr "Ordering"
 
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:16
-#: meinberlin/react/contrib/ControlBar.jsx:14
+#: meinberlin/react/contrib/ControlBar.jsx:15
 msgid "Filters"
 msgstr "Filters"
 
@@ -415,8 +418,14 @@ msgid "Click to no longer be updated about this project via email."
 msgstr "Click to no longer be updated about this project via email."
 
 #: adhocracy4/follows/static/follows/FollowButton.jsx:15
-msgid "You will be updated via email."
-msgstr "You will be updated via email."
+msgid ""
+"From now on, we'll keep you updated on all changes.<br/>Make sure email "
+"notifications are enabled in your %(linkStart)s notification settings%"
+"(linkEnd)s"
+msgstr ""
+"From now on, we'll keep you updated on all changes.<br/>Make sure email "
+"notifications are enabled in your %(linkStart)s notification settings%"
+"(linkEnd)s"
 
 #: adhocracy4/follows/static/follows/FollowButton.jsx:16
 msgid "You will no longer be updated via email."
@@ -430,11 +439,11 @@ msgstr "Follow"
 msgid "Following"
 msgstr "Following"
 
-#: adhocracy4/maps/static/a4maps/a4maps_address.js:87
+#: adhocracy4/maps/static/a4maps/a4maps_address.js:100
 msgid "No matches found within the project area"
 msgstr "No matches found within the project area"
 
-#: adhocracy4/maps/static/a4maps/a4maps_address.js:90
+#: adhocracy4/maps/static/a4maps/a4maps_address.js:103
 msgid "Did you mean:"
 msgstr "Did you mean:"
 
@@ -577,7 +586,7 @@ msgid "The poll could not be updated. Please check the data you entered again."
 msgstr ""
 "The poll could not be updated. Please check the data you entered again."
 
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:287
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:289
 #: meinberlin/react/documents/DocumentManagement.jsx:16
 #: meinberlin/react/kiezradar/SearchProfile.jsx:12
 msgid "Save"
@@ -596,24 +605,6 @@ msgstr "Question"
 msgid "Explanation"
 msgstr "Explanation"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:49
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:54
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
-#: meinberlin/react/documents/ChapterNavItem.jsx:3
-#: meinberlin/react/documents/ParagraphForm.jsx:9
-msgid "Move up"
-msgstr "Move up"
-
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:61
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:66
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
-#: meinberlin/react/documents/ChapterNavItem.jsx:4
-#: meinberlin/react/documents/ParagraphForm.jsx:10
-msgid "Move down"
-msgstr "Move down"
-
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:47
 msgid "Participants can vote for more than one option (multiple choice)"
 msgstr "Participants can vote for more than one option (multiple choice)"
@@ -630,6 +621,20 @@ msgstr "Other"
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:113
 msgid "New answer"
 msgstr "New answer"
+
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
+#: meinberlin/react/documents/ChapterNavItem.jsx:3
+#: meinberlin/react/documents/ParagraphForm.jsx:9
+msgid "Move up"
+msgstr "Move up"
+
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
+#: meinberlin/react/documents/ChapterNavItem.jsx:4
+#: meinberlin/react/documents/ParagraphForm.jsx:10
+msgid "Move down"
+msgstr "Move down"
 
 #: adhocracy4/polls/static/PollDetail/CharCounter.jsx:5
 msgid "characters"
@@ -838,7 +843,7 @@ msgid "You can still manage all your preferences on User Agreements."
 msgstr "You can still manage all your preferences on User Agreements."
 
 #: adhocracy4/static/control_bar/ControlBarSearch.jsx:5
-#: meinberlin/react/projects/ProjectsControlBar.jsx:13
+#: meinberlin/react/projects/ProjectsControlBar.jsx:11
 msgid "Search"
 msgstr "Search"
 
@@ -1267,27 +1272,27 @@ msgstr "Give my vote"
 msgid "Proposals list"
 msgstr "Proposals list"
 
-#: meinberlin/react/contrib/ControlBar.jsx:11
-#: meinberlin/react/projects/ProjectsControlBar.jsx:14
+#: meinberlin/react/contrib/ControlBar.jsx:12
+#: meinberlin/react/projects/ProjectsControlBar.jsx:12
 msgid "Reset"
 msgstr "Reset"
 
-#: meinberlin/react/contrib/ControlBar.jsx:15
+#: meinberlin/react/contrib/ControlBar.jsx:16
 #: meinberlin/react/livequestions/Filters.jsx:23
 msgid "Filter"
 msgstr "Filter"
 
-#: meinberlin/react/contrib/ControlBar.jsx:16
-#: meinberlin/react/projects/ProjectsControlBar.jsx:31
+#: meinberlin/react/contrib/ControlBar.jsx:17
+#: meinberlin/react/projects/ProjectsControlBar.jsx:29
 msgid "Search, filter and sort the ideas list"
 msgstr "Search, filter and sort the ideas list"
 
-#: meinberlin/react/contrib/ControlBar.jsx:17
-#: meinberlin/react/projects/ProjectsControlBar.jsx:32
+#: meinberlin/react/contrib/ControlBar.jsx:18
+#: meinberlin/react/projects/ProjectsControlBar.jsx:30
 msgid "Search for Proposals"
 msgstr "Search for Proposals"
 
-#: meinberlin/react/contrib/ControlBar.jsx:22
+#: meinberlin/react/contrib/ControlBar.jsx:23
 #, javascript-format
 msgid "1 proposal found."
 msgid_plural "%s proposals found."
@@ -1300,7 +1305,7 @@ msgid "Remove filter %s"
 msgstr "Remove filter %s"
 
 #: meinberlin/react/contrib/ControlBarListMapSwitch.jsx:7
-#: meinberlin/react/projects/ProjectsListMapBox.jsx:22
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:23
 msgid "View mode"
 msgstr "View mode"
 
@@ -1309,7 +1314,7 @@ msgid "View as list"
 msgstr "View as list"
 
 #: meinberlin/react/contrib/ControlBarListMapSwitch.jsx:9
-#: meinberlin/react/projects/ProjectsListMapBox.jsx:19
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:20
 msgid "List"
 msgstr "List"
 
@@ -1318,7 +1323,7 @@ msgid "View as map"
 msgstr "View as map"
 
 #: meinberlin/react/contrib/ControlBarListMapSwitch.jsx:11
-#: meinberlin/react/projects/ProjectsListMapBox.jsx:20
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:21
 msgid "Map"
 msgstr "Map"
 
@@ -1400,22 +1405,22 @@ msgstr[0] "Vote"
 msgstr[1] "Votes"
 
 #: meinberlin/react/contrib/helpers.js:114
-#: meinberlin/react/projects/ProjectsControlBar.jsx:51
+#: meinberlin/react/projects/ProjectsControlBar.jsx:49
 msgid "ongoing"
 msgstr "ongoing"
 
 #: meinberlin/react/contrib/helpers.js:114
-#: meinberlin/react/projects/ProjectsControlBar.jsx:52
+#: meinberlin/react/projects/ProjectsControlBar.jsx:50
 msgid "upcoming"
 msgstr "upcoming"
 
 #: meinberlin/react/contrib/helpers.js:114
-#: meinberlin/react/projects/ProjectsControlBar.jsx:53
+#: meinberlin/react/projects/ProjectsControlBar.jsx:51
 msgid "done"
 msgstr "done"
 
 #: meinberlin/react/contrib/helpers.js:115
-#: meinberlin/react/projects/ProjectsControlBar.jsx:30
+#: meinberlin/react/projects/ProjectsControlBar.jsx:28
 msgid "Plans"
 msgstr "Plans"
 
@@ -1734,7 +1739,7 @@ msgstr ""
 "chosen affiliation."
 
 #: meinberlin/react/livequestions/Filters.jsx:6
-#: meinberlin/react/projects/ProjectsControlBar.jsx:25
+#: meinberlin/react/projects/ProjectsControlBar.jsx:23
 msgid "All"
 msgstr "All"
 
@@ -2034,63 +2039,63 @@ msgstr "Participation project"
 msgid "Plan"
 msgstr "Plan"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:17
+#: meinberlin/react/projects/ProjectsControlBar.jsx:15
 msgid "Kiezes & Districts"
 msgstr "Kiezes & Districts"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:18
+#: meinberlin/react/projects/ProjectsControlBar.jsx:16
 msgid "All districts"
 msgstr "All districts"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:19
+#: meinberlin/react/projects/ProjectsControlBar.jsx:17
 msgid "Your saved Kieze"
 msgstr "Your saved Kieze"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:20
+#: meinberlin/react/projects/ProjectsControlBar.jsx:18
 msgid "You can create your own Kieze in the user account settings."
 msgstr "You can create your own Kieze in the user account settings."
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:21
+#: meinberlin/react/projects/ProjectsControlBar.jsx:19
 msgid "Districts"
 msgstr "Districts"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:22
+#: meinberlin/react/projects/ProjectsControlBar.jsx:20
 msgid "Topics"
 msgstr "Topics"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:23
+#: meinberlin/react/projects/ProjectsControlBar.jsx:21
 msgid "All topics"
 msgstr "All topics"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:24
+#: meinberlin/react/projects/ProjectsControlBar.jsx:22
 msgid "Kind of participation"
 msgstr "Kind of participation"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:26
+#: meinberlin/react/projects/ProjectsControlBar.jsx:24
 msgid "Project state"
 msgstr "Project state"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:27
+#: meinberlin/react/projects/ProjectsControlBar.jsx:25
 msgid "None"
 msgstr "None"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:28
+#: meinberlin/react/projects/ProjectsControlBar.jsx:26
 msgid "Organization"
 msgstr "Organization"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:29
+#: meinberlin/react/projects/ProjectsControlBar.jsx:27
 msgid "Only show:"
 msgstr "Only show:"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:33
+#: meinberlin/react/projects/ProjectsControlBar.jsx:31
 msgid "Show projects"
 msgstr "Show projects"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:34
+#: meinberlin/react/projects/ProjectsControlBar.jsx:32
 msgid "Search profile created successfully"
 msgstr "Search profile created successfully"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:37
+#: meinberlin/react/projects/ProjectsControlBar.jsx:35
 msgid ""
 "You will be informed about new projects that meet the selected filters. You "
 "can manage your search profiles in the User Settings under <a href=\"%"
@@ -2100,11 +2105,11 @@ msgstr ""
 "can manage your search profiles in the User Settings under <a href=\"%"
 "(url)s\">Search Profiles</a>."
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:41
+#: meinberlin/react/projects/ProjectsControlBar.jsx:39
 msgid "Search profile cannot be saved"
 msgstr "Search profile cannot be saved"
 
-#: meinberlin/react/projects/ProjectsControlBar.jsx:44
+#: meinberlin/react/projects/ProjectsControlBar.jsx:42
 msgid ""
 "You have saved the maximum number of 10 search profiles. To save a new one, "
 "delete an existing profile in the User Settings under <a href=\"%"
@@ -2114,15 +2119,31 @@ msgstr ""
 "delete an existing profile in the User Settings under <a href=\"%"
 "(url)s\">Search Profiles</a>."
 
-#: meinberlin/react/projects/ProjectsListMapBox.jsx:15
+#: meinberlin/react/projects/ProjectsList.jsx:7
+msgid "Show completed projects too?"
+msgstr "Show completed projects too?"
+
+#: meinberlin/react/projects/ProjectsList.jsx:8
+msgid ""
+"Expand your search to view completed projects and discover more "
+"possibilities."
+msgstr ""
+"Expand your search to view completed projects and discover more "
+"possibilities."
+
+#: meinberlin/react/projects/ProjectsList.jsx:9
+msgid "Show completed"
+msgstr "Show completed"
+
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:16
 msgid "Kiezradar"
 msgstr "Kiezradar"
 
-#: meinberlin/react/projects/ProjectsListMapBox.jsx:16
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:17
 msgid "Show map"
 msgstr "Show map"
 
-#: meinberlin/react/projects/ProjectsListMapBox.jsx:17
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:18
 msgid ""
 "Unfortunately, there are no projects matching your search. Please adjust the "
 "search criteria."
@@ -2130,15 +2151,15 @@ msgstr ""
 "Unfortunately, there are no projects matching your search. Please adjust the "
 "search criteria."
 
-#: meinberlin/react/projects/ProjectsListMapBox.jsx:18
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:19
 msgid "show map"
 msgstr "show map"
 
-#: meinberlin/react/projects/ProjectsListMapBox.jsx:21
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:22
 msgid "show list"
 msgstr "show list"
 
-#: meinberlin/react/projects/ProjectsListMapBox.jsx:26
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:27
 #, javascript-format
 msgid "1 Proposal found."
 msgid_plural "%s Proposals found."

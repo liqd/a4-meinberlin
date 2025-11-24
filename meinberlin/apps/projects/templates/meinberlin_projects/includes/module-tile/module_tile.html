@@ -15,7 +15,7 @@
     {% elif not module.module_has_started %}
 
         <span class="module-tile__timespan">
-            <i class="far fa-clock" role="img" aria-label="{% translate 'Uhr' %}"></i>{% html_date module.module_start 'd.m.Y' as start_date %}
+            <i class="far fa-clock" role="img" aria-label="{% translate 'Clock' %}"></i>{% html_date module.module_start 'd.m.Y' as start_date %}
             {% blocktranslate with date=start_date %}Begins on the {{ date }}{% endblocktranslate %}
         </span>
 

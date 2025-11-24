@@ -38,7 +38,7 @@
                         <img
                             class="hero__image"
                             src="{{ content.image|thumbnail_url:'heroimage' }}"
-                            alt="{% if show_buttons %}{% blocktranslate with name=content.name %}Weitere Informationen zu {{ name }}{% endblocktranslate %}{% else %}{{ content.image_alt_text|default:'' }}{% endif %}"
+                            alt="{% if show_buttons %}{% blocktranslate with name=content.name %}More information about {{ name }}{% endblocktranslate %}{% else %}{{ content.image_alt_text|default:'' }}{% endif %}"
                             loading="lazy"
                         />
                     {% else %}

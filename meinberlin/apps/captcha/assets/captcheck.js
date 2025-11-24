@@ -30,7 +30,7 @@ const ariaLabelImage = django.gettext('Click for image-based question')
 const ariaLabelText = django.gettext('Click for text-based question')
 const textImageMode = '&gt; ' + django.gettext('Image mode')
 const textTextMode = '&gt; ' + django.gettext('Text mode')
-const captchaImageAlt = django.gettext('Captcha-Bild')
+const captchaImageAlt = django.gettext('Captcha image')
 
 function initializeCaptcha () {
   function chooseAnswer (idp, ans, session, combinedAnswerId) {

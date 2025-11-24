@@ -12,7 +12,7 @@ const participationEndedStr = django.gettext('Participation ended')
 const beginsOnStr = django.gettext('Begins on the')
 const participationProjectsStr = django.gettext('Participation projects')
 const participationProjectStr = django.gettext('Participation project')
-const clockIconLabel = django.gettext('Uhr')
+const clockIconLabel = django.gettext('Clock')
 
 function truncateText (item) {
   if (item.length > 170) {

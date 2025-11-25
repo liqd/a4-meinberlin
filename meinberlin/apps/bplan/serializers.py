@@ -7,6 +7,7 @@ from urllib.parse import urlparse
 
 import magic
 import requests
+import sentry_sdk
 from django.apps import apps
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -18,6 +19,7 @@ from django.utils.html import strip_tags
 from django.utils.translation import gettext as _
 from rest_framework import serializers
 
+from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.dashboard import components
 from adhocracy4.dashboard import signals as a4dashboard_signals
 from adhocracy4.images.validators import validate_image
@@ -80,9 +82,11 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
         ),
     )
     embed_code = serializers.SerializerMethodField()
-    bplan_id = serializers.CharField(
-        required=False,
+    administrative_district = serializers.CharField(
         write_only=True,
+        required=False,
+        allow_blank=True,
+        help_text=_("Administrative district name"),
     )
 
     def get_geojson_properties(self):
@@ -94,8 +98,6 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
         fields = (
             "id",
             "name",
-            "identifier",
-            "bplan_id",
             "description",
             "url",
             "office_worker_email",
@@ -109,6 +111,7 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
             "image_copyright",
             "embed_code",
             "point",
+            "administrative_district",
         )
         extra_kwargs = {
             # write_only for consistency reasons
@@ -118,7 +121,6 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
             "description": {"write_only": True},
             "url": {"write_only": True},
             "office_worker_email": {"write_only": True},
-            "identifier": {"write_only": True},
             "point": {"write_only": True},
         }
 
@@ -144,6 +146,8 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
         orga = orga_model.objects.get(pk=orga_pk)
         validated_data["organisation"] = orga
 
+        district_name = validated_data.pop("administrative_district", None)
+
         # Ellipsizing/char limit is handled by us, diplan always sends full text
         if len(validated_data["name"]) > NAME_MAX_LENGTH:
             validated_data["name"] = validated_data["name"][:NAME_MAX_LENGTH]
@@ -153,14 +157,8 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
             ]
 
         # mark as diplan, will make removal of old bplans easier
-        # TODO: remove this check and the is_diplan field once transition to diplan is completed
-        if "bplan_id" in validated_data or "point" in validated_data:
-            validated_data["is_diplan"] = True
-
-        # TODO: rename identifier to bplan_id on model and remove the custom logic here
-        if "bplan_id" in validated_data:
-            bplan_id = validated_data.pop("bplan_id")
-            validated_data["identifier"] = bplan_id
+        # TODO: remove the is_diplan field once transition to diplan is completed
+        validated_data["is_diplan"] = True
 
         start_date = validated_data["start_date"]
         end_date = validated_data["end_date"]
@@ -174,6 +172,9 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
             validated_data["tile_image"] = self._download_image_from_url(image_url)
 
         bplan = super().create(validated_data)
+
+        if district_name:
+            self._set_administrative_district(bplan, district_name)
 
         self._create_module_and_phase(bplan, start_date, end_date)
         self._send_project_created_signal(bplan)
@@ -197,6 +198,9 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
         )
 
     def update(self, instance, validated_data):
+        # Extract district string before calling super().update()
+        district_name = validated_data.pop("administrative_district", None)
+
         start_date = validated_data.get("start_date", None)
         end_date = validated_data.get("end_date", None)
         if start_date or end_date:
@@ -218,14 +222,8 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
             ]
 
         # mark as diplan, will make removal of old bplans easier
-        # TODO: remove this check and the is_diplan field once transition to diplan is completed
-        if "bplan_id" in validated_data or "point" in validated_data:
-            validated_data["is_diplan"] = True
-
-        # TODO: rename identifier to bplan_id on model and remove the custom logic here
-        if "bplan_id" in validated_data:
-            bplan_id = validated_data.pop("bplan_id")
-            validated_data["identifier"] = bplan_id
+        # TODO: remove the is_diplan field once transition to diplan is completed
+        validated_data["is_diplan"] = True
 
         image_url = validated_data.pop("image_url", None)
         if image_url:
@@ -236,6 +234,10 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
             validated_data["tile_image"] = self._create_image_from_base64(tile_image)
 
         instance = super().update(instance, validated_data)
+
+        # Allow empty string to clear the district
+        if district_name is not None:
+            self._set_administrative_district(instance, district_name)
 
         self._send_component_updated_signal(instance)
         return instance
@@ -364,3 +366,16 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
             component=component,
             user=self.context["request"].user,
         )
+
+    def _set_administrative_district(self, bplan, district_name):
+        """Set administrative_district by looking up the name"""
+        if not district_name:
+            bplan.administrative_district = None
+        else:
+            try:
+                district = AdministrativeDistrict.objects.get(name=district_name)
+                bplan.administrative_district = district
+            except AdministrativeDistrict.DoesNotExist as e:
+                sentry_sdk.capture_exception(e)
+                # You could also raise a validation error here if needed
+        bplan.save(update_fields=["administrative_district"])

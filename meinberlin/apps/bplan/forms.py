@@ -39,8 +39,8 @@ class BplanProjectForm(ExternalProjectForm):
         model = models.Bplan
         fields = [
             "name",
-            "identifier",
             "url",
+            "administrative_district",
             "description",
             "tile_image",
             "tile_image_alt_text",

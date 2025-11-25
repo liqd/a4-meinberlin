@@ -30,7 +30,7 @@ and link to Diplan.
 
 #### Notable changes compared to the old system:
 
-- The `district` name is provided as a string by Diplan, and corresponds to an "Administrative District" record created in the admin
+- The `district` name is provided as a short code string by Diplan, and corresponds to an "Administrative District" record created in the admin
 - The Bplan Location is provided by Diplan, we no longer need to fetch it from the Bplan map
 - The statement form / embed code for the participation is no longer required as participation happens directly on
   Diplan
@@ -81,7 +81,8 @@ The following fields need to be provided:
   - Identifier that clearly identifies the BPLAN, needs to be the same as in the FIS Broker (e.g. `VIII - 329`)
   - Maximum length of 120 chars
 - *(diplan only) administrative_district*: string
-  - District name, capitalized, corresponding to an Administrative District created in the meinBerlin admin, eg `Mitte`
+  - District short code, corresponding to an Administrative District created in the meinBerlin admin, eg `mi` for `Mitte`
+  - See the [complete district codes table](#district-codes-table) for reference.
   - Maximum length of 120 chars
 - *description*: string
   - Description of the BPLAN shown in the project tile
@@ -320,3 +321,23 @@ curl  -X PATCH http://127.0.0.1:8003/api/organisations/1/bplan/16/ \
  }
 '
 ```
+
+# Berlin Districts Reference
+
+Added/edited using the admin.
+
+| District | Short Code |
+|----------|------------|
+| Mitte | mi |
+| Friedrichshain-Kreuzberg | fk |
+| Pankow | pa |
+| Charlottenburg-Wilmersdorf | cw |
+| Spandau | sp |
+| Steglitz-Zehlendorf | sz |
+| Tempelhof-Schöneberg | ts |
+| Neukölln | nk |
+| Treptow-Köpenick | tk |
+| Marzahn-Hellersdorf | mh |
+| Lichtenberg | li |
+| Reinickendorf | rd |
+| Gesamtstädtisch | be |

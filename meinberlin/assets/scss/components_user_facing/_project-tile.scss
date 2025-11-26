@@ -41,6 +41,10 @@ a.project-tile {
     align-self: flex-start;
     aspect-ratio: 4 / 3;
 
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1.5em;
+
     .project-tile--map & {
         flex: 0 0 145px;
 

@@ -2,24 +2,8 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from . import emails
-from . import tasks
 from .models import Bplan
 from .models import Statement
-
-
-@receiver(post_save, sender=Bplan)
-def get_location(sender, instance, update_fields, **kwargs):
-    """Runs a task which fetches the location for a bplan. This can be removed once the switch to diplan has been
-    completed."""
-    if (
-        instance.identifier
-        and not instance.is_diplan
-        and (
-            not update_fields
-            or ("point" not in update_fields and "is_archived" not in update_fields)
-        )
-    ):
-        tasks.get_location_information.delay(instance.pk)
 
 
 @receiver(post_save, sender=Statement)

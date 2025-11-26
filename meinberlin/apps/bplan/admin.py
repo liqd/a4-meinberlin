@@ -7,8 +7,8 @@ from . import models
 class BplanAdmin(admin.ModelAdmin):
     fields = (
         "name",
-        "identifier",
         "url",
+        "administrative_district",
         "description",
         "is_draft",
         "tile_image",
@@ -20,7 +20,7 @@ class BplanAdmin(admin.ModelAdmin):
     )
     list_display = (
         "__str__",
-        "identifier",
+        "administrative_district",
         "organisation",
         "is_draft",
         "is_archived",

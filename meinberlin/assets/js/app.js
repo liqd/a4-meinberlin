@@ -1,6 +1,7 @@
 import 'bootstrap' // load bootstrap components
 import 'django'
 import 'select2' // used to select projects in containers
+import htmx from 'htmx.org'
 
 import '../../apps/actions/assets/timestamps.js'
 import '../../apps/newsletters/assets/dynamic_fields.js'
@@ -31,6 +32,11 @@ function init () {
       minimumResultsForSearch: -1
     })
   }
+}
+
+// ensure HTMX is available globally so data attributes continue to work
+if (typeof window !== 'undefined') {
+  window.htmx = htmx
 }
 
 document.addEventListener('DOMContentLoaded', init, false)

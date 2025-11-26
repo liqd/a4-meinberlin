@@ -21,6 +21,10 @@ const ProjectsList = ({
   const [loading, setLoading] = React.useState(!initialProjects)
 
   React.useEffect(() => {
+    setProjects(initialProjects)
+  }, [initialProjects])
+
+  React.useEffect(() => {
     if (!projectsUrl) return
 
     const fetchData = async () => {

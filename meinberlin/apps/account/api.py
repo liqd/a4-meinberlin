@@ -40,7 +40,41 @@ class FollowedProjectsListViewSet(viewsets.ReadOnlyModelViewSet):
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
+        projects_list = list(queryset)
+
+        def parse_time_left(time_left_str):
+            """Convert 'X days' format to total seconds for comparison"""
+            if not time_left_str or time_left_str == "None":
+                return float("inf")
+
+            try:
+                if "days" in time_left_str:
+                    days = float(time_left_str.split(" ")[0])
+                    return days * 86400  # Convert to seconds
+                return float("inf")
+            except (ValueError, IndexError):
+                return float("inf")
+
+        def get_sort_key(project):
+            # Active projects with time left come first, sorted by shortest time
+            if (
+                project.module_running_time_left
+                and project.module_running_time_left != "None"
+            ):
+                time_seconds = parse_time_left(project.module_running_time_left)
+                return (0, time_seconds)
+
+            # Completed projects - most recent first
+            elif project.has_finished and project.end_date:
+                return (1, -project.end_date.timestamp())
+
+            # Other projects
+            else:
+                return (2, 0)
+
+        projects_list.sort(key=get_sort_key)
+
+        serializer = self.get_serializer(projects_list, many=True)
         return Response(serializer.data)
 
     def get_serializer(self, *args, **kwargs):

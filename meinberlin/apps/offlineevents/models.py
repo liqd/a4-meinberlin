@@ -76,7 +76,7 @@ class OfflineEvent(UserGeneratedContentModel):
 
 class OfflineEventItem(module_models.Item):
     name = models.CharField(
-        max_length=30, verbose_name=_("Name"), null=True, blank=True
+        max_length=120, verbose_name=_("Name"), null=True, blank=True
     )
     event_date = models.DateTimeField(verbose_name=_("Date"), null=True, blank=True)
     event_type = models.CharField(

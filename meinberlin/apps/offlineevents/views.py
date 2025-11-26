@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
@@ -127,12 +128,15 @@ class OfflineEventModuleDashboardView(
     ProjectMixin,
     mixins.DashboardBaseMixin,
     mixins.DashboardComponentMixin,
+    mixins.DashboardComponentFormSignalMixin,
+    SuccessMessageMixin,
     generic.UpdateView,
 ):
     model = models.OfflineEventItem
     template_name = "meinberlin_offlineevents/offlineevent_module_dashboard_form.html"
     permission_required = "a4projects.change_project"
     form_class = forms.OfflineEventBasicForm
+    success_message = _("The module has been updated.")
 
     def get_permission_object(self):
         return self.project
@@ -150,12 +154,15 @@ class OfflineEventSettingsDashboardView(
     ProjectMixin,
     mixins.DashboardBaseMixin,
     mixins.DashboardComponentMixin,
+    mixins.DashboardComponentFormSignalMixin,
+    SuccessMessageMixin,
     generic.UpdateView,
 ):
     model = models.OfflineEventItem
     template_name = "meinberlin_offlineevents/offlineevent_settings_dashboard_form.html"
     permission_required = "a4projects.change_project"
     form_class = forms.OfflineEventItemForm
+    success_message = _("The module has been updated.")
 
     def get_permission_object(self):
         return self.project

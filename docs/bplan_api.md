@@ -128,7 +128,7 @@ The following fields need to be provided:
 ```json
 {
   "name": "Luisenblock Ost - Bebauungsplan 1-70",
-  "bplan_id": "VI - 123c",
+  "administrative_district": "mi",
   "description": "Der Luisenblock Ost soll städtebaulich neu geordnet werden. Nutzungen des Deutschen Bundestages sollen in einem Sondergebiet als Auftakt des 'Band des Bundes' zusammengefasst werden.",
   "url": "https://berlin.de/ba-marzahn-hellersdorf/.../bebauungsplan.649020.php",
   "is_draft": false,

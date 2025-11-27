@@ -34,7 +34,7 @@ def migrate_events_to_items(apps, schema_editor):
 
         # Create a phase (single-day event, start=end=ev.date)
         Phase.objects.create(
-            name=module_name,
+            name="Offline event phase",
             description=module.description or "",
             type="meinberlin_offlineevents:offline-event",
             module=module,

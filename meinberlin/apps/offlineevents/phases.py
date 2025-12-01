@@ -3,7 +3,6 @@ from django.utils.translation import gettext_lazy as _
 from adhocracy4 import phases
 
 from . import apps
-from . import models
 from . import views
 
 
@@ -13,15 +12,14 @@ class OfflineEventPhase(phases.PhaseContent):
 
     app = apps.Config.label
     phase = "offline-event"
-    view = views.OfflineEventDetailView
+    view = views.OfflineEventModuleDetailView
 
     name = _("Offline Event")
     description = _("Manage a single offline event")
     module_name = _("Offline Event")
 
-    features = {
-        "crud": (models.OfflineEvent,),
-    }
+    # No features needed - OfflineEventItem is managed through module dashboard
+    features = {}
 
 
 phases.content.register(OfflineEventPhase())

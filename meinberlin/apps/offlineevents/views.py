@@ -13,6 +13,35 @@ from . import forms
 from . import models
 
 
+class OfflineEventModuleDetailView(
+    ProjectMixin, rules_mixins.PermissionRequiredMixin, generic.TemplateView
+):
+    """Simple view for offline event modules when called as phase view.
+
+    This view renders the module detail template. The module is already
+    in kwargs from PhaseDispatchMixin.
+    """
+
+    get_context_from_object = False
+    template_name = "meinberlin_projects/module_offline_event_detail.html"
+    permission_required = "a4projects.view_project"
+
+    def get_permission_object(self):
+        return self.project
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["project"] = self.project
+        context["module"] = self.module
+
+        # Add offline event item context (same as ModuleDetailview)
+        if self.module:
+            item = self.module.item_set.first()
+            context["offline_event_item"] = item
+
+        return context
+
+
 class OfflineEventDetailView(
     ProjectMixin, rules_mixins.PermissionRequiredMixin, CanonicalURLDetailView
 ):

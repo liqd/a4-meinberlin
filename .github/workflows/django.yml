@@ -80,12 +80,7 @@ jobs:
 
       - name: Install NPM Dependencies
         run: |
-          if [ -d node_modules ] && [ -f package-lock.json ]; then
-            echo "node_modules cache hit - skipping npm ci"
-          else
-            echo "node_modules cache miss - running npm ci"
-            npm ci --prefer-offline --no-audit --no-fund
-          fi
+          npm ci --prefer-offline --no-audit --no-fund
 
       - name: Build NPM 
         run: |
@@ -139,3 +134,4 @@ jobs:
           TRAVIS_SSH_SECRET: ${{ secrets.DEPLOY }}
         run: |
           ./scripts/deploy.sh
+

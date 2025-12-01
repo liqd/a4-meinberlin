@@ -1,5 +1,5 @@
 # by hand: migrate OfflineEvent to OfflineEventItem and create modules
-from django.db import migrations
+from django.db import migrations, models
 
 
 def migrate_events_to_items(apps, schema_editor):
@@ -16,7 +16,7 @@ def migrate_events_to_items(apps, schema_editor):
     for ev in events:
         project = ev.project
         # Determine the next weight per project (based on existing modules)
-        if project_id := project.id not in next_weight_by_project:
+        if project.id not in next_weight_by_project:
             last = Module.objects.filter(project=project).order_by("-weight").first()
             next_weight_by_project[project.id] = (last.weight + 1) if last else 1
 
@@ -34,7 +34,7 @@ def migrate_events_to_items(apps, schema_editor):
 
         # Create a phase (single-day event, start=end=ev.date)
         Phase.objects.create(
-            name=module_name,
+            name="Offline event phase",
             description=module.description or "",
             type="meinberlin_offlineevents:offline-event",
             module=module,
@@ -62,10 +62,19 @@ def noop_reverse(apps, schema_editor):
 class Migration(migrations.Migration):
     dependencies = [
         ("meinberlin_offlineevents", "0012_offlineeventitem"),
-        ("a4modules", "0008_alter_module_blueprint_type"),
+        # ensure Item is already polymorph und polymorphic_ctype wurde für bestehende
+        # Items befüllt, bevor wir neue OfflineEventItems erzeugen
+        ("a4modules", "0010_populate_item_polymorphic_ctype"),
         ("a4phases", "0001_initial"),
     ]
 
     operations = [
+        migrations.AlterField(
+            model_name="offlineeventitem",
+            name="name",
+            field=models.CharField(
+                blank=True, max_length=120, null=True, verbose_name="Name"
+            ),
+        ),
         migrations.RunPython(migrate_events_to_items, noop_reverse),
     ]

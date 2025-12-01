@@ -21,10 +21,7 @@
         {% include 'meinberlin_projects/project_actions.html' %}
         
         <div class="modul-video">
-            <h1>
-                {{ module.name }}
-                <span class="pill pill--live">{% translate 'Offline Event' %}</span>
-            </h1>
+            <h1>{{ module.name }}</h1>
             {% if offline_event_item.description %}
             <div class="ck-content">
                 {{ offline_event_item.description | richtext }}

@@ -41,8 +41,6 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node_modules-
 
       - name: Cache uv packages
         uses: actions/cache@v4
@@ -61,7 +59,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .testmondata
-          key: ${{ runner.os }}-testmon-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/requirements/dev.txt', 'meinberlin/config/settings/*.py', 'pytest.ini') }}
+          key: ${{ runner.os }}-testmon-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/requirements/dev.txt', 'meinberlin/config/settings/travis.py', 'meinberlin/config/settings/test.py', 'pytest.ini') }}
           restore-keys: |
             ${{ runner.os }}-testmon-${{ steps.setup-python.outputs.python-version }}-
 
@@ -80,7 +78,12 @@ jobs:
 
       - name: Install NPM Dependencies
         run: |
-          npm ci --prefer-offline --no-audit --no-fund
+          if [ "${{ steps.cache-node-modules.outputs.cache-hit }}" != "true" ]; then
+            echo "node_modules cache miss - running npm ci"
+            npm ci --prefer-offline --no-audit --no-fund
+          else
+            echo "node_modules cache hit - skipping npm ci"
+          fi
 
       - name: Build NPM 
         run: |

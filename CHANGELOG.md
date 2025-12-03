@@ -16,12 +16,13 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Make tile_image field optional in DiPlan API - Bplans sent without an image automatically receive the placeholder image
 - Password visibility toggle added to login and signup forms
 - External projects/plans show icon to indicate external link
-<<<<<<< HEAD
 - Offline Event is now A Module
 - Option to select plans from different organisations in projects
-=======
 - Burgermenu design updated
->>>>>>> ef5b644a8 (changelog)
+
+### Removed
+
+- Removed Old project-based OfflineEvent model and related stuff 
 
 ### Fixed
 

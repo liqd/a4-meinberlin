@@ -42,38 +42,28 @@ class FollowedProjectsListViewSet(viewsets.ReadOnlyModelViewSet):
         queryset = self.filter_queryset(self.get_queryset())
         projects_list = list(queryset)
 
-        def parse_time_left(time_left_str):
-            """Convert 'X days' format to total seconds for comparison"""
-            if not time_left_str or time_left_str == "None":
-                return float("inf")
-
-            try:
-                if "days" in time_left_str:
-                    days = float(time_left_str.split(" ")[0])
-                    return days * 86400  # Convert to seconds
-                return float("inf")
-            except (ValueError, IndexError):
-                return float("inf")
-
         def get_sort_key(project):
-            # Active projects with time left come first, sorted by shortest time
-            if (
-                project.module_running_time_left
-                and project.module_running_time_left != "None"
-            ):
-                time_seconds = parse_time_left(project.module_running_time_left)
-                return (0, time_seconds)
+            # Active projects: sort by phase end date (earliest first)
+            if project.running_module_ends_next:
+                end_date = project.running_module_ends_next.module_end
+                if end_date:
+                    return (0, end_date)
 
-            # Completed projects - most recent first
-            elif project.has_finished and project.end_date:
-                return (1, -project.end_date.timestamp())
+            # Completed projects: sort by most recent end date
+            elif project.has_finished:
+                # Use project.end_date or created date as fallback
+                sort_date = project.end_date or project.created
+                return (1, -sort_date.timestamp())  # Negative for descending
 
-            # Other projects
+            # Other projects (future/no phases): sort by future start or creation date
             else:
-                return (2, 0)
+                # Try to get future start date
+                future_module = project.future_modules.first()
+                if future_module and future_module.module_start:
+                    return (2, future_module.module_start)
+                return (2, project.created)
 
         projects_list.sort(key=get_sort_key)
-
         serializer = self.get_serializer(projects_list, many=True)
         return Response(serializer.data)
 

@@ -1,12 +1,7 @@
-from datetime import timedelta
-
 import pytest
-from django.core.management import call_command
-from freezegun import freeze_time
 from rest_framework.reverse import reverse
 
 from adhocracy4.dashboard import signals
-from adhocracy4.follows.models import Follow
 from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.ideas import phases
 from meinberlin.apps.notifications.models import Notification
@@ -53,27 +48,6 @@ def test_shows_notification_for_rating(apiclient, user, idea_factory, rating_fac
     assert response.status_code == 200
     assert len(response.data["results"]) == 1
     assert notification["action"]["type"] == "rating"
-
-
-@pytest.mark.django_db
-def test_shows_notification_for_followed_project(
-    apiclient, user, offline_event_factory, follow_factory
-):
-    event = offline_event_factory()
-    Follow.objects.all().delete()
-    follow_factory(creator=user, project=event.project)
-
-    with freeze_time(event.date - timedelta(hours=5)):
-        call_command("create_offlineevent_system_actions")
-
-    apiclient.force_authenticate(user=user)
-    url = reverse("notifications-list")
-    response = apiclient.get(url)
-    notification = response.data["results"][0]
-    assert response.status_code == 200
-    assert len(response.data["results"]) == 1
-    assert notification["action"]["type"] == "offlineevent"
-    assert notification["action"]["source_timestamp"] == event.date
 
 
 @pytest.mark.django_db

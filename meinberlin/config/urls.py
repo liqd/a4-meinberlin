@@ -186,13 +186,6 @@ urlpatterns = [
         ),
     ),
     path(
-        "offlineevents/",
-        include(
-            ("meinberlin.apps.offlineevents.urls", "meinberlin_offlineevents"),
-            "meinberlin_offlineevents",
-        ),
-    ),
-    path(
         "platform-emails/",
         include(
             ("meinberlin.apps.platformemails.urls", "meinberlin_platformemails"),

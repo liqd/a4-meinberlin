@@ -2,10 +2,8 @@ from datetime import timedelta
 
 import factory
 import pytest
-from django.conf import settings
 from django.core.management import call_command
 from django.db.models.signals import post_save
-from freezegun import freeze_time
 
 from adhocracy4.actions.models import Action
 from adhocracy4.actions.signals import _add_action
@@ -14,12 +12,6 @@ from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.budgeting import phases
 from meinberlin.apps.notifications.models import Notification
-
-EVENT_STARTING_HOURS = 0
-if hasattr(settings, "ACTIONS_OFFLINE_EVENT_STARTING_HOURS"):
-    EVENT_STARTING_HOURS = settings.ACTIONS_OFFLINE_EVENT_STARTING_HOURS
-else:
-    EVENT_STARTING_HOURS = 72
 
 
 @factory.django.mute_signals(post_save)
@@ -75,25 +67,5 @@ def test_should_notify_on_phase_start(
 
     with freeze_phase(phase):
         call_command("create_system_actions")
-        action = Action.objects.last()
-        assert Notification.should_notify(action)
-
-
-@factory.django.mute_signals(post_save)
-@pytest.mark.django_db
-def test_should_notify_on_event_start(
-    user_factory, follow_factory, offline_event_factory
-):
-    event = offline_event_factory()
-    user1 = user_factory()
-    user2 = user_factory()
-    user3 = user_factory()
-    Follow.objects.all().delete()
-    follow_factory(creator=user1, project=event.project)
-    follow_factory(creator=user2, project=event.project)
-    follow_factory(creator=user3, project=event.project, enabled=False)
-
-    with freeze_time(event.date - timedelta(hours=5)):
-        call_command("create_offlineevent_system_actions")
         action = Action.objects.last()
         assert Notification.should_notify(action)

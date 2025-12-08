@@ -22,7 +22,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Removed
 
-- Removed Old project-based OfflineEvent model and related stuff 
+- Removed Old project-based OfflineEvent Model, Views, Templates and Tests.    
 
 ### Fixed
 

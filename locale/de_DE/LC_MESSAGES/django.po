@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-09 15:08+0100\n"
-"PO-Revision-Date: 2025-07-31 16:43+0000\n"
-"Last-Translator: josh <195121232+partizipation@users.noreply.github.com>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main-"
-"design-dev/de/>\n"
+"PO-Revision-Date: 2025-12-09 14:51+0000\n"
+"Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
+"main-design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2552,12 +2552,12 @@ msgstr "Mehr Informationen"
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/components/hero.html:41
 #, python-format
 msgid "More information about %(name)s"
-msgstr ""
+msgstr "Mehr Informationen über %(name)s"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/components/hero.html:50
 #, python-format
 msgid "Weitere Informationen zu %(name)s"
-msgstr ""
+msgstr "Weitere Informationen zu %(name)s"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/components/moderator_feedback.html:10
 msgid "Status: "
@@ -3360,7 +3360,7 @@ msgstr "Gespeicherte Suche %d"
 #: meinberlin/apps/kiezradar/templates/meinberlin_kiezradar/followed_projects_list.html:8
 #: meinberlin/templates/navigation_primary.html:55
 msgid "Followed Projects"
-msgstr ""
+msgstr "Gefolgte Projekte"
 
 #: meinberlin/apps/kiezradar/templates/meinberlin_kiezradar/kiezradar.html:4
 #: meinberlin/apps/kiezradar/templates/meinberlin_kiezradar/kiezradar.html:7
@@ -4468,7 +4468,7 @@ msgstr "Anrufen"
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:89
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/status_bar.html:18
 msgid "Clock"
-msgstr ""
+msgstr "Uhr"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/module-tile/module_tile.html:19
 #, python-format
@@ -5896,7 +5896,7 @@ msgstr "Plattform-Mail"
 
 #: meinberlin/templates/navigation_primary.html:96
 msgid "Account"
-msgstr ""
+msgstr "Konto"
 
 #: meinberlin/templates/navigation_primary.html:100
 #: meinberlin/templates/navigation_primary.html:103

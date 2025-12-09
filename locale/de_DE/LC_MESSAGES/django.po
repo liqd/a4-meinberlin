@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-20 16:57+0100\n"
+"POT-Creation-Date: 2025-12-09 15:08+0100\n"
 "PO-Revision-Date: 2025-07-31 16:43+0000\n"
 "Last-Translator: josh <195121232+partizipation@users.noreply.github.com>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main-"
@@ -171,6 +171,8 @@ msgstr "Das Projekt wurde aktualisiert."
 
 #: adhocracy4/dashboard/components/forms/views.py:51
 #: adhocracy4/dashboard/components/forms/views.py:51
+#: meinberlin/apps/offlineevents/views.py:57
+#: meinberlin/apps/offlineevents/views.py:83
 msgid "The module has been updated."
 msgstr "Das Modul wurde aktualisiert."
 
@@ -246,10 +248,10 @@ msgstr "Kartenbereich bearbeiten"
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/hero_search.html:17
 #: meinberlin/apps/cms/viewsets.py:19 meinberlin/apps/extprojects/views.py:20
 #: meinberlin/apps/ideas/views.py:36 meinberlin/apps/plans/views.py:46
-#: meinberlin/apps/projects/views.py:55 meinberlin/apps/topicprio/views.py:21
+#: meinberlin/apps/projects/views.py:54 meinberlin/apps/topicprio/views.py:21
 #: meinberlin/templates/a4filters/widgets/free_text_filter.html:9
 #: meinberlin/templates/a4filters/widgets/free_text_filter.html:16
-#: meinberlin/templates/a4filters/widgets/free_text_filter.html:30
+#: meinberlin/templates/a4filters/widgets/free_text_filter.html:31
 #: meinberlin/templates/a4maps/map_choose_point_widget.html:6
 #: meinberlin/templates/a4maps/map_choose_point_widget.html:7
 msgid "Search"
@@ -259,7 +261,7 @@ msgstr "Suche"
 #: adhocracy4/dashboard/filter.py:15
 #: meinberlin/apps/budgeting/api.py:36
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:20
-#: meinberlin/apps/projects/views.py:59
+#: meinberlin/apps/projects/views.py:58
 msgid "Archived"
 msgstr "Archiviert"
 
@@ -270,14 +272,14 @@ msgstr "Archiviert"
 #: meinberlin/apps/budgeting/api.py:38 meinberlin/apps/budgeting/api.py:55
 #: meinberlin/apps/ideas/api.py:72 meinberlin/apps/ideas/api.py:115
 #: meinberlin/apps/ideas/api.py:148 meinberlin/apps/ideas/api.py:176
-#: meinberlin/apps/projects/views.py:63 meinberlin/apps/topicprio/api.py:88
+#: meinberlin/apps/projects/views.py:62 meinberlin/apps/topicprio/api.py:88
 #: meinberlin/apps/topicprio/api.py:119
 msgid "All"
 msgstr "Alle"
 
 #: adhocracy4/dashboard/filter.py:20
 #: adhocracy4/dashboard/filter.py:20
-#: meinberlin/apps/budgeting/api.py:39 meinberlin/apps/projects/views.py:64
+#: meinberlin/apps/budgeting/api.py:39 meinberlin/apps/projects/views.py:63
 msgid "No"
 msgstr "Nein"
 
@@ -289,10 +291,9 @@ msgstr "Nein"
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_confirm_delete.html:13
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_confirm_delete.html:15
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_confirm_delete.html:12
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:12
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:11
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_confirm_delete.html:11
-#: meinberlin/apps/projects/views.py:65
+#: meinberlin/apps/projects/views.py:64
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_confirm_delete.html:12
 msgid "Yes"
 msgstr "Ja"
@@ -399,7 +400,7 @@ msgstr "Projekt erfolgreich dupliziert."
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
 #: meinberlin/templates/a4dashboard/base_dashboard.html:62
-#: meinberlin/templates/navigation_primary.html:60
+#: meinberlin/templates/navigation_primary.html:74
 msgid "Dashboard"
 msgstr "Dashboard"
 
@@ -485,7 +486,6 @@ msgstr "Vorschau"
 #: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:9
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:41
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:14
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:15
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:59
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:70
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:14
@@ -566,7 +566,6 @@ msgstr "Projektentwurf anlegen"
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_dashboard_form.html:32
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/restricted_newsletter_dashboard_form.html:32
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_form.html:13
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:15
 #: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:66
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:14
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:117
@@ -620,7 +619,6 @@ msgstr "privat"
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/components/moderator_notes.html:65
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/item_detail_dropdown.html:12
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:19
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:20
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:65
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:42
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_actions.html:10
@@ -846,7 +844,7 @@ msgstr "Nein"
 #: adhocracy4/filters/widgets.py:76
 #: adhocracy4/filters/widgets.py:76
 #: meinberlin/apps/budgeting/api.py:64 meinberlin/apps/ideas/api.py:94
-#: meinberlin/apps/projects/views.py:42 meinberlin/apps/topicprio/api.py:68
+#: meinberlin/apps/projects/views.py:41 meinberlin/apps/topicprio/api.py:68
 msgid "Ordering"
 msgstr "Reihenfolge"
 
@@ -960,6 +958,7 @@ msgstr ""
 
 #: adhocracy4/images/validators.py:28
 #: adhocracy4/images/validators.py:28
+#, python-brace-format
 msgid "Unsupported file format. Supported formats are {}."
 msgstr "Dieses Dateiformat ist nicht unterstützt. Unterstützt werden: {}."
 
@@ -1242,7 +1241,7 @@ msgstr ""
 #: adhocracy4/phases/models.py:59
 #: adhocracy4/phases/models.py:59
 #: meinberlin/apps/newsletters/models.py:28
-#: meinberlin/apps/offlineevents/models.py:79
+#: meinberlin/apps/offlineevents/models.py:13
 #: meinberlin/apps/platformemails/models.py:15
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_user_list.html:7
 #: meinberlin/templates/header.html:109
@@ -1254,8 +1253,7 @@ msgstr "Name"
 #: meinberlin/apps/activities/models.py:22 meinberlin/apps/ideas/models.py:137
 #: meinberlin/apps/maptopicprio/forms.py:33
 #: meinberlin/apps/maptopicprio/models.py:39
-#: meinberlin/apps/offlineevents/models.py:35
-#: meinberlin/apps/offlineevents/models.py:87
+#: meinberlin/apps/offlineevents/models.py:21
 #: meinberlin/apps/topicprio/forms.py:25 meinberlin/apps/topicprio/models.py:39
 msgid "Description"
 msgstr "Beschreibung"
@@ -1296,6 +1294,7 @@ msgstr "Bitte geben Sie eine Antwort ein."
 
 #: adhocracy4/polls/api.py:237
 #: adhocracy4/polls/api.py:237
+#, python-brace-format
 msgid "Key error for {}"
 msgstr "Key error für {}"
 
@@ -1668,6 +1667,7 @@ msgstr ""
 
 #: adhocracy4/projects/utils.py:46
 #: adhocracy4/projects/utils.py:46
+#, python-brace-format
 msgid "{}. Online Participation"
 msgstr "{}. Online-Beteiligung"
 
@@ -1689,7 +1689,7 @@ msgstr "Nutzereinstellungen"
 
 #: meinberlin/apps/account/templates/meinberlin_account/account_dashboard.html:11
 #: meinberlin/apps/account/templates/meinberlin_account/account_dashboard.html:17
-#: meinberlin/templates/navigation_primary.html:39
+#: meinberlin/templates/navigation_primary.html:46
 msgid "Account & Security"
 msgstr "Konto & Sicherheit"
 
@@ -1737,7 +1737,7 @@ msgstr "Benachrichtigungsoptionen"
 #: meinberlin/apps/account/templates/meinberlin_account/notifications.html:17
 #: meinberlin/apps/users/forms.py:94 meinberlin/apps/users/forms.py:186
 #: meinberlin/templates/header.html:34
-#: meinberlin/templates/navigation_primary.html:14
+#: meinberlin/templates/navigation_primary.html:15
 msgid "Notifications"
 msgstr "Benachrichtigungen"
 
@@ -1772,7 +1772,7 @@ msgstr ""
 msgid "Log in or register"
 msgstr "Anmelden oder Registrieren"
 
-#: meinberlin/apps/account/views.py:29
+#: meinberlin/apps/account/views.py:34
 msgid "Your profile was successfully updated."
 msgstr "Ihr Profil wurde erfolgreich aktualisiert."
 
@@ -2104,7 +2104,7 @@ msgstr "Wir konnten keine Bebauungspläne finden."
 msgid "Submit a development plan statement"
 msgstr "Meine Stellungnahme zum Bebauungsplan"
 
-#: meinberlin/apps/bplan/templates/meinberlin_bplan/statement_create_form.html:32
+#: meinberlin/apps/bplan/templates/meinberlin_bplan/statement_create_form.html:30
 msgid ""
 "The processing of personal data is carried out as part of the development "
 "plan procedure on the basis of § 3 Baugesetzbuch in conjunction with Art. 6 "
@@ -2119,7 +2119,7 @@ msgstr ""
 "personenbezogenen Angaben sind in der Datenschutzerklärung am Seitenende zu "
 "finden."
 
-#: meinberlin/apps/bplan/templates/meinberlin_bplan/statement_create_form.html:36
+#: meinberlin/apps/bplan/templates/meinberlin_bplan/statement_create_form.html:34
 msgid "Submit"
 msgstr "Senden"
 
@@ -2165,7 +2165,7 @@ msgstr "Meine Auswahl"
 #: meinberlin/apps/ideas/api.py:193 meinberlin/apps/ideas/views.py:40
 #: meinberlin/apps/kiezkasse/views.py:16 meinberlin/apps/mapideas/views.py:16
 #: meinberlin/apps/maptopicprio/views.py:19
-#: meinberlin/apps/projects/views.py:89
+#: meinberlin/apps/projects/views.py:88
 msgid "Most recent"
 msgstr "am aktuellsten"
 
@@ -2244,6 +2244,7 @@ msgid "Telephone number"
 msgstr "Telefonnummer"
 
 #: meinberlin/apps/budgeting/forms.py:65
+#, python-brace-format
 msgid "Please contact me via the e-mail address of my user account ({})."
 msgstr ""
 "Bitte kontaktieren Sie mich über die E-Mail-Adresse meines Nutzerkontos ({})."
@@ -2473,7 +2474,6 @@ msgstr "Vorschlag moderieren"
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_update_form.html:4
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_update_form.html:4
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_update_form.html:4
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_update_form.html:4
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:20
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_update_form.html:4
 #, python-format
@@ -2837,6 +2837,16 @@ msgstr "Bild"
 msgid "More information"
 msgstr "Mehr Informationen"
 
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/components/hero.html:41
+#, python-format
+msgid "More information about %(name)s"
+msgstr ""
+
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/components/hero.html:50
+#, python-format
+msgid "Weitere Informationen zu %(name)s"
+msgstr ""
+
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/components/moderator_feedback.html:10
 msgid "Status: "
 msgstr "Status: "
@@ -2944,7 +2954,7 @@ msgid "Home page"
 msgstr "Startseite"
 
 #: meinberlin/apps/contrib/templatetags/breadcrumbs_tags.py:69
-#: meinberlin/templates/navigation_primary.html:34
+#: meinberlin/templates/navigation_primary.html:40
 msgid "User Account Settings"
 msgstr "Nutzerkontoeinstellungen"
 
@@ -3089,10 +3099,9 @@ msgstr ""
 "kann die Fragen anhand von Unterstützung und Zugehörigkeiten sortieren."
 
 #: meinberlin/apps/dashboard/blueprints.py:221
-#: meinberlin/apps/offlineevents/dashboard.py:63
-#: meinberlin/apps/offlineevents/phases.py:18
-#: meinberlin/apps/offlineevents/phases.py:20
-#: meinberlin/apps/projects/templates/meinberlin_projects/module_offline_event_detail.html:26
+#: meinberlin/apps/offlineevents/dashboard.py:18
+#: meinberlin/apps/offlineevents/phases.py:17
+#: meinberlin/apps/offlineevents/phases.py:19
 msgid "Offline Event"
 msgstr ""
 
@@ -3242,7 +3251,7 @@ msgstr "Zurück zum Kapitel"
 #: meinberlin/templates/account/login.html:5
 #: meinberlin/templates/account/login.html:10
 #: meinberlin/templates/account/login.html:34
-#: meinberlin/templates/account/signup.html:67
+#: meinberlin/templates/account/signup.html:65
 msgid "Login"
 msgstr "Anmelden"
 
@@ -3458,7 +3467,7 @@ msgstr "Ihre Idee wurde gelöscht"
 #: meinberlin/apps/newsletters/forms.py:108 meinberlin/apps/plans/exports.py:69
 #: meinberlin/apps/plans/forms.py:170 meinberlin/apps/plans/models.py:40
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_details_summary.html:16
-#: meinberlin/apps/projects/views.py:47
+#: meinberlin/apps/projects/views.py:46
 #: meinberlin/templates/a4dashboard/base_dashboard.html:74
 msgid "Organisation"
 msgstr "Organisation"
@@ -3592,6 +3601,12 @@ msgstr "abgeschlossen"
 msgid "Searchprofile %d"
 msgstr "Gespeicherte Suche %d"
 
+#: meinberlin/apps/kiezradar/templates/meinberlin_kiezradar/followed_projects_list.html:4
+#: meinberlin/apps/kiezradar/templates/meinberlin_kiezradar/followed_projects_list.html:8
+#: meinberlin/templates/navigation_primary.html:55
+msgid "Followed Projects"
+msgstr ""
+
 #: meinberlin/apps/kiezradar/templates/meinberlin_kiezradar/kiezradar.html:4
 #: meinberlin/apps/kiezradar/templates/meinberlin_kiezradar/kiezradar.html:7
 msgid "Kiez selection"
@@ -3707,6 +3722,7 @@ msgid "join in here"
 msgstr "Mitmachen unter"
 
 #: meinberlin/apps/livequestions/templatetags/react_questions.py:24
+#, python-brace-format
 msgid ""
 "I hereby expressly consent to the storage and publication of my questions, "
 "as described in the {}privacy policy{}. I also confirm that I have read and "
@@ -3780,8 +3796,7 @@ msgid "Place label"
 msgstr "Ortsbezeichnung"
 
 #: meinberlin/apps/maptopicprio/forms.py:44
-#: meinberlin/apps/offlineevents/forms.py:23
-#: meinberlin/apps/offlineevents/forms.py:68
+#: meinberlin/apps/offlineevents/forms.py:48
 #: meinberlin/apps/platformemails/forms.py:13
 #: meinberlin/apps/topicprio/forms.py:32
 msgid ""
@@ -3808,7 +3823,6 @@ msgid "place prioritization"
 msgstr "Ortspriorisierung"
 
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:24
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:25
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:85
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:24
 #: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:57
@@ -3838,7 +3852,6 @@ msgid "Add Place"
 msgstr "Ort hinzufügen"
 
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_dashboard_list.html:26
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_list.html:27
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:97
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_dashboard_list.html:26
 msgid "Nothing to show"
@@ -4050,31 +4063,25 @@ msgid "Newsletter has been saved and will be sent to the recipients."
 msgstr ""
 "Der Newsletter wurde gespeichert und wird an die Empfänger*innen gesendet."
 
-#: meinberlin/apps/offlineevents/dashboard.py:17
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_list.html:9
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:29
-msgid "Offline Events"
-msgstr "Veranstaltungen"
-
-#: meinberlin/apps/offlineevents/dashboard.py:105
+#: meinberlin/apps/offlineevents/dashboard.py:60
 msgid "Date And Time"
 msgstr ""
 
-#: meinberlin/apps/offlineevents/forms.py:15
-#: meinberlin/apps/offlineevents/forms.py:48
-#: meinberlin/apps/offlineevents/models.py:32
-#: meinberlin/apps/offlineevents/models.py:81
+#: meinberlin/apps/offlineevents/forms.py:17
+#: meinberlin/apps/offlineevents/models.py:15
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_invite_list.html:8
 msgid "Date"
 msgstr "Datum"
 
-#: meinberlin/apps/offlineevents/forms.py:15
-#: meinberlin/apps/offlineevents/forms.py:48
+#: meinberlin/apps/offlineevents/forms.py:17
 msgid "Time"
 msgstr "Zeit"
 
-#: meinberlin/apps/offlineevents/forms.py:30
-#: meinberlin/apps/offlineevents/forms.py:75
+#: meinberlin/apps/offlineevents/forms.py:33
+msgid "Name of event"
+msgstr "Name der Veranstaltung"
+
+#: meinberlin/apps/offlineevents/forms.py:55
 msgid ""
 "Please describe in no more than 30 characters the event type, e.g. "
 "Information event or 3rd public workshop."
@@ -4082,69 +4089,22 @@ msgstr ""
 "Beschreiben Sie in maximal 30 Zeichen die Art der Veranstaltung, z.B. "
 "Informationsveranstaltung oder 3. öffentlicher Workshop."
 
-#: meinberlin/apps/offlineevents/forms.py:37
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_event.html:35
-msgid "Date and time"
-msgstr "Datum und Uhrzeit"
-
-#: meinberlin/apps/offlineevents/models.py:27
-msgid "Name of event"
-msgstr "Name der Veranstaltung"
-
-#: meinberlin/apps/offlineevents/models.py:30
-#: meinberlin/apps/offlineevents/models.py:83
+#: meinberlin/apps/offlineevents/models.py:17
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_event.html:29
 msgid "Event type"
 msgstr "Art der Veranstaltung"
 
-#: meinberlin/apps/offlineevents/phases.py:19
+#: meinberlin/apps/offlineevents/phases.py:18
 msgid "Manage a single offline event"
 msgstr ""
 
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:4
-msgid "Confirm Offline Event Deletion"
-msgstr "Bestätigung der Veranstaltung"
-
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:8
-msgid "Are you sure you want to delete the offline event?"
-msgstr "Sind Sie sicher, dass Sie diese Veranstaltung löschen möchten?"
-
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_create_form.html:4
-msgid "Create a new event"
-msgstr "Neue Veranstaltung anlegen"
-
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_create_form.html:7
-msgid "Add a new offline event"
-msgstr "Neue Veranstaltung hinzufügen"
-
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_list.html:4
-msgid "Offlineevents"
-msgstr "Veranstaltungen"
-
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_list.html:13
-msgid "Add offline event"
-msgstr "Veranstaltung hinzufügen"
-
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_list.html:18
-msgid ""
-"Here, you can include events that take place as part of the participation "
-"project."
-msgstr ""
-"Hier können Sie Veranstaltungen eintragen, die als Teil des "
-"Beteiligungsprojekts stattfinden."
-
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_module_dashboard_form.html:4
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_update_form.html:8
 msgid "Edit offline event"
 msgstr "Veranstaltung bearbeiten"
 
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_settings_dashboard_form.html:4
 msgid "Edit date and time"
 msgstr ""
-
-#: meinberlin/apps/offlineevents/views.py:101
-msgid "The offline event has been deleted"
-msgstr "Die Veranstaltung wurde gelöscht."
 
 #: meinberlin/apps/organisations/forms.py:22
 msgid "Groups"
@@ -4360,7 +4320,7 @@ msgstr "Name des Ortes"
 
 #: meinberlin/apps/plans/models.py:64
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_details_summary.html:37
-#: meinberlin/apps/projects/views.py:51
+#: meinberlin/apps/projects/views.py:50
 msgid "District"
 msgstr "Bezirk"
 
@@ -4403,6 +4363,7 @@ msgstr "Laufzeit"
 
 #: meinberlin/apps/plans/models.py:168
 #: meinberlin/apps/projects/serializers.py:131
+#, python-brace-format
 msgid "starts at {}"
 msgstr "startet am {}"
 
@@ -4642,11 +4603,11 @@ msgstr "Bezirk und Ort"
 msgid "Edit district and location"
 msgstr "Bezirk und Verortung bearbeiten"
 
-#: meinberlin/apps/projects/forms.py:52 meinberlin/apps/projects/views.py:332
+#: meinberlin/apps/projects/forms.py:52 meinberlin/apps/projects/views.py:331
 msgid "Invite users via email"
 msgstr "Nutzer*innen via E-Mail einladen"
 
-#: meinberlin/apps/projects/forms.py:57 meinberlin/apps/projects/views.py:333
+#: meinberlin/apps/projects/forms.py:57 meinberlin/apps/projects/views.py:332
 msgid "Invite users via file upload"
 msgstr "Nutzer*innen aus Datei einladen"
 
@@ -4706,6 +4667,12 @@ msgstr "Verantwortliche Stelle"
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/contact_person.html:21
 msgid "Call"
 msgstr "Anrufen"
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/module-tile/module_tile.html:18
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:89
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/status_bar.html:18
+msgid "Clock"
+msgstr ""
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/module-tile/module_tile.html:19
 #, python-format
@@ -4814,12 +4781,12 @@ msgid "Timeline item"
 msgstr "Zeitleistenkachel"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_timeline-carousel.html:18
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:30
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:29
 msgid "from"
 msgstr "ab"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_timeline-carousel.html:21
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:40
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:39
 msgid "on"
 msgstr "am"
 
@@ -4844,15 +4811,15 @@ msgstr "Alle Projekte"
 msgid "remaining %(time_left)s"
 msgstr "noch %(time_left)s"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:7
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:6
 msgid "Participation process timeline"
 msgstr "Beteiligungsverlauf"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:11
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:10
 msgid "Previous timeline items"
 msgstr "Vorherige Zeitleistenkacheln"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:16
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:15
 msgid "Next timeline items"
 msgstr "Nächste Zeitleistenkacheln"
 
@@ -4896,8 +4863,8 @@ msgstr "Weiter zur Anmeldung"
 #: meinberlin/templates/account/login.html:40
 #: meinberlin/templates/account/signup.html:5
 #: meinberlin/templates/account/signup.html:10
-#: meinberlin/templates/account/signup.html:60
-#: meinberlin/templates/navigation_primary.html:95
+#: meinberlin/templates/account/signup.html:58
+#: meinberlin/templates/navigation_primary.html:111
 #: meinberlin/templates/socialaccount/signup.html:54
 msgid "Register"
 msgstr "Registrieren"
@@ -4919,11 +4886,11 @@ msgstr ""
 msgid "This project has not yet been published."
 msgstr "Dieses Projekt wurde noch nicht veröffentlicht."
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/module_offline_event_detail.html:37
+#: meinberlin/apps/projects/templates/meinberlin_projects/module_offline_event_detail.html:34
 msgid "Event Type:"
 msgstr ""
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/module_offline_event_detail.html:41
+#: meinberlin/apps/projects/templates/meinberlin_projects/module_offline_event_detail.html:38
 msgid "Date:"
 msgstr ""
 
@@ -4985,9 +4952,17 @@ msgstr ""
 msgid "Are you sure you want to delete the project?"
 msgstr ""
 
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:29
+msgid "Offline Events"
+msgstr "Veranstaltungen"
+
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_event.html:24
 msgid "Event Description"
 msgstr "Beschreibung der Veranstaltung"
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_event.html:35
+msgid "Date and time"
+msgstr "Datum und Uhrzeit"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_information.html:23
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_information.html:32
@@ -5041,60 +5016,64 @@ msgid_plural "Participants"
 msgstr[0] "Teilnehmer*in"
 msgstr[1] "Teilnehmer*innen"
 
-#: meinberlin/apps/projects/views.py:71
+#: meinberlin/apps/projects/views.py:70
 msgid "Year"
 msgstr "Jahr"
 
-#: meinberlin/apps/projects/views.py:74
+#: meinberlin/apps/projects/views.py:73
 msgid "Any"
 msgstr "Alle"
 
-#: meinberlin/apps/projects/views.py:217
+#: meinberlin/apps/projects/views.py:216
 msgid "Invitation succesfully removed."
 msgstr "Einladung erfolgreich entfernt."
 
-#: meinberlin/apps/projects/views.py:220
+#: meinberlin/apps/projects/views.py:219
 msgid "Invitation was already accepted or removed."
 msgstr "Einladung wurde schon akzeptiert oder entfernt."
 
-#: meinberlin/apps/projects/views.py:268
+#: meinberlin/apps/projects/views.py:267
 msgid "Following users already accepted an invitation: "
 msgstr ""
 "Die folgenden Nutzerinnen und Nutzer haben bereits eine Einladung angenommen:"
 
-#: meinberlin/apps/projects/views.py:276
+#: meinberlin/apps/projects/views.py:275
 msgid "Following users are already invited: "
 msgstr "Die folgenden Nutzerinnen und Nutzer wurden bereits eingeladen:"
 
-#: meinberlin/apps/projects/views.py:313
+#: meinberlin/apps/projects/views.py:312
 msgid "Invite moderators via email"
 msgstr "Moderator*innen via E-Mail einladen"
 
-#: meinberlin/apps/projects/views.py:314
+#: meinberlin/apps/projects/views.py:313
 msgid "Invite moderators via file upload"
 msgstr "Moderator*innen aus Datei einladen"
 
-#: meinberlin/apps/projects/views.py:315
+#: meinberlin/apps/projects/views.py:314
+#, python-brace-format
 msgid "{} moderator invited."
 msgstr "{} Moderator*in eingeladen."
 
-#: meinberlin/apps/projects/views.py:315
+#: meinberlin/apps/projects/views.py:314
+#, python-brace-format
 msgid "{} moderators invited."
 msgstr "{} Moderator*innen eingeladen."
 
-#: meinberlin/apps/projects/views.py:316
+#: meinberlin/apps/projects/views.py:315
 msgid "Moderator successfully removed."
 msgstr "Moderator*in erfolgreich entfernt."
 
-#: meinberlin/apps/projects/views.py:334
+#: meinberlin/apps/projects/views.py:333
+#, python-brace-format
 msgid "{} participant invited."
 msgstr "{} Teilnehmer*in eingeladen"
 
-#: meinberlin/apps/projects/views.py:334
+#: meinberlin/apps/projects/views.py:333
+#, python-brace-format
 msgid "{} participants invited."
 msgstr "{} Teilnehmer*innen eingeladen"
 
-#: meinberlin/apps/projects/views.py:335
+#: meinberlin/apps/projects/views.py:334
 msgid "Participant successfully removed."
 msgstr "Teilnehmer*in erfolgreich entfernt."
 
@@ -5400,18 +5379,21 @@ msgid "Generate codes"
 msgstr "Codes erstellen"
 
 #: meinberlin/apps/votes/views.py:67
+#, python-brace-format
 msgid ""
 "{} code will be generated in the background. This may take a few minutes."
 msgstr ""
 "{} Code wird im Hintergrund erstellt. Dies kann ein paar Minuten dauern."
 
 #: meinberlin/apps/votes/views.py:71
+#, python-brace-format
 msgid ""
 "{} codes will be generated in the background. This may take a few minutes."
 msgstr ""
 "{} Codes werden im Hintergrund erstellt. Dies kann ein paar Minuten dauern."
 
 #: meinberlin/apps/votes/views.py:76
+#, python-brace-format
 msgid ""
 "Please adjust your number of codes. Per module you can generate up to {} "
 "codes."
@@ -5496,11 +5478,11 @@ msgstr ""
 msgid "This page could not be found."
 msgstr "Diese Seite konnte nicht gefunden werden."
 
-#: meinberlin/templates/500.html:4 meinberlin/templates/base.html:35
+#: meinberlin/templates/500.html:4 meinberlin/templates/base.html:34
 msgid "meinBerlin"
 msgstr "meinBerlin"
 
-#: meinberlin/templates/500.html:9 meinberlin/templates/base.html:49
+#: meinberlin/templates/500.html:9 meinberlin/templates/base.html:48
 msgid "Skip to content "
 msgstr "Zum Inhalt springen"
 
@@ -5839,6 +5821,7 @@ msgstr ""
 "href=\"%(email_url)s\">fordern Sie eine neue Bestätigungsemail an</a>."
 
 #: meinberlin/templates/account/login.html:31
+#: meinberlin/templates/navigation_primary.html:114
 msgid "Forgot Password?"
 msgstr "Passwort vergessen?"
 
@@ -5938,7 +5921,7 @@ msgstr ""
 "target=\"_blank\">Datenschutzbestimmungen</a>\n"
 "                    gelesen habe und akzeptiere."
 
-#: meinberlin/templates/account/signup.html:66
+#: meinberlin/templates/account/signup.html:64
 msgid "Already have an account?"
 msgstr "Sie haben bereits ein Konto?"
 
@@ -6041,11 +6024,8 @@ msgid ""
 msgstr ""
 "Wo finde ich weitere Informationen zur Barrierefreiheit im Land Berlin?"
 
-#: meinberlin/templates/header.html:135
-msgid "Open overlay: Menu"
-msgstr "Overlay öffnen: Menü"
-
-#: meinberlin/templates/header.html:137 meinberlin/templates/header.html:143
+#: meinberlin/templates/header.html:135 meinberlin/templates/header.html:137
+#: meinberlin/templates/header.html:143
 msgid "Menu"
 msgstr "Menü"
 
@@ -6058,38 +6038,38 @@ msgstr "Overlay schließen: Menü"
 msgid "Sind Sie sicher dass Sie das Projekt '%(project_name)s' löschen wollen?"
 msgstr ""
 
-#: meinberlin/templates/navigation_primary.html:22
+#: meinberlin/templates/navigation_primary.html:25
 msgid "FAQ & Support"
 msgstr "FAQ & Support"
 
-#: meinberlin/templates/navigation_primary.html:43
+#: meinberlin/templates/navigation_primary.html:51
 msgid "Notification Settings"
 msgstr "Benachrichtigungsoptionen"
 
-#: meinberlin/templates/navigation_primary.html:47
+#: meinberlin/templates/navigation_primary.html:59
 msgid "Searchprofiles"
 msgstr "Gespeicherte Suchen"
 
-#: meinberlin/templates/navigation_primary.html:51
+#: meinberlin/templates/navigation_primary.html:64
 msgid "Kiez Selection"
 msgstr "Kiezauswahl"
 
-#: meinberlin/templates/navigation_primary.html:70
+#: meinberlin/templates/navigation_primary.html:85
 msgid "Platform Mail"
 msgstr "Plattform-Mail"
 
-#: meinberlin/templates/navigation_primary.html:83
-#: meinberlin/templates/navigation_primary.html:86
+#: meinberlin/templates/navigation_primary.html:96
+msgid "Account"
+msgstr ""
+
+#: meinberlin/templates/navigation_primary.html:100
+#: meinberlin/templates/navigation_primary.html:103
 msgid "Log out"
 msgstr "Abmelden"
 
-#: meinberlin/templates/navigation_primary.html:92
+#: meinberlin/templates/navigation_primary.html:108
 msgid "Log in"
 msgstr "Anmelden"
-
-#: meinberlin/templates/navigation_primary.html:98
-msgid "Forgot Password"
-msgstr "Passwort vergessen"
 
 #: meinberlin/templates/socialaccount/authentication_error.html:5
 #: meinberlin/templates/socialaccount/authentication_error.html:8

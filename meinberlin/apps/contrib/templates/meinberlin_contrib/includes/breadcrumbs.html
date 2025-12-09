@@ -1,7 +1,7 @@
 {% load i18n widget_tweaks %}
 
 <div id="content-header">
-    <nav class="breadcrumb" aria-label="{% translate 'You are here:' %}">
+    <nav class="breadcrumb" aria-label="{% translate 'Breadcrumb' %}">
         <ol>
             {% for page in pages %}
                 <li{% if forloop.last %} class="active"{% endif %}>

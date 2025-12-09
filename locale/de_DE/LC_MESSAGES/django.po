@@ -1107,7 +1107,7 @@ msgstr "ID"
 
 #: adhocracy4/polls/exports.py:151
 msgid "Voter ID"
-msgstr ""
+msgstr "Voter ID"
 
 #: adhocracy4/polls/models.py:50
 msgid "Explanation"
@@ -2618,11 +2618,11 @@ msgstr "Filterleiste"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/form_password_field.html:7
 msgid "required"
-msgstr ""
+msgstr "erforderlich"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/form_password_field.html:13
 msgid "Show password"
-msgstr ""
+msgstr "Passwort anzeigen"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/item_detail_dropdown.html:4
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/item_detail_dropdown.html:5
@@ -2835,21 +2835,20 @@ msgstr ""
 "kann die Fragen anhand von Unterstützung und Zugehörigkeiten sortieren."
 
 #: meinberlin/apps/dashboard/blueprints.py:221
-#: meinberlin/apps/offlineevents/dashboard.py:18
-#: meinberlin/apps/offlineevents/phases.py:17
-#: meinberlin/apps/offlineevents/phases.py:19
 #: meinberlin/apps/offlineevents/dashboard.py:63
 #: meinberlin/apps/offlineevents/phases.py:18
 #: meinberlin/apps/offlineevents/phases.py:20
 #: meinberlin/apps/projects/templates/meinberlin_projects/module_offline_event_detail.html:26
 msgid "Offline Event"
-msgstr ""
+msgstr "Veranstaltung"
 
 #: meinberlin/apps/dashboard/blueprints.py:223
 msgid ""
 "Create a offline event for the project. Participants can view and get "
 "information about this event."
 msgstr ""
+"Erstelle eine Veranstaltung für das Projekt. Teilnehmende können diese "
+"Veranstaltung einsehen und Informationen dazu erhalten."
 
 #: meinberlin/apps/dashboard/forms.py:15
 #: meinberlin/apps/extprojects/models.py:11
@@ -3827,10 +3826,9 @@ msgid "Newsletter has been saved and will be sent to the recipients."
 msgstr ""
 "Der Newsletter wurde gespeichert und wird an die Empfänger*innen gesendet."
 
-#: meinberlin/apps/offlineevents/dashboard.py:60
 #: meinberlin/apps/offlineevents/dashboard.py:105
 msgid "Date And Time"
-msgstr ""
+msgstr "Datum und Uhrzeit"
 
 #: meinberlin/apps/offlineevents/forms.py:17
 #: meinberlin/apps/offlineevents/models.py:15
@@ -3876,10 +3874,9 @@ msgstr ""
 msgid "Event type"
 msgstr "Art der Veranstaltung"
 
-#: meinberlin/apps/offlineevents/phases.py:18
 #: meinberlin/apps/offlineevents/phases.py:19
 msgid "Manage a single offline event"
-msgstr ""
+msgstr "Eine einzelne Veranstaltung verwalten"
 
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_module_dashboard_form.html:4
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_update_form.html:8
@@ -3888,7 +3885,7 @@ msgstr "Veranstaltung bearbeiten"
 
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_settings_dashboard_form.html:4
 msgid "Edit date and time"
-msgstr ""
+msgstr "Datum und Uhrzeit bearbeiten"
 
 #: meinberlin/apps/organisations/forms.py:22
 msgid "Groups"
@@ -4692,15 +4689,13 @@ msgstr ""
 msgid "This project has not yet been published."
 msgstr "Dieses Projekt wurde noch nicht veröffentlicht."
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/module_offline_event_detail.html:34
 #: meinberlin/apps/projects/templates/meinberlin_projects/module_offline_event_detail.html:37
 msgid "Event Type:"
-msgstr ""
+msgstr "Veranstaltungsart:"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/module_offline_event_detail.html:38
 #: meinberlin/apps/projects/templates/meinberlin_projects/module_offline_event_detail.html:41
 msgid "Date:"
-msgstr ""
+msgstr "Datum:"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/participantinvite_detail.html:4
 #: meinberlin/apps/projects/templates/meinberlin_projects/participantinvite_form.html:4
@@ -4754,11 +4749,11 @@ msgstr "Sie startet am %(date)s."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_confirm_delete.html:4
 msgid "Confirm Project Deletion"
-msgstr ""
+msgstr "Bestätigen Sie die Löschung des Projekts"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_confirm_delete.html:7
 msgid "Are you sure you want to delete the project?"
-msgstr ""
+msgstr "Sind Sie sicher, dass Sie das Projekt löschen wollen?"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:29
 #: meinberlin/apps/offlineevents/dashboard.py:17
@@ -5872,6 +5867,7 @@ msgstr "Overlay schließen: Menü"
 #, python-format
 msgid "Sind Sie sicher dass Sie das Projekt '%(project_name)s' löschen wollen?"
 msgstr ""
+"Sind Sie sicher dass Sie das Projekt '%(project_name)s' löschen wollen?"
 
 #: meinberlin/templates/navigation_primary.html:25
 #: meinberlin/templates/navigation_primary.html:22

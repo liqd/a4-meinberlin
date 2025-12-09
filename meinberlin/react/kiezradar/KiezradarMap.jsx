@@ -85,6 +85,7 @@ function Radius ({
       if (marker) {
         const element = marker.getElement()
         if (element) {
+          element.setAttribute('alt', `${a11yTagText}: ${position}`)
           element.setAttribute('aria-label', `${a11yTagText}: ${position}`)
           element.setAttribute('role', 'button')
         }

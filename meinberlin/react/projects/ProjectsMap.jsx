@@ -24,9 +24,9 @@ const Markers = ({ items, topicChoices }) => {
     items
       .filter(item => !!item.point)
       .map(item => ({ ...item.point, properties: item }))
-      .map((project) => (
+      .map((project, index) => (
         <ProjectMarker
-          key={project.properties.title}
+          key={project.properties.title + index}
           topicChoices={topicChoices}
           project={project}
           onOpen={() => setActiveProject(project)}

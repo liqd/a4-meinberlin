@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-09 15:09+0100\n"
+"POT-Creation-Date: 2025-12-09 17:55+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -141,11 +141,6 @@ msgstr "Edit"
 msgid "Report"
 msgstr "Report"
 
-#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:8
-#: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:7
-msgid "Comment Actions"
-msgstr "Comment Actions"
-
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:6
 msgctxt "defakts"
 msgid "The defakt AI has found evidence of disinformation."
@@ -161,6 +156,7 @@ msgstr ""
 "based on certain linguistic characteristics."
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:8
+#, javascript-format
 msgctxt "defakts"
 msgid ""
 "The AI considers some of the characteristics of disinformation to be "
@@ -381,7 +377,7 @@ msgstr "Post"
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:21
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
-#: adhocracy4/static/Modal.jsx:8 adhocracy4/static/Modal.jsx:7
+#: adhocracy4/static/Modal.jsx:7
 #: meinberlin/react/kiezradar/SearchProfile.jsx:11
 msgid "Cancel"
 msgstr "Cancel"
@@ -409,10 +405,6 @@ msgstr "Copy"
 #: adhocracy4/comments_async/static/modals/UrlModal.jsx:9
 msgid "Copied"
 msgstr "Copied"
-
-#: adhocracy4/comments_async/static/modals/UrlModal.jsx:47
-msgid "Share URL"
-msgstr "Share URL"
 
 #: adhocracy4/follows/static/follows/FollowButton.jsx:10
 msgid "Click to be updated about this project via email."
@@ -463,8 +455,8 @@ msgid "Import polygon via file upload"
 msgstr "Import polygon via file upload"
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:88
-#: adhocracy4/static/Alert.jsx:6 adhocracy4/static/Modal.jsx:7
-#: adhocracy4/static/Modal.jsx:6 meinberlin/apps/embed/assets/embed.js:59
+#: adhocracy4/static/Alert.jsx:6 adhocracy4/static/Modal.jsx:6
+#: meinberlin/apps/embed/assets/embed.js:59
 #: meinberlin/apps/embed/assets/embed.js:60
 #: meinberlin/react/contrib/Modal.jsx:4 meinberlin/react/plans/FilterNav.jsx:15
 msgid "Close"
@@ -538,10 +530,6 @@ msgid ""
 "The chosen address is outside this map's bounds. Please choose another one."
 msgstr ""
 "The chosen address is outside this map's bounds. Please choose another one."
-
-#: adhocracy4/maps_react/static/a4maps_react/GeoJsonMarker.js:29
-msgid "Project pin"
-msgstr "Project pin"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:9
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:70
@@ -654,7 +642,6 @@ msgid "characters"
 msgstr "characters"
 
 #: adhocracy4/polls/static/PollDetail/ChoiceRow.jsx:6
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:112
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:110
 msgid "other"
 msgstr "other"
@@ -748,36 +735,9 @@ msgstr[1] "%s people have answered."
 msgid "no one has answered this question"
 msgstr "no one has answered this question"
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:95
-msgid "Previous answer"
-msgstr "Previous answer"
-
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:96
-msgid "Next answer"
-msgstr "Next answer"
-
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:109
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:107
 msgid "Your choice"
 msgstr "Your choice"
-
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:130
-msgid "Other answers carousel"
-msgstr "Other answers carousel"
-
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:140
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:176
-msgid "Answer %(current)s of %(total)s"
-msgstr "Answer %(current)s of %(total)s"
-
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:146
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:182
-msgid "Your answer"
-msgstr "Your answer"
-
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:166
-msgid "Open answers carousel"
-msgstr "Open answers carousel"
 
 #: adhocracy4/polls/static/PollDetail/TextareaWithCounter.jsx:7
 msgid "Please specify:"
@@ -892,6 +852,11 @@ msgstr "Search"
 msgid "Start search"
 msgstr "Start search"
 
+#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:8
+#: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:7
+msgid "Comment Actions"
+msgstr "Comment Actions"
+
 #: meinberlin/apps/captcha/assets/captcheck.js:33
 msgid "Captcha image"
 msgstr "Captcha image"
@@ -923,6 +888,38 @@ msgstr "Encrypted"
 #: meinberlin/assets/js/unload_warning.js:16
 msgid "If you leave this page changes you made will not be saved."
 msgstr "If you leave this page changes you made will not be saved."
+
+#: meinberlin/assets/js/validate_empty_required_fields.js:130
+msgid "This field"
+msgstr "This field"
+
+#: meinberlin/assets/js/validate_empty_required_fields.js:138
+msgid "Please enter your password."
+msgstr "Please enter your password."
+
+#: meinberlin/assets/js/validate_empty_required_fields.js:140
+msgid "Please enter your email address."
+msgstr "Please enter your email address."
+
+#: meinberlin/assets/js/validate_empty_required_fields.js:142
+msgid "Please enter your username."
+msgstr "Please enter your username."
+
+#: meinberlin/assets/js/validate_empty_required_fields.js:144
+msgid "You must accept the terms of use."
+msgstr "You must accept the terms of use."
+
+#: meinberlin/assets/js/validate_empty_required_fields.js:146
+msgid "This field is required."
+msgstr "This field is required."
+
+#: meinberlin/assets/js/validate_empty_required_fields.js:157
+#: meinberlin/assets/js/validate_empty_required_fields.js:160
+#, javascript-format
+msgid "The form contains an error."
+msgid_plural "The form contains %s errors."
+msgstr[0] "The form contains an error."
+msgstr[1] "The form contains %s errors."
 
 #: meinberlin/react/account/FeedItem.jsx:7
 msgid "now"

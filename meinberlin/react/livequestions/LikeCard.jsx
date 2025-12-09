@@ -46,7 +46,8 @@ export default function LikeCard ({
                 likes.session_like && 'rating-button--active'
               )}
               onClick={onLikeClick}
-              aria-label={likes.session_like ? addLikeTag : undoLikeTag}
+              aria-label={likes.session_like ? undoLikeTag : addLikeTag}
+              aria-pressed={likes.session_like}
             >
               <i className="far fa-thumbs-up mr-1" aria-hidden="true" />
               {likeText} ({likes.count})

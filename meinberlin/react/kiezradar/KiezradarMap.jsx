@@ -1,5 +1,6 @@
+/* eslint-disable no-restricted-syntax */
 import L from 'leaflet'
-import React, { useMemo, useRef } from 'react'
+import React, { useMemo, useRef, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import django from 'django'
 import { Circle, MapContainer, Marker, useMap, useMapEvents, ZoomControl } from 'react-leaflet'
@@ -9,6 +10,8 @@ import MaplibreGlLayer from 'adhocracy4/adhocracy4/maps_react/static/a4maps_reac
 import * as turf from '@turf/turf'
 
 const chooseYourRadiusText = django.gettext('Choose your radius')
+// TODO: Check what the ideal text here should be
+const a11yTagText = django.gettext('Marker pin with current position')
 
 export default function KiezradarMap ({
   position,
@@ -75,6 +78,21 @@ function Radius ({
     () => turf.polygon(polygon.features[0].geometry.coordinates),
     []
   )
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const marker = markerRef.current
+      if (marker) {
+        const element = marker.getElement()
+        if (element) {
+          element.setAttribute('aria-label', `${a11yTagText}: ${position}`)
+          element.setAttribute('role', 'button')
+        }
+      }
+    }, 100)
+
+    return () => clearTimeout(timer)
+  }, [position.lat, position.lng])
 
   useMapEvents({
     click: (e) => {

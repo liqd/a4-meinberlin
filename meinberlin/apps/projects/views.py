@@ -29,7 +29,6 @@ from adhocracy4.projects import models as project_models
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.dashboard import is_event_module
-from meinberlin.apps.offlineevents.models import OfflineEvent
 
 from ..bplan.views import BplanProjectDispatchMixin
 from . import forms
@@ -358,7 +357,6 @@ class ProjectDetailView(PermissionRequiredMixin, BplanProjectDispatchMixin):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["events"] = self.project.offlineevent_set.all().order_by("date")
 
         # Load all modules with items prefetched
         modules_qs = self.project.modules.prefetch_related("item_set")
@@ -378,22 +376,6 @@ class ProjectDetailView(PermissionRequiredMixin, BplanProjectDispatchMixin):
             "a4dashboard:project-edit", kwargs={"project_slug": self.project.slug}
         )
         return models.ProjectInsight.update_context(self.project, context)
-
-
-class ProjectEventView(PermissionRequiredMixin, generic.DetailView):
-    model = OfflineEvent
-    permission_required = "meinberlin_offlineevents.view_offlineevent"
-    slug_url_kwarg = "event_slug"
-    template_name = "meinberlin_projects/project_event.html"
-    context_object_name = "event"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["project"] = self.object.project
-        context["edit_link"] = reverse(
-            "a4dashboard:offlineevent-update", kwargs={"slug": self.object.slug}
-        )
-        return context
 
 
 class ModuleDetailview(PermissionRequiredMixin, PhaseDispatchMixin):

@@ -442,6 +442,9 @@ msgid ""
 "notifications are enabled in your %(linkStart)s notification "
 "settings%(linkEnd)s"
 msgstr ""
+"Ab jetzt halten wir Sie über alle Änderungen auf dem Laufenden.<br/>Stellen "
+"Sie sicher, dass E-Mail-Benachrichtigungen in den "
+"%(linkStart)sBenachrichtigungseinstellungen%(linkEnd)s aktiviert sind"
 
 #: adhocracy4/follows/static/follows/FollowButton.jsx:16
 msgid "You will no longer be updated via email."
@@ -2263,17 +2266,19 @@ msgstr ""
 
 #: meinberlin/react/projects/ProjectsList.jsx:7
 msgid "Show completed projects too?"
-msgstr ""
+msgstr "Abgeschlossene Projekte ebenfalls anzeigen?"
 
 #: meinberlin/react/projects/ProjectsList.jsx:8
 msgid ""
 "Expand your search to view completed projects and discover more "
 "possibilities."
 msgstr ""
+"Erweitern Sie Ihre Suche, um auch abgeschlossene Projekte anzuzeigen und "
+"weitere Möglichkeiten zu entdecken."
 
 #: meinberlin/react/projects/ProjectsList.jsx:9
 msgid "Show completed"
-msgstr ""
+msgstr "Abgeschlossene einbeziehen"
 
 #: meinberlin/react/projects/ProjectsListMapBox.jsx:16
 #: meinberlin/react/projects/ProjectsListMapBox.jsx:15
@@ -2389,7 +2394,7 @@ msgstr "Video abspielen"
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:8
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:7
 msgid "Kommentar-Aktionen"
-msgstr ""
+msgstr "Kommentar-Aktionen"
 
 #: adhocracy4/follows/static/follows/FollowButton.jsx:15
 msgid "You will be updated via email."

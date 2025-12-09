@@ -1,15 +1,27 @@
 {% extends "account/base.html" %}
-{% load i18n account socialaccount %}
+{% load i18n account socialaccount static %}
 
 {% block head_title %}
     {% translate "Login" %}
 {% endblock head_title %}
 
+{% block extra_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'validate_empty_required_fields.js' %}" defer></script>
+{% endblock extra_js %}
+
 {% block content %}
     <div class="narrow-wrapper">
         <h1>{% translate "Login" %}</h1>
 
-        <form method="post" action="{% url 'account_login' %}" class="form--base">
+        <form method="post" action="{% url 'account_login' %}" class="form--base js-validate">
+            {% csrf_token %}
+            
+            <div class="client-validation-errors" style="display: none;">
+                <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+                </ul>
+            </div>
+            
             {% if form.non_field_errors %}
                 <ul class="errorlist" aria-live="assertive" aria-atomic="true">
                     {% for error in form.non_field_errors %}
@@ -17,7 +29,6 @@
                     {% endfor %}
                 </ul>
             {% endif %}
-            {% csrf_token %}
 
             {% include "meinberlin_contrib/includes/form_field.html" with field=form.login %}
             {% include "meinberlin_contrib/includes/form_password_field.html" with field=form.password %}

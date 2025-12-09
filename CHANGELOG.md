@@ -16,24 +16,22 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Make tile_image field optional in DiPlan API - Bplans sent without an image automatically receive the placeholder image
 - Password visibility toggle added to login and signup forms
 - External projects/plans show icon to indicate external link
-<<<<<<< HEAD
 - Offline Event is now A Module
 - Option to select plans from different organisations in projects
-=======
 - Burgermenu design updated
->>>>>>> ef5b644a8 (changelog)
 
 ### Fixed
 
 - Kiezradar filter projects by organisation
 - Kiezradar show projects/plans with the same name in Projects List
- - Accessibility improvements regarding alternative texts
- - Accessibility improvements regarding semantic structure and adaptability
- - Accessibility improvements regarding structured navigation and consistent focus indication
+- Accessibility improvements regarding alternative texts
+- Accessibility improvements regarding semantic structure and adaptability
+- Accessibility improvements regarding structured navigation and consistent focus indication
 
 ### Added
 
-- Initiators can delete projects with no contributions 
+- Initiators can delete projects with no contributions
+- Frontend validation for registration and login forms, as well as Kiez selection form, for improved accessibility in the case that required fields are not filled out
 
 ## v2509.1
 

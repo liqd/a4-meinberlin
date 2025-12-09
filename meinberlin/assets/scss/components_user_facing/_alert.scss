@@ -56,3 +56,11 @@
 .alert--small {
     padding: 0.5em;
 }
+
+.client-validation-errors {
+    .errorlist {
+        li.message--error {
+            margin-bottom: 8px;
+        }
+    }
+}

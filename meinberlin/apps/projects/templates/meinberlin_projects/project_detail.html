@@ -23,25 +23,12 @@
         {% include 'meinberlin_projects/project_actions.html' %}
         {% include 'meinberlin_projects/includes/project_details_summary.html' %}
         {% include 'meinberlin_projects/includes/project_participation.html' %}
-        {% if events or offline_modules %}
+        {% if offline_modules %}
             <section aria-labelledby="project-events">
                 <div class="actionable-list__header">
                     <h2 id="project-events">{% translate "Offline Events" %}</h2>
                 </div>
                 <ul class="actionable-list">
-                    {# Bestehende OfflineEvent-Objekte #}
-                    {% for event in events %}
-                        <li class="actionable-list__item actionable-list__item--hide-first-line{% if event.is_past %} actionable-list__item--faded{% endif %}">
-                            {% html_date event.date 'DATE_FORMAT' %} · {{ event.event_type }}
-                            <a href="{{ event.get_absolute_url }}"
-                               class="actionable-list__item__body">
-                                <h4 class="my-0">{{ event.name }}</h4>
-                                <div class="actionable-list__item__actions actionable-list__item__actions--inline">
-                                    <i class="bicon bicon-arrow-right" aria-hidden="true"></i>
-                                </div>
-                            </a>
-                        </li>
-                    {% endfor %}
                     {# Offline-Module mit Datum (z. B. OE) #}
                     {% for module in offline_modules %}
                         <li class="actionable-list__item actionable-list__item--hide-first-line">

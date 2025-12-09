@@ -52,7 +52,7 @@ export default function Kiezradar ({
 
     const nameInput = e.target.elements.name
     const nameValue = nameInput?.value?.trim()
-    
+
     if (!nameValue) {
       setLoading(false)
       setError(requiredFieldText)

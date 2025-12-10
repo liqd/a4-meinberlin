@@ -131,6 +131,7 @@ export default function Kiezradars (props) {
                         'kiezradar__link',
                         !isNewKiez && 'kiezradar__link--active'
                       )}
+                      aria-current={!isNewKiez ? 'page' : undefined}
                     >
                       {translations.manageKiezesText}
                     </Link>
@@ -142,6 +143,7 @@ export default function Kiezradars (props) {
                         'kiezradar__link',
                         isNewKiez && 'kiezradar__link--active'
                       )}
+                      aria-current={isNewKiez ? 'page' : undefined}
                     >
                       {translations.createKiezText}
                     </Link>

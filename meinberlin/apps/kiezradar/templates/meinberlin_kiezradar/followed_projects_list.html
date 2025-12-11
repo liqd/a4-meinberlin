@@ -1,6 +1,9 @@
 {% extends "base.html" %}
-{% load static i18n %}
-
+{% load static i18n breadcrumbs_tags %}
+{% block breadcrumbs %}
+    {% translate "Followed Projects" as final_title %}
+    {% render_breadcrumbs final_title=final_title %}
+{% endblock breadcrumbs %}
 {% block title %}{% translate 'Followed Projects' %} - {{ block.super }}{% endblock title %}
 
 {% block content %}

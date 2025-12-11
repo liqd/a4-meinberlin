@@ -26,7 +26,6 @@ function truncateText (item) {
 //  see https://react.dev/reference/react/forwardRef
 const ProjectTile = forwardRef(function ProjectTile ({ project, isHorizontal, topicChoices, isMapTile }, ref) {
   const labelId = useId()
-  const describedById = useId()
   const statusId = useId()
   const statusBarProgress = project.active_phase ? project.active_phase[0] + '%' : null
   let state = 'past'
@@ -45,8 +44,6 @@ const ProjectTile = forwardRef(function ProjectTile ({ project, isHorizontal, to
       target={project.subtype === 'external' ? '_blank' : '_self'}
       rel="noreferrer"
       ref={ref}
-      id={describedById}
-      aria-describedby={describedById}
       className={classNames('project-tile', isHorizontal ? 'project-tile--horizontal' : 'project-tile--vertical', isMapTile && 'project-tile--map')}
     >
       <div className="project-tile__content-wrapper">

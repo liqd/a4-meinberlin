@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-09 15:08+0100\n"
+"POT-Creation-Date: 2025-12-11 09:52+0100\n"
 "PO-Revision-Date: 2024-02-08 08:57+0000\n"
 "Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
 "Language-Team: English <https://weblate.liqd.net/projects/meinberlin/main/en/"
@@ -2268,7 +2268,6 @@ msgid "Fields for non-logged in users:"
 msgstr "Fields for non-logged in users:"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/cms_breadcrumb.html:5
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/breadcrumbs.html:4
 msgid "You are here:"
 msgstr "You are here:"
 
@@ -2523,6 +2522,10 @@ msgstr ""
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/components/moderator_notes.html:54
 msgid "No moderation remark has been filled yet."
 msgstr "No moderation remark has been filled yet."
+
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/breadcrumbs.html:4
+msgid "Breadcrumb"
+msgstr "Breadcrumb"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/filter_and_sort.html:3
 msgid "Filter bar "
@@ -4327,7 +4330,7 @@ msgstr "ended"
 msgid "Statistics & Results"
 msgstr "Statistics & Results"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_insights.html:17
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_insights.html:19
 msgid "See results"
 msgstr "See results"
 
@@ -5572,8 +5575,8 @@ msgid "Accessibility"
 msgstr "Accessibility"
 
 #: meinberlin/templates/header.html:76
-msgid "Close overlay: Accessibility"
-msgstr "Close overlay: Accessibility"
+msgid "Close Accessibility Menu"
+msgstr "Close Accessibility Menu"
 
 #: meinberlin/templates/header.html:85
 msgid "Symbol for easy german"
@@ -5621,8 +5624,8 @@ msgid "Menu"
 msgstr "Menu"
 
 #: meinberlin/templates/header.html:144
-msgid "Close overlay: Menu"
-msgstr "Close overlay: Menu"
+msgid "Close menu"
+msgstr "Close menu"
 
 #: meinberlin/templates/meinberlin_projects/partials/project_delete_modal_htmx.html:11
 #, python-format

@@ -187,13 +187,24 @@
 }
 
 .a4-comments__action-bar__btn {
-    .fa,
-    .far,
-    .fas {
-        color: $link-color; // overwrite icons default color
-        display: inline;
-        text-align: left;
-    }
+  color: $link-color;
+  text-decoration: none;
+  
+  &:hover,
+  &:focus {
+    color: darken($link-color, 10%);
+    text-decoration: underline;
+  }
+  
+  .fa,
+  .far,
+  .fas,
+  i[class*="fa-"] {
+    color: inherit; // Inherit from button
+    display: inline;
+    text-align: left;
+    margin-right: 0.5rem;
+  }
 }
 
 .a4-comments__login {

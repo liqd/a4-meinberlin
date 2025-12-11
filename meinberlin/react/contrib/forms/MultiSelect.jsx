@@ -47,31 +47,27 @@ export const MultiSelect = ({
       </div>
       <ul className={classes} {...listboxAttrs} {...rest}>
         {
-          choices.map((choice) => {
-            const { active, focused, ...attrs } = getChoicesAttr(choice)
-            const liClasses = classNames(
-              liClassName,
-              'a4-combo-box__option',
-              active && 'a4-combo-box__option--active',
-              focused && 'a4-combo-box__option--focus'
-            )
+    choices.map((choice, index) => {
+      const choiceAttrs = getChoicesAttr(choice, index)
+      const liClasses = classNames(
+        liClassName,
+        'a4-combo-box__option',
+        choiceAttrs.active && 'a4-combo-box__option--active',
+        choiceAttrs.focused && 'a4-combo-box__option--focus'
+      )
 
-            return (
-              // No keyboard event is needed here. Keyboard management happens
-              // in the combobox element, where the focus is kept at all times.
-              // see https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
-              // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-              <li
-                key={choice.value}
-                className={liClasses}
-                {...attrs}
-              >
-                <span>{choice.name}</span>
-                {active && <i className="bicon bicon-check" aria-hidden="true" />}
-              </li>
-            )
-          })
-        }
+      return (
+        <li
+          key={choice.value}
+          className={liClasses}
+          {...choiceAttrs}
+        >
+          <span>{choice.name}</span>
+          {choiceAttrs.active && <i className="bicon bicon-check" aria-hidden="true" />}
+        </li>
+      )
+    })
+  }
       </ul>
     </div>
   )

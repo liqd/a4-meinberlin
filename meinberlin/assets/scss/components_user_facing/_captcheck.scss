@@ -16,6 +16,13 @@
 
 .captcheck_answer_label {
     border: 0;
+    display: inline-block; // Ensure it's block-level for focus
+    cursor: pointer;
+    
+    &:focus {
+        outline: 2px solid $primary; // Add focus indicator
+        outline-offset: 2px;
+    }
 
     > input {
         visibility: hidden;

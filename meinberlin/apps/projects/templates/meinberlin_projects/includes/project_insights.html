@@ -5,9 +5,11 @@
     {% if counts %}
       <ul class="figures-box figures-box--four-columns">
         {% for count in counts %}
-          <li class="figures-box__item figures-box__item--centered" aria-label="{{ count.1 }} {{ count.0 }}">
-              <span class="figures-box__number" aria-hidden="true">{{ count.1 }}</span>
-              <span class="figures-box__label" aria-hidden="true">{{ count.0 }}</span>
+          <li class="figures-box__item figures-box__item--centered">
+            <div class="figures-box__wrapper" tabindex="0" role="region" aria-label="{{ count.1 }} {{ count.0 }}">
+              <span class="figures-box__number">{{ count.1 }}</span>
+              <span class="figures-box__label">{{ count.0 }}</span>
+            </div>
           </li>
         {% endfor %}
       </ul>

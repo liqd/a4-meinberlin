@@ -19,6 +19,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Offline Event is now A Module
 - Option to select plans from different organisations in projects
 - Burgermenu design updated
+- Update Django to 5.2
 
 ### Removed
 

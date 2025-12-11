@@ -2,6 +2,7 @@ from django import forms
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
+from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from meinberlin.apps.extprojects.forms import ExternalProjectCreateForm
 from meinberlin.apps.extprojects.forms import ExternalProjectForm
 
@@ -35,12 +36,17 @@ class BplanProjectCreateForm(ExternalProjectCreateForm):
 
 
 class BplanProjectForm(ExternalProjectForm):
+    administrative_district = forms.CharField(
+        required=False,
+        label=_("Administrative district"),
+        help_text=_("Enter district short code (e.g., 'mi' for Mitte)"),
+    )
+
     class Meta:
         model = models.Bplan
         fields = [
             "name",
             "url",
-            "administrative_district",
             "description",
             "tile_image",
             "tile_image_alt_text",
@@ -63,3 +69,37 @@ class BplanProjectForm(ExternalProjectForm):
         self.fields["name"].widget.attrs.update(
             {"autocomplete": "off", "autofill": "off"}
         )
+        # Set initial value to short code if instance has a district
+        if self.instance and self.instance.administrative_district:
+            self.initial["administrative_district"] = (
+                self.instance.administrative_district.short_code
+            )
+
+    def clean_administrative_district(self):
+        short_code = self.cleaned_data.get("administrative_district")
+        print(f"DEBUG: short_code = {short_code}")
+        if short_code:
+            try:
+                district = AdministrativeDistrict.objects.get(short_code=short_code)
+                print(f"DEBUG: Found district = {district}, id = {district.id}")
+                return district
+            except AdministrativeDistrict.DoesNotExist:
+                raise forms.ValidationError(
+                    f"District with short code '{short_code}' not found."
+                )
+        print("DEBUG: short_code is empty or None")
+        return None
+
+    def save(self, commit=True):
+        # Get the district from cleaned_data
+        district = self.cleaned_data.get("administrative_district")
+
+        # Set the administrative_district before calling parent save
+        if district is not None:
+            self.instance.administrative_district = district
+
+        # Now call the parent save which will handle the rest
+        project = super().save(commit)
+
+        # The parent's save already handles phase dates
+        return project

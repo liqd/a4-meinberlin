@@ -2,7 +2,7 @@
 
 {% load wagtailcore_tags %}
 
-{% block subject %}Ihr Bebauungsplan auf {{ site.name }}: {{ bplan.identifier }}{% endblock %}
+{% block subject %}Ihr Bebauungsplan auf {{ site.name }}: {{ bplan.project.name }}{% endblock %}
 
 {% block headline %}Ihr Bebauungsplan auf {{ site.name }}{% endblock %}
 
@@ -13,7 +13,7 @@
 der oben genannte Bebauungsplan wurde auf {{ site.name }} veröffentlicht, geändert oder als Entwurf angelegt. Alle eingehenden Stellungnahmen werden an {{ bplan.office_worker_email }} weitergeleitet.
 </p>
 <p>
-Bebauungsplan-Nr.: {{ bplan.identifier }}<br>
+Bebauungsplan-Nr.: {{ bplan.project.name }}<br>
 Beteiligungszeitraum: {{ bplan.start_date }} Uhr – {{ bplan.end_date }} Uhr
 </p>
 <p>
@@ -24,7 +24,7 @@ Falls der Bebauungsplan nicht korrekt angezeigt wird, können Sie sich an {{ con
 {% block content_text %}
 der oben genannte Bebauungsplan wurde auf {{ site.name }} veröffentlicht, geändert oder als Entwurf angelegt. Alle eingehenden Stellungnahmen werden an {{ bplan.office_worker_email }} weitergeleitet.
 
-Bebauungsplan-Nr.: {{ bplan.identifier }}
+Name: {{ bplan.project.name }}
 Beteiligungszeitraum: {{ bplan.start_date }} Uhr – {{ bplan.end_date }} Uhr
 
 Falls der Bebauungsplan nicht korrekt angezeigt wird, können Sie sich an {{ contact_email }} wenden.

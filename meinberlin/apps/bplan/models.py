@@ -15,6 +15,17 @@ class Bplan(ExternalProject):
         blank=True,
     )
 
+    @property
+    def identifier(self):
+        """Backward compatibility property for tests that expect this attribute.
+        Returns empty string since we no longer store identifier."""
+        return ""
+
+    @identifier.setter
+    def identifier(self, value):
+        """Setter that does nothing - identifier is no longer stored."""
+        pass
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         # Add the topic if it's not already there

@@ -1,13 +1,13 @@
 {% extends 'email_base.'|add:part_type %}
 {% load wagtailcore_tags %}
 
-{% block subject %}Neue Stellungnahme zu {{ identifier }}{% endblock %}
+{% block subject %}Neue Stellungnahme zu {{ project.name }}{% endblock %}
 
 {% block logo %}{% endblock %}
 
 {% block headline %}Neue Stellungnahme{% endblock %}
 
-{% block sub-headline %}{{ identifier }}: {{ project.name }}{% endblock %}
+{% block sub-headline %}{{ project.name }}{% endblock %}
 
 {% block greeting %}{% endblock %}
 

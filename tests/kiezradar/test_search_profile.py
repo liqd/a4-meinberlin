@@ -321,10 +321,9 @@ def test_searchprofile_filter_query_bplan(
     kiezradar_query_factory,
     bplan_factory,
 ):
-    bplan = bplan_factory(identifier="B30-1 A30-bplan 2024")
-    bplan_profile = search_profile_factory(
-        query=kiezradar_query_factory(text="A30-bplan")
-    )
+    bplan = bplan_factory(name="Test Bplan")
+    query = kiezradar_query_factory(text="Test Bplan")
+    bplan_profile = search_profile_factory(query=query)
 
     result = get_search_profiles_for_obj(bplan).order_by("pk")
     assert list(result) == [bplan_profile]

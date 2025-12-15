@@ -40,36 +40,44 @@ export const GroupMultiSelect = ({
         {activeItems.length ? activeItems.map(item => item.name).join(', ') : placeholder}
       </div>
       <ul className={classes} role="listbox" {...listboxAttrs} {...rest}>
-        {groups.map(({ title, info, choices }) => (
-          <li key={title} role="group" className="a4-combo-box__group-item" aria-labelledby={'group-' + title}>
-            <span id={'group-' + title} className="a4-combo-box__title">
-              {title}
-            </span>
-            {info && <span className="a4-combo-box__info">{info}</span>}
-            {choices.length > 0 && (
-              <ul className="a4-combo-box__group-dropdown">
-                {choices.map((choice) => {
-                  const { active, focused, ...attrs } = getChoicesAttr(choice)
-                  const liClasses = classNames(
-                    liClassName,
-                    'a4-combo-box__option',
-                    active && 'a4-combo-box__option--active',
-                    focused && 'a4-combo-box__option--focus'
-                  )
+        {groups.map(({ title, info, choices }, groupIndex) => {
+          let optionIndex = 0
+          for (let i = 0; i < groupIndex; i++) {
+            optionIndex += groups[i].choices.length
+          }
 
-                  return (
-                    <li key={choice.value} className={liClasses} {...attrs}>
-                      <span>{choice.name}</span>
-                      {active && (
-                        <i className="bicon bicon-check" aria-hidden="true" />
-                      )}
-                    </li>
-                  )
-                })}
-              </ul>
-            )}
-          </li>
-        ))}
+          return (
+            <li key={title} role="group" className="a4-combo-box__group-item" aria-labelledby={'group-' + title}>
+              <span id={'group-' + title} className="a4-combo-box__title">
+                {title}
+              </span>
+              {info && <span className="a4-combo-box__info">{info}</span>}
+              {choices.length > 0 && (
+                <ul className="a4-combo-box__group-dropdown">
+                  {choices.map((choice, idx) => {
+                    const currentIndex = optionIndex + idx
+                    const choiceAttrs = getChoicesAttr(choice, currentIndex)
+                    const liClasses = classNames(
+                      liClassName,
+                      'a4-combo-box__option',
+                      choiceAttrs.active && 'a4-combo-box__option--active',
+                      choiceAttrs.focused && 'a4-combo-box__option--focus'
+                    )
+
+                    return (
+                      <li key={choice.value} className={liClasses} {...choiceAttrs}>
+                        <span>{choice.name}</span>
+                        {choiceAttrs.active && (
+                          <i className="bicon bicon-check" aria-hidden="true" />
+                        )}
+                      </li>
+                    )
+                  })}
+                </ul>
+              )}
+            </li>
+          )
+        })}
       </ul>
     </div>
   )

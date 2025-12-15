@@ -31,6 +31,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Accessibility improvements regarding alternative texts
 - Accessibility improvements regarding semantic structure and adaptability
 - Accessibility improvements regarding structured navigation and consistent focus indication
+- Project Tiles grid layout fixed, tiles have consistent height
 - Accessibility improvements, keyboard navigation of lists and popups, aria labels
 
 ### Added

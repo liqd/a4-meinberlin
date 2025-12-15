@@ -113,9 +113,9 @@ function initializeCaptcha () {
           for (let i = 0, len = data.answers.length; i < len; i++) {
             const src = apiUrl + '?action=img&s=' + data.session + '&c=' + data.answers[i]
             answers +=
-            "<a class='captcheck_answer_label' href='' data-prefix='" + idp + "' data-answer='" + data.answers[i] + "' tabindex='0' aria-role='button'>" +
-            "<input id='captcheck_" + idp + '_answer_' + data.answers[i] + "' aria-labelledby='captcheck_" + idp + "_question_image' type='radio' name='captcheck_selected_answer' value='" + data.answers[i] + "' data-prefix='" + idp + "' data-answer='" + data.answers[i] + "' />" +
-            "<img src='" + src + "' alt='" + captchaImageAlt + "' data-prefix='" + idp + "' data-answer='" + data.answers[i] + "'/></a>"
+              "<label class='captcheck_answer_label' tabindex='0' data-prefix='" + idp + "' data-answer='" + data.answers[i] + "'>" +
+              "<input id='captcheck_" + idp + '_answer_' + data.answers[i] + "' aria-labelledby='captcheck_" + idp + "_question_image' type='radio' name='captcheck_selected_answer' value='" + data.answers[i] + "' data-prefix='" + idp + "' data-answer='" + data.answers[i] + "' />" +
+              "<img src='" + src + "' alt='" + captchaImageAlt + "' data-prefix='" + idp + "' data-answer='" + data.answers[i] + "'/></label>"
           }
           answers += '</div>'
           const answerDiv = document.createElement('div')
@@ -138,15 +138,19 @@ function initializeCaptcha () {
           skeyInput.innerHTML = "<input type='hidden' name='captcheck_session_code' value='" + data.session + "' />"
           captcha.appendChild(skeyInput)
 
-          const answerButtons = document.querySelectorAll('.captcheck_answer_label[data-prefix="' + idp + '"]')
-          for (let k = 0; k < answerButtons.length; k++) {
-            answerButtons[k].addEventListener('click', function (ev) {
-              chooseAnswer(ev.target.getAttribute('data-prefix'), ev.target.getAttribute('data-answer'), data.session, combinedAnswerId)
+          const answerLabels = document.querySelectorAll('.captcheck_answer_label[data-prefix="' + idp + '"]')
+          for (let k = 0; k < answerLabels.length; k++) {
+            answerLabels[k].addEventListener('click', function (ev) {
+              const prefix = this.getAttribute('data-prefix')
+              const answer = this.getAttribute('data-answer')
+              chooseAnswer(prefix, answer, data.session, combinedAnswerId)
               ev.preventDefault()
             })
-            answerButtons[k].addEventListener('keydown', function (ev) {
-              if (ev.key === 'Enter' || ev.which === 13 || ev.keyCode === 13 || ev.key === ' ' || ev.which === 32 || ev.keyCode === 32) {
-                chooseAnswer(ev.target.getAttribute('data-prefix'), ev.target.getAttribute('data-answer'), data.session, combinedAnswerId)
+            answerLabels[k].addEventListener('keydown', function (ev) {
+              if (ev.key === 'Enter' || ev.key === ' ') {
+                const prefix = this.getAttribute('data-prefix')
+                const answer = this.getAttribute('data-answer')
+                chooseAnswer(prefix, answer, data.session, combinedAnswerId)
                 ev.preventDefault()
               }
             })

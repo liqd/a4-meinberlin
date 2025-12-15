@@ -15,26 +15,33 @@
 }
 
 .captcheck_answer_label {
-  border: 0;
-
-  > input {
-    visibility: hidden;
-    position: absolute;
-  }
-
-  > input + img {
+    border: 0;
+    display: inline-block; // Ensure it's block-level for focus
     cursor: pointer;
-    border: 2px solid transparent; // needed so no movement after selection
-    min-width: 32px;
-    width: 18%;
-    max-width: 64px;
-  }
+    
+    &:focus {
+        outline: 2px solid $primary; // Add focus indicator
+        outline-offset: 2px;
+    }
 
-  > input:checked + img {
-    cursor: pointer;
-    border: 2px solid $text-color-gray;
-    border-radius: 3px;
-  }
+    > input {
+        visibility: hidden;
+        position: absolute;
+    }
+
+    > input + img {
+        cursor: pointer;
+        border: 2px solid transparent; // needed so no movement after selection
+        min-width: 2em;
+        width: 18%;
+        max-width: 4em;
+    }
+
+    > input:checked + img {
+        cursor: pointer;
+        border: 2px solid $gray-light;
+        border-radius: 3px;
+    }
 }
 
 .captcheck_error_message {

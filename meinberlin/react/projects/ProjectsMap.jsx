@@ -59,6 +59,14 @@ const ProjectsMap = ({ items, topicChoices, ...props }) => {
   return (
     <div className="projects-map">
       <ProjectsMapInfo className="projects-map-info--mobile" />
+      <div
+        id="map-live-region"
+        aria-live="polite"
+        aria-atomic="true"
+        className="visually-hidden"
+      >
+        {/* Screen reader announcements will go here */}
+      </div>
       <Map
         zoomControl={false}
         maxZoom={18}

@@ -15,8 +15,6 @@ from meinberlin.apps.bplan import models as bplan_models
 from tests.helpers import get_base64_image
 from tests.helpers import pytest_regex
 
-# from unittest.mock import patch
-
 
 @pytest.mark.django_db
 def test_anonymous_cannot_add_bplan(apiclient, organisation):
@@ -254,38 +252,6 @@ def test_non_initiator_cannot_update_bplan(apiclient, bplan, user2):
     assert response.status_code == status.HTTP_403_FORBIDDEN
 
 
-# @pytest.mark.django_db
-# def test_add_bplan_response(apiclient, districts, organisation):
-#     district, _ = AdministrativeDistrict.objects.get_or_create(
-#         name="Mitte",
-#         short_code="mi"
-#     )
-
-#     url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
-#     data = {
-#         "name": "bplan-1",
-#         "description": "desc",
-#         "administrative_district": "mi",
-#         "url": "https://bplan.net",
-#         "office_worker_email": "test@liqd.de",
-#         "start_date": "2013-01-01 18:00",
-#         "end_date": "2021-01-01 18:00",
-#     }
-#     user = organisation.initiators.first()
-#     apiclient.force_authenticate(user=user)
-#     response = apiclient.post(url, data, format="json")
-#     assert response.status_code == status.HTTP_201_CREATED
-#     embed_code = (
-#         '<iframe height="500" style="width: 100%; min-height: 300px; '
-#         'max-height: 100vh" '
-#         'src="https://example.com/embed/projects/bplan-1/" '
-#         'frameborder="0"></iframe>'
-#     )
-#     assert response.data == {"id": pytest_regex("^[0-9]*$"), "embed_code": embed_code}
-#     assert len(mail.outbox) == 1
-#     assert mail.outbox[0].to == ["test@liqd.de"]
-
-
 @pytest.mark.django_db
 def test_add_bplan_diplan_response_no_embed(apiclient, districts, organisation):
     district, _ = AdministrativeDistrict.objects.get_or_create(
@@ -308,10 +274,6 @@ def test_add_bplan_diplan_response_no_embed(apiclient, districts, organisation):
     response = apiclient.post(url, data, format="json")
     assert response.status_code == status.HTTP_201_CREATED
     assert response.data == {"id": pytest_regex("^[0-9]*$")}
-
-
-# Removed test: test_bplan_api_adds_no_district_if_identifier_is_wrong
-# This test is obsolete since identifier field no longer exists
 
 
 @pytest.mark.django_db
@@ -366,26 +328,6 @@ def test_bplan_api_adds_topic_automatically(apiclient, districts, organisation):
     assert bplan.topics.first().code == "URB"
 
 
-# @pytest.mark.django_db
-# def test_bplan_api_adds_district_from_short_code(apiclient, districts, organisation):
-#     url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
-#     data = {
-#         "name": "bplan-1",
-#         "description": "desc",
-#         "url": "https://bplan.net",
-#         "office_worker_email": "test@liqd.de",
-#         "start_date": "2013-01-01 18:00",
-#         "administrative_district": "mi",
-#         "end_date": "2021-01-01 18:00",
-#     }
-#     user = organisation.initiators.first()
-#     apiclient.force_authenticate(user=user)
-#     response = apiclient.post(url, data, format="json")
-#     assert response.status_code == status.HTTP_201_CREATED
-#     bplan = bplan_models.Bplan.objects.first()
-#     assert bplan.administrative_district.name == "Mitte"
-
-
 @pytest.mark.django_db
 def test_bplan_api_diplan_adds_district_from_short_code(
     apiclient, organisation  # Remove "districts" fixture
@@ -405,7 +347,7 @@ def test_bplan_api_diplan_adds_district_from_short_code(
     data = {
         "name": "bplan-1",
         "description": "desc",
-        "administrative_district": "mi",  # This matches the short_code above
+        "administrative_district": "mi",
         "url": "https://bplan.net",
         "office_worker_email": "test@liqd.de",
         "start_date": "2013-01-01 18:00",
@@ -424,10 +366,6 @@ def test_bplan_api_diplan_adds_district_from_short_code(
     assert response.status_code == status.HTTP_201_CREATED
     bplan = bplan_models.Bplan.objects.first()
     assert bplan.administrative_district.name == "Mitte"
-
-
-# Removed test: test_bplan_api_adds_district_from_identifier_with_whitespaces
-# This test is obsolete since identifier field no longer exists
 
 
 @pytest.mark.django_db
@@ -451,7 +389,6 @@ def test_bplan_api_sets_is_diplan_true_always(apiclient, districts, organisation
     response = apiclient.post(url, data, format="json")
     assert response.status_code == status.HTTP_201_CREATED
     bplan = bplan_models.Bplan.objects.first()
-    # is_diplan should always be True now
     assert bplan.is_diplan is True
 
 
@@ -477,10 +414,6 @@ def test_bplan_api_adds_is_diplan_if_point_is_sent(apiclient, districts, organis
     assert response.status_code == status.HTTP_201_CREATED
     bplan = bplan_models.Bplan.objects.first()
     assert bplan.is_diplan is True
-
-
-# Note: The tasks-related tests will fail if you don't have a tasks.py file
-# You need to either create it or skip these tests
 
 
 @pytest.mark.django_db

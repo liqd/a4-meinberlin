@@ -91,15 +91,11 @@ class BplanProjectForm(ExternalProjectForm):
         return None
 
     def save(self, commit=True):
-        # Get the district from cleaned_data
         district = self.cleaned_data.get("administrative_district")
 
-        # Set the administrative_district before calling parent save
         if district is not None:
             self.instance.administrative_district = district
 
-        # Now call the parent save which will handle the rest
         project = super().save(commit)
 
-        # The parent's save already handles phase dates
         return project

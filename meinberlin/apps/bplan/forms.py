@@ -42,6 +42,15 @@ class BplanProjectForm(ExternalProjectForm):
         help_text=_("Enter district short code (e.g., 'mi' for Mitte)"),
     )
 
+    identifier = forms.CharField(
+        required=False,
+        label=_("Identifier (deprecated)"),
+        disabled=True,  # Read-only
+        help_text=_(
+            "Identifier is no longer used. Use Administrative District instead."
+        ),
+    )
+
     class Meta:
         model = models.Bplan
         fields = [

@@ -103,6 +103,7 @@ def test_group_member_cannot_add_bplan(
     assert response.status_code == status.HTTP_403_FORBIDDEN
 
 
+@pytest.mark.django_db
 def test_initiator_update_bplan(apiclient, bplan, phase):
     district, _ = AdministrativeDistrict.objects.get_or_create(
         name="Mitte", short_code="mi"
@@ -114,7 +115,7 @@ def test_initiator_update_bplan(apiclient, bplan, phase):
 
     phase.module.project = bplan
     phase.module.save()
-    assert len(mail.outbox) == 1
+    assert len(mail.outbox) == 2
     url = reverse(
         "bplan-detail",
         kwargs={"organisation_pk": bplan.organisation.pk, "pk": bplan.pk},

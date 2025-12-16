@@ -20,6 +20,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Option to select plans from different organisations in projects
 - Burgermenu design updated
 - Update Django to 5.2
+- Project creation form descption max characters of 170
 
 ### Removed
 

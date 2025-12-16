@@ -50,6 +50,8 @@ export default function SaveSearchProfile ({
             className="save-search-profile__action save-search-profile__action--button"
             type="button"
             onClick={() => setModal(!modal)}
+            aria-haspopup="dialog"
+            aria-expanded={modal}
           >
             <Icon />
             {saveText}

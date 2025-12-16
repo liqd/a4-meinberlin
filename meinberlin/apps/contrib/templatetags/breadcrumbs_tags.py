@@ -12,6 +12,7 @@ ACCOUNT_VIEWS = (
     "NotificationSettingsView",
     "KiezRadarView",
     "SearchProfileListView",
+    "FollowedProjectsListView",
 )
 
 

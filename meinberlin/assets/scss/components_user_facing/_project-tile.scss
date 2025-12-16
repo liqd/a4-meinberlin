@@ -4,6 +4,7 @@ a.project-tile {
     flex-direction: column;
     color: $text-base;
     font-family: $font-family-base;
+    height: 100%;
 
     &:hover,
     &:focus {

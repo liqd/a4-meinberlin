@@ -65,7 +65,7 @@
   display: block;
   padding: 1em 24px;
   text-decoration: none;
-  color: inherit;
+  color: $black !important;
   transition: background-color 0.2s ease;
 }
 
@@ -80,7 +80,7 @@
   text-align: left;
   cursor: pointer;
   font: inherit;
-  color: $link-color;
+  color: $link-color !important;
 }
 
 .hamburger-nav__toggle {
@@ -126,6 +126,10 @@
 
 .hamburger-nav__meta {
   border-top: 2px solid $white;
+  
+  .hamburger-nav__link {
+    color: $link-color !important;
+  }
 }
 
 .hamburger-nav__form {

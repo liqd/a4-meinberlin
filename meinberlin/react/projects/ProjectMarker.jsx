@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 import React, { useRef } from 'react'
 import GeoJsonMarker, {
   makeIcon
@@ -29,6 +30,13 @@ const ProjectMarker = ({ project, onOpen, onClose, topicChoices }) => {
     }
   }
 
+  const announcePopup = (message) => {
+    const liveRegion = document.getElementById('map-live-region')
+    if (liveRegion) {
+      liveRegion.textContent = message
+    }
+  }
+
   return (
     <GeoJsonMarker
       ref={ref}
@@ -40,11 +48,13 @@ const ProjectMarker = ({ project, onOpen, onClose, topicChoices }) => {
           setMarkerElementRef()
           onOpen(e)
           focusFirstInteractiveElement()
+          announcePopup(`Popup opened: ${project.properties.title}`)
         },
         popupclose: (e) => {
           ref.current?.setIcon(makeIcon())
           focusMarkerElement()
           onClose(e)
+          announcePopup('Popup closed')
         }
       }}
     >
@@ -53,6 +63,23 @@ const ProjectMarker = ({ project, onOpen, onClose, topicChoices }) => {
         offset={[0, 225]}
         maxWidth={400}
         minWidth={400}
+        role="dialog"
+        aria-modal="true"
+        aria-label={`Details: ${project.properties.title}`}
+        onOpen={() => {
+          // Announce to screen readers when popup opens
+          const liveRegion = document.getElementById('map-live-region')
+          if (liveRegion) {
+            liveRegion.textContent = `Popup opened: ${project.properties.title}`
+          }
+        }}
+        onClose={() => {
+          // Announce when popup closes
+          const liveRegion = document.getElementById('map-live-region')
+          if (liveRegion) {
+            liveRegion.textContent = 'Popup closed'
+          }
+        }}
       >
         <ProjectTile
           project={project.properties}

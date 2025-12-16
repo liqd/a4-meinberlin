@@ -86,17 +86,14 @@ class BplanProjectForm(ExternalProjectForm):
 
     def clean_administrative_district(self):
         short_code = self.cleaned_data.get("administrative_district")
-        print(f"DEBUG: short_code = {short_code}")
         if short_code:
             try:
                 district = AdministrativeDistrict.objects.get(short_code=short_code)
-                print(f"DEBUG: Found district = {district}, id = {district.id}")
                 return district
             except AdministrativeDistrict.DoesNotExist:
                 raise forms.ValidationError(
                     f"District with short code '{short_code}' not found."
                 )
-        print("DEBUG: short_code is empty or None")
         return None
 
     def save(self, commit=True):

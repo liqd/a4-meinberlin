@@ -194,12 +194,8 @@ def test_initiator_update_bplan_field(apiclient, bplan_factory, phase):
     }
     user = bplan.organisation.initiators.first()
     apiclient.force_authenticate(user=user)
-    print(f"PATCH URL: {url}")
-    print(f"PATCH data: {data}")
 
     response = apiclient.patch(url, data, format="json")
-    print(f"Response status: {response.status_code}")
-    print(f"Response data: {response.data}")
     assert response.status_code == status.HTTP_200_OK
     bplan = bplan_models.Bplan.objects.first()
     assert bplan.is_draft is True
@@ -358,10 +354,6 @@ def test_bplan_api_diplan_adds_district_from_short_code(
     user = organisation.initiators.first()
     apiclient.force_authenticate(user=user)
     response = apiclient.post(url, data, format="json")
-
-    # Add debug if it still fails
-    if response.status_code == 400:
-        print(f"Error: {response.data}")
 
     assert response.status_code == status.HTTP_201_CREATED
     bplan = bplan_models.Bplan.objects.first()

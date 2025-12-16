@@ -21,6 +21,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Burgermenu design updated
 - bplan api: deprecate `bplan_id` idenifier field, add `administrative_district` shortcode field to use instead
 
+
 ### Removed
 
 - Removed Old project-based OfflineEvent Model, Views, Templates and Tests.    

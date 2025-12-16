@@ -1,0 +1,24 @@
+{% extends 'email_base.'|add:part_type %}
+
+{% block subject %}Anmeldecode für {{ site.name }}{% endblock %}
+
+{% block headline %}Anmeldecode{% endblock %}
+
+{% block greeting %}Hallo,{% endblock %}
+
+{% block content_html %}
+<p>
+Ihr Anmeldecode lautet: <strong>{{ code }}</strong>
+</p>
+<p>
+Bitte geben Sie diesen Code ein, um den Anmeldevorgang abzuschließen.
+</p>
+{% endblock %}
+
+{% block content_text %}
+Ihr Anmeldecode lautet: {{ code }}
+
+Bitte geben Sie diesen Code ein, um den Anmeldevorgang abzuschließen.
+{% endblock %}
+
+{% block reason %}Diese E-Mail wurde an {{ email }} gesendet. Sie haben diese E-Mail erhalten, weil ein Anmeldeversuch auf {{ site.name }} unternommen wurde.{% endblock %}

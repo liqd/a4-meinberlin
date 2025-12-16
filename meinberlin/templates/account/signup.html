@@ -26,8 +26,8 @@
             {% include "meinberlin_contrib/includes/form_password_field.html" with field=form.password1 %}
             {% include "meinberlin_contrib/includes/form_password_field.html" with field=form.password2 %}
 
-            {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_notifications %}
-            {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_newsletters %}
+            {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_notifications hide_label=True %}
+            {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_newsletters hide_label=True %}
 
             <div class="form-check">
                 <label class="form-check-label">

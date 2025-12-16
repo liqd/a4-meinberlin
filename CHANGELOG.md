@@ -33,6 +33,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Accessibility improvements regarding structured navigation and consistent focus indication
 - Project Tiles grid layout fixed, tiles have consistent height
 - Accessibility improvements, keyboard navigation of lists and popups, aria labels
+- Alignment of checkboxes, labels and helptext
 
 ### Added
 

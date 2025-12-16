@@ -1,0 +1,24 @@
+{% extends 'email_base.'|add:part_type %}
+
+{% block subject %}Login code for {{ site.name }}{% endblock %}
+
+{% block headline %}Login code{% endblock %}
+
+{% block greeting %}Hello,{% endblock %}
+
+{% block content_html %}
+<p>
+Your login code is: <strong>{{ code }}</strong>
+</p>
+<p>
+Please enter this code to complete the login process.
+</p>
+{% endblock %}
+
+{% block content_text %}
+Your login code is: {{ code }}
+
+Please enter this code to complete the login process.
+{% endblock %}
+
+{% block reason %}This email was sent to {{ email }}. You received this email because a login attempt was made on {{ site.name }}.{% endblock %}

@@ -164,16 +164,16 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
         orga = orga_model.objects.get(pk=orga_pk)
         validated_data["organisation"] = orga
 
-        start_date = validated_data.pop("start_date")
-        end_date = validated_data.pop("end_date")
+        start_date = validated_data["start_date"]
+        end_date = validated_data["end_date"]
 
         district_short_code = validated_data.pop("administrative_district")
         district = AdministrativeDistrict.objects.get(short_code=district_short_code)
         validated_data["administrative_district"] = district
 
-        bplan_id = validated_data.pop("bplan_id", None)  # noqa: F841
+        _ = validated_data.pop("bplan_id", None)  # deprecated field
         image_url = validated_data.pop("image_url", None)
-        tile_image_base64 = validated_data.pop("tile_image", None)  # base64 string
+        tile_image_base64 = validated_data.pop("tile_image", None)
 
         # Ellipsizing/char limit is handled by us, diplan always sends full text
         if len(validated_data["name"]) > NAME_MAX_LENGTH:
@@ -186,14 +186,12 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
         # Always mark as diplan
         validated_data["is_diplan"] = True
 
-        # Handle images - use the variables you already popped
         if tile_image_base64:
             validated_data["tile_image"] = self._create_image_from_base64(
                 tile_image_base64
             )
         elif image_url:
             validated_data["tile_image"] = self._download_image_from_url(image_url)
-        # If neither provided, tile_image won't be in validated_data
 
         bplan = super().create(validated_data)
 
@@ -219,17 +217,17 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
         )
 
     def update(self, instance, validated_data):
-        start_date = validated_data.pop("start_date", None)
-        end_date = validated_data.pop("end_date", None)
+        start_date = validated_data.get("start_date")
+        end_date = validated_data.get("end_date")
 
         if "administrative_district" in validated_data:
             district_value = validated_data.pop("administrative_district")
             district = AdministrativeDistrict.objects.get(short_code=district_value)
             instance.administrative_district = district
 
-        bplan_id = validated_data.pop("bplan_id", None)  # noqa: F841
+        _ = validated_data.pop("bplan_id", None)  # deprecated field
         image_url = validated_data.pop("image_url", None)
-        tile_image_base64 = validated_data.pop("tile_image", None)  # base64 string
+        tile_image_base64 = validated_data.pop("tile_image", None)
 
         if start_date or end_date:
             self._update_phase(instance, start_date, end_date)
@@ -252,7 +250,6 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
         # Always mark as diplan
         validated_data["is_diplan"] = True
 
-        # Handle images - use the variables you already popped
         if tile_image_base64:
             validated_data["tile_image"] = self._create_image_from_base64(
                 tile_image_base64

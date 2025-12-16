@@ -42,13 +42,6 @@ DESCRIPTION_MAX_LENGTH = project_models.Project._meta.get_field(
 
 
 class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # For PATCH requests, make administrative_district optional
-        if self.partial:
-            self.fields["administrative_district"].required = False
-            self.fields["administrative_district"].allow_blank = True
-
     id = serializers.IntegerField(required=False)
     name = serializers.CharField(
         write_only=True,
@@ -91,9 +84,12 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
     administrative_district = serializers.CharField(
         write_only=True,
         required=False,
-        allow_blank=True,
+        allow_blank=False,
+        allow_null=False,
         help_text=_("Administrative district short code (e.g., 'mi' for Mitte)"),
     )
+    # Deprecated field, keeping for backwards compatibility
+    bplan_id = serializers.CharField(required=False, write_only=True, allow_blank=True)
 
     def get_geojson_properties(self):
         return {"strasse": "street_name", "haus": "house_number", "plz": "zip_code"}
@@ -118,6 +114,7 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
             "embed_code",
             "point",
             "administrative_district",
+            "bplan_id",
         )
         extra_kwargs = {
             # write_only for consistency reasons
@@ -142,24 +139,18 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
         if "description" in attrs:
             attrs["description"] = strip_tags(attrs["description"])
 
-        # POST (create) and PUT (full update) require administrative_district
-        # PATCH (partial update) does not require it
-        # self.partial is True for PATCH, False for POST/PUT
         if not self.partial and "administrative_district" not in attrs:
             raise serializers.ValidationError(
-                {"administrative_district": "This field is required."}
+                {"administrative_district": "This field is required for creation."}
             )
 
         return attrs
 
     def validate_administrative_district(self, value):
         """Validate that the administrative_district short code exists"""
-        # If no value provided (None or empty), return as-is
-        # Validation of "required" happens in validate() method above
-        if not value:
+        if value is None:
             return value
 
-        # Validate the short code exists
         if not AdministrativeDistrict.objects.filter(short_code=value).exists():
             raise serializers.ValidationError(
                 f"District with short code '{value}' not found."
@@ -174,6 +165,7 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
         validated_data["organisation"] = orga
 
         district_short_code = validated_data.pop("administrative_district")
+        # This will always be a non-empty string for POST (validate() ensures field exists)
         district = AdministrativeDistrict.objects.get(short_code=district_short_code)
         validated_data["administrative_district"] = district
 
@@ -223,23 +215,10 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
         )
 
     def update(self, instance, validated_data):
-        print(f"DEBUG update: validated_data keys = {list(validated_data.keys())}")
-        print(f"DEBUG update: partial = {self.partial}")
-
         if "administrative_district" in validated_data:
             district_value = validated_data.pop("administrative_district")
-            print(f"DEBUG update: district_value = {repr(district_value)}")
-
-            if district_value is None:
-                # In PATCH request, None means "don't change" - keep existing
-                pass
-            elif district_value == "":
-                # Empty string means "clear the district"
-                instance.administrative_district = None
-            else:
-                # Valid short code was provided
-                district = AdministrativeDistrict.objects.get(short_code=district_value)
-                instance.administrative_district = district
+            district = AdministrativeDistrict.objects.get(short_code=district_value)
+            instance.administrative_district = district
 
         start_date = validated_data.get("start_date", None)
         end_date = validated_data.get("end_date", None)

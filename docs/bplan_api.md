@@ -188,6 +188,8 @@ The following fields need to be provided:
 
 ## Testing
 
+Note: user should be sent as email address, not username.
+
 ### Example for `curl`
 
 ```bash
@@ -199,7 +201,7 @@ curl \
  '
  {
    "name":"Luisenblock Ost - Bebauungsplan 1-70",
-   "bplan_id": "VI - 96a",
+   "administrative_district": "mi",
    "description": "Test",
    "url": "https://mein.berlin.de",
    "office_worker_email": "test@example.com",
@@ -220,7 +222,7 @@ curl  -X POST http://127.0.0.1:8003/api/organisations/1/bplan/ \
  '
  {
    "name":"Luisenblock Ost - Bebauungsplan 1-70",
-   "bplan_id": "VI - 96a",
+    "administrative_district": "mi",
    "description": "Test",
    "url": "https://mein.berlin.de",
    "office_worker_email": "test@example.com",

@@ -12,7 +12,7 @@ redis==5.2.1
 requests==2.32.4
 requests-mock==1.11.0
 sentry-sdk[django]==2.34.1
-urllib3==2.5.0
+urllib3==2.6.0
 wagtail==6.3.5
 whitenoise==6.9.0
 zeep==4.3.1
@@ -20,9 +20,9 @@ drf-spectacular==0.28.0
 
 # Inherited a4-core requirements
 celery==5.4.0
-django-allauth==65.9.0
+django-allauth==65.13.0
 django-autoslug==1.9.9
-https://github.com/liqd/django-ckeditor-5/releases/download/v0.2.13-liqd/django_ckeditor_5-0.2.13-py3-none-any.whl
+https://raw.githubusercontent.com/liqd/django-ckeditor-5/main/dist/django_ckeditor_5-0.2.14-py3-none-any.whl
 django-filter==24.3
 django-widget-tweaks==1.5.0
 Django>=5.2,<5.3

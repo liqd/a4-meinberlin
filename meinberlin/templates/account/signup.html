@@ -1,15 +1,25 @@
 {% extends "account/base.html" %}
-{% load i18n widget_tweaks %}
+{% load i18n widget_tweaks static %}
 
 {% block head_title %}
     {% translate "Register" %}
 {% endblock head_title %}
 
+{% block extra_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'validate_empty_required_fields.js' %}" defer></script>
+{% endblock extra_js %}
+
 {% block content %}
     <div class="narrow-wrapper">
         <h1>{% translate "Register" %}</h1>
 
-        <form id="signup_form" method="post" action="{% url 'account_signup' %}" class="form--base">
+        <form id="signup_form" method="post" action="{% url 'account_signup' %}" class="form--base js-validate">
+            <div class="client-validation-errors" style="display: none;">
+                <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+                </ul>
+            </div>
+
             {% if form.non_field_errors %}
                 <ul class="errorlist" aria-live="assertive" aria-atomic="true">
                     {% for error in form.non_field_errors %}
@@ -26,8 +36,8 @@
             {% include "meinberlin_contrib/includes/form_password_field.html" with field=form.password1 %}
             {% include "meinberlin_contrib/includes/form_password_field.html" with field=form.password2 %}
 
-            {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_notifications %}
-            {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_newsletters %}
+            {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_notifications hide_label=True %}
+            {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_newsletters hide_label=True %}
 
             <div class="form-check">
                 <label class="form-check-label">

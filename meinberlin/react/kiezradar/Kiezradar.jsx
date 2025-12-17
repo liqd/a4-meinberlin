@@ -12,6 +12,7 @@ const saveText = django.gettext('Save Kiez selection')
 const savingText = django.gettext('Saving')
 const errorText = django.gettext('Error')
 const errorUpdateKiezText = django.gettext('Failed to update kiezradar filter')
+const requiredFieldText = django.pgettext('Form validation', `"${nameYourKiezText}" is required.`)
 
 const CENTRAL_BERLIN = [13.4050, 52.5200]
 const MIN_RADIUS = 500
@@ -49,9 +50,19 @@ export default function Kiezradar ({
     setLoading(true)
     setError(null)
 
+    const nameInput = e.target.elements.name
+    const nameValue = nameInput?.value?.trim()
+
+    if (!nameValue) {
+      setLoading(false)
+      setError(requiredFieldText)
+      nameInput.focus()
+      return
+    }
+
     try {
       const payload = {
-        name: e.target.elements.name.value,
+        name: nameValue,
         point,
         radius
       }
@@ -74,18 +85,16 @@ export default function Kiezradar ({
     }
   }
 
+  const handleNameChange = (e) => {
+    if (e.target.value.trim() && error === requiredFieldText) {
+      setError(null)
+    }
+  }
+
   const markerPosition = [...point.geometry.coordinates].reverse()
 
   return (
     <>
-      {(error) && (
-        <div className="kiezradar__error">
-          <Alert
-            type="danger"
-            message={errorText + ': ' + error}
-          />
-        </div>
-      )}
       <Suspense fallback={<div>{loadingMapText}</div>}>
         <KiezradarMap
           {...props}
@@ -97,7 +106,17 @@ export default function Kiezradar ({
           onChange={handleLocationChange}
         />
       </Suspense>
-      <form className="form--base" onSubmit={handleSubmit}>
+
+      {error && (
+        <div className="kiezradar__error">
+          <Alert
+            type="danger"
+            message={error === requiredFieldText ? error : errorText + ': ' + error}
+          />
+        </div>
+      )}
+
+      <form className="form--base" onSubmit={handleSubmit} noValidate>
         <div className="form-group form-group form-group--inline fullspace align-bottom">
           <div className="form-group">
             <label htmlFor="name">{nameYourKiezText}*</label>
@@ -108,6 +127,7 @@ export default function Kiezradar ({
               defaultValue={kiezradar?.name}
               required
               autoComplete="organization"
+              onChange={handleNameChange}
             />
           </div>
           <div className="kiezradar__form-button">

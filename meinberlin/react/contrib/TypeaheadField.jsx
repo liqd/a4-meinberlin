@@ -5,6 +5,7 @@ import django from 'django'
 
 const suggestionsText = django.gettext('Suggestions will appear as you type.')
 const resultsText = django.ngettext('%s suggestion available', '%s suggestions available', 0)
+const paginationText = django.gettext('Display additional results...')
 
 export const TypeaheadField = (props) => {
   const {
@@ -66,6 +67,7 @@ export const TypeaheadField = (props) => {
           selected={typeaheadSelected}
           placeholder={typeaheadPlaceholder}
           aria-describedby={`${uniqueId}-description`}
+          paginationText={paginationText}
         />
       </span>
       <span

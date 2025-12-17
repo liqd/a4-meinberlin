@@ -10,6 +10,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Added
 
 - Followed Projects Page at /account/followed-projects
+- CSS styles for CKEditor image aspect ratio options (4:3 and 2:1)
 
 ### Changed
 
@@ -37,10 +38,13 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Accessibility improvements regarding structured navigation and consistent focus indication
 - Project Tiles grid layout fixed, tiles have consistent height
 - Accessibility improvements, keyboard navigation of lists and popups, aria labels
+- Alignment of checkboxes, labels and helptext
+- Translate paginationText (Show more results...) in Typeahead filter (Kiezradar - organisations)
 
 ### Added
 
-- Initiators can delete projects with no contributions 
+- Initiators can delete projects with no contributions
+- Frontend validation for registration and login forms, as well as Kiez selection form, for improved accessibility in the case that required fields are not filled out
 
 ## v2509.1
 

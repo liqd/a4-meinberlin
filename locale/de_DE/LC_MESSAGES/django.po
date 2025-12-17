@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-17 15:35+0100\n"
+"POT-Creation-Date: 2025-12-17 16:26+0100\n"
 "PO-Revision-Date: 2025-12-09 14:51+0000\n"
 "Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main-"
@@ -70,11 +70,11 @@ msgstr "Benötigte Felder zur Veröffentlichung"
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_form.html:12
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_module_dashboard_form.html:19
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_settings_dashboard_form.html:17
-#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:65
+#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:66
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_form.html:21
 #: meinberlin/templates/a4categories/includes/module_categories_form.html:44
-#: meinberlin/templates/a4dashboard/base_form_module.html:27
-#: meinberlin/templates/a4dashboard/base_form_project.html:27
+#: meinberlin/templates/a4dashboard/base_form_module.html:28
+#: meinberlin/templates/a4dashboard/base_form_project.html:28
 #: meinberlin/templates/a4dashboard/project_create_form.html:46
 #: meinberlin/templates/a4labels/includes/module_labels_form.html:44
 msgid "Save"
@@ -204,7 +204,7 @@ msgstr "Projektentwurf anlegen"
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_dashboard_form.html:32
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/restricted_newsletter_dashboard_form.html:32
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_form.html:13
-#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:66
+#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:67
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:14
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:117
 #: meinberlin/apps/platformemails/templates/meinberlin_platformemails/platformemail_form.html:26
@@ -337,7 +337,7 @@ msgstr "Suche"
 #: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/form_field.html:8
 #: meinberlin/apps/plans/templates/meinberlin_plans/project_plans_form.html:8
-#: meinberlin/apps/votes/templates/meinberlin_votes/token_generation_dashboard.html:25
+#: meinberlin/apps/votes/templates/meinberlin_votes/token_generation_dashboard.html:26
 #: meinberlin/templates/a4forms/includes/form_field.html:5
 msgid "This field is required"
 msgstr "Dieses Feld muss ausgefüllt werden"
@@ -625,7 +625,7 @@ msgstr ""
 "Nur eingeladene Nutzerinnen und Nutzer können sich beteiligen (privat)."
 
 #: adhocracy4/dashboard/forms.py:91
-#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:34
+#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:35
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/contact_person.html:5
 msgid "Contact for questions"
 msgstr "Kontakt für Rückfragen"
@@ -3633,6 +3633,18 @@ msgstr "Sind Sie sicher, dass Sie den Ort löschen möchten?"
 msgid "Add a new place"
 msgstr "Neuen Ort hinzufügen"
 
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_create_form.html:11
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_update_form.html:11
+#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:7
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/users_from_email_form.html:6
+#: meinberlin/apps/votes/templates/meinberlin_votes/token_generation_dashboard.html:13
+#: meinberlin/templates/a4dashboard/base_form_module.html:10
+#: meinberlin/templates/a4dashboard/base_form_project.html:10
+msgid ""
+"An error occurred while evaluating your data. Please check the data you "
+"entered again."
+msgstr ""
+
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_dashboard_list.html:13
 msgid "Add Place"
 msgstr "Ort hinzufügen"
@@ -4152,11 +4164,11 @@ msgstr "Laufzeit"
 msgid "starts at {}"
 msgstr "startet am {}"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:10
+#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:11
 msgid "Description of the plan"
 msgstr "Beschreibung des Vorhabens"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:12
+#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:13
 msgid ""
 "The description of the plan is divided into title, profile, header image and "
 "description text."
@@ -4164,7 +4176,7 @@ msgstr ""
 "Die Beschreibung des Vorhabens ist unterteilt in einen Titel, einen "
 "Steckbrief, ein Headerbild und einen Beschreibungstext."
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:36
+#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:37
 msgid ""
 "Please name a contact person so users know who to contact with any questions "
 "they may have."
@@ -4172,11 +4184,11 @@ msgstr ""
 "Bitte benennen Sie eine Kontaktperson. So wissen die Nutzer*innen, an wen "
 "sie sich mit möglichen Fragen wenden können. "
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:45
+#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:46
 msgid "Presentation in Kiezradar"
 msgstr "Präsentation im Kiezradar"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:47
+#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:48
 msgid ""
 "The following information affects the presentation of the project in the "
 "Kiezradar."
@@ -4608,11 +4620,11 @@ msgstr "Vorherige Zeitleistenkacheln"
 msgid "Next timeline items"
 msgstr "Nächste Zeitleistenkacheln"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/users_from_email_form.html:23
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/users_from_email_form.html:24
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/users_from_email_form.html:49
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/users_from_email_form.html:50
 msgid "Upload"
 msgstr "Hochladen"
 
@@ -5155,7 +5167,7 @@ msgstr ""
 msgid "To download them please go to code download."
 msgstr "Um die Codes herunterzuladen gehen Sie bitte zum Code-Download."
 
-#: meinberlin/apps/votes/templates/meinberlin_votes/token_generation_dashboard.html:34
+#: meinberlin/apps/votes/templates/meinberlin_votes/token_generation_dashboard.html:35
 msgid "Generate codes"
 msgstr "Codes erstellen"
 

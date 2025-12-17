@@ -30,6 +30,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Kiezradar filter projects by organisation
 - Kiezradar show projects/plans with the same name in Projects List
+- Kiezradar kiez creation race condition prevented
 - Accessibility improvements regarding alternative texts
 - Accessibility improvements regarding semantic structure and adaptability
 - Accessibility improvements regarding structured navigation and consistent focus indication

@@ -31,9 +31,8 @@
                 <ul class="actionable-list">
                     {# Offline-Module mit Datum (z. B. OE) #}
                     {% for module in offline_modules %}
-                        <li class="actionable-list__item actionable-list__item--hide-first-line">
-                            {% html_date module.first_phase_start_date 'DATE_FORMAT' %}
-                            {{ module.item_set.first.event_type }}
+                        <li class="actionable-list__item actionable-list__item--hide-first-line{% if module.module_has_finished %} actionable-list__item--faded{% endif %}">
+                            {% html_date module.first_phase_start_date 'DATE_FORMAT' %} · {{ module.item_set.first.event_type }}
                         <a href="{{ module.get_absolute_url }}"
                                class="actionable-list__item__body">
                                 <h4 class="my-0">{{ module.name }}</h4>

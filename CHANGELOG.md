@@ -19,6 +19,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Offline Event is now A Module
 - Option to select plans from different organisations in projects
 - Burgermenu design updated
+- Update Django to 5.2
+- Project creation form descption max characters of 170
 
 ### Removed
 
@@ -28,9 +30,13 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Kiezradar filter projects by organisation
 - Kiezradar show projects/plans with the same name in Projects List
- - Accessibility improvements regarding alternative texts
- - Accessibility improvements regarding semantic structure and adaptability
- - Accessibility improvements regarding structured navigation and consistent focus indication
+- Kiezradar kiez creation race condition prevented
+- Accessibility improvements regarding alternative texts
+- Accessibility improvements regarding semantic structure and adaptability
+- Accessibility improvements regarding structured navigation and consistent focus indication
+- Project Tiles grid layout fixed, tiles have consistent height
+- Accessibility improvements, keyboard navigation of lists and popups, aria labels
+- Translate paginationText (Show more results...) in Typeahead filter (Kiezradar - organisations)
 
 ### Added
 

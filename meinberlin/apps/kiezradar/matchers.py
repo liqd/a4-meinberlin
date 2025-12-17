@@ -92,8 +92,7 @@ def filter_by_term(obj: Project | Plan) -> QuerySet[SearchProfile]:
 
         if hasattr(obj, "externalproject"):
             if hasattr(obj.externalproject, "bplan"):
-                search_term += f" {obj.externalproject.bplan.identifier}"
-
+                search_term += f" {obj.externalproject.bplan.name}"
     elif isinstance(obj, Plan):
         search_term = f"{obj.title} {obj.description} {obj.organisation.name}"
 

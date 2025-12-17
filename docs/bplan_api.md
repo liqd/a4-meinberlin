@@ -30,7 +30,7 @@ and link to Diplan.
 
 #### Notable changes compared to the old system:
 
-- The district can be calculated from the Bplan identifier, we no longer need to fetch it from the Bplan map
+- The `district` name is provided as a short code string by Diplan, and corresponds to an "Administrative District" record created in the admin
 - The Bplan Location is provided by Diplan, we no longer need to fetch it from the Bplan map
 - The statement form / embed code for the participation is no longer required as participation happens directly on
   Diplan
@@ -80,8 +80,9 @@ The following fields need to be provided:
 - *(imperia only) identifier*: string
   - Identifier that clearly identifies the BPLAN, needs to be the same as in the FIS Broker (e.g. `VIII - 329`)
   - Maximum length of 120 chars
-- *(diplan only) bplan_id*: string
-  - Id that clearly identifies the BPLAN, needs to be the same as in the FIS Broker (e.g. `VIII - 329`)
+- *(diplan only) administrative_district*: string
+  - District short code, corresponding to an Administrative District created in the meinBerlin admin, eg `mi` for `Mitte`
+  - See the [complete district codes table](#district-codes-table) for reference.
   - Maximum length of 120 chars
 - *description*: string
   - Description of the BPLAN shown in the project tile
@@ -127,7 +128,7 @@ The following fields need to be provided:
 ```json
 {
   "name": "Luisenblock Ost - Bebauungsplan 1-70",
-  "bplan_id": "VI - 123c",
+  "administrative_district": "mi",
   "description": "Der Luisenblock Ost soll städtebaulich neu geordnet werden. Nutzungen des Deutschen Bundestages sollen in einem Sondergebiet als Auftakt des 'Band des Bundes' zusammengefasst werden.",
   "url": "https://berlin.de/ba-marzahn-hellersdorf/.../bebauungsplan.649020.php",
   "is_draft": false,
@@ -187,6 +188,8 @@ The following fields need to be provided:
 
 ## Testing
 
+Note: user should be sent as email address, not username.
+
 ### Example for `curl`
 
 ```bash
@@ -198,7 +201,7 @@ curl \
  '
  {
    "name":"Luisenblock Ost - Bebauungsplan 1-70",
-   "bplan_id": "VI - 96a",
+   "administrative_district": "mi",
    "description": "Test",
    "url": "https://mein.berlin.de",
    "office_worker_email": "test@example.com",
@@ -219,7 +222,7 @@ curl  -X POST http://127.0.0.1:8003/api/organisations/1/bplan/ \
  '
  {
    "name":"Luisenblock Ost - Bebauungsplan 1-70",
-   "bplan_id": "VI - 96a",
+    "administrative_district": "mi",
    "description": "Test",
    "url": "https://mein.berlin.de",
    "office_worker_email": "test@example.com",
@@ -232,9 +235,7 @@ curl  -X POST http://127.0.0.1:8003/api/organisations/1/bplan/ \
 
 ## Updating a Bplan
 
-Update an existing Bplan with the id `bplan-id` (attention: `bplan-id` here refers to the id which is returned from
-the api after creating a new bplan, not the `bplan_id` field which is used to designate the fis-broker identifier)
-within the organisation designated by`organisation-id`.
+Update an existing Bplan with the id `bplan-id` within the organisation designated by`organisation-id`.
 
 **URL** : `https://mein.berlin.de/api/organisations/<organisation-id>/bplan/<bplan-id>/`
 
@@ -322,3 +323,23 @@ curl  -X PATCH http://127.0.0.1:8003/api/organisations/1/bplan/16/ \
  }
 '
 ```
+
+# Berlin Districts Reference
+
+Added/edited using the admin.
+
+| District | Short Code |
+|----------|------------|
+| Mitte | mi |
+| Friedrichshain-Kreuzberg | fk |
+| Pankow | pa |
+| Charlottenburg-Wilmersdorf | cw |
+| Spandau | sp |
+| Steglitz-Zehlendorf | sz |
+| Tempelhof-Schöneberg | ts |
+| Neukölln | nk |
+| Treptow-Köpenick | tk |
+| Marzahn-Hellersdorf | mh |
+| Lichtenberg | li |
+| Reinickendorf | rd |
+| Gesamtstädtisch | be |

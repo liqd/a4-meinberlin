@@ -40,7 +40,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
-- Initiators can delete projects with no contributions 
+- Initiators can delete projects with no contributions
+- Frontend validation for registration and login forms, as well as Kiez selection form, for improved accessibility in the case that required fields are not filled out
 
 ## v2509.1
 

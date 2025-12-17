@@ -258,3 +258,39 @@
 .ck-content .text-huge {
     font-size: 1.8em;
 }
+
+.ck-content::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+
+/* Custom Image Aspect Ratio Styles */
+
+/* 4:3 Aspect Ratio Container */
+.ck-content figure.image-aspect-ratio-43 {
+    max-width: 50%;
+    float: right;
+    img {
+        aspect-ratio: 4/3 !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+/* 2:1 Aspect Ratio Container */
+.ck-content figure:not(.image-aspect-ratio-43) {
+  min-width: 100%;
+  img {
+      aspect-ratio: 2/1 !important;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover;
+      object-position: center;
+    }
+}
+
+

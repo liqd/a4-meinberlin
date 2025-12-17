@@ -10,6 +10,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Added
 
 - Followed Projects Page at /account/followed-projects
+- CSS styles for CKEditor image aspect ratio options (4:3 and 2:1)
 
 ### Changed
 

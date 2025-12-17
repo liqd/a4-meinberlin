@@ -20,6 +20,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Option to select plans from different organisations in projects
 - Burgermenu design updated
 - Update Django to 5.2
+- Project creation form descption max characters of 170
 
 ### Removed
 
@@ -35,6 +36,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Accessibility improvements regarding structured navigation and consistent focus indication
 - Project Tiles grid layout fixed, tiles have consistent height
 - Accessibility improvements, keyboard navigation of lists and popups, aria labels
+- Translate paginationText (Show more results...) in Typeahead filter (Kiezradar - organisations)
 
 ### Added
 

@@ -89,6 +89,9 @@ module.exports = {
     token_download_button: {
       import: './meinberlin/apps/votes/assets/token_download_button.js'
     },
+    validate_empty_required_fields: {
+      import: './meinberlin/assets/js/validate_empty_required_fields.js'
+    },
     init_dashboard_accordion: {
       import: './meinberlin/apps/dashboard/assets/init_dashboard_accordion.js'
     },

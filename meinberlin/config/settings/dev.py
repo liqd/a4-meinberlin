@@ -33,8 +33,16 @@ else:
         "JQUERY_URL": "",
     }
 
-CSP_REPORT_ONLY = True
-CSP_DEFAULT_SRC = ["'self'", "'unsafe-inline'", "'unsafe-eval'", "data:", "blob:", "*"]
+CONTENT_SECURITY_POLICY_REPORT_ONLY = {
+    "default-src": [
+        "'self'",
+        "'unsafe-inline'",
+        "'unsafe-eval'",
+        "data:",
+        "blob:",
+        "*",
+    ],
+}
 
 if os.getenv("DATABASE") == "postgresql":
     DATABASES = {

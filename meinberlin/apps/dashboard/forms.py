@@ -54,3 +54,15 @@ class DashboardProjectCreateForm(ProjectCreateForm):
                 ]
             )
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # For dashboard, found also in a4/ProjectDashboardForm
+        if "description" in self.fields:
+            self.fields["description"].widget.attrs["maxlength"] = 170
+
+    def clean_description(self):
+        description = self.cleaned_data.get("description", "")
+        if len(description) > 170:
+            raise forms.ValidationError(_("Description must be at most 170 characters"))
+        return description

@@ -11,6 +11,9 @@ const ProjectMarker = ({ project, onOpen, onClose, topicChoices }) => {
   const tileRef = useRef(null)
   const markerElementRef = useRef(null)
 
+  // Generate a unique ID for this popup
+  const popupId = `popup-${project.properties.id || project.properties.slug || Date.now()}`
+
   const focusFirstInteractiveElement = () => {
     setTimeout(() => { if (tileRef.current) { tileRef.current.focus() } }, 100)
   }
@@ -63,31 +66,21 @@ const ProjectMarker = ({ project, onOpen, onClose, topicChoices }) => {
         offset={[0, 225]}
         maxWidth={400}
         minWidth={400}
-        role="dialog"
-        aria-modal="true"
-        aria-label={`Details: ${project.properties.title}`}
-        onOpen={() => {
-          // Announce to screen readers when popup opens
-          const liveRegion = document.getElementById('map-live-region')
-          if (liveRegion) {
-            liveRegion.textContent = `Popup opened: ${project.properties.title}`
-          }
-        }}
-        onClose={() => {
-          // Announce when popup closes
-          const liveRegion = document.getElementById('map-live-region')
-          if (liveRegion) {
-            liveRegion.textContent = 'Popup closed'
-          }
-        }}
       >
-        <ProjectTile
-          project={project.properties}
-          isHorizontal
-          topicChoices={topicChoices}
-          isMapTile
-          ref={tileRef}
-        />
+        <div
+          role="dialog"
+          aria-modal="false"
+          aria-label={`Details: ${project.properties.title}`}
+          id={popupId}
+        >
+          <ProjectTile
+            project={project.properties}
+            isHorizontal
+            topicChoices={topicChoices}
+            isMapTile
+            ref={tileRef}
+          />
+        </div>
       </Popup>
     </GeoJsonMarker>
   )

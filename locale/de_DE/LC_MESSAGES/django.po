@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-17 16:26+0100\n"
-"PO-Revision-Date: 2025-12-09 14:51+0000\n"
+"PO-Revision-Date: 2025-12-18 15:26+0000\n"
 "Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main-"
-"design-dev/de/>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
+"main-design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1771,15 +1771,17 @@ msgstr "Ich bin kein Roboter"
 
 #: meinberlin/apps/bplan/forms.py:42
 msgid "Enter district short code (e.g., 'mi' for Mitte)"
-msgstr ""
+msgstr "Geben Sie das Bezirkskürzel ein (z. B. 'mi' für Mitte)"
 
 #: meinberlin/apps/bplan/forms.py:47
 msgid "Identifier (deprecated)"
-msgstr ""
+msgstr "Bezeichner (veraltet)"
 
 #: meinberlin/apps/bplan/forms.py:50
 msgid "Identifier is no longer used. Use Administrative District instead."
 msgstr ""
+"Bezeichner wird nicht mehr verwendet. Verwenden Sie stattdessen "
+"Verwaltungsbezirk."
 
 #: meinberlin/apps/bplan/models.py:14
 msgid "Office worker email"
@@ -1820,7 +1822,7 @@ msgstr "Bebauungsplan"
 
 #: meinberlin/apps/bplan/serializers.py:89
 msgid "Administrative district short code (e.g., 'mi' for Mitte)"
-msgstr ""
+msgstr "Verwaltungsbezirk-Kürzel (z. B. 'mi' für Mitte)"
 
 #: meinberlin/apps/bplan/serializers.py:211
 #: meinberlin/apps/bplan/serializers.py:212
@@ -2676,7 +2678,7 @@ msgstr "Es wurde noch keine Moderationsnotiz hinterlegt."
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/breadcrumbs.html:4
 msgid "Breadcrumb"
-msgstr ""
+msgstr "Breadcrumb-Navigation"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/filter_and_sort.html:3
 msgid "Filter bar "
@@ -2932,7 +2934,7 @@ msgstr ""
 
 #: meinberlin/apps/dashboard/forms.py:67
 msgid "Description must be at most 170 characters"
-msgstr ""
+msgstr "Die Beschreibung darf maximal 170 Zeichen lang sein"
 
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/module_blueprint_list_dashboard.html:6
 msgid "New Module"
@@ -3644,6 +3646,8 @@ msgid ""
 "An error occurred while evaluating your data. Please check the data you "
 "entered again."
 msgstr ""
+"Bei der Verwertung Ihrer Daten ist ein Fehler aufgetreten. Bitte überprüfen "
+"Sie Ihre Eingaben erneut."
 
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_dashboard_list.html:13
 msgid "Add Place"
@@ -5773,7 +5777,7 @@ msgstr "Barrierefreiheit"
 
 #: meinberlin/templates/header.html:76
 msgid "Close Accessibility Menu"
-msgstr ""
+msgstr "Barrierefreiheitsmenü schließen"
 
 #: meinberlin/templates/header.html:85
 msgid "Symbol for easy german"
@@ -5821,7 +5825,7 @@ msgstr "Menü"
 
 #: meinberlin/templates/header.html:144
 msgid "Close menu"
-msgstr ""
+msgstr "Menü schließen"
 
 #: meinberlin/templates/meinberlin_projects/partials/project_delete_modal_htmx.html:11
 #, python-format

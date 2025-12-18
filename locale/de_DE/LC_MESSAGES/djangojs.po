@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-17 16:26+0100\n"
-"PO-Revision-Date: 2025-12-09 14:51+0000\n"
+"PO-Revision-Date: 2025-12-18 15:26+0000\n"
 "Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js-"
-"design-dev/de/>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
+"js-design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1086,7 +1086,7 @@ msgstr "Suche starten"
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:8
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:7
 msgid "Comment Actions"
-msgstr ""
+msgstr "Kommentaraktionen"
 
 #: adhocracy4/comments_async/static/modals/UrlModal.jsx:47
 msgid "Share URL"
@@ -1158,35 +1158,35 @@ msgstr ""
 
 #: meinberlin/assets/js/validate_empty_required_fields.js:130
 msgid "This field"
-msgstr ""
+msgstr "Dieses Feld"
 
 #: meinberlin/assets/js/validate_empty_required_fields.js:138
 msgid "Please enter your password."
-msgstr ""
+msgstr "Bitte geben Sie ihr Passwort ein."
 
 #: meinberlin/assets/js/validate_empty_required_fields.js:140
 msgid "Please enter your email address."
-msgstr ""
+msgstr "Bitte geben Sie Ihre E-Mail-Adresse ein."
 
 #: meinberlin/assets/js/validate_empty_required_fields.js:142
 msgid "Please enter your username."
-msgstr ""
+msgstr "Bitte geben Sie Ihren Benutzernamen ein."
 
 #: meinberlin/assets/js/validate_empty_required_fields.js:144
 msgid "You must accept the terms of use."
-msgstr ""
+msgstr "Sie müssen die Nutzungsbedingungen akzeptieren."
 
 #: meinberlin/assets/js/validate_empty_required_fields.js:146
 msgid "This field is required."
-msgstr ""
+msgstr "Dieses Feld ist erforderlich."
 
 #: meinberlin/assets/js/validate_empty_required_fields.js:157
 #: meinberlin/assets/js/validate_empty_required_fields.js:160
 #, javascript-format
 msgid "The form contains an error."
 msgid_plural "The form contains %s errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Das Formular enthält einen Fehler."
+msgstr[1] "Das Formular enthält %s Fehler."
 
 #: meinberlin/react/account/FeedItem.jsx:7
 msgid "now"
@@ -1691,18 +1691,18 @@ msgstr "lädt"
 
 #: meinberlin/react/contrib/TypeaheadField.jsx:6
 msgid "Suggestions will appear as you type."
-msgstr ""
+msgstr "Vorschläge werden während der Eingabe angezeigt."
 
 #: meinberlin/react/contrib/TypeaheadField.jsx:7
 #, javascript-format
 msgid "%s suggestion available"
 msgid_plural "%s suggestions available"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s Vorschlag verfügbar"
+msgstr[1] "%s Vorschläge verfügbar"
 
 #: meinberlin/react/contrib/TypeaheadField.jsx:8
 msgid "Display additional results..."
-msgstr ""
+msgstr "Weitere Ergebnisse anzeigen..."
 
 #: meinberlin/react/contrib/card/Card.jsx:7
 #: meinberlin/react/contrib/map/ItemPopup.jsx:26
@@ -1937,7 +1937,7 @@ msgstr "Wählen Sie Ihren Radius"
 
 #: meinberlin/react/kiezradar/KiezradarMap.jsx:14
 msgid "Marker pin with current position"
-msgstr ""
+msgstr "Pin mit aktueller Position"
 
 #: meinberlin/react/kiezradar/Kiezradars.jsx:11
 msgid "Kiez selection"
@@ -2504,13 +2504,13 @@ msgstr "Abgeschlossene einbeziehen"
 #, javascript-format
 msgid "Showing %s project"
 msgid_plural "Showing %s projects"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s Projekt wird angezeigt"
+msgstr[1] "%s Projekte werden angezeigt"
 
 #: meinberlin/react/projects/ProjectsList.jsx:16
 #: meinberlin/react/projects/ProjectsList.jsx:77
 msgid "No projects found"
-msgstr ""
+msgstr "Keine Projekte gefunden"
 
 #: meinberlin/react/projects/ProjectsListMapBox.jsx:16
 msgid "Kiezradar"

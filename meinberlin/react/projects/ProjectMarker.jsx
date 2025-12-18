@@ -66,9 +66,7 @@ const ProjectMarker = ({ project, onOpen, onClose, topicChoices }) => {
         offset={[0, 225]}
         maxWidth={400}
         minWidth={400}
-        // Remove role and aria-modal from here - add them to wrapper div below
       >
-        {/* Wrapper div with proper ARIA attributes for the dialog */}
         <div
           role="dialog"
           aria-modal="false"

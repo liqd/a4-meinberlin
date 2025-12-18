@@ -268,29 +268,38 @@
 
 /* Custom Image Aspect Ratio Styles */
 
-/* 4:3 Aspect Ratio Container */
-.ck-content figure.image-aspect-ratio-43 {
+/* 4:3 Aspect Ratio - Compact format (right-aligned) */
+.ck-content img.image-aspect-ratio-43 {
+    aspect-ratio: 4/3 !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover;
+    object-position: center;
     max-width: 50%;
     float: right;
-    img {
-        aspect-ratio: 4/3 !important;
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover;
-        object-position: center;
-    }
 }
 
-/* 2:1 Aspect Ratio Container */
-.ck-content figure:not(.image-aspect-ratio-43) {
-  min-width: 100%;
-  img {
-      aspect-ratio: 2/1 !important;
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover;
-      object-position: center;
-    }
+/* Container styling for 4:3 images */
+.ck-content figure:has(> img.image-aspect-ratio-43),
+.ck-content span:has(> img.image-aspect-ratio-43) {
+    max-width: 50%;
+    float: right;
+    margin: 0 auto 1em;
 }
 
+/* 2:1 Aspect Ratio - Wide format (full width) */
+.ck-content img.image-aspect-ratio-21 {
+    aspect-ratio: 2/1 !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover;
+    object-position: center;
+    max-width: 100%;
+}
 
+/* Container styling for 2:1 images */
+.ck-content figure:has(> img.image-aspect-ratio-21),
+.ck-content span:has(> img.image-aspect-ratio-21) {
+  width: 100%;
+  margin: 0 auto 1em;
+}

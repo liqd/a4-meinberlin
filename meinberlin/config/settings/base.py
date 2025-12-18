@@ -640,12 +640,13 @@ CKEDITOR_5_CONFIGS = {
         "htmlSupport": {
             "allow": [
                 {
-                    "name": "figure",
+                    "name": "/.*/",
                     "classes": [
                         "image",
-                        "image-aspect-ratio-43",
-                        "image-aspect-ratio-21",
+                        "image-inline",
                     ],
+                    "attributes": True,
+                    "styles": True,
                 }
             ]
         },
@@ -698,12 +699,15 @@ CKEDITOR_5_CONFIGS = {
         "htmlSupport": {
             "allow": [
                 {
-                    "name": "figure",
+                    "name": "/.*/",
                     "classes": [
-                        "image",
                         "image-aspect-ratio-43",
                         "image-aspect-ratio-21",
+                        "image",
+                        "image-inline",
                     ],
+                    "attributes": True,
+                    "styles": True,
                 }
             ]
         },

@@ -62,7 +62,15 @@ def test_statement_form_view_no_captcha(
 
 @pytest.mark.django_db
 def test_statement_emails(client, phase_factory, bplan_factory, module_factory):
-    bplan = bplan_factory(is_draft=False)
+    # Create a district first
+    from adhocracy4.administrative_districts.models import AdministrativeDistrict
+
+    district, _ = AdministrativeDistrict.objects.get_or_create(
+        name="Test District", short_code="td"
+    )
+
+    # Create bplan with administrative_district
+    bplan = bplan_factory(is_draft=False, administrative_district=district)
     module = module_factory(project=bplan)
     phase = phase_factory(phase_content=phases.StatementPhase(), module=module)
     url = module.get_absolute_url()
@@ -77,7 +85,7 @@ def test_statement_emails(client, phase_factory, bplan_factory, module_factory):
             "email": "user@foo.bar",
             "street_number": "Some Street 1",
             "postal_code_city": "12345 City",
-            "statement": "Paragraph 1" "",
+            "statement": "Paragraph 1",
             "captcha": "testpass:0",
         }
         response = client.post(url, statement)

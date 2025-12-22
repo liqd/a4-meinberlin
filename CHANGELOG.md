@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 Since version v2308 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## mB-v2512.2
 
 ### Added
 
@@ -20,6 +20,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Offline Event is now A Module
 - Option to select plans from different organisations in projects
 - Burgermenu design updated
+- bplan api: deprecate `bplan_id` identifier field, add `administrative_district` shortcode field to use instead
 - Update Django to 5.2
 - Project creation form descption max characters of 170
 
@@ -39,6 +40,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Accessibility improvements, keyboard navigation of lists and popups, aria labels
 - Alignment of checkboxes, labels and helptext
 - Translate paginationText (Show more results...) in Typeahead filter (Kiezradar - organisations)
+- Translate dashboard error alerts
 
 ### Added
 

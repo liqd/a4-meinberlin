@@ -2,6 +2,7 @@ from django import forms
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
+from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from meinberlin.apps.extprojects.forms import ExternalProjectCreateForm
 from meinberlin.apps.extprojects.forms import ExternalProjectForm
 
@@ -35,11 +36,25 @@ class BplanProjectCreateForm(ExternalProjectCreateForm):
 
 
 class BplanProjectForm(ExternalProjectForm):
+    administrative_district = forms.CharField(
+        required=False,
+        label=_("Administrative district"),
+        help_text=_("Enter district short code (e.g., 'mi' for Mitte)"),
+    )
+
+    identifier = forms.CharField(
+        required=False,
+        label=_("Identifier (deprecated)"),
+        disabled=True,  # Read-only
+        help_text=_(
+            "Identifier is no longer used. Use Administrative District instead."
+        ),
+    )
+
     class Meta:
         model = models.Bplan
         fields = [
             "name",
-            "identifier",
             "url",
             "description",
             "tile_image",
@@ -63,3 +78,30 @@ class BplanProjectForm(ExternalProjectForm):
         self.fields["name"].widget.attrs.update(
             {"autocomplete": "off", "autofill": "off"}
         )
+        # Set initial value to short code if instance has a district
+        if self.instance and self.instance.administrative_district:
+            self.initial["administrative_district"] = (
+                self.instance.administrative_district.short_code
+            )
+
+    def clean_administrative_district(self):
+        short_code = self.cleaned_data.get("administrative_district")
+        if short_code:
+            try:
+                district = AdministrativeDistrict.objects.get(short_code=short_code)
+                return district
+            except AdministrativeDistrict.DoesNotExist:
+                raise forms.ValidationError(
+                    f"District with short code '{short_code}' not found."
+                )
+        return None
+
+    def save(self, commit=True):
+        district = self.cleaned_data.get("administrative_district")
+
+        if district is not None:
+            self.instance.administrative_district = district
+
+        project = super().save(commit)
+
+        return project

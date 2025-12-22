@@ -18,6 +18,7 @@ from django.utils.html import strip_tags
 from django.utils.translation import gettext as _
 from rest_framework import serializers
 
+from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.dashboard import components
 from adhocracy4.dashboard import signals as a4dashboard_signals
 from adhocracy4.images.validators import validate_image
@@ -80,10 +81,15 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
         ),
     )
     embed_code = serializers.SerializerMethodField()
-    bplan_id = serializers.CharField(
-        required=False,
+    administrative_district = serializers.CharField(
         write_only=True,
+        required=False,
+        allow_blank=False,
+        allow_null=False,
+        help_text=_("Administrative district short code (e.g., 'mi' for Mitte)"),
     )
+    # Deprecated field, keeping for backwards compatibility
+    bplan_id = serializers.CharField(required=False, write_only=True, allow_blank=True)
 
     def get_geojson_properties(self):
         return {"strasse": "street_name", "haus": "house_number", "plz": "zip_code"}
@@ -94,8 +100,6 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
         fields = (
             "id",
             "name",
-            "identifier",
-            "bplan_id",
             "description",
             "url",
             "office_worker_email",
@@ -109,6 +113,8 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
             "image_copyright",
             "embed_code",
             "point",
+            "administrative_district",
+            "bplan_id",
         )
         extra_kwargs = {
             # write_only for consistency reasons
@@ -118,7 +124,6 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
             "description": {"write_only": True},
             "url": {"write_only": True},
             "office_worker_email": {"write_only": True},
-            "identifier": {"write_only": True},
             "point": {"write_only": True},
         }
 
@@ -131,18 +136,44 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
         return ret
 
     def validate(self, attrs):
-        """Only add strip_tags (leave truncation in create/update)
-        There is additional validation code repeated between create and update
-        that could be refactored into this method."""
         if "description" in attrs:
             attrs["description"] = strip_tags(attrs["description"])
+
+        if not self.partial and "administrative_district" not in attrs:
+            raise serializers.ValidationError(
+                {"administrative_district": "This field is required for creation."}
+            )
+
         return attrs
+
+    def validate_administrative_district(self, value):
+        """Validate that the administrative_district short code exists"""
+        if value is None:
+            return value
+
+        if not AdministrativeDistrict.objects.filter(short_code=value).exists():
+            raise serializers.ValidationError(
+                f"District with short code '{value}' not found."
+            )
+
+        return value
 
     def create(self, validated_data):
         orga_pk = self._context.get("organisation_pk", None)
         orga_model = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
         orga = orga_model.objects.get(pk=orga_pk)
         validated_data["organisation"] = orga
+
+        start_date = validated_data["start_date"]
+        end_date = validated_data["end_date"]
+
+        district_short_code = validated_data.pop("administrative_district")
+        district = AdministrativeDistrict.objects.get(short_code=district_short_code)
+        validated_data["administrative_district"] = district
+
+        _ = validated_data.pop("bplan_id", None)  # deprecated field
+        image_url = validated_data.pop("image_url", None)
+        tile_image_base64 = validated_data.pop("tile_image", None)
 
         # Ellipsizing/char limit is handled by us, diplan always sends full text
         if len(validated_data["name"]) > NAME_MAX_LENGTH:
@@ -152,25 +183,14 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
                 :DESCRIPTION_MAX_LENGTH
             ]
 
-        # mark as diplan, will make removal of old bplans easier
-        # TODO: remove this check and the is_diplan field once transition to diplan is completed
-        if "bplan_id" in validated_data or "point" in validated_data:
-            validated_data["is_diplan"] = True
+        # Always mark as diplan
+        validated_data["is_diplan"] = True
 
-        # TODO: rename identifier to bplan_id on model and remove the custom logic here
-        if "bplan_id" in validated_data:
-            bplan_id = validated_data.pop("bplan_id")
-            validated_data["identifier"] = bplan_id
-
-        start_date = validated_data["start_date"]
-        end_date = validated_data["end_date"]
-
-        tile_image = validated_data.pop("tile_image", None)
-        if tile_image:
-            validated_data["tile_image"] = self._create_image_from_base64(tile_image)
-
-        image_url = validated_data.pop("image_url", None)
-        if image_url:
+        if tile_image_base64:
+            validated_data["tile_image"] = self._create_image_from_base64(
+                tile_image_base64
+            )
+        elif image_url:
             validated_data["tile_image"] = self._download_image_from_url(image_url)
 
         bplan = super().create(validated_data)
@@ -197,8 +217,18 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
         )
 
     def update(self, instance, validated_data):
-        start_date = validated_data.get("start_date", None)
-        end_date = validated_data.get("end_date", None)
+        start_date = validated_data.get("start_date")
+        end_date = validated_data.get("end_date")
+
+        if "administrative_district" in validated_data:
+            district_value = validated_data.pop("administrative_district")
+            district = AdministrativeDistrict.objects.get(short_code=district_value)
+            instance.administrative_district = district
+
+        _ = validated_data.pop("bplan_id", None)  # deprecated field
+        image_url = validated_data.pop("image_url", None)
+        tile_image_base64 = validated_data.pop("tile_image", None)
+
         if start_date or end_date:
             self._update_phase(instance, start_date, end_date)
             # TODO: remove as we don't need to archive bplans anymore once the transition to diplan is complete as
@@ -217,23 +247,15 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
                 :DESCRIPTION_MAX_LENGTH
             ]
 
-        # mark as diplan, will make removal of old bplans easier
-        # TODO: remove this check and the is_diplan field once transition to diplan is completed
-        if "bplan_id" in validated_data or "point" in validated_data:
-            validated_data["is_diplan"] = True
+        # Always mark as diplan
+        validated_data["is_diplan"] = True
 
-        # TODO: rename identifier to bplan_id on model and remove the custom logic here
-        if "bplan_id" in validated_data:
-            bplan_id = validated_data.pop("bplan_id")
-            validated_data["identifier"] = bplan_id
-
-        image_url = validated_data.pop("image_url", None)
-        if image_url:
+        if tile_image_base64:
+            validated_data["tile_image"] = self._create_image_from_base64(
+                tile_image_base64
+            )
+        elif image_url:
             validated_data["tile_image"] = self._download_image_from_url(image_url)
-
-        tile_image = validated_data.pop("tile_image", None)
-        if tile_image:
-            validated_data["tile_image"] = self._create_image_from_base64(tile_image)
 
         instance = super().update(instance, validated_data)
 

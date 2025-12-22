@@ -63,7 +63,7 @@ const ProjectsMap = ({ items, topicChoices, ...props }) => {
         id="map-live-region"
         aria-live="polite"
         aria-atomic="true"
-        className="visually-hidden"
+        className="sr-only"
       >
         {/* Screen reader announcements will go here */}
       </div>

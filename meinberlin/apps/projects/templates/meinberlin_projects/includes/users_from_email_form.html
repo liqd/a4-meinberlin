@@ -3,7 +3,8 @@
 <form method="POST">
     {% csrf_token %}
     {% if form.errors %}
-      {% include 'meinberlin_contrib/components/alert.html' with alert_message='An error occurred while evaluating your data. Please check the data you entered again.' alert_type='danger' %}
+      {% translate 'An error occurred while evaluating your data. Please check the data you entered again.' as alert_message %}
+      {% include 'meinberlin_contrib/components/alert.html' with alert_message=alert_message alert_type='danger' %}
     {% endif %}
 
     <div class="form-group">

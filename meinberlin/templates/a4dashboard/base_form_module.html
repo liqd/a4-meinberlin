@@ -7,7 +7,8 @@
     <h1 class="u-first-heading">{{ view.title }}</h1>
 
     {% if form.errors %}
-      {% include 'meinberlin_contrib/components/alert.html' with alert_message='An error occurred while evaluating your data. Please check the data you entered again.' alert_type='danger' %}
+      {% translate 'An error occurred while evaluating your data. Please check the data you entered again.' as alert_message %}
+      {% include 'meinberlin_contrib/components/alert.html' with alert_message=alert_message alert_type='danger' %}
     {% endif %}
 
     {% if form.non_field_errors %}

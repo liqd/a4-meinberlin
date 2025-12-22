@@ -1,5 +1,5 @@
 /* global django */
-import React, { forwardRef, useId } from 'react'
+import React, { forwardRef } from 'react'
 import { classNames } from 'adhocracy4'
 import { toLocaleDate } from '../contrib/helpers'
 import ProjectTilePills from './ProjectTopics'
@@ -25,8 +25,6 @@ function truncateText (item) {
 // FIXME: change to `ref` when using this component once we are on react v19
 //  see https://react.dev/reference/react/forwardRef
 const ProjectTile = forwardRef(function ProjectTile ({ project, isHorizontal, topicChoices, isMapTile }, ref) {
-  const labelId = useId()
-  const statusId = useId()
   const statusBarProgress = project.active_phase ? project.active_phase[0] + '%' : null
   let state = 'past'
 
@@ -45,6 +43,7 @@ const ProjectTile = forwardRef(function ProjectTile ({ project, isHorizontal, to
       rel="noreferrer"
       ref={ref}
       className={classNames('project-tile', isHorizontal ? 'project-tile--horizontal' : 'project-tile--vertical', isMapTile && 'project-tile--map')}
+      aria-label={project.title}
     >
       <div className="project-tile__content-wrapper">
         <div className="project-tile__image-wrapper image">
@@ -56,7 +55,7 @@ const ProjectTile = forwardRef(function ProjectTile ({ project, isHorizontal, to
           )}
           <ImageWithPlaceholder
             src={project.tile_image}
-            alt={project.tile_image_alt_text ?? ''}
+            alt={project.tile_image_alt_text || project.title}
             height={490}
             width={653}
             className="project-tile__image"
@@ -72,7 +71,7 @@ const ProjectTile = forwardRef(function ProjectTile ({ project, isHorizontal, to
             <div className="project-tile__topics">
               <ProjectTilePills project={project} topicChoices={topicChoices} />
             </div>}
-          <p className="project-tile__title title-3" id={labelId}>{project.title}</p>
+          <p className="project-tile__title title-3">{project.title}</p>
           {project.description && !isMapTile && (
             <p className="project-tile__description">
               {truncateText(project.description)}
@@ -87,18 +86,14 @@ const ProjectTile = forwardRef(function ProjectTile ({ project, isHorizontal, to
             <progress
               value={project.active_phase[0]}
               max="100"
-              aria-valuenow={project.active_phase[0]}
-              aria-valuemin="0"
-              aria-valuemax="100"
-              id={statusId}
               className="status-bar"
             >
               {statusBarProgress}
             </progress>
-            <label htmlFor={statusId} className="status-bar__timespan">
+            <span className="status-bar__timespan">
               <i className="far fa-clock" role="img" aria-label={clockIconLabel} />
               {getTimespan(project)}
-            </label>
+            </span>
           </>
         )}
         {state === 'active' && project.type === 'plan' && (

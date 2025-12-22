@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-22 11:37+0100\n"
+"POT-Creation-Date: 2025-12-22 15:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,6 +161,7 @@ msgstr ""
 "based on certain linguistic characteristics."
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:8
+#, javascript-format
 msgctxt "defakts"
 msgid ""
 "The AI considers some of the characteristics of disinformation to be "
@@ -1441,6 +1442,10 @@ msgstr[1] "%s suggestions available"
 #: meinberlin/react/contrib/TypeaheadField.jsx:8
 msgid "Display additional results..."
 msgstr "Display additional results..."
+
+#: meinberlin/react/contrib/TypeaheadField.jsx:9
+msgid "No matches found"
+msgstr "No matches found"
 
 #: meinberlin/react/contrib/card/Card.jsx:7
 #: meinberlin/react/contrib/map/ItemPopup.jsx:26

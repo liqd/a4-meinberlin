@@ -13,7 +13,8 @@
     <h1>{% translate 'Submit a new idea for this project' %}</h1>
 
     {% if form.errors %}
-        {% include 'meinberlin_contrib/components/alert.html' with alert_message='Error during validation. Please check your entries.' alert_type='danger' %}
+        {% trans 'Error during validation. Please check your entries.' as alert_message %}
+        {% include 'meinberlin_contrib/components/alert.html' with alert_message=alert_message alert_type='danger' %}
     {% endif %}
 
     <div class="u-bottom-divider">

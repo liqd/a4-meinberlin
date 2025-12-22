@@ -97,7 +97,7 @@ class TermsSignupForm(allauth_forms.SignupForm):
             "end of participation opportunities. This applies to all projects "
             "I follow. I also receive an e-mail when someone comments on one "
             "of my contributions. I can adapt notification in my user account "
-            "settings. "
+            "settings."
         ),
         required=False,
         initial=True,

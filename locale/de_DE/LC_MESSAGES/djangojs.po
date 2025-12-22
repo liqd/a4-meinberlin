@@ -1742,15 +1742,15 @@ msgstr "Pillenliste"
 #: meinberlin/react/contrib/map/ItemPopup.jsx:18
 msgid "Like"
 msgid_plural "Likes"
-msgstr[0] "Like"
-msgstr[1] "Likes"
+msgstr[0] "gefällt"
+msgstr[1] "gefällt nicht"
 
 #: meinberlin/react/contrib/card/CardStats.jsx:8
 #: meinberlin/react/contrib/map/ItemPopup.jsx:22
 msgid "Dislike"
 msgid_plural "Dislikes"
-msgstr[0] "Dislike"
-msgstr[1] "Dislikes"
+msgstr[0] "gefällt nicht"
+msgstr[1] "gefällt nicht"
 
 #: meinberlin/react/contrib/card/CardStats.jsx:9
 msgid "Supporter"

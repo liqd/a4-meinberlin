@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-22 11:37+0100\n"
+"POT-Creation-Date: 2025-12-22 15:33+0100\n"
 "PO-Revision-Date: 2025-12-18 15:26+0000\n"
 "Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js-"
@@ -208,6 +208,7 @@ msgstr ""
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:8
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:8
+#, javascript-format
 msgctxt "defakts"
 msgid ""
 "The AI considers some of the characteristics of disinformation to be "
@@ -1714,6 +1715,10 @@ msgstr[1] "%s Vorschläge verfügbar"
 #: meinberlin/react/contrib/TypeaheadField.jsx:8
 msgid "Display additional results..."
 msgstr "Weitere Ergebnisse anzeigen..."
+
+#: meinberlin/react/contrib/TypeaheadField.jsx:9
+msgid "No matches found"
+msgstr ""
 
 #: meinberlin/react/contrib/card/Card.jsx:7
 #: meinberlin/react/contrib/map/ItemPopup.jsx:26

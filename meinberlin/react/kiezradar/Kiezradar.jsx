@@ -12,7 +12,8 @@ const saveText = django.gettext('Save Kiez selection')
 const savingText = django.gettext('Saving')
 const errorText = django.gettext('Error')
 const errorUpdateKiezText = django.gettext('Failed to update kiezradar filter')
-const requiredFieldText = django.pgettext('Form validation', `"${nameYourKiezText}" is required.`)
+const isRequiredText = django.pgettext('Form validation', 'is required.')
+const requiredFieldText = `"${nameYourKiezText}" ${isRequiredText}`
 
 const CENTRAL_BERLIN = [13.4050, 52.5200]
 const MIN_RADIUS = 500

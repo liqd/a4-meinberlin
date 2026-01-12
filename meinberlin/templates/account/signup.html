@@ -39,22 +39,40 @@
             {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_notifications hide_label=True %}
             {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_newsletters hide_label=True %}
 
-            <div class="form-check">
-                <label class="form-check-label">
-                    {{ form.terms_of_use|add_error_attr:"aria-invalid:true" }}
-                    {% blocktranslate with terms_of_use_url="/terms-of-use" privacy_policy="/datenschutz" %}I hereby expressly consent to the collection and processing (storage) of my data and expressly consent to the processing and publication of my ideas, comments and contributions as described in the privacy policy. I also confirm that I have read and accept the
-                    <a href="{{ terms_of_use_url }}" target="_blank">terms of use</a>
-                    and the
-                    <a href="{{ privacy_policy }}" target="_blank">privacy policy</a>.{% endblocktranslate %}
-                </label>
-                {% if form.terms_of_use.errors %}
-                    <ul class="errorlist" aria-live="assertive" aria-atomic="true">
-                        {% for error in form.terms_of_use.errors %}
-                            <li>{{ error|escape }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+            {% with field=form.terms_of_use %}
+            {% with field.id_for_label|add:"_helptext" as helptext_id %}
+            <div class="form-group mb-3">
+                <div class="form-check">
+                    <div class="d-flex align-items-start">
+                        <span class="flex-shrink-0" style="width: 1.25rem;">
+                            {% with 'aria-describedby:'|add:helptext_id as describedby_attr %}
+                                {{ field|add_class:"form-check-input form-check-input__mb m-0"|add_error_attr:"aria-invalid:true"|attr:describedby_attr }}
+                            {% endwith %}
+                        </span>
+                    </div>
+            
+                    <div class="form-hint ms-5" id="{{ helptext_id }}">
+                        {% blocktranslate with terms_of_use_url="/terms-of-use" privacy_policy="/datenschutz" %}I hereby expressly consent to the collection and processing (storage) of my data and expressly consent to the processing and publication of my ideas, comments and contributions as described in the privacy policy. I also confirm that I have read and accept the
+                        <a href="{{ terms_of_use_url }}" target="_blank">terms of use</a>
+                        and the
+                        <a href="{{ privacy_policy }}" target="_blank">privacy policy</a>.{% endblocktranslate %}
+                    </div>
+            
+                    {% if field.errors %}
+                        {% if field.errors|length > 1 %}
+                            <ul class="errorlist ms-4 mt-1" aria-live="assertive" aria-atomic="true">
+                                {% for error in field.errors %}
+                                    <li>{{ error|escape }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            {% include 'meinberlin_contrib/components/alert.html' with alert_message=field.errors.0|escape alert_type='danger' %}
+                        {% endif %}
+                    {% endif %}
+                </div>
             </div>
+            {% endwith %}
+            {% endwith %}
 
             {% if form.captcha %}
                 {% include 'meinberlin_contrib/includes/form_field.html' with field=form.captcha %}

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-08 12:38+0100\n"
+"POT-Creation-Date: 2026-01-12 18:36+0100\n"
 "PO-Revision-Date: 2025-12-22 11:03+0000\n"
 "Last-Translator: shn-liqd <s.obrien@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main-"
@@ -517,6 +517,11 @@ msgstr "Bitte stimmen Sie den Nutzungsbedingungen der Organisation zu."
 #: adhocracy4/comments_async/serializers.py:15
 msgid "Please choose one or more categories."
 msgstr "Bitte wählen Sie eine oder mehrere Kategorien aus."
+
+#: adhocracy4/dashboard/components/forms/forms.py:49
+#: meinberlin/apps/dashboard/forms.py:67
+msgid "Description must be at most 170 characters"
+msgstr "Die Beschreibung darf maximal 170 Zeichen lang sein"
 
 #: adhocracy4/dashboard/components/forms/views.py:24
 msgid "The project has been updated."
@@ -1391,7 +1396,7 @@ msgstr "Kurzbeschreibung Ihres Projekts"
 #: adhocracy4/projects/models.py:227
 msgid ""
 "This short description will appear on the header of the project and in the "
-"teaser. It should briefly state the goal of the project in max. 250 chars."
+"teaser. It should briefly state the goal of the project in max. 170 chars."
 msgstr ""
 
 #: adhocracy4/projects/models.py:236
@@ -2942,10 +2947,6 @@ msgid ""
 msgstr ""
 "Nur eingeladene Nutzer*innen können Projektkachel und -inhalte sehen und "
 "sich beteiligen (privat)."
-
-#: meinberlin/apps/dashboard/forms.py:67
-msgid "Description must be at most 170 characters"
-msgstr "Die Beschreibung darf maximal 170 Zeichen lang sein"
 
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/module_blueprint_list_dashboard.html:6
 msgid "New Module"
@@ -4688,6 +4689,16 @@ msgid ""
 msgstr ""
 "Sie wurden von den Initiator*innen des Projekts eingeladen. Wenn Sie "
 "akzeptieren können sie das Projekt moderieren."
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/moderatorinvite_form.html:22
+#: meinberlin/apps/projects/templates/meinberlin_projects/participantinvite_form.html:24
+msgid "Accept"
+msgstr ""
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/moderatorinvite_form.html:23
+#: meinberlin/apps/projects/templates/meinberlin_projects/participantinvite_form.html:25
+msgid "Decline"
+msgstr ""
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/module_offline_event_detail.html:14
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:13

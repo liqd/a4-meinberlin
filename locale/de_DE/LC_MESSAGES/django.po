@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-12 18:36+0100\n"
+"POT-Creation-Date: 2026-01-13 14:43+0100\n"
 "PO-Revision-Date: 2025-12-22 11:03+0000\n"
 "Last-Translator: shn-liqd <s.obrien@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main-"
@@ -3051,7 +3051,7 @@ msgstr "Zurück zum Kapitel"
 #: meinberlin/templates/account/login.html:5
 #: meinberlin/templates/account/login.html:15
 #: meinberlin/templates/account/login.html:45
-#: meinberlin/templates/account/signup.html:75
+#: meinberlin/templates/account/signup.html:93
 msgid "Login"
 msgstr "Anmelden"
 
@@ -4676,7 +4676,7 @@ msgstr "Weiter zur Anmeldung"
 #: meinberlin/templates/account/login.html:51
 #: meinberlin/templates/account/signup.html:5
 #: meinberlin/templates/account/signup.html:15
-#: meinberlin/templates/account/signup.html:68
+#: meinberlin/templates/account/signup.html:86
 #: meinberlin/templates/navigation_primary.html:111
 #: meinberlin/templates/socialaccount/signup.html:54
 msgid "Register"
@@ -5714,32 +5714,21 @@ msgstr ""
 msgid "Your password is now changed."
 msgstr "Ihr Passwort wurde geändert."
 
-#: meinberlin/templates/account/signup.html:45
+#: meinberlin/templates/account/signup.html:55
 #, python-format
 msgid ""
 "I hereby expressly consent to the collection and processing (storage) of my "
 "data and expressly consent to the processing and publication of my ideas, "
 "comments and contributions as described in the privacy policy. I also "
 "confirm that I have read and accept the\n"
-"                    <a href=\"%(terms_of_use_url)s\" target=\"_blank\">terms "
-"of use</a>\n"
-"                    and the\n"
-"                    <a href=\"%(privacy_policy)s\" target=\"_blank\">privacy "
-"policy</a>."
+"                        <a href=\"%(terms_of_use_url)s\" "
+"target=\"_blank\">terms of use</a>\n"
+"                        and the\n"
+"                        <a href=\"%(privacy_policy)s\" "
+"target=\"_blank\">privacy policy</a>."
 msgstr ""
-"Ich willige hiermit ausdrücklich in die Erhebung und Verarbeitung "
-"(Speicherung) meiner Daten ein und stimme der Verarbeitung und "
-"Veröffentlichung meiner Ideen, Kommentare und Beiträge, wie in der "
-"Datenschutzerklärung beschrieben, ausdrücklich zu. Ich bestätige außerdem, "
-"dass ich die\n"
-"                    <a href=\"%(terms_of_use_url)s\" "
-"target=\"_blank\">Benutzungsbedingungen</a>\n"
-"                    und die\n"
-"                    <a href=\"%(privacy_policy)s\" "
-"target=\"_blank\">Datenschutzbestimmungen</a>\n"
-"                    gelesen habe und akzeptiere."
 
-#: meinberlin/templates/account/signup.html:74
+#: meinberlin/templates/account/signup.html:92
 msgid "Already have an account?"
 msgstr "Sie haben bereits ein Konto?"
 

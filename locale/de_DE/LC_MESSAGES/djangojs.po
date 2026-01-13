@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-13 14:43+0100\n"
-"PO-Revision-Date: 2025-12-18 15:26+0000\n"
+"PO-Revision-Date: 2026-01-14 13:16+0000\n"
 "Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js-"
-"design-dev/de/>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
+"js-design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1718,7 +1718,7 @@ msgstr "Weitere Ergebnisse anzeigen..."
 
 #: meinberlin/react/contrib/TypeaheadField.jsx:9
 msgid "No matches found"
-msgstr ""
+msgstr "Keine Treffer gefunden"
 
 #: meinberlin/react/contrib/card/Card.jsx:7
 #: meinberlin/react/contrib/map/ItemPopup.jsx:26
@@ -1916,7 +1916,7 @@ msgstr "Der Kiezradar-Filter konnte nicht aktualisiert werden."
 #: meinberlin/react/kiezradar/Kiezradar.jsx:15
 msgctxt "Form validation"
 msgid "is required."
-msgstr ""
+msgstr "ist verpflichtend."
 
 #: meinberlin/react/kiezradar/KiezradarList.jsx:9
 msgid "No saved Kiezes"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-08 12:38+0100\n"
+"POT-Creation-Date: 2026-01-12 18:36+0100\n"
 "PO-Revision-Date: 2024-02-08 08:57+0000\n"
 "Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
 "Language-Team: English <https://weblate.liqd.net/projects/meinberlin/main/en/"
@@ -442,6 +442,11 @@ msgstr "Please agree to the organisation's terms of use."
 #: adhocracy4/comments_async/serializers.py:15
 msgid "Please choose one or more categories."
 msgstr "Please choose one or more categories."
+
+#: adhocracy4/dashboard/components/forms/forms.py:49
+#: meinberlin/apps/dashboard/forms.py:67
+msgid "Description must be at most 170 characters"
+msgstr "Description must be at most 170 characters"
 
 #: adhocracy4/dashboard/components/forms/views.py:24
 msgid "The project has been updated."
@@ -1261,10 +1266,10 @@ msgstr "Short description of your project"
 #: adhocracy4/projects/models.py:227
 msgid ""
 "This short description will appear on the header of the project and in the "
-"teaser. It should briefly state the goal of the project in max. 250 chars."
+"teaser. It should briefly state the goal of the project in max. 170 chars."
 msgstr ""
 "This short description will appear on the header of the project and in the "
-"teaser. It should briefly state the goal of the project in max. 250 chars."
+"teaser. It should briefly state the goal of the project in max. 170 chars."
 
 #: adhocracy4/projects/models.py:236
 msgid "Description of your project"
@@ -2782,10 +2787,6 @@ msgid ""
 msgstr ""
 "Only invited users can see project tile and content and can participate "
 "(private)."
-
-#: meinberlin/apps/dashboard/forms.py:67
-msgid "Description must be at most 170 characters"
-msgstr "Description must be at most 170 characters"
 
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/module_blueprint_list_dashboard.html:6
 msgid "New Module"
@@ -4511,6 +4512,16 @@ msgid ""
 msgstr ""
 "You were invited by the initiator of the project. If you accept you will be "
 "able to moderate the project."
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/moderatorinvite_form.html:22
+#: meinberlin/apps/projects/templates/meinberlin_projects/participantinvite_form.html:24
+msgid "Accept"
+msgstr "Accept"
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/moderatorinvite_form.html:23
+#: meinberlin/apps/projects/templates/meinberlin_projects/participantinvite_form.html:25
+msgid "Decline"
+msgstr "Decline"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/module_offline_event_detail.html:14
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:13

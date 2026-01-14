@@ -46,7 +46,7 @@
                     <div class="d-flex align-items-start">
                         <span class="flex-shrink-0" style="width: 1.25rem;">
                             {% with 'aria-describedby:'|add:helptext_id as describedby_attr %}
-                                {{ field|add_class:"form-check-input form-check-input__mb m-0"|add_error_attr:"aria-invalid:true"|attr:describedby_attr }}
+                            {{ field|add_class:"form-check-input form-check-input__mb m-0"|add_error_attr:"aria-invalid:true"|attr:describedby_attr }}
                             {% endwith %}
                         </span>
                     </div>
@@ -59,15 +59,15 @@
                     </div>
             
                     {% if field.errors %}
-                        {% if field.errors|length > 1 %}
-                            <ul class="errorlist ms-4 mt-1" aria-live="assertive" aria-atomic="true">
-                                {% for error in field.errors %}
-                                    <li>{{ error|escape }}</li>
-                                {% endfor %}
-                            </ul>
-                        {% else %}
-                            {% include 'meinberlin_contrib/components/alert.html' with alert_message=field.errors.0|escape alert_type='danger' %}
-                        {% endif %}
+                    {% if field.errors|length > 1 %}
+                    <ul class="errorlist ms-4 mt-1" aria-live="assertive" aria-atomic="true">
+                        {% for error in field.errors %}
+                        <li>{{ error|escape }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    {% include 'meinberlin_contrib/components/alert.html' with alert_message=field.errors.0|escape alert_type='danger' %}
+                    {% endif %}
                     {% endif %}
                 </div>
             </div>

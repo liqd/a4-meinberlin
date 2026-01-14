@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-13 14:43+0100\n"
+"POT-Creation-Date: 2026-01-14 12:27+0100\n"
 "PO-Revision-Date: 2025-12-22 11:03+0000\n"
 "Last-Translator: shn-liqd <s.obrien@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main-"
@@ -5712,7 +5712,7 @@ msgstr ""
 
 #: meinberlin/templates/account/password_reset_from_key.html:31
 msgid "Your password is now changed."
-msgstr "Ihr Passwort wurde geändert."
+msgstr ""
 
 #: meinberlin/templates/account/signup.html:55
 #, python-format
@@ -5727,6 +5727,17 @@ msgid ""
 "                        <a href=\"%(privacy_policy)s\" "
 "target=\"_blank\">privacy policy</a>."
 msgstr ""
+"Ich willige hiermit ausdrücklich in die Erhebung und Verarbeitung "
+"(Speicherung) meiner Daten ein und stimme der Verarbeitung und "
+"Veröffentlichung meiner Ideen, Kommentare und Beiträge, wie in der "
+"Datenschutzerklärung beschrieben, ausdrücklich zu. Ich bestätige außerdem, "
+"dass ich die\n"
+"                        <a href=\"%(terms_of_use_url)s\" "
+"target=\"_blank\">Benutzungsbedingungen</a>\n"
+"                        und die\n"
+"                        <a href=\"%(privacy_policy)s\" "
+"target=\"_blank\">Datenschutzbestimmungen</a>\n"
+"                        gelesen habe und akzeptiere."
 
 #: meinberlin/templates/account/signup.html:92
 msgid "Already have an account?"

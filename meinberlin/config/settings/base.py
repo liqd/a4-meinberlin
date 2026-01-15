@@ -642,6 +642,8 @@ CKEDITOR_5_CONFIGS = {
                 {
                     "name": "/.*/",
                     "classes": [
+                        "image-aspect-ratio-43",
+                        "image-aspect-ratio-21",
                         "image",
                         "image-inline",
                     ],

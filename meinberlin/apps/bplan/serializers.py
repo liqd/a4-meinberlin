@@ -60,6 +60,8 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
     tile_image = serializers.CharField(
         required=False,
         write_only=True,
+        allow_blank=True,
+        allow_null=True,
     )
     # can't use a4 field as must be serializer field
     image_alt_text = serializers.CharField(
@@ -186,12 +188,19 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
         # Always mark as diplan
         validated_data["is_diplan"] = True
 
-        if tile_image_base64:
+        if (
+            tile_image_base64
+            and tile_image_base64.strip()
+            and tile_image_base64.strip().lower() != "null"
+        ):
             validated_data["tile_image"] = self._create_image_from_base64(
                 tile_image_base64
             )
         elif image_url:
             validated_data["tile_image"] = self._download_image_from_url(image_url)
+        else:
+            # Explicitly set to None if not provided or empty/null
+            validated_data["tile_image"] = None
 
         bplan = super().create(validated_data)
 
@@ -228,6 +237,7 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
         _ = validated_data.pop("bplan_id", None)  # deprecated field
         image_url = validated_data.pop("image_url", None)
         tile_image_base64 = validated_data.pop("tile_image", None)
+        tile_image_in_request = "tile_image" in self.initial_data
 
         if start_date or end_date:
             self._update_phase(instance, start_date, end_date)
@@ -250,11 +260,21 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
         # Always mark as diplan
         validated_data["is_diplan"] = True
 
-        if tile_image_base64:
-            validated_data["tile_image"] = self._create_image_from_base64(
+        if tile_image_in_request:
+            # Client explicitly sent tile_image field
+            if (
                 tile_image_base64
-            )
+                and tile_image_base64.strip()
+                and tile_image_base64.strip().lower() != "null"
+            ):
+                validated_data["tile_image"] = self._create_image_from_base64(
+                    tile_image_base64
+                )
+            else:
+                # Empty string, "null", or actual null - clear the image
+                validated_data["tile_image"] = None
         elif image_url:
+            # Only image_url was provided
             validated_data["tile_image"] = self._download_image_from_url(image_url)
 
         instance = super().update(instance, validated_data)

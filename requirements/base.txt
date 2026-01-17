@@ -20,7 +20,7 @@ drf-spectacular==0.28.0
 
 # Inherited a4-core requirements
 celery==5.4.0
-django-allauth==65.13.0
+django-allauth==65.14.0
 django-autoslug==1.9.9
 https://raw.githubusercontent.com/liqd/django-ckeditor-5/main/dist/django_ckeditor_5-0.2.14-py3-none-any.whl
 django-filter==24.3

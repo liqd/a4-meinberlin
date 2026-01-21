@@ -39,6 +39,11 @@ class ActionSerializer(serializers.ModelSerializer):
         )
 
     def get_cached_trigger(self, obj):
+
+        model_class = obj.obj_content_type.model_class()
+        if model_class is None:
+            return (None, None)
+
         trigger = self._cache.setdefault(
             f"trigger-${obj.id}",
             obj.obj_content_type.get_object_for_this_type(pk=obj.obj_object_id),

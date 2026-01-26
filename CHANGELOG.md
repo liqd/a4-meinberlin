@@ -5,17 +5,18 @@ All notable changes to this project will be documented in this file.
 Since version v2308 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
-
-### Added
-
-### Changed
+## mB-v2601.1
 
 ### Fixed
 
 - Translation for kiezradar organisation search "No matches found"
 - Translation for Likes/Dislikes on CardStats used on map and Map with Ideas
 - Translation for validation error generic message
+- CKEditor image aspect ratio options (4:3 and 2:1) Bug 
+- Bug for deleted ContentTypes in Notifications (Actions) 
+- Allow tile_image in Bplan to be blank null
+- Improve Accessibility
+- Add back pagination css deleted for burgermenu
 
 ## mB-v2512.2
 

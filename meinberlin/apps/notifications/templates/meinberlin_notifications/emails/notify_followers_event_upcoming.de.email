@@ -21,11 +21,13 @@ Uhr findet die folgende Veranstaltung statt:
 </p>
 <p>
 <b>
-{% if event %}
-    {{ event.name }}
-{% else %}
-    {{ action.obj.name }}
-{% endif %}
+    {% with event=action.obj.module.offlineeventitem_set.first %}
+        {% if event %}
+            {{ event.name }}
+        {% else %}
+            {{ action.obj.name }}
+        {% endif %}
+    {% endwith %}
 </b>
 </p>
 <p>

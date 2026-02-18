@@ -549,6 +549,7 @@ A4_DASHBOARD = {
 }
 
 A4_ACTIONS_PHASE_ENDS_HOURS = 48
+ACTIONS_OFFLINE_EVENT_STARTING_HOURS = 72
 
 # Add a Captcheck captcha URL in the production server's local.py to use it
 # Captcha software we use: https://source.netsyms.com/Netsyms/Captcheck

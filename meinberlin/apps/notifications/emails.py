@@ -157,6 +157,17 @@ class NotifyFollowersOnUpcomingEventEmail(Email):
         )
         return receivers
 
+    def get_context(self, event_id=None, **kwargs):
+        context = super().get_context(**kwargs)
+        if event_id:
+            from meinberlin.apps.offlineevents.models import OfflineEventItem
+
+            try:
+                context["event"] = OfflineEventItem.objects.get(id=event_id)
+            except OfflineEventItem.DoesNotExist:
+                pass
+        return context
+
 
 class NotifyUserOnSearchProfileMatch(Email):
     template_name = "meinberlin_notifications/emails/notify_new_search_profile_project"

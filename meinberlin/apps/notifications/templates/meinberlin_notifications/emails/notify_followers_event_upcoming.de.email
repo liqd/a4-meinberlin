@@ -2,10 +2,22 @@
 
 {% block content_html %}
 <p>
-am {{ event.event_date|date:"d.m.Y H:i" }} Uhr findet die folgende Veranstaltung statt:
+am 
+{% if event %}
+    {{ event.event_date|date:"d.m.Y H:i" }}
+{% else %}
+    {{ action.obj.start_date|date:"d.m.Y H:i" }}
+{% endif %} 
+Uhr findet die folgende Veranstaltung statt:
 </p>
 <p>
-<b>{{ event.name }}</b>
+<b>
+{% if event %}
+    {{ event.name }}
+{% else %}
+    {{ action.obj.name }}
+{% endif %}
+</b>
 </p>
 <p>
 Weitere Informationen zu der Veranstaltung finden Sie im Projekt.
@@ -13,13 +25,29 @@ Weitere Informationen zu der Veranstaltung finden Sie im Projekt.
 {% endblock %}
 
 {% block content_text %}
-am {{ event.event_date|date:"d.m.Y H:i" }} Uhr findet die folgende Veranstaltung statt:
-{{ event.name }}
+am 
+{% if event %}
+    {{ event.event_date|date:"d.m.Y H:i" }}
+{% else %}
+    {{ action.obj.start_date|date:"d.m.Y H:i" }}
+{% endif %} 
+Uhr findet die folgende Veranstaltung statt:
+
+{% if event %}
+    {{ event.name }}
+{% else %}
+    {{ action.obj.name }}
+{% endif %}
 
 Weitere Informationen zu der Veranstaltung finden Sie im Projekt.
 {% endblock %}
 
-{% block cta_url %}{{ email.get_host }}{{ event.get_absolute_url }}{% endblock %}
+{% block cta_url %}
+{{ email.get_host }}{% if event %}{{ event.get_absolute_url }}{% else %}{{ action.project.get_absolute_url }}{% endif %}
+{% endblock %}
+
 {% block cta_label %}Veranstaltung anzeigen{% endblock %}
 
-{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Sie haben die E-Mail erhalten, weil Sie oben genanntem Projekt folgen. Wenn Sie keine Benachrichtigungen mehr erhalten möchten, entfolgen Sie dem <a href="{{ email.get_host }}{{ action.project.get_absolute_url }}">Projekt</a> oder ändern Sie die Einstellungen zu Ihrem <a href="{{ email.get_host }}{% url 'account' %}">Nutzerkonto</a>.{% endblock %}
+{% block reason %}
+Diese E-Mail wurde an {{ receiver.email }} gesendet. Sie haben die E-Mail erhalten, weil Sie oben genanntem Projekt folgen. Wenn Sie keine Benachrichtigungen mehr erhalten möchten, entfolgen Sie dem <a href="{{ email.get_host }}{{ action.project.get_absolute_url }}">Projekt</a> oder ändern Sie die Einstellungen zu Ihrem <a href="{{ email.get_host }}{% url 'account' %}">Nutzerkonto</a>.
+{% endblock %}

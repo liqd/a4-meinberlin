@@ -1,13 +1,22 @@
+{% extends 'email_base.'|add:part_type %}
+{% load offline_event_tags %}
+
+{% block subject %}Einladung zu einer Veranstaltung im Projekt {{ action.project.name|striptags }}{% endblock %}
+
+{% block headline %}Veranstaltung{% endblock %}
+{% block sub-headline %}{{ action.project.name }}{% endblock %}
+
 {% block greeting %}Hallo {{ receiver.username }},{% endblock %}
 
 {% block content_html %}
+{% get_offline_event action.obj as event %}
 <p>
 am 
 {% if event %}
     {{ event.event_date|date:"d.m.Y H:i" }}
 {% else %}
     {{ action.obj.start_date|date:"d.m.Y H:i" }}
-{% endif %} 
+{% endif %}
 Uhr findet die folgende Veranstaltung statt:
 </p>
 <p>
@@ -27,12 +36,13 @@ Weitere Informationen zu der Veranstaltung finden Sie im Projekt.
 {% endblock %}
 
 {% block content_text %}
+{% get_offline_event action.obj as event %}
 am 
 {% if event %}
     {{ event.event_date|date:"d.m.Y H:i" }}
 {% else %}
     {{ action.obj.start_date|date:"d.m.Y H:i" }}
-{% endif %} 
+{% endif %}
 Uhr findet die folgende Veranstaltung statt:
 
 {% if event %}
@@ -45,7 +55,12 @@ Weitere Informationen zu der Veranstaltung finden Sie im Projekt.
 {% endblock %}
 
 {% block cta_url %}
-{{ email.get_host }}{% if event %}{{ event.get_absolute_url }}{% else %}{{ action.project.get_absolute_url }}{% endif %}
+{{ email.get_host }}
+{% if event %}
+    {{ event.get_absolute_url }}
+{% else %}
+    {{ action.project.get_absolute_url }}
+{% endif %}
 {% endblock %}
 
 {% block cta_label %}Veranstaltung anzeigen{% endblock %}

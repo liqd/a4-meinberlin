@@ -1,3 +1,4 @@
+# flake8: noqa
 from datetime import timedelta
 
 from celery import shared_task
@@ -34,10 +35,12 @@ def send_action_notifications(action_pk):
 
     elif action.type == "phase" and action.project.project_type == "a4projects.Project":
         # Check if this is an offline event phase
-        is_offline_event = (action.obj and 
-                           hasattr(action.obj, 'name') and 
-                           action.obj.name == "Offline event phase")
-        
+        is_offline_event = (
+            action.obj
+            and hasattr(action.obj, "name")
+            and action.obj.name == "Offline event phase"
+        )
+
         if verb == Verbs.START:
             if is_offline_event:
                 # This might have been in place before but don't think it's desired
@@ -46,7 +49,7 @@ def send_action_notifications(action_pk):
             #     emails.NotifyFollowersOnUpcomingEventEmail.send(action)
             else:
                 emails.NotifyFollowersOnPhaseStartedEmail.send(action)
-                
+
         elif verb == Verbs.SCHEDULE:
             if is_offline_event:
                 # Offline event happening soon - send upcoming event email

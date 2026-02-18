@@ -4,6 +4,7 @@ import pytest
 from django.contrib.contenttypes.models import ContentType
 from django.core import mail
 from django.core.management import call_command
+from django.test import override_settings
 
 from adhocracy4.actions.models import Action
 from adhocracy4.actions.verbs import Verbs
@@ -16,6 +17,7 @@ from meinberlin.apps.budgeting import phases
 START = Verbs.START.value
 
 
+@override_settings(CELERY_TASK_ALWAYS_EAGER=True)
 @pytest.mark.django_db
 def test_phase_started_email(apiclient, phase_factory, proposal_factory):
     phase, module, project, proposal = setup_phase(

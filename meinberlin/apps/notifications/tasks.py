@@ -90,6 +90,8 @@ def send_action_notifications(action_pk):
     verb = Verbs(action.verb)
     search_profiles = None
 
+    print("heyyyyyyyyyy")
+
     if action.type in ("item", "comment") and verb in (Verbs.CREATE, Verbs.ADD):
         emails.NotifyCreatorEmail.send(action)
 
@@ -105,14 +107,28 @@ def send_action_notifications(action_pk):
             # Get the actual OfflineEventItem from the module
             event = OfflineEventItem.objects.filter(module=action.obj.module).first()
 
+        # if verb == Verbs.START:
+        #     if is_offline_event:
+        #         # This might have been in place before but don't think it's desired
+        #         pass
+        #     #     # Offline event starting now - send upcoming event email
+        #     #     emails.NotifyFollowersOnUpcomingEventEmail.send(action)
+        #     else:
+        #         emails.NotifyFollowersOnPhaseStartedEmail.send(action)
+
         if verb == Verbs.START:
+            print(f"START verb - phase type: {getattr(action.obj, 'type', 'No type')}")
+            print(f"is_offline_event: {is_offline_event}")
+            print(f"Action type: {action.type}")
+            print(f"Project exists: {action.project is not None}")
+
             if is_offline_event:
-                # This might have been in place before but don't think it's desired
+                print("DEBUG: Skipping offline event START")
                 pass
-            #     # Offline event starting now - send upcoming event email
-            #     emails.NotifyFollowersOnUpcomingEventEmail.send(action)
             else:
+                print("DEBUG: Sending phase started email")
                 emails.NotifyFollowersOnPhaseStartedEmail.send(action)
+                print("DEBUG: Email sent")
 
         elif verb == Verbs.SCHEDULE:
             if is_offline_event:

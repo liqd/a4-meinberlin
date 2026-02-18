@@ -1,18 +1,11 @@
-{% extends 'email_base.'|add:part_type %}
-
-{% block subject %}Einladung zu einer Veranstaltung im Projekt {{ action.project.name|striptags }}{% endblock %}
-
-{% block headline %}Veranstaltung{% endblock %}
-{% block sub-headline %}{{ action.project.name }}{% endblock %}
-
 {% block greeting %}Hallo {{ receiver.username }},{% endblock %}
 
 {% block content_html %}
 <p>
-am {{ action.obj.date }} Uhr findet die folgende Veranstaltung statt:
+am {{ event.event_date|date:"d.m.Y H:i" }} Uhr findet die folgende Veranstaltung statt:
 </p>
 <p>
-<b>{{ action.obj.name }}</b>
+<b>{{ event.name }}</b>
 </p>
 <p>
 Weitere Informationen zu der Veranstaltung finden Sie im Projekt.
@@ -20,13 +13,13 @@ Weitere Informationen zu der Veranstaltung finden Sie im Projekt.
 {% endblock %}
 
 {% block content_text %}
-am {{ action.obj.date }} Uhr findet die folgende Veranstaltung statt:
-{{ action.obj.name }}
+am {{ event.event_date|date:"d.m.Y H:i" }} Uhr findet die folgende Veranstaltung statt:
+{{ event.name }}
 
 Weitere Informationen zu der Veranstaltung finden Sie im Projekt.
 {% endblock %}
 
-{% block cta_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% endblock %}
+{% block cta_url %}{{ email.get_host }}{{ event.get_absolute_url }}{% endblock %}
 {% block cta_label %}Veranstaltung anzeigen{% endblock %}
 
 {% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Sie haben die E-Mail erhalten, weil Sie oben genanntem Projekt folgen. Wenn Sie keine Benachrichtigungen mehr erhalten möchten, entfolgen Sie dem <a href="{{ email.get_host }}{{ action.project.get_absolute_url }}">Projekt</a> oder ändern Sie die Einstellungen zu Ihrem <a href="{{ email.get_host }}{% url 'account' %}">Nutzerkonto</a>.{% endblock %}

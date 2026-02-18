@@ -34,6 +34,68 @@ def send_action_notifications(action_pk):
         if action.project:
             emails.NotifyModeratorsEmail.send(action)
 
+    elif (
+        action.type == "phase"
+        and action.project
+        and action.project.project_type == "a4projects.Project"
+    ):
+        is_offline_event = (
+            hasattr(action.obj, "type")
+            and action.obj.type
+            and action.obj.type.contains("offline-event")
+        )
+
+        if verb == Verbs.START:
+            if is_offline_event:
+                pass  # dont actually want emails when offline event is starting
+                # from meinberlin.apps.offlineevents.models import OfflineEventItem
+                # event = OfflineEventItem.objects.filter(module=action.obj.module).first()
+                # if event:
+                #     emails.NotifyFollowersOnUpcomingEventEmail.send(action, event_id=event.id)
+                # else:
+                #     emails.NotifyFollowersOnUpcomingEventEmail.send(action)
+            else:
+                emails.NotifyFollowersOnPhaseStartedEmail.send(action)
+
+        elif verb == Verbs.SCHEDULE:
+            if is_offline_event:
+                from meinberlin.apps.offlineevents.models import OfflineEventItem
+
+                event = OfflineEventItem.objects.filter(
+                    module=action.obj.module
+                ).first()
+                if event:
+                    emails.NotifyFollowersOnUpcomingEventEmail.send(
+                        action, event_id=event.id
+                    )
+                else:
+                    emails.NotifyFollowersOnUpcomingEventEmail.send(action)
+            else:
+                emails.NotifyFollowersOnPhaseIsOverSoonEmail.send(action)
+
+    # Deprecated - kept for backward compatibility
+    elif action.type == "offlineevent" and verb == Verbs.START:
+        emails.NotifyFollowersOnUpcomingEventEmail.send(action)
+
+    elif action.type in ("project", "plan") and verb == Verbs.PUBLISH:
+        search_profiles = handle_publish_emails(action)
+
+    if Notification.should_notify(action):
+        Notification.objects.create_from_action(action, search_profiles)
+
+
+@shared_task
+def send_action_notifications(action_pk):
+    action = Action.objects.get(pk=action_pk)
+    verb = Verbs(action.verb)
+    search_profiles = None
+
+    if action.type in ("item", "comment") and verb in (Verbs.CREATE, Verbs.ADD):
+        emails.NotifyCreatorEmail.send(action)
+
+        if action.project:
+            emails.NotifyModeratorsEmail.send(action)
+
     elif action.type == "phase" and action.project.project_type == "a4projects.Project":
         is_offline_event = hasattr(action.obj, "type") and action.obj.type.endswith(
             "offline-event"

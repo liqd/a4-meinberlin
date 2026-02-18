@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
 
@@ -23,6 +24,13 @@ class OfflineEventItem(module_models.Item):
         null=True,
         blank=True,
     )
+
+    def get_absolute_url(self):
+        """Return the URL for this offline event."""
+        return reverse(
+            "meinberlin_offlineevents:offlineevent-detail",
+            kwargs={"project_slug": self.module.project.slug, "pk": self.pk},
+        )
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)

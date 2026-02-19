@@ -1,4 +1,5 @@
 {% extends 'email_base.'|add:part_type %}
+{% load offline_event_tags %}
 
 {% block subject %}Invitation to an event in project {{ action.project.name|striptags }}{% endblock %}
 
@@ -8,11 +9,23 @@
 {% block greeting %}Hello {{ receiver.username }},{% endblock %}
 
 {% block content_html %}
+{% get_offline_event action.obj as event %}
 <p>
-The following event takes place on {{ action.obj.date }}:
+The following event takes place on 
+{% if event %}
+    {{ event.event_date|date:"d.m.Y H:i" }}
+{% else %}
+    {{ action.obj.start_date|date:"d.m.Y H:i" }}
+{% endif %}:
 </p>
 <p>
-<b>{{ action.obj.name }}</b>
+<b>
+{% if event %}
+    {{ event.name }}
+{% else %}
+    {{ action.obj.name }}
+{% endif %}
+</b>
 </p>
 <p>
 Further information about the event can be found in the project.
@@ -20,13 +33,32 @@ Further information about the event can be found in the project.
 {% endblock %}
 
 {% block content_text %}
-The following event takes place on {{ action.obj.date }}:
-{{ action.obj.name }}
+{% get_offline_event action.obj as event %}
+The following event takes place on 
+{% if event %}
+    {{ event.event_date|date:"d.m.Y H:i" }}
+{% else %}
+    {{ action.obj.start_date|date:"d.m.Y H:i" }}
+{% endif %}:
+
+{% if event %}
+    {{ event.name }}
+{% else %}
+    {{ action.obj.name }}
+{% endif %}
 
 Further information about the event can be found in the project.
 {% endblock %}
 
-{% block cta_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% endblock %}
+{% block cta_url %}
+{% get_offline_event action.obj as event %}
+{% if event %}
+    {% url 'module-detail' event.module.slug as event_url %}
+    {{ email.get_host }}{{ event_url }}
+{% else %}
+    {{ email.get_host }}{{ action.project.get_absolute_url }}
+{% endif %}
+{% endblock %}
 {% block cta_label %}Show Event{% endblock %}
 
 {% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you are following the above project. If you no longer want to receive notifications, unsubscribe from the <a href="{{ email.get_host }}{{ action.project.get_absolute_url }}">project</a> or change the settings for your <a href="{{ email.get_host }}{% url 'account' %}">account</a>.{% endblock %}

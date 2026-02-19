@@ -5,7 +5,15 @@ All notable changes to this project will be documented in this file.
 Since version v2308 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## hotfix
+## mB-v2602.2
+
+### Changed
+
+- Uses a4 branch-off temporarily: jp-26-02-hotfix-offline-events. To be reverted on next release.
+
+### Fixed
+
+- Email notifications for offline events happen exactly one time, once the event is 72 hours away and include correct name, time, and link
 
 ## mB-v2602.1
 

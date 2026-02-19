@@ -21,13 +21,11 @@ Uhr findet die folgende Veranstaltung statt:
 </p>
 <p>
 <b>
-    {% with event=action.obj.module.offlineeventitem_set.first %}
-        {% if event %}
-            {{ event.name }}
-        {% else %}
-            {{ action.obj.name }}
-        {% endif %}
-    {% endwith %}
+{% if event %}
+    {{ event.name }}
+{% else %}
+    {{ action.obj.name }}
+{% endif %}
 </b>
 </p>
 <p>
@@ -55,14 +53,14 @@ Weitere Informationen zu der Veranstaltung finden Sie im Projekt.
 {% endblock %}
 
 {% block cta_url %}
-{{ email.get_host }}
+{% get_offline_event action.obj as event %}
 {% if event %}
-    {{ event.get_absolute_url }}
+    {% url 'module-detail' event.module.slug as event_url %}
+    {{ email.get_host }}{{ event_url }}
 {% else %}
-    {{ action.project.get_absolute_url }}
+    {{ email.get_host }}{{ action.project.get_absolute_url }}
 {% endif %}
 {% endblock %}
-
 {% block cta_label %}Veranstaltung anzeigen{% endblock %}
 
 {% block reason %}

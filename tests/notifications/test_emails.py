@@ -90,7 +90,12 @@ def test_phase_started_draft_no_email(apiclient, phase_factory, proposal_factory
 @pytest.mark.django_db
 def test_search_profile_matches(search_factories, phase_factory, user):
     phase, module, project, _ = setup_phase(
-        phase_factory, None, phases.CollectPhase, module__project__name="Berlin"
+        phase_factory,
+        None,
+        phases.CollectPhase,
+        module__project__name="Berlin",
+        module__project__description="Berlin project description only",
+        module__project__organisation__name="Berlin Org",
     )
     project = phase.module.project
 

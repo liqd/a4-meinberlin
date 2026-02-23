@@ -1743,7 +1743,7 @@ msgstr "Pillenliste"
 msgid "Like"
 msgid_plural "Likes"
 msgstr[0] "gefällt"
-msgstr[1] "gefällt nicht"
+msgstr[1] "gefällt"
 
 #: meinberlin/react/contrib/card/CardStats.jsx:8
 #: meinberlin/react/contrib/map/ItemPopup.jsx:22

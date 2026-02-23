@@ -81,31 +81,29 @@ const ProjectsListMapBox = ({
       privateprojectApiUrl,
       ...projectState.map(state => projectApiUrl + '?status=' + state + 'Participation')
     ]
-    const tempItems = []
 
-    Promise.all(
-      urls.map(async (url) => {
-        try {
-          let data
-          if (fetchCache.current[url]) {
-            data = fetchCache.current[url]
-          } else {
+    try {
+      const results = await Promise.all(
+        urls.map(async (url) => {
+          try {
+            if (fetchCache.current[url]) {
+              return fetchCache.current[url]
+            }
             const response = await fetch(url)
-            data = await response.json()
+            const data = await response.json()
             fetchCache.current[url] = data
+            return data
+          } catch (e) {
+            console.error(e)
+            return []
           }
-          tempItems.push(...data)
-          setItems(
-            // filter out duplicates by title (id is not unique as there are
-            // different models in items that can have the same id)
-            // [...new Map(tempItems.map(v => [v.title, v])).values()]
-            tempItems.sort(sortProjects)
-          )
-        } catch (e) {
-          console.error(e)
-        }
-      })
-    ).finally(() => setLoading(false))
+        })
+      )
+      const combined = results.flat()
+      setItems([...combined].sort(sortProjects))
+    } finally {
+      setLoading(false)
+    }
   }, [plansApiUrl, extprojectApiUrl, privateprojectApiUrl, projectState, projectApiUrl])
 
   useEffect(() => {

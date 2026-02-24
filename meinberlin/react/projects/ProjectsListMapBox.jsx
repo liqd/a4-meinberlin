@@ -264,6 +264,7 @@ const ProjectsListMapBox = ({
               projects={displayItems}
               visibleProjects={visibleProjects}
               isHorizontal={showMap}
+              showMap={showMap}
               topicChoices={topicChoices}
               loading={loading}
               showSearchCompletedProjectsButton={

@@ -21,6 +21,7 @@ const ProjectsList = ({
   projectsUrl,
   topicChoices,
   isHorizontal,
+  showMap,
   searchCompletedProjects,
   showSearchCompletedProjectsButton,
   visibleProjects
@@ -57,14 +58,15 @@ const ProjectsList = ({
 
   React.useEffect(() => {
     if (!loading) {
-      const projectsToShow = visibleProjects || projects
+      // When map is shown, use visibleProjects. When map is hidden, use all projects
+      const projectsToShow = showMap ? (visibleProjects || []) : projects
       if (projectsToShow.length > 0) {
         setAnnouncement(django.interpolate(translated.showingProjects, [projectsToShow.length]))
       } else {
         setAnnouncement(translated.noProjectsFound)
       }
     }
-  }, [projects, visibleProjects, loading])
+  }, [projects, visibleProjects, loading, showMap])
 
   React.useEffect(() => {
     if (initialProjects !== undefined) {
@@ -82,8 +84,9 @@ const ProjectsList = ({
 
   if (loading) return <Spinner />
 
-  // Use visibleProjects if available, otherwise fall back to all projects
-  const displayProjects = visibleProjects || projects
+  // When map is shown, show visible projects (could be empty)
+  // When map is hidden, show all projects
+  const displayProjects = showMap ? (visibleProjects || []) : projects
 
   return (
     <>

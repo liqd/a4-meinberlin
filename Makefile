@@ -268,6 +268,12 @@ local-a4:
 		npm link ../adhocracy4; \
 	fi
 
+.PHONY: local-dsgvo
+local-dsgvo:
+	if [ -d "../dsgvo-video-embed" ]; then \
+		npm link ../dsgvo-video-embed; \
+	fi
+
 .PHONY: celery-worker-start
 celery-worker-start:
 	$(VIRTUAL_ENV)/bin/celery --app meinberlin worker --loglevel INFO

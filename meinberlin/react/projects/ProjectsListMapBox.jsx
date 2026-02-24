@@ -62,6 +62,7 @@ const ProjectsListMapBox = ({
   const [loading, setLoading] = useState(true)
   const [projectState, setProjectState] = useState(getDefaultProjectState(searchParams))
   const [items, setItems] = useState([])
+  const [visibleProjects, setVisibleProjects] = useState([])
   const fetchCache = useRef({})
   const resultRef = useRef({})
   const [appliedFilters, setAppliedFilters] = useState(getDefaultState(searchParams, { districts, organisations, participationChoices, topicChoices, kiezradars }))
@@ -74,7 +75,6 @@ const ProjectsListMapBox = ({
   }
 
   const [syncTrigger, setSyncTrigger] = useState(0)
-
   const fetchItems = useCallback(async () => {
     setLoading(true)
     const urls = [
@@ -125,12 +125,16 @@ const ProjectsListMapBox = ({
   let status = nothingStr
 
   const filteredItems = useMemo(() => filterProjects(items, appliedFilters, kiezradars, topicChoices, projectState), [items, appliedFilters, kiezradars, projectState])
+
+  // Use visible projects for status when map is shown
+  const displayItems = showMap && visibleProjects.length > 0 ? visibleProjects : filteredItems
+
   if (loading) {
     status = (
       <Spinner />
     )
-  } else if (filteredItems.length > 0) {
-    status = getResultCountText(filteredItems.length)
+  } else if (displayItems.length > 0) {
+    status = getResultCountText(displayItems.length)
   }
 
   return (
@@ -236,7 +240,8 @@ const ProjectsListMapBox = ({
         >
           <div id="list" className="projects-list__list">
             <ProjectsList
-              projects={filteredItems}
+              projects={displayItems}
+              visibleProjects={visibleProjects}
               isHorizontal={showMap}
               topicChoices={topicChoices}
               loading={loading}
@@ -253,7 +258,6 @@ const ProjectsListMapBox = ({
                 setAppliedFilters(newFilters)
                 setProjectState(['past'])
                 setParams(newFilters)
-
                 // Tells child ProjectsControlBar to update
                 setSyncTrigger(prev => prev + 1)
 
@@ -281,6 +285,7 @@ const ProjectsListMapBox = ({
                 activeDistricts={appliedFilters.districts}
                 kiezradars={kiezradars}
                 activeKiezradars={appliedFilters.kiezradars}
+                onVisibleMarkersChange={setVisibleProjects}
               />
             </div>}
         </div>

@@ -16,6 +16,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## mB-v2602.3
 
+### Changed
+
+- Kiezradar: Zooming / Panning on Map updates the list of Projects based on visibility
+
 ### Fixed
 
 - Kiezradar: First load now already shows correct number of results

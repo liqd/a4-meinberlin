@@ -22,7 +22,8 @@ const ProjectsList = ({
   topicChoices,
   isHorizontal,
   searchCompletedProjects,
-  showSearchCompletedProjectsButton
+  showSearchCompletedProjectsButton,
+  visibleProjects
 }) => {
   const [projects, setProjects] = React.useState(initialProjects || [])
   const [loading, setLoading] = React.useState(!initialProjects)
@@ -39,7 +40,6 @@ const ProjectsList = ({
       try {
         setLoading(true)
         const response = await fetch(projectsUrl)
-        // eslint-disable-next-line no-restricted-syntax
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
 
         const data = await response.json()
@@ -57,13 +57,14 @@ const ProjectsList = ({
 
   React.useEffect(() => {
     if (!loading) {
-      if (projects.length > 0) {
-        setAnnouncement(django.interpolate(translated.showingProjects, [projects.length]))
+      const projectsToShow = visibleProjects || projects
+      if (projectsToShow.length > 0) {
+        setAnnouncement(django.interpolate(translated.showingProjects, [projectsToShow.length]))
       } else {
         setAnnouncement(translated.noProjectsFound)
       }
     }
-  }, [projects, loading])
+  }, [projects, visibleProjects, loading])
 
   React.useEffect(() => {
     if (initialProjects !== undefined) {
@@ -81,6 +82,9 @@ const ProjectsList = ({
 
   if (loading) return <Spinner />
 
+  // Use visibleProjects if available, otherwise fall back to all projects
+  const displayProjects = visibleProjects || projects
+
   return (
     <>
       <div
@@ -94,8 +98,8 @@ const ProjectsList = ({
 
       <ul className={classNames('projects-list', isHorizontal ? 'projects-list--horizontal' : 'projects-list--vertical')}>
         {
-          projects.length > 0 &&
-          projects.map((project, index) => (
+          displayProjects.length > 0 &&
+          displayProjects.map((project, index) => (
             <li key={'project-' + project.id + '-' + index}>
               <ProjectTile
                 project={project}

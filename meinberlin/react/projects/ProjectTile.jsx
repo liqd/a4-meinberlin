@@ -46,7 +46,7 @@ const ProjectTile = forwardRef(function ProjectTile ({ project, isHorizontal, to
       aria-label={project.title}
     >
       <div className="project-tile__content-wrapper">
-        <div className="project-tile__image-wrapper image">
+        <div className={classNames('project-tile__image-wrapper image', isHorizontal ? 'project-tile__image-wrapper--horizontal' : '')}>
           <ProjectTileIcon access={project.access} />
           {project.subtype === 'external' && (
             <div className="project-tile__external-indicator" aria-hidden="true">

@@ -1,4 +1,11 @@
-import React, { useEffect, useMemo, useCallback } from 'react'
+import React, {
+  useEffect,
+  useMemo,
+  useCallback,
+  useRef,
+  forwardRef,
+  useImperativeHandle
+} from 'react'
 import { Circle, GeoJSON, ZoomControl, useMap } from 'react-leaflet'
 import * as turf from '@turf/turf'
 import MarkerClusterLayer
@@ -82,20 +89,20 @@ const Markers = ({ items, topicChoices, onVisibleMarkersChange }) => {
     img.src = '/static/images/map_pin_active.svg'
   }, [])
 
-  const markers = useMemo(() => {
-    return items
+  const markers = useMemo(() => (
+    items
       .filter(item => !!item.point)
       .map(item => ({ ...item.point, properties: item }))
       .map((project) => (
         <ProjectMarker
-          key={project.properties.title}
+          key={project.properties.id || project.properties.title}
           topicChoices={topicChoices}
           project={project}
           onOpen={() => setActiveProject(project)}
           onClose={() => setActiveProject(null)}
         />
       ))
-  }, [items, topicChoices])
+  ), [items, topicChoices])
 
   return (
     <>
@@ -121,7 +128,7 @@ const Markers = ({ items, topicChoices, onVisibleMarkersChange }) => {
   )
 }
 
-const ProjectsMap = ({
+const ProjectsMap = forwardRef(({
   items,
   topicChoices,
   districtPolygons = [],
@@ -129,8 +136,19 @@ const ProjectsMap = ({
   kiezradars = [],
   activeKiezradars = [],
   onVisibleMarkersChange,
+  bounds,
   ...props
-}) => {
+}, ref) => {
+  const mapRef = useRef(null)
+
+  useImperativeHandle(ref, () => ({
+    setView: (newBounds) => {
+      if (mapRef.current && newBounds) {
+        mapRef.current.fitBounds(newBounds)
+      }
+    }
+  }))
+
   useEffect(() => {
     // Debug logging for district and kiezradar overlays
     // eslint-disable-next-line no-console
@@ -288,8 +306,10 @@ const ProjectsMap = ({
         {/* Screen reader announcements will go here */}
       </div>
       <Map
+        ref={mapRef}
         zoomControl={false}
         maxZoom={18}
+        bounds={bounds}
         {...props}
         id="project-map"
         key="project-map"
@@ -345,6 +365,7 @@ const ProjectsMap = ({
       </Map>
     </div>
   )
-}
+})
 
+ProjectsMap.displayName = 'ProjectsMap'
 export default ProjectsMap

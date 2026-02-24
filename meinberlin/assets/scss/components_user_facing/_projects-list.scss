@@ -25,6 +25,11 @@
     &__showCompletedHeading {
         margin-top: 28px;
     }
+
+    &__reset-map-btn {
+        border: 1px solid $gray-lighter;
+        padding: 0.25em;
+    }
 }
 
 .projects-list--vertical {

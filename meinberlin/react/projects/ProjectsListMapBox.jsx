@@ -21,7 +21,7 @@ const listStr = django.gettext('List')
 const mapStr = django.gettext('Map')
 const showListStr = django.gettext('show list')
 const viewModeStr = django.gettext('View mode')
-
+const resetMapButtonStr = django.gettext('Reset Map View')
 const getResultCountText = (count) => {
   const foundProposalsText = django.ngettext(
     '1 Proposal found.',
@@ -65,6 +65,7 @@ const ProjectsListMapBox = ({
   const [visibleProjects, setVisibleProjects] = useState([])
   const fetchCache = useRef({})
   const resultRef = useRef({})
+  const mapRef = useRef(null)
   const [appliedFilters, setAppliedFilters] = useState(getDefaultState(searchParams, { districts, organisations, participationChoices, topicChoices, kiezradars }))
   const [alert, setAlert] = useState(null)
   const [error, setError] = useState(null)
@@ -75,6 +76,7 @@ const ProjectsListMapBox = ({
   }
 
   const [syncTrigger, setSyncTrigger] = useState(0)
+
   const fetchItems = useCallback(async () => {
     setLoading(true)
     const urls = [
@@ -128,6 +130,13 @@ const ProjectsListMapBox = ({
 
   // Use visible projects for status when map is shown
   const displayItems = showMap && visibleProjects.length > 0 ? visibleProjects : filteredItems
+  const hasVisibleProjects = visibleProjects.length > 0
+
+  const resetMapView = () => {
+    if (mapRef.current && bounds) {
+      mapRef.current.setView(bounds)
+    }
+  }
 
   if (loading) {
     status = (
@@ -196,6 +205,18 @@ const ProjectsListMapBox = ({
             className="projects-list__status"
           >
             {status}
+            {showMap && !hasVisibleProjects && filteredItems.length > 0 && (
+              <span className="projects-list__status-extra">
+                {' '}(not visible in map -{' '}
+                <button
+                  onClick={resetMapView}
+                  className="projects-list__reset-map-btn"
+                  type="button"
+                >
+                  {resetMapButtonStr}
+                </button>)
+              </span>
+            )}
           </div>
           <ToggleSwitch
             uniqueId="map-switch"
@@ -273,6 +294,7 @@ const ProjectsListMapBox = ({
           {showMap &&
             <div id="map" className="projects-list__map">
               <ProjectsMap
+                ref={mapRef}
                 attribution={attribution}
                 items={filteredItems}
                 bounds={bounds}

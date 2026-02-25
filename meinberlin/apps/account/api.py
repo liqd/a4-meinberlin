@@ -5,7 +5,6 @@ from rest_framework import views
 from rest_framework import viewsets
 from rest_framework.response import Response
 
-from adhocracy4.api.permissions import ViewSetRulesPermission
 from adhocracy4.projects.models import Project
 from meinberlin.apps.projects import serializers as project_serializers
 
@@ -20,10 +19,7 @@ class EndSessionView(views.APIView):
 
 
 class FollowedProjectsListViewSet(viewsets.ReadOnlyModelViewSet):
-    permission_classes = [ViewSetRulesPermission]
-
-    def get_permission_object(self):
-        return None
+    permission_classes = [permissions.AllowAny]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

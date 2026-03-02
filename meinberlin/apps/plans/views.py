@@ -108,6 +108,12 @@ class PlanListView(rules_mixins.PermissionRequiredMixin, generic.ListView):
         districts_list = [district for district in districts]
         return json.dumps(districts_list)
 
+    def get_district_polygons(self):
+        district_polygons = [
+            {"name": preset.name, "polygon": preset.polygon} for preset in self.districts
+        ]
+        return json.dumps(district_polygons)
+
     def get_topics(self):
         topics = [
             {
@@ -219,6 +225,8 @@ class PlanListView(rules_mixins.PermissionRequiredMixin, generic.ListView):
         context["search_profiles_count"] = self.get_search_profiles_count()
         context["is_authenticated"] = json.dumps(self.request.user.is_authenticated)
         context["project_status"] = self.get_project_status()
+        context["district_polygons"] = self.get_district_polygons()
+        context["polygon"] = json.dumps(settings.BERLIN_POLYGON)
 
         return context
 

@@ -47,6 +47,8 @@ const ProjectsListMapBox = ({
   useVectorMap,
   // for filtering:
   districts,
+  districtPolygons,
+  polygon,
   participationChoices,
   projectStatus,
   organisations,
@@ -275,6 +277,10 @@ const ProjectsListMapBox = ({
                 omtToken={omtToken}
                 useVectorMap={useVectorMap}
                 topicChoices={topicChoices}
+                districtPolygons={districtPolygons}
+                activeDistricts={appliedFilters.districts}
+                kiezradars={kiezradars}
+                activeKiezradars={appliedFilters.kiezradars}
               />
             </div>}
         </div>

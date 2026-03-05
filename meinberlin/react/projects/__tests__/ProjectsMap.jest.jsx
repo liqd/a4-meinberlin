@@ -11,9 +11,18 @@ jest.mock('react-leaflet', () => ({
   Circle: ({ style, ...rest }) => <div data-testid="circle" {...rest} />,
   GeoJSON: ({ style, ...rest }) => <div data-testid="geojson" {...rest} />,
   ZoomControl: () => <div>ZoomControl</div>,
-  useMap: () => ({
-    fitBounds: jest.fn()
-  })
+  useMap: () => {
+    const bounds = {
+      contains: jest.fn(() => true)
+    }
+
+    return {
+      fitBounds: jest.fn(),
+      getBounds: jest.fn(() => bounds),
+      on: jest.fn(),
+      off: jest.fn()
+    }
+  }
 }))
 
 jest.mock('adhocracy4/adhocracy4/maps_react/static/a4maps_react/MarkerClusterLayer', () => ({

@@ -12,13 +12,15 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Pagination positioning
 - Youtube embedding (dsvgo repo)
 - Padding of copyright text in ProjectTile
-- Kiezradar map district borders and masking
-
-## mB-v2602.3
 
 ### Changed
 
+- Kiezradar map district borders and masking
 - Kiezradar: Zooming / Panning on Map updates the list of Projects based on visibility
+
+
+## mB-v2602.3
+
 
 ### Fixed
 

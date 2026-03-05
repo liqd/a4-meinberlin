@@ -253,6 +253,7 @@ const ProjectsMap = ({
           <GeoJSON
             key={maskKey}
             data={greyedOutArea}
+            data-testid="greyed-out-area"
             style={() => ({
               color: '#000000',
               weight: 0,
@@ -266,6 +267,7 @@ const ProjectsMap = ({
           <GeoJSON
             key={`district-${district.name}`}
             data={district.polygon}
+            data-testid="district-geojson"
             style={() => ({
               color: '#000000',
               weight: 1,

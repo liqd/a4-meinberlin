@@ -9,7 +9,9 @@ jest.mock('../../contrib/map/Map', () => ({
 
 jest.mock('react-leaflet', () => ({
   Circle: ({ style, ...rest }) => <div data-testid="circle" {...rest} />,
-  GeoJSON: ({ style, ...rest }) => <div data-testid="geojson" {...rest} />,
+  GeoJSON: ({ style, 'data-testid': dataTestId, ...rest }) => (
+    <div data-testid={dataTestId} {...rest} />
+  ),
   ZoomControl: () => <div>ZoomControl</div>,
   useMap: () => ({
     fitBounds: jest.fn()
@@ -68,7 +70,7 @@ describe('ProjectsMap overlays', () => {
       />
     )
 
-    expect(screen.queryByTestId('geojson')).toBeNull()
+    expect(screen.queryByTestId('district-geojson')).toBeNull()
     expect(screen.queryByTestId('circle')).toBeNull()
   })
 
@@ -108,7 +110,7 @@ describe('ProjectsMap overlays', () => {
       />
     )
 
-    expect(screen.getAllByTestId('geojson')).toHaveLength(1)
+    expect(screen.getAllByTestId('district-geojson')).toHaveLength(1)
     expect(screen.getAllByTestId('circle')).toHaveLength(1)
   })
 })

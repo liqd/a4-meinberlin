@@ -108,7 +108,7 @@ describe('ProjectsMap overlays', () => {
       />
     )
 
-    expect(screen.getAllByTestId('geojson')).toHaveLength(1)
+    expect(screen.getAllByTestId('geojson')).toHaveLength(2)
     expect(screen.getAllByTestId('circle')).toHaveLength(1)
   })
 })

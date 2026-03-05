@@ -133,19 +133,26 @@ const ProjectsMap = ({
 
   const { greyedOutArea, selectionBbox } = useMemo(
     () => {
-      if (activeDistrictFeatures.length === 0) {
+      if (activeDistrictFeatures.length === 0 && activeKiezradarFeatures.length === 0) {
         // eslint-disable-next-line no-console
         console.log('[Kiezradar][ProjectsMap] no active districts, skipping mask')
         return { greyedOutArea: null, selectionBbox: null }
       }
 
-      const selectedFeatures = activeDistrictFeatures
+      const selectedDistrictFeatures = activeDistrictFeatures
         .flatMap((district) => (district.polygon && district.polygon.features) || [])
+
+      const selectedKiezFeatures = activeKiezradarFeatures.map((kiez) =>
+        turf.buffer(kiez.point, kiez.radius, { units: 'meters' })
+      )
+
+      const selectedFeatures = [...selectedDistrictFeatures, ...selectedKiezFeatures]
 
       if (selectedFeatures.length === 0) {
         // eslint-disable-next-line no-console
-        console.log('[Kiezradar][ProjectsMap] active districts without features', {
-          activeDistrictFeatures
+        console.log('[Kiezradar][ProjectsMap] active selection without features', {
+          activeDistrictFeatures,
+          activeKiezradarFeatures
         })
         return { greyedOutArea: null, selectionBbox: null }
       }
@@ -210,16 +217,16 @@ const ProjectsMap = ({
         return { greyedOutArea: null, selectionBbox: null }
       }
     },
-    [activeDistrictFeatures]
+    [activeDistrictFeatures, activeKiezradarFeatures]
   )
 
   const maskKey = useMemo(
     () => (
-      activeDistricts && activeDistricts.length > 0
-        ? `grey-mask-${[...activeDistricts].sort().join('-')}`
+      (activeDistricts && activeDistricts.length > 0) || (activeKiezradars && activeKiezradars.length > 0)
+        ? `grey-mask-${[...activeDistricts].sort().join('-')}--${[...activeKiezradars].sort().join('-')}`
         : 'grey-mask-none'
     ),
-    [activeDistricts]
+    [activeDistricts, activeKiezradars]
   )
 
   return (
@@ -280,7 +287,7 @@ const ProjectsMap = ({
               key={`kiez-${kiez.id || kiez.name}`}
               center={[lat, lng]}
               radius={kiez.radius}
-              pathOptions={{ color: '#00A982', weight: 2, fillOpacity: 0.1 }}
+              pathOptions={{ color: '#000000', weight: 1, fillOpacity: 0.1 }}
             />
           )
         })}

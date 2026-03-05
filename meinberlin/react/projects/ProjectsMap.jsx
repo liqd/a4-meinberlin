@@ -1,4 +1,11 @@
-import React, { useEffect, useMemo } from 'react'
+import React, {
+  useEffect,
+  useMemo,
+  useCallback,
+  useRef,
+  forwardRef,
+  useImperativeHandle
+} from 'react'
 import { Circle, GeoJSON, ZoomControl, useMap } from 'react-leaflet'
 import * as turf from '@turf/turf'
 import MarkerClusterLayer
@@ -26,11 +33,54 @@ const FitToSelection = ({ selectionBbox }) => {
 
     map.fitBounds([southWest, northEast], { padding: [40, 40] })
   }, [map, selectionBbox])
+}
+
+// Component to handle map events and visibility tracking
+const MapEventHandler = ({ items, onVisibleMarkersChange }) => {
+  const map = useMap()
+
+  const updateVisibleMarkers = useCallback(() => {
+    if (!map || !onVisibleMarkersChange) return
+
+    const bounds = map.getBounds()
+    const visibleProjects = items.filter(item => {
+      if (!item.point) return false
+      const { coordinates } = item.point.geometry
+      // Leaflet uses [lat, lng] but GeoJSON uses [lng, lat]
+      const latLng = { lat: coordinates[1], lng: coordinates[0] }
+      return bounds.contains(latLng)
+    })
+
+    onVisibleMarkersChange(visibleProjects)
+  }, [map, items, onVisibleMarkersChange])
+
+  useEffect(() => {
+    if (!map) return
+
+    // Initial update
+    updateVisibleMarkers()
+
+    // Update on map movements
+    map.on('moveend', updateVisibleMarkers)
+    map.on('zoomend', updateVisibleMarkers)
+    map.on('resize', updateVisibleMarkers)
+
+    return () => {
+      map.off('moveend', updateVisibleMarkers)
+      map.off('zoomend', updateVisibleMarkers)
+      map.off('resize', updateVisibleMarkers)
+    }
+  }, [map, updateVisibleMarkers])
+
+  // Also update when items change (filters applied)
+  useEffect(() => {
+    updateVisibleMarkers()
+  }, [items, updateVisibleMarkers])
 
   return null
 }
 
-const Markers = ({ items, topicChoices }) => {
+const Markers = ({ items, topicChoices, onVisibleMarkersChange }) => {
   const [activeProject, setActiveProject] = React.useState(null)
 
   useEffect(() => {
@@ -45,14 +95,14 @@ const Markers = ({ items, topicChoices }) => {
       .map(item => ({ ...item.point, properties: item }))
       .map((project) => (
         <ProjectMarker
-          key={project.properties.title}
+          key={project.properties.id || project.properties.title}
           topicChoices={topicChoices}
           project={project}
           onOpen={() => setActiveProject(project)}
           onClose={() => setActiveProject(null)}
         />
       ))
-  ), [items])
+  ), [items, topicChoices])
 
   return (
     <>
@@ -70,19 +120,35 @@ const Markers = ({ items, topicChoices }) => {
           />
         </ControlWrapper>
       )}
+      <MapEventHandler
+        items={items}
+        onVisibleMarkersChange={onVisibleMarkersChange}
+      />
     </>
   )
 }
 
-const ProjectsMap = ({
+const ProjectsMap = forwardRef(({
   items,
   topicChoices,
   districtPolygons = [],
   activeDistricts = [],
   kiezradars = [],
   activeKiezradars = [],
+  onVisibleMarkersChange,
+  bounds,
   ...props
-}) => {
+}, ref) => {
+  const mapRef = useRef(null)
+
+  useImperativeHandle(ref, () => ({
+    setView: (newBounds) => {
+      if (mapRef.current && newBounds) {
+        mapRef.current.fitBounds(newBounds)
+      }
+    }
+  }))
+
   useEffect(() => {
     // Debug logging for district and kiezradar overlays
     // eslint-disable-next-line no-console
@@ -228,7 +294,6 @@ const ProjectsMap = ({
     ),
     [activeDistricts, activeKiezradars]
   )
-
   return (
     <div className="projects-map">
       <ProjectsMapInfo className="projects-map-info--mobile" />
@@ -241,8 +306,10 @@ const ProjectsMap = ({
         {/* Screen reader announcements will go here */}
       </div>
       <Map
+        ref={mapRef}
         zoomControl={false}
         maxZoom={18}
+        bounds={bounds}
         {...props}
         id="project-map"
         key="project-map"
@@ -251,7 +318,6 @@ const ProjectsMap = ({
       >
         <FitToSelection selectionBbox={selectionBbox} />
         <SearchAndShowAddress apiUrl="/api/geodata/search" />
-        {/* <SearchAndShowAddress apiUrl="https://bplan-prod.liqd.net/api/addresses/" /> */}
         <ControlWrapper position="bottomleft" className="projects-map-info__wrapper">
           <ProjectsMapInfo />
         </ControlWrapper>
@@ -291,10 +357,15 @@ const ProjectsMap = ({
             />
           )
         })}
-        <Markers items={items} topicChoices={topicChoices} />
+        <Markers
+          items={items}
+          topicChoices={topicChoices}
+          onVisibleMarkersChange={onVisibleMarkersChange}
+        />
       </Map>
     </div>
   )
-}
+})
 
+ProjectsMap.displayName = 'ProjectsMap'
 export default ProjectsMap

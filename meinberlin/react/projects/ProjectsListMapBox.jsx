@@ -21,7 +21,7 @@ const listStr = django.gettext('List')
 const mapStr = django.gettext('Map')
 const showListStr = django.gettext('show list')
 const viewModeStr = django.gettext('View mode')
-
+const resetMapButtonStr = django.gettext('Reset Map View')
 const getResultCountText = (count) => {
   const foundProposalsText = django.ngettext(
     '1 Proposal found.',
@@ -62,8 +62,10 @@ const ProjectsListMapBox = ({
   const [loading, setLoading] = useState(true)
   const [projectState, setProjectState] = useState(getDefaultProjectState(searchParams))
   const [items, setItems] = useState([])
+  const [visibleProjects, setVisibleProjects] = useState([])
   const fetchCache = useRef({})
   const resultRef = useRef({})
+  const mapRef = useRef(null)
   const [appliedFilters, setAppliedFilters] = useState(getDefaultState(searchParams, { districts, organisations, participationChoices, topicChoices, kiezradars }))
   const [alert, setAlert] = useState(null)
   const [error, setError] = useState(null)
@@ -125,12 +127,23 @@ const ProjectsListMapBox = ({
   let status = nothingStr
 
   const filteredItems = useMemo(() => filterProjects(items, appliedFilters, kiezradars, topicChoices, projectState), [items, appliedFilters, kiezradars, projectState])
+
+  // Use visible projects for status when map is shown
+  const displayItems = showMap && visibleProjects.length > 0 ? visibleProjects : filteredItems
+  const hasVisibleProjects = visibleProjects.length > 0
+
+  const resetMapView = () => {
+    if (mapRef.current && bounds) {
+      mapRef.current.setView(bounds)
+    }
+  }
+
   if (loading) {
     status = (
       <Spinner />
     )
-  } else if (filteredItems.length > 0) {
-    status = getResultCountText(filteredItems.length)
+  } else if (displayItems.length > 0) {
+    status = getResultCountText(displayItems.length)
   }
 
   return (
@@ -192,6 +205,18 @@ const ProjectsListMapBox = ({
             className="projects-list__status"
           >
             {status}
+            {showMap && !hasVisibleProjects && filteredItems.length > 0 && (
+              <span className="projects-list__status-extra">
+                {' '}(not visible in map -{' '}
+                <button
+                  onClick={resetMapView}
+                  className="projects-list__reset-map-btn"
+                  type="button"
+                >
+                  {resetMapButtonStr}
+                </button>)
+              </span>
+            )}
           </div>
           <ToggleSwitch
             uniqueId="map-switch"
@@ -236,8 +261,10 @@ const ProjectsListMapBox = ({
         >
           <div id="list" className="projects-list__list">
             <ProjectsList
-              projects={filteredItems}
+              projects={displayItems}
+              visibleProjects={visibleProjects}
               isHorizontal={showMap}
+              showMap={showMap}
               topicChoices={topicChoices}
               loading={loading}
               showSearchCompletedProjectsButton={
@@ -253,7 +280,6 @@ const ProjectsListMapBox = ({
                 setAppliedFilters(newFilters)
                 setProjectState(['past'])
                 setParams(newFilters)
-
                 // Tells child ProjectsControlBar to update
                 setSyncTrigger(prev => prev + 1)
 
@@ -269,6 +295,7 @@ const ProjectsListMapBox = ({
           {showMap &&
             <div id="map" className="projects-list__map">
               <ProjectsMap
+                ref={mapRef}
                 attribution={attribution}
                 items={filteredItems}
                 bounds={bounds}
@@ -281,6 +308,7 @@ const ProjectsListMapBox = ({
                 activeDistricts={appliedFilters.districts}
                 kiezradars={kiezradars}
                 activeKiezradars={appliedFilters.kiezradars}
+                onVisibleMarkersChange={setVisibleProjects}
               />
             </div>}
         </div>

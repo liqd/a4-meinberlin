@@ -11,8 +11,12 @@
 {% block reason %}{% endblock %}
 
 -- 
-{% translate 'meinBerlin is a participation platform operated by' %}
-Liquid Democracy e.V., Am Sudhaus 2, D-12053 Berlin
+{% translate 'mein.Berlin.de is the participation platform in Berlin, commissioned by the Senate Chancellery Berlin.' %}
 
-{% translate 'Contact' %}: {{ site.domain }}/impressum/
+{% translate "Don't want to receive notifications from us anymore? You can unsubscribe here:" %}
+{{ site.domain }}/account/notification-settings/
+
+{% translate 'Imprint' %}: {{ site.domain }}/impressum/
+{% translate 'Contact' %}: {{ site.domain }}/kontakt/
 {% translate 'Terms of use' %}: {{ site.domain }}/terms-of-use/
+{% translate 'Privacy policy' %}: {{ site.domain }}/datenschutz/

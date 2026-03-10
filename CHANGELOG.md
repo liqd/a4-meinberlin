@@ -17,6 +17,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Kiezradar map district borders and masking
 - Kiezradar: Zooming / Panning on Map updates the list of Projects based on visibility
+- Notifications page: links to saved searches and followed projects
+- Email footer: updated links and legal text
 
 
 ## mB-v2602.3

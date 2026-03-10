@@ -5759,6 +5759,37 @@ msgstr "mein.Berlin.de ist die Plattform für Beteiligung, betrieben durch"
 msgid "on behalf of Senate Chancellery Berlin"
 msgstr "im Auftrag der Senatskanzlei Berlin"
 
+#: meinberlin/templates/email_base.html:73
+#: meinberlin/templates/email_base.txt:14
+msgid ""
+"mein.Berlin.de is the participation platform in Berlin, commissioned by the "
+"Senate Chancellery Berlin."
+msgstr ""
+"mein.Berlin.de ist die Plattform für Beteiligung in Berlin, beauftragt von "
+"der Senatskanzlei Berlin."
+
+#: meinberlin/templates/email_base.html:84
+msgid "Don't want to receive notifications from us anymore? You can"
+msgstr "Möchten Sie keine Nachrichten mehr von uns erhalten? Hier können Sie sich"
+
+#: meinberlin/templates/email_base.txt:16
+msgid "Don't want to receive notifications from us anymore? You can unsubscribe here:"
+msgstr "Möchten Sie keine Nachrichten mehr von uns erhalten? Hier können Sie sich abmelden:"
+
+#: meinberlin/templates/email_base.html:86
+msgid "Unsubscribe"
+msgstr "Abmelden"
+
+#: meinberlin/templates/email_base.html:89
+#: meinberlin/templates/email_base.txt:19
+msgid "Imprint"
+msgstr "Impressum"
+
+#: meinberlin/templates/email_base.html:92
+#: meinberlin/templates/email_base.txt:22
+msgid "Privacy policy"
+msgstr "Datenschutz"
+
 #: meinberlin/templates/footer.html:8
 msgid "To the top of the page"
 msgstr "Zum Anfang der Seite"

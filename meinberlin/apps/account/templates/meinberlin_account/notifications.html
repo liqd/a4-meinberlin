@@ -12,13 +12,15 @@
 {% block content %}
   {% url "notifications" as notifications_url %}
   {% url "notification_settings" as notification_settings_url %}
+  {% url "search_profiles" as search_profiles_url %}
+  {% url "followed_projects" as followed_projects_url %}
 
   <div class="notifications">
     <h1>{% translate 'Notifications' %}</h1>
     {% if user.is_authenticated %}
       <p>
-        {% blocktranslate with url=notification_settings_url %}
-          Notifications are where you'll find all the important news in one place: reactions to your posts, results from your saved searches, and news from the interests you follow. Here you can <a href="{{ url }}">change the settings</a>.
+        {% blocktranslate with settings_url=notification_settings_url search_profiles_url=search_profiles_url followed_projects_url=followed_projects_url %}
+          Notifications are where you'll find all the important news in one place: reactions to your posts, results from your <a href="{{ search_profiles_url }}">saved searches</a>, and news from the <a href="{{ followed_projects_url }}">projects you follow</a>. Here you can <a href="{{ settings_url }}">change the settings</a>.
         {% endblocktranslate %}
       </p>
       <div id="notifications-react"

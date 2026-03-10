@@ -70,21 +70,22 @@
                   </div>
                   <div>
                     <p style="line-height:1.5;margin-bottom:1em;margin-top:1em;">
-                      {% translate 'mein.berlin.de is the participation platform operated by' %}<br />
-                      Liquid Democracy e.V. (Am Sudhaus 2, D-12053 Berlin)
-                      {% translate 'on behalf of Senate Chancellery Berlin' %}
+                      {% translate "mein.Berlin.de is the participation platform in Berlin, commissioned by the Senate Chancellery Berlin." %}
                     </p>
                   </div>
                   <br>
                   <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
                     <tr>
-                      <td style="color: #818181; font-size: x-small; vertical-align: top;">
+                      <td style="font-size:16px; line-height:1.5; text-align:center; vertical-align: top;">
                         <p>
-
+                          {% translate "Don't want to receive notifications from us anymore? You can" %}<br/>
+                          <a href="{% get_domain %}/account/notification-settings/">{% translate 'Unsubscribe' %}</a>
                         </p>
                         <p>
-                          <a href="{% get_domain %}/contact">{% translate 'Contact' %}</a><br/>
-                          <a href="{% get_domain %}/terms-of-use">{% translate 'Terms of use' %}</a>
+                          <a href="{% get_domain %}/impressum/">{% translate 'Imprint' %}</a><br/>
+                          <a href="{% get_domain %}/kontakt/">{% translate 'Contact' %}</a><br/>
+                          <a href="{% get_domain %}/terms-of-use/">{% translate 'Terms of use' %}</a><br/>
+                          <a href="{% get_domain %}/datenschutz/">{% translate 'Privacy policy' %}</a>
                         </p>
                       </td>
                     </tr>

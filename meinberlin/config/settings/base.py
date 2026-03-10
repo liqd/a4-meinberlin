@@ -151,6 +151,10 @@ MIDDLEWARE = (
     "meinberlin.apps.votes.middleware.VotingTokenSessionMiddleware",
 )
 
+# Required for some embedded providers (e.g. video embeds)
+# to allow cross-origin requests without blocking.
+SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+
 SITE_ID = 1
 
 ROOT_URLCONF = "meinberlin.config.urls"

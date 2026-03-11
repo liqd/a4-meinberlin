@@ -21,7 +21,7 @@ const listStr = django.gettext('List')
 const mapStr = django.gettext('Map')
 const showListStr = django.gettext('show list')
 const viewModeStr = django.gettext('View mode')
-const resetMapButtonStr = django.gettext('Reset Map View')
+const noVisibleResultsStr = django.gettext('There are no suitable projects in this area. Try moving the map or adjusting your filters.')
 const getResultCountText = (count) => {
   const foundProposalsText = django.ngettext(
     '1 Proposal found.',
@@ -132,12 +132,6 @@ const ProjectsListMapBox = ({
   const displayItems = showMap && visibleProjects.length > 0 ? visibleProjects : filteredItems
   const hasVisibleProjects = visibleProjects.length > 0
 
-  const resetMapView = () => {
-    if (mapRef.current && bounds) {
-      mapRef.current.setView(bounds)
-    }
-  }
-
   if (loading) {
     status = (
       <Spinner />
@@ -207,14 +201,7 @@ const ProjectsListMapBox = ({
             {status}
             {showMap && !hasVisibleProjects && filteredItems.length > 0 && (
               <span className="projects-list__status-extra">
-                {' '}(not visible in map -{' '}
-                <button
-                  onClick={resetMapView}
-                  className="projects-list__reset-map-btn"
-                  type="button"
-                >
-                  {resetMapButtonStr}
-                </button>)
+                {noVisibleResultsStr}
               </span>
             )}
           </div>

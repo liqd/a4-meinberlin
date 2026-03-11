@@ -100,9 +100,12 @@ export default function FeedList ({ title, description, descriptionNoItems, butt
                       <span className="feed-list__count">{unreadCount}</span>
                     )}
                   </h2>
-                  <p className="feed-list__description">
-                    {notifications.length > 0 ? description : descriptionNoItems}
-                  </p>
+                  <p
+                    className="feed-list__description"
+                    dangerouslySetInnerHTML={{
+                      __html: notifications.length > 0 ? description : descriptionNoItems
+                    }}
+                  />
                   {notifications.length === 0 && <a className="button" href={link}>{buttonText}</a>}
                 </div>
                 {unreadCount > 0 && (

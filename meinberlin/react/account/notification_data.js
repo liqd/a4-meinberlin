@@ -108,7 +108,7 @@ export const notificationsData = {
   searchProfiles: {
     title: django.gettext('Search Profiles'),
     description: django.gettext(
-      'Here you will find newly published participation projects that match your search profiles.'
+      'Here you will find newly published participation projects that match your <a href="/account/search-profiles/">saved searches</a>.'
     ),
     descriptionNoItems: django.gettext(
       'No results from your saved searches yet. Add new saved searches and wait for a matching project to be published.'
@@ -128,7 +128,7 @@ export const notificationsData = {
   followedProjects: {
     title: django.gettext('Followed projects'),
     description: django.gettext(
-      'Here you will receive all the latest news about the projects you follow.'
+      'Here you will receive all the latest news about the <a href="/account/followed-projects/">projects you follow</a>.'
     ),
     descriptionNoItems: django.gettext(
       'No followed projects. Find projects to follow them.'

@@ -13,7 +13,7 @@ requests==2.32.4
 requests-mock==1.11.0
 sentry-sdk[django]==2.34.1
 urllib3==2.6.3
-wagtail==6.3.5
+wagtail==6.3.8
 whitenoise==6.9.0
 zeep==4.3.1
 drf-spectacular==0.28.0

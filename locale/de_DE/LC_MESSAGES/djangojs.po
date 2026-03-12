@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-14 12:27+0100\n"
+"POT-Creation-Date: 2026-03-12 12:11+0100\n"
 "PO-Revision-Date: 2025-12-18 15:26+0000\n"
 "Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js-"
@@ -97,16 +97,12 @@ msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:28
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:6
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:72
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:77
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:154
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
 #: adhocracy4/comments/static/comments/Comment.jsx:155
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:28
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:6
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:72
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:77
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:154
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
 msgid "Delete"
@@ -563,13 +559,13 @@ msgstr "Folgen"
 msgid "Following"
 msgstr "Folge ich"
 
-#: adhocracy4/maps/static/a4maps/a4maps_address.js:101
-#: adhocracy4/maps/static/a4maps/a4maps_address.js:103
+#: adhocracy4/maps/static/a4maps/a4maps_address.js:104
+#: adhocracy4/maps/static/a4maps/a4maps_address.js:104
 msgid "No matches found within the project area"
 msgstr "Keine Treffer im Bereich des Projekts gefunden"
 
-#: adhocracy4/maps/static/a4maps/a4maps_address.js:104
-#: adhocracy4/maps/static/a4maps/a4maps_address.js:106
+#: adhocracy4/maps/static/a4maps/a4maps_address.js:107
+#: adhocracy4/maps/static/a4maps/a4maps_address.js:107
 msgid "Did you mean:"
 msgstr "Meinten Sie:"
 
@@ -784,32 +780,6 @@ msgstr "Frage"
 msgid "Explanation"
 msgstr "Erklärung"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:49
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:54
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:49
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:54
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
-#: meinberlin/react/documents/ChapterNavItem.jsx:3
-#: meinberlin/react/documents/ParagraphForm.jsx:9
-msgid "Move up"
-msgstr "nach oben"
-
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:61
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:66
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:61
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:66
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
-#: meinberlin/react/documents/ChapterNavItem.jsx:4
-#: meinberlin/react/documents/ParagraphForm.jsx:10
-msgid "Move down"
-msgstr "nach unten"
-
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:47
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:47
 msgid "Participants can vote for more than one option (multiple choice)"
@@ -831,6 +801,24 @@ msgstr "Sonstige"
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:113
 msgid "New answer"
 msgstr "Neue Antwort"
+
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
+#: meinberlin/react/documents/ChapterNavItem.jsx:3
+#: meinberlin/react/documents/ParagraphForm.jsx:9
+msgid "Move up"
+msgstr "nach oben"
+
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
+#: meinberlin/react/documents/ChapterNavItem.jsx:4
+#: meinberlin/react/documents/ParagraphForm.jsx:10
+msgid "Move down"
+msgstr "nach unten"
 
 #: adhocracy4/polls/static/PollDetail/CharCounter.jsx:5
 #: adhocracy4/polls/static/PollDetail/CharCounter.jsx:5
@@ -1395,11 +1383,9 @@ msgstr "Gespeicherte Suchen"
 
 #: meinberlin/react/account/notification_data.js:111
 msgid ""
-"Here you will find newly published participation projects that match your "
-"search profiles."
+"Here you will find newly published participation projects that match your <a "
+"href=\"/account/search-profiles/\">saved searches</a>."
 msgstr ""
-"Hier werden Sie neu veröffentlichte Projekte finden, die Ihren gespeicherten "
-"Suchen entsprechen."
 
 #: meinberlin/react/account/notification_data.js:114
 msgid ""
@@ -1436,9 +1422,9 @@ msgstr "Gefolgte Projekte"
 
 #: meinberlin/react/account/notification_data.js:131
 msgid ""
-"Here you will receive all the latest news about the projects you follow."
+"Here you will receive all the latest news about the <a href=\"/account/"
+"followed-projects/\">projects you follow</a>."
 msgstr ""
-"Hier werden Sie Neuigkeiten erhalten aus den Projekten, denen Sie folgen."
 
 #: meinberlin/react/account/notification_data.js:134
 msgid "No followed projects. Find projects to follow them."
@@ -2521,7 +2507,7 @@ msgid "Show completed"
 msgstr "Abgeschlossene einbeziehen"
 
 #: meinberlin/react/projects/ProjectsList.jsx:12
-#: meinberlin/react/projects/ProjectsList.jsx:73
+#: meinberlin/react/projects/ProjectsList.jsx:76
 #, javascript-format
 msgid "Showing %s project"
 msgid_plural "Showing %s projects"
@@ -2529,7 +2515,7 @@ msgstr[0] "%s Projekt wird angezeigt"
 msgstr[1] "%s Projekte werden angezeigt"
 
 #: meinberlin/react/projects/ProjectsList.jsx:16
-#: meinberlin/react/projects/ProjectsList.jsx:77
+#: meinberlin/react/projects/ProjectsList.jsx:80
 msgid "No projects found"
 msgstr "Keine Projekte gefunden"
 
@@ -2556,6 +2542,12 @@ msgstr "Karte anzeigen"
 #: meinberlin/react/projects/ProjectsListMapBox.jsx:22
 msgid "show list"
 msgstr "Liste anzeigen"
+
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:24
+msgid ""
+"There are no suitable projects in this area. Try moving the map or adjusting "
+"your filters."
+msgstr ""
 
 #: meinberlin/react/projects/ProjectsListMapBox.jsx:27
 #, javascript-format

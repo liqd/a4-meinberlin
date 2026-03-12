@@ -31,5 +31,4 @@ there is a new post in the project you are moderating.
 {% block cta_url %}{% if action.obj.get_absolute_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}
 {% block cta_label %}{% if action.obj.get_absolute_url %}Show input{% else %}Visit the project{% endif %}{% endblock %}
 
-{% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you are registered as moderator for the project. If you no longer wish to receive notifications, change your <a href="{{ email.get_host }}{% url 'account_profile' %}">
-acount settings</a>.{% endblock %}
+{% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you are registered as moderator for the project.{% endblock %}

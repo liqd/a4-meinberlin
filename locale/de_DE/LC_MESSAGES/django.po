@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-13 14:43+0100\n"
-"PO-Revision-Date: 2026-01-14 13:16+0000\n"
+"PO-Revision-Date: 2026-03-12 15:26+0000\n"
 "Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "main-design-dev/de/>\n"
@@ -1531,6 +1531,13 @@ msgid ""
 "href=\"%(settings_url)s\">change the settings</a>.\n"
 "        "
 msgstr ""
+"\n"
+"          Hier finden Sie alle wichtigen Neuigkeiten auf einen Blick: "
+"Reaktionen auf Ihre Beiträge, Ergebnisse aus Ihren <a href=\""
+"%(search_profiles_url)s\">gespeicherten Suchen</a> und Neuigkeiten aus den "
+"<a href=\"%(followed_projects_url)s\">Projekten, denen Sie folgen</a>. Hier "
+"können Sie die <a href=\"%(settings_url)s\">Einstellungen anpassen</a>.\n"
+"        "
 
 #: meinberlin/apps/account/templates/meinberlin_account/notifications.html:34
 msgid ""
@@ -5710,7 +5717,7 @@ msgstr ""
 
 #: meinberlin/templates/account/password_reset_from_key.html:31
 msgid "Your password is now changed."
-msgstr ""
+msgstr "Ihr Passwort wurde erfolgreich geändert."
 
 #: meinberlin/templates/account/signup.html:55
 #, python-format

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-13 14:43+0100\n"
-"PO-Revision-Date: 2026-02-18 18:11+0000\n"
+"PO-Revision-Date: 2026-03-12 15:26+0000\n"
 "Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "js-design-dev/de/>\n"
@@ -1386,6 +1386,8 @@ msgid ""
 "Here you will find newly published participation projects that match your <a "
 "href=\"/account/search-profiles/\">saved searches</a>."
 msgstr ""
+"Hier finden Sie neu veröffentlichte Beteiligungsprojekte, die Ihren <a href="
+"\"/account/search-profiles/\">gespeicherten Suchen</a> entsprechen."
 
 #: meinberlin/react/account/notification_data.js:114
 msgid ""
@@ -1425,6 +1427,8 @@ msgid ""
 "Here you will receive all the latest news about the <a href=\"/account/"
 "followed-projects/\">projects you follow</a>."
 msgstr ""
+"Hier erhalten Sie alle aktuellen Neuigkeiten zu den <a href=\"/account/"
+"followed-projects/\">Projekten, denen Sie folgen</a>."
 
 #: meinberlin/react/account/notification_data.js:134
 msgid "No followed projects. Find projects to follow them."
@@ -1730,7 +1734,7 @@ msgid "Like"
 msgid_plural "Likes"
 msgstr[0] "gefällt"
 msgstr[1] "gefällt"
-msgstr[1] "gefällt"
+"gefällt"
 
 #: meinberlin/react/contrib/card/CardStats.jsx:8
 #: meinberlin/react/contrib/map/ItemPopup.jsx:22
@@ -2549,6 +2553,8 @@ msgid ""
 "There are no suitable projects in this area. Try moving the map or adjusting "
 "your filters."
 msgstr ""
+"In diesem Bereich gibt es keine passenden Projekte. Versuchen Sie, den "
+"Kartenausschnitt zu verändern oder Ihre Filter anzupassen."
 
 #: meinberlin/react/projects/ProjectsListMapBox.jsx:27
 #, javascript-format

@@ -124,18 +124,22 @@ const ProjectsListMapBox = ({
     }
   }, [alert])
 
-  let status = nothingStr
-
   const filteredItems = useMemo(() => filterProjects(items, appliedFilters, kiezradars, topicChoices, projectState), [items, appliedFilters, kiezradars, projectState])
 
   // Use visible projects for status when map is shown
-  const displayItems = showMap && visibleProjects.length > 0 ? visibleProjects : filteredItems
   const hasVisibleProjects = visibleProjects.length > 0
+  const displayItems = showMap && hasVisibleProjects
+    ? visibleProjects
+    : showMap && !hasVisibleProjects && filteredItems.length > 0
+      ? [] // Show empty list when map has no visible projects but filters have results
+      : filteredItems
+
+  let status = nothingStr
 
   if (loading) {
-    status = (
-      <Spinner />
-    )
+    status = <Spinner />
+  } else if (showMap && !hasVisibleProjects && filteredItems.length > 0) {
+    status = noVisibleResultsStr
   } else if (displayItems.length > 0) {
     status = getResultCountText(displayItems.length)
   }
@@ -199,11 +203,6 @@ const ProjectsListMapBox = ({
             className="projects-list__status"
           >
             {status}
-            {showMap && !hasVisibleProjects && filteredItems.length > 0 && (
-              <span className="projects-list__status-extra">
-                {noVisibleResultsStr}
-              </span>
-            )}
           </div>
           <ToggleSwitch
             uniqueId="map-switch"

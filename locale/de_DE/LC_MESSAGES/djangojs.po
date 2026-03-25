@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-13 14:43+0100\n"
 "PO-Revision-Date: 2026-03-26 07:50+0000\n"
-"Last-Translator: Janek Gulbis <j.gulbis@liqd.net>\n"
+"Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "js-design-dev/de/>\n"
 "Language: de_DE\n"
@@ -2384,7 +2384,7 @@ msgstr "Suche Speichern"
 
 #: meinberlin/react/projects/ProjectTile.jsx:9
 msgid "copyright missing"
-msgstr "Copyright fehlt"
+msgstr "Urheber*in fehlt"
 
 #: meinberlin/react/projects/ProjectTile.jsx:10
 msgid "copyright by"

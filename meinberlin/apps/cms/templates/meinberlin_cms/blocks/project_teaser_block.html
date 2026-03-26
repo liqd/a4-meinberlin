@@ -33,7 +33,9 @@
                 {% endif %}
             </picture>
             <span class="image__copyright">
-        {% if value.project.tile_image_copyright %}
+        {% if not value.project.tile_image %}
+            {% translate 'copyright by' %} Senatskanzlei Berlin
+        {% elif value.project.tile_image_copyright %}
             {% translate 'copyright by' %} {{ value.project.tile_image_copyright }}
         {% else %}
             {% translate 'copyright missing' %}

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-13 14:43+0100\n"
-"PO-Revision-Date: 2026-03-12 15:26+0000\n"
+"PO-Revision-Date: 2026-03-26 07:50+0000\n"
 "Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "js-design-dev/de/>\n"
@@ -1734,7 +1734,6 @@ msgid "Like"
 msgid_plural "Likes"
 msgstr[0] "gefällt"
 msgstr[1] "gefällt"
-"gefällt"
 
 #: meinberlin/react/contrib/card/CardStats.jsx:8
 #: meinberlin/react/contrib/map/ItemPopup.jsx:22
@@ -2385,7 +2384,7 @@ msgstr "Suche Speichern"
 
 #: meinberlin/react/projects/ProjectTile.jsx:9
 msgid "copyright missing"
-msgstr "Copyright fehlt"
+msgstr "Urheber*in fehlt"
 
 #: meinberlin/react/projects/ProjectTile.jsx:10
 msgid "copyright by"

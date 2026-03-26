@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-13 14:43+0100\n"
-"PO-Revision-Date: 2026-03-12 15:26+0000\n"
+"PO-Revision-Date: 2026-03-26 07:50+0000\n"
 "Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
 "main-design-dev/de/>\n"
@@ -886,7 +886,7 @@ msgstr ""
 #: adhocracy4/images/mixins.py:30
 #: adhocracy4/images/mixins.py:35
 msgid "Please add copyright information."
-msgstr "Bitte fügen Sie Angaben zum Copyright hinzu."
+msgstr "Bitte fügen Sie Angaben zur Urheber*in hinzu."
 
 #: adhocracy4/images/mixins.py:40
 #: adhocracy4/images/mixins.py:45
@@ -2425,7 +2425,7 @@ msgstr "Urheberrecht:"
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:45
 #: meinberlin/templates/a4dashboard/includes/project_list_item.html:19
 msgid "copyright missing"
-msgstr "Copyright fehlt"
+msgstr "Urheber*in fehlt"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/blocks/user_action_bar_block_form.html:12
 msgid "Fields for logged in users:"

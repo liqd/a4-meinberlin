@@ -42,7 +42,7 @@
             {% if project.has_contact_details or project.organisation %}
                 <hr aria-hidden="true" />
                 <section class="flexgrid grid--2 mb-3" aria-labelledby="contact-title">
-                    <h2>{% trans 'Contact Information' %}</h2>
+                    <h2 id="contact-title">{% trans 'Contact Information' %}</h2>
                     {% include 'meinberlin_projects/includes/contact_person.html' with contact=project only %}
                     {% include 'meinberlin_projects/includes/contact_organisation.html' with organisation=project.organisation only %}
                 </section>

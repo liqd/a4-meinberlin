@@ -10,7 +10,7 @@
 
     {% if module.module_running_time_left %}
 
-        {% include "meinberlin_projects/includes/status_bar.html" with progress=module.module_running_progress uniqueId="module-running-progress-{{ module.pk }}" time_left=module.module_running_time_left %}
+        {% include "meinberlin_projects/includes/status_bar.html" with progress=module.module_running_progress progress_bar_id=module.pk time_left=module.module_running_time_left %}
 
     {% elif not module.module_has_started %}
 

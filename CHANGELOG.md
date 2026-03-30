@@ -7,6 +7,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## Unreleased
 
+### Fixed
+
+- HTML errors (subdomain audit)
+
 ### Changed
 
 - Project and plan tiles: placeholder tile image copyright shows Senatskanzlei Berlin

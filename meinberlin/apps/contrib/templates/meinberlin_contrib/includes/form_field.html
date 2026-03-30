@@ -1,14 +1,22 @@
 {% load i18n widget_tweaks %}
 
 <div class="form-group {% if add_class %}{{ add_class }}{% endif %} mb-2">
+    {% if field.field.widget.is_hidden %}
+    <div {% if tabindex %} tabindex="{{ tabindex }}" {% endif %} class="form-label" id="{{ field.id_for_label }}-labeltext">
+    {% else %}
     <label for="{{ field.id_for_label }}" {% if tabindex %} tabindex="{{ tabindex }}" {% endif %} class="form-label">
+    {% endif %}
         {{ field.label }}
         {% if field.field.required %}
             <span class="icon-required" aria-hidden="true">*</span>
             <span class="aural">{% translate 'This field is required' %}</span>
         {% endif %}
         {% block after_label %}{% endblock after_label %}
+    {% if field.field.widget.is_hidden %}
+    </div>
+    {% else %}
     </label>
+    {% endif %}
 
     {% if field.help_text and not field.name == "password" %}
         <span class="formgroup__help">

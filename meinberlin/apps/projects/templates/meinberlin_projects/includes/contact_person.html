@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n meinberlin_project_tags %}
 
 {% if contact.has_contact_details %}
 <div class="modul-contact">
@@ -18,7 +18,7 @@
       
       {% if contact.contact_phone %}
         <p>{% trans "Phone" %}: 
-           <a href="tel:{{ contact.contact_phone }}" aria-label="{% trans 'Call' %} {{ contact.contact_name }}">{{ contact.contact_phone }}</a>
+           <a href="{{ contact.contact_phone|tel_uri }}" aria-label="{% trans 'Call' %} {{ contact.contact_name }}">{{ contact.contact_phone }}</a>
         </p>
       {% endif %}
 

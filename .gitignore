@@ -37,6 +37,15 @@ npm-debug.log*
 # IDEs
 .idea/
 .vscode/
+.cursor/
+
+# Local Playwright / test tooling (not committed)
+.env.playwright
+.env.playwright.example
+.playwright-mcp/
+.testmondata
+e2e/
+test-results/
 
 # Django databases
 *.sqlite3*

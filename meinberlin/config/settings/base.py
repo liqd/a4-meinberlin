@@ -55,6 +55,7 @@ INSTALLED_APPS = (
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "csp",
     "django_ckeditor_5",
     "django_filters",
     "django_celery_beat",

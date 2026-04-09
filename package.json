@@ -61,7 +61,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.26.0",
-    "@babel/eslint-parser": "7.25.9",
+    "@babel/eslint-parser": "^7.28.6",
     "@babel/eslint-plugin": "7.25.9",
     "@babel/plugin-transform-modules-commonjs": "7.26.3",
     "@babel/plugin-transform-runtime": "7.25.9",
@@ -70,7 +70,7 @@
     "@testing-library/jest-dom": "6.6.3",
     "@testing-library/react": "16.1.0",
     "babel-loader": "9.2.1",
-    "eslint": "8.57.1",
+    "eslint": "^10.2.0",
     "eslint-config-standard": "17.1.0",
     "eslint-config-standard-jsx": "11.0.0",
     "eslint-plugin-import": "2.31.0",

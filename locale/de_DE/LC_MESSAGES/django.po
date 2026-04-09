@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-13 14:43+0100\n"
+"POT-Creation-Date: 2026-04-09 15:40+0200\n"
 "PO-Revision-Date: 2026-03-26 07:50+0000\n"
 "Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
-"main-design-dev/de/>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main-"
+"design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -335,7 +335,7 @@ msgstr "Suche"
 
 #: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
 #: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/form_field.html:8
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/form_field.html:12
 #: meinberlin/apps/plans/templates/meinberlin_plans/project_plans_form.html:8
 #: meinberlin/apps/votes/templates/meinberlin_votes/token_generation_dashboard.html:26
 #: meinberlin/templates/a4forms/includes/form_field.html:5
@@ -509,7 +509,7 @@ msgstr "Bitte wählen Sie eine Kategorie"
 msgid "unknown user"
 msgstr "unbekannte*r Nutzer*in"
 
-#: adhocracy4/comments_async/api.py:149
+#: adhocracy4/comments_async/api.py:150
 #: adhocracy4/polls/api.py:160
 msgid "Please agree to the organisation's terms of use."
 msgstr "Bitte stimmen Sie den Nutzungsbedingungen der Organisation zu."
@@ -1533,10 +1533,11 @@ msgid ""
 msgstr ""
 "\n"
 "          Hier finden Sie alle wichtigen Neuigkeiten auf einen Blick: "
-"Reaktionen auf Ihre Beiträge, Ergebnisse aus Ihren <a href=\""
-"%(search_profiles_url)s\">gespeicherten Suchen</a> und Neuigkeiten aus den "
-"<a href=\"%(followed_projects_url)s\">Projekten, denen Sie folgen</a>. Hier "
-"können Sie die <a href=\"%(settings_url)s\">Einstellungen anpassen</a>.\n"
+"Reaktionen auf Ihre Beiträge, Ergebnisse aus Ihren <a "
+"href=\"%(search_profiles_url)s\">gespeicherten Suchen</a> und Neuigkeiten "
+"aus den <a href=\"%(followed_projects_url)s\">Projekten, denen Sie folgen</"
+"a>. Hier können Sie die <a href=\"%(settings_url)s\">Einstellungen anpassen</"
+"a>.\n"
 "        "
 
 #: meinberlin/apps/account/templates/meinberlin_account/notifications.html:34
@@ -2004,7 +2005,7 @@ msgstr "Unterstützung"
 #: meinberlin/apps/kiezkasse/exports.py:79
 #: meinberlin/apps/mapideas/exports.py:77
 #: meinberlin/apps/maptopicprio/exports.py:75
-#: meinberlin/apps/projects/templatetags/meinberlin_project_tags.py:131
+#: meinberlin/apps/projects/templatetags/meinberlin_project_tags.py:146
 #: meinberlin/apps/topicprio/exports.py:74
 msgid "Comment"
 msgid_plural "Comments"
@@ -2414,15 +2415,18 @@ msgid "Additional Information on Accessibility"
 msgstr "Zusätzliche Information über Barrierefreiheit"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/blocks/project_teaser_block.html:37
+#: meinberlin/apps/cms/templates/meinberlin_cms/blocks/project_teaser_block.html:39
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/plan_tile.html:37
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/plan_tile.html:39
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:43
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:45
 msgid "copyright by"
 msgstr "Urheberrecht:"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/blocks/project_teaser_block.html:39
+#: meinberlin/apps/cms/templates/meinberlin_cms/blocks/project_teaser_block.html:41
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:39
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/plan_tile.html:39
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:45
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/plan_tile.html:41
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:47
 #: meinberlin/templates/a4dashboard/includes/project_list_item.html:19
 msgid "copyright missing"
 msgstr "Urheber*in fehlt"
@@ -3443,7 +3447,7 @@ msgid "Affiliation"
 msgstr "Zugehörigkeit"
 
 #: meinberlin/apps/livequestions/models.py:38
-#: meinberlin/apps/projects/templatetags/meinberlin_project_tags.py:109
+#: meinberlin/apps/projects/templatetags/meinberlin_project_tags.py:124
 msgid "Question"
 msgid_plural "Questions"
 msgstr[0] "Frage"
@@ -4487,8 +4491,8 @@ msgid "Call"
 msgstr "Anrufen"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/module-tile/module_tile.html:18
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:89
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/status_bar.html:18
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:91
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/status_bar.html:13
 msgid "Clock"
 msgstr "Uhr"
 
@@ -4498,16 +4502,16 @@ msgid "Begins on the %(date)s"
 msgstr "Beginnt am %(date)s"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/module-tile/module_tile.html:25
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:117
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:119
 msgid "Participation ended"
 msgstr "Beteiligung abgeschlossen"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/plan_tile.html:47
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:55
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/plan_tile.html:49
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:57
 msgid "Plan"
 msgstr "Vorhaben"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/plan_tile.html:64
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/plan_tile.html:66
 msgid ""
 "\n"
 "                    Participation project\n"
@@ -4550,7 +4554,7 @@ msgstr "Ergebnisse anzeigen"
 msgid "Overarching Plan"
 msgstr "Übergeordnetes Vorhaben"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:91
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:93
 #, python-format
 msgid ""
 "\n"
@@ -4561,11 +4565,11 @@ msgstr ""
 "                            noch %(time_left)s\n"
 "                        "
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:95
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:97
 msgid "More than 1 year remaining"
 msgstr "noch länger als 1 Jahr"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:102
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:104
 msgid ""
 "\n"
 "                        Participation project\n"
@@ -4583,7 +4587,7 @@ msgstr[1] ""
 "                        Partizipationsprojekte\n"
 "                    "
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:111
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:113
 #, python-format
 msgid ""
 "\n"
@@ -4624,7 +4628,7 @@ msgstr "Entfernen"
 msgid "None"
 msgstr "Alle Projekte"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/status_bar.html:19
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/status_bar.html:14
 #, python-format
 msgid "remaining %(time_left)s"
 msgstr "noch %(time_left)s"
@@ -4820,25 +4824,25 @@ msgstr "Teilnehmer*innen bearbeiten"
 msgid "Results"
 msgstr "Ergebnisse"
 
-#: meinberlin/apps/projects/templatetags/meinberlin_project_tags.py:106
+#: meinberlin/apps/projects/templatetags/meinberlin_project_tags.py:121
 msgid "Proposal"
 msgid_plural "Proposals"
 msgstr[0] "Vorschlag"
 msgstr[1] "Vorschläge"
 
-#: meinberlin/apps/projects/templatetags/meinberlin_project_tags.py:112
+#: meinberlin/apps/projects/templatetags/meinberlin_project_tags.py:127
 msgid "Idea"
 msgid_plural "Ideas"
 msgstr[0] "Idee"
 msgstr[1] "Ideen"
 
-#: meinberlin/apps/projects/templatetags/meinberlin_project_tags.py:121
+#: meinberlin/apps/projects/templatetags/meinberlin_project_tags.py:136
 msgid "Rating"
 msgid_plural "Ratings"
 msgstr[0] "Bewertung"
 msgstr[1] "Bewertungen"
 
-#: meinberlin/apps/projects/templatetags/meinberlin_project_tags.py:141
+#: meinberlin/apps/projects/templatetags/meinberlin_project_tags.py:156
 msgid "Participant"
 msgid_plural "Participants"
 msgstr[0] "Teilnehmer*in"
@@ -5224,63 +5228,63 @@ msgstr ""
 "Bitte passen Sie die Anzahl der Codes an. Pro Modul können Sie bis zu {} "
 "Codes erstellen."
 
-#: meinberlin/config/settings/base.py:506
+#: meinberlin/config/settings/base.py:507
 msgid "Pin without icon"
 msgstr "Pin ohne Icon"
 
-#: meinberlin/config/settings/base.py:507
+#: meinberlin/config/settings/base.py:508
 msgid "Diamond"
 msgstr "Diamant"
 
-#: meinberlin/config/settings/base.py:508
+#: meinberlin/config/settings/base.py:509
 msgid "Triangle up"
 msgstr "Dreieck Spitze oben"
 
-#: meinberlin/config/settings/base.py:509
+#: meinberlin/config/settings/base.py:510
 msgid "Triangle down"
 msgstr "Dreieck Spitze unten"
 
-#: meinberlin/config/settings/base.py:510
+#: meinberlin/config/settings/base.py:511
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: meinberlin/config/settings/base.py:511
+#: meinberlin/config/settings/base.py:512
 msgid "Semi circle"
 msgstr "Halbkreis"
 
-#: meinberlin/config/settings/base.py:512
+#: meinberlin/config/settings/base.py:513
 msgid "Hexagon"
 msgstr "Sechseck"
 
-#: meinberlin/config/settings/base.py:513
+#: meinberlin/config/settings/base.py:514
 msgid "Rhomboid"
 msgstr "Parallelogramm"
 
-#: meinberlin/config/settings/base.py:514
+#: meinberlin/config/settings/base.py:515
 msgid "Star"
 msgstr "Stern"
 
-#: meinberlin/config/settings/base.py:515
+#: meinberlin/config/settings/base.py:516
 msgid "Square"
 msgstr "Quadrat"
 
-#: meinberlin/config/settings/base.py:516
+#: meinberlin/config/settings/base.py:517
 msgid "Octothorpe"
 msgstr "Raute"
 
-#: meinberlin/config/settings/base.py:517
+#: meinberlin/config/settings/base.py:518
 msgid "Rectangle"
 msgstr "Viereck"
 
-#: meinberlin/config/settings/base.py:518
+#: meinberlin/config/settings/base.py:519
 msgid "Circle"
 msgstr "Kreis"
 
-#: meinberlin/config/settings/base.py:519
+#: meinberlin/config/settings/base.py:520
 msgid "Right triangle"
 msgstr "Dreieck Spitze rechts"
 
-#: meinberlin/config/settings/base.py:520
+#: meinberlin/config/settings/base.py:521
 msgid "Zigzag"
 msgstr "ZickZack"
 

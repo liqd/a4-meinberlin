@@ -290,7 +290,7 @@ const ProjectsListMapBox = ({
             <div />
             {(showMap && filteredItems.length > 0) && (
               <div>
-                {projectsWithoutLocation.length > 0 && <h2>{cityWideProjectsListHeaderStr} {projectsWithoutLocation.length}</h2>}
+                {projectsWithoutLocation.length > 0 && <h2>{cityWideProjectsListHeaderStr}</h2>}
                 <ProjectsList
                   projects={projectsWithoutLocation}
                   visibleProjects={projectsWithoutLocation}

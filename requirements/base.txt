@@ -9,7 +9,7 @@ git+https://github.com/skorokithakis/django-cloudflare-push.git@fcfcfc57826ecb87
 django_csp==4.0
 djangorestframework-gis==1.2.0
 redis==5.2.1
-requests==2.32.4
+requests==2.33.0
 requests-mock==1.11.0
 sentry-sdk[django]==2.34.1
 urllib3==2.6.3

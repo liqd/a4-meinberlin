@@ -5,16 +5,17 @@ All notable changes to this project will be documented in this file.
 Since version v2308 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## mB-v2604.1
 
 ### Fixed
 
-- HTML errors (subdomain audit)
+- HTML errors
 
 ### Changed
 
 - Project and plan tiles: placeholder tile image copyright shows Senatskanzlei Berlin
 - Kiezradar: Sections in ProjectsList when Map is displayed - 2nd list for "city-wide" projects
+- A11y improvements
 
 ## mB-v2603.1
 

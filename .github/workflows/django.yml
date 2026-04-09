@@ -2,9 +2,9 @@ name: Django CI
 
 on:
   push:
-    branches: [ main, dev ]
+    branches: [main, dev]
   pull_request:
-    branches: [ main, dev ]
+    branches: [main, dev]
 
 jobs:
   build:
@@ -17,12 +17,12 @@ jobs:
         run: |
           sudo service postgresql start
           sudo service redis-server start
-      
+
       - name: Set up Python ${{ matrix.python-version }}
         id: setup-python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: "3.12"
 
       - name: Cache node packages
         uses: actions/cache@v4
@@ -76,6 +76,8 @@ jobs:
           uv pip install -r requirements/dev.txt --system
           uv pip install coveralls --system
 
+      - name: Clear npm cache
+        run: npm cache clean --force
       - name: Install NPM Dependencies
         run: |
           if [ "${{ steps.cache-node-modules.outputs.cache-hit }}" != "true" ]; then
@@ -85,7 +87,7 @@ jobs:
             echo "node_modules cache hit - skipping npm ci"
           fi
 
-      - name: Build NPM 
+      - name: Build NPM
         run: |
           npm run build
 
@@ -100,7 +102,7 @@ jobs:
           python manage.py makemigrations --dry-run --check --noinput
           python manage.py clear_cache
           flake8 meinberlin tests --exclude migrations,settings
-          
+
           if [ "${{ github.event_name }}" = "push" ]; then
             # Run all tests and update testmon cache for future PRs
             # Delete .testmondata to force running all tests, but still update cache
@@ -130,8 +132,8 @@ jobs:
         if: github.ref == 'refs/heads/dev'
         env:
           TRAVIS_SSH_SECRET: ${{ secrets.DEPLOY }}
-          PROJECT_BUILD: 'meinberlin-design'
-          VERSION_BUILD: 'dev'
+          PROJECT_BUILD: "meinberlin-design"
+          VERSION_BUILD: "dev"
         run: |
           ./scripts/deploy.sh $PROJECT_BUILD ${VERSION_BUILD##*/}
 
@@ -141,4 +143,3 @@ jobs:
           TRAVIS_SSH_SECRET: ${{ secrets.DEPLOY }}
         run: |
           ./scripts/deploy.sh
-

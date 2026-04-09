@@ -150,6 +150,26 @@ const ProjectsListMapBox = ({
     status = getResultCountText(displayItems.length)
   }
 
+  const onClickSearchCompletedProjects = () => {
+    const newFilters = {
+      ...appliedFilters,
+      projectState: ['past']
+    }
+
+    setAppliedFilters(newFilters)
+    setProjectState(['past'])
+    setParams(newFilters)
+    // Tells child ProjectsControlBar to update
+    setSyncTrigger(prev => prev + 1)
+
+    setTimeout(() => {
+      resultRef?.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      })
+    }, 100)
+  }
+
   return (
     <div>
       {(error || alert) && (
@@ -260,10 +280,15 @@ const ProjectsListMapBox = ({
               showMap={showMap}
               topicChoices={topicChoices}
               loading={loading}
-              showSearchCompletedProjectsButton={false}
+              showSearchCompletedProjectsButton={
+                !(projectState.length > 0 &&
+                projectState.includes('past')) &&
+                !(showMap && filteredItems.length > 0) // if this condition is true then the button is being shown in the 2nd list
+              }
+              searchCompletedProjects={() => onClickSearchCompletedProjects}
             />
             <div />
-            {showMap && (
+            {(showMap && filteredItems.length > 0) && (
               <div>
                 <h2>{cityWideProjectsListHeaderStr}</h2>
                 <ProjectsList
@@ -277,25 +302,7 @@ const ProjectsListMapBox = ({
                     !(projectState.length > 0 &&
                     projectState.includes('past'))
                   }
-                  searchCompletedProjects={() => {
-                    const newFilters = {
-                      ...appliedFilters,
-                      projectState: ['past']
-                    }
-
-                    setAppliedFilters(newFilters)
-                    setProjectState(['past'])
-                    setParams(newFilters)
-                    // Tells child ProjectsControlBar to update
-                    setSyncTrigger(prev => prev + 1)
-
-                    setTimeout(() => {
-                      resultRef?.current?.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center'
-                      })
-                    }, 100)
-                  }}
+                  searchCompletedProjects={() => onClickSearchCompletedProjects}
                 />
               </div>
             )}

@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-09 15:40+0200\n"
-"PO-Revision-Date: 2026-03-26 07:50+0000\n"
+"PO-Revision-Date: 2026-04-09 14:14+0000\n"
 "Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js-"
-"design-dev/de/>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
+"js-design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2557,11 +2557,11 @@ msgstr "Karte anzeigen"
 
 #: meinberlin/react/projects/ProjectsListMapBox.jsx:22
 msgid "In this area"
-msgstr ""
+msgstr "Im Kartenausschnitt"
 
 #: meinberlin/react/projects/ProjectsListMapBox.jsx:23
 msgid "Citywide & district-wide"
-msgstr ""
+msgstr "Ohne genauen Ort"
 
 #: meinberlin/react/projects/ProjectsListMapBox.jsx:24
 msgid "show list"

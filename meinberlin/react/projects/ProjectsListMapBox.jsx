@@ -285,12 +285,12 @@ const ProjectsListMapBox = ({
                 projectState.includes('past')) &&
                 !(showMap && filteredItems.length > 0) // if this condition is true then the button is being shown in the 2nd list
               }
-              searchCompletedProjects={() => onClickSearchCompletedProjects}
+              searchCompletedProjects={() => onClickSearchCompletedProjects()}
             />
             <div />
             {(showMap && filteredItems.length > 0) && (
               <div>
-                <h2>{cityWideProjectsListHeaderStr}</h2>
+                {projectsWithoutLocation.length > 0 && <h2>{cityWideProjectsListHeaderStr}</h2>}
                 <ProjectsList
                   projects={projectsWithoutLocation}
                   visibleProjects={projectsWithoutLocation}
@@ -302,7 +302,7 @@ const ProjectsListMapBox = ({
                     !(projectState.length > 0 &&
                     projectState.includes('past'))
                   }
-                  searchCompletedProjects={() => onClickSearchCompletedProjects}
+                  searchCompletedProjects={() => onClickSearchCompletedProjects()}
                 />
               </div>
             )}

@@ -1,5 +1,6 @@
 import itertools
 import re
+from urllib.parse import quote
 
 from django import template
 from django.db.models import Q
@@ -17,6 +18,20 @@ from meinberlin.apps.livequestions.models import LiveQuestion
 from meinberlin.apps.mapideas.models import MapIdea
 
 register = template.Library()
+
+
+@register.filter
+def tel_uri(phone):
+    """
+    Build a valid tel: URI for use in href. Human-readable numbers may contain
+    spaces and punctuation that are illegal unescaped in URL scheme data.
+    """
+    if not phone:
+        return ""
+    s = str(phone).strip()
+    if not s:
+        return ""
+    return "tel:" + quote(s, safe="+*#")
 
 
 @register.filter

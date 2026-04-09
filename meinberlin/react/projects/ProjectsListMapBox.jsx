@@ -19,6 +19,8 @@ const nothingStr = django.gettext('Unfortunately, there are no projects matching
 const showMapAriaStr = django.gettext('show map')
 const listStr = django.gettext('List')
 const mapStr = django.gettext('Map')
+const visibleProjectsListHeaderStr = django.gettext('In this area')
+const cityWideProjectsListHeaderStr = django.gettext('Citywide & district-wide')
 const showListStr = django.gettext('show list')
 const viewModeStr = django.gettext('View mode')
 const noVisibleResultsStr = django.gettext('There are no suitable projects in this area. Try moving the map or adjusting your filters.')
@@ -125,6 +127,10 @@ const ProjectsListMapBox = ({
   }, [alert])
 
   const filteredItems = useMemo(() => filterProjects(items, appliedFilters, kiezradars, topicChoices, projectState), [items, appliedFilters, kiezradars, projectState])
+
+  const projectsWithoutLocation = useMemo(() => {
+    return filteredItems.filter(project => !project.point)
+  }, [filteredItems])
 
   // Use visible projects for status when map is shown
   const hasVisibleProjects = visibleProjects.length > 0
@@ -246,6 +252,7 @@ const ProjectsListMapBox = ({
           className={classNames('projects-list__wrapper', showMap && ' projects-list__wrapper--combined')}
         >
           <div id="list" className="projects-list__list">
+            {(showMap && hasVisibleProjects) && <h2>{visibleProjectsListHeaderStr}</h2>}
             <ProjectsList
               projects={displayItems}
               visibleProjects={visibleProjects}
@@ -253,30 +260,45 @@ const ProjectsListMapBox = ({
               showMap={showMap}
               topicChoices={topicChoices}
               loading={loading}
-              showSearchCompletedProjectsButton={
-                !(projectState.length > 0 &&
-                  projectState.includes('past'))
-              }
-              searchCompletedProjects={() => {
-                const newFilters = {
-                  ...appliedFilters,
-                  projectState: ['past']
-                }
-
-                setAppliedFilters(newFilters)
-                setProjectState(['past'])
-                setParams(newFilters)
-                // Tells child ProjectsControlBar to update
-                setSyncTrigger(prev => prev + 1)
-
-                setTimeout(() => {
-                  resultRef?.current?.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
-                  })
-                }, 100)
-              }}
+              showSearchCompletedProjectsButton={false}
             />
+            <div />
+            {showMap && (
+              <div>
+                <h2>{cityWideProjectsListHeaderStr}</h2>
+                <ProjectsList
+                  projects={projectsWithoutLocation}
+                  visibleProjects={projectsWithoutLocation}
+                  isHorizontal={showMap}
+                  showMap={showMap}
+                  topicChoices={topicChoices}
+                  loading={loading}
+                  showSearchCompletedProjectsButton={
+                    !(projectState.length > 0 &&
+                    projectState.includes('past'))
+                  }
+                  searchCompletedProjects={() => {
+                    const newFilters = {
+                      ...appliedFilters,
+                      projectState: ['past']
+                    }
+
+                    setAppliedFilters(newFilters)
+                    setProjectState(['past'])
+                    setParams(newFilters)
+                    // Tells child ProjectsControlBar to update
+                    setSyncTrigger(prev => prev + 1)
+
+                    setTimeout(() => {
+                      resultRef?.current?.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                      })
+                    }, 100)
+                  }}
+                />
+              </div>
+            )}
           </div>
           {showMap &&
             <div id="map" className="projects-list__map">

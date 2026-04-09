@@ -19,6 +19,19 @@ from meinberlin.apps.mapideas.models import MapIdea
 
 register = template.Library()
 
+# Blueprints where the module-detail phase banner (submit idea / proposal CTA) sticks while scrolling.
+STICKY_PHASE_BANNER_BLUEPRINTS = frozenset(
+    {"BS", "MBS", "IC", "MIC", "PB", "PB2", "PB3"}
+)
+
+
+@register.filter
+def has_sticky_phase_banner(module):
+    """True when the phase info bar should use CSS sticky positioning on module detail."""
+    if not module:
+        return False
+    return getattr(module, "blueprint_type", None) in STICKY_PHASE_BANNER_BLUEPRINTS
+
 
 @register.filter
 def tel_uri(phone):

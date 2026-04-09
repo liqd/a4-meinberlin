@@ -21,6 +21,47 @@
     margin-top: auto;
 }
 
+// Sticky phase + CTA bar for BS, MBS, IC, MIC, PB, PB2, PB3 (see has_sticky_phase_banner).
+// Stickiness begins once the panel would scroll above `top` (same offset as body scroll-padding-top in _header.scss).
+// Berlin marketing (`.layout-grid #layout-grid__area--maincontent > .fullwidth`) sets `position: relative`,
+// `left: 50%`, `margin-left: -50vw`, `width: 100vw`, `overflow: hidden`. We must override with equal or higher
+// specificity. For `position: sticky`, `left`/`right` are sticky insets — the marketing `left: 50%` must be reset
+// or the bar shifts left; full-bleed centering is restored with `margin-left/right: calc(50% - 50vw)`.
+/* stylelint-disable selector-max-id, selector-max-specificity, selector-id-pattern -- match berlin_marketing (.layout-grid|#layout-grid) #layout-grid__area--maincontent > .fullwidth */
+@media screen and (width >= 73.8135rem) {
+    .layout-grid #layout-grid__area--maincontent > .modul-servicepanel.phase-info.phase-info--sticky.fullwidth,
+    #layout-grid #layout-grid__area--maincontent > .modul-servicepanel.phase-info.phase-info--sticky.fullwidth {
+        position: sticky;
+        top: 6.5rem;
+        z-index: 2;
+        left: auto;
+        right: auto;
+        width: 100vw;
+        max-width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        overflow: visible;
+    }
+}
+
+@media screen and (width < 73.8135rem) {
+    .modul-servicepanel.phase-info.phase-info--sticky.fullwidth {
+        position: sticky;
+        top: 6.5rem;
+        z-index: 2;
+    }
+}
+/* stylelint-enable selector-max-id, selector-max-specificity, selector-id-pattern */
+
+@media print {
+    .modul-servicepanel.phase-info.phase-info--sticky.fullwidth {
+        position: static;
+        top: auto;
+        left: auto;
+        right: auto;
+    }
+}
+
 .phase-info .modul-servicepanel .fa, .modul-servicepanel .far, .modul-servicepanel .fas {
     // overwrite icon color
     color: inherit;

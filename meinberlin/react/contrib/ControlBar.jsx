@@ -15,7 +15,7 @@ const translated = {
   filters: django.gettext('Filters'),
   filter: django.gettext('Filter'),
   nav: django.gettext('Search, filter and sort the ideas list'),
-  searchFor: django.gettext('Search for Proposals')
+  showMap: django.gettext('Show map')
 }
 
 const getResultCountText = (count) => {
@@ -204,7 +204,7 @@ export const ControlBar = ({ mapListViewMode, showViewModeSwitch = true, desktop
               : (
                 <ToggleSwitch
                   uniqueId="map-switch"
-                  onSwitchStr="Show map"
+                  switchStr={translated.showMap}
                   defaultChecked
                   isChecked={desktopViewMode === 'map'}
                   toggleSwitch={handleToggle}

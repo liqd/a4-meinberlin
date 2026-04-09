@@ -8,6 +8,7 @@ import ImageWithPlaceholder from '../contrib/ImageWithPlaceholder'
 
 const copyrightMissingStr = django.gettext('copyright missing')
 const copyrightStr = django.gettext('copyright by')
+const PLACEHOLDER_TILE_COPYRIGHT = 'Senatskanzlei Berlin'
 const participationEndedStr = django.gettext('Participation ended')
 const beginsOnStr = django.gettext('Begins on the')
 const participationProjectsStr = django.gettext('Participation projects')
@@ -46,7 +47,7 @@ const ProjectTile = forwardRef(function ProjectTile ({ project, isHorizontal, to
       aria-label={project.title}
     >
       <div className="project-tile__content-wrapper">
-        <div className="project-tile__image-wrapper image">
+        <div className={classNames('project-tile__image-wrapper image', isHorizontal ? 'project-tile__image-wrapper--horizontal' : '')}>
           <ProjectTileIcon access={project.access} />
           {project.subtype === 'external' && (
             <div className="project-tile__external-indicator" aria-hidden="true">
@@ -61,7 +62,11 @@ const ProjectTile = forwardRef(function ProjectTile ({ project, isHorizontal, to
             className="project-tile__image"
           />
           <span className="image__copyright">
-            {project.tile_image_copyright ? copyrightStr + ' ' + project.tile_image_copyright : copyrightMissingStr}
+            {!project.tile_image
+              ? copyrightStr + ' ' + PLACEHOLDER_TILE_COPYRIGHT
+              : project.tile_image_copyright
+                ? copyrightStr + ' ' + project.tile_image_copyright
+                : copyrightMissingStr}
           </span>
         </div>
 

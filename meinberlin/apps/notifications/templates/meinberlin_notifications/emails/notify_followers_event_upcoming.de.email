@@ -1,4 +1,5 @@
 {% extends 'email_base.'|add:part_type %}
+{% load offline_event_tags %}
 
 {% block subject %}Einladung zu einer Veranstaltung im Projekt {{ action.project.name|striptags }}{% endblock %}
 
@@ -8,11 +9,24 @@
 {% block greeting %}Hallo {{ receiver.username }},{% endblock %}
 
 {% block content_html %}
+{% get_offline_event action.obj as event %}
 <p>
-am {{ action.obj.date }} Uhr findet die folgende Veranstaltung statt:
+am 
+{% if event %}
+    {{ event.event_date|date:"d.m.Y H:i" }}
+{% else %}
+    {{ action.obj.start_date|date:"d.m.Y H:i" }}
+{% endif %}
+Uhr findet die folgende Veranstaltung statt:
 </p>
 <p>
-<b>{{ action.obj.name }}</b>
+<b>
+{% if event %}
+    {{ event.name }}
+{% else %}
+    {{ action.obj.name }}
+{% endif %}
+</b>
 </p>
 <p>
 Weitere Informationen zu der Veranstaltung finden Sie im Projekt.
@@ -20,13 +34,35 @@ Weitere Informationen zu der Veranstaltung finden Sie im Projekt.
 {% endblock %}
 
 {% block content_text %}
-am {{ action.obj.date }} Uhr findet die folgende Veranstaltung statt:
-{{ action.obj.name }}
+{% get_offline_event action.obj as event %}
+am 
+{% if event %}
+    {{ event.event_date|date:"d.m.Y H:i" }}
+{% else %}
+    {{ action.obj.start_date|date:"d.m.Y H:i" }}
+{% endif %}
+Uhr findet die folgende Veranstaltung statt:
+
+{% if event %}
+    {{ event.name }}
+{% else %}
+    {{ action.obj.name }}
+{% endif %}
 
 Weitere Informationen zu der Veranstaltung finden Sie im Projekt.
 {% endblock %}
 
-{% block cta_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% endblock %}
+{% block cta_url %}
+{% get_offline_event action.obj as event %}
+{% if event %}
+    {% url 'module-detail' event.module.slug as event_url %}
+    {{ email.get_host }}{{ event_url }}
+{% else %}
+    {{ email.get_host }}{{ action.project.get_absolute_url }}
+{% endif %}
+{% endblock %}
 {% block cta_label %}Veranstaltung anzeigen{% endblock %}
 
-{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Sie haben die E-Mail erhalten, weil Sie oben genanntem Projekt folgen. Wenn Sie keine Benachrichtigungen mehr erhalten möchten, entfolgen Sie dem <a href="{{ email.get_host }}{{ action.project.get_absolute_url }}">Projekt</a> oder ändern Sie die Einstellungen zu Ihrem <a href="{{ email.get_host }}{% url 'account' %}">Nutzerkonto</a>.{% endblock %}
+{% block reason %}
+Diese E-Mail wurde an {{ receiver.email }} gesendet. Sie haben die E-Mail erhalten, weil Sie oben genanntem Projekt folgen.
+{% endblock %}

@@ -55,6 +55,7 @@ INSTALLED_APPS = (
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "csp",
     "django_ckeditor_5",
     "django_filters",
     "django_celery_beat",
@@ -150,6 +151,10 @@ MIDDLEWARE = (
     "meinberlin.apps.embed.middleware.AjaxPathMiddleware",
     "meinberlin.apps.votes.middleware.VotingTokenSessionMiddleware",
 )
+
+# Required for some embedded providers (e.g. video embeds)
+# to allow cross-origin requests without blocking.
+SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
 SITE_ID = 1
 
@@ -549,6 +554,7 @@ A4_DASHBOARD = {
 }
 
 A4_ACTIONS_PHASE_ENDS_HOURS = 48
+ACTIONS_OFFLINE_EVENT_STARTING_HOURS = 72
 
 # Add a Captcheck captcha URL in the production server's local.py to use it
 # Captcha software we use: https://source.netsyms.com/Netsyms/Captcheck
@@ -642,6 +648,8 @@ CKEDITOR_5_CONFIGS = {
                 {
                     "name": "/.*/",
                     "classes": [
+                        "image-aspect-ratio-43",
+                        "image-aspect-ratio-21",
                         "image",
                         "image-inline",
                     ],

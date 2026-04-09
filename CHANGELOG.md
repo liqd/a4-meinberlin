@@ -7,15 +7,67 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## Unreleased
 
-### Added
+### Fixed
+
+- HTML errors (subdomain audit)
 
 ### Changed
+
+- Project and plan tiles: placeholder tile image copyright shows Senatskanzlei Berlin
+- Kiezradar: Sections in ProjectsList when Map is displayed - 2nd list for "city-wide" projects
+
+## mB-v2603.1
+
+### Fixed
+
+- Pagination positioning
+- Youtube embedding (dsvgo repo)
+- Padding of copyright text in ProjectTile
+
+### Changed
+
+- Kiezradar map district borders and masking
+- Kiezradar: Zooming / Panning on Map updates the list of Projects based on visibility
+- Notifications page: links to saved searches and followed projects
+- Email footer: updated links and legal text
+
+
+## mB-v2602.3
+
+
+### Fixed
+
+- Kiezradar: First load now already shows correct number of results
+- Correct Translation for Likes Plural
+
+## mB-v2602.2
+
+### Changed
+
+- Uses a4 branch-off temporarily: jp-26-02-hotfix-offline-events. To be reverted on next release.
+
+### Fixed
+
+- Email notifications for offline events happen exactly one time, once the event is 72 hours away and include correct name, time, and link
+
+## mB-v2602.1
+
+### Changed
+
+- update a4
+
+## mB-v2601.1
 
 ### Fixed
 
 - Translation for kiezradar organisation search "No matches found"
 - Translation for Likes/Dislikes on CardStats used on map and Map with Ideas
 - Translation for validation error generic message
+- CKEditor image aspect ratio options (4:3 and 2:1) Bug 
+- Bug for deleted ContentTypes in Notifications (Actions) 
+- Allow tile_image in Bplan to be blank null
+- Improve Accessibility
+- Add back pagination css deleted for burgermenu
 
 ## mB-v2512.2
 

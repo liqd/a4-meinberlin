@@ -1,3 +1,4 @@
+# flake8: noqa
 from datetime import timedelta
 
 from celery import shared_task
@@ -8,6 +9,7 @@ from adhocracy4.actions.verbs import Verbs
 from meinberlin.apps.kiezradar.matchers import get_search_profiles_for_obj
 from meinberlin.apps.notifications import emails
 from meinberlin.apps.notifications.models import Notification
+from meinberlin.apps.offlineevents.models import OfflineEventItem
 
 
 @shared_task(name="periodic_notifications_cleanup")
@@ -32,12 +34,41 @@ def send_action_notifications(action_pk):
         if action.project:
             emails.NotifyModeratorsEmail.send(action)
 
-    elif action.type == "phase" and action.project.project_type == "a4projects.Project":
-        if verb == Verbs.START:
-            emails.NotifyFollowersOnPhaseStartedEmail.send(action)
-        elif verb == Verbs.SCHEDULE:
-            emails.NotifyFollowersOnPhaseIsOverSoonEmail.send(action)
+    elif (
+        action.type == "phase"
+        and action.project
+        and action.project.project_type == "a4projects.Project"
+    ):
+        is_offline_event = (
+            hasattr(action.obj, "type")
+            and action.obj.type
+            and action.obj.type.endswith("offline-event")
+        )
 
+        if verb == Verbs.START:
+            if is_offline_event:
+                # Offline event starting now - no action needed
+                pass
+            else:
+                emails.NotifyFollowersOnPhaseStartedEmail.send(action)
+
+        elif verb == Verbs.SCHEDULE:
+            if is_offline_event:
+                from meinberlin.apps.offlineevents.models import OfflineEventItem
+
+                event = OfflineEventItem.objects.filter(
+                    module=action.obj.module
+                ).first()
+                if event:
+                    emails.NotifyFollowersOnUpcomingEventEmail.send(
+                        action, event_id=event.id
+                    )
+                else:
+                    emails.NotifyFollowersOnUpcomingEventEmail.send(action)
+            else:
+                emails.NotifyFollowersOnPhaseIsOverSoonEmail.send(action)
+
+    # Deprecated - kept for backward compatibility
     elif action.type == "offlineevent" and verb == Verbs.START:
         emails.NotifyFollowersOnUpcomingEventEmail.send(action)
 

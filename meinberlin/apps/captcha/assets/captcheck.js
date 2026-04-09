@@ -88,7 +88,8 @@ function initializeCaptcha () {
   /* Loop over all the CAPTCHA containers on the page, setting up a different CAPTCHA in each */
   Array.prototype.forEach.call(document.getElementsByClassName('captcheck_container'), function (container) {
     const apiUrl = container.getAttribute('data-api_url')
-    const combinedAnswerId = container.getAttribute('combined_answer_id')
+    const combinedAnswerId =
+      container.dataset.combinedAnswerId || container.getAttribute('combined_answer_id')
     const xhr = new XMLHttpRequest()
     xhr.open('GET', apiUrl + '?action=new', true)
     xhr.onreadystatechange = function () {

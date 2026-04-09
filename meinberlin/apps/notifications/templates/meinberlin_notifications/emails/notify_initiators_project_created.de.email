@@ -18,5 +18,4 @@
 {% block cta_url %}{{ email.get_host }}{{ project.get_absolute_url }}{% endblock %}
 {% block cta_label %}Projekt anzeigen{% endblock %}
 
-{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Sie haben die E-Mail erhalten, weil Sie Projektinitiator*in der oben genannten Organisation sind. Wenn Sie keine Benachrichtigungen mehr erhalten möchten, ändern Sie die <a href="{{ email.get_host }}{% url 'account_profile' %}">
-Einstellungen zu Ihrem Nutzerkonto</a>.{% endblock %}
+{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Sie haben die E-Mail erhalten, weil Sie Projektinitiator*in der oben genannten Organisation sind.{% endblock %}

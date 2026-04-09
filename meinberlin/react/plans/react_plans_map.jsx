@@ -15,6 +15,8 @@ function init () {
     const bounds = JSON.parse(el.getAttribute('data-bounds'))
     const kiezradars = el.getAttribute('data-kiezradars') && JSON.parse(el.getAttribute('data-kiezradars'))
     const searchProfile = el.getAttribute('data-search-profile') && JSON.parse(el.getAttribute('data-search-profile'))
+    const districtPolygons = el.getAttribute('data-district-polygons') && JSON.parse(el.getAttribute('data-district-polygons'))
+    const polygon = el.getAttribute('data-polygon') && JSON.parse(el.getAttribute('data-polygon'))
     const selectedDistrict = el.getAttribute('data-selected-district')
     const selectedTopic = el.getAttribute('data-selected-topic')
     const districts = JSON.parse(el.getAttribute('data-districts'))
@@ -48,6 +50,8 @@ function init () {
             bounds={bounds}
             organisations={organisations}
             districts={districts}
+            districtPolygons={districtPolygons}
+            polygon={polygon}
             topicChoices={topicChoices}
             participationChoices={participationChoices}
             kiezradars={kiezradars}

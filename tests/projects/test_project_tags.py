@@ -12,8 +12,15 @@ from meinberlin.apps.livequestions import phases as livequestion_phases
 from meinberlin.apps.projects.templatetags.meinberlin_project_tags import (
     render_module_insights,
 )
+from meinberlin.apps.projects.templatetags.meinberlin_project_tags import tel_uri
 from meinberlin.apps.topicprio import phases as topicprio_phases
 from tests.helpers import clear_query_cache
+
+
+def test_tel_uri_encodes_spaces_and_preserves_plus():
+    assert tel_uri("+49 30 90277-6445") == "tel:+49%2030%2090277-6445"
+    assert tel_uri("") == ""
+    assert tel_uri("   ") == ""
 
 
 @pytest.mark.django_db

@@ -21,7 +21,9 @@
             </p>
             <form method="post">
                 {% csrf_token %}
-                {% include 'meinberlin_contrib/includes/form_submit_flex_end.html' with button_text='Accept' secondary_button_text='Decline' %}
+                {% translate "Accept" as button_text %}
+                {% translate "Decline" as secondary_button_text %}
+                {% include 'meinberlin_contrib/includes/form_submit_flex_end.html' with button_text=button_text secondary_button_text=secondary_button_text %}
             </form>
         </div>
     </div>

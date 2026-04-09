@@ -21,8 +21,10 @@ const ProjectsList = ({
   projectsUrl,
   topicChoices,
   isHorizontal,
+  showMap,
   searchCompletedProjects,
-  showSearchCompletedProjectsButton
+  showSearchCompletedProjectsButton,
+  visibleProjects
 }) => {
   const [projects, setProjects] = React.useState(initialProjects || [])
   const [loading, setLoading] = React.useState(!initialProjects)
@@ -39,7 +41,6 @@ const ProjectsList = ({
       try {
         setLoading(true)
         const response = await fetch(projectsUrl)
-        // eslint-disable-next-line no-restricted-syntax
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
 
         const data = await response.json()
@@ -57,13 +58,15 @@ const ProjectsList = ({
 
   React.useEffect(() => {
     if (!loading) {
-      if (projects.length > 0) {
-        setAnnouncement(django.interpolate(translated.showingProjects, [projects.length]))
+      // When map is shown, use visibleProjects. When map is hidden, use all projects
+      const projectsToShow = showMap ? (visibleProjects || []) : projects
+      if (projectsToShow.length > 0) {
+        setAnnouncement(django.interpolate(translated.showingProjects, [projectsToShow.length]))
       } else {
         setAnnouncement(translated.noProjectsFound)
       }
     }
-  }, [projects, loading])
+  }, [projects, visibleProjects, loading, showMap])
 
   React.useEffect(() => {
     if (initialProjects !== undefined) {
@@ -81,6 +84,10 @@ const ProjectsList = ({
 
   if (loading) return <Spinner />
 
+  // When map is shown, show visible projects (could be empty)
+  // When map is hidden, show all projects
+  const displayProjects = showMap ? (visibleProjects || []) : projects
+
   return (
     <>
       <div
@@ -94,8 +101,8 @@ const ProjectsList = ({
 
       <ul className={classNames('projects-list', isHorizontal ? 'projects-list--horizontal' : 'projects-list--vertical')}>
         {
-          projects.length > 0 &&
-          projects.map((project, index) => (
+          displayProjects.length > 0 &&
+          displayProjects.map((project, index) => (
             <li key={'project-' + project.id + '-' + index}>
               <ProjectTile
                 project={project}

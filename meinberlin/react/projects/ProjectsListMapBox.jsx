@@ -19,9 +19,11 @@ const nothingStr = django.gettext('Unfortunately, there are no projects matching
 const showMapAriaStr = django.gettext('show map')
 const listStr = django.gettext('List')
 const mapStr = django.gettext('Map')
+const visibleProjectsListHeaderStr = django.gettext('In this area')
+const cityWideProjectsListHeaderStr = django.gettext('Citywide & district-wide')
 const showListStr = django.gettext('show list')
 const viewModeStr = django.gettext('View mode')
-
+const noVisibleResultsStr = django.gettext('There are no suitable projects in this area. Try moving the map or adjusting your filters.')
 const getResultCountText = (count) => {
   const foundProposalsText = django.ngettext(
     '1 Proposal found.',
@@ -47,6 +49,8 @@ const ProjectsListMapBox = ({
   useVectorMap,
   // for filtering:
   districts,
+  districtPolygons,
+  polygon,
   participationChoices,
   projectStatus,
   organisations,
@@ -60,8 +64,10 @@ const ProjectsListMapBox = ({
   const [loading, setLoading] = useState(true)
   const [projectState, setProjectState] = useState(getDefaultProjectState(searchParams))
   const [items, setItems] = useState([])
+  const [visibleProjects, setVisibleProjects] = useState([])
   const fetchCache = useRef({})
   const resultRef = useRef({})
+  const mapRef = useRef(null)
   const [appliedFilters, setAppliedFilters] = useState(getDefaultState(searchParams, { districts, organisations, participationChoices, topicChoices, kiezradars }))
   const [alert, setAlert] = useState(null)
   const [error, setError] = useState(null)
@@ -81,31 +87,29 @@ const ProjectsListMapBox = ({
       privateprojectApiUrl,
       ...projectState.map(state => projectApiUrl + '?status=' + state + 'Participation')
     ]
-    const tempItems = []
 
-    Promise.all(
-      urls.map(async (url) => {
-        try {
-          let data
-          if (fetchCache.current[url]) {
-            data = fetchCache.current[url]
-          } else {
+    try {
+      const results = await Promise.all(
+        urls.map(async (url) => {
+          try {
+            if (fetchCache.current[url]) {
+              return fetchCache.current[url]
+            }
             const response = await fetch(url)
-            data = await response.json()
+            const data = await response.json()
             fetchCache.current[url] = data
+            return data
+          } catch (e) {
+            console.error(e)
+            return []
           }
-          tempItems.push(...data)
-          setItems(
-            // filter out duplicates by title (id is not unique as there are
-            // different models in items that can have the same id)
-            // [...new Map(tempItems.map(v => [v.title, v])).values()]
-            tempItems.sort(sortProjects)
-          )
-        } catch (e) {
-          console.error(e)
-        }
-      })
-    ).finally(() => setLoading(false))
+        })
+      )
+      const combined = results.flat()
+      setItems([...combined].sort(sortProjects))
+    } finally {
+      setLoading(false)
+    }
   }, [plansApiUrl, extprojectApiUrl, privateprojectApiUrl, projectState, projectApiUrl])
 
   useEffect(() => {
@@ -122,15 +126,48 @@ const ProjectsListMapBox = ({
     }
   }, [alert])
 
+  const filteredItems = useMemo(() => filterProjects(items, appliedFilters, kiezradars, topicChoices, projectState), [items, appliedFilters, kiezradars, projectState])
+
+  const projectsWithoutLocation = useMemo(() => {
+    return filteredItems.filter(project => !project.point)
+  }, [filteredItems])
+
+  // Use visible projects for status when map is shown
+  const hasVisibleProjects = visibleProjects.length > 0
+  const displayItems = showMap && hasVisibleProjects
+    ? visibleProjects
+    : showMap && !hasVisibleProjects && filteredItems.length > 0
+      ? [] // Show empty list when map has no visible projects but filters have results
+      : filteredItems
+
   let status = nothingStr
 
-  const filteredItems = useMemo(() => filterProjects(items, appliedFilters, kiezradars, topicChoices, projectState), [items, appliedFilters, kiezradars, projectState])
   if (loading) {
-    status = (
-      <Spinner />
-    )
-  } else if (filteredItems.length > 0) {
-    status = getResultCountText(filteredItems.length)
+    status = <Spinner />
+  } else if (showMap && !hasVisibleProjects && filteredItems.length > 0) {
+    status = noVisibleResultsStr
+  } else if (displayItems.length > 0) {
+    status = getResultCountText(displayItems.length)
+  }
+
+  const onClickSearchCompletedProjects = () => {
+    const newFilters = {
+      ...appliedFilters,
+      projectState: ['past']
+    }
+
+    setAppliedFilters(newFilters)
+    setProjectState(['past'])
+    setParams(newFilters)
+    // Tells child ProjectsControlBar to update
+    setSyncTrigger(prev => prev + 1)
+
+    setTimeout(() => {
+      resultRef?.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      })
+    }, 100)
   }
 
   return (
@@ -235,40 +272,45 @@ const ProjectsListMapBox = ({
           className={classNames('projects-list__wrapper', showMap && ' projects-list__wrapper--combined')}
         >
           <div id="list" className="projects-list__list">
+            {(showMap && hasVisibleProjects) && <h2>{visibleProjectsListHeaderStr}</h2>}
             <ProjectsList
-              projects={filteredItems}
+              projects={displayItems}
+              visibleProjects={visibleProjects}
               isHorizontal={showMap}
+              showMap={showMap}
               topicChoices={topicChoices}
               loading={loading}
               showSearchCompletedProjectsButton={
                 !(projectState.length > 0 &&
-                  projectState.includes('past'))
+                projectState.includes('past')) &&
+                !(showMap && filteredItems.length > 0) // if this condition is true then the button is being shown in the 2nd list
               }
-              searchCompletedProjects={() => {
-                const newFilters = {
-                  ...appliedFilters,
-                  projectState: ['past']
-                }
-
-                setAppliedFilters(newFilters)
-                setProjectState(['past'])
-                setParams(newFilters)
-
-                // Tells child ProjectsControlBar to update
-                setSyncTrigger(prev => prev + 1)
-
-                setTimeout(() => {
-                  resultRef?.current?.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
-                  })
-                }, 100)
-              }}
+              searchCompletedProjects={() => onClickSearchCompletedProjects()}
             />
+            <div />
+            {(showMap && filteredItems.length > 0) && (
+              <div>
+                {projectsWithoutLocation.length > 0 && <h2>{cityWideProjectsListHeaderStr}</h2>}
+                <ProjectsList
+                  projects={projectsWithoutLocation}
+                  visibleProjects={projectsWithoutLocation}
+                  isHorizontal={showMap}
+                  showMap={showMap}
+                  topicChoices={topicChoices}
+                  loading={loading}
+                  showSearchCompletedProjectsButton={
+                    !(projectState.length > 0 &&
+                    projectState.includes('past'))
+                  }
+                  searchCompletedProjects={() => onClickSearchCompletedProjects()}
+                />
+              </div>
+            )}
           </div>
           {showMap &&
             <div id="map" className="projects-list__map">
               <ProjectsMap
+                ref={mapRef}
                 attribution={attribution}
                 items={filteredItems}
                 bounds={bounds}
@@ -277,6 +319,11 @@ const ProjectsListMapBox = ({
                 omtToken={omtToken}
                 useVectorMap={useVectorMap}
                 topicChoices={topicChoices}
+                districtPolygons={districtPolygons}
+                activeDistricts={appliedFilters.districts}
+                kiezradars={kiezradars}
+                activeKiezradars={appliedFilters.kiezradars}
+                onVisibleMarkersChange={setVisibleProjects}
               />
             </div>}
         </div>

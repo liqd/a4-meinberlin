@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-12 12:11+0100\n"
+"POT-Creation-Date: 2026-04-09 15:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -80,6 +80,8 @@ msgstr "Do you really want to delete this comment?"
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:28
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:6
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:72
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:77
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:154
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
 msgid "Delete"
@@ -613,6 +615,24 @@ msgstr "Question"
 msgid "Explanation"
 msgstr "Explanation"
 
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:49
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:54
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
+#: meinberlin/react/documents/ChapterNavItem.jsx:3
+#: meinberlin/react/documents/ParagraphForm.jsx:9
+msgid "Move up"
+msgstr "Move up"
+
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:61
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:66
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
+#: meinberlin/react/documents/ChapterNavItem.jsx:4
+#: meinberlin/react/documents/ParagraphForm.jsx:10
+msgid "Move down"
+msgstr "Move down"
+
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:47
 msgid "Participants can vote for more than one option (multiple choice)"
 msgstr "Participants can vote for more than one option (multiple choice)"
@@ -629,20 +649,6 @@ msgstr "Other"
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:113
 msgid "New answer"
 msgstr "New answer"
-
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
-#: meinberlin/react/documents/ChapterNavItem.jsx:3
-#: meinberlin/react/documents/ParagraphForm.jsx:9
-msgid "Move up"
-msgstr "Move up"
-
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
-#: meinberlin/react/documents/ChapterNavItem.jsx:4
-#: meinberlin/react/documents/ParagraphForm.jsx:10
-msgid "Move down"
-msgstr "Move down"
 
 #: adhocracy4/polls/static/PollDetail/CharCounter.jsx:5
 msgid "characters"
@@ -1360,9 +1366,9 @@ msgid "Search, filter and sort the ideas list"
 msgstr "Search, filter and sort the ideas list"
 
 #: meinberlin/react/contrib/ControlBar.jsx:18
-#: meinberlin/react/projects/ProjectsControlBar.jsx:30
-msgid "Search for Proposals"
-msgstr "Search for Proposals"
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:17
+msgid "Show map"
+msgstr "Show map"
 
 #: meinberlin/react/contrib/ControlBar.jsx:23
 #, javascript-format
@@ -1377,7 +1383,7 @@ msgid "Remove filter %s"
 msgstr "Remove filter %s"
 
 #: meinberlin/react/contrib/ControlBarListMapSwitch.jsx:7
-#: meinberlin/react/projects/ProjectsListMapBox.jsx:23
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:25
 msgid "View mode"
 msgstr "View mode"
 
@@ -2119,23 +2125,23 @@ msgstr "copyright missing"
 msgid "copyright by"
 msgstr "copyright by"
 
-#: meinberlin/react/projects/ProjectTile.jsx:11
+#: meinberlin/react/projects/ProjectTile.jsx:12
 msgid "Participation ended"
 msgstr "Participation ended"
 
-#: meinberlin/react/projects/ProjectTile.jsx:12
+#: meinberlin/react/projects/ProjectTile.jsx:13
 msgid "Begins on the"
 msgstr "Begins on the"
 
-#: meinberlin/react/projects/ProjectTile.jsx:13
+#: meinberlin/react/projects/ProjectTile.jsx:14
 msgid "Participation projects"
 msgstr "Participation projects"
 
-#: meinberlin/react/projects/ProjectTile.jsx:14
+#: meinberlin/react/projects/ProjectTile.jsx:15
 msgid "Participation project"
 msgstr "Participation project"
 
-#: meinberlin/react/projects/ProjectTile.jsx:15
+#: meinberlin/react/projects/ProjectTile.jsx:16
 msgid "Clock"
 msgstr "Clock"
 
@@ -2190,6 +2196,10 @@ msgstr "Organization"
 #: meinberlin/react/projects/ProjectsControlBar.jsx:27
 msgid "Only show:"
 msgstr "Only show:"
+
+#: meinberlin/react/projects/ProjectsControlBar.jsx:30
+msgid "Search for Proposals"
+msgstr "Search for Proposals"
 
 #: meinberlin/react/projects/ProjectsControlBar.jsx:31
 msgid "Show projects"
@@ -2256,10 +2266,6 @@ msgstr "No projects found"
 msgid "Kiezradar"
 msgstr "Kiezradar"
 
-#: meinberlin/react/projects/ProjectsListMapBox.jsx:17
-msgid "Show map"
-msgstr "Show map"
-
 #: meinberlin/react/projects/ProjectsListMapBox.jsx:18
 msgid ""
 "Unfortunately, there are no projects matching your search. Please adjust the "
@@ -2273,10 +2279,18 @@ msgid "show map"
 msgstr "show map"
 
 #: meinberlin/react/projects/ProjectsListMapBox.jsx:22
+msgid "In this area"
+msgstr "In this area"
+
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:23
+msgid "Citywide & district-wide"
+msgstr "Citywide & district-wide"
+
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:24
 msgid "show list"
 msgstr "show list"
 
-#: meinberlin/react/projects/ProjectsListMapBox.jsx:24
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:26
 msgid ""
 "There are no suitable projects in this area. Try moving the map or adjusting "
 "your filters."
@@ -2284,7 +2298,7 @@ msgstr ""
 "There are no suitable projects in this area. Try moving the map or adjusting "
 "your filters."
 
-#: meinberlin/react/projects/ProjectsListMapBox.jsx:27
+#: meinberlin/react/projects/ProjectsListMapBox.jsx:29
 #, javascript-format
 msgid "1 Proposal found."
 msgid_plural "%s Proposals found."

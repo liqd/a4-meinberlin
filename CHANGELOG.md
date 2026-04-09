@@ -14,6 +14,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Changed
 
 - Project and plan tiles: placeholder tile image copyright shows Senatskanzlei Berlin
+- Kiezradar: Sections in ProjectsList when Map is displayed - 2nd list for "city-wide" projects
 
 ## mB-v2603.1
 

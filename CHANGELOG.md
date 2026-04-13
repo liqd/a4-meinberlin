@@ -10,6 +10,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Added
 
 - Initiator reminder to publish project results.
+- Sticky phase banner on module detail (ideas, map ideas, budgeting)
 
 ## mB-v2604.1
 

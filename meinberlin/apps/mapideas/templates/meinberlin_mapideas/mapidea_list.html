@@ -11,6 +11,8 @@
     <link type="text/css" href="{% static 'map_ideas.css'%}" rel="stylesheet" />
 {% endblock %}
 
+{% block phase_info_extra_classes %} phase-info--sticky{% endblock %}
+
 {% block project_action %}
     {% has_or_would_have_perm 'meinberlin_mapideas.add_mapidea' request.user module as propose_allowed %}
     {% if propose_allowed %}

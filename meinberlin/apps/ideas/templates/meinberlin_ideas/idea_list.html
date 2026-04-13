@@ -6,6 +6,8 @@
     {{ block.super }}
 {% endblock %}
 
+{% block phase_info_extra_classes %} phase-info--sticky{% endblock %}
+
 {% block project_action %}
     {% has_or_would_have_perm 'meinberlin_ideas.add_idea' request.user module as propose_allowed %}
     {% if propose_allowed %}

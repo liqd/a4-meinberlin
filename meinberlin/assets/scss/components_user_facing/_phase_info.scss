@@ -22,11 +22,9 @@
 }
 
 // Flush under fixed header: logo row per Berlin marketing `3.5em` on `.pageheader__logo .logo img.svg` (img/svg).
-// Use `3.5rem` here (not `em`): `top` is on `.phase-info`, so `em` would use the bar’s font-size, not the header’s.
-// Plus meinBerlin `.header__row-pageheader` padding 0.8em top+bottom (_header.scss) as `0.8rem` (root-aligned).
 $phase-info-sticky-top: calc(3.5rem + 0.8rem + 0.8rem);
 
-// Sticky phase + CTA bar for BS, MBS, IC, MIC, PB, PB2, PB3 (see has_sticky_phase_banner).
+// Sticky phase + CTA bar: list templates override `{% block phase_info_extra_classes %}` on module_detail (e.g. `phase-info--sticky`).
 // Stickiness begins once the panel would scroll above `top`.
 // Berlin marketing (`.layout-grid #layout-grid__area--maincontent > .fullwidth`) sets `position: relative`,
 // `left: 50%`, `margin-left: -50vw`, `width: 100vw`, `overflow: hidden`. We must override with equal or higher

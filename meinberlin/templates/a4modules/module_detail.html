@@ -44,7 +44,7 @@
             </div>
         </div>
 
-        <div class="modul-servicepanel fullwidth panel--heavy phase-info{% if module|has_sticky_phase_banner %} phase-info--sticky{% endif %}">
+        <div class="modul-servicepanel fullwidth panel--heavy phase-info{% block phase_info_extra_classes %}{% endblock %}">
             <div class="servicepanel__main">
                 {% include "a4modules/includes/module_detail_phase.html" %}
             </div>

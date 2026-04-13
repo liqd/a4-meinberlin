@@ -207,6 +207,12 @@ export const notificationSettingsData = [
         title: django.gettext('New Project in Your Organization'),
         description: django.gettext('Receive a notification when a new project is created in your organization.')
       },
+      notify_initiators_publish_results: {
+        title: django.gettext('Publish project results'),
+        description: django.gettext(
+          'Receive a reminder to publish participation results after the participation phase has ended.'
+        )
+      },
       notify_moderator: {
         title: django.gettext('New Contribution in a Moderated Project'),
         description: django.gettext('Receive a notification when a new contribution is added to a project you moderate.')

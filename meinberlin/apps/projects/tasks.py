@@ -3,20 +3,26 @@ from datetime import datetime
 from datetime import timedelta
 
 from celery import shared_task
+from django.conf import settings
 from django.core.cache import cache
 from django.utils import timezone
 
 from adhocracy4.phases.models import Phase
+from adhocracy4.projects.models import Project
 from meinberlin.apps import logger
 from meinberlin.apps.extprojects.api import get_external_projects
 from meinberlin.apps.extprojects.serializers import ExternalProjectSerializer
+from meinberlin.apps.notifications import emails as notification_emails
 from meinberlin.apps.plans.api import get_plans
 from meinberlin.apps.plans.serializers import PlanSerializer
 from meinberlin.apps.projects.api import get_public_projects
+from meinberlin.apps.projects.models import ProjectInsight
 from meinberlin.apps.projects.serializers import ActiveProjectSerializer
 from meinberlin.apps.projects.serializers import FutureProjectSerializer
 from meinberlin.apps.projects.serializers import PastProjectSerializer
 from meinberlin.apps.projects.serializers import ProjectSerializer
+from meinberlin.apps.projects.utils import get_last_online_participation_end
+from meinberlin.apps.projects.utils import html_field_has_meaningful_content
 
 
 def set_ext_projects_cache(now: datetime) -> None:
@@ -241,3 +247,51 @@ def reset_cache_for_projects(starts: bool, ends: bool):
         cache.delete("next_projects_end")
 
     set_cache_for_projects()
+
+
+@shared_task(name="send_publish_results_reminders")
+def send_publish_results_reminders() -> None:
+    """
+    Notify initiators when project results are still empty some time after the
+    last online participation module has ended.
+    """
+    delay_hours: int = settings.RESULTS_PUBLISH_REMINDER_DELAY_HOURS
+    now = timezone.now()
+
+    projects = (
+        Project.objects.filter(
+            project_type="a4projects.Project",
+            is_draft=False,
+            is_archived=False,
+        )
+        .select_related("organisation", "insight")
+        .prefetch_related(
+            "module_set",
+            "module_set__phase_set",
+            "organisation__initiators__notification_settings",
+        )
+    )
+
+    for project in projects:
+        try:
+            insight = project.insight
+        except ProjectInsight.DoesNotExist:
+            insight = None
+        if insight and insight.results_reminder_sent_at is not None:
+            continue
+
+        if html_field_has_meaningful_content(project.result):
+            continue
+
+        last_end = get_last_online_participation_end(project)
+        if last_end is None or last_end > now:
+            continue
+
+        threshold = last_end + timedelta(hours=delay_hours)
+        if now < threshold:
+            continue
+
+        notification_emails.NotifyInitiatorsPublishResultsEmail.send(project)
+        insight, _ = ProjectInsight.objects.get_or_create(project=project)
+        insight.results_reminder_sent_at = now
+        insight.save(update_fields=["results_reminder_sent_at"])

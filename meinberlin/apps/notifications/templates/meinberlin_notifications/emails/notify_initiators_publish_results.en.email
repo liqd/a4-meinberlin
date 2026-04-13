@@ -1,0 +1,43 @@
+{% extends 'email_base.'|add:part_type %}
+
+{% block subject %}Next step: Publish the results of "{{ project.name|striptags }}"{% endblock %}
+
+{% block headline %}Publish Project Results{% endblock %}
+
+{% block greeting %}Hello {{ receiver.username }},{% endblock %}
+
+{% block content_html %}
+<p>The active participation phase of your project <strong>{{ project.name|striptags }}</strong> has been successfully completed — thank you for your dedication!</p>
+<p>To fully wrap up the participation process, please share the outcomes with your participants. This builds trust in the process and closes the loop with your community.</p>
+<p>For a meaningful participation experience, we recommend addressing the following questions:</p>
+<ul>
+  <li>What was the goal of the project?</li>
+  <li>What insights were gained through the participation process?</li>
+  <li>What happens next with the results?</li>
+</ul>
+<p>You can also upload relevant documents or images.</p>
+<p>Having questions? Reach out to us at <a href="mailto:support@mein.berlin.de">support@mein.berlin.de</a></p>
+<p>Good luck</p>
+{% endblock %}
+
+{% block content_text %}
+The active participation phase of your project "{{ project.name|striptags }}" has been successfully completed — thank you for your dedication!
+
+To fully wrap up the participation process, please share the outcomes with your participants. This builds trust in the process and closes the loop with your community.
+
+For a meaningful participation experience, we recommend addressing the following questions:
+- What was the goal of the project?
+- What insights were gained through the participation process?
+- What happens next with the results?
+
+You can also upload relevant documents or images.
+
+Having questions? Reach out to us at support@mein.berlin.de
+
+Good luck
+{% endblock %}
+
+{% block cta_url %}{{ email.get_host }}{{ result_edit_url }}{% endblock %}
+{% block cta_label %}Add results now →{% endblock %}
+
+{% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you are a project initiator in the above mentioned organization.{% endblock %}

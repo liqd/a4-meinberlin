@@ -1,0 +1,43 @@
+{% extends 'email_base.'|add:part_type %}
+
+{% block subject %}Nächster Schritt: Veröffentlichen Sie die Ergebnisse von „{{ project.name|striptags }}“{% endblock %}
+
+{% block headline %}Projektergebnisse veröffentlichen{% endblock %}
+
+{% block greeting %}Hallo {{ receiver.username }},{% endblock %}
+
+{% block content_html %}
+<p>Die aktive Beteiligungsphase Ihres Projekts <strong>{{ project.name|striptags }}</strong> wurde erfolgreich abgeschlossen — vielen Dank für Ihr Engagement!</p>
+<p>Um den Beteiligungsprozess abzurunden, teilen Sie bitte die Ergebnisse mit Ihren Teilnehmenden. Das schafft Vertrauen in den Prozess und schließt den Kreis mit Ihrer Community.</p>
+<p>Für eine sinnvolle Beteiligung empfehlen wir, folgende Fragen zu beantworten:</p>
+<ul>
+  <li>Was war das Ziel des Projekts?</li>
+  <li>Welche Erkenntnisse haben sich aus der Beteiligung ergeben?</li>
+  <li>Wie geht es mit den Ergebnissen weiter?</li>
+</ul>
+<p>Sie können auch passende Dokumente oder Bilder hochladen.</p>
+<p>Fragen? Schreiben Sie uns an <a href="mailto:support@mein.berlin.de">support@mein.berlin.de</a></p>
+<p>Viel Erfolg</p>
+{% endblock %}
+
+{% block content_text %}
+Die aktive Beteiligungsphase Ihres Projekts „{{ project.name|striptags }}“ wurde erfolgreich abgeschlossen — vielen Dank für Ihr Engagement!
+
+Um den Beteiligungsprozess abzurunden, teilen Sie bitte die Ergebnisse mit Ihren Teilnehmenden. Das schafft Vertrauen in den Prozess und schließt den Kreis mit Ihrer Community.
+
+Für eine sinnvolle Beteiligung empfehlen wir, folgende Fragen zu beantworten:
+- Was war das Ziel des Projekts?
+- Welche Erkenntnisse haben sich aus der Beteiligung ergeben?
+- Wie geht es mit den Ergebnissen weiter?
+
+Sie können auch passende Dokumente oder Bilder hochladen.
+
+Fragen? Schreiben Sie uns an support@mein.berlin.de
+
+Viel Erfolg
+{% endblock %}
+
+{% block cta_url %}{{ email.get_host }}{{ result_edit_url }}{% endblock %}
+{% block cta_label %}Jetzt Ergebnisse eintragen →{% endblock %}
+
+{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Sie erhalten die Nachricht, weil Sie Initiatorin bzw. Initiator der genannten Organisation sind.{% endblock %}

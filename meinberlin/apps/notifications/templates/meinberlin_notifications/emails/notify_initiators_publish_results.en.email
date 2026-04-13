@@ -1,4 +1,5 @@
 {% extends 'email_base.'|add:part_type %}
+{% load static email_tags %}
 
 {% block subject %}Next step: Publish the results of "{{ project.name|striptags }}"{% endblock %}
 
@@ -8,7 +9,19 @@
 
 {% block content_html %}
 <p>The active participation phase of your project <strong>{{ project.name|striptags }}</strong> has been successfully completed — thank you for your dedication!</p>
-<p>To fully wrap up the participation process, please share the outcomes with your participants. This builds trust in the process and closes the loop with your community.</p>
+<p>To fully wrap up the participation process, it is important to share the outcomes with your participants. This builds trust in the process and closes the loop with your community.</p>
+<div style="margin-top:16px;margin-bottom:24px;">
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:separate;line-height:100%;">
+    <tr>
+      <td align="center" style="border: #000 solid 2px; cursor:auto; vertical-align: middle; padding:0; margin:0;" valign="middle">
+        <a href="{{ email.get_host }}{{ result_edit_url }}" style="color:#000000;margin:0;text-decoration:none;text-transform:none; vertical-align: middle;font-size:0;" target="_blank">
+          <span style="vertical-align: middle; line-height: 40px;padding: 0 20px;display:inline-block;font-size:16px;">Add results →</span>
+          <img src="{% get_domain %}{% static "images/email_button.png" %}" alt="" style="height:40px;width:40px;display:inline-block; border-left: 2px solid black;vertical-align:top;" height="40" width="40">
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
 <p>For a meaningful participation experience, we recommend addressing the following questions:</p>
 <ul>
   <li>What was the goal of the project?</li>
@@ -23,7 +36,9 @@
 {% block content_text %}
 The active participation phase of your project "{{ project.name|striptags }}" has been successfully completed — thank you for your dedication!
 
-To fully wrap up the participation process, please share the outcomes with your participants. This builds trust in the process and closes the loop with your community.
+To fully wrap up the participation process, it is important to share the outcomes with your participants. This builds trust in the process and closes the loop with your community.
+
+Add results → {{ email.get_host }}{{ result_edit_url }}
 
 For a meaningful participation experience, we recommend addressing the following questions:
 - What was the goal of the project?
@@ -37,7 +52,6 @@ Having questions? Reach out to us at support@mein.berlin.de
 Good luck
 {% endblock %}
 
-{% block cta_url %}{{ email.get_host }}{{ result_edit_url }}{% endblock %}
-{% block cta_label %}Add results now →{% endblock %}
+{% block cta %}{% endblock %}
 
 {% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you are a project initiator in the above mentioned organization.{% endblock %}

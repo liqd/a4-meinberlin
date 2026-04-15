@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-
+// eslint-disable-next-line space-before-function-paren -- linter erroneously treating this like anonymous function
   function toggleDropdown(element, button) {
     const isOpen = element.style.display === 'block' || element.classList.contains('active')
     if (isOpen) {
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
         dropdownElement = parentLi.querySelector('.hamburger-nav__list--sub')
       }
     }
-    
+
     if (dropdownElement && dropdownElement.classList.contains('hamburger-nav__list--sub')) {
       button.removeAttribute('onclick')
       button.addEventListener('click', function (e) {

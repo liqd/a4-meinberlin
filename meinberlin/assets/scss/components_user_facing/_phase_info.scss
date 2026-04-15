@@ -21,6 +21,50 @@
     margin-top: auto;
 }
 
+// Flush under fixed header: logo row per Berlin marketing `3.5em` on `.pageheader__logo .logo img.svg` (img/svg).
+$phase-info-sticky-top: calc(3.5rem + 0.8rem + 0.8rem);
+
+// Sticky phase + CTA bar: list templates override `{% block phase_info_extra_classes %}` on module_detail (e.g. `phase-info--sticky`).
+// Stickiness begins once the panel would scroll above `top`.
+// Berlin marketing (`.layout-grid #layout-grid__area--maincontent > .fullwidth`) sets `position: relative`,
+// `left: 50%`, `margin-left: -50vw`, `width: 100vw`, `overflow: hidden`. We must override with equal or higher
+// specificity. For `position: sticky`, `left`/`right` are sticky insets — the marketing `left: 50%` must be reset
+// or the bar shifts left; full-bleed centering is restored with `margin-left/right: calc(50% - 50vw)`.
+/* stylelint-disable selector-max-id, selector-max-specificity, selector-id-pattern -- match berlin_marketing (.layout-grid|#layout-grid) #layout-grid__area--maincontent > .fullwidth */
+@media screen and (width >= #{$breakpoint-tablet-landscape}) {
+    .layout-grid #layout-grid__area--maincontent > .modul-servicepanel.phase-info.phase-info--sticky.fullwidth,
+    #layout-grid #layout-grid__area--maincontent > .modul-servicepanel.phase-info.phase-info--sticky.fullwidth {
+        position: sticky;
+        top: $phase-info-sticky-top;
+        z-index: 2;
+        left: auto;
+        right: auto;
+        width: 100vw;
+        max-width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        overflow: visible;
+    }
+}
+
+@media screen and (width < #{$breakpoint-tablet-landscape}) {
+    .modul-servicepanel.phase-info.phase-info--sticky.fullwidth {
+        position: sticky;
+        top: $phase-info-sticky-top;
+        z-index: 2;
+    }
+}
+/* stylelint-enable selector-max-id, selector-max-specificity, selector-id-pattern */
+
+@media print {
+    .modul-servicepanel.phase-info.phase-info--sticky.fullwidth {
+        position: static;
+        top: auto;
+        left: auto;
+        right: auto;
+    }
+}
+
 .phase-info .modul-servicepanel .fa, .modul-servicepanel .far, .modul-servicepanel .fas {
     // overwrite icon color
     color: inherit;

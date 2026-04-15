@@ -31,7 +31,7 @@ $phase-info-sticky-top: calc(3.5rem + 0.8rem + 0.8rem);
 // specificity. For `position: sticky`, `left`/`right` are sticky insets — the marketing `left: 50%` must be reset
 // or the bar shifts left; full-bleed centering is restored with `margin-left/right: calc(50% - 50vw)`.
 /* stylelint-disable selector-max-id, selector-max-specificity, selector-id-pattern -- match berlin_marketing (.layout-grid|#layout-grid) #layout-grid__area--maincontent > .fullwidth */
-@media screen and (width >= 73.8135rem) {
+@media screen and (width >= #{$breakpoint-tablet-landscape}) {
     .layout-grid #layout-grid__area--maincontent > .modul-servicepanel.phase-info.phase-info--sticky.fullwidth,
     #layout-grid #layout-grid__area--maincontent > .modul-servicepanel.phase-info.phase-info--sticky.fullwidth {
         position: sticky;
@@ -47,7 +47,7 @@ $phase-info-sticky-top: calc(3.5rem + 0.8rem + 0.8rem);
     }
 }
 
-@media screen and (width < 73.8135rem) {
+@media screen and (width < #{$breakpoint-tablet-landscape}) {
     .modul-servicepanel.phase-info.phase-info--sticky.fullwidth {
         position: sticky;
         top: $phase-info-sticky-top;

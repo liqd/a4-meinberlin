@@ -1,0 +1,54 @@
+{% extends 'email_base.'|add:part_type %}
+{% load static email_tags %}
+
+{% block subject %}Nächster Schritt: Veröffentlichen Sie die Ergebnisse von „{{ project.name|striptags }}“{% endblock %}
+
+{% block headline %}Projektergebnisse veröffentlichen{% endblock %}
+
+{% block greeting %}Hallo {{ receiver.username }},{% endblock %}
+
+{% block content_html %}
+<p>die aktive Beteiligungsphase Ihres Projekts <strong>{{ project.name|striptags }}</strong> wurde erfolgreich abgeschlossen.</p>
+<p>Damit der Beteiligungsprozess vollständig abgeschlossen werden kann, ist es wichtig, dass die Teilnehmenden über die Ergebnisse informiert werden. Das stärkt das Vertrauen in den Prozess und schließt den Dialog mit der Community ab.</p>
+<div style="margin-top:16px;margin-bottom:24px;">
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:separate;line-height:100%;">
+    <tr>
+      <td align="center" style="border: #000 solid 2px; cursor:auto; vertical-align: middle; padding:0; margin:0;" valign="middle">
+        <a href="{{ email.get_host }}{{ result_edit_url }}" style="color:#000000;margin:0;text-decoration:none;text-transform:none; vertical-align: middle;font-size:0;" target="_blank">
+          <span style="vertical-align: middle; line-height: 40px;padding: 0 20px;display:inline-block;font-size:16px;">Ergebnisse eintragen</span>
+          <img src="{% get_domain %}{% static "images/email_button.png" %}" alt="" style="height:40px;width:40px;display:inline-block; border-left: 2px solid black;vertical-align:top;" height="40" width="40">
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
+<p>Für eine gute Beteiligung empfehlen wir, folgende Fragen zu beantworten:</p>
+<ul>
+  <li>Was war das Ziel des Projekts?</li>
+  <li>Welche Erkenntnisse hat die Beteiligung gebracht?</li>
+  <li>Wie wird mit den Ergebnissen weiter verfahren?</li>
+</ul>
+<p>Sie können außerdem Dokumente oder Bilder hochladen.</p>
+<p>Sie haben Fragen? Schreiben Sie uns: <a href="mailto:support@mein.berlin.de">support@mein.berlin.de</a></p>
+{% endblock %}
+
+{% block content_text %}
+die aktive Beteiligungsphase Ihres Projekts „{{ project.name|striptags }}“ wurde erfolgreich abgeschlossen.
+
+Damit der Beteiligungsprozess vollständig abgeschlossen werden kann, ist es wichtig, dass die Teilnehmenden über die Ergebnisse informiert werden. Das stärkt das Vertrauen in den Prozess und schließt den Dialog mit der Community ab.
+
+Ergebnisse eintragen → {{ email.get_host }}{{ result_edit_url }}
+
+Für eine gute Beteiligung empfehlen wir, folgende Fragen zu beantworten:
+- Was war das Ziel des Projekts?
+- Welche Erkenntnisse hat die Beteiligung gebracht?
+- Wie wird mit den Ergebnissen weiter verfahren?
+
+Sie können außerdem Dokumente oder Bilder hochladen.
+
+Sie haben Fragen? Schreiben Sie uns: support@mein.berlin.de
+{% endblock %}
+
+{% block cta %}{% endblock %}
+
+{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Sie erhalten die Nachricht, weil Sie Initiatorin bzw. Initiator der genannten Organisation sind.{% endblock %}

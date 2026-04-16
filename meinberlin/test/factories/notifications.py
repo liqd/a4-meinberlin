@@ -18,6 +18,7 @@ class NotificationSettingsFactory(factory.django.DjangoModelFactory):
     notify_creator = True
     notify_creator_on_moderator_feedback = True
     notify_initiators_project_created = True
+    notify_initiators_publish_results = True
     notify_moderator = True
     track_followers_phase_started = True
     track_followers_phase_over_soon = True

@@ -25,6 +25,10 @@ CONTACT_EMAIL = "support-berlin@liqd.net"
 SUPERVISOR_EMAIL = "berlin-supervisor@liqd.net"
 TRACKING_ENABLED = False
 
+# Hours after the last online participation module ends before reminding initiators
+# to publish project results (default one week). Set to 0 for immediate send (e.g. tests).
+RESULTS_PUBLISH_REMINDER_DELAY_HOURS = 168
+
 # Application definition
 
 INSTALLED_APPS = (

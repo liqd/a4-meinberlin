@@ -1,10 +1,8 @@
 import itertools
-import re
 from urllib.parse import quote
 
 from django import template
 from django.db.models import Q
-from django.utils.html import strip_tags
 from django.utils.translation import ngettext
 
 from adhocracy4.comments.models import Comment
@@ -16,6 +14,7 @@ from meinberlin.apps.ideas.models import Idea
 from meinberlin.apps.kiezkasse.models import Proposal as KKProposal
 from meinberlin.apps.livequestions.models import LiveQuestion
 from meinberlin.apps.mapideas.models import MapIdea
+from meinberlin.apps.projects.utils import html_field_has_meaningful_content
 
 register = template.Library()
 
@@ -77,15 +76,7 @@ def has_ckeditor_content(value):
     """
     Returns True if CKEditor field has meaningful content
     """
-    if not value:
-        return False
-
-    # Strip HTML tags
-    text = strip_tags(value)
-
-    # Remove non-breaking spaces and whitespace
-    text = re.sub(r"&nbsp;|\s", "", text)
-    return len(text) > 0
+    return html_field_has_meaningful_content(value)
 
 
 @register.inclusion_tag("meinberlin_projects/includes/module-tile/module_insights.html")

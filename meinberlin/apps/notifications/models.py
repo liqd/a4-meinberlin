@@ -138,6 +138,7 @@ class NotificationSettings(models.Model):
         "notify_creator",
         "notify_creator_on_moderator_feedback",
         "notify_initiators_project_created",
+        "notify_initiators_publish_results",
         "notify_moderator",
     ]
     user = models.OneToOneField(
@@ -157,6 +158,7 @@ class NotificationSettings(models.Model):
     notify_creator = models.BooleanField(default=True)
     notify_creator_on_moderator_feedback = models.BooleanField(default=True)
     notify_initiators_project_created = models.BooleanField(default=True)
+    notify_initiators_publish_results = models.BooleanField(default=True)
     notify_moderator = models.BooleanField(default=True)
 
     """

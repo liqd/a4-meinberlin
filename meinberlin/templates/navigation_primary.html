@@ -35,7 +35,7 @@
 
             {% if request.user.is_authenticated %}
                 <li class="hamburger-nav__item hamburger-nav__item--dropdown">
-                    <button class="hamburger-nav__toggle" onclick="toggleDropdown(document.getElementById('user-account-settings-dropdown'), this)">
+                    <button class="hamburger-nav__toggle js-nav-toggle">
                         <i class="hamburger-nav__icon fa fa-solid fa-user"></i>
                         {% translate "User Account Settings" %}
                         <i class="hamburger-nav__chevron fa-solid fa-chevron-down"></i>
@@ -69,7 +69,7 @@
 
             {% if request.user.organisations or request.user.is_superuser %}
                 <li class="hamburger-nav__item hamburger-nav__item--dropdown">
-                    <button class="hamburger-nav__toggle" onclick="toggleDropdown(document.getElementById('dashboard-dropdown'), this)">
+                    <button class="hamburger-nav__toggle js-nav-toggle">
                         <i class="hamburger-nav__icon fa-solid fa-pen-to-square"></i>
                         {% translate 'Dashboard' %}
                         <i class="hamburger-nav__chevron fa-solid fa-chevron-down"></i>
@@ -117,19 +117,3 @@
         </ul>
     </div>
 </nav>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Open dropdowns that contain active links
-  document.querySelectorAll('.hamburger-nav__list--sub .hamburger-nav__link--active').forEach(activeLink => {
-    const dropdown = activeLink.closest('.hamburger-nav__list--sub');
-    if (dropdown) {
-      dropdown.style.display = 'block';
-      const button = dropdown.previousElementSibling;
-      if (button && button.classList.contains('hamburger-nav__toggle')) {
-        button.setAttribute('data-dropdown-open', 'true');
-      }
-    }
-  });
-});
-</script>

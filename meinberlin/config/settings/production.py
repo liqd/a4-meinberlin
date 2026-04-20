@@ -44,6 +44,11 @@ except NameError:
     pass
 
 CELERY_BEAT_SCHEDULE = {
+    "publish-results-reminders-hourly": {
+        "task": "send_publish_results_reminders",
+        "schedule": crontab(minute=0),
+        "args": (),
+    },
     "update-cache-for-projects-every-10-mim": {
         "task": "schedule_reset_cache_for_projects",
         "schedule": crontab(minute="*/10"),

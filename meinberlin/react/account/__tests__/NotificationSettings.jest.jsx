@@ -23,6 +23,7 @@ const defaultProps = {
     notify_creator: false,
     notify_creator_on_moderator_feedback: true,
     notify_initiators_project_created: false,
+    notify_initiators_publish_results: true,
     notify_moderator: true
   },
   apiUrl: '/api/notifications/',

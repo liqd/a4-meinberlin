@@ -1,4 +1,5 @@
 from django.contrib import auth
+from django.urls import reverse
 
 from adhocracy4.actions.models import Action
 from meinberlin.apps.contrib.emails import Email
@@ -110,6 +111,28 @@ class NotifyInitiatorsOnProjectCreatedEmail(Email):
         creator = User.objects.get(pk=self.kwargs["creator_pk"])
         context["creator"] = creator
         context["project"] = self.object
+        return context
+
+
+class NotifyInitiatorsPublishResultsEmail(Email):
+    template_name = "meinberlin_notifications/emails/notify_initiators_publish_results"
+
+    def get_receivers(self):
+        project = self.object
+        receivers = project.organisation.initiators.all()
+        receivers = _exclude_notifications_disabled(
+            receivers, "notify_initiators_publish_results"
+        )
+        return receivers
+
+    def get_context(self):
+        context = super().get_context()
+        project = self.object
+        context["project"] = project
+        context["result_edit_url"] = reverse(
+            "a4dashboard:dashboard-result-edit",
+            kwargs={"project_slug": project.slug},
+        )
         return context
 
 

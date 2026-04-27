@@ -50,4 +50,20 @@
             margin-bottom: 0;
         }
     }
+
+    &--vertical {
+        .pill__item {
+            margin-bottom: 5px;
+            line-height: 0px;
+            list-style: none;
+            
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+        
+        .pill {
+            display: inline-block;
+        }
+    }
 }

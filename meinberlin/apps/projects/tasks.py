@@ -251,11 +251,14 @@ def reset_cache_for_projects(starts: bool, ends: bool):
 
 @shared_task(name="send_publish_results_reminders")
 def send_publish_results_reminders() -> None:
-    """
-    Notify initiators when project results are still empty some time after the
-    last online participation module has ended.
-    """
+    """Remind initiators to publish results after online participation ends (delay
+    and optional RESULTS_PUBLISH_REMINDER_MIN_LAST_PARTICIPATION_END)."""
     delay_hours: int = settings.RESULTS_PUBLISH_REMINDER_DELAY_HOURS
+    min_last_participation_end = getattr(
+        settings,
+        "RESULTS_PUBLISH_REMINDER_MIN_LAST_PARTICIPATION_END",
+        None,
+    )
     now = timezone.now()
 
     projects = (
@@ -285,6 +288,12 @@ def send_publish_results_reminders() -> None:
 
         last_end = get_last_online_participation_end(project)
         if last_end is None or last_end > now:
+            continue
+
+        if (
+            min_last_participation_end is not None
+            and last_end < min_last_participation_end
+        ):
             continue
 
         threshold = last_end + timedelta(hours=delay_hours)

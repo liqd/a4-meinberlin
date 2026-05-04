@@ -8,7 +8,18 @@
 
 {% block content %}
 <div id="layout-grid__area--maincontent">
+    {% url "notification_settings" as notification_settings_url %}
     <h1>{% translate 'Followed Projects' %}</h1>
+    <p>
+        {% blocktranslate trimmed %}
+            Here you will find all the projects you are following. Project initiators can keep you up to date via newsletter. You will also receive reminders shortly before the start and end of participation phases.
+        {% endblocktranslate %}
+    </p>
+    <p>
+        {% blocktranslate trimmed with notification_settings_url=notification_settings_url %}
+            Under <a href="{{ notification_settings_url }}">Notification Settings</a> you can choose which events you would like to be notified about.
+        {% endblocktranslate %}
+    </p>
     <div
         data-projects-list
         data-projects-url="{% url 'followed-projects-list' %}"

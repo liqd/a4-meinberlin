@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 from django.utils.translation import gettext_lazy as _
 
@@ -28,6 +30,11 @@ TRACKING_ENABLED = False
 # Hours after the last online participation module ends before reminding initiators
 # to publish project results (default one week). Set to 0 for immediate send (e.g. tests).
 RESULTS_PUBLISH_REMINDER_DELAY_HOURS = 168
+
+# Last online participation must end on/after this instant. Override in local.py if needed.
+RESULTS_PUBLISH_REMINDER_MIN_LAST_PARTICIPATION_END = datetime(
+    2026, 5, 1, 0, 0, 0, tzinfo=ZoneInfo("Europe/Berlin")
+)
 
 # Application definition
 

@@ -2,7 +2,7 @@
 git+https://github.com/liqd/adhocracy4.git@mB-v2604.1#egg=adhocracy4
 
 # Additional requirements
-beautifulsoup4==4.12.3
+beautifulsoup4>=4.13.3
 brotli==1.2.0
 django-celery-beat==2.8.1
 git+https://github.com/skorokithakis/django-cloudflare-push.git@fcfcfc57826ecb87b9f138fd882cfb361047d850
@@ -13,7 +13,7 @@ requests==2.33.0
 requests-mock==1.11.0
 sentry-sdk[django]==2.34.1
 urllib3==2.6.3
-wagtail==6.3.8
+wagtail==7.4
 whitenoise==6.9.0
 zeep==4.3.1
 drf-spectacular==0.28.0

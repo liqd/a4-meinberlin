@@ -11,6 +11,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Initiator reminder to publish project results.
 
+### Changed
+
+- Upgrade Wagtail from 6.3.8 to 7.4 (LTS); bump BeautifulSoup to satisfy Wagtail’s requirement (`>=4.13.3`). Django remains on the 5.2 series ([Wagtail 7.4 release notes](https://docs.wagtail.org/en/stable/releases/7.4.html)). After deployment, run database migrations; projects using Elasticsearch or OpenSearch for Wagtail search should run `./manage.py update_index` per the [7.2 upgrade notes](https://docs.wagtail.org/en/stable/releases/7.2.html).
+
 ## mB-v2604.1
 
 ### Fixed

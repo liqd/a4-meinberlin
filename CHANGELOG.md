@@ -11,6 +11,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Initiator reminder to publish project results.
 
+### Changed
+
+- Upgrade Wagtail to 7.4 (LTS)
+
 ## mB-v2604.1
 
 ### Fixed

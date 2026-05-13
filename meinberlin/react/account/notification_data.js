@@ -10,8 +10,8 @@ export const messages = {
     fallback: django.gettext('<a href="%(url)s">%(title)s</a> will end soon')
   },
   offlineEvent: {
-    full: django.gettext('The event %(eventName)s in <a href="%(url)s">%(title)s</a> is coming up soon and takes place on %(date)s'),
-    fallback: django.gettext('The event %(eventName)s in <a href="%(url)s">%(title)s</a> is coming up soon')
+    full: 'Event %(eventName)s (<a href="%(eventUrl)s">link to event</a>) in the project <a href="%(url)s">%(title)s</a> begins on %(date)s at %(time)s',
+    fallback: 'Event %(eventName)s in the project <a href="%(url)s">%(title)s</a> begins on %(date)s'
   }
 }
 
@@ -146,10 +146,10 @@ export const notificationsData = {
       { title, url, date }
     ),
 
-    offlineEvent: (eventName, title, url, date) => getDateAwareMessage(
+    offlineEvent: (eventName, title, url, date, time, eventUrl) => getDateAwareMessage(
       messages.offlineEvent.full,
       messages.offlineEvent.fallback,
-      { eventName, title, url, date }
+      { eventName, title, url, date, time, eventUrl }
     )
   },
   viewIdeaText: django.gettext('View idea'),

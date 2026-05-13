@@ -114,10 +114,19 @@ class ActionSerializer(serializers.ModelSerializer):
         return None
 
     def get_type(self, obj):
-        trigger = self.get_cached_target(obj)
-        if obj.type == "rating" and trigger.__class__.__name__ == "Proposal":
+        trigger, trigger_class = self.get_cached_trigger(obj)
+
+        if obj.type == "rating" and trigger_class == "Proposal":
             return "support"
         if obj.type == "phase" and obj.verb == "schedule":
+            # Check if this is an offline event using the trigger object
+            if (
+                trigger
+                and hasattr(trigger, "type")
+                and trigger.type
+                and "offline-event" in trigger.type
+            ):
+                return "offlineevent"
             return "phase_soon_over"
         if obj.type == "phase" and obj.verb == "start":
             return "phase_started"
@@ -135,9 +144,12 @@ class ActionSerializer(serializers.ModelSerializer):
 
     def get_source_timestamp(self, obj):
         trigger, _ = self.get_cached_trigger(obj)
-
-        if trigger and hasattr(trigger, "date"):
-            return localtime(trigger.date)
+        if trigger:
+            # Try date first, then start_date for phases
+            if hasattr(trigger, "date"):
+                return localtime(trigger.date)
+            elif hasattr(trigger, "start_date"):
+                return localtime(trigger.start_date)
         return None
 
     def is_moderator(self, obj):

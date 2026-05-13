@@ -103,7 +103,7 @@ function FollowedProjectsFeed ({ followedProjectsApiUrl, notificationsApiUrl, pl
       link={planListUrl}
       renderFeedItem={({ id, read, action }, index, handleMarkAsRead) => {
         const { type, timestamp, link, ...rest } = action
-        const text = getFollowedProjectsText({ type, ...rest })
+        const text = getFollowedProjectsText({ type, link, ...rest })
 
         if (!text) {
           return null
@@ -255,27 +255,41 @@ function getSearchProfileText (searchProfile, action) {
 }
 
 function getFollowedProjectsText (action) {
-  const { type, source, source_timestamp: sourceTimestamp, project } = action
-  const date = new Date(project.active_phase[2])
-  const sourceDate = new Date(sourceTimestamp).toLocaleString()
+  const { type, source, source_timestamp: sourceTimestamp, project, link } = action
 
   switch (type) {
-    case 'phase_started':
+    case 'phase_started': {
+      const date = new Date(project.active_phase[2])
       return {
         title: notificationsData.followedProjects.phaseStartedText(project.title, project.url, date.toLocaleDateString()),
         linkText: notificationsData.viewProjectText
       }
+    }
 
-    case 'phase_soon_over':
+    case 'phase_soon_over': {
+      const date2 = new Date(project.active_phase[2])
       return {
-        title: notificationsData.followedProjects.phaseEndedText(project.title, project.url, date.toLocaleDateString()),
+        title: notificationsData.followedProjects.phaseEndedText(project.title, project.url, date2.toLocaleDateString()),
         linkText: notificationsData.viewProjectText
       }
+    }
 
-    case 'offlineevent':
+    case 'offlineevent': {
+      const sourceDate = new Date(sourceTimestamp)
+      const eventDate = sourceDate.toLocaleDateString()
+      const eventTime = sourceDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+
       return {
-        title: notificationsData.followedProjects.offlineEvent(source, project.title, project.url, sourceDate.toLocaleString()),
+        title: notificationsData.followedProjects.offlineEvent(
+          source,
+          project.title,
+          project.url,
+          eventDate,
+          eventTime,
+          link
+        ),
         linkText: notificationsData.viewProjectText
       }
+    }
   }
 }

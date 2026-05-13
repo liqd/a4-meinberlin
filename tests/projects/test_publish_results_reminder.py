@@ -57,6 +57,33 @@ def test_send_publish_results_reminder_skips_when_results_present(phase_factory)
 
 
 @pytest.mark.django_db
+@override_settings(
+    RESULTS_PUBLISH_REMINDER_DELAY_HOURS=0,
+    RESULTS_PUBLISH_REMINDER_MIN_LAST_PARTICIPATION_END=None,
+)
+def test_send_publish_results_reminder_sends_for_offline_event_only_project(
+    phase_factory,
+):
+    """Offline-event modules (OE) contribute phase end dates like other non-draft modules."""
+    phase = phase_factory(module__blueprint_type="OE")
+    project = phase.module.project
+    project.result = ""
+    project.save()
+
+    now = timezone.now()
+    phase.start_date = now - timedelta(days=5)
+    phase.end_date = now - timedelta(hours=2)
+    phase.save()
+
+    assert not mail.outbox
+    send_publish_results_reminders()
+    assert len(mail.outbox) == 1
+
+    insight = ProjectInsight.objects.get(project=project)
+    assert insight.results_reminder_sent_at is not None
+
+
+@pytest.mark.django_db
 def test_send_publish_results_reminder_skips_when_last_end_before_min_cutoff(
     phase_factory,
 ):

@@ -8,8 +8,6 @@ from django.conf import settings
 from django.utils import timezone
 from django.utils.html import strip_tags
 
-from meinberlin.apps.dashboard import is_event_module
-
 
 def html_field_has_meaningful_content(value: Optional[str]) -> bool:
     """True if a CKEditor/HTML field has non-whitespace text (matches template filter)."""
@@ -20,14 +18,14 @@ def html_field_has_meaningful_content(value: Optional[str]) -> bool:
     return len(text) > 0
 
 
-def get_last_online_participation_end(project) -> Optional[datetime]:
+def get_last_participation_end_for_results_reminder(project) -> Optional[datetime]:
     """
-    Latest phase end among non-draft, online (non-event) modules.
+    Latest phase end among all non-draft modules (including offline events, e.g. OE).
     None if there is no such module or no dated phases.
     """
     end_candidates: List[datetime] = []
     for module in project.module_set.all():
-        if module.is_draft or is_event_module(module):
+        if module.is_draft:
             continue
         phase_ends = [
             p.end_date for p in module.phase_set.all() if p.end_date is not None
@@ -77,7 +75,7 @@ def get_publish_results_reminder_skip_reason(
     if html_field_has_meaningful_content(project.result):
         return "result_has_content"
 
-    last_end = get_last_online_participation_end(project)
+    last_end = get_last_participation_end_for_results_reminder(project)
     if last_end is None or last_end > now:
         return "reminder_not_due"
 

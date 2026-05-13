@@ -1,6 +1,9 @@
+from collections import Counter
+
 from django.contrib import admin
 from django.contrib import messages
 from django.contrib.gis.admin import GISModelAdmin
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext
 
@@ -22,19 +25,30 @@ def set_is_archived_false(modeladmin, request, queryset):
     description=_("Send publish-results reminder email to initiators"),
 )
 def send_publish_results_reminder_to_initiators(modeladmin, request, queryset):
-    from meinberlin.apps.notifications import emails as notification_emails
+    from meinberlin.apps.projects.utils import apply_publish_results_reminder
+    from meinberlin.apps.projects.utils import get_publish_results_reminder_skip_reason
 
+    pks = list(queryset.values_list("pk", flat=True))
+    projects = (
+        models.Project.objects.filter(pk__in=pks)
+        .select_related("organisation", "insight")
+        .prefetch_related(
+            "module_set",
+            "module_set__phase_set",
+            "organisation__initiators__notification_settings",
+        )
+    )
+
+    now = timezone.now()
     sent = 0
-    skipped_type = 0
-    skipped_draft = 0
-    for project in queryset:
-        if project.project_type != "a4projects.Project":
-            skipped_type += 1
+    skip_reasons: Counter[str] = Counter()
+
+    for project in projects:
+        reason = get_publish_results_reminder_skip_reason(project, now=now)
+        if reason is not None:
+            skip_reasons[reason] += 1
             continue
-        if project.is_draft:
-            skipped_draft += 1
-            continue
-        notification_emails.NotifyInitiatorsPublishResultsEmail.send(project)
+        apply_publish_results_reminder(project, now=now)
         sent += 1
 
     if sent:
@@ -50,28 +64,67 @@ def send_publish_results_reminder_to_initiators(modeladmin, request, queryset):
             % {"count": sent},
             messages.SUCCESS,
         )
-    if skipped_type:
+
+    _notify_publish_results_skip_reasons(modeladmin, request, skip_reasons)
+
+
+def _notify_publish_results_skip_reasons(
+    modeladmin, request, skip_reasons: Counter[str]
+):
+    """Emit one admin message per skip reason (same rules as periodic task)."""
+    if not skip_reasons:
+        return
+
+    if skip_reasons["project_not_eligible"]:
+        n = skip_reasons["project_not_eligible"]
         modeladmin.message_user(
             request,
             ngettext(
-                "Skipped %(count)d project (not a standard project).",
-                "Skipped %(count)d projects (not standard projects).",
-                skipped_type,
+                "Skipped %(count)d project (not a standard live project: draft, archived, "
+                "or non-default project type).",
+                "Skipped %(count)d projects (not standard live projects: draft, archived, "
+                "or non-default project type).",
+                n,
             )
-            % {"count": skipped_type},
+            % {"count": n},
             messages.WARNING,
         )
-    if skipped_draft:
+    if skip_reasons["reminder_already_sent"]:
+        n = skip_reasons["reminder_already_sent"]
         modeladmin.message_user(
             request,
             ngettext(
-                "Skipped %(count)d draft project (publish first, or use "
-                "manage.py send_publish_results_reminder SLUG --force).",
-                "Skipped %(count)d draft projects (publish first, or use "
-                "manage.py send_publish_results_reminder SLUG --force).",
-                skipped_draft,
+                "Skipped %(count)d project (publish-results reminder was already sent).",
+                "Skipped %(count)d projects (publish-results reminder was already sent).",
+                n,
             )
-            % {"count": skipped_draft},
+            % {"count": n},
+            messages.WARNING,
+        )
+    if skip_reasons["result_has_content"]:
+        n = skip_reasons["result_has_content"]
+        modeladmin.message_user(
+            request,
+            ngettext(
+                "Skipped %(count)d project (project results field already has content).",
+                "Skipped %(count)d projects (project results field already has content).",
+                n,
+            )
+            % {"count": n},
+            messages.WARNING,
+        )
+    if skip_reasons["reminder_not_due"]:
+        n = skip_reasons["reminder_not_due"]
+        modeladmin.message_user(
+            request,
+            ngettext(
+                "Skipped %(count)d project (reminder not due yet: participation timing, "
+                "minimum last-end cutoff, or delay hours).",
+                "Skipped %(count)d projects (reminder not due yet: participation timing, "
+                "minimum last-end cutoff, or delay hours).",
+                n,
+            )
+            % {"count": n},
             messages.WARNING,
         )
 

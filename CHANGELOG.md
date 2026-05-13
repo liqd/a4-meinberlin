@@ -10,6 +10,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Added
 
 - Initiator reminder to publish project results.
+- Admin and management command to trigger reminder to publish project results (same rules)
 
 ### Changed
 

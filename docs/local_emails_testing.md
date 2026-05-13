@@ -8,11 +8,10 @@ File: meinberlin/apps/notifications/management/commands/send_test_emails.py
 
 ## Publish-results reminder (initiators)
 
-Sends the real publish-results reminder to every initiator of the project’s organisation (one e-mail per initiator). Ignores phase dates and whether a reminder was already sent. Draft projects are refused unless you pass `--force`.
+Sends the real publish-results reminder to every initiator of the project’s organisation (one e-mail per initiator), **only if** the project satisfies the **same eligibility rules** as the periodic `send_publish_results_reminders` task (published standard project, not archived, results field empty, online participation ended, delay and optional minimum end date satisfied, and no reminder sent before).
 
 1. Run `venv/bin/python manage.py send_publish_results_reminder <project-slug>` (slug as in `/projekte/<slug>/`).
-2. Optional: `python manage.py send_publish_results_reminder <project-slug> --force` if the project is still unpublished.
-3. Or Django admin → Projects → actions (drafts skipped).
+2. Or Django admin → Projects → action “Send publish-results reminder…” (skipped projects show warning messages with reasons).
 
 File: meinberlin/apps/projects/management/commands/send_publish_results_reminder.py
 

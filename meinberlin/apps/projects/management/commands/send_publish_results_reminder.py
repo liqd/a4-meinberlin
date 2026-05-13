@@ -1,16 +1,17 @@
 from django.core.management.base import BaseCommand
 from django.core.management.base import CommandError
+from django.utils import timezone
 
 from adhocracy4.projects.models import Project
-from meinberlin.apps.notifications import emails as notification_emails
+from meinberlin.apps.projects.utils import apply_publish_results_reminder
+from meinberlin.apps.projects.utils import get_publish_results_reminder_skip_reason
 
 
 class Command(BaseCommand):
     help = (
         "Send the publish-results reminder email to every initiator of the project's "
-        "organisation (one message per initiator). Ignores participation end date, "
-        "empty results field, and whether a reminder was sent before (unlike the "
-        "periodic task). Refuses draft projects unless --force is passed."
+        "organisation (one message per initiator), only if the project satisfies the "
+        "same eligibility rules as the periodic send_publish_results_reminders task."
     )
 
     def add_arguments(self, parser):
@@ -18,34 +19,32 @@ class Command(BaseCommand):
             "project_slug",
             help="Project slug as in /projekte/<slug>/",
         )
-        parser.add_argument(
-            "--force",
-            action="store_true",
-            help="Send even if the project is still a draft (not published).",
-        )
 
     def handle(self, *args, **options):
         slug = options["project_slug"]
-        force = options["force"]
         try:
-            project = Project.objects.select_related("organisation").get(slug=slug)
+            project = (
+                Project.objects.select_related("organisation", "insight")
+                .prefetch_related(
+                    "module_set",
+                    "module_set__phase_set",
+                    "organisation__initiators__notification_settings",
+                )
+                .get(slug=slug)
+            )
         except Project.DoesNotExist as exc:
             raise CommandError(f'No project with slug "{slug}".') from exc
 
-        if project.project_type != "a4projects.Project":
+        now = timezone.now()
+        reason = get_publish_results_reminder_skip_reason(project, now=now)
+        if reason is not None:
             raise CommandError(
-                f'Project "{slug}" has type {project.project_type!r}; '
-                "this reminder only applies to standard projects (a4projects.Project)."
-            )
-
-        if project.is_draft and not force:
-            raise CommandError(
-                f'Project "{slug}" is still a draft (not published). '
-                "Use --force to send anyway, or publish the project first."
+                f'Project "{slug}" does not qualify for a publish-results reminder '
+                f"(same rules as the periodic task). Reason code: {reason}."
             )
 
         n_initiators = project.organisation.initiators.count()
-        notification_emails.NotifyInitiatorsPublishResultsEmail.send(project)
+        apply_publish_results_reminder(project, now=now)
         self.stdout.write(
             self.style.SUCCESS(
                 f"Publish-results reminder sent for project {slug!r}: "

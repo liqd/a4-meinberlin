@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 11:54+0200\n"
+"POT-Creation-Date: 2026-05-11 15:40+0200\n"
 "PO-Revision-Date: 2026-03-26 07:50+0000\n"
 "Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main-"
@@ -1293,24 +1293,25 @@ msgid "Project"
 msgstr "Projekt"
 
 #: /var/liqd/a4-meinberlin/venv/lib/python3.13/site-packages/adhocracy4/projects/admin.py:69
-#: meinberlin/apps/projects/admin.py:117
+#: meinberlin/apps/projects/admin.py:212
 msgid "Information and result"
 msgstr "Informationen und Ergebnis"
 
 #: /var/liqd/a4-meinberlin/venv/lib/python3.13/site-packages/adhocracy4/projects/admin.py:75
 #: meinberlin/apps/organisations/templates/meinberlin_organisations/organisation_form.html:4
-#: meinberlin/apps/projects/admin.py:123 meinberlin/templates/header.html:81
+#: meinberlin/apps/projects/admin.py:218 meinberlin/templates/header.html:81
 msgid "Settings"
 msgstr "Einstellungen"
 
 #: /var/liqd/a4-meinberlin/venv/lib/python3.13/site-packages/adhocracy4/projects/admin.py:87
-#: meinberlin/apps/projects/admin.py:137
+#: meinberlin/apps/projects/admin.py:232
 msgid "Images"
 msgstr "Bilder"
 
 #: /var/liqd/a4-meinberlin/venv/lib/python3.13/site-packages/adhocracy4/projects/admin.py:99
-#: meinberlin/apps/projects/admin.py:150
+#: meinberlin/apps/projects/admin.py:245
 #: meinberlin/templates/email_base.html:86
+#: meinberlin/templates/email_base.txt:20
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -2246,16 +2247,16 @@ msgstr ""
 "Dieser Vorschlag hat <span class=\"u-primary\">%(amount)s</span> Stimmen "
 "erhalten"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:19
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:17
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html:18
 msgid "Submit proposal"
 msgstr "Vorschlag anlegen"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:32
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:30
 msgid "Voting token form fields"
 msgstr "Eingabefeld für Abstimmungscode"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:34
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:32
 msgid "Enter code"
 msgstr "Code eingeben"
 
@@ -3243,7 +3244,7 @@ msgstr "Idee anlegen"
 msgid "Submit a new idea for this project"
 msgstr "Eine neue Idee für dieses Projekt anlegen"
 
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_list.html:15
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_list.html:13
 msgid "Submit idea"
 msgstr "Idee anlegen"
 
@@ -3603,7 +3604,7 @@ msgstr ""
 "Sie können eigene Ideen auf der Karte eintragen und die Ideen der anderen "
 "Teilnehmer*innen kommentieren und bewerten."
 
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_list.html:20
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_list.html:18
 msgid "Submit Idea"
 msgstr "Idee anlegen"
 
@@ -4022,7 +4023,7 @@ msgstr "Themen"
 
 #: meinberlin/apps/plans/exports.py:74
 #: meinberlin/apps/plans/templatetags/react_map_teaser.py:18
-#: meinberlin/apps/projects/admin.py:166
+#: meinberlin/apps/projects/admin.py:261
 #: meinberlin/apps/projects/serializers.py:20
 msgid "City wide"
 msgstr "Gesamtstädtisch"
@@ -4410,19 +4411,19 @@ msgid "Platform email has been saved and will be sent to the recipients."
 msgstr ""
 "Die Plattform-E-Mail wurde gespeichert und wird an die Empfänger versendet."
 
-#: meinberlin/apps/projects/admin.py:11
+#: meinberlin/apps/projects/admin.py:14
 msgid "archive"
 msgstr "archivieren"
 
-#: meinberlin/apps/projects/admin.py:16
+#: meinberlin/apps/projects/admin.py:19
 msgid "dearchive"
 msgstr "unarchivieren"
 
-#: meinberlin/apps/projects/admin.py:22
+#: meinberlin/apps/projects/admin.py:25
 msgid "Send publish-results reminder email to initiators"
 msgstr ""
 
-#: meinberlin/apps/projects/admin.py:44
+#: meinberlin/apps/projects/admin.py:58
 #, python-format
 msgid ""
 "Publish-results reminder sent for %(count)d project (one e-mail per "
@@ -4433,25 +4434,79 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: meinberlin/apps/projects/admin.py:57
+#: meinberlin/apps/projects/admin.py:81
 #, python-format
 msgid "Skipped %(count)d project (not a standard project)."
 msgid_plural "Skipped %(count)d projects (not standard projects)."
 msgstr[0] ""
 msgstr[1] ""
 
-#: meinberlin/apps/projects/admin.py:68
+#: meinberlin/apps/projects/admin.py:93
 #, python-format
 msgid ""
-"Skipped %(count)d draft project (publish first, or use manage.py "
-"send_publish_results_reminder SLUG --force)."
+"Skipped %(count)d draft project (same eligibility as automatic reminder)."
 msgid_plural ""
-"Skipped %(count)d draft projects (publish first, or use manage.py "
-"send_publish_results_reminder SLUG --force)."
+"Skipped %(count)d draft projects (same eligibility as automatic reminder)."
 msgstr[0] ""
 msgstr[1] ""
 
-#: meinberlin/apps/projects/admin.py:111
+#: meinberlin/apps/projects/admin.py:105
+#, python-format
+msgid ""
+"Skipped %(count)d archived project (same eligibility as automatic reminder)."
+msgid_plural ""
+"Skipped %(count)d archived projects (same eligibility as automatic reminder)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: meinberlin/apps/projects/admin.py:117
+#, python-format
+msgid "Skipped %(count)d project (publish-results reminder was already sent)."
+msgid_plural ""
+"Skipped %(count)d projects (publish-results reminder was already sent)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: meinberlin/apps/projects/admin.py:129
+#, python-format
+msgid "Skipped %(count)d project (project results field already has content)."
+msgid_plural ""
+"Skipped %(count)d projects (project results field already has content)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: meinberlin/apps/projects/admin.py:141
+#, python-format
+msgid ""
+"Skipped %(count)d project (online participation not finished or no dated "
+"phase)."
+msgid_plural ""
+"Skipped %(count)d projects (online participation not finished or no dated "
+"phase)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: meinberlin/apps/projects/admin.py:153
+#, python-format
+msgid ""
+"Skipped %(count)d project (last participation end before configured minimum)."
+msgid_plural ""
+"Skipped %(count)d projects (last participation end before configured "
+"minimum)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: meinberlin/apps/projects/admin.py:165
+#, python-format
+msgid ""
+"Skipped %(count)d project (RESULTS_PUBLISH_REMINDER_DELAY_HOURS not elapsed)."
+msgid_plural ""
+"Skipped %(count)d projects (RESULTS_PUBLISH_REMINDER_DELAY_HOURS not "
+"elapsed)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: meinberlin/apps/projects/admin.py:206
 msgid "Topic and location"
 msgstr "Thema und Ort"
 
@@ -5034,6 +5089,7 @@ msgstr[1] ""
 
 #: meinberlin/apps/users/forms.py:83 meinberlin/apps/users/forms.py:176
 #: meinberlin/templates/email_base.html:87
+#: meinberlin/templates/email_base.txt:21
 msgid "Terms of use"
 msgstr "Nutzungsbedingungen"
 
@@ -5282,63 +5338,63 @@ msgstr ""
 "Bitte passen Sie die Anzahl der Codes an. Pro Modul können Sie bis zu {} "
 "Codes erstellen."
 
-#: meinberlin/config/settings/base.py:511
+#: meinberlin/config/settings/base.py:518
 msgid "Pin without icon"
 msgstr "Pin ohne Icon"
 
-#: meinberlin/config/settings/base.py:512
+#: meinberlin/config/settings/base.py:519
 msgid "Diamond"
 msgstr "Diamant"
 
-#: meinberlin/config/settings/base.py:513
+#: meinberlin/config/settings/base.py:520
 msgid "Triangle up"
 msgstr "Dreieck Spitze oben"
 
-#: meinberlin/config/settings/base.py:514
+#: meinberlin/config/settings/base.py:521
 msgid "Triangle down"
 msgstr "Dreieck Spitze unten"
 
-#: meinberlin/config/settings/base.py:515
+#: meinberlin/config/settings/base.py:522
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: meinberlin/config/settings/base.py:516
+#: meinberlin/config/settings/base.py:523
 msgid "Semi circle"
 msgstr "Halbkreis"
 
-#: meinberlin/config/settings/base.py:517
+#: meinberlin/config/settings/base.py:524
 msgid "Hexagon"
 msgstr "Sechseck"
 
-#: meinberlin/config/settings/base.py:518
+#: meinberlin/config/settings/base.py:525
 msgid "Rhomboid"
 msgstr "Parallelogramm"
 
-#: meinberlin/config/settings/base.py:519
+#: meinberlin/config/settings/base.py:526
 msgid "Star"
 msgstr "Stern"
 
-#: meinberlin/config/settings/base.py:520
+#: meinberlin/config/settings/base.py:527
 msgid "Square"
 msgstr "Quadrat"
 
-#: meinberlin/config/settings/base.py:521
+#: meinberlin/config/settings/base.py:528
 msgid "Octothorpe"
 msgstr "Raute"
 
-#: meinberlin/config/settings/base.py:522
+#: meinberlin/config/settings/base.py:529
 msgid "Rectangle"
 msgstr "Viereck"
 
-#: meinberlin/config/settings/base.py:523
+#: meinberlin/config/settings/base.py:530
 msgid "Circle"
 msgstr "Kreis"
 
-#: meinberlin/config/settings/base.py:524
+#: meinberlin/config/settings/base.py:531
 msgid "Right triangle"
 msgstr "Dreieck Spitze rechts"
 
-#: meinberlin/config/settings/base.py:525
+#: meinberlin/config/settings/base.py:532
 msgid "Zigzag"
 msgstr "ZickZack"
 
@@ -5811,10 +5867,12 @@ msgid "Error"
 msgstr "Fehler"
 
 #: meinberlin/templates/email_base.html:39
+#: meinberlin/templates/email_base.txt:5
 msgid "Hello"
 msgstr "Guten Tag"
 
 #: meinberlin/templates/email_base.html:73
+#: meinberlin/templates/email_base.txt:14
 msgid ""
 "mein.Berlin.de is the participation platform in Berlin, commissioned by the "
 "Senate Chancellery Berlin."
@@ -5832,12 +5890,20 @@ msgid "Unsubscribe"
 msgstr "Abmelden"
 
 #: meinberlin/templates/email_base.html:85
+#: meinberlin/templates/email_base.txt:19
 msgid "Imprint"
 msgstr "Impressum"
 
 #: meinberlin/templates/email_base.html:88
+#: meinberlin/templates/email_base.txt:22
 msgid "Privacy policy"
 msgstr "Datenschutz"
+
+#: meinberlin/templates/email_base.txt:16
+msgid ""
+"Don't want to receive notifications from us anymore? You can unsubscribe "
+"here:"
+msgstr ""
 
 #: meinberlin/templates/footer.html:8
 msgid "To the top of the page"

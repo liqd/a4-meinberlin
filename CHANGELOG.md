@@ -13,6 +13,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Initiator reminder to publish project results.
 - Admin and management command to trigger reminder to publish project results (same rules)
+- In-app notifications for offline events to have different text with link to project and module
 
 ### Changed
 

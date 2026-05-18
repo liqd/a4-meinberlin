@@ -259,17 +259,17 @@ function getFollowedProjectsText (action) {
 
   switch (type) {
     case 'phase_started': {
-      const date = new Date(project.active_phase[2])
+      const datePhaseStarted = new Date(project.active_phase[2])
       return {
-        title: notificationsData.followedProjects.phaseStartedText(project.title, project.url, date.toLocaleDateString()),
+        title: notificationsData.followedProjects.phaseStartedText(project.title, project.url, datePhaseStarted.toLocaleDateString()),
         linkText: notificationsData.viewProjectText
       }
     }
 
     case 'phase_soon_over': {
-      const date2 = new Date(project.active_phase[2])
+      const datePhaseOver = new Date(project.active_phase[2])
       return {
-        title: notificationsData.followedProjects.phaseEndedText(project.title, project.url, date2.toLocaleDateString()),
+        title: notificationsData.followedProjects.phaseEndedText(project.title, project.url, datePhaseOver.toLocaleDateString()),
         linkText: notificationsData.viewProjectText
       }
     }

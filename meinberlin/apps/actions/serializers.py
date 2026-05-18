@@ -119,7 +119,6 @@ class ActionSerializer(serializers.ModelSerializer):
         if obj.type == "rating" and trigger_class == "Proposal":
             return "support"
         if obj.type == "phase" and obj.verb == "schedule":
-            # Check if this is an offline event using the trigger object
             if (
                 trigger
                 and hasattr(trigger, "type")
@@ -145,7 +144,6 @@ class ActionSerializer(serializers.ModelSerializer):
     def get_source_timestamp(self, obj):
         trigger, _ = self.get_cached_trigger(obj)
         if trigger:
-            # Try date first, then start_date for phases
             if hasattr(trigger, "date"):
                 return localtime(trigger.date)
             elif hasattr(trigger, "start_date"):

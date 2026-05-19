@@ -131,5 +131,6 @@ def signup_url():
 
 @pytest.fixture(scope="function", autouse=True)
 def cache_clear():
+    # With pytest-xdist, each worker uses its own Redis DB (see settings/travis.py).
     yield cache
     cache.clear()

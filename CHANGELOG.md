@@ -7,6 +7,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## Unreleased
 
+## mB-v2605.1
+
 ### Added
 
 - Initiator reminder to publish project results.

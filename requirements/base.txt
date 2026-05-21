@@ -12,7 +12,7 @@ redis==5.2.1
 requests==2.33.0
 requests-mock==1.11.0
 sentry-sdk[django]==2.34.1
-urllib3==2.6.3
+urllib3==2.7.0
 wagtail==7.4
 whitenoise==6.9.0
 zeep==4.3.1

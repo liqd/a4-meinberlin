@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-19 15:21+0200\n"
-"PO-Revision-Date: 2026-04-09 14:14+0000\n"
+"PO-Revision-Date: 2026-05-20 14:18+0000\n"
 "Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js-"
-"design-dev/de/>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
+"js-design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1553,13 +1553,15 @@ msgstr ""
 
 #: meinberlin/react/account/notification_data.js:211
 msgid "Publish project results"
-msgstr ""
+msgstr "Projektergebnisse veröffentlichen"
 
 #: meinberlin/react/account/notification_data.js:213
 msgid ""
 "Receive a reminder to publish participation results after the participation "
 "phase has ended."
 msgstr ""
+"Erinnerung zur Veröffentlichung der Projektergebnisse nach Beendigung des "
+"Projekts erhalten."
 
 #: meinberlin/react/account/notification_data.js:217
 msgid "New Contribution in a Moderated Project"

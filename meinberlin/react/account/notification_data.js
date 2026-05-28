@@ -10,8 +10,8 @@ export const messages = {
     fallback: django.gettext('<a href="%(url)s">%(title)s</a> will end soon')
   },
   offlineEvent: {
-    full: 'Event %(eventName)s (<a href="%(eventUrl)s">link to event</a>) in the project <a href="%(url)s">%(title)s</a> begins on %(date)s at %(time)s',
-    fallback: 'Event %(eventName)s in the project <a href="%(url)s">%(title)s</a> begins on %(date)s'
+    full: django.gettext('Event %(eventName)s (<a href="%(eventUrl)s">link to event</a>) in the project <a href="%(url)s">%(title)s</a> begins on %(date)s at %(time)s'),
+    fallback: django.gettext('Event %(eventName)s in the project <a href="%(url)s">%(title)s</a> begins on %(date)s')
   }
 }
 

@@ -5,6 +5,7 @@ from django.utils.timezone import localtime
 from rest_framework import serializers
 
 from adhocracy4.actions.models import Action
+from meinberlin.apps.offlineevents.models import OfflineEventItem
 from meinberlin.apps.plans.serializers import PlanSerializer
 from meinberlin.apps.projects.serializers import ProjectSerializer
 
@@ -119,12 +120,10 @@ class ActionSerializer(serializers.ModelSerializer):
         if obj.type == "rating" and trigger_class == "Proposal":
             return "support"
         if obj.type == "phase" and obj.verb == "schedule":
-            if (
-                trigger
-                and hasattr(trigger, "type")
-                and trigger.type
-                and "offline-event" in trigger.type
-            ):
+            is_offline_event = (
+                trigger and hasattr(trigger, "type") and "offline-event" in trigger.type
+            )
+            if is_offline_event:
                 return "offlineevent"
             return "phase_soon_over"
         if obj.type == "phase" and obj.verb == "start":
@@ -134,12 +133,24 @@ class ActionSerializer(serializers.ModelSerializer):
         return obj.type
 
     def get_source(self, obj):
-        trigger, _ = self.get_cached_trigger(obj)
+        trigger, trigger_class = self.get_cached_trigger(obj)
+
+        is_offline_event = (
+            trigger_class == "Phase"
+            and hasattr(trigger, "type")
+            and "offline-event" in trigger.type
+        )
+        if is_offline_event:
+            event = OfflineEventItem.objects.filter(module=trigger.module).first()
+            if event and hasattr(event, "name"):
+                return event.name
 
         if trigger and hasattr(trigger, "name"):
             return trigger.name
         elif trigger and hasattr(trigger, "content_object"):
             return trigger.content_object.__class__.__name__.lower()
+
+        return None
 
     def get_source_timestamp(self, obj):
         trigger, _ = self.get_cached_trigger(obj)

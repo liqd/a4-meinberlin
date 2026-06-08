@@ -7,6 +7,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## Unreleased
 
+### Added
+
+- Permanent sticky submit CTA on module detail pages (ideas, map ideas, budgeting)
+
 ## mB-v2605.1
 
 ### Added

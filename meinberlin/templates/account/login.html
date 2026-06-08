@@ -17,7 +17,7 @@
         <form method="post" action="{% url 'account_login' %}" class="form--base js-validate">
             {% csrf_token %}
             
-            <div class="client-validation-errors" style="display: none;">
+            <div class="client-validation-errors">
                 <ul class="errorlist" aria-live="assertive" aria-atomic="true">
                 </ul>
             </div>

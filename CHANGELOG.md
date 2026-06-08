@@ -10,6 +10,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Added
 
 - Permanent sticky submit CTA on module detail pages (ideas, map ideas, budgeting)
+- Redirect users back to the page they were on before logging in
 
 ## mB-v2605.1
 

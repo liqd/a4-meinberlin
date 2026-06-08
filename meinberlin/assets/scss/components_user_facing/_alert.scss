@@ -58,6 +58,8 @@
 }
 
 .client-validation-errors {
+    display: none;
+
     .errorlist {
         li.message--error {
             margin-bottom: 8px;

@@ -1,3 +1,8 @@
+.editpoll__question--border > label + .form-check,
+.editpoll__question--border > .form-group + .form-check {
+    margin-top: 15px;
+}
+
 .editpoll__questions-options__form-check {
   display: flex;
   align-items: center;

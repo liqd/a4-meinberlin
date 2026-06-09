@@ -11,6 +11,12 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Permanent sticky submit CTA on module detail pages (ideas, map ideas, budgeting)
 - Redirect users back to the page they were on before logging in
+- Confidential poll questions: participants can answer without seeing others' responses
+
+### Changed
+
+- Update a4 for confidential poll questions
+- Poll dashboard and detail styling for confidential questions
 
 ## mB-v2605.1
 
@@ -25,6 +31,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Upgrade Wagtail to 7.4 (LTS)
 
 ## mB-v2604.1
+
 
 ### Fixed
 

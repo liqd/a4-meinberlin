@@ -2,12 +2,39 @@
     background-color: inherit;
 }
 
+.swiper-button-prev {
+    padding-left: 0 !important;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    color: $white !important;
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+}
+
 .swiper-navigation {
     display: flex;
     align-items: center;
     background-color: inherit;
     color: $white;
     padding-bottom: $spacer;
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        align-items: center;
+        background-color: inherit !important;
+        display: flex;
+        height: auto !important;
+        margin-top: 0;
+        position: static;
+        width: auto;
+
+        // Swiper 12 injects SVG arrows; Berlin marketing already renders ::after chevrons.
+        svg {
+            display: none;
+        }
+    }
 }
 
 .swiper-pagination-clickable {
@@ -33,23 +60,4 @@
         background: $white !important;
         color: $panel-dark !important;
     }
-}
-
-.swiper-button-prev {
-    padding-left: 0 !important;
-}
-
-.swiper-button-prev,
-.swiper-button-next {
-    background-color: inherit !important;
-    height: 0 !important;
-    display: flex;
-    align-items: center;
-}
-
-.swiper-button-next:after,
-.swiper-button-prev:after {
-    color: $white !important;
-    width: 1.5rem !important;
-    height: 1.5rem !important;
 }

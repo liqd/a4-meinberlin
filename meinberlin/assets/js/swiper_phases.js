@@ -29,8 +29,9 @@ const initSwiper = () => {
       modules: [Navigation, Pagination],
       initialSlide,
       navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
+        addIcons: false,
+        nextEl: rootElement.querySelector('.swiper-button-next'),
+        prevEl: rootElement.querySelector('.swiper-button-prev')
       },
       pagination: {
         el: '.swiper-pagination',

@@ -5,7 +5,8 @@
 
 $sticky-cta-inner-height: 2.6875rem; // 43px
 $sticky-cta-bar-height: calc(1.375rem + #{$sticky-cta-inner-height} + 1.3125rem); // Figma: 22px + 43px + 21px
-$sticky-cta-bar-height-mobile: 7rem;
+// Mobile column layout: 22px + 24px text + 20px gap + 43px button + 21px
+$sticky-cta-bar-height-mobile: calc(1.375rem + 1.5rem + 1.25rem + #{$sticky-cta-inner-height} + 1.3125rem);
 
 // End-of-page offset: footer and contentfooter sit outside #layout-grid__area--maincontent.
 body:has(.modul-stickybutton.permanent-sticky) {
@@ -19,10 +20,12 @@ body:has(.modul-stickybutton.permanent-sticky) {
 }
 
 .modul-stickybutton.permanent-sticky {
+    background-color: $panel-dark;
     border-top: 0;
     box-shadow:
         0 1px 0.5px rgba($black, 0.05),
         0 2px 16px rgba($black, 0.1);
+    color: $text-inverted;
     gap: 1.25rem;
     padding: 1.375rem 5.625rem 1.3125rem 1.5rem;
 
@@ -31,12 +34,20 @@ body:has(.modul-stickybutton.permanent-sticky) {
     }
 
     @media screen and (width <= $breakpoint-palm) {
-        gap: 0;
+        align-items: flex-end;
+        flex-direction: column;
+        gap: 1.25rem;
+        padding: 1.375rem 0.75rem 1.3125rem;
+
+        &:before {
+            display: none;
+        }
     }
 
     .text p {
-        margin-bottom: 0;
+        color: inherit;
         line-height: 1.5;
+        margin-bottom: 0;
     }
 
     // Berlin marketing adds .5em margins that increase bar height beyond 43px.

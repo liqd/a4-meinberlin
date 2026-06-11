@@ -1,3 +1,5 @@
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView
@@ -13,6 +15,7 @@ from adhocracy4.filters.filters import FreeTextFilter
 from meinberlin.apps.bplan import phases as bplan_phases
 from meinberlin.apps.dashboard.mixins import DashboardProjectListGroupMixin
 from meinberlin.apps.extprojects.views import ExternalProjectCreateView
+from meinberlin.apps.projects.utils import get_public_project_url
 
 from . import forms
 from . import models
@@ -98,22 +101,14 @@ class BplanProjectDispatchMixin(DetailView):
     def project(self):
         return self.get_object()
 
-    @cached_property
-    def module(self):
-        if self.project.published_modules.count() == 1:
-            return self.project.published_modules.first()
-        elif len(self.project.running_modules) == 1:
-            return self.project.running_modules[0]
-
     def dispatch(self, request, *args, **kwargs):
+        # Bplans live on an external platform (Diplan) and the on-site detail
+        # page offers no participation, so redirect to the external project URL.
+        # Drafts may not have a url yet; send those to the dashboard edit page.
         if self.project.project_type == "meinberlin_bplan.Bplan":
-            kwargs["project"] = self.project
-            kwargs["module"] = self.module
-
-            return self._dispatch_bplan_module_view()(request, *args, **kwargs)
+            url = get_public_project_url(self.project) or reverse(
+                "a4dashboard:project-edit",
+                kwargs={"project_slug": self.project.slug},
+            )
+            return HttpResponseRedirect(url)
         return super().dispatch(request, *args, **kwargs)
-
-    def _dispatch_bplan_module_view(self):
-        if self.module and self.module.last_active_phase:
-            return self.module.last_active_phase.view.as_view()
-        return super().dispatch

@@ -95,6 +95,22 @@ def get_publish_results_reminder_skip_reason(
     return None
 
 
+def get_public_project_url(project, base_url: str = "") -> str:
+    """Return the canonical public URL for a project.
+
+    External projects and Bplans are hosted on Diplan, so their external
+    ``url`` is returned (already absolute). All other projects use their
+    on-site detail URL, prefixed with ``base_url`` when given so callers that
+    need an absolute URL (e.g. emails) can pass the site host.
+    """
+    if project.project_type in (
+        "meinberlin_extprojects.ExternalProject",
+        "meinberlin_bplan.Bplan",
+    ):
+        return project.externalproject.url
+    return "{}{}".format(base_url, project.get_absolute_url())
+
+
 def apply_publish_results_reminder(project, *, now: datetime) -> None:
     """
     Send the publish-results reminder and persist ``results_reminder_sent_at``.

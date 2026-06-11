@@ -4,6 +4,7 @@ from django.urls import reverse
 from adhocracy4.actions.models import Action
 from meinberlin.apps.contrib.emails import Email
 from meinberlin.apps.extprojects.models import ExternalProject
+from meinberlin.apps.projects.utils import get_public_project_url
 
 User = auth.get_user_model()
 
@@ -111,6 +112,9 @@ class NotifyInitiatorsOnProjectCreatedEmail(Email):
         creator = User.objects.get(pk=self.kwargs["creator_pk"])
         context["creator"] = creator
         context["project"] = self.object
+        context["cta_url"] = get_public_project_url(
+            self.object, base_url=self.get_host()
+        )
         return context
 
 

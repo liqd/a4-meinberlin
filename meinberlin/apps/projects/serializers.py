@@ -12,6 +12,7 @@ from adhocracy4.projects.models import Project
 from adhocracy4.projects.models import Topic
 from meinberlin.apps import logger
 from meinberlin.apps.kiezradar.models import ProjectType
+from meinberlin.apps.projects.utils import get_public_project_url
 
 
 class CommonFields:
@@ -155,12 +156,7 @@ class ProjectSerializer(
         return instance.name
 
     def get_url(self, instance):
-        if instance.project_type in (
-            "meinberlin_extprojects.ExternalProject",
-            "meinberlin_bplan.Bplan",
-        ):
-            return instance.externalproject.url
-        return instance.get_absolute_url()
+        return get_public_project_url(instance)
 
     def get_tile_image(self, instance):
         image_url = ""

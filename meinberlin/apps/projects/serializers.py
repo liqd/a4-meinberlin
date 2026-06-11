@@ -67,7 +67,6 @@ class ProjectSerializer(
     type = serializers.SerializerMethodField()
     url = serializers.SerializerMethodField()
     topics = serializers.SerializerMethodField()
-    identifier = serializers.SerializerMethodField()
 
     def __init__(self, *args, **kwargs):
         self.now = kwargs.pop("now", timezone.now())
@@ -92,7 +91,6 @@ class ProjectSerializer(
             "description",
             "district",
             "future_phase",
-            "identifier",
             "organisation",
             "participation",
             "participation_active",
@@ -255,11 +253,6 @@ class ProjectSerializer(
 
     def get_cost(self, instance):
         return ""
-
-    def get_identifier(self, instance):
-        if hasattr(instance, "externalproject"):
-            if hasattr(instance.externalproject, "bplan"):
-                return instance.externalproject.bplan.identifier
 
 
 class ActiveProjectSerializer(ProjectSerializer):

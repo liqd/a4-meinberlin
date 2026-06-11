@@ -3,16 +3,6 @@ from django.dispatch import receiver
 
 from . import emails
 from .models import Bplan
-from .models import Statement
-
-
-@receiver(post_save, sender=Statement)
-def send_notification(sender, instance, created, **kwargs):
-    if created:
-        emails.OfficeWorkerNotification.send(instance)
-
-        if instance.email:
-            emails.SubmitterConfirmation.send(instance)
 
 
 @receiver(post_save, sender=Bplan)

@@ -6,7 +6,7 @@ from adhocracy4.test.helpers import freeze_post_phase
 from adhocracy4.test.helpers import freeze_pre_phase
 from adhocracy4.test.helpers import setup_phase
 from adhocracy4.test.helpers import setup_users
-from meinberlin.apps.bplan import phases
+from meinberlin.apps.extprojects.phases import ExternalPhase
 from meinberlin.test.helpers import setup_group_members
 
 perm_name = "meinberlin_bplan.change_bplan"
@@ -20,7 +20,7 @@ def test_perm_exists():
 
 @pytest.mark.django_db
 def test_pre_phase(phase_factory, user_factory, group_factory):
-    phase, _, project, _ = setup_phase(phase_factory, None, phases.StatementPhase)
+    phase, _, project, _ = setup_phase(phase_factory, None, ExternalPhase)
     anonymous, moderator, initiator = setup_users(project)
     user = user_factory()
     admin = user_factory(is_superuser=True)
@@ -45,7 +45,7 @@ def test_pre_phase(phase_factory, user_factory, group_factory):
 
 @pytest.mark.django_db
 def test_phase_active(phase_factory, user_factory, group_factory):
-    phase, _, project, _ = setup_phase(phase_factory, None, phases.StatementPhase)
+    phase, _, project, _ = setup_phase(phase_factory, None, ExternalPhase)
     anonymous, moderator, initiator = setup_users(project)
     user = user_factory()
     admin = user_factory(is_superuser=True)
@@ -71,7 +71,7 @@ def test_phase_active(phase_factory, user_factory, group_factory):
 @pytest.mark.django_db
 def test_phase_active_project_draft(phase_factory, user_factory, group_factory):
     phase, _, project, _ = setup_phase(
-        phase_factory, None, phases.StatementPhase, module__project__is_draft=True
+        phase_factory, None, ExternalPhase, module__project__is_draft=True
     )
     anonymous, moderator, initiator = setup_users(project)
     user = user_factory()
@@ -98,7 +98,7 @@ def test_phase_active_project_draft(phase_factory, user_factory, group_factory):
 @pytest.mark.django_db
 def test_post_phase_project_archived(phase_factory, user_factory, group_factory):
     phase, _, project, _ = setup_phase(
-        phase_factory, None, phases.StatementPhase, module__project__is_archived=True
+        phase_factory, None, ExternalPhase, module__project__is_archived=True
     )
     anonymous, moderator, initiator = setup_users(project)
     user = user_factory()

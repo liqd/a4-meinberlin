@@ -39,7 +39,6 @@ export const filterProjects = (items, appliedFilters, kiezradars, topics, projec
         isInTitle(item.district, search) ||
         isInTitle(item.organisation, search) ||
         isInTitle(item.description, search) ||
-        isInTitle(item.identifier, search) ||
         isInTopic(topics, item.topics, search))
 
     const isStatusMatch = (projectState.includes(statusNames[item.status])) && (!plansOnly || item.type === 'plan')

@@ -8,42 +8,25 @@ Bplans define binding regulations for urban planning, specifying land
 use (e.g. housing, offices, green spaces) and building parameters like height
 and footprint. Citizens can participate in the process and provide feedback
 on the plans. As the central participation platform of the city of Berlin, we want
-to show all Bplans which allow participation in our project overview. Up until the beginning of 2025
-meinBerlin also provides the means for the digital participation. In the future this will be provided by
-the Diplan platform. Bplans are mostly created via this api but they can also be added by initiators from the dashboard.
-
-### Integration with Imperia (legacy)
-
-Imperia is a CMS used by the public administration and is responsible for displaying Bplans and the participation form
-on berlin.de. Imperia uses this API to publish and unpublish Bplans on meinBerlin depending on whether participation is
-currently possible. When creating or publishing a Bplan, the meinBerlin API returns an embed code (iframe) which then is
-embedded in the Bplan page on berlin.de to allow citizen to submit their feedback. Imperia only provides basic
-information about the Bplan to meinBerlin, therefore meinBerlin will fetch the location and the district from the
-Bplan map.
+to show all Bplans which allow participation in our project overview. The digital participation itself is
+provided by the Diplan platform. Bplans are mostly created via this api but they can also be added by initiators from the dashboard.
 
 ### Integration with Diplan
 
-Diplan will replace Imperia for managing Bplans and also incorporate the participation feature currently done via the
-embed
-from meinBerlin. Therefore, the only remaining functionality in meinBerlin is to display them in the project overview
-and link to Diplan.
+Diplan manages Bplans and provides the participation feature. The only functionality in meinBerlin is to display
+Bplans in the project overview and link out to Diplan.
 
-#### Notable changes compared to the old system:
+#### Key behaviours:
 
-- The `district` name is provided as a short code string by Diplan, and corresponds to an "Administrative District" record created in the admin
-- The Bplan Location is provided by Diplan, we no longer need to fetch it from the Bplan map
-- The statement form / embed code for the participation is no longer required as participation happens directly on
-  Diplan
-- Bplans will be shown unless unpublished via this api, previously they would automatically be archived once the
-  participation phase ended
+- The `district` is provided as a short code string by Diplan, and corresponds to an "Administrative District" record created in the admin
+- The Bplan location is provided by Diplan
+- Participation (statements) happens directly on Diplan; meinBerlin does not collect statements
+- Bplans are shown until unpublished via this api
 
 ## Prerequisites
 
 To use this API you need to have received an email and a password for the
 API user and the `id` of your organisation.
-
-The api currently supports both the legacy Imperia system and the new Diplan system. In the future
-support for Imperia will be removed.
 
 ## Authentication
 
@@ -77,10 +60,7 @@ The following fields need to be provided:
 - *name*: string
   - Name of the BPLAN (e.g. used as the title of the project tile)
   - Maximum length of 120 chars, however longer input is accepted and will be cut to 120
-- *(imperia only) identifier*: string
-  - Identifier that clearly identifies the BPLAN, needs to be the same as in the FIS Broker (e.g. `VIII - 329`)
-  - Maximum length of 120 chars
-- *(diplan only) administrative_district*: string
+- *administrative_district*: string
   - District short code, corresponding to an Administrative District created in the meinBerlin admin, eg `mi` for `Mitte`
   - See the [complete district codes table](#district-codes-table) for reference.
   - Maximum length of 120 chars
@@ -91,7 +71,6 @@ The following fields need to be provided:
   - URL of the external site the BPLAN is embedded on
 - *office_worker_email*: string
   - Email of the office worker to receive notifications about changes
-  - Imperia only: email the statements are sent to
 - *is_draft*: bool
   - Whether the plan is still a draft or should be published
 - *start_date*: string
@@ -105,17 +84,12 @@ The following fields need to be provided:
 - *point*: string containing valid geojson
   - Location of the bplan
   - Projection: WGS84 / EPSG:4326
-- *(diplan only) tile_image*: string (optional)
+- *tile_image*: string (optional)
   - Base64 encoded image
   - Minimal resolution 500x300 px (width x height)
   - Maximum file size 10MB
   - Allowed formats: png, jpeg, gif
   - If not provided, the placeholder image will be automatically used in the frontend
-- *(imperia only) image_url*: string
-  - URL of the image that is used in the project tile
-  - Minimal resolution 500x300 px (width x height)
-  - Maximum file size 10MB
-  - Allowed formats: png, jpeg, gif
 - *image_copyright*: string
   - Copyright shown for the image
   - Maximum length of 120 chars
@@ -144,7 +118,6 @@ The following fields need to be provided:
       ]
     }
   },
-  "image_url": "http://berlin.de/images/.../bebauungsplan.649020.png",
   "image_copyright": "BA Marzahn-Hellersdorf"
 }
 ```
@@ -159,8 +132,6 @@ The following fields need to be provided:
 
 - id: Integer
   - The id of the newly created bplan. Required to make modifications to this bplan.
-- (imperia only): embed: string
-  - Returns the embed code (iframe) for the statement form
 
 **Content example**
 
@@ -266,8 +237,6 @@ See [data example](#data-example) above
 
 - id: Integer
   - The id of the newly created bplan. Required to make modifications to this bplan.
-- (imperia only): embed: string
-  - Returns the embed code (iframe) for the statement form
 
 **Content example**
 

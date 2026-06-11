@@ -5,6 +5,7 @@ from adhocracy4.actions.models import Action
 from meinberlin.apps.contrib.emails import Email
 from meinberlin.apps.extprojects.models import ExternalProject
 from meinberlin.apps.projects.utils import get_public_project_url
+from meinberlin.apps.projects.utils import get_publish_results_reminder_initiators
 
 User = auth.get_user_model()
 
@@ -123,7 +124,7 @@ class NotifyInitiatorsPublishResultsEmail(Email):
 
     def get_receivers(self):
         project = self.object
-        receivers = project.organisation.initiators.all()
+        receivers = get_publish_results_reminder_initiators(project)
         receivers = _exclude_notifications_disabled(
             receivers, "notify_initiators_publish_results"
         )

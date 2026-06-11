@@ -4,14 +4,16 @@ from django.utils import timezone
 
 from adhocracy4.projects.models import Project
 from meinberlin.apps.projects.utils import apply_publish_results_reminder
+from meinberlin.apps.projects.utils import get_publish_results_reminder_initiators
 from meinberlin.apps.projects.utils import get_publish_results_reminder_skip_reason
 
 
 class Command(BaseCommand):
     help = (
-        "Send the publish-results reminder email to every initiator of the project's "
-        "organisation (one message per initiator), only if the project satisfies the "
-        "same eligibility rules as the periodic send_publish_results_reminders task."
+        "Send the publish-results reminder email to initiators of the project's "
+        "organisation who are involved in the project (one message per initiator), "
+        "only if the project satisfies the same eligibility rules as the periodic "
+        "send_publish_results_reminders task."
     )
 
     def add_arguments(self, parser):
@@ -43,11 +45,11 @@ class Command(BaseCommand):
                 f"(same rules as the periodic task). Reason code: {reason}."
             )
 
-        n_initiators = project.organisation.initiators.count()
+        n_initiators = get_publish_results_reminder_initiators(project).count()
         apply_publish_results_reminder(project, now=now)
         self.stdout.write(
             self.style.SUCCESS(
                 f"Publish-results reminder sent for project {slug!r}: "
-                f"{n_initiators} e-mail(s), one per initiator of the organisation."
+                f"{n_initiators} e-mail(s), one per initiator involved in the project."
             )
         )

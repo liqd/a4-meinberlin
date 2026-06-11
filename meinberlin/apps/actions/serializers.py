@@ -8,6 +8,7 @@ from adhocracy4.actions.models import Action
 from meinberlin.apps.offlineevents.models import OfflineEventItem
 from meinberlin.apps.plans.serializers import PlanSerializer
 from meinberlin.apps.projects.serializers import ProjectSerializer
+from meinberlin.apps.projects.utils import get_public_project_url
 
 
 class ActionSerializer(serializers.ModelSerializer):
@@ -96,6 +97,9 @@ class ActionSerializer(serializers.ModelSerializer):
             return trigger.content_object.get_absolute_url()
         if trigger_class == "Phase":
             return trigger.module.get_absolute_url()
+        if hasattr(trigger, "project_type"):
+            # Projects link to their public URL, which for bplans is the Diplan link.
+            return get_public_project_url(trigger)
         if hasattr(trigger, "get_absolute_url"):
             return trigger.get_absolute_url()
         return None

@@ -163,10 +163,6 @@ urlpatterns = [
         ),
     ),
     path(
-        "bplan/",
-        include(("meinberlin.apps.bplan.urls", "meinberlin_bplan"), "meinberlin_bplan"),
-    ),
-    path(
         "budgeting/",
         include(
             ("meinberlin.apps.budgeting.urls", "meinberlin_budgeting"),

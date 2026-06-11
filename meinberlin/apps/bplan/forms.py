@@ -1,26 +1,11 @@
 from django import forms
-from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from meinberlin.apps.extprojects.forms import ExternalProjectCreateForm
 from meinberlin.apps.extprojects.forms import ExternalProjectForm
 
-from ..captcha.fields import CaptcheckCaptchaField
 from . import models
-
-
-class StatementForm(forms.ModelForm):
-    captcha = CaptcheckCaptchaField(label=_("I am not a robot"))
-
-    class Meta:
-        model = models.Statement
-        fields = ["name", "email", "statement", "street_number", "postal_code_city"]
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        if not (hasattr(settings, "CAPTCHA_URL") and settings.CAPTCHA_URL):
-            del self.fields["captcha"]
 
 
 class BplanProjectCreateForm(ExternalProjectCreateForm):
@@ -40,15 +25,6 @@ class BplanProjectForm(ExternalProjectForm):
         required=False,
         label=_("Administrative district"),
         help_text=_("Enter district short code (e.g., 'mi' for Mitte)"),
-    )
-
-    identifier = forms.CharField(
-        required=False,
-        label=_("Identifier (deprecated)"),
-        disabled=True,  # Read-only
-        help_text=_(
-            "Identifier is no longer used. Use Administrative District instead."
-        ),
     )
 
     class Meta:

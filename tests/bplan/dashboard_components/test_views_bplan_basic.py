@@ -5,7 +5,7 @@ from django.core import mail
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.dashboard import components
 from adhocracy4.test.helpers import redirect_target
-from meinberlin.apps.bplan.phases import StatementPhase
+from meinberlin.apps.extprojects.phases import ExternalPhase
 from meinberlin.test.helpers import assert_dashboard_form_component_response
 from meinberlin.test.helpers import setup_group_members
 
@@ -33,7 +33,7 @@ def test_edit_view(client, phase_factory, bplan, module_factory):
     )
 
     module = module_factory(project=bplan)
-    phase = phase_factory(phase_content=StatementPhase(), module=module)
+    phase = phase_factory(phase_content=ExternalPhase(), module=module)
     initiator = bplan.organisation.initiators.first()
     url = components.projects["bplan"].get_base_url(bplan)
     client.login(username=initiator.email, password="password")
@@ -80,7 +80,7 @@ def test_edit_view_group_member(
     )
 
     module = module_factory(project=bplan)
-    phase = phase_factory(phase_content=StatementPhase(), module=module)
+    phase = phase_factory(phase_content=ExternalPhase(), module=module)
     bplan, _, group_member_in_pro, _ = setup_group_members(
         bplan, group_factory, user_factory
     )

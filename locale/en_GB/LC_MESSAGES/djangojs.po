@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-28 11:03+0200\n"
+"POT-Creation-Date: 2026-06-11 14:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1020,6 +1020,22 @@ msgstr ""
 #: meinberlin/react/account/notification_data.js:10
 msgid "<a href=\"%(url)s\">%(title)s</a> will end soon"
 msgstr "<a href=\"%(url)s\">%(title)s</a> will end soon"
+
+#: meinberlin/react/account/notification_data.js:13
+msgid ""
+"Event %(eventName)s (<a href=\"%(eventUrl)s\">link to event</a>) in the "
+"project <a href=\"%(url)s\">%(title)s</a> begins on %(date)s at %(time)s"
+msgstr ""
+"Event %(eventName)s (<a href=\"%(eventUrl)s\">link to event</a>) in the "
+"project <a href=\"%(url)s\">%(title)s</a> begins on %(date)s at %(time)s"
+
+#: meinberlin/react/account/notification_data.js:14
+msgid ""
+"Event %(eventName)s in the project <a href=\"%(url)s\">%(title)s</a> begins "
+"on %(date)s"
+msgstr ""
+"Event %(eventName)s in the project <a href=\"%(url)s\">%(title)s</a> begins "
+"on %(date)s"
 
 #: meinberlin/react/account/notification_data.js:34
 msgid "Interactions"

@@ -1,1 +1,0 @@
-{% extends 'meinberlin_bplan/emails/office_worker_notification.de.email' %}

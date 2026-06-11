@@ -22,6 +22,16 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Module phase swiper: show only one prev/next icon per button
 
+### Removed
+
+- Bplan: legacy Imperia statement embed code from the API and dashboard
+- Bplan: obsolete `bplan_get_location` and `bplan_auto_archive` management commands
+- Bplan: deprecated `identifier` field from the dashboard edit form, the API, and the project list serializer
+- Bplan API docs: legacy Imperia integration section and Imperia-only field notes
+- Bplan: legacy `Statement` model and database table, its submission form, views, signal, notification emails and templates
+- Bplan: Imperia-only `bplan_id` and `image_url` API fields (Diplan sends `tile_image` as base64)
+- Bplan: `is_diplan` model field (all Bplans are now Diplan-only)
+- Bplan: now reuses `ExternalPhase` instead of the Statement phase to hold participation dates (existing phases re-typed via data migration)
 
 ## mB-v2605.1
 

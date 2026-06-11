@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-28 11:03+0200\n"
+"POT-Creation-Date: 2026-06-11 14:37+0200\n"
 "PO-Revision-Date: 2024-02-08 08:57+0000\n"
 "Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
 "Language-Team: English <https://weblate.liqd.net/projects/meinberlin/main/en/"
@@ -270,7 +270,7 @@ msgid "here you can export all comments"
 msgstr "here you can export all comments"
 
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
-#: adhocracy4/dashboard/filter.py:11 meinberlin/apps/bplan/views.py:22
+#: adhocracy4/dashboard/filter.py:11 meinberlin/apps/bplan/views.py:24
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/hero_search.html:3
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/hero_search.html:17
 #: meinberlin/apps/cms/viewsets.py:19 meinberlin/apps/extprojects/views.py:20
@@ -939,39 +939,39 @@ msgstr ""
 "detail pages. It should briefly state the goal of the module in max. 512 "
 "chars."
 
-#: adhocracy4/modules/models.py:225 meinberlin/apps/projects/serializers.py:274
+#: adhocracy4/modules/models.py:225 meinberlin/apps/projects/serializers.py:263
 msgid "day"
 msgstr "day"
 
 #: adhocracy4/modules/models.py:225 adhocracy4/modules/models.py:232
-#: meinberlin/apps/projects/serializers.py:274
+#: meinberlin/apps/projects/serializers.py:263
 msgid "days"
 msgstr "days"
 
-#: adhocracy4/modules/models.py:226 meinberlin/apps/projects/serializers.py:275
+#: adhocracy4/modules/models.py:226 meinberlin/apps/projects/serializers.py:264
 msgid "hour"
 msgstr "hour"
 
 #: adhocracy4/modules/models.py:226 adhocracy4/modules/models.py:233
-#: meinberlin/apps/projects/serializers.py:275
+#: meinberlin/apps/projects/serializers.py:264
 msgid "hours"
 msgstr "hours"
 
-#: adhocracy4/modules/models.py:227 meinberlin/apps/projects/serializers.py:276
+#: adhocracy4/modules/models.py:227 meinberlin/apps/projects/serializers.py:265
 msgid "minute"
 msgstr "minute"
 
 #: adhocracy4/modules/models.py:227 adhocracy4/modules/models.py:234
-#: meinberlin/apps/projects/serializers.py:276
+#: meinberlin/apps/projects/serializers.py:265
 msgid "minutes"
 msgstr "minutes"
 
-#: adhocracy4/modules/models.py:228 meinberlin/apps/projects/serializers.py:277
+#: adhocracy4/modules/models.py:228 meinberlin/apps/projects/serializers.py:266
 msgid "second"
 msgstr "second"
 
 #: adhocracy4/modules/models.py:228 adhocracy4/modules/models.py:235
-#: meinberlin/apps/projects/serializers.py:277
+#: meinberlin/apps/projects/serializers.py:266
 msgid "seconds"
 msgstr "seconds"
 
@@ -1243,7 +1243,7 @@ msgstr ""
 "Locate your project. Click inside the marked area or type in an address to "
 "set the marker. A set marker can be dragged when pressed."
 
-#: adhocracy4/projects/models.py:122 meinberlin/apps/bplan/forms.py:41
+#: adhocracy4/projects/models.py:122 meinberlin/apps/bplan/forms.py:26
 msgid "Administrative district"
 msgstr "Administrative district"
 
@@ -1631,69 +1631,22 @@ msgstr "Project Edit Log"
 msgid "Development plan settings"
 msgstr "Development plan settings"
 
-#: meinberlin/apps/bplan/forms.py:14
-#: meinberlin/apps/cms/models/email_form.py:25
-#: meinberlin/apps/users/forms.py:105
-msgid "I am not a robot"
-msgstr "I am not a robot"
-
-#: meinberlin/apps/bplan/forms.py:42
+#: meinberlin/apps/bplan/forms.py:27
 msgid "Enter district short code (e.g., 'mi' for Mitte)"
 msgstr "Enter district short code (e.g., 'mi' for Mitte)"
 
-#: meinberlin/apps/bplan/forms.py:47
-msgid "Identifier (deprecated)"
-msgstr "Identifier (deprecated)"
-
-#: meinberlin/apps/bplan/forms.py:50
-msgid "Identifier is no longer used. Use Administrative District instead."
-msgstr "Identifier is no longer used. Use Administrative District instead."
-
-#: meinberlin/apps/bplan/models.py:14
+#: meinberlin/apps/bplan/models.py:10
 msgid "Office worker email"
 msgstr "Office worker email"
 
-#: meinberlin/apps/bplan/models.py:59
-msgid "Your Name"
-msgstr "Your Name"
-
-#: meinberlin/apps/bplan/models.py:60 meinberlin/apps/users/forms.py:113
-#: meinberlin/apps/users/models.py:33
-msgid "Email address"
-msgstr "Email address"
-
-#: meinberlin/apps/bplan/models.py:61
-msgid "Statement"
-msgstr "Statement"
-
-#: meinberlin/apps/bplan/models.py:64
-msgid "Street, House number"
-msgstr "Street, House number"
-
-#: meinberlin/apps/bplan/models.py:67
-msgid "Postal code, City"
-msgstr "Postal code, City"
-
-#: meinberlin/apps/bplan/phases.py:43
-msgid "Statement phase"
-msgstr "Statement phase"
-
-#: meinberlin/apps/bplan/phases.py:44
-msgid "Send statement to the office workers per mail."
-msgstr "Send statement to the office workers per mail."
-
-#: meinberlin/apps/bplan/phases.py:45
-msgid "bplan"
-msgstr "bplan"
-
-#: meinberlin/apps/bplan/serializers.py:91
+#: meinberlin/apps/bplan/serializers.py:78
 msgid "Administrative district short code (e.g., 'mi' for Mitte)"
 msgstr "Administrative district short code (e.g., 'mi' for Mitte)"
 
-#: meinberlin/apps/bplan/serializers.py:220
-#: meinberlin/apps/bplan/serializers.py:221
-msgid "Bplan statement phase"
-msgstr "Bplan statement phase"
+#: meinberlin/apps/bplan/serializers.py:185
+#: meinberlin/apps/bplan/serializers.py:186
+msgid "Bplan participation phase"
+msgstr "Bplan participation phase"
 
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_create_dashboard.html:4
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_create_dashboard.html:24
@@ -1719,18 +1672,6 @@ msgstr "breadcrumbs"
 msgid "All development plans"
 msgstr "All development plans"
 
-#: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_finished.html:4
-msgid "Participation is over"
-msgstr "Participation is over"
-
-#: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_finished.html:9
-msgid "The Participation is over"
-msgstr "The Participation is over"
-
-#: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_finished.html:12
-msgid "Statments cannot be submited anymore."
-msgstr "Statments cannot be submited anymore."
-
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_list_dashboard.html:4
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_list_dashboard.html:9
 #: meinberlin/templates/a4dashboard/base_project_list.html:22
@@ -1745,52 +1686,16 @@ msgstr "New Development plan"
 msgid "We could not find any development plans."
 msgstr "We could not find any development plans."
 
-#: meinberlin/apps/bplan/templates/meinberlin_bplan/statement_create_form.html:4
-#: meinberlin/apps/bplan/templates/meinberlin_bplan/statement_create_form.html:9
-msgid "Submit a development plan statement"
-msgstr "Submit a development plan statement"
-
-#: meinberlin/apps/bplan/templates/meinberlin_bplan/statement_create_form.html:30
-msgid ""
-"The processing of personal data is carried out as part of the development "
-"plan procedure on the basis of § 3 Baugesetzbuch in conjunction with Art. 6 "
-"Buchst. e Datenschutz-Grundverordnung und Berliner Datenschutzgesetz. "
-"Detailed information on data processing rights and personal data can be "
-"found in the privacy policy at the bottom of the page."
-msgstr ""
-"The processing of personal data is carried out as part of the development "
-"plan procedure on the basis of § 3 Baugesetzbuch in conjunction with Art. 6 "
-"Buchst. e Datenschutz-Grundverordnung und Berliner Datenschutzgesetz. "
-"Detailed information on data processing rights and personal data can be "
-"found in the privacy policy at the bottom of the page."
-
-#: meinberlin/apps/bplan/templates/meinberlin_bplan/statement_create_form.html:34
-msgid "Submit"
-msgstr "Submit"
-
-#: meinberlin/apps/bplan/templates/meinberlin_bplan/statement_sent.html:4
-#: meinberlin/apps/bplan/templates/meinberlin_bplan/statement_sent.html:9
-msgid "Statement sent"
-msgstr "Statement sent"
-
-#: meinberlin/apps/bplan/templates/meinberlin_bplan/statement_sent.html:12
-msgid ""
-"Thanks! Your statement has been sent! An answer will be send to your email "
-"address."
-msgstr ""
-"Thanks! Your statement has been sent! An answer will be send to your email "
-"address."
-
-#: meinberlin/apps/bplan/views.py:49 meinberlin/apps/dashboard/views.py:323
+#: meinberlin/apps/bplan/views.py:43 meinberlin/apps/dashboard/views.py:323
 #: meinberlin/apps/extprojects/views.py:39
 msgid "Project was created."
 msgstr "Project was created."
 
-#: meinberlin/apps/bplan/views.py:52
+#: meinberlin/apps/bplan/views.py:46
 msgid "Development Plan"
 msgstr "Development Plan"
 
-#: meinberlin/apps/bplan/views.py:54
+#: meinberlin/apps/bplan/views.py:48
 msgid ""
 "Create a statement formular for development plans to be embedded on external "
 "sites."
@@ -2102,11 +2007,11 @@ msgstr ""
 msgid "Submit proposal"
 msgstr "Submit proposal"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:30
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:38
 msgid "Voting token form fields"
 msgstr "Voting token form fields"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:32
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:40
 msgid "Enter code"
 msgstr "Enter code"
 
@@ -2231,6 +2136,11 @@ msgstr "Form Field"
 #: meinberlin/apps/cms/emails.py:32
 msgid "Response"
 msgstr "Response"
+
+#: meinberlin/apps/cms/models/email_form.py:25
+#: meinberlin/apps/users/forms.py:105
+msgid "I am not a robot"
+msgstr "I am not a robot"
 
 #: meinberlin/apps/cms/models/pages.py:46
 msgid "Project teaser"
@@ -3212,8 +3122,8 @@ msgstr "Type"
 
 #: meinberlin/apps/kiezradar/models.py:81 meinberlin/apps/plans/models.py:30
 #: meinberlin/apps/plans/models.py:160
-#: meinberlin/apps/projects/serializers.py:126
-#: meinberlin/apps/projects/serializers.py:308
+#: meinberlin/apps/projects/serializers.py:125
+#: meinberlin/apps/projects/serializers.py:297
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_details_summary.html:51
 msgid "running"
 msgstr "running"
@@ -3223,8 +3133,8 @@ msgid "future"
 msgstr "future"
 
 #: meinberlin/apps/kiezradar/models.py:83 meinberlin/apps/plans/models.py:30
-#: meinberlin/apps/projects/serializers.py:141
-#: meinberlin/apps/projects/serializers.py:362
+#: meinberlin/apps/projects/serializers.py:140
+#: meinberlin/apps/projects/serializers.py:351
 msgid "done"
 msgstr "done"
 
@@ -3845,7 +3755,7 @@ msgstr "Topics"
 #: meinberlin/apps/plans/exports.py:74
 #: meinberlin/apps/plans/templatetags/react_map_teaser.py:18
 #: meinberlin/apps/projects/admin.py:219
-#: meinberlin/apps/projects/serializers.py:20
+#: meinberlin/apps/projects/serializers.py:21
 msgid "City wide"
 msgstr "City wide"
 
@@ -4024,7 +3934,7 @@ msgid "Duration"
 msgstr "Duration"
 
 #: meinberlin/apps/plans/models.py:168
-#: meinberlin/apps/projects/serializers.py:131
+#: meinberlin/apps/projects/serializers.py:130
 msgid "starts at {}"
 msgstr "starts at {}"
 
@@ -4384,8 +4294,8 @@ msgstr "poll answers"
 msgid "interactive event questions"
 msgstr "interactive event questions"
 
-#: meinberlin/apps/projects/serializers.py:139
-#: meinberlin/apps/projects/serializers.py:335
+#: meinberlin/apps/projects/serializers.py:138
+#: meinberlin/apps/projects/serializers.py:324
 msgid "starts in the future"
 msgstr "starts in the future"
 
@@ -4912,6 +4822,10 @@ msgstr ""
 #: meinberlin/apps/users/models.py:18
 msgid "Your username will appear publicly next to your posts."
 msgstr "Your username will appear publicly next to your posts."
+
+#: meinberlin/apps/users/forms.py:113 meinberlin/apps/users/models.py:33
+msgid "Email address"
+msgstr "Email address"
 
 #: meinberlin/apps/users/forms.py:137
 msgid "Username or email"
@@ -5472,6 +5386,18 @@ msgstr "Show previous slide"
 #: meinberlin/templates/a4modules/includes/module_detail_phase_swiper.html:10
 msgid "Show next slide"
 msgstr "Show next slide"
+
+#: meinberlin/templates/a4modules/includes/module_sticky_cta.html:3
+msgid "Participation"
+msgstr "Participation"
+
+#: meinberlin/templates/a4modules/includes/module_sticky_cta.html:5
+msgid "Get involved now."
+msgstr "Get involved now."
+
+#: meinberlin/templates/a4modules/includes/module_sticky_cta.html:8
+msgid "Participate"
+msgstr "Participate"
 
 #: meinberlin/templates/a4modules/module_detail.html:33
 msgctxt "video"

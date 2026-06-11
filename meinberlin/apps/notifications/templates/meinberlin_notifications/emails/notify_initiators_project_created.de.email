@@ -15,7 +15,7 @@
 {% endblock %}
 
 
-{% block cta_url %}{{ email.get_host }}{{ project.get_absolute_url }}{% endblock %}
+{% block cta_url %}{{ cta_url }}{% endblock %}
 {% block cta_label %}Projekt anzeigen{% endblock %}
 
 {% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Sie haben die E-Mail erhalten, weil Sie Projektinitiator*in der oben genannten Organisation sind.{% endblock %}

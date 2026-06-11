@@ -2,7 +2,7 @@ import pytest
 
 from adhocracy4.dashboard import components
 from adhocracy4.test.helpers import redirect_target
-from meinberlin.apps.bplan.phases import StatementPhase
+from meinberlin.apps.extprojects.phases import ExternalPhase
 from meinberlin.test.helpers import assert_dashboard_form_component_response
 from meinberlin.test.helpers import setup_group_members
 
@@ -12,7 +12,7 @@ component = components.projects.get("plans")
 @pytest.mark.django_db
 def test_edit_view(client, bplan, module_factory, phase_factory, plan_factory):
     module = module_factory(project=bplan)
-    phase_factory(phase_content=StatementPhase(), module=module)
+    phase_factory(phase_content=ExternalPhase(), module=module)
     initiator = bplan.organisation.initiators.first()
     organisation = bplan.organisation
     plan = plan_factory(organisation=organisation)
@@ -40,7 +40,7 @@ def test_edit_view_group_member(
     user_factory,
 ):
     module = module_factory(project=bplan)
-    phase_factory(phase_content=StatementPhase(), module=module)
+    phase_factory(phase_content=ExternalPhase(), module=module)
     bplan, _, group_member_in_pro, _ = setup_group_members(
         bplan, group_factory, user_factory
     )

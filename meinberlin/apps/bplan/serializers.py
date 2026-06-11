@@ -3,16 +3,12 @@ import datetime
 import mimetypes
 import posixpath
 import tempfile
-from urllib.parse import urlparse
 
 import magic
-import requests
 from django.apps import apps
 from django.conf import settings
-from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
 from django.core.files.images import ImageFile
-from django.urls import reverse
 from django.utils import timezone
 from django.utils.html import strip_tags
 from django.utils.translation import gettext as _
@@ -26,14 +22,10 @@ from adhocracy4.maps.mixins import PointSerializerMixin
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
+from meinberlin.apps.extprojects.phases import ExternalPhase
 
 from .models import Bplan
-from .phases import StatementPhase
 
-BPLAN_EMBED = (
-    '<iframe height="500" style="width: 100%; min-height: 300px; '
-    'max-height: 100vh" src="{}" frameborder="0"></iframe>'
-)
 DOWNLOAD_IMAGE_SIZE_LIMIT_BYTES = 10 * 1024 * 1024
 NAME_MAX_LENGTH = project_models.Project._meta.get_field("name").max_length
 DESCRIPTION_MAX_LENGTH = project_models.Project._meta.get_field(
@@ -53,10 +45,6 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
     # make write_only for consistency  reasons
     start_date = serializers.DateTimeField(write_only=True)
     end_date = serializers.DateTimeField(write_only=True)
-    image_url = serializers.URLField(
-        required=False,
-        write_only=True,
-    )
     tile_image = serializers.CharField(
         required=False,
         write_only=True,
@@ -82,7 +70,6 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
             project_models.Project._meta.get_field("tile_image_copyright").max_length
         ),
     )
-    embed_code = serializers.SerializerMethodField()
     administrative_district = serializers.CharField(
         write_only=True,
         required=False,
@@ -90,8 +77,6 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
         allow_null=False,
         help_text=_("Administrative district short code (e.g., 'mi' for Mitte)"),
     )
-    # Deprecated field, keeping for backwards compatibility
-    bplan_id = serializers.CharField(required=False, write_only=True, allow_blank=True)
 
     def get_geojson_properties(self):
         return {"strasse": "street_name", "haus": "house_number", "plz": "zip_code"}
@@ -105,37 +90,24 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
             "description",
             "url",
             "office_worker_email",
-            "is_diplan",
             "is_draft",
             "start_date",
             "end_date",
-            "image_url",
             "tile_image",
             "image_alt_text",
             "image_copyright",
-            "embed_code",
             "point",
             "administrative_district",
-            "bplan_id",
         )
         extra_kwargs = {
             # write_only for consistency reasons
             "is_draft": {"default": False, "write_only": True},
-            "is_diplan": {"default": False, "write_only": True},
             "name": {"write_only": True},
             "description": {"write_only": True},
             "url": {"write_only": True},
             "office_worker_email": {"write_only": True},
             "point": {"write_only": True},
         }
-
-    def to_representation(self, instance):
-        """Removes the `embed_code` if the bplan is coming from diplan.
-        Bit hacky but this can be removed once the transition to diplan is completed,"""
-        ret = super().to_representation(instance)
-        if instance.is_diplan:
-            ret.pop("embed_code")
-        return ret
 
     def validate(self, attrs):
         if "description" in attrs:
@@ -173,8 +145,6 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
         district = AdministrativeDistrict.objects.get(short_code=district_short_code)
         validated_data["administrative_district"] = district
 
-        _ = validated_data.pop("bplan_id", None)  # deprecated field
-        image_url = validated_data.pop("image_url", None)
         tile_image_base64 = validated_data.pop("tile_image", None)
 
         # Ellipsizing/char limit is handled by us, diplan always sends full text
@@ -185,9 +155,6 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
                 :DESCRIPTION_MAX_LENGTH
             ]
 
-        # Always mark as diplan
-        validated_data["is_diplan"] = True
-
         if (
             tile_image_base64
             and tile_image_base64.strip()
@@ -196,8 +163,6 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
             validated_data["tile_image"] = self._create_image_from_base64(
                 tile_image_base64
             )
-        elif image_url:
-            validated_data["tile_image"] = self._download_image_from_url(image_url)
         else:
             # Explicitly set to None if not provided or empty/null
             validated_data["tile_image"] = None
@@ -215,10 +180,10 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
             project=bplan,
         )
 
-        phase_content = StatementPhase()
+        phase_content = ExternalPhase()
         phase_models.Phase.objects.create(
-            name=_("Bplan statement phase"),
-            description=_("Bplan statement phase"),
+            name=_("Bplan participation phase"),
+            description=_("Bplan participation phase"),
             type=phase_content.identifier,
             module=module,
             start_date=start_date,
@@ -234,8 +199,6 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
             district = AdministrativeDistrict.objects.get(short_code=district_value)
             instance.administrative_district = district
 
-        _ = validated_data.pop("bplan_id", None)  # deprecated field
-        image_url = validated_data.pop("image_url", None)
         tile_image_base64 = validated_data.pop("tile_image", None)
         tile_image_in_request = "tile_image" in self.initial_data
 
@@ -257,9 +220,6 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
                 :DESCRIPTION_MAX_LENGTH
             ]
 
-        # Always mark as diplan
-        validated_data["is_diplan"] = True
-
         if tile_image_in_request:
             # Client explicitly sent tile_image field
             if (
@@ -273,9 +233,6 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
             else:
                 # Empty string, "null", or actual null - clear the image
                 validated_data["tile_image"] = None
-        elif image_url:
-            # Only image_url was provided
-            validated_data["tile_image"] = self._download_image_from_url(image_url)
 
         instance = super().update(instance, validated_data)
 
@@ -290,54 +247,6 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
         if end_date:
             phase.end_date = end_date
         phase.save()
-
-    def get_embed_code(self, bplan):
-        if bplan.is_diplan:
-            return None
-        url = self._get_absolute_url(bplan)
-        embed = BPLAN_EMBED.format(url)
-        return embed
-
-    def _get_absolute_url(self, bplan):
-        site_url = Site.objects.get_current().domain
-        embed_url = reverse(
-            "embed-project",
-            kwargs={
-                "slug": bplan.slug,
-            },
-        )
-        url = "https://{}{}".format(site_url, embed_url)
-        return url
-
-    def _download_image_from_url(self, url):
-        parsed_url = urlparse(url)
-        file_name = None
-        try:
-            r = requests.get(url, stream=True, timeout=10)
-            downloaded_bytes = 0
-            with tempfile.TemporaryFile() as f:
-                for chunk in r.iter_content(chunk_size=1024):
-                    downloaded_bytes += len(chunk)
-                    if downloaded_bytes > DOWNLOAD_IMAGE_SIZE_LIMIT_BYTES:
-                        raise serializers.ValidationError(
-                            "Image too large to download {}".format(url)
-                        )
-                    if chunk:
-                        f.write(chunk)
-                file_name = self._generate_image_filename(parsed_url.path, f)
-                self._image_storage.save(file_name, f)
-        except Exception:
-            if file_name:
-                self._image_storage.delete(file_name)
-            raise serializers.ValidationError("Failed to download image {}".format(url))
-
-        try:
-            self._validate_image(file_name)
-        except ValidationError as e:
-            self._image_storage.delete(file_name)
-            raise serializers.ValidationError(e)
-
-        return file_name
 
     def _create_image_from_base64(self, base64_image):
         file_name = None

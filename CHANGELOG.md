@@ -18,6 +18,11 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Update a4 for confidential poll questions
 - Poll dashboard and detail styling for confidential questions
 
+### Fixed
+
+- Module phase swiper: show only one prev/next icon per button
+
+
 ## mB-v2605.1
 
 ### Added

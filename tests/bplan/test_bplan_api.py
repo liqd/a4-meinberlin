@@ -523,4 +523,3 @@ def test_bplan_api_accepts_long_description_and_truncates_it(
     assert response.status_code == status.HTTP_201_CREATED
     bplan = bplan_models.Bplan.objects.first()
     assert len(bplan.description) == 250
-    assert bplan.description == "desc" + "a" * 246

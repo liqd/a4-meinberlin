@@ -14,6 +14,11 @@
 {{ creator.username }} created a new project "{{ project.name }}" for {{ project.organisation.name }}.
 {% endblock %}
 
+{% block cta %}
+{% if cta_url %}
+{{ block.super }}
+{% endif %}
+{% endblock %}
 {% block cta_url %}{{ cta_url }}{% endblock %}
 {% block cta_label %}Show project{% endblock %}
 

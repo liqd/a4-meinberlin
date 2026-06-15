@@ -92,21 +92,15 @@ class PrivateProjectListViewSet(viewsets.ReadOnlyModelViewSet):
         self.now = now
 
     def get_queryset(self):
-        private_projects = cache.get("private_projects")
-        if private_projects is None:
-            private_projects = Project.objects.filter(
-                is_draft=False, is_archived=False, access=Access.PRIVATE
-            )
-            cache.set("private_projects", private_projects)
-        if private_projects:
-            not_allowed_projects = [
-                project.id
-                for project in private_projects
-                if not self.request.user.has_perm("a4projects.view_project", project)
-            ]
-            return private_projects.exclude(id__in=not_allowed_projects)
-        else:
-            return private_projects
+        private_projects = Project.objects.filter(
+            is_draft=False, is_archived=False, access=Access.PRIVATE
+        )
+        not_allowed_projects = [
+            project.id
+            for project in private_projects
+            if not self.request.user.has_perm("a4projects.view_project", project)
+        ]
+        return private_projects.exclude(id__in=not_allowed_projects)
 
     def get_serializer(self, *args, **kwargs):
         return project_serializers.ProjectSerializer(now=self.now, *args, **kwargs)

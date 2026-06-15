@@ -75,6 +75,30 @@ def test_notify_initiators_on_bplan_created_without_url_uses_dashboard_edit_url(
 
 
 @pytest.mark.django_db
+def test_notify_initiators_on_bplan_published_uses_external_url(
+    bplan_factory, user_factory
+):
+    bplan = bplan_factory(is_draft=False, url="https://diplan.example.com/bplan/1")
+    creator = bplan.organisation.initiators.first()
+    other_initiator = user_factory()
+    bplan.organisation.initiators.add(other_initiator)
+    mail.outbox.clear()
+
+    notification_emails.NotifyInitiatorsOnProjectCreatedEmail.send(
+        bplan, creator_pk=creator.pk
+    )
+
+    assert len(mail.outbox) >= 1
+    bodies = []
+    for message in mail.outbox:
+        bodies.append(message.body)
+        bodies.extend(alternative[0] for alternative in message.alternatives)
+    combined = "\n".join(bodies)
+    assert "https://diplan.example.com/bplan/1" in combined
+    assert bplan.get_absolute_url() not in combined
+
+
+@pytest.mark.django_db
 @override_settings(CELERY_TASK_ALWAYS_EAGER=True)
 @patch(
     "meinberlin.apps.notifications.tasks.emails.NotifyFollowersOnPhaseStartedEmail.send"

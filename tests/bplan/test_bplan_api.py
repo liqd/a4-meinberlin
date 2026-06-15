@@ -523,3 +523,44 @@ def test_bplan_api_accepts_long_description_and_truncates_it(
     assert response.status_code == status.HTTP_201_CREATED
     bplan = bplan_models.Bplan.objects.first()
     assert len(bplan.description) == 250
+
+
+@pytest.mark.django_db
+def test_initiator_notified_when_bplan_published_via_api(
+    apiclient, bplan_factory, user_factory, phase
+):
+    district, _ = AdministrativeDistrict.objects.get_or_create(
+        name="Mitte", short_code="mi"
+    )
+
+    bplan = bplan_factory(
+        is_draft=True,
+        url="https://diplan.example.com/bplan/1",
+        administrative_district=district,
+    )
+    phase.module.project = bplan
+    phase.module.save()
+
+    creator = bplan.organisation.initiators.first()
+    other_initiator = user_factory()
+    bplan.organisation.initiators.add(other_initiator)
+    mail.outbox.clear()
+
+    url = reverse(
+        "bplan-detail",
+        kwargs={"organisation_pk": bplan.organisation.pk, "pk": bplan.pk},
+    )
+    apiclient.force_authenticate(user=creator)
+    response = apiclient.patch(url, {"is_draft": False}, format="json")
+    assert response.status_code == status.HTTP_200_OK
+
+    initiator_messages = [
+        message for message in mail.outbox if other_initiator.email in message.to
+    ]
+    assert initiator_messages
+    bodies = []
+    for message in initiator_messages:
+        bodies.append(message.body)
+        bodies.extend(alternative[0] for alternative in message.alternatives)
+    combined = "\n".join(bodies)
+    assert "https://diplan.example.com/bplan/1" in combined

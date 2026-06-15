@@ -295,20 +295,28 @@ curl  -X PATCH http://127.0.0.1:8003/api/organisations/1/bplan/16/ \
 
 ## Email notifications
 
-Creating or updating a Bplan triggers automated emails. The table below lists
-what is sent, to whom, and when.
+Creating, updating, or publishing a Bplan can trigger automated emails. The table
+below lists what is sent, to whom, and when.
 
 | Email | Trigger | Recipients | Links to |
 |-------|---------|------------|----------|
 | Office worker confirmation | Bplan created or updated | `office_worker_email` | Body: the Bplan's Diplan `url`. CTA button: the meinBerlin project overview (Kiezradar) |
-| New project notification | Bplan created | All *other* initiators of the organisation (the creating API user is excluded) | The Bplan's Diplan `url` |
-| Search profile match | Bplan published | Users whose saved search profile matches the Bplan | The Bplan's Diplan `url` |
+| New project notification | Bplan created, or Bplan published (draft → published) | All *other* initiators of the organisation (the acting user is excluded) | CTA: the Bplan's Diplan `url`, or the dashboard Bplan settings page if no Diplan `url` is set yet |
+| Search profile match | Bplan published (draft → published) | Users whose saved search profile matches the Bplan | The Bplan's Diplan `url` |
 
 Notes:
 
 - The office worker confirmation is sent on creation and on content changes,
   but **not** when only the map location (`point`) is fetched or when the Bplan
-  is archived.
+  is archived. Its body states that the Bplan was published, changed, or saved
+  as a draft.
+- Initiators are **not** notified when a Bplan is edited without being published.
+  Only the office worker confirmation is sent on those updates.
+- The new project notification uses the same e-mail on create and on first
+  publish (e.g. when `is_draft` changes from `true` to `false` via the API, or
+  when the project is published from the dashboard). Creating a Bplan that is
+  already published (`is_draft: false`) sends this e-mail once on create, not
+  again on publish.
 - Recipients of the "new project" and "search profile match" emails can opt out
   via their notification settings.
 

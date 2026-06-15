@@ -12,6 +12,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Permanent sticky submit CTA on module detail pages (ideas, map ideas, budgeting)
 - Redirect users back to the page they were on before logging in
 - Confidential poll questions: participants can answer without seeing others' responses
+- bplans: initiators receive email on publish
 
 ### Changed
 
@@ -22,7 +23,11 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Fixed
 
 - Module phase swiper: show only one prev/next icon per button
+<<<<<<< HEAD
 - Private projects API: unauthenticated users cant see metadata of just created Private Projets anymore
+=======
+- bplans: if no bplan url is given on draft, link in notification email falls back to dashboard edit url
+>>>>>>> efc454a09 (add changelog)
 
 ### Removed
 

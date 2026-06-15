@@ -7,6 +7,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## Unreleased
 
+## v2606.1
+
 ### Added
 
 - Permanent sticky submit CTA on module detail pages (ideas, map ideas, budgeting)
@@ -18,7 +20,6 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Changed
 
 - Publish-results reminder emails are only sent to initiators involved in the project (admin log).
-- Update a4 for confidential poll questions
 - Poll dashboard and detail styling for confidential questions
 
 ### Fixed

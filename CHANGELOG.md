@@ -22,6 +22,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Fixed
 
 - Module phase swiper: show only one prev/next icon per button
+- Private projects API: unauthenticated users cant see metadata of just created Private Projets anymore
 
 ### Removed
 
@@ -32,7 +33,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Bplan: legacy `Statement` model and database table, its submission form, views, signal, notification emails and templates
 - Bplan: Imperia-only `bplan_id` and `image_url` API fields (Diplan sends `tile_image` as base64)
 - Bplan: `is_diplan` model field (all Bplans are now Diplan-only)
-- Bplan: now reuses `ExternalPhase` instead of the Statement phase to hold participation dates (existing phases re-typed via data migration)
+hinzufügenhinzufügenhinzufügen- Bplan: now reuses `ExternalPhase` instead of the Statement phase to hold participation dates (existing phases re-typed via data migration)
 
 ## mB-v2605.1
 

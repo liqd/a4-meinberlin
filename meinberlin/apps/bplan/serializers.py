@@ -191,6 +191,7 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
         )
 
     def update(self, instance, validated_data):
+        was_draft = instance.is_draft
         start_date = validated_data.get("start_date")
         end_date = validated_data.get("end_date")
 
@@ -235,6 +236,9 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
                 validated_data["tile_image"] = None
 
         instance = super().update(instance, validated_data)
+
+        if was_draft and not instance.is_draft:
+            self._send_project_published_signal(instance)
 
         self._send_component_updated_signal(instance)
         return instance
@@ -304,6 +308,11 @@ class BplanSerializer(PointSerializerMixin, serializers.ModelSerializer):
 
     def _send_project_created_signal(self, bplan):
         a4dashboard_signals.project_created.send(
+            sender=self.__class__, project=bplan, user=self.context["request"].user
+        )
+
+    def _send_project_published_signal(self, bplan):
+        a4dashboard_signals.project_published.send(
             sender=self.__class__, project=bplan, user=self.context["request"].user
         )
 

@@ -37,6 +37,14 @@ def send_project_created_notifications(**kwargs):
 
 
 @receiver(dashboard_signals.project_published)
+def send_bplan_published_initiator_notifications(**kwargs):
+    project = kwargs.get("project")
+    user = kwargs.get("user")
+    if project.project_type == "meinberlin_bplan.Bplan":
+        emails.NotifyInitiatorsOnProjectCreatedEmail.send(project, creator_pk=user.pk)
+
+
+@receiver(dashboard_signals.project_published)
 def create_project_published_action(**kwargs):
     project = kwargs.get("project")
     Action.objects.create(

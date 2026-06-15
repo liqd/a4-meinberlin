@@ -6,6 +6,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.core import mail
 from django.core.management import call_command
 from django.test import override_settings
+from django.urls import reverse
 
 from adhocracy4.actions.models import Action
 from adhocracy4.actions.verbs import Verbs
@@ -14,8 +15,87 @@ from adhocracy4.phases.models import Phase
 from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.budgeting import phases
+from meinberlin.apps.notifications import emails as notification_emails
 
 START = Verbs.START.value
+
+
+@pytest.mark.django_db
+def test_notify_initiators_on_bplan_created_uses_external_url(
+    bplan_factory, user_factory
+):
+    bplan = bplan_factory(url="https://diplan.example.com/bplan/1")
+    creator = bplan.organisation.initiators.first()
+    other_initiator = user_factory()
+    bplan.organisation.initiators.add(other_initiator)
+    mail.outbox.clear()
+
+    notification_emails.NotifyInitiatorsOnProjectCreatedEmail.send(
+        bplan, creator_pk=creator.pk
+    )
+
+    assert len(mail.outbox) >= 1
+    bodies = []
+    for message in mail.outbox:
+        bodies.append(message.body)
+        bodies.extend(alternative[0] for alternative in message.alternatives)
+    combined = "\n".join(bodies)
+    assert "https://diplan.example.com/bplan/1" in combined
+    assert bplan.get_absolute_url() not in combined
+
+
+@pytest.mark.django_db
+def test_notify_initiators_on_bplan_created_without_url_uses_dashboard_edit_url(
+    bplan_factory, user_factory
+):
+    bplan = bplan_factory(url="")
+    creator = bplan.organisation.initiators.first()
+    other_initiator = user_factory()
+    bplan.organisation.initiators.add(other_initiator)
+    mail.outbox.clear()
+
+    notification_emails.NotifyInitiatorsOnProjectCreatedEmail.send(
+        bplan, creator_pk=creator.pk
+    )
+
+    dashboard_path = reverse(
+        "a4dashboard:dashboard-bplan-project-edit",
+        kwargs={"project_slug": bplan.slug},
+    )
+    assert len(mail.outbox) >= 1
+    bodies = []
+    for message in mail.outbox:
+        bodies.append(message.body)
+        bodies.extend(alternative[0] for alternative in message.alternatives)
+    combined = "\n".join(bodies)
+    assert dashboard_path in combined
+    assert "Projekt anzeigen" in combined or "Show project" in combined
+    assert 'href=""' not in combined
+    assert bplan.get_absolute_url() not in combined
+
+
+@pytest.mark.django_db
+def test_notify_initiators_on_bplan_published_uses_external_url(
+    bplan_factory, user_factory
+):
+    bplan = bplan_factory(is_draft=False, url="https://diplan.example.com/bplan/1")
+    creator = bplan.organisation.initiators.first()
+    other_initiator = user_factory()
+    bplan.organisation.initiators.add(other_initiator)
+    mail.outbox.clear()
+
+    notification_emails.NotifyInitiatorsOnProjectCreatedEmail.send(
+        bplan, creator_pk=creator.pk
+    )
+
+    assert len(mail.outbox) >= 1
+    bodies = []
+    for message in mail.outbox:
+        bodies.append(message.body)
+        bodies.extend(alternative[0] for alternative in message.alternatives)
+    combined = "\n".join(bodies)
+    assert "https://diplan.example.com/bplan/1" in combined
+    assert bplan.get_absolute_url() not in combined
 
 
 @pytest.mark.django_db

@@ -12,6 +12,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Permanent sticky submit CTA on module detail pages (ideas, map ideas, budgeting)
 - Redirect users back to the page they were on before logging in
 - Confidential poll questions: participants can answer without seeing others' responses
+- Bplan: now reuses `ExternalPhase` instead of the Statement phase to hold participation dates (existing phases re-typed via data migration)
+- Bplan: initiators receive email on publish
 
 ### Changed
 
@@ -23,6 +25,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Module phase swiper: show only one prev/next icon per button
 - Private projects API: unauthenticated users cant see metadata of just created Private Projets anymore
+- bplans: if no bplan url is given on draft, link in notification email falls back to dashboard edit url
 
 ### Removed
 
@@ -33,7 +36,6 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Bplan: legacy `Statement` model and database table, its submission form, views, signal, notification emails and templates
 - Bplan: Imperia-only `bplan_id` and `image_url` API fields (Diplan sends `tile_image` as base64)
 - Bplan: `is_diplan` model field (all Bplans are now Diplan-only)
-hinzufügenhinzufügenhinzufügen- Bplan: now reuses `ExternalPhase` instead of the Statement phase to hold participation dates (existing phases re-typed via data migration)
 
 ## mB-v2605.1
 

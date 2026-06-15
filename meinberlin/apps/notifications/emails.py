@@ -111,11 +111,26 @@ class NotifyInitiatorsOnProjectCreatedEmail(Email):
     def get_context(self):
         context = super().get_context()
         creator = User.objects.get(pk=self.kwargs["creator_pk"])
+        project = self.object
         context["creator"] = creator
-        context["project"] = self.object
-        context["cta_url"] = get_public_project_url(
-            self.object, base_url=self.get_host()
-        )
+        context["project"] = project
+        if project.project_type == "meinberlin_bplan.Bplan":
+            cta_url = project.externalproject.url
+            if not cta_url:
+                cta_url = "{}{}".format(
+                    self.get_host(),
+                    reverse(
+                        "a4dashboard:dashboard-bplan-project-edit",
+                        kwargs={"project_slug": project.slug},
+                    ),
+                )
+            context["cta_url"] = cta_url
+        elif project.project_type == "meinberlin_extprojects.ExternalProject":
+            context["cta_url"] = project.externalproject.url
+        else:
+            context["cta_url"] = get_public_project_url(
+                project, base_url=self.get_host()
+            )
         return context
 
 

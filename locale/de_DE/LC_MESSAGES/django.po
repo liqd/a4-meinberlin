@@ -755,11 +755,24 @@ msgstr "Antwort auf Kommentar"
 msgid "Reply to Reference"
 msgstr "Kommentar zur Referenz"
 
-#: adhocracy4/exports/mixins/general.py:15
+#: adhocracy4/exports/mixins/general.py:11
+#: adhocracy4/forms/fields.py:71
+msgid "Contact consent"
+msgstr ""
+
+#: adhocracy4/exports/mixins/general.py:12
+msgid "Creator email"
+msgstr ""
+
+#: adhocracy4/exports/mixins/general.py:13
+msgid "Creator phone"
+msgstr ""
+
+#: adhocracy4/exports/mixins/general.py:39
 msgid "Creator"
 msgstr "Urheber"
 
-#: adhocracy4/exports/mixins/general.py:17
+#: adhocracy4/exports/mixins/general.py:41
 #: adhocracy4/models/base.py:12
 #: adhocracy4/polls/exports.py:43
 #: meinberlin/apps/budgeting/exports.py:120
@@ -771,19 +784,19 @@ msgstr "Urheber"
 msgid "Created"
 msgstr "Erstellt"
 
-#: adhocracy4/exports/mixins/general.py:36
+#: adhocracy4/exports/mixins/general.py:60
 msgid "Link"
 msgstr "Link"
 
-#: adhocracy4/exports/mixins/general.py:52
+#: adhocracy4/exports/mixins/general.py:76
 msgid "Location (Longitude)"
 msgstr "Ort (Längengrad)"
 
-#: adhocracy4/exports/mixins/general.py:54
+#: adhocracy4/exports/mixins/general.py:78
 msgid "Location (Latitude)"
 msgstr "Ort (Breitengrad)"
 
-#: adhocracy4/exports/mixins/general.py:56
+#: adhocracy4/exports/mixins/general.py:80
 msgid "Location label"
 msgstr "Ortsbezeichnung"
 
@@ -842,10 +855,39 @@ msgstr "Nein"
 msgid "Ordering"
 msgstr "Reihenfolge"
 
-#: adhocracy4/forms/fields.py:19
+#: adhocracy4/forms/fields.py:20
 #, python-format
 msgid "Time of %(date_label)s"
 msgstr "Uhrzeit für %(date_label)s"
+
+#: adhocracy4/forms/fields.py:61
+msgid "Your email address"
+msgstr ""
+
+#: adhocracy4/forms/fields.py:62
+msgid "We will use this to contact you about your submission"
+msgstr ""
+
+#: adhocracy4/forms/fields.py:66
+msgid "Phone number (optional)"
+msgstr ""
+
+#: adhocracy4/forms/fields.py:67
+msgid "Optional contact number for follow-up questions"
+msgstr ""
+
+#: adhocracy4/forms/fields.py:73
+msgid ""
+"I expressly consent to the storage of the contact information I have "
+"provided. This information may only be used by the responsible authority to "
+"get in touch with me in connection with this project. I can withdraw this "
+"consent at any time. I have read and accept the Privacy Policy."
+msgstr ""
+
+#: adhocracy4/forms/fields.py:85
+#: adhocracy4/forms/fields.py:86
+msgid "Optional"
+msgstr ""
 
 #: adhocracy4/images/fields.py:70
 #, python-brace-format
@@ -1010,6 +1052,18 @@ msgstr "Punkt ist nicht innerhalb des vorgegebenen Gebiets."
 #: adhocracy4/models/base.py:17
 msgid "Modified"
 msgstr "Geändert"
+
+#: adhocracy4/models/base.py:66
+msgid "Creator email address"
+msgstr ""
+
+#: adhocracy4/models/base.py:72
+msgid "Creator phone number"
+msgstr ""
+
+#: adhocracy4/models/base.py:76
+msgid "Creator contact consent"
+msgstr ""
 
 #: adhocracy4/modules/models.py:75
 msgid "Title of the module"
@@ -1205,11 +1259,21 @@ msgstr "Voter ID"
 msgid "Explanation"
 msgstr "Erklärung"
 
-#: adhocracy4/polls/models.py:77
+#: adhocracy4/polls/models.py:59
+msgid "Confidential answers"
+msgstr ""
+
+#: adhocracy4/polls/models.py:61
+msgid ""
+"Individual responses are not shown publicly; only the number of submissions "
+"is visible."
+msgstr ""
+
+#: adhocracy4/polls/models.py:85
 msgid "Questions with open answers cannot have multiple choices."
 msgstr "Offene Fragen können nicht multiple-choice sein."
 
-#: adhocracy4/polls/models.py:86
+#: adhocracy4/polls/models.py:94
 msgid ""
 "Question with choices cannot become open question. Delete choices or add new "
 "open question."
@@ -1217,37 +1281,37 @@ msgstr ""
 "Fragen mit Auswahlantworten können nicht offen sein. Entfernen Sie die "
 "Auswahlmöglichkeiten oder fügen Sie eine neue offene Frage hinzu."
 
-#: adhocracy4/polls/models.py:147
-#: adhocracy4/polls/models.py:267
+#: adhocracy4/polls/models.py:155
+#: adhocracy4/polls/models.py:275
 msgid "Answer"
 msgstr "Antwort"
 
-#: adhocracy4/polls/models.py:158
+#: adhocracy4/polls/models.py:166
 msgid "Only open questions can have answers."
 msgstr "Nur offene Fragen können Antworten haben."
 
-#: adhocracy4/polls/models.py:194
+#: adhocracy4/polls/models.py:202
 msgid "Open questions cannot have choices."
 msgstr "Offene Fragen können keine Auswahlantworten haben."
 
-#: adhocracy4/polls/models.py:200
+#: adhocracy4/polls/models.py:208
 msgid ""
 "\"Other\" cannot be the only choice. Use open question or add more choices."
 msgstr ""
 "\"Sonsige\" kann nicht die einzige Auswahlmöglichkeit sein. Benutzen Sie "
 "eine offene Frage oder fügen Sie mehr Auswahlmöglichkeiten hinzu."
 
-#: adhocracy4/polls/models.py:211
+#: adhocracy4/polls/models.py:219
 msgid "Question already has \"other\" choice."
 msgstr "Frage hat bereits eine \"sonstige\" Option."
 
-#: adhocracy4/polls/models.py:274
+#: adhocracy4/polls/models.py:282
 msgid "Other vote can only be created for vote on \"other\" choice."
 msgstr ""
 "Sonstige Stimme kann nur für eine \"sonstige\" Auswahlmöglichkeit abgegeben "
 "werden."
 
-#: adhocracy4/polls/models.py:296
+#: adhocracy4/polls/models.py:304
 msgid "other"
 msgstr "sonstige"
 

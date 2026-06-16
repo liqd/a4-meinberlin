@@ -42,6 +42,13 @@ if (typeof window !== 'undefined') {
 document.addEventListener('DOMContentLoaded', init, false)
 document.addEventListener('a4.embed.ready', init, false)
 document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.js-history-back').forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      event.preventDefault()
+      history.back()
+    })
+  })
+
   // Password toggle functionality
   document.querySelectorAll('.password-toggle-btn').forEach(function (button) {
     button.addEventListener('click', function () {

@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 Since version v2308 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2606.3
+
+### Added
+
+- Polls question images behind feature flag set to false
+
+### Fixed
+
+- Refactor inline js for back button blocked by CSP
+
+
 ## Unreleased
 
 ## v2606.1

@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-16 13:18+0200\n"
-"PO-Revision-Date: 2026-06-16 11:12+0000\n"
+"PO-Revision-Date: 2026-06-16 13:00+0000\n"
 "Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main-"
-"design-dev/de/>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
+"main-design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -758,15 +758,15 @@ msgstr "Kommentar zur Referenz"
 #: adhocracy4/exports/mixins/general.py:11
 #: adhocracy4/forms/fields.py:71
 msgid "Contact consent"
-msgstr ""
+msgstr "Projektinitiator*innen dürfen mich kontaktieren"
 
 #: adhocracy4/exports/mixins/general.py:12
 msgid "Creator email"
-msgstr ""
+msgstr "E-Mailadresse"
 
 #: adhocracy4/exports/mixins/general.py:13
 msgid "Creator phone"
-msgstr ""
+msgstr "Telefonnummer"
 
 #: adhocracy4/exports/mixins/general.py:39
 msgid "Creator"
@@ -862,19 +862,19 @@ msgstr "Uhrzeit für %(date_label)s"
 
 #: adhocracy4/forms/fields.py:61
 msgid "Your email address"
-msgstr ""
+msgstr "Ihre Email-Adresse"
 
 #: adhocracy4/forms/fields.py:62
 msgid "We will use this to contact you about your submission"
-msgstr ""
+msgstr "Damit nehmen wir bei Bedarf Kontakt zu ihnen auf"
 
 #: adhocracy4/forms/fields.py:66
 msgid "Phone number (optional)"
-msgstr ""
+msgstr "Telefonnummer (optional)"
 
 #: adhocracy4/forms/fields.py:67
 msgid "Optional contact number for follow-up questions"
-msgstr ""
+msgstr "Optionale Telefonnummer für Rückfragen"
 
 #: adhocracy4/forms/fields.py:73
 msgid ""
@@ -883,11 +883,16 @@ msgid ""
 "get in touch with me in connection with this project. I can withdraw this "
 "consent at any time. I have read and accept the Privacy Policy."
 msgstr ""
+"Ich bin ausdrücklich damit einverstanden, dass meine angegebenen "
+"Kontaktdaten gespeichert werden. Diese dürfen ausschließlich von der "
+"zuständigen Stelle verwendet werden, um im Zusammenhang mit diesem Projekt "
+"Kontakt zu mir aufzunehmen. Ich kann diese Einwilligung jederzeit "
+"widerrufen. Ich habe die Datenschutzerklärung gelesen und akzeptiere sie."
 
 #: adhocracy4/forms/fields.py:85
 #: adhocracy4/forms/fields.py:86
 msgid "Optional"
-msgstr ""
+msgstr "Optional"
 
 #: adhocracy4/images/fields.py:70
 #, python-brace-format
@@ -1055,15 +1060,15 @@ msgstr "Geändert"
 
 #: adhocracy4/models/base.py:66
 msgid "Creator email address"
-msgstr ""
+msgstr "E-Mailadresse der Ersteller*in"
 
 #: adhocracy4/models/base.py:72
 msgid "Creator phone number"
-msgstr ""
+msgstr "Telefonnummer der Ersteller*in"
 
 #: adhocracy4/models/base.py:76
 msgid "Creator contact consent"
-msgstr ""
+msgstr "Einwilligung zur Kontaktaufnahme der Ersteller*in"
 
 #: adhocracy4/modules/models.py:75
 msgid "Title of the module"
@@ -1261,13 +1266,15 @@ msgstr "Erklärung"
 
 #: adhocracy4/polls/models.py:59
 msgid "Confidential answers"
-msgstr ""
+msgstr "Vertrauliche Antworten"
 
 #: adhocracy4/polls/models.py:61
 msgid ""
 "Individual responses are not shown publicly; only the number of submissions "
 "is visible."
 msgstr ""
+"Einzelne Antworten werden nicht öffentlich angezeigt. Nur die Gesamtzahl der "
+"Einreichungen ist sichtbar."
 
 #: adhocracy4/polls/models.py:85
 msgid "Questions with open answers cannot have multiple choices."

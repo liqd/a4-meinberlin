@@ -788,6 +788,9 @@ msgstr ""
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:49
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:119
 #: adhocracy4/polls/static/PollDashboard/HelptextForm.jsx:11
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:39
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:120
+#: adhocracy4/polls/static/PollDashboard/HelptextForm.jsx:11
 msgid "Explanation"
 msgstr "Erklärung"
 

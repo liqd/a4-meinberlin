@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-16 11:42+0200\n"
+"POT-Creation-Date: 2026-06-16 13:51+0200\n"
 "PO-Revision-Date: 2024-02-08 08:57+0000\n"
 "Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
 "Language-Team: English <https://weblate.liqd.net/projects/meinberlin/main/en/"
@@ -670,11 +670,23 @@ msgstr "Reply to Comment"
 msgid "Reply to Reference"
 msgstr "Reply to Reference"
 
-#: adhocracy4/exports/mixins/general.py:15
+#: adhocracy4/exports/mixins/general.py:11 adhocracy4/forms/fields.py:71
+msgid "Contact consent"
+msgstr "Contact consent"
+
+#: adhocracy4/exports/mixins/general.py:12
+msgid "Creator email"
+msgstr "Creator email"
+
+#: adhocracy4/exports/mixins/general.py:13
+msgid "Creator phone"
+msgstr "Creator phone"
+
+#: adhocracy4/exports/mixins/general.py:39
 msgid "Creator"
 msgstr "Creator"
 
-#: adhocracy4/exports/mixins/general.py:17 adhocracy4/models/base.py:12
+#: adhocracy4/exports/mixins/general.py:41 adhocracy4/models/base.py:12
 #: adhocracy4/polls/exports.py:43 meinberlin/apps/budgeting/exports.py:120
 #: meinberlin/apps/documents/exports.py:41 meinberlin/apps/ideas/exports.py:78
 #: meinberlin/apps/kiezkasse/exports.py:80
@@ -684,19 +696,19 @@ msgstr "Creator"
 msgid "Created"
 msgstr "Created"
 
-#: adhocracy4/exports/mixins/general.py:36
+#: adhocracy4/exports/mixins/general.py:60
 msgid "Link"
 msgstr "Link"
 
-#: adhocracy4/exports/mixins/general.py:52
+#: adhocracy4/exports/mixins/general.py:76
 msgid "Location (Longitude)"
 msgstr "Location (Longitude)"
 
-#: adhocracy4/exports/mixins/general.py:54
+#: adhocracy4/exports/mixins/general.py:78
 msgid "Location (Latitude)"
 msgstr "Location (Latitude)"
 
-#: adhocracy4/exports/mixins/general.py:56
+#: adhocracy4/exports/mixins/general.py:80
 msgid "Location label"
 msgstr "Location label"
 
@@ -753,10 +765,42 @@ msgstr "no"
 msgid "Ordering"
 msgstr "Ordering"
 
-#: adhocracy4/forms/fields.py:19
+#: adhocracy4/forms/fields.py:20
 #, python-format
 msgid "Time of %(date_label)s"
 msgstr "Time of %(date_label)s"
+
+#: adhocracy4/forms/fields.py:61
+msgid "Your email address"
+msgstr "Your email address"
+
+#: adhocracy4/forms/fields.py:62
+msgid "We will use this to contact you about your submission"
+msgstr "We will use this to contact you about your submission"
+
+#: adhocracy4/forms/fields.py:66
+msgid "Phone number (optional)"
+msgstr "Phone number (optional)"
+
+#: adhocracy4/forms/fields.py:67
+msgid "Optional contact number for follow-up questions"
+msgstr "Optional contact number for follow-up questions"
+
+#: adhocracy4/forms/fields.py:73
+msgid ""
+"I expressly consent to the storage of the contact information I have "
+"provided. This information may only be used by the responsible authority to "
+"get in touch with me in connection with this project. I can withdraw this "
+"consent at any time. I have read and accept the Privacy Policy."
+msgstr ""
+"I expressly consent to the storage of the contact information I have "
+"provided. This information may only be used by the responsible authority to "
+"get in touch with me in connection with this project. I can withdraw this "
+"consent at any time. I have read and accept the Privacy Policy."
+
+#: adhocracy4/forms/fields.py:85 adhocracy4/forms/fields.py:86
+msgid "Optional"
+msgstr "Optional"
 
 #: adhocracy4/images/fields.py:70
 #, python-brace-format
@@ -912,6 +956,18 @@ msgstr "Point is not inside the specified area"
 #: adhocracy4/models/base.py:17
 msgid "Modified"
 msgstr "Modified"
+
+#: adhocracy4/models/base.py:66
+msgid "Creator email address"
+msgstr "Creator email address"
+
+#: adhocracy4/models/base.py:72
+msgid "Creator phone number"
+msgstr "Creator phone number"
+
+#: adhocracy4/models/base.py:76
+msgid "Creator contact consent"
+msgstr "Creator contact consent"
 
 #: adhocracy4/modules/models.py:75
 msgid "Title of the module"
@@ -1088,11 +1144,23 @@ msgstr "Voter ID"
 msgid "Explanation"
 msgstr "Explanation"
 
-#: adhocracy4/polls/models.py:77
+#: adhocracy4/polls/models.py:59
+msgid "Confidential answers"
+msgstr "Confidential answers"
+
+#: adhocracy4/polls/models.py:61
+msgid ""
+"Individual responses are not shown publicly; only the number of submissions "
+"is visible."
+msgstr ""
+"Individual responses are not shown publicly; only the number of submissions "
+"is visible."
+
+#: adhocracy4/polls/models.py:85
 msgid "Questions with open answers cannot have multiple choices."
 msgstr "Questions with open answers cannot have multiple choices."
 
-#: adhocracy4/polls/models.py:86
+#: adhocracy4/polls/models.py:94
 msgid ""
 "Question with choices cannot become open question. Delete choices or add new "
 "open question."
@@ -1100,33 +1168,33 @@ msgstr ""
 "Question with choices cannot become open question. Delete choices or add new "
 "open question."
 
-#: adhocracy4/polls/models.py:147 adhocracy4/polls/models.py:267
+#: adhocracy4/polls/models.py:155 adhocracy4/polls/models.py:275
 msgid "Answer"
 msgstr "Answer"
 
-#: adhocracy4/polls/models.py:158
+#: adhocracy4/polls/models.py:166
 msgid "Only open questions can have answers."
 msgstr "Only open questions can have answers."
 
-#: adhocracy4/polls/models.py:194
+#: adhocracy4/polls/models.py:202
 msgid "Open questions cannot have choices."
 msgstr "Open questions cannot have choices."
 
-#: adhocracy4/polls/models.py:200
+#: adhocracy4/polls/models.py:208
 msgid ""
 "\"Other\" cannot be the only choice. Use open question or add more choices."
 msgstr ""
 "\"Other\" cannot be the only choice. Use open question or add more choices."
 
-#: adhocracy4/polls/models.py:211
+#: adhocracy4/polls/models.py:219
 msgid "Question already has \"other\" choice."
 msgstr "Question already has \"other\" choice."
 
-#: adhocracy4/polls/models.py:274
+#: adhocracy4/polls/models.py:282
 msgid "Other vote can only be created for vote on \"other\" choice."
 msgstr "Other vote can only be created for vote on \"other\" choice."
 
-#: adhocracy4/polls/models.py:296
+#: adhocracy4/polls/models.py:304
 msgid "other"
 msgstr "other"
 

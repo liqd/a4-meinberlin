@@ -60,7 +60,7 @@
     "timeago.js": "4.0.2"
   },
   "devDependencies": {
-    "@babel/core": "7.26.0",
+    "@babel/core": "7.29.6",
     "@babel/eslint-parser": "^7.28.6",
     "@babel/eslint-plugin": "7.25.9",
     "@babel/plugin-transform-modules-commonjs": "7.26.3",

@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-16 13:52+0200\n"
-"PO-Revision-Date: 2026-05-20 14:18+0000\n"
+"PO-Revision-Date: 2026-06-16 13:00+0000\n"
 "Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js-"
-"design-dev/de/>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
+"js-design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -780,7 +780,7 @@ msgstr "Frage"
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:39
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:41
 msgid "Do not display answers publicly"
-msgstr ""
+msgstr "Eingehende Antworten werden nicht öffentlich angezeigt"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:49
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:119
@@ -858,7 +858,7 @@ msgstr "sonstige"
 #: adhocracy4/polls/static/PollDetail/ConfidentialNotice.jsx:7
 msgid ""
 "Your response will be kept confidential and will not be publicly displayed."
-msgstr ""
+msgstr "Ihre Antwort wird vertraulich behandelt und nicht öffentlich angezeigt."
 
 #: adhocracy4/polls/static/PollDetail/PollChoice.jsx:7
 #: adhocracy4/polls/static/PollDetail/PollChoice.jsx:7
@@ -987,8 +987,8 @@ msgstr "Keine Person hat diese Frage beantwortet"
 #, javascript-format
 msgid "%s response submitted"
 msgid_plural "%s responses submitted"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s Antwort eingegangen"
+msgstr[1] "%s Antworten eingegangen"
 
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:154
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:154

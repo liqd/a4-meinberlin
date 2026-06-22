@@ -26,3 +26,16 @@ ul.navigation-tree span.header__notification-count {
 .dropdown-toggle {
     cursor: pointer;
 }
+
+.service-button-overlay {
+    .service-button-overlay__form {
+        margin: 0;
+        height: 100%;
+        display: flex;
+        align-items: stretch;
+    }
+
+    &.account .icon-button {
+        padding-left: 0;
+    }
+}

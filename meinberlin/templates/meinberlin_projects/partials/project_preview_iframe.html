@@ -11,5 +11,12 @@
 </head>
 <body>
     {% include preview_partial %}
+    <script>
+      document.addEventListener('click', (event) => {
+        if (event.target.closest('a[href]')) {
+          event.preventDefault()
+        }
+      }, true)
+    </script>
 </body>
 </html>

@@ -68,6 +68,7 @@ def test_project_preview_content_view(client, project_factory, organisation):
     assert "Preview Test Project" in content
     assert response.headers.get("X-Frame-Options") != "DENY"
     assert "js-history-back" not in content
+    assert "event.target.closest('a[href]')" in content
 
 
 @pytest.mark.django_db

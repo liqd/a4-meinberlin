@@ -1,0 +1,8 @@
+{% load i18n %}
+<main id="layout-grid">
+    {% if project.is_draft %}
+        {% translate 'This project has not yet been published.' as info %}
+        {% include 'meinberlin_contrib/components/info-box.html' with info_message=info %}
+    {% endif %}
+    {% include 'meinberlin_projects/includes/project_detail_content.html' %}
+</main>

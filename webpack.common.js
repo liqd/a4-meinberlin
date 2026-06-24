@@ -95,6 +95,9 @@ module.exports = {
     init_dashboard_accordion: {
       import: './meinberlin/apps/dashboard/assets/init_dashboard_accordion.js'
     },
+    init_project_preview_modal: {
+      import: './meinberlin/apps/dashboard/assets/init_project_preview_modal.js'
+    },
     react_map_teaser: {
       import: './meinberlin/react/plans/react_map_teaser.jsx'
     },

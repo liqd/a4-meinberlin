@@ -1,0 +1,34 @@
+{% load i18n meinberlin_project_tags offlineevent_tags contrib_tags %}
+{% url 'project-information' slug=project.slug as info_page %}
+{% include 'meinberlin_contrib/components/hero.html' with content=project show_buttons=True hero_link=info_page %}
+<div id="layout-grid__area--maincontent">
+    <div id="follow-alert-wrapper"></div>
+    {% include 'meinberlin_projects/project_actions.html' %}
+    {% include 'meinberlin_projects/includes/project_details_summary.html' %}
+    {% include 'meinberlin_projects/includes/project_participation.html' %}
+    {% if offline_modules %}
+        <section aria-labelledby="project-events">
+            <div class="actionable-list__header">
+                <h2 id="project-events">{% translate "Offline Events" %}</h2>
+            </div>
+            <ul class="actionable-list">
+                {% for module in offline_modules %}
+                    <li class="actionable-list__item actionable-list__item--hide-first-line{% if module.module_has_finished %} actionable-list__item--faded{% endif %}">
+                        {% html_date module.first_phase_start_date 'DATE_FORMAT' %} · {{ module.item_set.first.event_type }}
+                        <a href="{{ module.get_absolute_url }}"
+                           class="actionable-list__item__body">
+                            <h4 class="my-0">{{ module.name }}</h4>
+                            <div class="actionable-list__item__actions actionable-list__item__actions--inline">
+                                <i class="bicon bicon-arrow-right" aria-hidden="true"></i>
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    {% endif %}
+    {% include 'meinberlin_projects/includes/project_insights.html' %}
+    {% if project.plans.exists %}
+        {% include 'meinberlin_projects/includes/project_plan.html' %}
+    {% endif %}
+</div>

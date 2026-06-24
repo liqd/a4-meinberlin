@@ -28,7 +28,7 @@
         </nav>
     </div>
 </div>
-{% endblock %}
+{% endblock dashboard_nav %}
 
 {% block dashboard_content %}
     <div class="row">
@@ -45,16 +45,27 @@
         </nav>
 
         <div class="col-lg-6">
-            {% block dashboard_project_content %}{% endblock %}
+            {% block dashboard_project_content %}{% endblock dashboard_project_content %}
         </div>
 
         <div class="col-lg-3">
             {% include "a4dashboard/includes/progress.html" %}
         </div>
     </div>
-{% endblock %}
+
+    <div id="modal-root"
+         class="modal modal-blur fade project-preview-modal-root"
+         tabindex="-1"
+         aria-labelledby="project-preview-modal-label"
+         aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+{% endblock dashboard_content %}
 
 {% block extra_js %}
     <script src="{% static 'unload_warning.js' %}"></script>
     <script src="{% static 'init_dashboard_accordion.js' %}"></script>
-{% endblock %}
+    <script src="{% static 'init_project_preview_modal.js' %}"></script>
+{% endblock extra_js %}

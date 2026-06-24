@@ -20,14 +20,8 @@ function initPreviewIframe (previewModal) {
   iframe.addEventListener('load', dispatchEmbedReady)
 }
 
-function setPreviewDevice (modalRoot, previewModal, device) {
-  if (!modalRoot || !previewModal) return
-
-  modalRoot.classList.remove(
-    'project-preview-modal-root--desktop',
-    'project-preview-modal-root--mobile'
-  )
-  modalRoot.classList.add(`project-preview-modal-root--${device}`)
+function setPreviewDevice (previewModal, device) {
+  if (!previewModal) return
 
   const frame = previewModal.querySelector('#project-preview-frame')
   if (frame) {
@@ -67,7 +61,7 @@ function init () {
     if (!previewModal) return
 
     event.preventDefault()
-    setPreviewDevice(modalRoot, previewModal, toggleButton.dataset.previewDevice)
+    setPreviewDevice(previewModal, toggleButton.dataset.previewDevice)
   })
 
   document.body.addEventListener('htmx:afterSwap', (event) => {
@@ -76,14 +70,10 @@ function init () {
     if (!previewModal) return
 
     initPreviewIframe(previewModal)
-    setPreviewDevice(modalRoot, previewModal, getDefaultPreviewDevice())
+    setPreviewDevice(previewModal, getDefaultPreviewDevice())
   })
 
   modalRoot.addEventListener('hidden.bs.modal', () => {
-    modalRoot.classList.remove(
-      'project-preview-modal-root--desktop',
-      'project-preview-modal-root--mobile'
-    )
     modalRoot.querySelector('.modal-content').innerHTML = ''
     if (lastPreviewTrigger) {
       lastPreviewTrigger.focus()

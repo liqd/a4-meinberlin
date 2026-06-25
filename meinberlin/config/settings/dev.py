@@ -34,14 +34,21 @@ else:
     }
 
 CONTENT_SECURITY_POLICY_REPORT_ONLY = {
-    "default-src": [
-        "'self'",
-        "'unsafe-inline'",
-        "'unsafe-eval'",
-        "data:",
-        "blob:",
-        "*",
-    ],
+    "DIRECTIVES": {
+        "default-src": [
+            "'self'",
+            "'unsafe-inline'",
+            "'unsafe-eval'",
+            "data:",
+            "blob:",
+            "*",
+        ],
+        "script-src": [
+            "'self'",
+            "'unsafe-inline'",
+            "'unsafe-eval'",
+        ],
+    },
 }
 
 if os.getenv("DATABASE") == "postgresql":

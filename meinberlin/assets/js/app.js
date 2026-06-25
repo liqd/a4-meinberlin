@@ -39,6 +39,10 @@ if (typeof window !== 'undefined') {
   window.htmx = htmx
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+  htmx.process(document.body)
+}, false)
+
 document.addEventListener('DOMContentLoaded', init, false)
 document.addEventListener('a4.embed.ready', init, false)
 document.addEventListener('DOMContentLoaded', function () {

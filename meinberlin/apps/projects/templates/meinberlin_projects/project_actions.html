@@ -2,7 +2,7 @@
 {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
 
 <div class="project-actions block">
-  {% if request.resolver_match.url_name != 'project-detail' %}
+  {% if request.resolver_match.url_name != 'project-detail' and request.resolver_match.url_name != 'project-preview-content' %}
     <a href="#" class="link--back js-history-back">{% translate 'Back' %}</a>
   {% endif %}
   {% if edit_link and user_may_change %}

@@ -21,6 +21,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Added
 
 - Header: New login/logout button next to the menu
+- Dashboard project preview modal with desktop/mobile device toggle
 
 ## v2606.1
 

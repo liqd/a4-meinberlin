@@ -1,0 +1,10 @@
+{% load i18n %}
+<div id="layout-grid__area--maincontent">
+    <div>
+        <h1 class="u-first-heading">{% translate 'Participation is not possible at the moment.' %}</h1>
+        <p>
+            {% html_date project.modules.first.future_phases.first.start_date 'DATE_FORMAT' as start_date %}
+            {% blocktranslate with date=start_date %}It starts on {{ date }}.{% endblocktranslate %}
+        </p>
+    </div>
+</div>

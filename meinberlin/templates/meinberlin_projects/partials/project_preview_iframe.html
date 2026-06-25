@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'common_css.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'berlin_css.css' %}">
+    <title>{% translate "Preview" %}</title>
+</head>
+<body>
+    {% include preview_partial %}
+    <script>
+      document.addEventListener('click', (event) => {
+        if (event.target.closest('a[href]')) {
+          event.preventDefault()
+        }
+      }, true)
+    </script>
+</body>
+</html>

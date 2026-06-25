@@ -4,16 +4,5 @@
 {% block title %}{{ project.name }} — {{ block.super }}{% endblock title %}
 
 {% block content %}
-<div id="layout-grid__area--maincontent">
-    <div>
-        {# As bplan projects don't set the information and the result field, the default project detail, which is shown prior to the first phase, looks bad. #}
-        {# This replaces the default project detail by a simple notice that the participation has not started yet. #}
-
-        <h1 class="u-first-heading">{% translate 'Participation is not possible at the moment.' %}</h1>
-        <p>
-            {% html_date project.modules.first.future_phases.first.start_date 'DATE_FORMAT' as start_date %}
-            {% blocktranslate with date=start_date %}It starts on {{ date }}.{% endblocktranslate %}
-        </p>
-    </div>
-</div>
+    {% include 'meinberlin_projects/includes/project_bplan_detail_content.html' %}
 {% endblock content %}

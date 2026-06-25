@@ -24,6 +24,13 @@ def get_next_url(request):
         return request.get_full_path()
 
 
+@register.simple_tag(takes_context=True)
+def account_redirect_url(context):
+    if "request" in context:
+        return get_next_url(context["request"])
+    return "/"
+
+
 @register.inclusion_tag("meinberlin_users/initiator_indicator.html", takes_context=True)
 def initiatorindicator(context):
     if hasattr(context, "request"):

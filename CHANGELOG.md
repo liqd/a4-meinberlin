@@ -18,6 +18,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## Unreleased
 
+### Added
+
+- Header: New login/logout button next to the menu
+
 ## v2606.1
 
 ### Added

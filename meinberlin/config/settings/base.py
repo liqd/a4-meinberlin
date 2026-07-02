@@ -167,6 +167,9 @@ MIDDLEWARE = (
 # to allow cross-origin requests without blocking.
 SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
+# Allow same-origin iframes (e.g. dashboard project preview modal).
+X_FRAME_OPTIONS = "SAMEORIGIN"
+
 SITE_ID = 1
 
 ROOT_URLCONF = "meinberlin.config.urls"

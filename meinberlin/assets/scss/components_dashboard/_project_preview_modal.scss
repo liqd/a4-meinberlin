@@ -1,5 +1,15 @@
 @import "../styles_dashboard/variables";
 
+// Global anchor :hover/:focus use $primary; keep btn--light text color.
+a.btn.btn--light.js-project-preview-trigger {
+  &:hover,
+  &:focus,
+  &:active,
+  &:focus-visible {
+    color: $secondary;
+  }
+}
+
 $project-preview-modal-max-width: 1440px;
 $project-preview-desktop-frame-inset: 124px;
 $project-preview-mobile-frame-width: 430px;

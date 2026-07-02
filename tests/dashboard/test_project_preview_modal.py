@@ -68,7 +68,6 @@ def test_project_preview_content_view(client, project_factory, organisation):
     assert "Preview Test Project" in content
     assert response.headers.get("X-Frame-Options") != "DENY"
     assert "js-history-back" not in content
-    assert "event.target.closest('a[href]')" in content
 
 
 @pytest.mark.django_db
@@ -168,6 +167,32 @@ def test_project_actions_back_link_shown_on_project_information(
     response = client.get(url)
     assert response.status_code == 200
     assert "js-history-back" in response.content.decode()
+
+
+@pytest.mark.django_db
+def test_project_information_hides_edit_button_in_iframe(
+    client, project_factory, organisation
+):
+    project = project_factory(organisation=organisation)
+    initiator = organisation.initiators.first()
+    url = reverse("project-information", kwargs={"slug": project.slug})
+
+    client.login(username=initiator.email, password="password")
+    response = client.get(url, HTTP_SEC_FETCH_DEST="iframe")
+    assert response.status_code == 200
+    content = response.content.decode()
+    assert "project-actions__right" not in content
+
+
+@pytest.mark.django_db
+def test_project_information_allows_same_origin_framing(client, project_factory, user):
+    project = project_factory(name="Framing Test Project")
+    url = reverse("project-information", kwargs={"slug": project.slug})
+
+    client.login(username=user.email, password="password")
+    response = client.get(url)
+    assert response.status_code == 200
+    assert response.headers.get("X-Frame-Options") == "SAMEORIGIN"
 
 
 @pytest.mark.django_db

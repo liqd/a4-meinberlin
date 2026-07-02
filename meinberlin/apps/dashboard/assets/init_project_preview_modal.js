@@ -52,6 +52,7 @@ function init () {
     const trigger = event.target.closest('.js-project-preview-trigger')
     if (trigger) {
       lastPreviewTrigger = trigger
+      trigger.blur()
     }
 
     const toggleButton = event.target.closest('[data-preview-device]')
@@ -76,7 +77,8 @@ function init () {
   modalRoot.addEventListener('hidden.bs.modal', () => {
     modalRoot.querySelector('.modal-content').innerHTML = ''
     if (lastPreviewTrigger) {
-      lastPreviewTrigger.focus()
+      lastPreviewTrigger.blur()
+      lastPreviewTrigger = null
     }
   })
 }

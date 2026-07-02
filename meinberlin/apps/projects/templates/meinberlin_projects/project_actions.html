@@ -5,7 +5,7 @@
   {% if request.resolver_match.url_name != 'project-detail' and request.resolver_match.url_name != 'project-preview-content' %}
     <a href="#" class="link--back js-history-back">{% translate 'Back' %}</a>
   {% endif %}
-  {% if edit_link and user_may_change %}
+  {% if edit_link and user_may_change and request.META.HTTP_SEC_FETCH_DEST != 'iframe' %}
     <a href="{{ edit_link }}" target="_blank" class="project-actions__right">
       <i class="fa fas fa-pencil-alt" aria-hidden="true"></i>{% translate 'Edit' %}
     </a>

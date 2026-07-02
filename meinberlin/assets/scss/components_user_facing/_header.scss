@@ -4,11 +4,25 @@ html {
     scroll-padding-top: 6.5rem;
 }
 
-.header .header__row-pageheader,
-.header.is--sticky .header__row-pageheader {
-    padding-top: 0.8em !important;
-    padding-bottom: 0.8em !important;
+// Berlin marketing CSS uses `#header` ID selectors; match specificity without `!important`.
+// stylelint-disable selector-max-id
+#header .header__row-pageheader,
+#header.is--sticky .header__row-pageheader {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
 }
+
+@media print, (width >= 73.8135rem) {
+    #header .header__row-pageheader,
+    #header.is--sticky .header__row-pageheader {
+        padding-right: 32px;
+    }
+
+    #header .pageheader__services {
+        margin-left: 48px;
+    }
+}
+// stylelint-enable selector-max-id
 
 .header__notification-count,
 ul.navigation-tree span.header__notification-count {
@@ -27,6 +41,10 @@ ul.navigation-tree span.header__notification-count {
     cursor: pointer;
 }
 
+.pageheader__services {
+    gap: 16px;
+}
+
 .service-button-overlay {
     .service-button-overlay__form {
         margin: 0;
@@ -35,7 +53,29 @@ ul.navigation-tree span.header__notification-count {
         align-items: stretch;
     }
 
-    &.account .icon-button {
-        padding-left: 0;
+    .icon-button {
+        gap: 4px;
+        padding: 0;
+
+        .icon {
+            font-size: 24px;
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            margin-bottom: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .text {
+            font-size: 11px;
+            line-height: 16.8px;
+        }
+    }
+
+    &.account .icon-button .icon {
+        font-size: 19.2px;
     }
 }

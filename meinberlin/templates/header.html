@@ -134,20 +134,20 @@
             <div id="servicebuttonAccount" class="service-button-overlay account">
                 <div class="service-button-overlay__button">
                     {% if request.user.is_authenticated %}
-                        <form class="service-button-overlay__form" action="{% url 'account_logout' %}" method="post" aria-label="{% translate 'Logout' %}">
+                        <form class="service-button-overlay__form" action="{% url 'account_logout' %}" method="post" aria-label="Logout">
                             {% csrf_token %}
                             <input type="hidden" name="next" value="{{ redirect_field_value }}">
                             <button type="submit" class="icon-button">
                                 <i class="icon fas fa-user-check" aria-hidden="true"></i>
-                                <span class="text">{% translate 'Logout' %}</span>
+                                <span class="text">Logout</span>
                             </button>
                         </form>
                     {% else %}
-                        <form class="service-button-overlay__form" action="{% url 'account_login' %}" method="get" aria-label="{% translate 'Login' %}">
+                        <form class="service-button-overlay__form" action="{% url 'account_login' %}" method="get" aria-label="Login">
                             <input type="hidden" name="next" value="{{ redirect_field_value }}">
                             <button type="submit" class="icon-button">
                                 <i class="icon fas fa-user" aria-hidden="true"></i>
-                                <span class="text">{% translate 'Login' %}</span>
+                                <span class="text">Login</span>
                             </button>
                         </form>
                     {% endif %}

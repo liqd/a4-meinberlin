@@ -1,0 +1,68 @@
+{% extends "meinberlin_account/account_dashboard.html" %}
+
+{% load i18n widget_tweaks %}
+
+{% block title %}{% translate 'Convert account' %} — {{ block.super }}{% endblock title %}
+
+{% block dashboard_content %}
+    <h1 class="mt-0">{% translate 'Convert to a regular account' %}</h1>
+    <p class="u-italic">{% translate 'You can now convert your guest account into a regular user account. This means that all your previous posts, comments and ratings will be kept and assigned to your new user account.' %}</p>
+
+    <form enctype="multipart/form-data" action="{{ request.path }}" method="post" class="form--base">
+        {% if form.non_field_errors %}
+            <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+                {% for error in form.non_field_errors %}
+                    <li>{{ error|escape }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% csrf_token %}
+
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.email %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.username %}
+        {% include "meinberlin_contrib/includes/form_password_field.html" with field=form.password1 %}
+        {% include "meinberlin_contrib/includes/form_password_field.html" with field=form.password2 %}
+
+        {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_notifications hide_label=True %}
+        {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_newsletters hide_label=True %}
+
+        {% with field=form.terms_of_use %}
+        {% with field.id_for_label|add:"_helptext" as helptext_id %}
+        <div class="form-group mb-3">
+            <div class="form-check">
+                <div class="d-flex align-items-start">
+                    <span class="form-check-input__slot">
+                        {% with 'aria-describedby:'|add:helptext_id as describedby_attr %}
+                        {{ field|add_class:"form-check-input form-check-input__mb m-0"|add_error_attr:"aria-invalid:true"|attr:describedby_attr }}
+                        {% endwith %}
+                    </span>
+                </div>
+
+                <div class="form-hint ms-5" id="{{ helptext_id }}">
+                    {% blocktranslate with terms_of_use_url="/terms-of-use" privacy_policy="/datenschutz" %}I hereby expressly consent to the collection and processing (storage) of my data and expressly consent to the processing and publication of my ideas, comments and contributions as described in the privacy policy. I also confirm that I have read and accept the
+                    <a href="{{ terms_of_use_url }}" target="_blank">terms of use</a>
+                    and the
+                    <a href="{{ privacy_policy }}" target="_blank">privacy policy</a>.{% endblocktranslate %}
+                </div>
+
+                {% if field.errors %}
+                {% if field.errors|length > 1 %}
+                <ul class="errorlist ms-4 mt-1" aria-live="assertive" aria-atomic="true">
+                    {% for error in field.errors %}
+                    <li>{{ error|escape }}</li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                {% include 'meinberlin_contrib/components/alert.html' with alert_message=field.errors.0|escape alert_type='danger' %}
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+        {% endwith %}
+        {% endwith %}
+
+        {% include 'meinberlin_contrib/includes/form_submit_flex_end.html' with button_text='Register' %}
+    </form>
+    {{ form.media }}
+{% endblock dashboard_content %}

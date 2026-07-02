@@ -36,6 +36,11 @@ button {
   margin-left: 0 !important;
 }
 
+.form-check-input__slot {
+  flex-shrink: 0;
+  width: 1.25rem;
+}
+
 textarea.form-control {
   resize: vertical;
 }

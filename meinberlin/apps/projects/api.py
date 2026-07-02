@@ -6,10 +6,22 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from rest_framework.response import Response
 
+from adhocracy4.follows.api import FollowViewSet as A4FollowViewSet
 from adhocracy4.projects.enums import Access
 from adhocracy4.projects.models import Project
 from meinberlin.apps.projects import serializers as project_serializers
 from meinberlin.apps.projects.filters import StatusFilter
+from meinberlin.apps.users.permissions import IsRegularUser
+
+
+class FollowViewSet(A4FollowViewSet):
+    """Follows are for permanent accounts only; hard-block guest users.
+
+    a4's FollowViewSet permits any authenticated user (incl. guests). We tighten
+    it so guests cannot create or read follows via the API.
+    """
+
+    permission_classes = (IsRegularUser,)
 
 
 def get_public_projects() -> QuerySet[Project]:

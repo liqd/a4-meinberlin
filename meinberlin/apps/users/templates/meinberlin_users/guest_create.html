@@ -1,0 +1,86 @@
+{% extends "account/base.html" %}
+{% load i18n widget_tweaks static %}
+
+{% block head_title %}
+    {% translate "Proceed as guest" %}
+{% endblock head_title %}
+
+{% block content %}
+    <div class="narrow-wrapper">
+        <h1>{% translate "Proceed as guest" %}</h1>
+
+        <p>{% translate "Please log out after participating or close your browser. This ensures that neither you nor anyone else has access to your guest account. You can convert your guest account into a permanent account in the user settings." %}</p>
+
+        <form id="guest_create_form" method="post" action="" class="form--base">
+            {% if form.non_field_errors %}
+                <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error|escape }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {{ form.media }}
+            {% csrf_token %}
+
+            {% with field=form.terms_of_use %}
+            {% with field.id_for_label|add:"_helptext" as helptext_id %}
+            <div class="form-group mb-3">
+                <div class="form-check">
+                    <div class="d-flex align-items-start">
+                        <span class="form-check-input__slot">
+                            {% with 'aria-describedby:'|add:helptext_id as describedby_attr %}
+                            {{ field|add_class:"form-check-input form-check-input__mb m-0"|add_error_attr:"aria-invalid:true"|attr:describedby_attr }}
+                            {% endwith %}
+                        </span>
+                    </div>
+
+                    <div class="form-hint ms-5" id="{{ helptext_id }}">
+                        {% blocktranslate with terms_of_use_url="/terms-of-use" privacy_policy="/datenschutz" %}I hereby expressly consent to the collection and processing (storage) of my data and expressly consent to the processing and publication of my ideas, comments and contributions as described in the privacy policy. I also confirm that I have read and accept the
+                        <a href="{{ terms_of_use_url }}" target="_blank">terms of use</a>
+                        and the
+                        <a href="{{ privacy_policy }}" target="_blank">privacy policy</a>.{% endblocktranslate %}
+                    </div>
+
+                    {% if field.errors %}
+                    {% if field.errors|length > 1 %}
+                    <ul class="errorlist ms-4 mt-1" aria-live="assertive" aria-atomic="true">
+                        {% for error in field.errors %}
+                        <li>{{ error|escape }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    {% include 'meinberlin_contrib/components/alert.html' with alert_message=field.errors.0|escape alert_type='danger' %}
+                    {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+            {% endwith %}
+            {% endwith %}
+
+            {% if form.captcha %}
+                {% include 'meinberlin_contrib/includes/form_field.html' with field=form.captcha %}
+            {% endif %}
+
+            {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+            {% endif %}
+            <input type="hidden" name="next" value="{{ next }}">
+
+            <div class="u-spacer-top">
+                <button class="button button--full-width" type="submit">{% translate "Proceed as guest" %}</button>
+            </div>
+        </form>
+
+        <section class="narrow-wrapper__footer">
+            <span class="narrow-wrapper__footer--decoration" aria-hidden="true"></span>
+            <h2>{% translate "Already have an account?" %}</h2>
+            {% url 'account_login' as login_url %}
+            {% url 'account_signup' as signup_url %}
+            {% with next_param=request.GET.next %}
+                <a class="button button--light button--full-width" href="{{ login_url }}?next={{ next_param }}">{% translate "Login" %}</a>
+                <a class="button button--light button--full-width u-spacer-top" href="{{ signup_url }}?next={{ next_param }}">{% translate "Register" %}</a>
+            {% endwith %}
+        </section>
+    </div>
+{% endblock content %}

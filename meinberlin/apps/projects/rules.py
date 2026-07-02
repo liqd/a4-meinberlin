@@ -9,6 +9,7 @@ from adhocracy4.modules.models import Item
 from adhocracy4.organisations.predicates import is_initiator
 from adhocracy4.polls.models import Answer
 from adhocracy4.polls.models import Vote
+from adhocracy4.projects.predicates import guest_may_participate
 from adhocracy4.projects.predicates import is_live
 from adhocracy4.projects.predicates import is_moderator
 from adhocracy4.projects.predicates import is_prj_group_member
@@ -33,7 +34,7 @@ rules.set_perm(
     | is_initiator
     | is_moderator
     | is_prj_group_member
-    | ((is_public | is_project_member) & is_live),
+    | ((is_public | is_project_member) & is_live & guest_may_participate),
 )
 
 

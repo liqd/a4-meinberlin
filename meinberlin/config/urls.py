@@ -1,5 +1,6 @@
 """meinberlin URL Configuration."""
 
+from allauth.account import views as allauth_views
 from django.conf import settings
 from django.contrib import admin
 from django.urls import include
@@ -11,13 +12,13 @@ from django_ckeditor_5 import views as ckeditor5_views
 from drf_spectacular.views import SpectacularAPIView
 from drf_spectacular.views import SpectacularRedocView
 from drf_spectacular.views import SpectacularSwaggerView
+from guest_user.decorators import regular_user_required
 from rest_framework import routers
 from wagtail.contrib.sitemaps import views as wagtail_sitemap_views
 from wagtail.contrib.sitemaps.sitemap_generator import Sitemap as WagtailSitemap
 
 from adhocracy4.api import routers as a4routers
 from adhocracy4.comments_async.api import CommentViewSet
-from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.polls.api import PollViewSet
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
@@ -43,11 +44,13 @@ from meinberlin.apps.modules.api import ItemViewSet
 from meinberlin.apps.notifications.api import NotificationSettingsViewSet
 from meinberlin.apps.notifications.api import NotificationViewSet
 from meinberlin.apps.plans.api import PlansListViewSet
+from meinberlin.apps.projects.api import FollowViewSet
 from meinberlin.apps.projects.api import PrivateProjectListViewSet
 from meinberlin.apps.projects.api import ProjectListViewSet
 from meinberlin.apps.topicprio.api import TopicViewSet
 from meinberlin.apps.users.decorators import user_is_project_admin
 from meinberlin.apps.users.views import CustomLoginView
+from meinberlin.apps.users.views import GuestCreateView
 from meinberlin.apps.votes.api import TokenVoteViewSet
 from meinberlin.apps.votes.routers import TokenVoteDefaultRouter
 
@@ -128,6 +131,28 @@ urlpatterns = [
     ),
     path("admin/", include("wagtail.admin.urls")),
     path("accounts/login/", CustomLoginView.as_view(), name="account_login"),
+    path(
+        "accounts/guests/login/",
+        GuestCreateView.as_view(),
+        name="guest_create",
+    ),
+    # Block guests from allauth account-management pages (they must convert
+    # first). These override allauth's defaults and must precede the include.
+    path(
+        "accounts/email/",
+        regular_user_required(allauth_views.EmailView.as_view()),
+        name="account_email",
+    ),
+    path(
+        "accounts/password/change/",
+        regular_user_required(allauth_views.PasswordChangeView.as_view()),
+        name="account_change_password",
+    ),
+    path(
+        "accounts/password/set/",
+        regular_user_required(allauth_views.PasswordSetView.as_view()),
+        name="account_set_password",
+    ),
     path("accounts/", include("allauth.urls")),
     path("documents/", include("wagtail.documents.urls")),
     path("projekte/", include("meinberlin.apps.projects.urls")),

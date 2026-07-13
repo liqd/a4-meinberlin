@@ -147,6 +147,26 @@ In case of settings.TIME_ZONE change, tasks need to be synced with the new time.
 
 ### Style Library
 
-- currently all js and css incl fontawesome files are downloaded due to difficulties serving files and slowing development
-  - img and font resouce paths within the berlin css have been updated to include the local version
-- Until versioning of libraries implemented prefered solution would be to have js downloaded once per day and cached, css should only be updated before release due to issues of breaking changes not being versioned or announced.
+Berlin.de base styles for the public site are vendored as `meinberlin/assets/berlin_css/berlin_marketing.scss` (from `berlin.de/i9f/r1/bundle/berlin_marketing.css`) and imported via `style_user_facing.scss`.
+
+For style-guide alignment with the **Vertical Participation** design system ([designsystem.berlin.de](https://designsystem.berlin.de/latest/bundle/berlin_participation.css)), we **merge in only the relevant rules and tokens** via meinBerlin SCSS overrides — we do **not** replace the marketing bundle wholesale.
+
+**Merged from participation (via overrides):**
+
+| Change | Override location |
+|--------|-------------------|
+| Primary green `#439c76` (`$primary`, `$panel-colored`) | `styles_user_facing/variables/_colors.scss` |
+| `.panel--colored` background | `components_user_facing/_service-panel.scss` |
+| `.text--color-primary` | `styles_user_facing/_utility.scss` |
+| Search submit arrow colour | `components_user_facing/_searchform-slot.scss` |
+| Topic pills (`pill--topic`) | `components_user_facing/_pill.scss` |
+
+**meinBerlin-only layout fixes** (not in either vendor bundle): teaser blocks, hero, accordion, content footer — see `components_user_facing/` and `changelog/style-guide-alignment.md`.
+
+**Updating vendor CSS (before releases):**
+
+- Download `berlin_marketing.css` from berlin.de; update paths in `berlin_marketing.scss` as noted in the file header.
+- When the participation style guide changes, diff `berlin_participation.css` against marketing and port only what meinBerlin still needs into the override files above.
+- Run `npm run build` and regression-test key pages.
+
+Font Awesome and `berlin_marketing.js` are still loaded from berlin.de separately (`base.html`). Until upstream versions are pinned, update vendor CSS only before releases — breaking changes are not always announced.

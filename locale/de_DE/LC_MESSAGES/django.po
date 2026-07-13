@@ -5871,7 +5871,7 @@ msgstr "Datenschutz"
 
 #: meinberlin/templates/footer.html:8
 msgid "To the top of the page"
-msgstr "Zum Anfang der Seite"
+msgstr "Zum Seitenanfang"
 
 #: meinberlin/templates/footer.html:9
 msgid "Related Links"

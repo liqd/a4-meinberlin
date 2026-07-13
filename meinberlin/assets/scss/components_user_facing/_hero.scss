@@ -30,18 +30,19 @@ $hero-height: 400px;
 }
 
 .hero__image-copyright {
-  font-size: 0.8em;
-  color: $text-light;
-}
-
-.hero__media {
-  width: 100%;
-  aspect-ratio: 3/2;
+  font-size: 11px;
+  color: hsla(0deg, 0%, 100%, 0.7);
 }
 
 .hero__figure {
   margin: 0;
   height: 100%;
+  position: relative;
+}
+
+.hero__media {
+  width: 100%;
+  aspect-ratio: 3/2;
 }
 
 .hero__image {
@@ -84,7 +85,6 @@ $hero-height: 400px;
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
-    border-top: 1px solid $gray-lighter;
   }
 
   .hero--plan {
@@ -116,7 +116,10 @@ $hero-height: 400px;
   }
 
   .hero__image-copyright {
-    flex-grow: 1;
+    position: absolute;
+    bottom: 0.3em;
+    right: 0.5em;
+    margin: 0;
   }
 
   .hero__buttons {

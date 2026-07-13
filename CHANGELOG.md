@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 Since version v2308 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Added
+
+- Header: New login/logout button next to the menu
+- Dashboard project preview modal with desktop/mobile device toggle
+
+### Changed
+
+- Apply colour tokens (`#439c76`) via SCSS overrides sourced from `berlin_parcticipation.css` published styleguide
+- Update `$primary` to `#439c76` for user-facing components (pills, buttons, status bar)
+- Green `.panel--colored` background via SCSS override
+- Green search submit arrow on hero search form
+- Align homepage text/image teaser blocks with `modul-text_bild` image and text width ratio
+- Remove border line above project detail hero below breadcrumbs
+- Show hero image copyright on the image instead of below the description on project detail pages
+- Align FAQ accordion item spacing and chevron icon with style guide
+- Reduce space above grey content footer; set footer to-top link text to black and up-arrow circle to primary green
+- Footer to-top link label: “Zum Seitenanfang” (was “Zum Anfang der Seite”)
+- Full title on project detail page
+
 ## v2606.3
 
 ### Added
@@ -15,13 +36,6 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Refactor inline js for back button blocked by CSP
 
-
-## Unreleased
-
-### Added
-
-- Header: New login/logout button next to the menu
-- Dashboard project preview modal with desktop/mobile device toggle
 
 ## v2606.1
 

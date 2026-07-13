@@ -1,0 +1,18 @@
+// Berlin marketing CSS uses `#layout-grid__area--maincontent` and `#content-footer` ID selectors.
+// stylelint-disable selector-max-id, selector-id-pattern
+#layout-grid__area--maincontent {
+    margin-bottom: 0;
+}
+
+#content-footer a.to-top {
+    color: $black;
+
+    &:before {
+        background: $primary;
+    }
+
+    &:after {
+        color: $white;
+    }
+}
+// stylelint-enable selector-max-id, selector-id-pattern

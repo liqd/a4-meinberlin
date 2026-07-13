@@ -4,7 +4,7 @@
 <div class="form-group {% if add_class %}{{ add_class }}{% endif %} mb-3">
     <div class="form-check">
         <div class="d-flex align-items-start">
-            <span class="flex-shrink-0" style="width: 1.25rem;">
+            <span class="form-check-input__slot">
                 {% if field.help_text %}
                     {% with 'aria-describedby:'|add:helptext_id as describedby_attr %}
                         {{ field|add_class:"form-check-input form-check-input__mb m-0"|add_error_attr:"aria-invalid:true"|attr:describedby_attr }}

@@ -182,3 +182,10 @@ div.cke_focus {
         }
     }
 }
+
+// Project basic settings (Grundeinstellungen) — extra spacing before Participants field.
+.project-basic-form {
+    .form-group.project-basic-form__participants {
+        margin-top: 1.5rem;
+    }
+}

@@ -2,14 +2,28 @@
 {% load i18n widget_tweaks static %}
 
 {% block head_title %}
-    {% translate "Proceed as guest" %}
+    {% translate "Continue as a guest" %}
 {% endblock head_title %}
 
 {% block content %}
     <div class="narrow-wrapper">
-        <h1>{% translate "Proceed as guest" %}</h1>
+        <h1>{% translate "Continue as a guest" %}</h1>
 
-        <p>{% translate "Please log out after participating or close your browser. This ensures that neither you nor anyone else has access to your guest account. You can convert your guest account into a permanent account in the user settings." %}</p>
+        {% url 'account_login' as account_login_url %}
+        {% url 'account_signup' as account_signup_url %}
+        <div class="narrow-wrapper__account-links">
+            <p>
+                {% translate "Already have an account? Please" %}
+                <a href="{{ account_login_url }}?next={{ next|urlencode }}">{% translate "log in" %}</a>.
+            </p>
+            <p>
+                {% translate "Want to create an account? Please" %}
+                <a href="{{ account_signup_url }}?next={{ next|urlencode }}">{% translate "click here" %}</a>.
+            </p>
+        </div>
+
+        <p>{% translate "Please log out after participating or close your browser. This ensures that neither you nor anyone else has access to your guest account." %}</p>
+        <p>{% translate "Guest users cannot follow projects, and they do not receive notifications about the status of their contributions or when other users interact with their submissions. You can convert your guest account into a permanent account in the user settings." %}</p>
 
         <form id="guest_create_form" method="post" action="" class="form--base">
             {% if form.non_field_errors %}
@@ -68,19 +82,8 @@
             <input type="hidden" name="next" value="{{ next }}">
 
             <div class="u-spacer-top">
-                <button class="button button--full-width" type="submit">{% translate "Proceed as guest" %}</button>
+                <button class="button button--full-width" type="submit">{% translate "Continue as a guest" %}</button>
             </div>
         </form>
-
-        <section class="narrow-wrapper__footer">
-            <span class="narrow-wrapper__footer--decoration" aria-hidden="true"></span>
-            <h2>{% translate "Already have an account?" %}</h2>
-            {% url 'account_login' as login_url %}
-            {% url 'account_signup' as signup_url %}
-            {% with next_param=request.GET.next %}
-                <a class="button button--light button--full-width" href="{{ login_url }}?next={{ next_param }}">{% translate "Login" %}</a>
-                <a class="button button--light button--full-width u-spacer-top" href="{{ signup_url }}?next={{ next_param }}">{% translate "Register" %}</a>
-            {% endwith %}
-        </section>
     </div>
 {% endblock content %}

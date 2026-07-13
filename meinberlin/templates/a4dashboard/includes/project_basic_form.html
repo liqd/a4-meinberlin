@@ -1,3 +1,4 @@
+<div class="project-basic-form">
 {% include 'a4dashboard/includes/form_field.html' with field=form.name %}
 
 {% include 'a4dashboard/includes/form_field.html' with field=form.image %}
@@ -11,7 +12,7 @@
 {% include 'a4dashboard/includes/form_field.html' with field=form.description %}
 
 {% if form.allow_guest_users %}
-    {% include 'a4dashboard/includes/form_field.html' with field=form.allow_guest_users %}
+    {% include 'a4dashboard/includes/form_field.html' with field=form.allow_guest_users add_class='project-basic-form__participants' %}
 {% endif %}
 
 {% include 'a4dashboard/includes/form_field.html' with field=form.access %}
@@ -19,3 +20,4 @@
 {% if project.has_finished %}
     {% include 'a4dashboard/includes/form_checkbox_field.html' with field=form.is_archived %}
 {% endif %}
+</div>

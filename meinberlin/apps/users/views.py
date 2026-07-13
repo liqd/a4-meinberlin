@@ -1,6 +1,7 @@
 from urllib.parse import urlparse
 
 from allauth.account.views import LoginView
+from allauth.account.views import SignupView
 from django.conf import settings
 from django.shortcuts import redirect
 from django.utils.http import url_has_allowed_host_and_scheme
@@ -39,6 +40,15 @@ class GuestCreateView(FormView):
         if self.request.user.is_anonymous:
             maybe_create_guest_user(self.request)
         return super().form_valid(form)
+
+
+class CustomSignupView(SignupView):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["enable_guest_users"] = getattr(
+            settings, "A4_ENABLE_GUEST_USERS", False
+        )
+        return context
 
 
 class CustomLoginView(LoginView):

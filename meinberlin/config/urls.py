@@ -50,6 +50,7 @@ from meinberlin.apps.projects.api import ProjectListViewSet
 from meinberlin.apps.topicprio.api import TopicViewSet
 from meinberlin.apps.users.decorators import user_is_project_admin
 from meinberlin.apps.users.views import CustomLoginView
+from meinberlin.apps.users.views import CustomSignupView
 from meinberlin.apps.users.views import GuestCreateView
 from meinberlin.apps.votes.api import TokenVoteViewSet
 from meinberlin.apps.votes.routers import TokenVoteDefaultRouter
@@ -131,6 +132,7 @@ urlpatterns = [
     ),
     path("admin/", include("wagtail.admin.urls")),
     path("accounts/login/", CustomLoginView.as_view(), name="account_login"),
+    path("accounts/signup/", CustomSignupView.as_view(), name="account_signup"),
     path(
         "accounts/guests/login/",
         GuestCreateView.as_view(),

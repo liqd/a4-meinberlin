@@ -15,6 +15,7 @@ from guest_user.functions import is_guest_user
 from rest_framework.test import APIRequestFactory
 
 from adhocracy4.projects.enums import Access
+from meinberlin.apps.notifications.models import Notification
 from meinberlin.apps.users.emails import WelcomeEmail
 from meinberlin.apps.users.models import User
 from meinberlin.apps.users.permissions import IsRegularUser
@@ -171,6 +172,17 @@ def test_notifications_api_allowed_for_regular_user(apiclient, user):
 
 
 @pytest.mark.django_db
+def test_guest_cannot_reach_notification_settings(client):
+    guest = GuestUserCreator().create_guest_user()
+    client.force_login(guest)
+
+    response = client.get(reverse("notification_settings"))
+
+    assert response.status_code == 302
+    assert response.url != reverse("notification_settings")
+
+
+@pytest.mark.django_db
 def test_kiezradar_api_blocked_for_guest(apiclient):
     guest = GuestUserCreator().create_guest_user()
     apiclient.force_authenticate(user=guest)
@@ -201,6 +213,22 @@ def test_welcome_email_sent_to_regular_user(user):
     mail.outbox = []
     WelcomeEmail.send(user)
     assert len(mail.outbox) == 1
+
+
+@pytest.mark.django_db
+def test_guest_gets_in_app_notification_but_no_email(comment_factory, user_factory):
+    """Guests keep in-app notification rows for post-convert backlog; no outbound mail."""
+    from meinberlin.test.factories.ideas import IdeaFactory
+
+    guest = GuestUserCreator().create_guest_user()
+    idea = IdeaFactory(creator=guest)
+    commenter = user_factory()
+
+    mail.outbox.clear()
+    comment_factory(content_object=idea, creator=commenter)
+
+    assert Notification.objects.filter(recipient=guest).count() == 1
+    assert not any(guest.email in message.to for message in mail.outbox)
 
 
 # -- conversion ---------------------------------------------------------------

@@ -13,9 +13,6 @@
                 </h1>
                 <div class="hero__description">
                     <p>{{ content.description|safe|truncatechars:245 }}</p>
-                    {% if content.image_copyright %}
-                        <p class="hero__image-copyright">{% translate "Image" %}: {{ content.image_copyright }}</p>
-                    {% endif %}
                 </div>
 
                 {% if show_buttons %}
@@ -39,6 +36,8 @@
                             class="hero__image"
                             src="{{ content.image|thumbnail_url:'heroimage' }}"
                             alt="{% if show_buttons %}{% blocktranslate with name=content.name %}More information about {{ name }}{% endblocktranslate %}{% else %}{{ content.image_alt_text|default:'' }}{% endif %}"
+                            width="1000"
+                            height="500"
                             loading="lazy"
                         />
                     {% else %}
@@ -49,12 +48,17 @@
                                 src="{% static "images/placeholder_hero.svg" %}"
                                 alt="{% if show_buttons %}{% blocktranslate with name=content.name %}Weitere Informationen zu {{ name }}{% endblocktranslate %}{% else %}{{ project.tile_image_alt_text }}{% endif %}"
                                 class="hero__image"
+                                width="1496"
+                                height="704"
                                 loading="lazy"
                             />
                         </picture>
                     {% endif %}
                     {% if show_buttons %}
                         </a>
+                    {% endif %}
+                    {% if content.image_copyright %}
+                        <p class="hero__image-copyright image__copyright">{{ content.image_copyright }}</p>
                     {% endif %}
                 </figure>
             </div>

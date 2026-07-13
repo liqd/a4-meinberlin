@@ -3,6 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px 0;
 }
 
 .details summary > h2 {
@@ -14,7 +15,6 @@
 .details summary > h3 {
     line-height: 1.5em;
     margin: 0;
-    padding: 10px 0;
 }
 
 .details summary::marker {
@@ -27,19 +27,18 @@
     display: none;
 }
 
-.details summary > span {
+.details summary > .accordion-icon {
     transition: transform .2s;
     display: flex;
+    flex-shrink: 0;
+    transform: rotate(90deg);
+    font-size: 1.3em;
 }
 
-.details summary > span:before {
-    font-size: 22px;
-    align-self: center;
+.details[open] summary > .accordion-icon {
+    transform: rotate(-90deg);
 }
 
-.details[open] summary > span {
-    transform: rotate(-180deg);
+.details > :not(summary) {
+    padding-bottom: 10px;
 }
-
-
-

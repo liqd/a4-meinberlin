@@ -31,7 +31,12 @@
     }
 }
 
+.panel--colored {
+    background-color: $panel-colored;
+    border-color: $panel-colored;
+}
+
 .modul-servicepanel.panel--colored {
     border: 0;
-    background: $panel-colored;
 }
+

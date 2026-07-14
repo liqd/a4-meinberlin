@@ -255,6 +255,7 @@ IMAGE_ALIASES = {
         "fileformats": ("image/png", "image/jpeg", "image/gif"),
     },
     "heroimage": {"min_resolution": (1000, 500)},
+    "questionimage": {"min_resolution": (1500, 500)},
     "tileimage": {"min_resolution": (500, 300)},
     "logo": {"min_resolution": (200, 50), "max_resolution": (650, 650)},
     "avatar": {"min_resolution": (200, 200)},

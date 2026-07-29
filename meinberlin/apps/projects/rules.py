@@ -30,10 +30,9 @@ rules.add_perm(
 
 rules.set_perm(
     "a4projects.participate_in_project",
-    is_superuser
-    | is_initiator
-    | is_moderator
-    | is_prj_group_member
+    is_superuser | is_initiator | is_moderator | is_prj_group_member
+    # guest_may_participate is True for non-guests and evaluates to
+    # project.allow_guest_users for guest users, so the AND only gates guests.
     | ((is_public | is_project_member) & is_live & guest_may_participate),
 )
 

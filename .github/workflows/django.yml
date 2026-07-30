@@ -24,23 +24,11 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Cache node packages
-        uses: actions/cache@v4
-        env:
-          cache-name: cache-node-packages
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-      - name: Cache node Modules
-        id: cache-node-modules
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
+          node-version: "22"
+          cache: "pnpm"
 
       - name: Cache uv packages
         uses: actions/cache@v4
@@ -65,8 +53,6 @@ jobs:
 
       - name: Checks
         run: |
-          echo "node_modules cache hit: ${{ steps.cache-node-modules.outputs.cache-hit }}"
-          ls -la node_modules 2>/dev/null || echo "node_modules directory does not exist"
           echo "testmon cache hit: ${{ steps.cache-testmon.outputs.cache-hit }}"
           ls -la .testmondata || true
           ./scripts/a4-check.sh
@@ -76,20 +62,14 @@ jobs:
           uv pip install -r requirements/dev.txt --system
           uv pip install coveralls --system
 
-      - name: Clear npm cache
-        run: npm cache clean --force
-      - name: Install NPM Dependencies
+      - name: Enable Corepack and install dependencies
         run: |
-          if [ "${{ steps.cache-node-modules.outputs.cache-hit }}" != "true" ]; then
-            echo "node_modules cache miss - running npm ci"
-            npm ci --prefer-offline --no-audit --no-fund
-          else
-            echo "node_modules cache hit - skipping npm ci"
-          fi
+          corepack enable
+          pnpm install --frozen-lockfile
 
-      - name: Build NPM
+      - name: Build
         run: |
-          npm run build
+          pnpm run build
 
       - name: Run Tests
         env:
@@ -126,8 +106,8 @@ jobs:
 
       - name: Run Frontend Tests
         run: |
-          npm test
-          npm run lint
+          pnpm test
+          pnpm run lint
 
       - name: Deploy dev
         if: github.ref == 'refs/heads/dev'

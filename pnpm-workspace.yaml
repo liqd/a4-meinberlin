@@ -1,0 +1,7 @@
+onlyBuiltDependencies:
+  - adhocracy4
+  - dsgvo-video-embed
+  - leaflet.markercluster
+  - datepicker
+  - "@parcel/watcher"
+  - maplibre-gl

@@ -24,6 +24,9 @@ RUN apt update && \
         redis-server && \
     rm -rf /var/lib/apt/lists/*
 
+# Enable Corepack and install pnpm
+RUN corepack enable && corepack prepare pnpm@10.34.5 --activate
+
 # Install uv system-wide
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
     cp /root/.local/bin/uv /usr/local/bin/uv

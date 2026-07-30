@@ -2,6 +2,7 @@
   "name": "a4-meinberlin",
   "version": "2.1.0",
   "license": "AGPL-3.0+",
+  "packageManager": "pnpm@10.34.5",
   "description": "Frontend for meinBerlin",
   "author": {
     "name": "Liquid Democracy e.V.",

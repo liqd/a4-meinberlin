@@ -270,7 +270,7 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules\/(?!(adhocracy4)\/).*/, // exclude most dependencies
+        exclude: /node_modules\/(?!(\.pnpm\/[^/]+\/node_modules\/adhocracy4|adhocracy4)\/).*/,
         loader: 'babel-loader',
         options: {
           presets: ['@babel/preset-env', '@babel/preset-react'].map(require.resolve),

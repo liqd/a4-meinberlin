@@ -32,6 +32,8 @@ venv/
 # Node
 node_modules/
 npm-debug.log*
+.pnpm-debug.log*
+package-lock.json
 /webpack-stats.json
 
 # IDEs

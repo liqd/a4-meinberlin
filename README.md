@@ -8,7 +8,7 @@ based on [adhocracy 4](https://github.com/liqd/adhocracy4).
 
 ## Requirements
 
-- Node.js (+ npm)
+- Node.js (+ pnpm, installed via Corepack)
 - Python 3.x (+ venv + pip)
 - libmagic
 - libjpeg
@@ -167,6 +167,6 @@ For style-guide alignment with the **Vertical Participation** design system ([de
 
 - Download `berlin_marketing.css` from berlin.de; update paths in `berlin_marketing.scss` as noted in the file header.
 - When the participation style guide changes, diff `berlin_participation.css` against marketing and port only what meinBerlin still needs into the override files above.
-- Run `npm run build` and regression-test key pages.
+- Run `pnpm run build` and regression-test key pages.
 
 Font Awesome and `berlin_marketing.js` are still loaded from berlin.de separately (`base.html`). Until upstream versions are pinned, update vendor CSS only before releases — breaking changes are not always announced.

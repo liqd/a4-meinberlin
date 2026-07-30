@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@babel/runtime':
+        specifier: 7.29.7
+        version: 7.29.7
       '@fortawesome/fontawesome-free':
         specifier: 6.7.2
         version: 6.7.2

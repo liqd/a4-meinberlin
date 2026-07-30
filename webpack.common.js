@@ -337,11 +337,7 @@ module.exports = {
       jquery$: 'jquery/dist/jquery.min.js',
       select2$: 'select2/dist/js/select2.min.js'
     },
-    // when using `npm link`, dependencies are resolved against the linked
-    // folder by default. This may result in dependencies being included twice.
-    // Setting `resolve.root` forces webpack to resolve all dependencies
-    // against the local directory.
-    modules: [path.resolve('./node_modules')]
+    modules: [path.resolve('./node_modules'), 'node_modules']
   },
   plugins: [
     new webpack.ProvidePlugin({

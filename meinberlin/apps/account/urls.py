@@ -1,3 +1,4 @@
+from django.urls import include
 from django.urls import path
 
 from . import api
@@ -6,6 +7,18 @@ from . import views
 urlpatterns = [
     path("", views.AccountView.as_view(), name="account"),
     path("profile/", views.ProfileUpdateView.as_view(), name="account_profile"),
+    path(
+        "guest/",
+        include(
+            [
+                path(
+                    "convert/",
+                    views.GuestConvertView.as_view(),
+                    name="guest_convert",
+                ),
+            ]
+        ),
+    ),
     path(
         "notification-settings/",
         views.NotificationSettingsView.as_view(),

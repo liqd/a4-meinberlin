@@ -57,7 +57,8 @@ const ProjectsListMapBox = ({
   kiezradars,
   searchProfile,
   searchProfilesCount,
-  isAuthenticated
+  isAuthenticated,
+  isGuestUser
 }) => {
   const [searchParams, setSearchParams] = useSearchParams()
   const [showMap, setShowMap] = useState(true)
@@ -218,6 +219,7 @@ const ProjectsListMapBox = ({
         setParams={setParams}
         syncTrigger={syncTrigger}
         isAuthenticated={isAuthenticated}
+        isGuestUser={isGuestUser}
         projectStatus={projectStatus}
       />
       <div className={classNames('projects-list', !showMap && 'container')}>

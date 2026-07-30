@@ -49,6 +49,9 @@
             <span class="narrow-wrapper__footer--decoration" aria-hidden="true"></span>
             <h2>{% translate "Don't have an account yet?" %}</h2>
             <a class="button button--light button--full-width" href="{{ signup_url }}">{% translate "Register" %}</a>
+            {% if enable_guest_users %}
+                <a class="button button--light button--full-width u-spacer-top" href="{% url 'guest_create' %}?next={{ redirect_field_value|urlencode }}">{% translate "Proceed as guest" %}</a>
+            {% endif %}
         </section>
     </div>
 {% endblock content %}

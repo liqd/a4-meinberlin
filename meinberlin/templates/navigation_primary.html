@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n guest_user %}
 
 <nav class="hamburger-nav hamburger-nav--primary js-navigation-primary" id="navigation-primary">
     <div class="hamburger-nav__tree-wrapper js-navigation-tree-wrapper">
@@ -9,15 +9,17 @@
                 <a href="{{ project_list }}" class="hamburger-nav__link">{% translate 'Kiezradar' %}</a>
             </li>
             
-            {% url 'notifications' as notifications_url %}
-            <li class="hamburger-nav__item {% if request.path == notifications_url %}hamburger-nav__item--active{% endif %}">
-                <a href="{{ notifications_url }}" class="hamburger-nav__link">
-                    {% translate 'Notifications' %}
-                    {% if notifications_count > 0 %}
-                        <span class="hamburger-nav__badge">{{ notifications_count }}</span>
-                    {% endif %}
-                </a>
-            </li>
+            {% if not request.user|is_guest_user %}
+                {% url 'notifications' as notifications_url %}
+                <li class="hamburger-nav__item {% if request.path == notifications_url %}hamburger-nav__item--active{% endif %}">
+                    <a href="{{ notifications_url }}" class="hamburger-nav__link">
+                        {% translate 'Notifications' %}
+                        {% if notifications_count > 0 %}
+                            <span class="hamburger-nav__badge">{{ notifications_count }}</span>
+                        {% endif %}
+                    </a>
+                </li>
+            {% endif %}
 
             {% if settings.meinberlin_cms.HeaderPages.help_page %}
                 {% with help_url=settings.meinberlin_cms.HeaderPages.help_page.get_url %}
@@ -33,7 +35,15 @@
                 </li>
             {% endfor %}
 
-            {% if request.user.is_authenticated %}
+            {% if request.user|is_guest_user %}
+                {% url 'guest_convert' as guest_convert_url %}
+                <li class="hamburger-nav__item {% if request.path == guest_convert_url %}hamburger-nav__item--active{% endif %}">
+                    <a href="{{ guest_convert_url }}" class="hamburger-nav__link">
+                        <i class="hamburger-nav__icon fa fa-solid fa-user-plus"></i>
+                        {% translate "Create an account" %}
+                    </a>
+                </li>
+            {% elif request.user.is_authenticated %}
                 <li class="hamburger-nav__item hamburger-nav__item--dropdown">
                     <button class="hamburger-nav__toggle js-nav-toggle">
                         <i class="hamburger-nav__icon fa fa-solid fa-user"></i>
@@ -96,6 +106,11 @@
             <li class="hamburger-nav__item hamburger-nav__item--heading">{% translate "Account" %}</li>
             
             {% if request.user.is_authenticated %}
+                {% if request.user|is_guest_user %}
+                    <li class="hamburger-nav__item">
+                        <a href="{% url 'guest_convert' %}" class="hamburger-nav__link">{% translate "Create an account" %}</a>
+                    </li>
+                {% endif %}
                 <li class="hamburger-nav__item">
                     <form class="hamburger-nav__form" action="{% url 'account_logout' %}" method="post" aria-label="{% translate 'Log out' %}">
                         {% csrf_token %}

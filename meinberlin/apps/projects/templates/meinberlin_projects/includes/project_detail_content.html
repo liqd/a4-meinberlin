@@ -1,8 +1,18 @@
-{% load i18n meinberlin_project_tags offlineevent_tags contrib_tags %}
+{% load i18n meinberlin_project_tags offlineevent_tags contrib_tags guest_user %}
 {% url 'project-information' slug=project.slug as info_page %}
 {% include 'meinberlin_contrib/components/hero.html' with content=project show_buttons=True hero_link=info_page %}
 <div id="layout-grid__area--maincontent">
     <div id="follow-alert-wrapper"></div>
+    {% if request.user|is_guest_user %}
+        <div class="alert alert--info" role="alert" aria-live="polite" aria-atomic="true">
+            <div class="alert__content">
+                <p class="alert__text">
+                    {% url 'guest_convert' as guest_convert_url %}
+                    {% blocktranslate %}You are participating as a guest. Please log out or close your browser afterwards so no one else can access your guest account. To keep your contributions permanently, <a href="{{ guest_convert_url }}">create an account</a>.{% endblocktranslate %}
+                </p>
+            </div>
+        </div>
+    {% endif %}
     {% include 'meinberlin_projects/project_actions.html' %}
     {% include 'meinberlin_projects/includes/project_details_summary.html' %}
     {% include 'meinberlin_projects/includes/project_participation.html' %}

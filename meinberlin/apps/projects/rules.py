@@ -9,6 +9,7 @@ from adhocracy4.modules.models import Item
 from adhocracy4.organisations.predicates import is_initiator
 from adhocracy4.polls.models import Answer
 from adhocracy4.polls.models import Vote
+from adhocracy4.projects.predicates import guest_may_participate
 from adhocracy4.projects.predicates import is_live
 from adhocracy4.projects.predicates import is_moderator
 from adhocracy4.projects.predicates import is_prj_group_member
@@ -29,11 +30,10 @@ rules.add_perm(
 
 rules.set_perm(
     "a4projects.participate_in_project",
-    is_superuser
-    | is_initiator
-    | is_moderator
-    | is_prj_group_member
-    | ((is_public | is_project_member) & is_live),
+    is_superuser | is_initiator | is_moderator | is_prj_group_member
+    # guest_may_participate is True for non-guests and evaluates to
+    # project.allow_guest_users for guest users, so the AND only gates guests.
+    | ((is_public | is_project_member) & is_live & guest_may_participate),
 )
 
 

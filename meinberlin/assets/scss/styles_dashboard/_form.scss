@@ -121,6 +121,11 @@ div.cke_focus {
     border: 2px solid $text-color-gray !important;
 }
 
+.form-check-input__slot {
+    flex-shrink: 0;
+    width: 1.25rem;
+}
+
 .form-hint {
     font-style: italic;
     color: $text-color-gray;
@@ -175,5 +180,12 @@ div.cke_focus {
             margin-right: $spacer;
             margin-bottom: 0;
         }
+    }
+}
+
+// Project basic settings (Grundeinstellungen) — extra spacing before Participants field.
+.project-basic-form {
+    .form-group.project-basic-form__participants {
+        margin-top: 1.5rem;
     }
 }

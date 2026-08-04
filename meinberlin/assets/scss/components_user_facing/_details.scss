@@ -33,6 +33,7 @@
     flex-shrink: 0;
     transform: rotate(90deg);
     font-size: 1.3em;
+    color: $primary;
 }
 
 .details[open] summary > .accordion-icon {

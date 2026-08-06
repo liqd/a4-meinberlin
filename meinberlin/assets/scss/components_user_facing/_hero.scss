@@ -30,8 +30,13 @@ $hero-height: 400px;
 }
 
 .hero__image-copyright {
+  position: absolute;
+  bottom: 0.3em;
+  right: 0.5em;
+  margin: 0;
   font-size: 11px;
   color: hsla(0deg, 0%, 100%, 0.7);
+  z-index: 1;
 }
 
 .hero__figure {
@@ -115,12 +120,7 @@ $hero-height: 400px;
     flex-grow: 1;
   }
 
-  .hero__image-copyright {
-    position: absolute;
-    bottom: 0.3em;
-    right: 0.5em;
-    margin: 0;
-  }
+
 
   .hero__buttons {
     margin-top: auto;

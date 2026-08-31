@@ -11,6 +11,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Header: New login/logout button next to the menu
 - Dashboard project preview modal with desktop/mobile device toggle
+- Script to trigger password reset for csv of accounts
 
 ### Changed
 
@@ -140,8 +141,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Translation for kiezradar organisation search "No matches found"
 - Translation for Likes/Dislikes on CardStats used on map and Map with Ideas
 - Translation for validation error generic message
-- CKEditor image aspect ratio options (4:3 and 2:1) Bug 
-- Bug for deleted ContentTypes in Notifications (Actions) 
+- CKEditor image aspect ratio options (4:3 and 2:1) Bug
+- Bug for deleted ContentTypes in Notifications (Actions)
 - Allow tile_image in Bplan to be blank null
 - Improve Accessibility
 - Add back pagination css deleted for burgermenu
@@ -167,7 +168,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Removed
 
-- Removed Old project-based OfflineEvent Model, Views, Templates and Tests.    
+- Removed Old project-based OfflineEvent Model, Views, Templates and Tests.
 
 ### Fixed
 
@@ -198,7 +199,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Changed
 
-- Address search endpoints, properties like strname -> street_name 
+- Address search endpoints, properties like strname -> street_name
 - Make tile images 4:3 (#716)
 
 ## v2507.1
@@ -232,7 +233,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Fixed
 
 - Styling for dropdown menu in archived proposals
-- Custom Kieze dont get Notifications for Projects without Points anymore. #622 
+- Custom Kieze dont get Notifications for Projects without Points anymore. #622
 - Fixed styling of checkbox form fields
 - When getting Notifications for External Projects these now provide the external Url (#773)
 - Show pagination also on mobile
@@ -259,7 +260,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Fixed
 
 - Updated heroimage alias to represent frontend representation of 1000x500px
-- not being able to use the scrollbar in the MultiSelect dropdown 
+- not being able to use the scrollbar in the MultiSelect dropdown
 - wrong translation string causing a doubled helptext
 
 ### Changed
@@ -281,11 +282,11 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Removed
 
-- static breadcrumbs 
+- static breadcrumbs
 
 ### Changed
 
-- project admin model to GIS admin model to render the map in the django-admin dashboard 
+- project admin model to GIS admin model to render the map in the django-admin dashboard
 
 
 ## v2503.1.2

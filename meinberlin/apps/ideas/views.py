@@ -127,6 +127,7 @@ class AbstractIdeaCreateView(
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs["module"] = self.module
+        kwargs["user"] = self.request.user
         if self.module.settings_instance:
             kwargs["settings_instance"] = self.module.settings_instance
         return kwargs
@@ -148,6 +149,7 @@ class AbstractIdeaUpdateView(
         kwargs = super().get_form_kwargs()
         instance = kwargs.get("instance")
         kwargs["module"] = instance.module
+        kwargs["user"] = self.request.user
         if instance.module.settings_instance:
             kwargs["settings_instance"] = instance.module.settings_instance
         return kwargs

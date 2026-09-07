@@ -5,12 +5,14 @@ from adhocracy4.categories.forms import CategorizableFieldMixin
 from adhocracy4.labels.mixins import LabelsAddableFieldMixin
 from adhocracy4.maps_react import widgets as maps_widgets
 from meinberlin.apps.contrib.mixins import CategoryAndLabelAliasMixin
+from meinberlin.apps.contrib.mixins import ContactInfoFormMixin
 from meinberlin.apps.contrib.mixins import ImageRightOfUseMixin
 
 from . import models
 
 
 class MapIdeaForm(
+    ContactInfoFormMixin,
     CategorizableFieldMixin,
     LabelsAddableFieldMixin,
     ImageRightOfUseMixin,
@@ -37,6 +39,9 @@ class MapIdeaForm(
             "labels",
             "point",
             "point_label",
+            "allow_contact",
+            "contact_email",
+            "contact_phone",
         ]
 
 

@@ -7,7 +7,18 @@ from meinberlin.apps.ideas.forms import IdeaForm
 @pytest.mark.django_db
 def test_idea_form_with_mixins(module, category_alias_factory, label_alias_factory):
     form = IdeaForm(module=module)
-    fields = ["name", "description", "image", "category", "labels", "right_of_use"]
+    fields = [
+        "name",
+        "description",
+        "image",
+        "category",
+        "labels",
+        "right_of_use",
+        "allow_contact",
+        "contact_email",
+        "contact_phone",
+        "contact_storage_consent",
+    ]
 
     for field in fields:
         assert field in form.fields

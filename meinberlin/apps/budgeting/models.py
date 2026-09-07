@@ -6,7 +6,6 @@ from django.utils.translation import gettext_lazy as _
 from polymorphic.managers import PolymorphicManager
 
 from adhocracy4.comments import models as comment_models
-from adhocracy4.projects.models import ProjectContactDetailMixin as contact_mixin
 from adhocracy4.ratings import models as rating_models
 from meinberlin.apps.ideas import models as idea_models
 from meinberlin.apps.mapideas import models as mapidea_models
@@ -61,14 +60,6 @@ class Proposal(mapidea_models.AbstractMapIdea):
             "Rating, support and voting are no longer possible, the comment "
             "function remains."
         ),
-    )
-
-    allow_contact = models.BooleanField(default=True)
-
-    contact_email = models.EmailField(blank=True)
-
-    contact_phone = models.CharField(
-        blank=True, max_length=255, validators=[contact_mixin.phone_regex]
     )
 
     completed_tasks = models.ManyToManyField(

@@ -14,6 +14,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Changed
 
+- Contact information section on idea and mapidea submission, matching the existing budgeting proposal flow: optional email (account or custom) and phone, with storage consent and privacy policy link; data only included in CSV exports
 - Apply colour tokens (`#439c76`) via SCSS overrides sourced from `berlin_parcticipation.css` published styleguide
 - Update `$primary` to `#439c76` for user-facing components (pills, buttons, status bar)
 - Green `.panel--colored` background via SCSS override

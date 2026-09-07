@@ -68,8 +68,8 @@ module.exports = {
     unload_warning: {
       import: './meinberlin/assets/js/unload_warning.js'
     },
-    budgeting_disable_contact: {
-      import: './meinberlin/assets/js/disable_contact.js'
+    contact_information: {
+      import: './meinberlin/assets/js/contact_information.js'
     },
     vote_button: {
       import: './meinberlin/react/budgeting/react_vote_button_init.jsx'

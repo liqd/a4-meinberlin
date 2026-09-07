@@ -26,31 +26,7 @@
 
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.point_label %}
 
-    <h2>{% blocktranslate %}Contact Information{% endblocktranslate %}</h2>
-
-    {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.allow_contact %}
-
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.contact_email %}
-
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.contact_phone %}
-
-    <div class="form-check">
-        <label class="form-check__label">
-            {{ form.contact_storage_consent|add_error_attr:"aria-invalid:true" }}
-            {% blocktranslate with privacy_policy="/datenschutz" %}I hereby expressly consent to the storage of the contact information I have entered. The contact information may be used by the responsible administration exclusively for contacting me in the present project. I can revoke this consent at any time. I have read and accept the <a href="{{privacy_policy}}" target="_blank">privacy policy</a>.{% endblocktranslate %}
-        </label>
-        {% if form.contact_storage_consent.errors %}
-        {% if form.contact_storage_consent.errors|length > 1 %}
-            <ul class="errorlist" aria-live="assertive" aria-atomic="true">
-                {% for error in form.contact_storage_consent.errors %}
-                    <li>{{ error|escape }}</li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            {% include 'meinberlin_contrib/components/alert.html' with alert_message=form.contact_storage_consent.errors.0|escape alert_type='danger' %}
-        {% endif %}
-    {% endif %}
-    </div>
+    {% include 'meinberlin_contrib/includes/contact_information.html' %}
 
     {% include 'meinberlin_contrib/includes/form_submit_actions.html' with button_text='Send' %}
 </form>

@@ -63,8 +63,14 @@ class NotifyCreatorOrContactOnModeratorFeedback(Email):
         "meinberlin_notifications/emails/notify_creator_on_moderator_feedback"
     )
 
+    def _has_contact_email(self):
+        return bool(
+            getattr(self.object, "contact_email", "")
+            and getattr(self.object, "allow_contact", True)
+        )
+
     def get_receivers(self):
-        if hasattr(self.object, "contact_email"):
+        if self._has_contact_email():
             #  send to contact
             receivers = [self.object.contact_email]
         else:
@@ -78,7 +84,7 @@ class NotifyCreatorOrContactOnModeratorFeedback(Email):
     def get_context(self):
         context = super().get_context()
         context["object"] = self.object
-        if not hasattr(self.object, "contact_email"):
+        if not self._has_contact_email():
             #  send to creator
             context["send_to_creator"] = True
         return context

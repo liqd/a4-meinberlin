@@ -25,6 +25,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Reduce space above grey content footer; set footer to-top link text to black and up-arrow circle to primary green
 - Footer to-top link label: “Zum Seitenanfang” (was “Zum Anfang der Seite”)
 - Full title on project detail page
+- Project group members can now delete projects that have no participant contributions; content authored by other users blocks deletion for non-initiator group members
 
 ## v2606.3
 

@@ -38,29 +38,15 @@ rules.set_perm(
 
 
 @rules.predicate
-def has_no_non_initiator_contributions(user, project):
-    """True, if there are no contributions from non-initiators in the project."""
-    initiator_ids = list(project.organisation.initiators.values_list("id", flat=True))
+def has_no_participant_contributions(user, project):
+    """True, if there are no contributions from participants in the project."""
+    safe_creator_ids = set(project.organisation.initiators.values_list("id", flat=True))
+    if project.group_id and (
+        is_initiator(user, project) or is_prj_group_member(user, project)
+    ):
+        safe_creator_ids.update(project.group.user_set.values_list("id", flat=True))
 
-    # Wenn es keine Initiator:innen gibt, gelten alle Beiträge als Nicht‑Initiator‑Beiträge
-    non_init_creator = ~Q(creator_id__in=initiator_ids) if initiator_ids else Q()
-
-    has_items = (
-        Item.objects.filter(module__project=project).filter(non_init_creator).exists()
-    )
-    has_comments = (
-        Comment.objects.filter(project=project).filter(non_init_creator).exists()
-    )
-    has_votes = (
-        Vote.objects.filter(choice__question__poll__module__project=project)
-        .filter(non_init_creator)
-        .exists()
-    )
-    has_answers = (
-        Answer.objects.filter(question__poll__module__project=project)
-        .filter(non_init_creator)
-        .exists()
-    )
+    participant_creator = ~Q(creator_id__in=safe_creator_ids)
 
     rating_q = (
         Q(idea__module__project=project)
@@ -70,17 +56,19 @@ def has_no_non_initiator_contributions(user, project):
         | Q(budget_proposal__module__project=project)
         | Q(comment__project=project)
     )
-    has_ratings = (
-        Rating.objects.filter(rating_q)
-        .filter(non_init_creator)
-        .exclude(value=0)
-        .exists()
+    contributions = (
+        Item.objects.filter(module__project=project),
+        Comment.objects.filter(project=project),
+        Vote.objects.filter(choice__question__poll__module__project=project),
+        Answer.objects.filter(question__poll__module__project=project),
+        Rating.objects.filter(rating_q).exclude(value=0),
     )
 
-    return not (has_items or has_comments or has_votes or has_answers or has_ratings)
+    return not any(qs.filter(participant_creator).exists() for qs in contributions)
 
 
 rules.set_perm(
     "a4projects.delete_project",
-    is_superuser | (is_initiator & has_no_non_initiator_contributions),
+    is_superuser
+    | ((is_initiator | is_prj_group_member) & has_no_participant_contributions),
 )

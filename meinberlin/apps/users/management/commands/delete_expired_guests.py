@@ -39,7 +39,7 @@ class Command(BaseCommand):
     def _has_contributions(self, user):
         """True if the guest created any participation content.
 
-        Mirrors the contribution set used by ``has_no_non_initiator_contributions``
+        Mirrors the contribution set used by ``has_no_participant_contributions``
         in ``meinberlin/apps/projects/rules.py``. Neutral ratings (value 0) do not
         count as a contribution.
         """

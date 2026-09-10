@@ -67,6 +67,7 @@ class ProposalForm(ContactStorageConsentMixin, MapIdeaForm):
             self.fields["contact_email"] = forms.EmailField(
                 required=False,
                 label=_("E-mail address"),
+                widget=forms.EmailInput(attrs={"class": "js-contact-email"}),
             )
             # Guests do not receive automatic notifications; only the
             # official statement is sent to the entered contact email.

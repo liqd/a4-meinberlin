@@ -1957,6 +1957,18 @@ msgstr ""
 "me. I will receive automatic notifications for any status update or official "
 "statement to my proposal."
 
+#: meinberlin/apps/budgeting/forms.py:73
+msgid ""
+"For questions or in case of implementation of my proposal you can contact "
+"me. I will receive the official statement on my proposal by email. As a "
+"guest I will not receive automatic notifications – for that, I can convert "
+"my guest account into a regular account."
+msgstr ""
+"For questions or in case of implementation of my proposal you can contact "
+"me. I will receive the official statement on my proposal by email. As a "
+"guest I will not receive automatic notifications – for that, I can convert "
+"my guest account into a regular account."
+
 #: meinberlin/apps/budgeting/forms.py:38
 msgid "Telephone number"
 msgstr "Telephone number"

@@ -163,10 +163,26 @@ meinBerlin custom rule:
 
 ```
 superuser
-| (initiator AND no_non_initiator_contributions)
+| ((initiator OR project group member) AND has_no_participant_contributions)
 ```
 
-Initiators may delete a project only if there are no contributions from non-initiators (ideas, comments, votes, poll answers, ratings). Org group admins and moderators cannot delete projects via this rule.
+Initiators and project group members may delete a project only if there are no
+contributions from participants (ideas, comments, votes, poll answers, ratings).
+
+A request to delete is blocked by contributions authored by any user that does
+not "own" the project. Non-blocking creators are:
+
+- initiators of the project's organisation,
+- all members of a project's group, when the deleting user is an initiator or a
+  member of that group (so a project group member can delete a project whose
+  content was authored solely by group members), and
+- the deleting user's own contributions.
+
+This means a project group member can delete a project with no participant
+contributions, including projects whose content was authored only by initiators
+and/or group members. Contributions by participants (users who are neither
+initiators nor members of the project's group) block deletion. Org group admins
+and moderators cannot delete projects via this rule.
 
 ---
 

@@ -1,25 +1,49 @@
 function disableContact (disable, disableTextfield) {
-  document.getElementById('id_contact_email_0_0').disabled = disable
-  document.getElementById('id_contact_email_0_1').disabled = disable
-  document.getElementById('id_contact_email_1').disabled = disableTextfield
+  const accountEmail = document.getElementById('id_contact_email_0_0')
+  const otherEmail = document.getElementById('id_contact_email_0_1')
+  const emailTextfield = getEmailTextfield()
+
+  if (accountEmail) {
+    accountEmail.disabled = disable
+  }
+  if (otherEmail) {
+    otherEmail.disabled = disable
+  }
+  if (emailTextfield) {
+    emailTextfield.disabled = disableTextfield
+  }
   document.getElementById('id_contact_phone').disabled = disable
   document.getElementById('id_contact_storage_consent').disabled = disable
+}
+
+// guests get a single email input instead of the radio buttons
+function getEmailTextfield () {
+  return (
+    document.getElementById('id_contact_email_1') ||
+    document.getElementById('id_contact_email')
+  )
 }
 
 function init () {
   const allowContact = document.getElementById('id_allow_contact')
   const accountEmail = document.getElementById('id_contact_email_0_0')
   const otherEmail = document.getElementById('id_contact_email_0_1')
-  let otherEmailChecked = otherEmail.checked
+  const emailTextfield = getEmailTextfield()
+  let otherEmailChecked = otherEmail ? otherEmail.checked : true
 
-  if (!accountEmail.checked & !otherEmail.checked) {
+  if (
+    accountEmail &&
+    otherEmail &&
+    !accountEmail.checked &&
+    !otherEmail.checked
+  ) {
     accountEmail.checked = true
   }
 
   if (!allowContact.checked) {
     disableContact(true, true)
-  } else if (accountEmail.checked) {
-    document.getElementById('id_contact_email_1').disabled = true
+  } else if (accountEmail && accountEmail.checked) {
+    emailTextfield.disabled = true
   }
 
   allowContact.addEventListener('change', function () {
@@ -30,19 +54,23 @@ function init () {
     }
   })
 
-  accountEmail.addEventListener('change', function () {
-    if (this.checked) {
-      document.getElementById('id_contact_email_1').disabled = true
-      otherEmailChecked = false
-    }
-  })
+  if (accountEmail) {
+    accountEmail.addEventListener('change', function () {
+      if (this.checked) {
+        emailTextfield.disabled = true
+        otherEmailChecked = false
+      }
+    })
+  }
 
-  otherEmail.addEventListener('change', function () {
-    if (this.checked) {
-      document.getElementById('id_contact_email_1').disabled = false
-      otherEmailChecked = true
-    }
-  })
+  if (otherEmail) {
+    otherEmail.addEventListener('change', function () {
+      if (this.checked) {
+        emailTextfield.disabled = false
+        otherEmailChecked = true
+      }
+    })
+  }
 }
 
 document.addEventListener('DOMContentLoaded', init, false)

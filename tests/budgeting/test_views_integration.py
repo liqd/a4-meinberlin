@@ -1,5 +1,6 @@
 import pytest
 from dateutil.parser import parse
+from django import forms
 from django.core import mail
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -13,6 +14,7 @@ from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.budgeting import models
 from meinberlin.apps.budgeting import phases
 from meinberlin.apps.budgeting import views
+from meinberlin.test.helpers import GuestUserCreator
 
 
 @pytest.mark.django_db
@@ -427,6 +429,94 @@ def test_create_view(
         }
         response = client.post(url, data)
         assert redirect_target(response) == "proposal-detail"
+
+
+@pytest.mark.django_db
+def test_create_view_guest_does_not_prefill_contact_email(
+    client,
+    phase_factory,
+    proposal_factory,
+    category_factory,
+    area_settings_factory,
+):
+    phase, module, project, item = setup_phase(
+        phase_factory, proposal_factory, phases.RequestPhase
+    )
+    area_settings_factory(module=module)
+    project.allow_guest_users = True
+    project.save()
+    category = category_factory(module=module)
+    guest = GuestUserCreator().create_guest_user()
+    url = reverse(
+        "meinberlin_budgeting:proposal-create", kwargs={"module_slug": module.slug}
+    )
+
+    with freeze_phase(phase):
+        client.force_login(guest)
+
+        response = client.get(url)
+        assert_template_response(
+            response, "meinberlin_budgeting/proposal_create_form.html"
+        )
+        form = response.context["form"]
+        assert isinstance(form.fields["contact_email"], forms.EmailField)
+        assert form.fields["contact_email"].initial in (None, "")
+        # the throwaway guest address is not offered or prefilled
+        content = response.content.decode()
+        assert guest.email not in content
+        assert "id_contact_email_0_0" not in content
+
+        data = {
+            "name": "Guest proposal without contact",
+            "description": "description",
+            "category": category.pk,
+            "budget": 123,
+            "point": (0, 0),
+            "point_label": "somewhere",
+        }
+        response = client.post(url, data)
+        assert redirect_target(response) == "proposal-detail"
+        proposal = models.Proposal.objects.get(name="Guest proposal without contact")
+        assert proposal.creator == guest
+        assert proposal.contact_email == ""
+
+        data.update(
+            {
+                "name": "Guest proposal with contact",
+                "allow_contact": True,
+                "contact_email": "guest-contact@example.com",
+                "contact_storage_consent": True,
+            }
+        )
+        response = client.post(url, data)
+        assert redirect_target(response) == "proposal-detail"
+        proposal = models.Proposal.objects.get(name="Guest proposal with contact")
+        assert proposal.contact_email == "guest-contact@example.com"
+
+
+@pytest.mark.django_db
+def test_create_view_regular_user_contact_email_still_prefilled(
+    client,
+    phase_factory,
+    proposal_factory,
+    user,
+    area_settings_factory,
+):
+    phase, module, project, item = setup_phase(
+        phase_factory, proposal_factory, phases.RequestPhase
+    )
+    area_settings_factory(module=module)
+    url = reverse(
+        "meinberlin_budgeting:proposal-create", kwargs={"module_slug": module.slug}
+    )
+
+    with freeze_phase(phase):
+        client.login(username=user.email, password="password")
+
+        response = client.get(url)
+        content = response.content.decode()
+        assert "id_contact_email_0_0" in content
+        assert user.email in content
 
 
 @pytest.mark.django_db

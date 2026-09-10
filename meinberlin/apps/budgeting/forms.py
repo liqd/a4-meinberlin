@@ -2,6 +2,7 @@ from django import forms
 from django.core import validators
 from django.utils.translation import gettext_lazy as _
 
+from adhocracy4.projects.guest_users import is_guest_user
 from meinberlin.apps.contrib import fields
 from meinberlin.apps.contrib import widgets
 from meinberlin.apps.contrib.mixins import ContactStorageConsentMixin
@@ -58,12 +59,22 @@ class ProposalForm(ContactStorageConsentMixin, MapIdeaForm):
     def __init__(self, *args, **kwargs):
         user = kwargs.pop("user", None)
         super().__init__(*args, **kwargs)
+
+        if user and is_guest_user(user):
+            # Guests have a throwaway account address (guest+...@liqd.net)
+            # which must never be used as contact address. Show an empty
+            # input instead of offering their account email for selection.
+            self.fields["contact_email"] = forms.EmailField(
+                required=False,
+                label=_("E-mail address"),
+            )
+            return
+
         choices = [
             (
                 user.email,
                 _(
-                    "Please contact me via the e-mail address "
-                    "of my user account ({})."
+                    "Please contact me via the e-mail address of my user account ({})."
                 ).format(user.email),
             ),
             ("other", _("Please contact me via another e-mail address:")),

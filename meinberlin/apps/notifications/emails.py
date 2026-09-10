@@ -64,7 +64,7 @@ class NotifyCreatorOrContactOnModeratorFeedback(Email):
     )
 
     def get_receivers(self):
-        if hasattr(self.object, "contact_email"):
+        if hasattr(self.object, "contact_email") and self.object.contact_email:
             #  send to contact
             receivers = [self.object.contact_email]
         else:
@@ -78,7 +78,7 @@ class NotifyCreatorOrContactOnModeratorFeedback(Email):
     def get_context(self):
         context = super().get_context()
         context["object"] = self.object
-        if not hasattr(self.object, "contact_email"):
+        if not getattr(self.object, "contact_email", None):
             #  send to creator
             context["send_to_creator"] = True
         return context

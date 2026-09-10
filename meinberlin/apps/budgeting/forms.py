@@ -68,6 +68,15 @@ class ProposalForm(ContactStorageConsentMixin, MapIdeaForm):
                 required=False,
                 label=_("E-mail address"),
             )
+            # Guests do not receive automatic notifications; only the
+            # official statement is sent to the entered contact email.
+            self.fields["allow_contact"].label = _(
+                "For questions or in case of implementation of my proposal "
+                "you can contact me. I will receive the official statement "
+                "on my proposal by email. As a guest I will not receive "
+                "automatic notifications – for that, I can convert my guest "
+                "account into a regular account."
+            )
             return
 
         choices = [

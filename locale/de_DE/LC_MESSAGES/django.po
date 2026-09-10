@@ -2085,6 +2085,18 @@ msgstr ""
 "mich kontaktieren. Ich werde automatisch benachrichtigt, wenn es eine "
 "Statusänderung oder eine offizielle Rückmeldung zu meinem Vorschlag gibt."
 
+#: meinberlin/apps/budgeting/forms.py:73
+msgid ""
+"For questions or in case of implementation of my proposal you can contact "
+"me. I will receive the official statement on my proposal by email. As a "
+"guest I will not receive automatic notifications – for that, I can convert "
+"my guest account into a regular account."
+msgstr ""
+"Für Rückfragen bzw. im Falle einer Umsetzung meines Vorschlags können Sie "
+"mich kontaktieren. Eine offizielle Rückmeldung zu meinem Vorschlag erhalte "
+"ich per E-Mail. Als Gast erhalte ich keine automatischen Benachrichtigungen "
+"– dafür kann ich mein Gastkonto in ein reguläres Konto umwandeln."
+
 #: meinberlin/apps/budgeting/forms.py:38
 msgid "Telephone number"
 msgstr "Telefonnummer"

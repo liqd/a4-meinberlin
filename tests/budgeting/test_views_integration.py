@@ -1,5 +1,6 @@
 import pytest
 from dateutil.parser import parse
+from django import forms
 from django.core import mail
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -13,6 +14,7 @@ from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.budgeting import models
 from meinberlin.apps.budgeting import phases
 from meinberlin.apps.budgeting import views
+from meinberlin.test.helpers import GuestUserCreator
 
 
 @pytest.mark.django_db
@@ -430,6 +432,102 @@ def test_create_view(
 
 
 @pytest.mark.django_db
+def test_create_view_guest_does_not_prefill_contact_email(
+    client,
+    phase_factory,
+    proposal_factory,
+    category_factory,
+    area_settings_factory,
+):
+    phase, module, project, item = setup_phase(
+        phase_factory, proposal_factory, phases.RequestPhase
+    )
+    area_settings_factory(module=module)
+    project.allow_guest_users = True
+    project.save()
+    category = category_factory(module=module)
+    guest = GuestUserCreator().create_guest_user()
+    url = reverse(
+        "meinberlin_budgeting:proposal-create", kwargs={"module_slug": module.slug}
+    )
+
+    with freeze_phase(phase):
+        client.force_login(guest)
+
+        response = client.get(url)
+        assert_template_response(
+            response, "meinberlin_budgeting/proposal_create_form.html"
+        )
+        form = response.context["form"]
+        assert isinstance(form.fields["contact_email"], forms.EmailField)
+        assert form.fields["contact_email"].initial in (None, "")
+        # the throwaway guest address is not offered or prefilled
+        content = response.content.decode()
+        assert guest.email not in content
+        assert "id_contact_email_0_0" not in content
+        # guests see the adjusted contact copy instead of the automatic
+        # notifications promise
+        label = str(form.fields["allow_contact"].label)
+        assert "automatisch benachrichtigt" not in label
+        assert "Gast" in label
+        assert "Rückmeldung" in label
+
+        data = {
+            "name": "Guest proposal without contact",
+            "description": "description",
+            "category": category.pk,
+            "budget": 123,
+            "point": (0, 0),
+            "point_label": "somewhere",
+        }
+        response = client.post(url, data)
+        assert redirect_target(response) == "proposal-detail"
+        proposal = models.Proposal.objects.get(name="Guest proposal without contact")
+        assert proposal.creator == guest
+        assert proposal.contact_email == ""
+
+        data.update(
+            {
+                "name": "Guest proposal with contact",
+                "allow_contact": True,
+                "contact_email": "guest-contact@example.com",
+                "contact_storage_consent": True,
+            }
+        )
+        response = client.post(url, data)
+        assert redirect_target(response) == "proposal-detail"
+        proposal = models.Proposal.objects.get(name="Guest proposal with contact")
+        assert proposal.contact_email == "guest-contact@example.com"
+
+
+@pytest.mark.django_db
+def test_create_view_regular_user_contact_email_still_prefilled(
+    client,
+    phase_factory,
+    proposal_factory,
+    user,
+    area_settings_factory,
+):
+    phase, module, project, item = setup_phase(
+        phase_factory, proposal_factory, phases.RequestPhase
+    )
+    area_settings_factory(module=module)
+    url = reverse(
+        "meinberlin_budgeting:proposal-create", kwargs={"module_slug": module.slug}
+    )
+
+    with freeze_phase(phase):
+        client.login(username=user.email, password="password")
+
+        response = client.get(url)
+        content = response.content.decode()
+        assert "id_contact_email_0_0" in content
+        assert user.email in content
+        label = str(response.context["form"].fields["allow_contact"].label)
+        assert "automatisch benachrichtigt" in label
+
+
+@pytest.mark.django_db
 def test_update_view(
     client,
     phase_factory,
@@ -593,6 +691,107 @@ def test_moderate_view_same_creator_contact(
         # even though the contact email is the same as the creator's?
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [item.contact_email]
+        assert mail.outbox[0].subject.startswith("Rückmeldung")
+
+
+@pytest.mark.django_db
+def test_moderate_view_without_contact_email_sends_to_creator(
+    client, phase_factory, proposal_factory, user, area_settings_factory
+):
+    phase, module, project, item = setup_phase(
+        phase_factory, proposal_factory, phases.RequestPhase
+    )
+    # contact_email is blank by default
+    area_settings_factory(module=module)
+    url = reverse(
+        "meinberlin_budgeting:proposal-moderate",
+        kwargs={"pk": item.pk, "year": item.created.year},
+    )
+    project.moderators.set([user])
+    with freeze_phase(phase):
+        client.login(username=user.email, password="password")
+
+        response = client.get(url)
+        assert_template_response(
+            response, "meinberlin_budgeting/proposal_moderate_form.html"
+        )
+
+        data = {
+            "moderator_status": "test",
+            "is_archived": False,
+            "feedback_text": "its a moderator feedback text",
+        }
+        response = client.post(url, data)
+        assert redirect_target(response) == "proposal-detail"
+
+        # without a contact email the statement is sent to the creator
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [item.creator.email]
+        assert mail.outbox[0].subject.startswith("Rückmeldung")
+
+
+@pytest.mark.django_db
+def test_moderate_view_guest_creator_without_contact_gets_no_email(
+    client, phase_factory, proposal_factory, user, area_settings_factory
+):
+    guest = GuestUserCreator().create_guest_user()
+    phase, module, project, item = setup_phase(
+        phase_factory, proposal_factory, phases.RequestPhase
+    )
+    item.creator = guest
+    item.save()
+    area_settings_factory(module=module)
+    url = reverse(
+        "meinberlin_budgeting:proposal-moderate",
+        kwargs={"pk": item.pk, "year": item.created.year},
+    )
+    project.moderators.set([user])
+    with freeze_phase(phase):
+        client.login(username=user.email, password="password")
+
+        data = {
+            "moderator_status": "test",
+            "is_archived": False,
+            "feedback_text": "its a moderator feedback text",
+        }
+        response = client.post(url, data)
+        assert redirect_target(response) == "proposal-detail"
+
+        # no contact address given and guest creators never receive mail
+        assert len(mail.outbox) == 0
+
+
+@pytest.mark.django_db
+def test_moderate_view_guest_creator_with_contact_email_gets_statement(
+    client, phase_factory, proposal_factory, user, area_settings_factory
+):
+    guest = GuestUserCreator().create_guest_user()
+    phase, module, project, item = setup_phase(
+        phase_factory, proposal_factory, phases.RequestPhase
+    )
+    item.creator = guest
+    item.contact_email = "guest-contact@example.com"
+    item.save()
+    area_settings_factory(module=module)
+    url = reverse(
+        "meinberlin_budgeting:proposal-moderate",
+        kwargs={"pk": item.pk, "year": item.created.year},
+    )
+    project.moderators.set([user])
+    with freeze_phase(phase):
+        client.login(username=user.email, password="password")
+
+        data = {
+            "moderator_status": "test",
+            "is_archived": False,
+            "feedback_text": "its a moderator feedback text",
+        }
+        response = client.post(url, data)
+        assert redirect_target(response) == "proposal-detail"
+
+        # the statement goes to the entered contact address, even for guests
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == ["guest-contact@example.com"]
         assert mail.outbox[0].subject.startswith("Rückmeldung")
 
 

@@ -11,7 +11,7 @@
 {% endblock extra_js %}
 
 {% block content %}
-    <div class="narrow-wrapper">
+    <div class="narrow-wrapper narrow-wrapper--signup">
         <h1>{% translate "Register" %}</h1>
 
         <form id="signup_form" method="post" action="{% url 'account_signup' %}" class="form--base js-validate">
@@ -85,11 +85,11 @@
             <div class="u-spacer-top">
                 <button class="button button--full-width" type="submit">{% translate "Register" %}</button>
             </div>
-        </form>
 
-        {% if enable_guest_users %}
-            <a class="button button--light button--full-width u-spacer-top" href="{% url 'guest_create' %}?next={{ redirect_field_value|urlencode }}">{% translate "Or continue as a guest" %}</a>
-        {% endif %}
+            {% if enable_guest_users %}
+                <a class="button button--light button--full-width u-spacer-top" href="{% url 'guest_create' %}?next={{ redirect_field_value|urlencode }}">{% translate "Or continue as a guest" %}</a>
+            {% endif %}
+        </form>
 
         <section class="narrow-wrapper__footer">
             <span class="narrow-wrapper__footer--decoration" aria-hidden="true"></span>

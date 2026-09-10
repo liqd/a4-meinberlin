@@ -49,7 +49,12 @@ class RadioSelectWithTextInputWidget(forms.widgets.MultiWidget):
         self.choices = choices
         widgets = (
             forms.RadioSelect(choices=choices),
-            forms.TextInput(attrs={"placeholder": placeholder_textinput}),
+            forms.TextInput(
+                attrs={
+                    "placeholder": placeholder_textinput,
+                    "class": "js-contact-email",
+                }
+            ),
         )
         super(RadioSelectWithTextInputWidget, self).__init__(widgets, *args, **kwargs)
 

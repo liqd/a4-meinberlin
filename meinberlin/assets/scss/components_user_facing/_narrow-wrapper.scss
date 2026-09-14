@@ -48,3 +48,23 @@
         margin-top: 0.5rem;
     }
 }
+
+// Signup: on mobile the green divider sits close under the form CTA (Figma
+// `m-register-guest`): 32px between the button and the divider, 24px between
+// the divider and the heading. Berlin's global `form { margin: 0 0 50px }` /
+// `h2 { margin: 50px ... }` would otherwise add ~66px / 42px there.
+@media (width < $breakpoint-tablet) {
+    .narrow-wrapper--signup {
+        form {
+            margin-bottom: 0;
+        }
+
+        .narrow-wrapper__footer {
+            padding-top: 2rem; // 32px to the green divider
+
+            h2 {
+                margin-top: 2rem; // 24px from the green divider
+            }
+        }
+    }
+}

@@ -11,6 +11,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Header: New login/logout button next to the menu
 - Dashboard project preview modal with desktop/mobile device toggle
+- Guest participation: visitors can participate as one-time guests in projects that allow it, and later convert their guest account into a regular account keeping their contributions.
 
 ### Changed
 

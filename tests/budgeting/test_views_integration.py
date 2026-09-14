@@ -3,7 +3,6 @@ from dateutil.parser import parse
 from django import forms
 from django.core import mail
 from django.urls import reverse
-from django.utils import translation
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.test.helpers import assert_template_response
@@ -16,6 +15,12 @@ from meinberlin.apps.budgeting import models
 from meinberlin.apps.budgeting import phases
 from meinberlin.apps.budgeting import views
 from meinberlin.test.helpers import GuestUserCreator
+
+
+def _lazy_msgid(label):
+    """Return the untranslated message id of a lazy translation string."""
+    args = getattr(label, "_args", None) or getattr(label, "_proxy____args", None)
+    return args[0]
 
 
 @pytest.mark.django_db
@@ -467,13 +472,12 @@ def test_create_view_guest_does_not_prefill_contact_email(
         assert guest.email not in content
         assert "id_contact_email_0_0" not in content
         # guests see the adjusted contact copy instead of the automatic
-        # notifications promise (assert against the German catalog so the
-        # assertions do not depend on the request language)
-        with translation.override("de"):
-            label = str(form.fields["allow_contact"].label)
-            assert "automatisch benachrichtigt" not in label
-            assert "Als Gast" in label
-            assert "Rückmeldung" in label
+        # notifications promise; assert on the message id so the test does
+        # not depend on compiled translation catalogs
+        msgid = _lazy_msgid(form.fields["allow_contact"].label)
+        assert "automatic notifications for any status update" not in msgid
+        assert "official statement on my proposal by email" in msgid
+        assert "As a guest" in msgid
 
         data = {
             "name": "Guest proposal without contact",
@@ -526,9 +530,8 @@ def test_create_view_regular_user_contact_email_still_prefilled(
         content = response.content.decode()
         assert "id_contact_email_0_0" in content
         assert user.email in content
-        label = response.context["form"].fields["allow_contact"].label
-        with translation.override("de"):
-            assert "automatisch benachrichtigt" in str(label)
+        msgid = _lazy_msgid(response.context["form"].fields["allow_contact"].label)
+        assert "automatic notifications for any status update" in msgid
 
 
 @pytest.mark.django_db

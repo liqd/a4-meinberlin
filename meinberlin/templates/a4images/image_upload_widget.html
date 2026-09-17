@@ -17,6 +17,7 @@
 
         <div class="upload-wrapper__fields input-group">
             {{ text_input }}
+            <span class="upload-wrapper__action-parent">
             {% if has_image_set and not is_required %}
                 <label for="{{ checkbox_id }}"
                     class="upload-wrapper__action input-group__after btn btn--danger"
@@ -30,6 +31,7 @@
                     <i class="fas fa-cloud-upload-alt" aria-label="{% translate 'Upload a picture' %}"></i>
                 </label>
             {% endif %}
+            </span>
             <span class="formgroup__help form-hint">
                 {% translate 'Your image will be uploaded/removed once you save your changes at the end of this page. ' %}
             </span>

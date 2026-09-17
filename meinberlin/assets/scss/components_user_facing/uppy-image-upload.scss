@@ -1,0 +1,448 @@
+// Uppy image upload: project design layer.
+// The generic behaviour (JS) and the include templates live in adhocracy4.
+// These rules target the third-party Uppy DOM and use design-token colors,
+// so they deliberately don't follow the project's own BEM/color rules.
+/* stylelint-disable selector-class-pattern, scale-unlimited/declaration-strict-value, font-family-no-missing-generic-family-keyword, no-descending-specificity */
+
+@import "../styles_user_facing/variables";
+
+// Upload field on forms
+.uppy-image-upload-field {
+  // The native file input is an invisible full-size overlay in the base
+  // upload-wrapper styles; hide it so it does not intercept clicks meant
+  // for the Uppy trigger. The textual dummy input stays visible and shows
+  // the name of the selected or already uploaded image.
+  .upload-wrapper__fields {
+    .form-control-file {
+      display: none;
+    }
+  }
+
+  // Keep the Uppy trigger and the delete button in the normal flow; the
+  // base styles position single actions absolutely, which no longer fits.
+  // Stretch the children so the icon buttons match the input field height.
+  .upload-wrapper__action-parent {
+    display: inline-flex;
+    align-self: stretch;
+    align-items: stretch;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  // Actions are laid out by the action-parent instead of being overlaid.
+  .upload-wrapper__action {
+    position: static;
+    top: auto;
+    right: auto;
+  }
+
+  // Hide the native upload button, keep the Uppy trigger and the delete button.
+  .upload-wrapper__action.btn--primary:not(.uppy-image-upload-field__trigger) {
+    display: none;
+  }
+
+  // Icon-only trigger, matching the Figma icon button (43px wide, full
+  // field height).
+  .upload-wrapper__action.uppy-image-upload-field__trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 43px;
+    height: 100%;
+    padding: 0;
+    font-size: 24px;
+    line-height: 1;
+    color: $black;
+    background-color: $primary;
+    border: 0;
+    border-radius: 0;
+
+    &:hover,
+    &:focus {
+      color: $black;
+      background-color: $primary;
+    }
+  }
+
+  // Once an image is set the widget renders a delete label; hide the upload
+  // trigger then so the icon is replaced by the delete action.
+  &:has(.btn--danger) .uppy-image-upload-field__trigger {
+    display: none;
+  }
+
+  // Match the delete action to the icon-only trigger (43px wide, full
+  // field height).
+  .upload-wrapper__action.btn--danger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 43px;
+    height: 100%;
+    padding: 0;
+    font-size: 24px;
+    line-height: 1;
+    border-radius: 0;
+  }
+}
+
+// Image upload dialog.
+// The wrapper class is doubled on purpose so these rules win against the
+// bundled Uppy styles, which are emitted after this file at equal specificity.
+.uppy-Dashboard--modal.uppy-Dashboard--modal {
+  font-family: $font-family-base;
+
+  // Modal shell
+  .uppy-Dashboard-inner {
+    max-width: calc(100% - 30px);
+    max-height: calc(100% - 30px);
+    overflow: visible;
+    background-color: $white;
+    border: 1px solid $black;
+    border-radius: 0;
+  }
+
+  .uppy-Dashboard-innerWrap {
+    overflow: hidden;
+    background-color: $white;
+    border-radius: 0;
+  }
+
+  // Close button: white and larger, placed to the right of the modal box
+  .uppy-Dashboard-close {
+    position: absolute;
+    top: -20px;
+    right: -32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    color: $white;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      color: $white;
+      background-color: transparent;
+    }
+  }
+
+  // Bottom action bar (cancel, file name, save)
+  .uppy-DashboardContent-panel > .uppy-DashboardContent-bar {
+    position: absolute;
+    inset: auto 0 0;
+    height: auto;
+    min-height: 63px;
+    padding: 10px 20px;
+    background-color: $white;
+    border: none;
+    border-top: 1px solid $gray-lightest;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.06);
+    z-index: 1005;
+  }
+
+  .uppy-DashboardContent-panel > .uppy-DashboardContent-bar .uppy-DashboardContent-title {
+    position: static;
+    order: 2;
+    flex: 1 1 auto;
+    width: auto;
+    max-width: none;
+    min-width: 0;
+    margin: 0 16px;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    font-family: $font-family-base;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    color: $black;
+    white-space: normal;
+    text-align: center;
+    text-overflow: clip;
+  }
+
+  .uppy-DashboardContent-panel > .uppy-DashboardContent-bar > .uppy-DashboardContent-back {
+    order: 1;
+  }
+
+  .uppy-DashboardContent-panel > .uppy-DashboardContent-bar > .uppy-DashboardContent-save {
+    order: 3;
+  }
+
+  .uppy-DashboardContent-panel > .uppy-DashboardContent-bar .uppy-DashboardContent-back,
+  .uppy-DashboardContent-panel > .uppy-DashboardContent-bar .uppy-DashboardContent-save {
+    display: inline-flex;
+    align-items: center;
+    height: 43px;
+    margin: 0;
+    padding: 0 16px;
+    font-family: $font-family-base;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    color: $black;
+    background-color: $white;
+    border: 2px solid $black;
+    border-radius: 0;
+  }
+
+  .uppy-DashboardContent-panel > .uppy-DashboardContent-bar .uppy-DashboardContent-back {
+    &:hover {
+      color: $black;
+      background-color: $gray-lightest;
+    }
+  }
+
+  .uppy-DashboardContent-panel > .uppy-DashboardContent-bar .uppy-DashboardContent-save {
+    position: relative;
+    padding-right: 59px;
+
+    &:hover {
+      color: $black;
+      background-color: $white;
+    }
+
+    // Green confirm square with a long arrow, attached to the right edge.
+    &:after {
+      content: "\f178";
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      bottom: -2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 43px;
+      color: $black;
+      background-color: $primary;
+      border: 2px solid $black;
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      font-size: 24px;
+      line-height: 1;
+    }
+  }
+
+  // Keep the editor image clear of the bottom bar
+  .uppy-DashboardContent-panel > .uppy-DashboardContent-panelBody {
+    padding-bottom: 78px;
+  }
+
+  // FileCard (opened from the file list)
+  .uppy-Dashboard-FileCard .uppy-DashboardContent-bar {
+    background-color: $white;
+    border-bottom: 1px solid $gray-lightest;
+  }
+
+  .uppy-Dashboard-FileCard .uppy-DashboardContent-back,
+  .uppy-Dashboard-FileCard .uppy-Dashboard-FileCard-actionsBtn {
+    font-family: $font-family-base;
+    color: $black;
+  }
+
+  .uppy-Dashboard-FileCard .uppy-Dashboard-FileCard-actionsBtn.uppy-c-btn-primary {
+    background-color: $primary;
+    border-color: $primary;
+  }
+
+  .uppy-Dashboard-FileCard .uppy-Dashboard-FileCard-actionsBtn.uppy-c-btn-link {
+    background-color: transparent;
+    border: 1px solid $black;
+  }
+
+  // Drop zone (empty state)
+  .uppy-Dashboard-AddFiles {
+    justify-content: flex-start;
+    height: 100%;
+    margin: 0;
+    padding-top: 91px;
+    border: none;
+    background-color: $white;
+  }
+
+  .uppy-Dashboard-AddFiles-title {
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0 32px;
+    font-family: $font-family-base;
+    color: $black;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 26px;
+    text-align: center;
+  }
+
+  .uppy-Dashboard-browse {
+    padding: 0;
+    color: $link-color;
+    text-decoration: underline;
+    border: 0;
+
+    &:hover,
+    &:focus {
+      color: $secondary;
+      text-decoration: underline;
+    }
+  }
+
+  .uppy-Dashboard-AddFiles-info {
+    display: block;
+    position: static;
+    margin-top: auto;
+    padding: 0 0 32px;
+  }
+
+  .uppy-Dashboard-note {
+    max-width: none;
+    margin: 0 auto;
+    padding: 0 32px;
+    font-family: $font-family-base;
+    color: $gray-light;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: center;
+  }
+
+  // Image editor
+  .uppy-ImageCropper {
+    position: relative;
+  }
+
+  .uppy-ImageCropper-container {
+    flex-grow: 0;
+    align-self: flex-start;
+    width: 100%;
+  }
+
+  // Keep the image within the padded content area so the crop handles are not
+  // hidden under the bottom action bar.
+  .uppy-ImageCropper-image {
+    max-height: 356px;
+  }
+
+  // Toolbar with revert, rotate, zoom in, zoom out. The :nth-child glyph
+  // mapping assumes exactly these four buttons in this order.
+  .uppy-ImageCropper-controls {
+    top: 44px;
+    bottom: auto;
+    padding: 0;
+    background-color: transparent;
+  }
+
+  .uppy-ImageCropper-controls button {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    padding: 7px;
+    color: $black;
+    background-color: $white;
+    border: 1px solid $black;
+    border-radius: 0;
+    box-sizing: border-box;
+
+    + button {
+      margin-left: -1px;
+    }
+
+    &:hover {
+      background-color: $gray-lightest;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $primary;
+      outline-offset: 1px;
+    }
+
+    svg {
+      display: none;
+    }
+
+    &:before {
+      display: block;
+      height: 18px;
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      font-size: 18px;
+      line-height: 18px;
+      text-align: center;
+    }
+
+    // fa-clock-rotate-left, fa-rotate-right,
+    // fa-magnifying-glass-plus, fa-magnifying-glass-minus
+    &:nth-child(1):before {
+      content: "\f1da";
+    }
+
+    &:nth-child(2):before {
+      content: "\f2f9";
+    }
+
+    &:nth-child(3):before {
+      content: "\f00e";
+    }
+
+    &:nth-child(4):before {
+      content: "\f010";
+    }
+  }
+
+  // Crop frame
+  .uppy-ImageCropper .cropper-view-box {
+    background: none;
+    outline: 1px solid $link-color;
+  }
+
+  .uppy-ImageCropper .cropper-line {
+    opacity: 0;
+  }
+
+  .uppy-ImageCropper .cropper-point {
+    width: 6px;
+    height: 6px;
+    background-color: $link-color;
+    opacity: 1;
+  }
+
+  .uppy-ImageCropper .cropper-modal {
+    background-color: $white;
+    opacity: 0.9;
+  }
+}
+
+@media (width < 820px) {
+  // The file name title in the bottom bar overlaps the editor content on
+  // small screens, so hide it entirely on mobile.
+  .uppy-DashboardContent-panel > .uppy-DashboardContent-bar .uppy-DashboardContent-title {
+    display: none;
+  }
+
+  // On small screens there is no room to the right of the modal, so keep the
+  // white close button just above it.
+  .uppy-Dashboard--modal.uppy-Dashboard--modal .uppy-Dashboard-close {
+    top: -40px;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    font-size: 32px;
+  }
+}
+
+@media (width >= 820px) {
+  .uppy-Dashboard--modal.uppy-Dashboard--modal .uppy-Dashboard-inner {
+    width: 644px;
+    height: 456px;
+  }
+
+}
+/* stylelint-enable selector-class-pattern, scale-unlimited/declaration-strict-value, font-family-no-missing-generic-family-keyword, no-descending-specificity */

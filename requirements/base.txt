@@ -27,7 +27,7 @@ https://github.com/liqd/django-ckeditor-5/raw/refs/heads/main/dist/django_ckedit
 django-filter==24.3
 django-widget-tweaks==1.5.0
 Django>=5.2,<5.3
-djangorestframework==3.16.0
+djangorestframework==3.17.2
 easy-thumbnails==2.10
 python-dateutil==2.9.0.post0
 rules==3.5

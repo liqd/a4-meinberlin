@@ -2,11 +2,13 @@
 
 {% include 'a4dashboard/includes/form_field.html' with field=form.url %}
 
-{% include 'a4dashboard/includes/form_field.html' with field=form.tile_image %}
+{% include 'a4images/uppy_image_upload_field.html' with field=form.tile_image form_field_template='a4dashboard/includes/form_field.html' aspect_ratio='1.667' output_width=500 output_height=300 trigger_class='btn btn--primary' %}
 
 {% include 'a4dashboard/includes/form_field.html' with field=form.tile_image_alt_text %}
 
 {% include 'a4dashboard/includes/form_field.html' with field=form.tile_image_copyright %}
+
+{% include 'a4images/uppy_image_upload_assets.html' %}
 
 {% include 'a4dashboard/includes/form_field.html' with field=form.description %}
 

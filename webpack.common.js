@@ -240,6 +240,16 @@ module.exports = {
       ],
       dependOn: 'adhocracy4'
     },
+    uppy_image_upload: {
+      import: [
+        'adhocracy4/adhocracy4/images/assets/uppy_image_upload.js',
+        '@uppy/core/css/style.min.css',
+        '@uppy/dashboard/css/style.min.css',
+        '@uppy/image-editor/css/style.min.css',
+        './meinberlin/assets/scss/components_user_facing/uppy-image-upload.scss'
+      ],
+      dependOn: 'adhocracy4'
+    },
     poll_management: {
       import: [
         'adhocracy4/adhocracy4/polls/static/react_poll_management.jsx'
@@ -271,6 +281,12 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules\/(?!(adhocracy4)\/).*/, // exclude most dependencies
+        // The repository and the adhocracy4 package are "type": "module".
+        // Their sources are transpiled to CommonJS by babel (plugin below),
+        // so let webpack parse them as CommonJS instead of strict ESM.
+        // Otherwise the generated require/exports identifiers are not
+        // rewritten and break at runtime.
+        type: 'javascript/auto',
         loader: 'babel-loader',
         options: {
           presets: ['@babel/preset-env', '@babel/preset-react'].map(require.resolve),

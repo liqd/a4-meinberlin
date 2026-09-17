@@ -18,6 +18,7 @@ from adhocracy4.images.fields import ConfiguredImageField
 from adhocracy4.labels import models as labels_models
 from adhocracy4.models import query
 from adhocracy4.modules import models as module_models
+from adhocracy4.projects.models import ProjectContactDetailMixin
 from adhocracy4.ratings import models as rating_models
 from meinberlin.apps.moderatorfeedback.models import Moderateable
 from meinberlin.apps.moderatorremark import models as remark_models
@@ -148,6 +149,14 @@ class AbstractIdea(module_models.Item, Moderateable, ItemBadgesPropertyMixin):
         labels_models.Label,
         verbose_name=_("Labels"),
         related_name=("%(app_label)s_" "%(class)s_label"),
+    )
+
+    allow_contact = models.BooleanField(default=True)
+
+    contact_email = models.EmailField(blank=True)
+
+    contact_phone = models.CharField(
+        blank=True, max_length=255, validators=[ProjectContactDetailMixin.phone_regex]
     )
 
     objects = PolymorphicManager.from_queryset(IdeaQuerySet)()

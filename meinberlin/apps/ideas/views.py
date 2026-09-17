@@ -20,6 +20,7 @@ from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib import forms as contrib_forms
+from meinberlin.apps.contrib.mixins import ContactInfoFormMixin
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
 from meinberlin.apps.moderatorfeedback.forms import ModeratorFeedbackForm
 from meinberlin.apps.moderatorfeedback.models import ModeratorFeedback
@@ -127,6 +128,8 @@ class AbstractIdeaCreateView(
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs["module"] = self.module
+        if ContactInfoFormMixin in getattr(self.form_class, "__mro__", ()):
+            kwargs["user"] = self.request.user
         if self.module.settings_instance:
             kwargs["settings_instance"] = self.module.settings_instance
         return kwargs
@@ -148,6 +151,8 @@ class AbstractIdeaUpdateView(
         kwargs = super().get_form_kwargs()
         instance = kwargs.get("instance")
         kwargs["module"] = instance.module
+        if ContactInfoFormMixin in getattr(self.form_class, "__mro__", ()):
+            kwargs["user"] = self.request.user
         if instance.module.settings_instance:
             kwargs["settings_instance"] = instance.module.settings_instance
         return kwargs

@@ -5,14 +5,13 @@ from django.utils.translation import gettext_lazy as _
 from adhocracy4.projects.guest_users import is_guest_user
 from meinberlin.apps.contrib import fields
 from meinberlin.apps.contrib import widgets
-from meinberlin.apps.contrib.mixins import ContactStorageConsentMixin
 from meinberlin.apps.mapideas.forms import MapIdeaForm
 from meinberlin.apps.moderationtasks.mixins import TasksAddableFieldMixin
 
 from . import models
 
 
-class ProposalForm(ContactStorageConsentMixin, MapIdeaForm):
+class ProposalForm(MapIdeaForm):
     class Meta:
         model = models.Proposal
         fields = [
@@ -28,16 +27,6 @@ class ProposalForm(ContactStorageConsentMixin, MapIdeaForm):
             "contact_email",
             "contact_phone",
         ]
-        labels = {
-            "allow_contact": _(
-                "For questions or in case of implementation "
-                "of my proposal you can contact me. I will "
-                "receive automatic notifications for any "
-                "status update or official statement to my "
-                "proposal."
-            ),
-            "contact_phone": _("Telephone number"),
-        }
         help_texts = {
             "category": _(
                 "Assign your proposal to a category. This "

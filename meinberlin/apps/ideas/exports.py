@@ -4,6 +4,7 @@ from rules.contrib.views import PermissionRequiredMixin
 from adhocracy4.comments.models import Comment
 from adhocracy4.exports import mixins
 from adhocracy4.exports import views as a4_export_views
+from meinberlin.apps.contrib.exports import ContactInfoExportMixin
 
 from . import models
 
@@ -12,6 +13,7 @@ class IdeaExportView(
     PermissionRequiredMixin,
     mixins.ItemExportWithReferenceNumberMixin,
     mixins.ItemExportWithLinkMixin,
+    ContactInfoExportMixin,
     mixins.ExportModelFieldsMixin,
     mixins.ItemExportWithRatesMixin,
     mixins.ItemExportWithCategoriesMixin,

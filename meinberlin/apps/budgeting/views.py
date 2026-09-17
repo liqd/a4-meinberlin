@@ -116,9 +116,9 @@ class ProposalListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMi
         token_form = TokenForm(request.POST, module_id=self.module.id)
         if token_form.is_valid():
             if "voting_tokens" in request.session:
-                request.session["voting_tokens"][
-                    str(self.module.id)
-                ] = token_form.cleaned_data["token"]
+                request.session["voting_tokens"][str(self.module.id)] = (
+                    token_form.cleaned_data["token"]
+                )
                 request.session.modified = True
             else:
                 request.session["voting_tokens"] = {
@@ -210,22 +210,12 @@ class ProposalCreateView(idea_views.AbstractIdeaCreateView):
     permission_required = "meinberlin_budgeting.add_proposal"
     template_name = "meinberlin_budgeting/proposal_create_form.html"
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs["user"] = self.request.user
-        return kwargs
-
 
 class ProposalUpdateView(idea_views.AbstractIdeaUpdateView):
     model = models.Proposal
     form_class = forms.ProposalForm
     permission_required = "meinberlin_budgeting.change_proposal"
     template_name = "meinberlin_budgeting/proposal_update_form.html"
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs["user"] = self.request.user
-        return kwargs
 
 
 class ProposalDeleteView(idea_views.AbstractIdeaDeleteView):

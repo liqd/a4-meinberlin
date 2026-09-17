@@ -168,6 +168,32 @@ def test_phase_started_draft_no_email(apiclient, phase_factory, proposal_factory
 
 
 @pytest.mark.django_db
+def test_notify_creator_or_contact_falls_back_to_creator(idea_factory):
+    idea = idea_factory()
+    idea.contact_email = ""
+    idea.save()
+    mail.outbox.clear()
+
+    notification_emails.NotifyCreatorOrContactOnModeratorFeedback.send(idea)
+
+    assert len(mail.outbox) == 1
+    assert mail.outbox[0].to == [idea.creator.email]
+
+
+@pytest.mark.django_db
+def test_notify_creator_or_contact_sends_to_contact_email(idea_factory):
+    idea = idea_factory()
+    idea.contact_email = "contact@example.com"
+    idea.save()
+    mail.outbox.clear()
+
+    notification_emails.NotifyCreatorOrContactOnModeratorFeedback.send(idea)
+
+    assert len(mail.outbox) == 1
+    assert mail.outbox[0].to == ["contact@example.com"]
+
+
+@pytest.mark.django_db
 def test_search_profile_matches(search_factories, phase_factory, user):
     phase, module, project, _ = setup_phase(
         phase_factory,

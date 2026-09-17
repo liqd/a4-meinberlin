@@ -1,10 +1,10 @@
 from django import forms
+from django.core import validators
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.projects.guest_users import is_guest_user
 from meinberlin.apps.contrib import fields
 from meinberlin.apps.contrib import widgets
-from meinberlin.apps.contrib.mixins import ContactStorageConsentMixin
 from meinberlin.apps.mapideas.forms import MapIdeaForm
 from meinberlin.apps.moderationtasks.mixins import TasksAddableFieldMixin
 

@@ -16,7 +16,8 @@
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.labels %}
     {% endif %}
 
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.image %}
+    {% include 'a4images/uppy_image_upload_field.html' with field=form.image form_field_template='meinberlin_contrib/includes/form_field.html' aspect_ratio='1.5' output_width=600 output_height=400 trigger_class='btn btn--primary' %}
+    {% include 'a4images/uppy_image_upload_assets.html' %}
 
     {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.right_of_use %}
 

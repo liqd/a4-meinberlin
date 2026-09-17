@@ -11,7 +11,8 @@
               method="post">
             {% csrf_token %}
             {% include 'a4forms/includes/form_field.html' with field=form.name %}
-            {% include 'a4forms/includes/form_field.html' with field=form.logo %}
+            {% include 'a4images/uppy_image_upload_field.html' with field=form.logo form_field_template='a4forms/includes/form_field.html' max_width=650 max_height=650 trigger_class='btn btn--primary' %}
+            {% include 'a4images/uppy_image_upload_assets.html' %}
             {% include 'a4forms/includes/form_field.html' with field=form.url %}
             {% include 'a4forms/includes/form_field.html' with field=form.address %}
             <div class="u-spacer-bottom">

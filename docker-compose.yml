@@ -63,6 +63,7 @@ services:
       LOAD_USER_FIXTURES: "0"
     volumes:
       - media_data:/app/media
+      - meinberlin_config:/data:ro
     healthcheck:
       test: ["CMD", "python", "-c", "import socket,sys; s=socket.create_connection(('localhost',8003),2); s.close()"]
       interval: 60s
@@ -91,6 +92,7 @@ services:
       LOAD_USER_FIXTURES: "0"
     volumes:
       - media_data:/app/media
+      - meinberlin_config:/data:ro
     command:
       [
         "celery",
@@ -107,3 +109,4 @@ services:
 volumes:
   postgres_data:
   media_data:
+  meinberlin_config:

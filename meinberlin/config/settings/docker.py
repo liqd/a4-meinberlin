@@ -61,3 +61,27 @@ from .production import CELERY_BEAT_SCHEDULE  # noqa: E402,F401
 ALLOWED_HOSTS = ["*"]
 
 WAGTAILADMIN_BASE_URL = os.environ.get("WAGTAILADMIN_BASE_URL", "http://localhost:8003")
+
+# TLS terminates at the reverse proxy (Traefik/Nginx); trust its
+# X-Forwarded-Proto so Django sees the original scheme. Required for the CSRF
+# origin check when logging in over HTTPS.
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+# Instance-specific settings, rendered by Salt into a .env file inside the
+# named volume mounted at /data (docker-compose.yml). Coolify overrides
+# container env vars, so the file is read directly instead of via os.environ.
+import json  # noqa: E402
+
+from dotenv import dotenv_values  # noqa: E402
+
+_MEINBERLIN_INSTANCE_ENV = dotenv_values("/data/.env") or {}
+
+
+def _load_json_value(name, default="{}"):
+    raw = _MEINBERLIN_INSTANCE_ENV.get(name)
+    if not raw:
+        return json.loads(default)
+    return json.loads(raw)
+
+
+globals().update(_load_json_value("MEINBERLIN_CONFIG"))

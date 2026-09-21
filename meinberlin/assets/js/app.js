@@ -6,6 +6,7 @@ import htmx from 'htmx.org'
 import '../../apps/actions/assets/timestamps.js'
 import '../../apps/newsletters/assets/dynamic_fields.js'
 import '../../apps/contrib/assets/dropdown.js'
+import './auto_grow_textarea.js'
 import './navigation_primary.js'
 
 // map search function

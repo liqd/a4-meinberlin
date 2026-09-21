@@ -67,6 +67,12 @@ WAGTAILADMIN_BASE_URL = os.environ.get("WAGTAILADMIN_BASE_URL", "http://localhos
 # origin check when logging in over HTTPS.
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
+# Serve MEDIA_ROOT from Django when there is no separate reverse proxy for
+# media (dev container deployments). Production overrides this via the
+# SERVE_MEDIA env var / /data/.env (SERVE_MEDIA=false) and serves media via
+# nginx instead.
+SERVE_MEDIA = os.environ.get("SERVE_MEDIA", "1") not in ("0", "false")
+
 # Instance-specific settings, rendered by Salt into a .env file inside the
 # named volume mounted at /data (docker-compose.yml). Coolify overrides
 # container env vars, so the file is read directly instead of via os.environ.

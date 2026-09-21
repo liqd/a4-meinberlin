@@ -1,0 +1,106 @@
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_USER: django
+      POSTGRES_PASSWORD: django
+      POSTGRES_DB: django
+      MALLOC_ARENA_MAX: "2"
+    mem_limit: "${DB_MEM_LIMIT:-512m}"
+    memswap_limit: "${DB_MEM_LIMIT:-512m}"
+    cpu_shares: ${DB_CPU_SHARES:-512}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U django -d django"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  redis:
+    image: redis:7-alpine
+    mem_limit: "${REDIS_MEM_LIMIT:-256m}"
+    memswap_limit: "${REDIS_MEM_LIMIT:-256m}"
+    cpu_shares: ${REDIS_CPU_SHARES:-256}
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  web:
+    build: .
+    mem_limit: "${WEB_MEM_LIMIT:-1g}"
+    memswap_limit: "${WEB_MEM_LIMIT:-1g}"
+    cpu_shares: ${WEB_CPU_SHARES:-512}
+    expose:
+      - "8003"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment: &app_env
+      DJANGO_SETTINGS_MODULE: meinberlin.config.settings.docker
+      POSTGRES_HOST: ${SERVICE_NAME_DB:-db}
+      POSTGRES_PORT: "5432"
+      POSTGRES_USER: django
+      POSTGRES_PASSWORD: django
+      POSTGRES_DB: django
+      CACHE_URL: redis://${SERVICE_NAME_REDIS:-redis}:6379/1
+      CELERY_BROKER_URL: redis://${SERVICE_NAME_REDIS:-redis}:6379/0
+      CELERY_RESULT_BACKEND: redis://${SERVICE_NAME_REDIS:-redis}:6379/0
+      CELERY_WORKER_CONCURRENCY: "${CELERY_WORKER_CONCURRENCY:-1}"
+      CELERY_WORKER_MAX_TASKS_PER_CHILD: "${CELERY_WORKER_MAX_TASKS_PER_CHILD:-100}"
+      CELERY_WORKER_MAX_MEMORY_PER_CHILD: "${CELERY_WORKER_MAX_MEMORY_PER_CHILD:-400}"
+      CELERY_WORKER_PREFETCH_MULTIPLIER: "${CELERY_WORKER_PREFETCH_MULTIPLIER:-1}"
+      CELERY_WORKER_POOL: "${CELERY_WORKER_POOL:-prefork}"
+      WAGTAILADMIN_BASE_URL: http://localhost:8003
+      MALLOC_ARENA_MAX: "2"
+      RUN_MIGRATIONS: "1"
+      LOAD_FIXTURES: "1"
+      LOAD_USER_FIXTURES: "0"
+    volumes:
+      - media_data:/app/media
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket,sys; s=socket.create_connection(('localhost',8003),2); s.close()"]
+      interval: 60s
+      timeout: 5s
+      retries: 3
+      start_period: 90s
+    command: ["granian", "--interface", "wsgi", "--host", "0.0.0.0", "--port", "8003", "--log-level", "warning", "meinberlin.config.wsgi:application"]
+
+  worker:
+    build: .
+    mem_limit: "${WORKER_MEM_LIMIT:-1536m}"
+    memswap_limit: "${WORKER_MEM_LIMIT:-1536m}"
+    cpu_shares: ${WORKER_CPU_SHARES:-256}
+    depends_on:
+      redis:
+        condition: service_healthy
+      web:
+        condition: service_healthy
+    environment:
+      <<: *app_env
+      RUN_MIGRATIONS: "0"
+      LOAD_FIXTURES: "0"
+      LOAD_USER_FIXTURES: "0"
+    volumes:
+      - media_data:/app/media
+    command:
+      [
+        "celery",
+        "--app",
+        "meinberlin",
+        "worker",
+        "--beat",
+        "--schedule",
+        "/app/media/celerybeat-schedule",
+        "--loglevel",
+        "INFO",
+      ]
+
+volumes:
+  postgres_data:
+  media_data:

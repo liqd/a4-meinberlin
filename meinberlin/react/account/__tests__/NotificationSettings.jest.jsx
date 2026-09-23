@@ -102,12 +102,14 @@ describe('NotificationSettings', () => {
     )
   })
 
-  test('renders correct notification titles and descriptions', () => {
+  test('renders correct notification titles, descriptions and toggle labels', () => {
     render(<NotificationSettings {...defaultProps} />)
 
     expect(screen.getByText('E-Mail Newsletter')).toBeInTheDocument()
     expect(screen.getByText('Participation Start')).toBeInTheDocument()
     expect(screen.getByText('Receive newsletters with updates and news about the projects you follow via e-mail.')).toBeInTheDocument()
+    expect(screen.getAllByText('Email').length).toBeGreaterThan(0)
+    expect(screen.getAllByText('In-app').length).toBeGreaterThan(0)
   })
 
   test('updates UI and calls API when toggling notifications', async () => {

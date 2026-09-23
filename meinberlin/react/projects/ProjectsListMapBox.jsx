@@ -238,7 +238,7 @@ const ProjectsListMapBox = ({
             toggleSwitch={() => {
               setShowMap(!showMap)
             }}
-            onSwitchStr={showMapStr}
+            switchStr={showMapStr}
             checked={showMap}
           />
         </div>

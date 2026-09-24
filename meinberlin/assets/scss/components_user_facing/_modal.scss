@@ -57,3 +57,38 @@
   color: inherit;
   cursor: pointer;
 }
+
+// Auth modal (login / register / guest) opened from the header.
+.auth-modal {
+  width: calc(100% - 1.5rem);
+  max-width: 40.375rem;
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+
+  @media screen and (min-width: $breakpoint-palm) {
+    width: auto;
+  }
+}
+
+.auth-modal__body {
+  position: relative;
+  max-height: calc(100vh - 1.5rem);
+  padding: 3rem 1.125rem 0;
+  overflow-y: auto;
+}
+
+.auth-modal__message {
+  padding: 2rem 1.125rem;
+  text-align: center;
+}
+
+.auth-modal__message--error {
+  color: $text-error;
+}
+
+.auth-modal .modal__close {
+  z-index: 1;
+  top: 1rem;
+  right: 1rem;
+}

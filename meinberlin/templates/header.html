@@ -143,7 +143,7 @@
                             </button>
                         </form>
                     {% else %}
-                        <form class="service-button-overlay__form" action="{% url 'account_login' %}" method="get" aria-label="Login">
+                        <form class="service-button-overlay__form js-auth-modal-open" action="{% url 'account_login' %}" method="get" aria-label="Login" data-auth-modal-url="{% url 'account_login' %}">
                             <input type="hidden" name="next" value="{{ redirect_field_value }}">
                             <button type="submit" class="icon-button">
                                 <i class="icon fas fa-user" aria-hidden="true"></i>
@@ -178,4 +178,8 @@
             </div>
         </div>
     </div>
+
+    {% if not request.user.is_authenticated %}
+        {% include "account/auth_modal.html" %}
+    {% endif %}
 </header>

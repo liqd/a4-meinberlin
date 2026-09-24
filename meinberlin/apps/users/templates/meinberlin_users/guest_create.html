@@ -11,16 +11,6 @@
 
         {% url 'account_login' as account_login_url %}
         {% url 'account_signup' as account_signup_url %}
-        <div class="narrow-wrapper__account-links">
-            <p>
-                {% translate "Already have an account? Please" %}
-                <a href="{{ account_login_url }}?next={{ next|urlencode }}">{% translate "log in" %}</a>.
-            </p>
-            <p>
-                {% translate "Want to create an account? Please" %}
-                <a href="{{ account_signup_url }}?next={{ next|urlencode }}">{% translate "click here" %}</a>.
-            </p>
-        </div>
 
         <p>{% translate "Please log out after participating or close your browser. This ensures that neither you nor anyone else has access to your guest account." %}</p>
         <p>{% translate "Guest users cannot follow projects, and they do not receive notifications about the status of their contributions or when other users interact with their submissions. You can convert your guest account into a permanent account in the user settings." %}</p>
@@ -82,6 +72,8 @@
             <div class="u-spacer-top">
                 <button class="button button--full-width" type="submit">{% translate "Continue as a guest" %}</button>
             </div>
+
+            <a class="button button--light button--full-width u-spacer-top" href="{{ account_signup_url }}?next={{ next|urlencode }}">{% translate "Register" %}</a>
         </form>
 
         <section class="narrow-wrapper__footer">

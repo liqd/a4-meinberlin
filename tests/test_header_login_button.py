@@ -30,8 +30,11 @@ def test_header_login_triggers_open_modal(client):
     response = client.get("/")
     html = response.content.decode()
 
-    # Header login icon + burger login/register links + the modal body itself
-    assert html.count('hx-target="#auth-modal-body"') == 4
+    assert 'id="auth-modal-body"' in html
+    # Header login icon + burger login/register links point at the modal body
+    assert 'hx-get="/accounts/login/"' in html
+    assert 'hx-get="/accounts/signup/' in html
+    assert 'hx-target="#auth-modal-body"' in html
 
 
 @pytest.mark.django_db

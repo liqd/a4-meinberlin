@@ -1,0 +1,16 @@
+{% load i18n %}
+<dialog id="auth-modal"
+        class="modal auth-modal"
+        aria-label="{% translate 'Login or register' %}"
+        data-show-password="{% translate 'Show password' %}"
+        data-hide-password="{% translate 'Hide password' %}">
+    <button type="button" class="modal__close js-auth-modal-close" aria-label="{% translate 'Close' %}">
+        <i class="fas fa-times" aria-hidden="true"></i>
+    </button>
+    <div id="auth-modal-body"
+         class="auth-modal__body js-auth-modal-body"
+         hx-boost="true"
+         hx-push-url="false"
+         hx-target="#auth-modal-body"
+         hx-swap="innerHTML"></div>
+</dialog>

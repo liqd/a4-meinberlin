@@ -120,10 +120,18 @@
                 </li>
             {% else %}
                 <li class="hamburger-nav__item">
-                    <a href="{% url 'account_login' %}?next={{ redirect_field_value|urlencode }}" class="hamburger-nav__link">{% translate "Log in" %}</a>
+                    <a href="{% url 'account_login' %}?next={{ redirect_field_value|urlencode }}"
+                       class="hamburger-nav__link"
+                       hx-get="{% url 'account_login' %}?next={{ redirect_field_value|urlencode }}"
+                       hx-target="#auth-modal-body"
+                       hx-swap="innerHTML">{% translate "Log in" %}</a>
                 </li>
                 <li class="hamburger-nav__item">
-                    <a href="{% url 'account_signup' %}?next={{ redirect_field_value|urlencode }}" class="hamburger-nav__link">{% translate "Register" %}</a>
+                    <a href="{% url 'account_signup' %}?next={{ redirect_field_value|urlencode }}"
+                       class="hamburger-nav__link"
+                       hx-get="{% url 'account_signup' %}?next={{ redirect_field_value|urlencode }}"
+                       hx-target="#auth-modal-body"
+                       hx-swap="innerHTML">{% translate "Register" %}</a>
                 </li>
                 <li class="hamburger-nav__item">
                     <a href="{% url 'account_reset_password' %}?next={{ redirect_field_value|urlencode }}" class="hamburger-nav__link">{% translate "Forgot Password?" %}</a>

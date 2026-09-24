@@ -143,7 +143,13 @@
                             </button>
                         </form>
                     {% else %}
-                        <form class="service-button-overlay__form js-auth-modal-open" action="{% url 'account_login' %}" method="get" aria-label="Login" data-auth-modal-url="{% url 'account_login' %}">
+                        <form class="service-button-overlay__form"
+                              action="{% url 'account_login' %}"
+                              method="get"
+                              aria-label="Login"
+                              hx-get="{% url 'account_login' %}"
+                              hx-target="#auth-modal-body"
+                              hx-swap="innerHTML">
                             <input type="hidden" name="next" value="{{ redirect_field_value }}">
                             <button type="submit" class="icon-button">
                                 <i class="icon fas fa-user" aria-hidden="true"></i>

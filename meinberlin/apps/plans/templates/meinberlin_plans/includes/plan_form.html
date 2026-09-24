@@ -26,7 +26,7 @@
     {% include 'a4forms/includes/form_field.html' with field=form.participation %}
     {% include 'a4forms/includes/form_field.html' with field=form.participation_explanation %}
 
-    {% include 'a4forms/includes/form_field.html' with field=form.image %}
+    {% include 'a4images/uppy_image_upload_field.html' with field=form.image form_field_template='a4forms/includes/form_field.html' aspect_ratio='1.5' output_width=600 output_height=400 trigger_class='btn btn--primary' %}
     {% include 'a4forms/includes/form_field.html' with field=form.image_alt_text %}
     {% include 'a4forms/includes/form_field.html' with field=form.image_copyright %}
 
@@ -48,11 +48,13 @@
         {% translate 'The following information affects the presentation of the project in the Kiezradar.' %}
     </p>
 
-    {% include 'a4forms/includes/form_field.html' with field=form.tile_image %}
+    {% include 'a4images/uppy_image_upload_field.html' with field=form.tile_image form_field_template='a4forms/includes/form_field.html' aspect_ratio='1.667' output_width=500 output_height=300 trigger_class='btn btn--primary' %}
 
     {% include 'a4forms/includes/form_field.html' with field=form.tile_image_alt_text %}
 
     {% include 'a4forms/includes/form_field.html' with field=form.tile_image_copyright %}
+
+    {% include 'a4images/uppy_image_upload_assets.html' %}
 
     {% include 'a4forms/includes/form_field.html' with field=form.point %}
 

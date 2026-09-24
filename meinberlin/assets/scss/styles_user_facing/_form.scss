@@ -28,12 +28,20 @@ button {
 
 .form-check:has(> .form-check-input) {
   display: flex;
+  align-items: flex-start;
+  gap: 0.5em;
 }
 
 .form-check-input {
   flex: 0 0 auto;
   float: none !important;
   margin-left: 0 !important;
+}
+
+.form-check__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
 }
 
 .form-check__label {

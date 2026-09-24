@@ -8,6 +8,7 @@ import '../../apps/newsletters/assets/dynamic_fields.js'
 import '../../apps/contrib/assets/dropdown.js'
 import './auto_grow_textarea.js'
 import './navigation_primary.js'
+import './auth_modal.js'
 
 // map search function
 import 'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_address.js'

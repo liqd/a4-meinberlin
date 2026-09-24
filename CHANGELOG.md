@@ -10,6 +10,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Added
 
 - Header: New login/logout button next to the menu
+- Header: Login and registration open in a modal instead of navigating away, closing automatically on success
 - Dashboard project preview modal with desktop/mobile device toggle
 - Guest participation: visitors can participate as one-time guests in projects that allow it, and later convert their guest account into a regular account keeping their contributions.
 

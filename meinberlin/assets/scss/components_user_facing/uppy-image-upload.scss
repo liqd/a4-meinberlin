@@ -9,81 +9,26 @@
 // Upload field on forms
 .uppy-image-upload-field {
   // The native file input is an invisible full-size overlay in the base
-  // upload-wrapper styles; hide it so it does not intercept clicks meant
-  // for the Uppy trigger. The textual dummy input stays visible and shows
-  // the name of the selected or already uploaded image.
-  .upload-wrapper__fields {
-    .form-control-file {
-      display: none;
-    }
-  }
-
-  // Keep the Uppy trigger and the delete button in the normal flow; the
-  // base styles position single actions absolutely, which no longer fits.
-  // Stretch the children so the icon buttons match the input field height.
-  .upload-wrapper__action-parent {
-    display: inline-flex;
-    align-self: stretch;
-    align-items: stretch;
-    gap: 4px;
-    flex-shrink: 0;
-  }
-
-  // Actions are laid out by the action-parent instead of being overlaid.
-  .upload-wrapper__action {
-    position: static;
-    top: auto;
-    right: auto;
-  }
-
-  // Hide the native upload button, keep the Uppy trigger and the delete button.
-  .upload-wrapper__action.btn--primary:not(.uppy-image-upload-field__trigger) {
+  // upload-wrapper styles. It is a sibling of .upload-wrapper__fields (not a
+  // child), so hide it on the whole widget; otherwise it intercepts clicks
+  // meant for the Uppy trigger and opens the native file picker. The textual
+  // dummy input stays visible and shows the name of the selected image.
+  .upload-wrapper .form-control-file {
     display: none;
   }
 
-  // Icon-only trigger, matching the Figma icon button (43px wide, full
-  // field height).
-  .upload-wrapper__action.uppy-image-upload-field__trigger {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 43px;
-    height: 100%;
-    padding: 0;
-    font-size: 24px;
-    line-height: 1;
-    color: $black;
-    background-color: $primary;
-    border: 0;
-    border-radius: 0;
-
-    &:hover,
-    &:focus {
-      color: $black;
-      background-color: $primary;
-    }
+  // The widget renders a native upload label next to the Uppy trigger; hide
+  // it so the trigger is the only upload affordance. It keeps the base
+  // .upload-wrapper__action look (icon overlaid on the input, as before the
+  // Uppy introduction).
+  .upload-wrapper__action.btn--primary:not(.uppy-image-upload-field__trigger) {
+    display: none;
   }
 
   // Once an image is set the widget renders a delete label; hide the upload
   // trigger then so the icon is replaced by the delete action.
   &:has(.btn--danger) .uppy-image-upload-field__trigger {
     display: none;
-  }
-
-  // Match the delete action to the icon-only trigger (43px wide, full
-  // field height).
-  .upload-wrapper__action.btn--danger {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 auto;
-    width: 43px;
-    height: 100%;
-    padding: 0;
-    font-size: 24px;
-    line-height: 1;
-    border-radius: 0;
   }
 }
 

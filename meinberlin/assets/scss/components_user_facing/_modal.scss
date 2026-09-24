@@ -74,8 +74,37 @@
 .auth-modal__body {
   position: relative;
   max-height: calc(100vh - 1.5rem);
-  padding: 3rem 1.125rem 0;
+  padding: 3rem 0.5rem;
   overflow-y: auto;
+
+  h1 {
+    margin: 0 0 1rem;
+  }
+
+  .form--base {
+    margin-bottom: 2rem;
+  }
+
+  .password-field-wrapper .form-hint {
+    margin-top: 0.5rem;
+  }
+
+  .narrow-wrapper__footer {
+    padding: 1rem 0 0;
+
+    h2 {
+      margin: 3rem 0 1.5rem;
+      font-size: 1.0625rem;
+    }
+
+    .u-spacer-top {
+      margin-top: 0.5rem;
+    }
+  }
+
+  @media screen and (min-width: $breakpoint-palm) {
+    padding: 4rem 1.125rem;
+  }
 }
 
 .auth-modal__message {

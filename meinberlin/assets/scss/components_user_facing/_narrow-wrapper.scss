@@ -36,19 +36,6 @@
 
 }
 
-// Guest create intro: Figma gap 8px between account link lines (not default <p> margins).
-.narrow-wrapper__account-links {
-    margin-bottom: 1.5rem;
-
-    p {
-        margin: 0;
-    }
-
-    p + p {
-        margin-top: 0.5rem;
-    }
-}
-
 // Signup: on mobile the green divider sits close under the form CTA (Figma
 // `m-register-guest`): 32px between the button and the divider, 24px between
 // the divider and the heading. Berlin's global `form { margin: 0 0 50px }` /

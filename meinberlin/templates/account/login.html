@@ -11,47 +11,5 @@
 {% endblock extra_js %}
 
 {% block content %}
-    <div class="narrow-wrapper">
-        <h1>{% translate "Login" %}</h1>
-
-        <form method="post" action="{% url 'account_login' %}" class="form--base js-validate">
-            {% csrf_token %}
-            
-            <div class="client-validation-errors">
-                <ul class="errorlist" aria-live="assertive" aria-atomic="true">
-                </ul>
-            </div>
-            
-            {% if form.non_field_errors %}
-                <ul class="errorlist" aria-live="assertive" aria-atomic="true">
-                    {% for error in form.non_field_errors %}
-                        <li class="message message--error">{{ error|escape }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-
-            {% include "meinberlin_contrib/includes/form_field.html" with field=form.login %}
-            {% include "meinberlin_contrib/includes/form_password_field.html" with field=form.password %}
-            {% include "meinberlin_contrib/includes/form_checkbox_field.html" with field=form.remember %}
-
-            {% if redirect_field_value %}
-                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-            {% endif %}
-
-            <div class="narrow-wrapper__secondary-cta">
-                <a href="{% url 'account_reset_password' %}">{% translate "Forgot Password?" %}</a>
-            </div>
-
-            <button class="button button--full-width" type="submit">{% translate "Login" %}</button>
-        </form>
-
-        <section class="narrow-wrapper__footer">
-            <span class="narrow-wrapper__footer--decoration" aria-hidden="true"></span>
-            <h2>{% translate "Don't have an account yet?" %}</h2>
-            <a class="button button--light button--full-width" href="{{ signup_url }}">{% translate "Register" %}</a>
-            {% if enable_guest_users %}
-                <a class="button button--light button--full-width u-spacer-top" href="{% url 'guest_create' %}?next={{ redirect_field_value|urlencode }}">{% translate "Proceed as guest" %}</a>
-            {% endif %}
-        </section>
-    </div>
+    {% include "account/login_content.html" %}
 {% endblock content %}

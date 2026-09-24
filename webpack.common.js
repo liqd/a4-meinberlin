@@ -269,6 +269,13 @@ module.exports = {
   module: {
     rules: [
       {
+        // adhocracy4 ships as "type": "module" but still uses CommonJS in
+        // several files; treat them as javascript/auto so both work.
+        test: /\.jsx?$/,
+        include: /node_modules[\\/]adhocracy4[\\/]/,
+        type: 'javascript/auto'
+      },
+      {
         test: /\.jsx?$/,
         exclude: /node_modules\/(?!(adhocracy4)\/).*/, // exclude most dependencies
         loader: 'babel-loader',

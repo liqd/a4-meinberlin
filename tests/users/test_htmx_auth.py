@@ -10,7 +10,7 @@ HTMX = {"HX-Request": "true"}
 def test_login_htmx_renders_fragment(client, login_url):
     response = client.get(login_url, headers=HTMX)
     assert response.status_code == 200
-    assert_template_response(response, "account/login_content.html")
+    assert_template_response(response, "account/login.html")
     assert b"<html" not in response.content
 
 
@@ -33,14 +33,14 @@ def test_login_htmx_invalid_renders_fragment(client, user, login_url):
         headers=HTMX,
     )
     assert response.status_code == 200
-    assert_template_response(response, "account/login_content.html")
+    assert_template_response(response, "account/login.html")
 
 
 @pytest.mark.django_db
 def test_signup_htmx_renders_fragment(client, signup_url):
     response = client.get(signup_url, headers=HTMX)
     assert response.status_code == 200
-    assert_template_response(response, "account/signup_content.html")
+    assert_template_response(response, "account/signup.html")
     assert b"<html" not in response.content
 
 
@@ -49,5 +49,5 @@ def test_guest_htmx_renders_fragment(client):
     url = reverse("guest_create")
     response = client.get(url, headers=HTMX)
     assert response.status_code == 200
-    assert_template_response(response, "meinberlin_users/guest_create_content.html")
+    assert_template_response(response, "meinberlin_users/guest_create.html")
     assert b"<html" not in response.content

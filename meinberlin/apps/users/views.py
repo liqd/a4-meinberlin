@@ -15,22 +15,24 @@ from .forms import GuestCreateForm
 class HtmxAuthMixin:
     """Serve auth forms as fragments and close the modal via HX-Redirect.
 
-    When a request comes from htmx (``HX-Request`` header) the view renders only
-    the form fragment (``htmx_template_name``) instead of the full page. On a
-    successful submit it answers with ``HX-Redirect`` so htmx performs a full
-    page navigation (e.g. back to the page the modal was opened from) instead of
-    swapping the redirected page into the modal.
+    When a request comes from htmx (``HX-Request`` header) the same page
+    template is rendered against an empty layout (``htmx_layout``) so only the
+    form fragment is returned. On a successful submit the view answers with
+    ``HX-Redirect`` so htmx performs a full page navigation (e.g. back to the
+    page the modal was opened from) instead of swapping the redirected page into
+    the modal.
     """
 
-    htmx_template_name = None
+    htmx_layout = "partial.html"
 
     def _is_htmx(self):
         return self.request.headers.get("HX-Request") == "true"
 
-    def get_template_names(self):
-        if self._is_htmx() and self.htmx_template_name:
-            return [self.htmx_template_name]
-        return super().get_template_names()
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self._is_htmx():
+            context["layout"] = self.htmx_layout
+        return context
 
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -48,7 +50,6 @@ class GuestCreateView(HtmxAuthMixin, FormView):
 
     form_class = GuestCreateForm
     template_name = "meinberlin_users/guest_create.html"
-    htmx_template_name = "meinberlin_users/guest_create_content.html"
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -76,8 +77,6 @@ class GuestCreateView(HtmxAuthMixin, FormView):
 
 
 class CustomSignupView(HtmxAuthMixin, SignupView):
-    htmx_template_name = "account/signup_content.html"
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["enable_guest_users"] = getattr(
@@ -87,8 +86,6 @@ class CustomSignupView(HtmxAuthMixin, SignupView):
 
 
 class CustomLoginView(HtmxAuthMixin, LoginView):
-    htmx_template_name = "account/login_content.html"
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["enable_guest_users"] = getattr(

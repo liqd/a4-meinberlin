@@ -32,6 +32,7 @@
 
             {% include "meinberlin_contrib/includes/form_field.html" with field=form.login %}
             {% include "meinberlin_contrib/includes/form_password_field.html" with field=form.password %}
+            {% include "meinberlin_contrib/includes/form_checkbox_field.html" with field=form.remember %}
 
             {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>

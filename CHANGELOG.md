@@ -9,6 +9,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
+- Registration: live password criteria checklist below the password field that marks requirements as met while typing
 - Header: New login/logout button next to the menu
 - Header: Login and registration open in a modal instead of navigating away, closing automatically on success
 - Dashboard project preview modal with desktop/mobile device toggle

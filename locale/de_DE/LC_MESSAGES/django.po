@@ -6219,3 +6219,27 @@ msgstr ""
 "href=\"%(terms_of_use_url)s\" target=\"_blank\">Nutzungsbedingungen</a> und "
 "die <a href=\"%(privacy_policy)s\" target=\"_blank\"> Datenschutzerklärung</"
 "a> gelesen habe und akzeptiere."
+
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/form_password_criteria.html
+msgid "Password requirements:"
+msgstr "Passwortanforderungen:"
+
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/form_password_criteria.html
+msgid "At least 10 characters"
+msgstr "Mindestens 10 Zeichen"
+
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/form_password_criteria.html
+msgid "Doesn't contain your username"
+msgstr "Enthält nicht Ihren Benutzernamen"
+
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/form_password_criteria.html
+msgid "Must contain at least 3 of these 4 character types:"
+msgstr "Muss mindestens 3 dieser 4 Zeichentypen enthalten:"
+
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/form_password_criteria.html
+msgid "Met"
+msgstr "Erfüllt"
+
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/form_password_criteria.html
+msgid "Not met"
+msgstr "Nicht erfüllt"

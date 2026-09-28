@@ -70,7 +70,7 @@
         <p class="project-tile__title title-3" id="project-title-{{ project.id }}">{{ project.name }}</p>
         {% if project.description %}
             <p class="project-tile__description">
-                {{ project.description | truncatechars_html:170 }}
+                {{ project.description | truncatechars:170 }}
             </p>
         {% endif %}
 

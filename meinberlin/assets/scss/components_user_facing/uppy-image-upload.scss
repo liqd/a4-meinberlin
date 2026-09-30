@@ -32,22 +32,6 @@
     border-radius: 0;
   }
 
-  // Preview thumbnail: the base widget uses a fixed 3:2 box and renders the
-  // image at its natural size, which clips the wide uploaded image at the
-  // bottom. Use a 2:1 box (matching the item/hero crop) and fit the image
-  // inside so it is shown in full.
-  .upload-wrapper__preview {
-    width: 50px;
-    height: 25px;
-
-    img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-  }
-
   // Once an image is set the widget renders a delete label; hide the upload
   // trigger then so the icon is replaced by the delete action.
   &:has(.btn--danger) .uppy-image-upload-field__trigger {
@@ -277,7 +261,7 @@
     font-family: $font-family-base;
     color: $gray-light;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 400;
     line-height: 24px;
     text-align: center;
   }
@@ -403,6 +387,103 @@
     width: 32px;
     height: 32px;
     font-size: 32px;
+  }
+
+  // While the image editor is open, size the modal to the image instead of the
+  // full mobile viewport. Otherwise a landscape image leaves a large empty area
+  // because the modal is stretched from top to bottom. The crop toolbar moves
+  // above the image; the bottom action bar keeps its reserved space through the
+  // panel body padding.
+  .uppy-Dashboard--modal.uppy-Dashboard--modal:has(.uppy-DashboardContent-panel) {
+    .uppy-Dashboard-inner {
+      bottom: auto;
+      height: auto;
+      max-height: calc(100% - 50px);
+    }
+
+    .uppy-Dashboard-innerWrap {
+      height: auto;
+    }
+
+    // Hide the underlying file list and its header so they don't stretch the
+    // auto-height wrapper.
+    .uppy-Dashboard-innerWrap > .uppy-Dashboard-files,
+    .uppy-Dashboard-innerWrap > .uppy-DashboardContent-bar {
+      display: none;
+    }
+
+    // Let the editor panel participate in the flow so its height drives the
+    // modal height.
+    .uppy-DashboardContent-panel {
+      position: static;
+    }
+
+    .uppy-ImageCropper {
+      height: auto;
+    }
+
+    .uppy-ImageCropper-container {
+      flex-grow: 0;
+    }
+
+    // Crop toolbar above the image.
+    .uppy-ImageCropper-controls {
+      order: -1;
+      position: static;
+      margin: 12px auto;
+      transform: none;
+    }
+  }
+
+  // The empty drop zone (before an image is selected) is also stretched to the
+  // full mobile viewport. Size it to its content so the "browse files" box is
+  // not needlessly tall.
+  .uppy-Dashboard--modal.uppy-Dashboard--modal:has(.uppy-Dashboard-AddFiles) {
+    .uppy-Dashboard-inner {
+      bottom: auto;
+      height: auto;
+      max-height: calc(100% - 50px);
+    }
+
+    .uppy-Dashboard-innerWrap {
+      height: auto;
+    }
+
+    .uppy-Dashboard-AddFiles {
+      // Design: 72px above the title and 32px below the note, with the content
+      // spread between them. On mobile the title and note wrap onto more lines
+      // than the 292px desktop variant, so the box is taller there.
+      justify-content: space-between;
+      height: auto;
+      min-height: 364px;
+      padding-top: 72px;
+      padding-bottom: 32px;
+    }
+
+    // The info/note is pushed to the bottom by an auto margin (and carries its
+    // own bottom padding) on the full-height layout. The spread layout above
+    // already positions it, so reset both.
+    .uppy-Dashboard-AddFiles-info {
+      margin-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  // The file list (shown when a file is already selected and the editor is
+  // closed, e.g. after cancelling the editor) is stretched to the full mobile
+  // viewport too. Constrain it to its content: once the modal is short enough,
+  // Uppy switches from the full-screen single-file preview to the compact file
+  // row, so the box is only as tall as that row.
+  .uppy-Dashboard--modal.uppy-Dashboard--modal:has(.uppy-Dashboard-files):not(:has(.uppy-DashboardContent-panel)) {
+    .uppy-Dashboard-inner {
+      bottom: auto;
+      height: auto;
+      max-height: calc(100% - 50px);
+    }
+
+    .uppy-Dashboard-innerWrap {
+      height: auto;
+    }
   }
 }
 

@@ -18,7 +18,7 @@ const NotificationToggle = ({ notification, notificationState, name, onToggle })
       <div className="flexbox">
         <ToggleSwitch
           uniqueId={emailToggleId}
-          onSwitchStr={emailStr}
+          switchStr={emailStr}
           labelLeft={false}
           checked={notificationState[name]}
           toggleSwitch={() => onToggle(name)}
@@ -28,7 +28,7 @@ const NotificationToggle = ({ notification, notificationState, name, onToggle })
           <ToggleSwitch
             className="ml-1"
             uniqueId={inAppToggleId}
-            onSwitchStr={inAppNotificationStr}
+            switchStr={inAppNotificationStr}
             labelLeft={false}
             checked={notificationState[activityFeedName]}
             toggleSwitch={() => onToggle(activityFeedName)}

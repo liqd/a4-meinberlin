@@ -44,6 +44,8 @@ RUN pip install --no-cache-dir -r requirements/dev.txt
 COPY . .
 COPY --from=assets /app/meinberlin/static /app/meinberlin/static
 
+RUN python manage.py compilemessages -v0
+
 # Collect static files so the WSGI server (granian) can serve them via
 # WhiteNoise; the dev server (runserver) is not used in containers.
 RUN python manage.py collectstatic --noinput

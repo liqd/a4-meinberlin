@@ -19,9 +19,9 @@
             <p>
                 {% translate "Please login to procceed. If you do not have an account, register and revisit the invitation link." %}
             </p>
-            <a class="btn btn--primary" href="{% url 'account_login' %}?next={% url 'project-moderator-invite-detail' invite_token=moderatorinvite.token %}">{% translate "Proceed to login" %}</a>
-            <a class="btn btn--light" href="{% url 'account_signup' %}">{% translate "Register" %}</a>
+            <a class="button button--full-width" href="{% url 'account_login' %}?next={% url 'project-moderator-invite-detail' invite_token=moderatorinvite.token %}">{% translate "Proceed to login" %}</a>
+            <a class="button button--light button--full-width u-spacer-top" href="{% url 'account_signup' %}">{% translate "Register" %}</a>
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock content %}

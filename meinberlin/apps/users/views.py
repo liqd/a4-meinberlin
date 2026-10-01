@@ -3,6 +3,7 @@ from urllib.parse import urlparse
 from allauth.account.views import LoginView
 from allauth.account.views import SignupView
 from django.conf import settings
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.generic import FormView
@@ -11,7 +12,40 @@ from guest_user.functions import maybe_create_guest_user
 from .forms import GuestCreateForm
 
 
-class GuestCreateView(FormView):
+class HtmxAuthMixin:
+    """Serve auth forms as fragments and close the modal via HX-Redirect.
+
+    When a request comes from htmx (``HX-Request`` header) the same page
+    template is rendered against an empty layout (``htmx_layout``) so only the
+    form fragment is returned. On a successful submit the view answers with
+    ``HX-Redirect`` so htmx performs a full page navigation (e.g. back to the
+    page the modal was opened from) instead of swapping the redirected page into
+    the modal.
+    """
+
+    htmx_layout = "partial.html"
+
+    def _is_htmx(self):
+        return self.request.headers.get("HX-Request") == "true"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self._is_htmx():
+            context["layout"] = self.htmx_layout
+        return context
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        if self._is_htmx():
+            location = getattr(response, "url", None)
+            if location is None:
+                location = response.get("Location")
+            if location:
+                return HttpResponse(status=204, headers={"HX-Redirect": str(location)})
+        return response
+
+
+class GuestCreateView(HtmxAuthMixin, FormView):
     """Terms + captcha gate; on submit start a guest session and redirect back."""
 
     form_class = GuestCreateForm
@@ -42,7 +76,7 @@ class GuestCreateView(FormView):
         return super().form_valid(form)
 
 
-class CustomSignupView(SignupView):
+class CustomSignupView(HtmxAuthMixin, SignupView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["enable_guest_users"] = getattr(
@@ -51,7 +85,7 @@ class CustomSignupView(SignupView):
         return context
 
 
-class CustomLoginView(LoginView):
+class CustomLoginView(HtmxAuthMixin, LoginView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["enable_guest_users"] = getattr(

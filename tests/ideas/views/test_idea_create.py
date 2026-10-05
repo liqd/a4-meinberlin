@@ -6,6 +6,7 @@ from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.ideas import models
 from meinberlin.apps.ideas import phases
+from meinberlin.test.helpers import GuestUserCreator
 
 
 @pytest.mark.django_db
@@ -158,6 +159,51 @@ def test_idea_contact_with_custom_email(client, phase_factory, user, category_fa
         idea = models.Idea.objects.get()
         assert idea.allow_contact is True
         assert idea.contact_email == custom_email
+
+
+@pytest.mark.django_db
+def test_guest_create_view_hides_contact_info(client, phase_factory, category_factory):
+    phase = phase_factory(phase_content=phases.IssuePhase())
+    module = phase.module
+    project = module.project
+    project.allow_guest_users = True
+    project.save()
+    category = category_factory(module=module)
+    guest = GuestUserCreator().create_guest_user()
+    url = reverse("meinberlin_ideas:idea-create", kwargs={"module_slug": module.slug})
+
+    with freeze_phase(phase):
+        client.force_login(guest)
+        response = client.get(url)
+        assert_template_response(response, "meinberlin_ideas/idea_create_form.html")
+        form = response.context["form"]
+        for field in (
+            "allow_contact",
+            "contact_email",
+            "contact_phone",
+            "contact_storage_consent",
+        ):
+            assert field not in form.fields
+        assert "Contact Information" not in response.content.decode()
+
+        response = client.post(
+            url,
+            {
+                "name": "Guest idea",
+                "description": "description",
+                "category": category.pk,
+                "allow_contact": True,
+                "contact_email": "guest-contact@example.com",
+                "contact_storage_consent": True,
+            },
+        )
+        assert response.status_code == 302
+        assert redirect_target(response) == "idea-detail"
+        idea = models.Idea.objects.get()
+        assert idea.creator == guest
+        assert idea.allow_contact is False
+        assert idea.contact_email == ""
+        assert idea.contact_phone == ""
 
 
 @pytest.mark.django_db

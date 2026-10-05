@@ -22,6 +22,10 @@ function disableContact (disable, disableTextfield) {
 
 function init () {
   const allowContact = document.getElementById('id_allow_contact')
+  if (!allowContact) {
+    // contact section is hidden (e.g. for guest users)
+    return
+  }
   const accountEmail = document.getElementById('id_contact_email_0_0')
   const otherEmail = document.getElementById('id_contact_email_0_1')
   const textInput = document.getElementById('id_contact_email_1')

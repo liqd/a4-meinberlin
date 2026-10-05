@@ -12,6 +12,10 @@ from . import models
 
 
 class ProposalForm(MapIdeaForm):
+    # Guests may provide a custom contact email so they can receive the
+    # official statement, so budgeting keeps its own guest handling below.
+    hide_contact_for_guests = False
+
     class Meta:
         model = models.Proposal
         fields = [

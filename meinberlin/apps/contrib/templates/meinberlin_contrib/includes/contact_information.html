@@ -1,5 +1,6 @@
 {% load i18n widget_tweaks %}
 
+{% if form.show_contact_info %}
 <h2>{% blocktranslate %}Contact Information{% endblocktranslate %}</h2>
 
 {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.allow_contact %}
@@ -25,3 +26,4 @@
         {% endif %}
     {% endif %}
 </div>
+{% endif %}

@@ -21,6 +21,14 @@
         // upload action (icon) on narrow/mobile fields.
         padding-left: 60px;
         padding-right: 60px;
+
+        // The image widget renders the dummy input as readonly, which Bootstrap
+        // shows as a gray, non-interactive field. Keep it white and clickable.
+        &[readonly] {
+            cursor: pointer;
+            background-color: $white;
+            color: $black;
+        }
     }
 }
 
@@ -64,7 +72,7 @@
 .upload-wrapper__preview {
     position: absolute;
     overflow: hidden;
-    background-color: $gray-lightest;
+    background-color: $gray-lighter;
     width: 50px;
     height: 33px;
     top: 5px;
@@ -72,36 +80,18 @@
     z-index: 1;
 }
 
-// Uppy-enhanced upload field on user-facing forms.
-// adhocracy4 renders the dummy text input as readonly and hides the native file
-// input (which used to cover the whole widget and make it clickable). Restore
-// the pre-Uppy look: a white, fully clickable field with the cloud icon on the
-// right and a gray empty preview box.
-.uppy-image-upload-field {
-    // readonly would otherwise render as a gray, non-interactive input.
-    .upload-wrapper .upload-wrapper__fields .form-control-file-dummy[readonly] {
-        cursor: pointer;
-        background-color: $white;
-        color: $black;
-    }
-
-    .upload-wrapper__preview {
-        background-color: $gray-lighter;
-    }
-
-    // Stretch the Uppy trigger over the whole input row so the entire field is
-    // clickable; only the cloud icon stays visible on the right.
-    .upload-wrapper__action.uppy-image-upload-field__trigger {
-        top: 0;
-        right: 0;
-        left: 0;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        height: 43px;
-        padding: 0 15px;
-        color: $black;
-        background-color: transparent;
-        border: 0;
-    }
+// Uppy stretches its trigger over the whole input row so the entire field is
+// clickable; only the cloud icon stays visible on the right.
+.uppy-image-upload-field__trigger {
+    top: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 43px;
+    padding: 0 15px;
+    color: $black;
+    background-color: transparent;
+    border: 0;
 }

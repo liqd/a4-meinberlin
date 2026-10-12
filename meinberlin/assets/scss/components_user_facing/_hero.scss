@@ -1,4 +1,6 @@
 $hero-height: 400px;
+$hero-max-width: 1920px;
+$hero-content-width: 490px;
 
 .hero {
   width: 100%;
@@ -7,7 +9,7 @@ $hero-height: 400px;
 }
 
 .hero__container {
-  max-width: $container-width;
+  max-width: $hero-max-width;
   min-height: $hero-height;
   margin: 0 auto;
   position: relative;
@@ -48,6 +50,7 @@ $hero-height: 400px;
 .hero__media {
   width: 100%;
   aspect-ratio: 3/2;
+  position: relative;
 }
 
 .hero__image {
@@ -74,13 +77,6 @@ $hero-height: 400px;
   }
 }
 
-// Adjust margin to prevent content from touching the edge at specific screen sizes
-@media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) {
-  .hero__content {
-    margin-left: 2em;
-  }
-}
-
 @media (min-width: $breakpoint-tablet) {
   .hero {
     width: 100vw;
@@ -97,18 +93,20 @@ $hero-height: 400px;
   }
 
   .hero__container {
-    display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-end;
   }
 
   .hero__content {
-    width: 50%;
-    min-height: 100%;
-    padding: 2.5em 0;
+    width: $hero-content-width;
+    min-width: 0;
+    min-height: $hero-height;
+    padding: 25px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    flex-grow: 1;
+    flex-grow: 0;
+    flex-shrink: 1;
   }
 
   .hero__title {
@@ -120,18 +118,19 @@ $hero-height: 400px;
     flex-grow: 1;
   }
 
-
-
   .hero__buttons {
     margin-top: auto;
   }
 
   .hero__media {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 50vw;
+    width: 50%;
+    min-height: $hero-height;
     aspect-ratio: auto;
+    flex: none;
+  }
+
+  .hero__figure {
+    position: absolute;
+    inset: 0;
   }
 }

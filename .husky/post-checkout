@@ -42,11 +42,16 @@ done
 
 # Build an isolated Python environment inside the worktree. The venv is never
 # symlinked or copied: local updates must not leak into the main checkout.
+# Run it in the background (own session) so `git worktree add` returns
+# immediately and Paseo does not hit its 120s git timeout. Progress is written
+# to the install log; the worktree is ready once the venv exists.
 if [ "${WORKTREE_SETUP:-1}" != "0" ] && [ ! -d venv ] && [ -f Makefile ]; then
   log="$(git rev-parse --git-dir)/worktree-install.log"
-  echo "worktree: running 'make install' (setup may take a while)..." >&2
-  if ! make install >"$log" 2>&1; then
-    echo "worktree: 'make install' failed; see $log" >&2
+  echo "worktree: starting 'make install' in the background (log: $log)..." >&2
+  if command -v setsid >/dev/null 2>&1; then
+    setsid make install >"$log" 2>&1 </dev/null &
+  else
+    nohup make install >"$log" 2>&1 </dev/null &
   fi
 fi
 

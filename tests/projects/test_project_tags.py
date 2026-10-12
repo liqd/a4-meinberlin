@@ -1,5 +1,6 @@
 import factory
 import pytest
+from django.utils import translation
 from django.utils.translation import ngettext
 
 from adhocracy4.polls import phases as voting_phases
@@ -9,6 +10,9 @@ from meinberlin.apps.budgeting import phases as budgeting_phases
 from meinberlin.apps.documents import phases as textreview_phases
 from meinberlin.apps.ideas import phases as idea_phases
 from meinberlin.apps.livequestions import phases as livequestion_phases
+from meinberlin.apps.projects.templatetags.meinberlin_project_tags import (
+    module_type_label,
+)
 from meinberlin.apps.projects.templatetags.meinberlin_project_tags import (
     render_module_insights,
 )
@@ -199,3 +203,19 @@ def test_render_module_insights(
         assert data["count"] == 3
         assert data["label"] == ngettext("Participant", "Participants", 3)
         assert data["icon"] == "fas fa-user-group"
+
+
+@pytest.mark.django_db
+def test_module_type_label(module_factory, django_assert_num_queries):
+    module_mbs = module_factory(blueprint_type="MBS")
+    module_po = module_factory(blueprint_type="PO")
+    module_kk = module_factory(blueprint_type="KK")
+    module_blank = module_factory(blueprint_type="")
+
+    with translation.override("en_GB"):
+        clear_query_cache()
+        with django_assert_num_queries(0):
+            assert module_type_label(module_mbs) == "Spatial Brainstorming"
+            assert module_type_label(module_po) == "Poll"
+            assert module_type_label(module_kk) == "kiezkasse"
+            assert module_type_label(module_blank) == ""

@@ -79,6 +79,28 @@ def has_ckeditor_content(value):
     return html_field_has_meaningful_content(value)
 
 
+@register.simple_tag
+def module_type_label(module):
+    """
+    Return the human readable, translated label of a module's blueprint type.
+
+    Falls back to the blueprint type display for types without a registered
+    blueprint (e.g. kiezkasse).
+    """
+    bp_type = getattr(module, "blueprint_type", None)
+    if not bp_type:
+        return ""
+
+    from adhocracy4.dashboard.blueprints import get_blueprints
+
+    type_to_title = {
+        blueprint.type: blueprint.title for _, blueprint in get_blueprints()
+    }
+    if bp_type in type_to_title:
+        return type_to_title[bp_type]
+    return module.get_blueprint_type_display
+
+
 @register.inclusion_tag("meinberlin_projects/includes/module-tile/module_insights.html")
 def render_module_insights(module):
     bp_type = module.blueprint_type

@@ -2,6 +2,10 @@
 {% project_tile_image project as project_image %}
 {% project_tile_image_copyright project as project_image_copyright %}
 <a href="{% url 'module-detail' module.slug %}" class="module-tile">
+    {% module_type_label module as module_type %}
+    {% if module_type %}
+        <span class="pill pill--info module-tile__pill">{{ module_type }}</span>
+    {% endif %}
     <p class="module-tile__title title-3">{{ module.name }}</p>
     <p class="module-tile__description">{{ module.description|truncatechars:240 }}</p>
     <span class="module-tile__insight">

@@ -21,6 +21,11 @@ a.module-tile {
     }
 }
 
+.module-tile__pill {
+    align-self: flex-start;
+    margin-bottom: .75em;
+}
+
 .module-tile__title {
     margin-top: 0;
 

@@ -21,6 +21,7 @@ register = template.Library()
 
 # Titles for blueprint types that still exist as modules but no longer have a
 # registered blueprint, so they are missing from get_blueprints().
+# Remove entries again once the blueprints are registered.
 LEGACY_BLUEPRINT_TITLES = {
     "PB3": _("Participatory budgeting (3 phase)"),
     "KK": _("kiezkasse"),

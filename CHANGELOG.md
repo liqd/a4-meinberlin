@@ -31,6 +31,11 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Full title on project detail page
 - Project group members can now delete projects that have no participant contributions; content authored by other users blocks deletion for non-initiator group members
 - Plan location (Vorhabenort) now supports line breaks: the input starts with one row and grows automatically, and the line breaks are shown on the plan detail page
+- Project detail page: project details box now shows bold labels with regular-weight values
+
+### Fixed
+
+- Project detail page: hero image container aligned to the styleguide grid, fixing text/image overlap and overly wide images on large screens
 
 ## v2606.3
 

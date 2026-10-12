@@ -15,7 +15,7 @@
           <i class="fas fa-globe" aria-hidden="true"></i>
           {% translate "Organisation" %}
         </p>
-        <strong class="organisation-name">{{ project.organisation }}</strong>
+        <span class="figures-box__value organisation-name">{{ project.organisation }}</span>
       </li>
       {% if project.topics %}
         <li class="figures-box__item">
@@ -38,7 +38,7 @@
             <i class="fas fa-map-location-dot" aria-hidden="true"></i>
             {% translate "District" %}
           </p>
-          <strong>{{ project.administrative_district }}</strong>
+          <span class="figures-box__value">{{ project.administrative_district }}</span>
         </li>
       {% endif %}
       <li class="figures-box__item">
@@ -46,7 +46,7 @@
           <i class="fas fa-circle" aria-hidden="true"></i>
           {% translate "Status" %}
         </p>
-        <strong>
+        <span class="figures-box__value">
           {% if project.phases.active_phases %}
             {% translate 'running' %}
           {% elif project.phases.future_phases %}
@@ -54,7 +54,7 @@
           {% else %}
             {% translate 'ended' %}
           {% endif %}
-        </strong>
+        </span>
       </li>
     </ul>
   </section>

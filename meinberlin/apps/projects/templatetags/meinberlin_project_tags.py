@@ -3,6 +3,7 @@ from urllib.parse import quote
 
 from django import template
 from django.db.models import Q
+from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext
 
 from adhocracy4.comments.models import Comment
@@ -17,6 +18,13 @@ from meinberlin.apps.mapideas.models import MapIdea
 from meinberlin.apps.projects.utils import html_field_has_meaningful_content
 
 register = template.Library()
+
+# Titles for blueprint types that still exist as modules but no longer have a
+# registered blueprint, so they are missing from get_blueprints().
+LEGACY_BLUEPRINT_TITLES = {
+    "PB3": _("Participatory budgeting (3 phase)"),
+    "KK": _("kiezkasse"),
+}
 
 
 @register.filter
@@ -84,8 +92,8 @@ def module_type_label(module):
     """
     Return the human readable, translated label of a module's blueprint type.
 
-    Falls back to the blueprint type display for types without a registered
-    blueprint (e.g. kiezkasse).
+    Types without a registered blueprint (e.g. legacy PB3 or kiezkasse) fall
+    back to a legacy title, otherwise to the blueprint type display.
     """
     bp_type = getattr(module, "blueprint_type", None)
     if not bp_type:
@@ -98,6 +106,8 @@ def module_type_label(module):
     }
     if bp_type in type_to_title:
         return type_to_title[bp_type]
+    if bp_type in LEGACY_BLUEPRINT_TITLES:
+        return LEGACY_BLUEPRINT_TITLES[bp_type]
     return module.get_blueprint_type_display
 
 

@@ -209,6 +209,7 @@ def test_render_module_insights(
 def test_module_type_label(module_factory, django_assert_num_queries):
     module_mbs = module_factory(blueprint_type="MBS")
     module_po = module_factory(blueprint_type="PO")
+    module_pb3 = module_factory(blueprint_type="PB3")
     module_kk = module_factory(blueprint_type="KK")
     module_blank = module_factory(blueprint_type="")
 
@@ -217,5 +218,6 @@ def test_module_type_label(module_factory, django_assert_num_queries):
         with django_assert_num_queries(0):
             assert module_type_label(module_mbs) == "Spatial Brainstorming"
             assert module_type_label(module_po) == "Poll"
+            assert module_type_label(module_pb3) == "Participatory budgeting (3 phase)"
             assert module_type_label(module_kk) == "kiezkasse"
             assert module_type_label(module_blank) == ""

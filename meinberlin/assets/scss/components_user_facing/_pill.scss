@@ -33,6 +33,11 @@
         color: $text-base;
         border: 1px solid currentcolor;
     }
+
+    &--module {
+        background-color: $gray-lighter;
+        color: $text-base;
+    }
 }
 
 .pill__list {

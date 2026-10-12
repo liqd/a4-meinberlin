@@ -9,6 +9,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
+- Module tiles on the project page show a pill with the module type
 - Registration: live password criteria checklist below the password field that marks requirements as met while typing
 - Header: New login/logout button next to the menu
 - Header: Login and registration open in a modal instead of navigating away, closing automatically on success

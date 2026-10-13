@@ -3,6 +3,12 @@
     @extend .aural;
 }
 
+// adhocracy4 templates use the Bootstrap helper .visually-hidden, which is
+// only defined in the dashboard bundle; alias it to the project's .aural.
+.visually-hidden {
+    @extend .aural;
+}
+
 // BO use of classes media query altered to suit linting
 @media print, (width >= 37.501rem) {
     .row--reverse-palm {

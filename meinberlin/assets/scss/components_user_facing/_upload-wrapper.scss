@@ -16,7 +16,19 @@
     }
 
     .form-control-file-dummy {
+        // 60px on the left clears the preview thumbnail, 60px on the right
+        // keeps the file name from running under the absolutely positioned
+        // upload action (icon) on narrow/mobile fields.
         padding-left: 60px;
+        padding-right: 60px;
+
+        // The image widget renders the dummy input as readonly, which Bootstrap
+        // shows as a gray, non-interactive field. Keep it white and clickable.
+        &[readonly] {
+            cursor: pointer;
+            background-color: $white;
+            color: $black;
+        }
     }
 }
 
@@ -60,10 +72,26 @@
 .upload-wrapper__preview {
     position: absolute;
     overflow: hidden;
-    background-color: $gray-lightest;
+    background-color: $gray-lighter;
     width: 50px;
     height: 33px;
     top: 5px;
     left: 5px;
     z-index: 1;
+}
+
+// Uppy stretches its trigger over the whole input row so the entire field is
+// clickable; only the cloud icon stays visible on the right.
+.uppy-image-upload-field__trigger {
+    top: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 43px;
+    padding: 0 15px;
+    color: $black;
+    background-color: transparent;
+    border: 0;
 }

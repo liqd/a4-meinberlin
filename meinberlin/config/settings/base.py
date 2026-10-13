@@ -252,7 +252,7 @@ MEDIA_URL = "/media/"
 IMAGE_ALIASES = {
     "*": {
         "max_size": 5 * 10**6,
-        "fileformats": ("image/png", "image/jpeg", "image/gif"),
+        "fileformats": ("image/png", "image/jpeg", "image/gif", "image/webp"),
     },
     "heroimage": {"min_resolution": (1000, 500)},
     "questionimage": {"min_resolution": (1500, 500)},
@@ -275,7 +275,7 @@ THUMBNAIL_ALIASES = {
     }
 }
 
-ALLOWED_UPLOAD_IMAGES = ("png", "jpeg", "gif")
+ALLOWED_UPLOAD_IMAGES = ("png", "jpeg", "gif", "webp")
 
 # default primary field for models without that field set
 

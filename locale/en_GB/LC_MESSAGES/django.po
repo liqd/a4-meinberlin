@@ -2765,6 +2765,10 @@ msgstr ""
 msgid "Participatory budgeting (2 phase)"
 msgstr "Participatory budgeting (2 phase)"
 
+#: meinberlin/apps/projects/templatetags/meinberlin_project_tags.py
+msgid "Participatory budgeting (3 phase)"
+msgstr "Participatory budgeting (3 phase)"
+
 #: meinberlin/apps/dashboard/blueprints.py:100
 msgid ""
 "In a first phase, participants can submit their own proposals, mark them on "

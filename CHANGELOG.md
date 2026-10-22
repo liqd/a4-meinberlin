@@ -16,6 +16,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Dashboard project preview modal with desktop/mobile device toggle
 - Guest participation: visitors can participate as one-time guests in projects that allow it, and later convert their guest account into a regular account keeping their contributions.
 - Image upload: Uppy-based modal upload with cropping and automatic resizing/compression for project, idea, map idea, proposal, plan and organisation logo images. The generic upload behaviour and templates live in adhocracy4; the design layer stays in this project.
+- Spatial brainstorming: selectable Berlin map layers (GDI WMS) shown on the participation map
 
 ### Changed
 

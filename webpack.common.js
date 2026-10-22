@@ -224,7 +224,8 @@ module.exports = {
         'leaflet/dist/leaflet.css',
         'maplibre-gl/dist/maplibre-gl.css',
         'leaflet-draw/dist/leaflet.draw.css',
-        'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js'
+        'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js',
+        './meinberlin/assets/js/map_layers.js'
       ],
       dependOn: 'adhocracy4'
     },

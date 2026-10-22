@@ -1,5 +1,6 @@
 import React from 'react'
 import django from 'django'
+import { WMSTileLayer } from 'react-leaflet'
 import BaseMap from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/Map'
 import MarkerClusterLayer
   from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/MarkerClusterLayer'
@@ -13,39 +14,62 @@ const translations = {
   skipMap: django.gettext('Skip map')
 }
 
+const MapLayerOverlays = ({ layers = [] }) => (
+  <>
+    {layers.map((layer) => (
+      <WMSTileLayer
+        key={layer.id || layer.url + layer.layer}
+        url={layer.url}
+        layers={layer.layer}
+        format="image/png"
+        transparent
+        opacity={layer.opacity ?? 0.7}
+        attribution={layer.attribution}
+        className="map-layer-overlay"
+      />
+    ))}
+  </>
+)
+
 /**
  * Creates a Map component.
  *
  * @param {object} props - The properties for the Map component.
  * @param {string} props.id - The unique identifier for the Map component.
  * @param {string} props.title - The title for the Map component.
+ * @param {Array<object>} props.layers - Optional WMS overlays.
  * @returns {React.Element} - The rendered Map component.
  * @throws {Error} - If id is not defined.
  */
-export const Map = React.forwardRef(function Map ({ id, title, ...props }, ref) {
-  if (!id) {
-    throw new Error('id must be defined when using Map')
-  }
+export const Map = React.forwardRef(
+  function Map ({ id, title, layers, children, ...props }, ref) {
+    if (!id) {
+      throw new Error('id must be defined when using Map')
+    }
 
-  return (
-    <div className="modul-geomap" id={id}>
-      {title && <h2 className="title">{title}</h2>}
-      <div className="geomap-main">
-        <p className="skipmap">
-          <span className="aural">{translations.beginningMap}</span>
-          <a href={'#' + id + '_skipmap'}>{translations.skipMap}</a>
-        </p>
-        <div className="geomap-container">
-          <BaseMap {...props} ref={ref} />
+    return (
+      <div className="modul-geomap" id={id}>
+        {title && <h2 className="title">{title}</h2>}
+        <div className="geomap-main">
+          <p className="skipmap">
+            <span className="aural">{translations.beginningMap}</span>
+            <a href={'#' + id + '_skipmap'}>{translations.skipMap}</a>
+          </p>
+          <div className="geomap-container">
+            <BaseMap {...props} ref={ref}>
+              <MapLayerOverlays layers={layers} />
+              {children}
+            </BaseMap>
+          </div>
+        </div>
+
+        <div id={id + '_skipmap'}>
+          <p className="aural">{translations.endMap}</p>
         </div>
       </div>
-
-      <div id={id + '_skipmap'}>
-        <p className="aural">{translations.endMap}</p>
-      </div>
-    </div>
-  )
-})
+    )
+  }
+)
 
 /**
  * Represents a map component with markers.

@@ -46,9 +46,6 @@ class ProposalForm(MapIdeaForm):
             ),
         }
 
-    class Media:
-        js = ("budgeting_disable_contact.js",)
-
     def __init__(self, *args, **kwargs):
         user = kwargs.pop("user", None)
         super().__init__(*args, **kwargs)

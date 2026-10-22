@@ -2729,3 +2729,11 @@ msgstr ""
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "play video"
 msgstr "Video abspielen"
+
+#: meinberlin/assets/js/map_layers.js
+msgid "Map layer added"
+msgstr "Kartenebene hinzugefügt"
+
+#: meinberlin/assets/js/map_layers.js
+msgid "Map layer removed"
+msgstr "Kartenebene entfernt"

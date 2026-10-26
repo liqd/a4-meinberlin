@@ -1,11 +1,17 @@
 import React from 'react'
 import django from 'django'
-import { WMSTileLayer } from 'react-leaflet'
+import { GeoJSON, WMSTileLayer, useMap } from 'react-leaflet'
 import BaseMap from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/Map'
 import MarkerClusterLayer
   from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/MarkerClusterLayer'
 import GeoJsonMarker
   from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/GeoJsonMarker'
+import {
+  getLayerMode,
+  isVectorLayer,
+  loadVectorFeatureCollection,
+  vectorStyle
+} from '../../../assets/js/map_layers_vector'
 import { ItemPopup } from './ItemPopup'
 
 const translations = {
@@ -14,22 +20,73 @@ const translations = {
   skipMap: django.gettext('Skip map')
 }
 
-const MapLayerOverlays = ({ layers = [] }) => (
-  <>
-    {layers.map((layer) => (
-      <WMSTileLayer
-        key={layer.id || layer.url + layer.layer}
-        url={layer.url}
-        layers={layer.layer}
-        format="image/png"
-        transparent
-        opacity={layer.opacity ?? 0.7}
-        attribution={layer.attribution}
-        className="map-layer-overlay"
-      />
-    ))}
-  </>
-)
+const VectorLayer = ({ layer }) => {
+  const map = useMap()
+  const [data, setData] = React.useState(null)
+
+  React.useEffect(() => {
+    let controller = null
+
+    const load = () => {
+      controller?.abort()
+      controller = new AbortController()
+      loadVectorFeatureCollection(layer, map.getBounds().toBBoxString(), controller.signal)
+        .then((collection) => {
+          if (!controller.signal.aborted) {
+            setData(collection)
+          }
+        })
+        .catch((error) => {
+          if (error.name !== 'AbortError') {
+            console.warn('Could not load map layer', layer.name, error)
+          }
+        })
+    }
+
+    load()
+    map.on('moveend', load)
+
+    return () => {
+      controller?.abort()
+      map.off('moveend', load)
+    }
+  }, [map, layer.id])
+
+  if (!data) {
+    return null
+  }
+
+  return (
+    <GeoJSON
+      data={data}
+      style={(feature) => vectorStyle(layer, feature)}
+      className="map-layer-overlay"
+    />
+  )
+}
+
+const MapLayerOverlays = ({ layers = [] }) => {
+  const mode = getLayerMode()
+
+  return (
+    <>
+      {layers.map((layer) => (
+        mode !== 'wms' && isVectorLayer(layer)
+          ? <VectorLayer key={layer.id || layer.wfsUrl} layer={layer} />
+          : <WMSTileLayer
+              key={layer.id || layer.url + layer.layer}
+              url={layer.url}
+              layers={layer.layer}
+              format="image/png"
+              transparent
+              opacity={layer.opacity ?? 0.7}
+              attribution={layer.attribution}
+              className="map-layer-overlay"
+            />
+      ))}
+    </>
+  )
+}
 
 /**
  * Creates a Map component.

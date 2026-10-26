@@ -10,7 +10,19 @@ jest.mock('react-leaflet', () => ({
       data-layer={props.layers}
       data-classname={props.className}
     />
-  )
+  ),
+  GeoJSON: (props) => (
+    <div
+      data-testid="geojson-layer"
+      data-features={props.data ? props.data.features.length : 0}
+      data-classname={props.className}
+    />
+  ),
+  useMap: () => ({
+    getBounds: () => ({ toBBoxString: () => '13.3,52.4,13.5,52.6' }),
+    on: jest.fn(),
+    off: jest.fn()
+  })
 }))
 jest.mock('adhocracy4/adhocracy4/maps_react/static/a4maps_react/Map', () => ({
   __esModule: true,

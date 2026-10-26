@@ -35,7 +35,7 @@ class MapPreset(models.Model):
 
 
 class MapLayer(models.Model):
-    """A map layer from an external geo service (currently WMS only)."""
+    """A map layer from an external geo service (WMS, optionally WFS)."""
 
     slug = models.SlugField(
         max_length=128,
@@ -56,6 +56,24 @@ class MapLayer(models.Model):
         validators=[MinValueValidator(0.0), MaxValueValidator(1.0)],
         verbose_name=_("Opacity"),
     )
+    wfs_url = models.URLField(
+        max_length=500,
+        blank=True,
+        verbose_name=_("Vector service URL"),
+        help_text=_("Optional WFS endpoint to render the layer as vector data."),
+    )
+    wfs_layer_name = models.CharField(
+        max_length=255,
+        blank=True,
+        verbose_name=_("Vector layer name"),
+        help_text=_("Feature type of the WFS request."),
+    )
+    wfs_property = models.CharField(
+        max_length=64,
+        blank=True,
+        verbose_name=_("Vector style property"),
+        help_text=_("Attribute used to colour the vector features."),
+    )
     order = models.PositiveIntegerField(default=0, verbose_name=_("Order"))
 
     class Meta:
@@ -74,6 +92,9 @@ class MapLayer(models.Model):
             "layer": self.layer_name,
             "attribution": self.attribution,
             "opacity": self.opacity,
+            "wfsUrl": self.wfs_url,
+            "wfsLayer": self.wfs_layer_name,
+            "wfsProperty": self.wfs_property,
         }
 
 

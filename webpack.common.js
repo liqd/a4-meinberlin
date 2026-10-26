@@ -381,6 +381,14 @@ module.exports = {
       patterns: [{
         from: './meinberlin/assets/images/**/*',
         to: 'images/[name][ext]'
+      }, {
+        // Leaflet references the marker shadow from JS only, so the file is
+        // never emitted by the CSS loader and would 404 on every map.
+        from: './node_modules/leaflet/dist/images/marker-shadow.png',
+        to: 'images/marker-shadow.png'
+      }, {
+        from: './node_modules/leaflet/dist/images/marker-icon-2x.png',
+        to: 'images/marker-icon-2x.png'
       }]
     })
   ]

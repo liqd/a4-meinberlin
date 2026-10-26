@@ -222,72 +222,13 @@
   },
   {
     "model": "a4modules.item",
-    "pk": 1,
-    "fields": {
-      "created": "2023-01-26T09:43:37.498Z",
-      "modified": null,
-      "creator": 1,
-      "module": 13
-    }
-  },
-  {
-    "model": "a4modules.item",
-    "pk": 2,
-    "fields": {
-      "created": "2023-01-26T09:43:53.096Z",
-      "modified": null,
-      "creator": 1,
-      "module": 13
-    }
-  },
-  {
-    "model": "a4modules.item",
-    "pk": 3,
-    "fields": {
-      "created": "2023-01-26T09:44:09.944Z",
-      "modified": null,
-      "creator": 1,
-      "module": 13
-    }
-  },
-  {
-    "model": "a4modules.item",
-    "pk": 4,
-    "fields": {
-      "created": "2023-01-26T09:46:36.184Z",
-      "modified": null,
-      "creator": 1,
-      "module": 14
-    }
-  },
-  {
-    "model": "a4modules.item",
-    "pk": 5,
-    "fields": {
-      "created": "2023-01-26T09:46:55.849Z",
-      "modified": null,
-      "creator": 1,
-      "module": 14
-    }
-  },
-  {
-    "model": "a4modules.item",
-    "pk": 6,
-    "fields": {
-      "created": "2023-01-26T09:47:19.607Z",
-      "modified": null,
-      "creator": 1,
-      "module": 14
-    }
-  },
-  {
-    "model": "a4modules.item",
     "pk": 7,
     "fields": {
       "created": "2023-01-26T09:49:19.288Z",
       "modified": null,
       "creator": 1,
-      "module": 15
+      "module": 15,
+      "polymorphic_ctype": ["meinberlin_documents", "chapter"]
     }
   },
   {
@@ -297,7 +238,8 @@
       "created": "2023-01-26T09:49:57.522Z",
       "modified": null,
       "creator": 1,
-      "module": 16
+      "module": 16,
+      "polymorphic_ctype": ["a4polls", "poll"]
     }
   },
   {
@@ -307,7 +249,8 @@
       "created": "2023-01-26T09:53:57.703Z",
       "modified": null,
       "creator": 1,
-      "module": 17
+      "module": 17,
+      "polymorphic_ctype": ["meinberlin_livequestions", "livestream"]
     }
   }
 ]

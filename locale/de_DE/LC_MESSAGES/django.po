@@ -6247,3 +6247,55 @@ msgstr "Erfüllt"
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/form_password_criteria.html
 msgid "Not met"
 msgstr "Nicht erfüllt"
+
+#: meinberlin/apps/maps/models.py
+msgid "Identifier"
+msgstr "Kennung"
+
+#: meinberlin/apps/maps/models.py
+msgid "Stable identifier, used to reference the layer."
+msgstr "Stabile Kennung zur Referenzierung der Ebene."
+
+#: meinberlin/apps/maps/models.py
+msgid "Service URL"
+msgstr "Dienst-URL"
+
+#: meinberlin/apps/maps/models.py
+msgid "Layer name"
+msgstr "Ebenenname"
+
+#: meinberlin/apps/maps/models.py
+msgid "Attribution"
+msgstr "Quellenangabe"
+
+#: meinberlin/apps/maps/models.py
+msgid "Opacity"
+msgstr "Deckkraft"
+
+#: meinberlin/apps/maps/models.py
+msgid "Order"
+msgstr "Reihenfolge"
+
+#: meinberlin/apps/maps/models.py
+msgid "Map layer"
+msgstr "Kartenebene"
+
+#: meinberlin/apps/maps/models.py
+msgid "Module map layer selection"
+msgstr "Kartenebenen-Auswahl des Moduls"
+
+#: meinberlin/apps/maps/models.py
+msgid "Module map layer selections"
+msgstr "Kartenebenen-Auswahlen der Module"
+
+#: meinberlin/apps/maps/dashboard.py
+msgid "Map layers"
+msgstr "Kartenebenen"
+
+#: meinberlin/apps/maps/dashboard.py
+msgid ""
+"Select the map layers that should be shown on the participation map. "
+"Multiple layers can be combined."
+msgstr ""
+"Wählen Sie die Kartenebenen aus, die auf der Beteiligungskarte angezeigt "
+"werden sollen. Mehrere Ebenen können kombiniert werden."

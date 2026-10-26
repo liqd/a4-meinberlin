@@ -224,7 +224,8 @@ module.exports = {
         'leaflet/dist/leaflet.css',
         'maplibre-gl/dist/maplibre-gl.css',
         'leaflet-draw/dist/leaflet.draw.css',
-        'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js'
+        'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js',
+        './meinberlin/assets/js/map_layers.js'
       ],
       dependOn: 'adhocracy4'
     },
@@ -380,6 +381,14 @@ module.exports = {
       patterns: [{
         from: './meinberlin/assets/images/**/*',
         to: 'images/[name][ext]'
+      }, {
+        // Leaflet references the marker shadow from JS only, so the file is
+        // never emitted by the CSS loader and would 404 on every map.
+        from: './node_modules/leaflet/dist/images/marker-shadow.png',
+        to: 'images/marker-shadow.png'
+      }, {
+        from: './node_modules/leaflet/dist/images/marker-icon-2x.png',
+        to: 'images/marker-icon-2x.png'
       }]
     })
   ]

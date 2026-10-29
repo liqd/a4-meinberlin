@@ -38,6 +38,11 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Fixed
 
 - Project detail page: hero image container aligned to the styleguide grid, fixing text/image overlap and overly wide images on large screens
+- Project timeline: offline events are labelled "Veranstaltung" and dated with "am"
+- Project edit log: multi-line entries no longer overlap the following entry
+- Homepage: login and registration buttons use their intended styles
+- Idea, map idea and proposal detail pages: remove the redundant back button
+- Notifications: translate "link to event" and "at" in event notifications
 
 ## v2606.3
 

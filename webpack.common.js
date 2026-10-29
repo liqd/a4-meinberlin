@@ -98,6 +98,10 @@ module.exports = {
     init_project_preview_modal: {
       import: './meinberlin/apps/dashboard/assets/init_project_preview_modal.js'
     },
+    moderation: {
+      import: 'adhocracy4/adhocracy4/moderation/assets/moderation.js',
+      dependOn: 'adhocracy4'
+    },
     react_map_teaser: {
       import: './meinberlin/react/plans/react_map_teaser.jsx'
     },

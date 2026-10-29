@@ -1,10 +1,4 @@
-<a href="{{ value.link }}" class="button button--fullwidth-palm{% spaceless %}
-{% if value.style == "fulltone" %}
-  button--light button--fulltone
-  {% elif value.style == "light" %}
-  button--ghost button--light
-{% endif %}
-{% endspaceless %}"
+<a href="{{ value.link }}" class="button button--fullwidth-palm{% if value.style == "fulltone" %} button--light button--fulltone{% elif value.style == "light" %} button--light{% endif %}"
 >
   {{ value.link_text }}
 </a>

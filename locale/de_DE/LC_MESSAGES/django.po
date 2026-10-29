@@ -6247,3 +6247,136 @@ msgstr "Erfüllt"
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/form_password_criteria.html
 msgid "Not met"
 msgstr "Nicht erfüllt"
+
+#: adhocracy4/moderation
+msgid "Review incoming contributions, set their processing status and give official feedback."
+msgstr "Eingehende Beiträge prüfen, ihren Bearbeitungsstatus setzen und offizielles Feedback geben."
+
+#: adhocracy4/moderation
+msgid "Open moderation"
+msgstr "Moderation öffnen"
+
+#: adhocracy4/moderation
+msgid "You are not moderating any projects yet."
+msgstr "Sie moderieren noch keine Projekte."
+
+#: adhocracy4/moderation
+msgid "Back to moderation"
+msgstr "Zurück zur Moderation"
+
+#: adhocracy4/moderation
+msgid "Read status"
+msgstr "Lesestatus"
+
+#: adhocracy4/moderation
+msgid "Unread"
+msgstr "Ungelesen"
+
+#: adhocracy4/moderation
+msgid "Read"
+msgstr "Gelesen"
+
+#: adhocracy4/moderation
+msgid "Content type"
+msgstr "Inhaltstyp"
+
+#: adhocracy4/moderation
+msgid "Ideas"
+msgstr "Ideen"
+
+#: adhocracy4/moderation
+msgid "Sort by"
+msgstr "Sortieren nach"
+
+#: adhocracy4/moderation
+msgid "Oldest"
+msgstr "Älteste"
+
+#: adhocracy4/moderation
+msgid "Apply"
+msgstr "Anwenden"
+
+#: adhocracy4/moderation
+msgid "There are no contributions matching your filter."
+msgstr "Es gibt keine Beiträge, die Ihrem Filter entsprechen."
+
+#: adhocracy4/moderation
+msgid "Open image in full size"
+msgstr "Bild in voller Größe öffnen"
+
+#: adhocracy4/moderation
+msgid "Blocked"
+msgstr "Blockiert"
+
+#: adhocracy4/moderation
+msgid "Highlighted"
+msgstr "Hervorgehoben"
+
+#: adhocracy4/moderation
+msgid "Show full text"
+msgstr "Vollständigen Text anzeigen"
+
+#: adhocracy4/moderation
+msgid "Show less"
+msgstr "Weniger anzeigen"
+
+#: adhocracy4/moderation
+msgid "More actions"
+msgstr "Weitere Aktionen"
+
+#: adhocracy4/moderation
+msgid "Mark as unread"
+msgstr "Als ungelesen markieren"
+
+#: adhocracy4/moderation
+msgid "Mark as read"
+msgstr "Als gelesen markieren"
+
+#: adhocracy4/moderation
+msgid "Add feedback"
+msgstr "Feedback hinzufügen"
+
+#: adhocracy4/moderation
+msgid "Open contribution"
+msgstr "Beitrag öffnen"
+
+#: adhocracy4/moderation
+msgid "Image in full size"
+msgstr "Bild in voller Größe"
+
+#: adhocracy4/moderation
+msgid "Previous page"
+msgstr "Vorherige Seite"
+
+#: adhocracy4/moderation
+msgid "Next page"
+msgstr "Nächste Seite"
+
+#: adhocracy4/moderation
+#, python-format
+msgid "Page %(current)s of %(total)s"
+msgstr "Seite %(current)s von %(total)s"
+
+#: adhocracy4/moderation
+msgid "Marked as read"
+msgstr "Als gelesen markiert"
+
+#: adhocracy4/moderation
+msgid "Marked as unread"
+msgstr "Als ungelesen markiert"
+
+#: adhocracy4/moderation
+msgid "Official feedback"
+msgstr "Offizielles Feedback"
+
+#: adhocracy4/moderation
+msgid "No status"
+msgstr "Kein Status"
+
+#: adhocracy4/moderation
+msgid "Edit feedback"
+msgstr "Feedback bearbeiten"
+
+#: adhocracy4/moderation
+msgid "Feedback saved"
+msgstr "Feedback gespeichert"

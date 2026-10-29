@@ -1,4 +1,4 @@
-{% load i18n guest_user %}
+{% load i18n guest_user moderation_tags %}
 
 <nav class="hamburger-nav hamburger-nav--primary js-navigation-primary" id="navigation-primary">
     <div class="hamburger-nav__tree-wrapper js-navigation-tree-wrapper">
@@ -17,6 +17,16 @@
                         {% if notifications_count > 0 %}
                             <span class="hamburger-nav__badge">{{ notifications_count }}</span>
                         {% endif %}
+                    </a>
+                </li>
+            {% endif %}
+
+            {% user_moderates_any_project request.user as has_moderation %}
+            {% if has_moderation %}
+                {% url 'a4moderation:dashboard' as moderation_url %}
+                <li class="hamburger-nav__item {% if request.path == moderation_url %}hamburger-nav__item--active{% endif %}">
+                    <a href="{{ moderation_url }}" class="hamburger-nav__link">
+                        {% translate 'Moderation' %}
                     </a>
                 </li>
             {% endif %}

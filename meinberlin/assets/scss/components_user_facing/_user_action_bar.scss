@@ -29,6 +29,13 @@
     margin-bottom: 0.5rem;
     width: 100%;
 
+    &--fulltone {
+        // Compensate the 2px border of the adjacent light button so both
+        // labels share the same vertical position.
+        border-top: 2px solid transparent;
+        border-bottom: 2px solid transparent;
+    }
+
     &:last-child {
         margin-bottom: 0;
     }

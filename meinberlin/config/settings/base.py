@@ -93,6 +93,7 @@ INSTALLED_APPS = (
     "adhocracy4.labels",
     "adhocracy4.maps",
     "adhocracy4.maps_react",
+    "adhocracy4.moderation",
     "adhocracy4.modules",
     "adhocracy4.organisations",
     "adhocracy4.phases",
@@ -492,6 +493,11 @@ A4_REPORTABLES = (
     ("meinberlin_mapideas", "mapidea"),
     ("meinberlin_budgeting", "proposal"),
     ("meinberlin_kiezkasse", "proposal"),
+)
+
+A4_MODERATION_ITEMABLES = (
+    ("meinberlin_ideas", "idea"),
+    ("meinberlin_mapideas", "mapidea"),
 )
 
 A4_ACTIONABLES = (

@@ -9,6 +9,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
+- Moderation dashboard for project moderators: review comments and ideas, mark them as read, filter and sort the list and edit status and official feedback inline
 - Module tiles on the project page show a pill with the module type
 - Registration: live password criteria checklist below the password field that marks requirements as met while typing
 - Header: New login/logout button next to the menu

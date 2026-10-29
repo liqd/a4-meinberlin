@@ -21,6 +21,7 @@ from wagtail.contrib.sitemaps.sitemap_generator import Sitemap as WagtailSitemap
 
 from adhocracy4.api import routers as a4routers
 from adhocracy4.comments_async.api import CommentViewSet
+from adhocracy4.moderation import urls as moderation_urls
 from adhocracy4.polls.api import PollViewSet
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
@@ -122,6 +123,7 @@ sitemaps = {
 urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("dashboard/", include("meinberlin.apps.dashboard.urls")),
+    path("moderation/", include(moderation_urls)),
     path("account/", include("meinberlin.apps.account.urls")),
     path("account/", include("meinberlin.apps.kiezradar.urls")),
     path("embed/", include("meinberlin.apps.embed.urls")),

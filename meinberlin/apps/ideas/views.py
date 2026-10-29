@@ -236,19 +236,23 @@ class AbstractIdeaModerateView(
         if not feedback_text.pk:
             feedback_text.creator = self.request.user
 
+        content_changed = (
+            "moderator_status" in forms["moderateable"].changed_data
+            or "feedback_text" in forms["feedback_text"].changed_data
+        )
+
         with transaction.atomic():
             feedback_text.save()
             moderateable.moderator_feedback_text = feedback_text
+            if content_changed:
+                moderateable.is_reviewed = True
             moderateable.save()
             # FIXME: remove "if"-condition when form used for all ideas
             if remark:
                 remark.item = moderateable
                 remark.save()
 
-            if (
-                "moderator_status" in forms["moderateable"].changed_data
-                or "feedback_text" in forms["feedback_text"].changed_data
-            ):
+            if content_changed:
                 NotifyCreatorOrContactOnModeratorFeedback.send(self.object)
         return objects
 

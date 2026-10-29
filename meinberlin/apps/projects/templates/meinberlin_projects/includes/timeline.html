@@ -1,4 +1,4 @@
-{% load contrib_tags i18n static %}
+{% load contrib_tags i18n static meinberlin_project_tags %}
 
 {% if project.display_timeline %}
     <section class="timeline" aria-labelledby="timeline-heading">
@@ -22,15 +22,17 @@
             {% for obj in project.participation_dates %}
                 {% is_in_past obj.date as in_past %}
                 {% if obj.type == 'module' %}
+                    {% with event_module=obj.modules|is_event_module_cluster %}
                     <li class="timeline__step {% if in_past %}timeline__step--completed{% endif %}">
                         <div class="timeline__indicator" aria-hidden="true"></div>
                         <div class="timeline__details">
                             <h3 class="timeline__title">
-                                <time class="timeline__date" datetime="{{ obj.date|date:'c' }}">{% translate 'from' %} {{ obj.date|date:'DATE_FORMAT' }}</time>
+                                <time class="timeline__date" datetime="{{ obj.date|date:'c' }}">{% if event_module %}{% translate 'on' %}{% else %}{% translate 'from' %}{% endif %} {{ obj.date|date:'DATE_FORMAT' }}</time>
                             </h3>
-                            <div class="timeline__type">{{ obj.title }}</div>
+                            <div class="timeline__type">{% if event_module %}{% translate 'Offline Event' %}{% else %}{{ obj.title }}{% endif %}</div>
                         </div>
                     </li>
+                    {% endwith %}
                 {% else %}
                     <li class="timeline__step {% if in_past %}timeline__step--completed{% endif %}">
                         <div class="timeline__indicator" aria-hidden="true"></div>

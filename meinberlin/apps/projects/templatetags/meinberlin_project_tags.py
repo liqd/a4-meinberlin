@@ -28,6 +28,16 @@ LEGACY_BLUEPRINT_TITLES = {
 }
 
 
+register.filter("is_event_module", is_event_module)
+
+
+@register.filter
+def is_event_module_cluster(modules):
+    """Only treat a module cluster as an event if every module is an event."""
+    modules = list(modules)
+    return bool(modules) and all(is_event_module(module) for module in modules)
+
+
 @register.filter
 def tel_uri(phone):
     """

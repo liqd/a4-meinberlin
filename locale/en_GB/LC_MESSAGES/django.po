@@ -1440,9 +1440,9 @@ msgstr ""
 "Whether guest users may participate in this project. Only applies when guest "
 "users are enabled for the platform."
 
-#: adhocracy4/projects/utils.py:46
-msgid "{}. Online Participation"
-msgstr "{}. Online Participation"
+#: adhocracy4/projects/utils.py:58
+msgid "{}. Participation"
+msgstr "{}. Participation"
 
 #: adhocracy4/projects/utils.py:55
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_participation.html:3

@@ -28,6 +28,36 @@ def test_tel_uri_encodes_spaces_and_preserves_plus():
 
 
 @pytest.mark.django_db
+def test_is_event_module(module_factory):
+    event_module = module_factory(blueprint_type="OE")
+    regular_module = module_factory(blueprint_type="IC")
+    template = (
+        "{% load meinberlin_project_tags %}"
+        "{% if module|is_event_module %}event{% else %}regular{% endif %}"
+    )
+
+    assert render_template(template, {"module": event_module}) == "event"
+    assert render_template(template, {"module": regular_module}) == "regular"
+
+
+@pytest.mark.django_db
+def test_is_event_module_cluster(module_factory):
+    event_module = module_factory(blueprint_type="OE")
+    regular_module = module_factory(blueprint_type="IC")
+    template = (
+        "{% load meinberlin_project_tags %}"
+        "{% if modules|is_event_module_cluster %}event{% else %}regular{% endif %}"
+    )
+
+    assert render_template(template, {"modules": [event_module]}) == "event"
+    assert (
+        render_template(template, {"modules": [event_module, regular_module]})
+        == "regular"
+    )
+    assert render_template(template, {"modules": []}) == "regular"
+
+
+@pytest.mark.django_db
 def test_project_url(project, external_project_factory, bplan_factory):
     external_project = external_project_factory(url=factory.Faker("url"))
     bplan = bplan_factory(url=factory.Faker("url"))

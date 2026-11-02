@@ -125,36 +125,38 @@
 
     &--result {
         cursor: default;
+        background: $white;
 
         .poll-choice__label {
             cursor: default;
         }
 
         &:hover {
-            background: $message-light-blue;
+            background: $white;
             border-color: $border-color;
         }
 
         &.poll-choice--checked:hover {
-            background: $message-light-blue;
+            background: $white;
             border-color: $border-color;
         }
     }
 
     &--review {
+        background: $white;
         border-color: $border-color;
 
         &:hover {
-            background: $message-light-blue;
+            background: $white;
             border-color: $border-color;
         }
 
         &.poll-choice--checked {
-            background: $message-light-blue;
+            background: $white;
             border-color: $border-color;
 
             &:hover {
-                background: $message-light-blue;
+                background: $white;
                 border-color: $border-color;
             }
         }
@@ -167,12 +169,12 @@
     bottom: 0;
     left: 0;
     z-index: 0;
-    background-color: rgba($secondary, 0.08);
+    background-color: $gray-lightest;
     transition: width 0.3s ease;
 }
 
 .poll-choice--checked .poll-choice__fill {
-    background-color: rgba($secondary, 0.12);
+    background-color: $message-light-blue;
 }
 
 .poll-choice__container {

@@ -479,6 +479,12 @@
     min-height: 3 * $spacer;
 }
 
+.poll-slider__label {
+    margin-bottom: 0.25rem;
+    color: $gray;
+    font-size: $font-size-sm;
+}
+
 .poll-slider__answer {
     overflow-wrap: break-word;
 
@@ -637,6 +643,7 @@
     }
 }
 
-body.poll-answering .poll-comments-section {
+body.poll-answering .poll-comments-section,
+body.poll-answering .phase-info {
     display: none;
 }

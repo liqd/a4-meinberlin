@@ -902,7 +902,7 @@ msgstr ""
 #: adhocracy4/polls/static/PollDetail/PollChoice.jsx:7
 #: adhocracy4/polls/static/PollDetail/PollChoice.jsx:7
 msgid "Multiple answers are possible."
-msgstr "Mehrfachantworten sind möglich."
+msgstr "Mehrere Antworten sind möglich."
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:17
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:17
@@ -2937,3 +2937,15 @@ msgid "Answers to this question will be visible only to the initiators of this p
 msgstr ""
 "Die Antworten auf diese Frage sind nur für die Initiator*innen dieses "
 "Projekts sichtbar."
+
+#: adhocracy4/polls/static/PollDetail/PollChoice.jsx
+msgid "Please select only one answer"
+msgstr "Bitte nur eine Antwort wählen"
+
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx
+msgid "Start poll"
+msgstr "Umfrage beginnen"
+
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx
+msgid "Complete answer"
+msgstr "Vollständige Antwort"

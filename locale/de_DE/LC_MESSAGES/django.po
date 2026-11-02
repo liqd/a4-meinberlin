@@ -6247,3 +6247,7 @@ msgstr "Erfüllt"
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/form_password_criteria.html
 msgid "Not met"
 msgstr "Nicht erfüllt"
+
+#: adhocracy4/polls/templates/a4polls/poll_detail.html
+msgid "Start poll"
+msgstr "Umfrage beginnen"

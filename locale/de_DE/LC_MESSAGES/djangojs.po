@@ -728,19 +728,21 @@ msgstr "Offene Frage"
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:16
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:16
 msgid "Voting Options"
-msgstr "Weblate"
+msgstr "Abstimmungsoptionen"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:17
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:17
 msgid "Allow unregistered users to vote"
-msgstr "weblate"
+msgstr "Nicht registrierten Nutzer*innen die Teilnahme an der Abstimmung erlauben"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:18
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:18
 msgid ""
 "Enable this option to allow users who are not registered to participate in "
 "the voting process."
-msgstr "weblate."
+msgstr ""
+"Aktivieren Sie diese Option, um auch nicht registrierten Nutzer*innen die "
+"Teilnahme an der Abstimmung zu ermöglichen."
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:19
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:19
@@ -756,7 +758,7 @@ msgstr "Die Umfrage wurde aktualisiert."
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:184
 msgid "The poll could not be updated. Please check the data you entered again."
 msgstr ""
-"Ihre Antwort konnte nicht gespeichert werden. Bitte überprüfen Sie Ihre "
+"Die Umfrage konnte nicht aktualisiert werden. Bitte überprüfen Sie Ihre "
 "Eingabe."
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:257
@@ -2729,3 +2731,106 @@ msgstr ""
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "play video"
 msgstr "Video abspielen"
+
+#: adhocracy4/polls/static/PollDashboard/PollManagement.jsx
+msgid "Options"
+msgstr "Optionen"
+
+#: adhocracy4/polls/static/PollDashboard/PollManagement.jsx
+msgid "Hide results until participation is over"
+msgstr "Ergebnisse bis zum Ende der Beteiligung ausblenden"
+
+#: adhocracy4/polls/static/PollDashboard/PollManagement.jsx
+msgid ""
+"Enable this option to hide the poll results from participants until the "
+"participation phase has ended."
+msgstr ""
+"Aktivieren Sie diese Option, um die Umfrageergebnisse vor den Teilnehmenden "
+"bis zum Ende der Beteiligungsphase zu verbergen."
+
+#: adhocracy4/polls/static/PollDashboard/AddQuestionDropdown.jsx
+#: adhocracy4/polls/static/PollDashboard/PollManagement.jsx
+msgid "New question"
+msgstr "Neue Frage"
+
+#: adhocracy4/polls/static/PollDashboard/PollManagement.jsx
+msgid "The poll could not be updated (HTTP %(status)s). Please try again."
+msgstr ""
+"Die Umfrage konnte nicht aktualisiert werden (HTTP %(status)s). Bitte "
+"versuchen Sie es erneut."
+
+#: adhocracy4/polls/static/PollDashboard/PollManagement.jsx
+msgid "The poll could not be loaded. Please try again."
+msgstr "Die Umfrage konnte nicht geladen werden. Bitte versuchen Sie es erneut."
+
+#: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
+msgid "%(number)s of %(total)s"
+msgstr "%(number)s von %(total)s"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
+msgid "Move question up"
+msgstr "Frage nach oben verschieben"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
+msgid "Move question down"
+msgstr "Frage nach unten verschieben"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
+msgid "This field is required"
+msgstr "Dieses Feld ist erforderlich"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
+msgid "Answer type"
+msgstr "Antworttyp"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
+msgid "Open Text"
+msgstr "Freitext"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
+msgid "Single choice"
+msgstr "Einzelauswahl"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
+msgid "Multiple choice"
+msgstr "Mehrfachauswahl"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
+msgid "Answer option"
+msgstr "Antwortoption"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
+msgid "Open answer"
+msgstr "Offene Antwort"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionListItem.jsx
+msgid "Untitled question"
+msgstr "Unbenannte Frage"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionListItem.jsx
+msgid "Delete question"
+msgstr "Frage löschen"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionListItem.jsx
+msgid "Confirm delete"
+msgstr "Löschen bestätigen"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionListItem.jsx
+msgid "Cancel delete"
+msgstr "Löschen abbrechen"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionListItem.jsx
+msgid "Delete this question?"
+msgstr "Diese Frage löschen?"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionListItem.jsx
+msgid "Expand question"
+msgstr "Frage ausklappen"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionListItem.jsx
+msgid "Collapse question"
+msgstr "Frage einklappen"
+
+#: adhocracy4/polls/static/PollDashboard/AddQuestionDropdown.jsx
+msgid "Multiple choice question"
+msgstr "Mehrfachauswahl-Frage"

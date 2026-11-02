@@ -11,6 +11,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Changed
 
+- Poll editor: question list with expandable rows, reordering and inline delete confirmation
+
 ### Fixed
 
 ## v2611.1

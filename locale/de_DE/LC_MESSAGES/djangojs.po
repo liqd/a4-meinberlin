@@ -782,7 +782,7 @@ msgstr "Frage"
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:50
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:53
 msgid "Do not display answers publicly"
-msgstr "Eingehende Antworten werden nicht öffentlich angezeigt"
+msgstr "Antworten nicht öffentlich sichtbar"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:59
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
@@ -2793,7 +2793,7 @@ msgstr "Einzelauswahl"
 
 #: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
 msgid "Multiple choice"
-msgstr "Mehrfachauswahl"
+msgstr "Mehrfachwahl"
 
 #: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
 msgid "Answer option"
@@ -2801,7 +2801,7 @@ msgstr "Antwortoption"
 
 #: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
 msgid "Open answer"
-msgstr "Offene Antwort"
+msgstr "Freie Antwort"
 
 #: adhocracy4/polls/static/PollDashboard/QuestionListItem.jsx
 msgid "Untitled question"
@@ -2833,4 +2833,107 @@ msgstr "Frage einklappen"
 
 #: adhocracy4/polls/static/PollDashboard/AddQuestionDropdown.jsx
 msgid "Multiple choice question"
-msgstr "Mehrfachauswahl-Frage"
+msgstr "Mehrfachwahl-Frage"
+
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx
+msgid "Failed to load poll data. Please try again."
+msgstr "Die Umfragedaten konnten nicht geladen werden. Bitte versuchen Sie es erneut."
+
+#: adhocracy4/polls/static/PollDetail/StartScreen.jsx
+msgid "Poll Participation Info"
+msgstr "Informationen zur Teilnahme an der Umfrage"
+
+#: adhocracy4/polls/static/PollDetail/StartScreen.jsx
+msgid "You can now participate in this poll even if you're not logged in."
+msgstr "Sie können jetzt auch ohne Anmeldung an dieser Umfrage teilnehmen."
+
+#: adhocracy4/polls/static/PollDetail/StartScreen.jsx
+msgid "Unregistered users can't edit their votes once submitted."
+msgstr "Nicht registrierte Nutzer*innen können ihre Stimme nach dem Absenden nicht mehr ändern."
+
+#: adhocracy4/polls/static/PollDetail/StartScreen.jsx
+msgid "Learn more about the voting options and rules"
+msgstr "Mehr über die Abstimmungsoptionen und -regeln erfahren"
+
+#: adhocracy4/polls/static/PollDetail/StartScreen.jsx
+msgid "Learn more about voting options."
+msgstr "Mehr über die Abstimmungsoptionen erfahren."
+
+#: adhocracy4/polls/static/PollDetail/StartScreen.jsx
+msgid "Poll contains <span class=\"poll-start-screen__count\">%(count)s question</span>."
+msgid_plural "Poll contains <span class=\"poll-start-screen__count\">%(count)s questions</span>."
+msgstr[0] "Die Umfrage enthält <span class=\"poll-start-screen__count\">%(count)s Frage</span>."
+msgstr[1] "Die Umfrage enthält <span class=\"poll-start-screen__count\">%(count)s Fragen</span>."
+
+#: adhocracy4/polls/static/PollDetail/StartScreen.jsx
+msgid "So far <span class=\"poll-start-screen__count\">%(count)s person</span> has participated."
+msgid_plural "So far <span class=\"poll-start-screen__count\">%(count)s people</span> have participated."
+msgstr[0] "Bisher hat <span class=\"poll-start-screen__count\">%(count)s Person</span> teilgenommen."
+msgstr[1] "Bisher haben <span class=\"poll-start-screen__count\">%(count)s Personen</span> teilgenommen."
+
+#: adhocracy4/polls/static/PollDetail/StartScreen.jsx
+msgid "Start"
+msgstr "Starten"
+
+#: adhocracy4/polls/static/PollDetail/StartScreen.jsx
+msgid "Log in to participate"
+msgstr "Zum Teilnehmen anmelden"
+
+#: adhocracy4/polls/static/PollDetail/NavigationButtons.jsx
+msgid "Go Back"
+msgstr "Zurück"
+
+#: adhocracy4/polls/static/PollDetail/NavigationButtons.jsx
+msgid "Skip"
+msgstr "Überspringen"
+
+#: adhocracy4/polls/static/PollDetail/NavigationButtons.jsx
+msgid "Next"
+msgstr "Weiter"
+
+#: adhocracy4/polls/static/PollDetail/NavigationButtons.jsx
+msgid "Submitting..."
+msgstr "Wird gesendet ..."
+
+#: adhocracy4/polls/static/PollDetail/NavigationButtons.jsx
+msgid "Submit All"
+msgstr "Antwort senden"
+
+#: adhocracy4/polls/static/PollDetail/QuestionFunnel.jsx
+msgid "Question %(current)s of %(total)s"
+msgstr "Frage %(current)s von %(total)s"
+
+#: adhocracy4/polls/static/PollDetail/ResultsView.jsx
+msgid "The poll has ended. Here are the results."
+msgstr "Die Umfrage ist beendet. Hier sind die Ergebnisse."
+
+#: adhocracy4/polls/static/PollDetail/ResultsView.jsx
+msgid "Here are the preliminary results."
+msgstr "Hier sind die vorläufigen Ergebnisse."
+
+#: adhocracy4/polls/static/PollDetail/ResultsView.jsx
+msgid "<strong>%s</strong> <strong>person</strong> has participated."
+msgid_plural "<strong>%s</strong> <strong>people</strong> have participated."
+msgstr[0] "<strong>%s</strong> <strong>Person</strong> hat teilgenommen."
+msgstr[1] "<strong>%s</strong> <strong>Personen</strong> haben teilgenommen."
+
+#: adhocracy4/polls/static/PollDetail/ResultsView.jsx
+#: adhocracy4/polls/static/PollDetail/PollAnswerReview.jsx
+msgid "Change my answers"
+msgstr "Meine Antworten ändern"
+
+#: adhocracy4/polls/static/PollDetail/PollAnswerReview.jsx
+msgid "Thank you for taking part in the poll! You will see the results as soon as the participation phase is over."
+msgstr ""
+"Vielen Dank für Ihre Teilnahme! Die Ergebnisse werden sichtbar, sobald die "
+"Beteiligungsphase beendet ist."
+
+#: adhocracy4/polls/static/PollDetail/PollAnswerReview.jsx
+msgid "No answer given."
+msgstr "Keine Antwort gegeben."
+
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx
+msgid "Answers to this question will be visible only to the initiators of this project."
+msgstr ""
+"Die Antworten auf diese Frage sind nur für die Initiator*innen dieses "
+"Projekts sichtbar."

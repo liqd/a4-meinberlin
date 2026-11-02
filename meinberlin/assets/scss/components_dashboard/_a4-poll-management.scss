@@ -23,9 +23,17 @@
     &__option {
         display: flex;
         align-items: center;
+        margin-left: 0;
+        padding-left: 0;
 
         input {
+            width: auto;
+            flex: 0 0 auto;
             margin: 0 0.5em 0 0;
+        }
+
+        label {
+            margin: 0;
         }
 
         & + & {

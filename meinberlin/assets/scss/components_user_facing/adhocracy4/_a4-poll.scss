@@ -167,43 +167,11 @@
     font-weight: bold;
 }
 
-.editpoll__btn--question {
-    margin: 0.5 * $spacer 0;
-}
-
-.editpoll__help-text,
 .poll__help-text {
     color: $gray;
     margin-top: -0.7 * $spacer;
     margin-bottom: 0.8 * $spacer;
     font-size: 14px;
-}
-
-.editpoll__help-text {
-    color: $gray-lighter;
-    margin-top: -0.7em;
-    margin-bottom: 0.5em;
-}
-
-.editpoll__dropdown .dropdown-menu {
-    border-radius: 0.3em;
-    box-shadow: none;
-}
-
-.editpoll__btns--question {
-    display: flex;
-    flex-flow: column wrap;
-}
-
-@media (min-width: $breakpoint-palm) {
-    .editpoll__btns--question {
-        flex-direction: row;
-    }
-
-    .editpoll__btn--question {
-        margin: 0;
-        margin-right: 0.5 * $spacer;
-    }
 }
 
 // Open/Other answers

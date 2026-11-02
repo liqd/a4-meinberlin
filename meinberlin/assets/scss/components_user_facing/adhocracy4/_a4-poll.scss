@@ -51,16 +51,16 @@
     margin: 1.5 * $spacer 0;
 
     &__track {
-        height: 5px;
-        background-color: $gray-lightest;
-        border-radius: 10px;
+        height: 4px;
+        background-color: $message-light-green;
+        border-radius: 0;
         overflow: hidden;
     }
 
     &__bar {
         height: 100%;
         background-color: $primary;
-        border-radius: 10px;
+        border-radius: 0;
         transition: width 0.3s ease;
     }
 }
@@ -87,24 +87,24 @@
     margin-bottom: 9px;
     padding: 16px 15px;
     overflow: hidden;
-    background: $white;
+    background: $message-light-blue;
     border: 1px solid $border-color;
     border-radius: 0;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 
     &:hover {
-        background: $gray-lightest;
-        border-color: $gray;
+        background: $message-light-blue;
+        border-color: $gray-light;
     }
 
     &--checked {
-        background: rgba($secondary, 0.08);
-        border-color: $secondary;
+        background: $message-light-blue;
+        border-color: $border-color;
 
         &:hover {
-            background: rgba($secondary, 0.08);
-            border-color: $secondary;
+            background: $message-light-blue;
+            border-color: $border-color;
         }
     }
 
@@ -131,13 +131,13 @@
         }
 
         &:hover {
-            background: $white;
+            background: $message-light-blue;
             border-color: $border-color;
         }
 
         &.poll-choice--checked:hover {
-            background: rgba($secondary, 0.08);
-            border-color: $secondary;
+            background: $message-light-blue;
+            border-color: $border-color;
         }
     }
 
@@ -145,17 +145,17 @@
         border-color: $border-color;
 
         &:hover {
-            background: $white;
+            background: $message-light-blue;
             border-color: $border-color;
         }
 
         &.poll-choice--checked {
-            background: $white;
-            border-color: $secondary;
+            background: $message-light-blue;
+            border-color: $border-color;
 
             &:hover {
-                background: $white;
-                border-color: $secondary;
+                background: $message-light-blue;
+                border-color: $border-color;
             }
         }
     }

@@ -61,8 +61,21 @@ export const loadVectorFeatureCollection = async (layer, bounds, signal) => {
   if (!response.ok) {
     throw new Error(`WFS request failed with status ${response.status}`)
   }
-  return response.json()
+  return polygonFeatures(await response.json())
 }
+
+const POLYGON_TYPES = ['Polygon', 'MultiPolygon']
+
+/**
+ * The WFS responses contain helper point geometries (e.g. labels), which
+ * Leaflet would render as default markers. Only polygon features are shown.
+ */
+export const polygonFeatures = (collection) => ({
+  ...collection,
+  features: (collection.features || []).filter(
+    (feature) => feature.geometry && POLYGON_TYPES.includes(feature.geometry.type)
+  )
+})
 
 export const vectorStyle = (layer, feature) => {
   const properties = (feature && feature.properties) || {}

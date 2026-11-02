@@ -2,7 +2,7 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 
 import { MapWithMarkers } from '../Map'
-import { getLayerMode, wfsUrlFor } from '../../../../assets/js/map_layers_vector'
+import { getLayerMode, polygonFeatures, wfsUrlFor } from '../../../../assets/js/map_layers_vector'
 
 jest.mock('react-leaflet', () => ({
   WMSTileLayer: (props) => (
@@ -56,7 +56,11 @@ describe('Vector map layers', () => {
       ok: true,
       json: () => Promise.resolve({
         type: 'FeatureCollection',
-        features: [{ type: 'Feature', properties: {}, geometry: null }]
+        features: [{
+          type: 'Feature',
+          properties: {},
+          geometry: { type: 'Polygon', coordinates: [] }
+        }]
       })
     }))
   })
@@ -72,6 +76,20 @@ describe('Vector map layers', () => {
       '&typeNames=test%3Alayer&outputFormat=application%2Fjson' +
       '&srsName=EPSG%3A4326&bbox=13.3%2C52.4%2C13.5%2C52.6%2CEPSG%3A4326'
     )
+  })
+
+  test('drops helper point features from the WFS response', () => {
+    const collection = polygonFeatures({
+      type: 'FeatureCollection',
+      features: [
+        { type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [] } },
+        { type: 'Feature', properties: {}, geometry: { type: 'Point', coordinates: [] } },
+        { type: 'Feature', properties: {}, geometry: null }
+      ]
+    })
+
+    expect(collection.features).toHaveLength(1)
+    expect(collection.features[0].geometry.type).toBe('Polygon')
   })
 
   test('renders a GeoJSON overlay for layers with a WFS endpoint', async () => {

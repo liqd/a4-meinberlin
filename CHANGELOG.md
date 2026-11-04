@@ -38,6 +38,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Fixed
 
+- Pin kombu to 5.6.2 to keep the installed redis-py compatible
 - Project detail page: hero image container aligned to the styleguide grid, fixing text/image overlap and overly wide images on large screens
 
 ## v2606.3

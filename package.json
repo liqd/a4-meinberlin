@@ -14,7 +14,7 @@
   "repository": "https://github.com/liqd/a4-meinberlin.git",
   "dependencies": {
     "@fortawesome/fontawesome-free": "6.7.2",
-    "@maplibre/maplibre-gl-leaflet": "0.0.22",
+    "@maplibre/maplibre-gl-leaflet": "0.1.4",
     "@react-leaflet/core": "^2.1.0",
     "@turf/turf": "^6.5.0",
     "@uppy/compressor": "^3.1.0",
@@ -42,7 +42,7 @@
     "leaflet-draw": "1.0.4",
     "leaflet.markercluster": "github:liqd/Leaflet.markercluster#liqd2212",
     "lodash.debounce": "^4.0.8",
-    "maplibre-gl": "2.4.0",
+    "maplibre-gl": "5.24.0",
     "maplibregl-mapbox-request-transformer": "0.0.2",
     "mini-css-extract-plugin": "2.9.2",
     "path-browserify": "1.0.1",

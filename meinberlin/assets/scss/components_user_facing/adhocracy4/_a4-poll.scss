@@ -87,14 +87,14 @@
     margin-bottom: 9px;
     padding: 16px 15px;
     overflow: hidden;
-    background: $message-light-blue;
+    background: $white;
     border: 1px solid $border-color;
     border-radius: 0;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 
     &:hover {
-        background: $message-light-blue;
+        background: $gray-lightest;
         border-color: $gray-light;
     }
 
@@ -637,10 +637,34 @@
     }
 
     .poll-navigation-buttons {
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 0.75 * $spacer;
+
+        > div:first-child {
+            grid-column: 1;
+            grid-row: 1;
+        }
 
         > div:last-of-type {
-            gap: 0.5 * $spacer;
+            display: contents;
+        }
+
+        .btn--transparent-bordered {
+            width: 100%;
+        }
+
+        .btn--transparent {
+            grid-column: 1 / -1;
+            grid-row: 2;
+            justify-self: center;
+        }
+
+        .poll__btn--dark {
+            grid-column: 2;
+            grid-row: 1;
+            width: 100%;
         }
     }
 }

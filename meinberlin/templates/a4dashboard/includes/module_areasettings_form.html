@@ -1,1 +1,19 @@
 {% include 'a4dashboard/includes/form_field.html' with field=form.polygon %}
+
+{% if "layers" in form.fields %}
+    <fieldset class="form-group">
+        <legend>{{ form.layers.label }}</legend>
+        <div class="form-hint">{{ form.layers.help_text }}</div>
+        <div class="widget widget--checkboxselectmultiple">
+            {{ form.layers }}
+        </div>
+        {% if form.layers.errors %}
+            <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+                {% for error in form.layers.errors %}
+                    <li>{{ error|escape }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </fieldset>
+    <div class="aural" data-map-layer-status role="status" aria-live="polite"></div>
+{% endif %}

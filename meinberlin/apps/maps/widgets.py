@@ -22,7 +22,7 @@ class MapChoosePolygonWithPresetWidget(Widget):
             for preset in presets
         ]
 
-    def render(self, name, value, attrs, renderer=None):
+    def render(self, name, value, attrs=None, renderer=None):
         presets_uncategorized = self.get_presets(None)
         preset_categories = [
             (category.name, self.get_presets(category))
@@ -57,6 +57,7 @@ class MapChoosePolygonWithPresetWidget(Widget):
             "polygon": value,
             "presets_uncategorized": presets_uncategorized,
             "preset_categories": preset_categories,
+            "layers": json.dumps(getattr(self, "layers", [])),
         }
 
         return loader.render_to_string(

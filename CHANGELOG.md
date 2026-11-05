@@ -5,14 +5,15 @@ All notable changes to this project will be documented in this file.
 Since version v2308 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## hotfix-v2611.1
+## Unreleased
+
+### Added
+
+### Changed
 
 ### Fixed
-- deps/js: update maplibre to 5.24.0
-- assets/js: add memoize ProjectsMap webGL bandaid fix
 
-
-## Unreleased
+## v2611.1
 
 ### Added
 
@@ -45,12 +46,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Fixed
 
-- Pin kombu to 5.6.2 to keep the installed redis-py compatible
-- Project detail page: hero image container aligned to the styleguide grid, fixing text/image overlap and overly wide images on large screens
 - Project timeline: offline events are labelled "Veranstaltung" and dated with "am"
 - Project edit log: multi-line entries no longer overlap the following entry
-- Homepage: align the login button label with the registration button
-- Idea, map idea and proposal detail pages: remove the redundant back button
+- Notifications: restore missing toggle labels
+- Project tiles: display project descriptions with HTML correctly
 - Notifications: translate "link to event" and "at" in event notifications
 
 ## v2606.3

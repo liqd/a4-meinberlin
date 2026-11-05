@@ -27,6 +27,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Changed
 
 - Upgrade Wagtail to 7.4.4 (security fixes)
+- Upgrade Celery, kombu, redis-py and hiredis to current versions
 - Contact information section on idea and mapidea submission, matching the existing budgeting proposal flow: optional email (account or custom) and phone, with storage consent and privacy policy link; data only included in CSV exports
 - Apply colour tokens (`#439c76`) via SCSS overrides sourced from `berlin_parcticipation.css` published styleguide
 - Update `$primary` to `#439c76` for user-facing components (pills, buttons, status bar)
@@ -45,7 +46,6 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Fixed
 
-- Pin kombu to 5.6.2 to keep the installed redis-py compatible
 - Project detail page: hero image container aligned to the styleguide grid, fixing text/image overlap and overly wide images on large screens
 
 ## v2606.3

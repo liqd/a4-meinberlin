@@ -3,11 +3,32 @@
     margin-bottom: calc($spacer / 2);
 
     &__textarea {
+        min-height: 86px;
+        padding: 10px 12px;
+        border: 2px solid $black;
+        border-radius: 0;
         resize: vertical;
         margin-bottom: 0.3rem;
         width: 100%!important;
         overflow-y: auto;
-        line-height: 1.5;
+        font-size: 16px;
+        line-height: 24px;
         max-height: 500px;
+
+        &.a4-textarea-with-counter__textarea--open {
+            min-height: 86px;
+            max-height: 86px;
+        }
+
+        &.a4-textarea-with-counter__textarea--other {
+            min-height: 100px;
+        }
     }
+}
+
+.a4-char-counter {
+    display: block;
+    color: $black;
+    font-size: 11px;
+    line-height: 16.8px;
 }

@@ -1303,7 +1303,7 @@ msgstr ""
 
 #: adhocracy4/polls/models.py:75
 msgid "The image will be shown with the question"
-msgstr ""
+msgstr "Das Bild wird mit der Frage angezeigt."
 
 #: adhocracy4/polls/models.py:81
 msgid "Question image"
@@ -1374,7 +1374,7 @@ msgstr "Umfragen"
 #: adhocracy4/polls/serializers.py:229
 #: adhocracy4/polls/serializers.py:431
 msgid "Please provide a descriptive alt text for the question image."
-msgstr ""
+msgstr "Bitte geben Sie einen beschreibenden Alternativtext für das Fragenbild an."
 
 #: adhocracy4/polls/serializers.py:409
 msgid "Image must be at least 1500 pixels wide"
@@ -6247,3 +6247,7 @@ msgstr "Erfüllt"
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/form_password_criteria.html
 msgid "Not met"
 msgstr "Nicht erfüllt"
+
+#: adhocracy4/polls/templates/a4polls/poll_detail.html
+msgid "Start poll"
+msgstr "Umfrage beginnen"

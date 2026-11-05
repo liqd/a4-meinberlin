@@ -1,0 +1,383 @@
+// Poll dashboard management UI (adhocracy4/polls/static/PollDashboard)
+
+.poll-management {
+    margin-bottom: 3 * $spacer;
+
+    &__section-title {
+        margin-top: 2 * $spacer;
+        margin-bottom: $spacer;
+    }
+
+    &__questions-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: $spacer;
+        flex-wrap: wrap;
+    }
+
+    &__questions-header &__section-title {
+        margin-bottom: $spacer;
+    }
+
+    &__option {
+        display: flex;
+        align-items: center;
+        margin-left: 0;
+        padding-left: 0;
+
+        input {
+            width: auto;
+            flex: 0 0 auto;
+            margin: 0 0.5em 0 0;
+        }
+
+        label {
+            margin: 0;
+        }
+
+        & + & {
+            margin-top: 8px;
+        }
+    }
+
+    &__list {
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: $spacer;
+    }
+
+    &__list-item + &__list-item {
+        margin-top: 0.5 * $spacer;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: 0.5 * $spacer;
+        padding: 0.75 * $spacer 1.5 * $spacer;
+        border: 1px solid $border-color;
+        background-color: $white;
+        cursor: pointer;
+        user-select: none;
+
+        @media (max-width: $breakpoint-xs) {
+            padding: 0.75 * $spacer;
+        }
+    }
+
+    &__item--dragging {
+        opacity: 0.5;
+    }
+
+    &__item--drag-over {
+        border: 1px dashed $primary;
+    }
+
+    &__item--error {
+        border-color: $feedback-color-rejected;
+    }
+
+    &__item--active {
+        border-color: $primary;
+    }
+
+    &__drag-handle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 44px;
+        min-height: 44px;
+        padding: 4px;
+        color: $gray;
+        cursor: grab;
+        touch-action: none;
+    }
+
+    &__required {
+        margin-left: 0.15em;
+    }
+
+    &__summary {
+        display: flex;
+        align-items: baseline;
+        gap: 0.5 * $spacer;
+        flex: 1 1 auto;
+        text-align: left;
+        min-width: 0;
+    }
+
+    &__number {
+        font-weight: bold;
+        flex: 0 0 auto;
+    }
+
+    &__label {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &--empty {
+            font-style: italic;
+            color: $text-color-gray;
+        }
+    }
+
+    &__type {
+        flex: 0 0 auto;
+        margin-left: auto;
+        color: $text-color-gray;
+        font-size: 0.85em;
+    }
+
+    &__delete {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 40px;
+        min-height: 40px;
+        background-color: transparent;
+        border: none;
+        padding: 4px;
+        color: $gray;
+        cursor: pointer;
+    }
+
+    &__collapse {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 40px;
+        min-height: 40px;
+        background-color: transparent;
+        border: none;
+        padding: 4px;
+        color: $gray;
+        cursor: pointer;
+    }
+
+    &__delete-confirm {
+        display: flex;
+        align-items: center;
+        gap: 0.25 * $spacer;
+    }
+
+    &__delete-prompt {
+        font-size: 0.85em;
+        color: $text-color-gray;
+        white-space: nowrap;
+    }
+
+    &__delete-yes,
+    &__delete-no {
+        @extend .btn--light;
+        min-width: 40px;
+        min-height: 40px;
+        padding: 4px 8px;
+    }
+
+    &__editor {
+        padding: 1.5 * $spacer;
+        border: 1px solid $primary;
+        background-color: $white;
+    }
+
+    &__item--active + .poll-management__editor {
+        border-top: none;
+        margin-top: -1px;
+    }
+
+    &__editor-header {
+        display: flex;
+        align-items: center;
+        gap: $spacer;
+        margin-bottom: 1.5 * $spacer;
+    }
+
+    &__editor-title {
+        margin: 0;
+        flex: 1 1 auto;
+    }
+
+    &__editor .editpoll__help-text {
+        color: $gray-lighter;
+        font-size: 0.85em;
+    }
+
+    &__nav-button {
+        @extend .btn--light;
+        min-width: 40px;
+    }
+
+    &__editor-actions {
+        display: flex;
+        gap: 0.5 * $spacer;
+        margin-left: auto;
+    }
+
+    &__answer-type {
+        border: none;
+        padding-left: 0;
+        margin-bottom: $spacer;
+
+        legend {
+            display: block;
+            float: none;
+            width: auto;
+            margin: 0 0 0.5 * $spacer;
+            padding: 0;
+        }
+    }
+
+    &__answer-type-group {
+        display: inline-flex;
+        flex-wrap: wrap;
+        max-width: 100%;
+    }
+
+    &__answer-type-btn {
+        &.btn {
+            border: 1px solid $border-color;
+            background-color: $white;
+            color: $text-color;
+            border-radius: 0;
+            margin-left: -1px;
+        }
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        &--active,
+        &--active:hover,
+        &--active:focus {
+            &.btn {
+                background-color: $black;
+                border-color: $black;
+                color: $white;
+            }
+        }
+    }
+
+    &__answers-title {
+        margin-top: 1.5 * $spacer;
+        font-size: 1.1em;
+    }
+
+    &__buttons {
+        display: flex;
+        flex-flow: row wrap;
+        gap: 0.5 * $spacer;
+        margin-top: 0.5 * $spacer;
+    }
+
+    &__btn {
+        @extend .btn--light;
+    }
+
+    &__btn--active {
+        background-color: $gray-lightest;
+    }
+
+    &__choice-delete {
+        @extend .btn--light;
+        min-width: 40px;
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: $spacer;
+        margin-top: 1.5 * $spacer;
+        flex-wrap: wrap;
+    }
+
+    @media (max-width: $breakpoint-xs) {
+        &__type {
+            display: none;
+        }
+
+        &__editor {
+            padding: $spacer;
+        }
+
+        &__editor-header {
+            flex-wrap: wrap;
+            gap: 0.5 * $spacer;
+        }
+
+        &__delete-prompt {
+            display: none;
+        }
+
+        &__answer-type-group {
+            display: flex;
+
+            .poll-management__answer-type-btn {
+                flex: 1 1 0;
+            }
+        }
+
+        &__footer .dropdown,
+        &__footer .btn {
+            flex: 1 1 auto;
+        }
+    }
+}
+
+// Question image upload (shared QuestionImageUploadButton)
+
+.image-upload-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: 1px solid $gray-lightest;
+    border-radius: 0;
+
+    &.is-invalid {
+        border-color: $feedback-color-rejected;
+        background-color: $white;
+    }
+}
+
+.image-upload-text {
+    color: $gray;
+}
+
+.image-upload-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.image-upload-preview {
+    width: auto;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+.image-upload-upload-btn,
+.image-upload-remove-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border: none;
+    background: none;
+    color: $black;
+    font-size: 18px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    &:hover {
+        opacity: 0.7;
+    }
+}
+
+.image-upload-hidden-input {
+    display: none;
+}

@@ -1336,9 +1336,9 @@ msgid ""
 "Event %(eventName)s (<a href=\"%(eventUrl)s\">link to event</a>) in the "
 "project <a href=\"%(url)s\">%(title)s</a> begins on %(date)s at %(time)s"
 msgstr ""
-"Die Veranstaltung %(eventName)s (<a href=\"%(eventUrl)s\">link to event </"
-"a>) im Projekt <a href=\"%(url)s\">%(title)s</a> beginnt am %(date)s at %"
-"(time)s"
+"Die Veranstaltung %(eventName)s (<a href=\"%(eventUrl)s\">Link zur "
+"Veranstaltung</a>) im Projekt <a href=\"%(url)s\">%(title)s</a> beginnt am "
+"%(date)s um %(time)s"
 
 #: meinberlin/react/account/notification_data.js:14
 msgid ""

@@ -47,6 +47,11 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Pin kombu to 5.6.2 to keep the installed redis-py compatible
 - Project detail page: hero image container aligned to the styleguide grid, fixing text/image overlap and overly wide images on large screens
+- Project timeline: offline events are labelled "Veranstaltung" and dated with "am"
+- Project edit log: multi-line entries no longer overlap the following entry
+- Homepage: align the login button label with the registration button
+- Idea, map idea and proposal detail pages: remove the redundant back button
+- Notifications: translate "link to event" and "at" in event notifications
 
 ## v2606.3
 

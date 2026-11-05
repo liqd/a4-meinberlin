@@ -1576,8 +1576,8 @@ msgid ""
 "users are enabled for the platform."
 msgstr ""
 
-#: adhocracy4/projects/utils.py:46
-msgid "{}. Online Participation"
+#: adhocracy4/projects/utils.py:58
+msgid "{}. Participation"
 msgstr "{}. Online-Beteiligung"
 
 #: adhocracy4/projects/utils.py:55

@@ -1,0 +1,33 @@
+{% load i18n %}
+<nav id="moderation-tabs"
+     class="moderation-tabs"
+     aria-label="{% translate 'Notification filters' %}"
+     hx-get="{% url 'a4moderation:counts' project.pk %}?state={{ state }}&content_type={{ content_type }}&ordering={{ ordering }}"
+     hx-trigger="moderationCountsChanged from:body"
+     hx-target="this"
+     hx-swap="outerHTML">
+    <a class="moderation-tab{% if state == 'all' %} moderation-tab--active{% endif %}"
+       href="?state=all&content_type={{ content_type }}&ordering={{ ordering }}"
+       hx-get="?state=all&content_type={{ content_type }}&ordering={{ ordering }}"
+       hx-target="#moderation-items"
+       hx-swap="innerHTML"
+       hx-push-url="true">
+        {% translate "All" %} ({{ counts.all }})
+    </a>
+    <a class="moderation-tab{% if state == 'unread' %} moderation-tab--active{% endif %}"
+       href="?state=unread&content_type={{ content_type }}&ordering={{ ordering }}"
+       hx-get="?state=unread&content_type={{ content_type }}&ordering={{ ordering }}"
+       hx-target="#moderation-items"
+       hx-swap="innerHTML"
+       hx-push-url="true">
+        {% translate "Unread" %} ({{ counts.unread }})
+    </a>
+    <a class="moderation-tab{% if state == 'resolved' %} moderation-tab--active{% endif %}"
+       href="?state=resolved&content_type={{ content_type }}&ordering={{ ordering }}"
+       hx-get="?state=resolved&content_type={{ content_type }}&ordering={{ ordering }}"
+       hx-target="#moderation-items"
+       hx-swap="innerHTML"
+       hx-push-url="true">
+        {% translate "Resolved" %} ({{ counts.resolved }})
+    </a>
+</nav>

@@ -5,14 +5,21 @@ All notable changes to this project will be documented in this file.
 Since version v2308 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## hotfix-v2611.1
+## Unreleased
+
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
 
 ### Fixed
-- deps/js: update maplibre to 5.24.0
-- assets/js: add memoize ProjectsMap webGL bandaid fix
 
+### Security
 
-## Unreleased
+## v2611.1
 
 ### Added
 
@@ -52,6 +59,15 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Homepage: align the login button label with the registration button
 - Idea, map idea and proposal detail pages: remove the redundant back button
 - Notifications: translate "link to event" and "at" in event notifications
+- deps/js: update maplibre to 5.24.0
+- assets/js: add memoize ProjectsMap webGL bandaid fix
+- Budgeting: fix proposal create form
+- Notifications: restore missing toggle labels
+- Project tiles: display project descriptions with HTML correctly
+
+### Security
+
+- Update Babel to 7.29.6 and react-router to 7.15.1 to address security advisories
 
 ## v2606.3
 

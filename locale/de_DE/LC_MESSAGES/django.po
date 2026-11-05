@@ -1348,7 +1348,7 @@ msgstr ""
 
 #: adhocracy4/polls/models.py:87
 msgid "The image will be shown with the question"
-msgstr ""
+msgstr "Das Bild wird mit der Frage angezeigt."
 
 #: adhocracy4/polls/models.py:93
 msgid "Question image"
@@ -1419,7 +1419,7 @@ msgstr "Umfragen"
 #: adhocracy4/polls/serializers.py:233
 #: adhocracy4/polls/services.py:118
 msgid "Please provide a descriptive alt text for the question image."
-msgstr ""
+msgstr "Bitte geben Sie einen beschreibenden Alternativtext für das Fragenbild an."
 
 #: adhocracy4/polls/validators.py:50
 msgid "The uploaded file is not a valid image."

@@ -11,13 +11,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Changed
 
-### Deprecated
-
-### Removed
-
 ### Fixed
-
-### Security
 
 ## v2611.1
 

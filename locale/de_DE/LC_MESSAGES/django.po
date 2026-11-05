@@ -6380,3 +6380,76 @@ msgstr "Feedback bearbeiten"
 #: adhocracy4/moderation
 msgid "Feedback saved"
 msgstr "Feedback gespeichert"
+
+#: a4moderation
+msgid "Moderation overview"
+msgstr "Moderationsübersicht"
+
+#: a4moderation
+msgid "Resolved"
+msgstr "Erledigt"
+
+#: a4moderation
+msgid "View More"
+msgstr "Mehr anzeigen"
+
+#: a4moderation
+msgid "View Less"
+msgstr "Weniger anzeigen"
+
+#: a4moderation
+msgid "Mark as resolved"
+msgstr "Als erledigt markieren"
+
+#: a4moderation
+msgid "Hide"
+msgstr "Ausblenden"
+
+#: a4moderation
+msgid "Hidden from discussion by Moderator"
+msgstr "Von der Moderation aus der Diskussion ausgeblendet"
+
+#: a4moderation
+msgid "Marked as resolved by"
+msgstr "Als erledigt markiert von"
+
+#: a4moderation
+msgid "Reopen"
+msgstr "Wieder öffnen"
+
+#: a4moderation
+msgid "submitted the idea at"
+msgstr "hat die Idee eingereicht bei"
+
+#: a4moderation
+msgid "commented on"
+msgstr "hat kommentiert zu"
+
+#: a4moderation
+msgid "Notification filters"
+msgstr "Benachrichtigungsfilter"
+
+#: a4moderation
+msgid "Comment "
+msgstr "Kommentar "
+
+#: a4moderation
+msgid "Moderator"
+msgstr "Moderator"
+
+#: a4moderation
+msgid "Search projects"
+msgstr "Projekte suchen"
+
+#: a4moderation
+msgid "unread"
+msgstr "ungelesen"
+
+#: a4moderation
+msgid "contributions"
+msgstr "Beiträge"
+
+#: a4moderation
+#, python-format
+msgid "%(days)s days left"
+msgstr "noch %(days)s Tage"

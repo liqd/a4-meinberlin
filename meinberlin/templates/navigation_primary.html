@@ -21,6 +21,13 @@
                 </li>
             {% endif %}
 
+            {% if not request.user|is_guest_user %}
+                {% url 'followed_projects' as followed_projects_url %}
+                <li class="hamburger-nav__item {% if request.path == followed_projects_url %}hamburger-nav__item--active{% endif %}">
+                    <a href="{{ followed_projects_url }}" class="hamburger-nav__link">{% translate 'Followed Projects' %}</a>
+                </li>
+            {% endif %}
+
             {% user_moderates_any_project request.user as has_moderation %}
             {% if has_moderation %}
                 {% url 'a4moderation:dashboard' as moderation_url %}
@@ -69,10 +76,6 @@
                         {% url 'notification_settings' as notification_settings_url %}
                         <li class="hamburger-nav__item">
                             <a href="{{ notification_settings_url }}" class="hamburger-nav__link {% if request.path == notification_settings_url %}hamburger-nav__link--active{% endif %}">{% translate "Notification Settings" %}</a>
-                        </li>
-                        {% url 'followed_projects' as followed_projects_url %}
-                        <li class="hamburger-nav__item">
-                            <a href="{{ followed_projects_url }}" class="hamburger-nav__link {% if request.path == followed_projects_url %}active{% endif %}">{% translate "Followed Projects" %}</a>
                         </li>
                         {% url 'search_profiles' as search_profiles_url %}
                         <li class="hamburger-nav__item">

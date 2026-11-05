@@ -40,6 +40,14 @@
             <div class="lr-bar__right">
                 <div class="btn-group">
                 {% spaceless %}
+                    {% has_perm 'a4moderation.moderate_project' request.user project as can_moderate %}
+                    {% if can_moderate %}
+                        <a href="{% url 'a4moderation:project' project.pk %}"
+                           class="btn btn--light btn--small">
+                            <i class="fa fa-gavel" aria-hidden="true"></i>
+                            {% translate 'Moderate' %}
+                        </a>
+                    {% endif %}
                     <a href="{{ project|project_url }}"
                        target="{{ project|is_external|yesno:"_blank,_self" }}"
                        class="btn btn--light btn--small">

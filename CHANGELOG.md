@@ -52,22 +52,11 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Fixed
 
-- Pin kombu to 5.6.2 to keep the installed redis-py compatible
-- Project detail page: hero image container aligned to the styleguide grid, fixing text/image overlap and overly wide images on large screens
 - Project timeline: offline events are labelled "Veranstaltung" and dated with "am"
 - Project edit log: multi-line entries no longer overlap the following entry
-- Homepage: align the login button label with the registration button
-- Idea, map idea and proposal detail pages: remove the redundant back button
-- Notifications: translate "link to event" and "at" in event notifications
-- deps/js: update maplibre to 5.24.0
-- assets/js: add memoize ProjectsMap webGL bandaid fix
-- Budgeting: fix proposal create form
 - Notifications: restore missing toggle labels
 - Project tiles: display project descriptions with HTML correctly
-
-### Security
-
-- Update Babel to 7.29.6 and react-router to 7.15.1 to address security advisories
+- Notifications: translate "link to event" and "at" in event notifications
 
 ## v2606.3
 

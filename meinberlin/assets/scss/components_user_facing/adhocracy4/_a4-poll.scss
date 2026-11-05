@@ -12,9 +12,10 @@
 
 .poll {
     h2 {
-        margin-top: 0;
-        font-size: $font-size-lg;
-        font-weight: 600;
+        margin: 0 0 1.5 * $spacer;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 26px;
         font-family: $font-family-base;
     }
 
@@ -34,21 +35,24 @@
 
 .poll__question-label {
     display: block;
-    padding-bottom: $spacer;
-    font-size: 1.5rem;
-    font-weight: 600;
+    margin-bottom: 0.5 * $spacer;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 26px;
 }
 
 .poll__help-text {
-    margin-bottom: 0.5 * $spacer;
-    color: $gray;
-    font-size: $font-size-sm;
+    margin: 0 0 1.5 * $spacer;
+    color: $black;
+    font-size: 11px;
+    line-height: 16.8px;
 }
 
 // Progress
 
 .poll-progress {
-    margin: 1.5 * $spacer 0;
+    margin: 1.5 * $spacer 0 0;
+    padding: 6px 0 7px;
 
     &__track {
         height: 4px;
@@ -67,8 +71,9 @@
 
 .poll-question-header {
     margin-bottom: 0.5 * $spacer;
-    color: $gray;
-    font-size: $font-size-sm;
+    color: $black;
+    font-size: 16px;
+    line-height: 24px;
 
     &:focus {
         outline: none;
@@ -84,8 +89,8 @@
     align-items: flex-start;
     gap: 10px;
     width: 100%;
-    margin-bottom: 9px;
-    padding: 16px 15px;
+    margin-bottom: 8px;
+    padding: 16px;
     overflow: hidden;
     background: $white;
     border: 1px solid $border-color;
@@ -114,13 +119,13 @@
         color: $black;
         font-family: $font-family-base;
         font-size: $font-size-base;
-        font-weight: 500;
-        line-height: 1.4;
+        font-weight: 400;
+        line-height: 24px;
         cursor: pointer;
     }
 
     &--checked &__label {
-        font-weight: 600;
+        font-weight: 400;
     }
 
     &--result {
@@ -182,35 +187,34 @@
     z-index: 1;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     width: 100%;
 }
 
 .poll-choice__input-wrapper,
 .poll-choice__result-icon {
     display: flex;
-    flex: 0 0 20px;
+    flex: 0 0 24px;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
 }
 
 .poll-choice__input {
     position: relative;
     flex-shrink: 0;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     margin: 0;
-    background-color: $white;
-    border: 2px solid $gray-lightest;
+    background-color: transparent;
+    border: 1px solid $border-color;
     border-radius: 50%;
     appearance: none;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 
     &:hover {
-        background-color: $white;
         border-color: $gray;
     }
 
@@ -226,7 +230,7 @@
             transform: translate(-50%, -50%);
             color: $white;
             font-family: "Font Awesome 6 Free", sans-serif;
-            font-size: 10px;
+            font-size: 16px;
             font-weight: 900;
         }
     }
@@ -234,20 +238,27 @@
 
 .poll-choice__check-icon {
     color: $secondary;
-    font-size: 20px;
+    font-size: 24px;
 }
 
 .poll-choice__empty-circle {
-    width: 20px;
-    height: 20px;
-    background-color: $white;
-    border: 2px solid $gray-lightest;
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    border: 1px solid $border-color;
     border-radius: 50%;
 }
 
 .poll-choice__percentage {
     flex-shrink: 0;
     color: $gray;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 17px;
+}
+
+.poll-choice--checked .poll-choice__percentage {
+    color: $link-color;
 }
 
 .poll-choice__textarea-container {
@@ -255,15 +266,17 @@
     z-index: 1;
     width: 100%;
     margin-top: 8px;
-    padding-left: 32px;
+    padding-left: 34px;
 
     textarea {
         width: 100%;
-        padding: 12px;
-        border: 1px solid $border-color;
+        min-height: 86px;
+        padding: 10px 12px;
+        border: 2px solid $black;
         border-radius: 0;
         font-family: $font-family-base;
-        font-size: $font-size-sm;
+        font-size: 16px;
+        line-height: 24px;
         resize: vertical;
 
         &:focus {
@@ -364,16 +377,17 @@
     @extend .button;
     @extend .button--fullwidth-palm;
 
-    min-height: 48px;
+    min-height: 43px;
+    padding-right: 53px;
 }
 
 .btn.btn--transparent {
-    min-height: 48px;
-    padding: 12px 24px;
+    min-height: 32px;
+    padding: 4px 0;
     background-color: transparent;
     border-color: transparent;
-    font-size: 1rem;
-    line-height: 1.5;
+    font-size: 16px;
+    line-height: 24px;
 
     &:focus,
     &:hover,
@@ -385,14 +399,18 @@
 }
 
 .btn.btn--transparent-bordered {
-    min-height: 48px;
-    padding: 12px 24px;
-    border: 1px solid $black;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 43px;
+    min-height: 43px;
+    padding: 0 14px;
+    border: 2px solid $black;
     border-radius: 0;
     background-color: $white;
     color: $black;
-    font-size: 1rem;
-    line-height: 1.5;
+    font-size: 16px;
+    line-height: 24px;
 
     &:hover {
         border-color: $black;
@@ -478,21 +496,31 @@
 }
 
 .poll-slider__item {
-    min-height: 3 * $spacer;
-}
-
-.poll-slider__label {
-    margin-bottom: 0.25rem;
-    color: $gray;
-    font-size: $font-size-sm;
+    min-height: 24px;
 }
 
 .poll-slider__answer {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
     overflow-wrap: break-word;
+}
+
+.poll-slider__answer-icon {
+    display: flex;
+    flex: 0 0 20px;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    background-color: $secondary;
+    border-radius: 50%;
 
     i {
-        margin-right: 0.5rem;
-        color: $secondary;
+        color: $white;
+        font-size: 14px;
+        line-height: 1;
     }
 }
 
@@ -500,38 +528,50 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 0.25rem;
+    padding-top: 0.5rem;
 }
 
 .poll-slider__count {
-    color: $gray;
-    font-size: $font-size-sm;
+    color: $black;
+    font-size: 11px;
+    line-height: 16.8px;
 }
 
 .poll-slider__nav {
     display: flex;
-    gap: 8px;
+    width: 80px;
+    height: 42px;
+    overflow: hidden;
+    background-color: $white;
+    border: 2px solid #767676;
+    border-radius: 2px;
 
     button {
         display: flex;
+        flex: 0 0 38px;
         align-items: center;
         justify-content: center;
-        width: 28px;
-        height: 28px;
+        width: 38px;
+        height: 38px;
         padding: 0;
         background-color: $white;
-        border: 1px solid $gray;
-        border-radius: 5px;
-        color: $gray;
+        border: 0;
+        border-radius: 0;
+        color: $black;
         cursor: pointer;
 
+        &:first-child {
+            border-right: 1px solid $border-color;
+        }
+
         i {
-            font-size: $font-size-base;
+            font-size: 16px;
             line-height: 1;
         }
 
         &:disabled {
-            opacity: 0.5;
+            opacity: 1;
+            color: $black;
             cursor: not-allowed;
         }
     }
@@ -600,12 +640,18 @@
 
 .poll__question-image-zoom-indicator {
     position: absolute;
-    top: 0;
-    right: 0;
-    padding: 0.25rem 0.5rem;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: $white;
-    font-size: $font-size-sm;
+    top: 6px;
+    right: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background-color: $white;
+    border: 1px solid $border-color;
+    color: $black;
+    font-size: 20px;
     pointer-events: none;
 }
 
@@ -615,32 +661,11 @@
 }
 
 @media (max-width: $breakpoint-palm) {
-    .poll-choice {
-        padding: 12px;
-
-        &--checked {
-            padding: 12px;
-        }
-    }
-
-    .poll-choice__label {
-        font-size: $font-size-sm;
-    }
-
-    .poll-choice__input {
-        width: 18px;
-        height: 18px;
-    }
-
-    .poll-choice__textarea-container {
-        padding-left: 28px;
-    }
-
     .poll-navigation-buttons {
         display: grid;
         grid-template-columns: 1fr 1fr;
         align-items: center;
-        gap: 0.75 * $spacer;
+        gap: 1.5 * $spacer;
 
         > div:first-child {
             grid-column: 1;

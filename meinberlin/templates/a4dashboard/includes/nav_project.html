@@ -34,6 +34,15 @@
                     </a>
                 </li>
             {% endfor %}
+            {% has_perm "a4moderation.moderate_project" request.user project as may_moderate %}
+            {% if may_moderate %}
+                <li class="dashboard-nav__page">
+                    <a href="{% url 'a4moderation:project' project.pk %}"
+                       class="dashboard-nav__item dashboard-nav__item--interactive">
+                        {% translate 'Moderation' %}
+                    </a>
+                </li>
+            {% endif %}
             </ul>
         </div>
     </div>

@@ -844,41 +844,41 @@ msgstr "Neue Antwort"
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:31
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:34
 msgid "Question image"
-msgstr ""
+msgstr "Bild"
 
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:39
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:42
 msgid "Image uploaded"
-msgstr ""
+msgstr "Bild hochgeladen"
 
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:40
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:43
 msgid "No image uploaded"
-msgstr ""
+msgstr "Kein Bild hochgeladen"
 
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:48
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:51
 msgid "Preview"
-msgstr ""
+msgstr "Vorschau"
 
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:57
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:58
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:60
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:61
 msgid "Upload image"
-msgstr ""
+msgstr "Bild hochladen"
 
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:68
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:69
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:71
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:72
 msgid "Remove image"
-msgstr ""
+msgstr "Bild entfernen"
 
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:92
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:85
 msgid "Alt text"
-msgstr ""
+msgstr "Alternativtext"
 
 #: adhocracy4/polls/static/PollDetail/CharCounter.jsx:5
 #: adhocracy4/polls/static/PollDetail/CharCounter.jsx:5

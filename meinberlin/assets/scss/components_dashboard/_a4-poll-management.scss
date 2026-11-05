@@ -294,6 +294,10 @@
     }
 
     @media (max-width: $breakpoint-xs) {
+        &__type {
+            display: none;
+        }
+
         &__editor {
             padding: $spacer;
         }

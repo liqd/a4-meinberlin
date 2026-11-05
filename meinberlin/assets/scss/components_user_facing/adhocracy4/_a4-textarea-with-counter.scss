@@ -15,6 +15,11 @@
         line-height: 24px;
         max-height: 500px;
 
+        &.a4-textarea-with-counter__textarea--open {
+            min-height: 86px;
+            max-height: 86px;
+        }
+
         &.a4-textarea-with-counter__textarea--other {
             min-height: 100px;
         }

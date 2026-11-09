@@ -15,6 +15,9 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Fixed
 
+- Poll: compress question images before upload to prevent HTTP 413 errors
+- Poll: only offer guest participation when the project allows it
+
 ## v2611.1
 
 ### Added

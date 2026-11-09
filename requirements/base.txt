@@ -1,4 +1,4 @@
-# A4
+# A4 branch gg-2026-11-poll-setup (cache-bust: 2b124c8a4)
 git+https://github.com/liqd/adhocracy4.git@gg-2026-11-poll-setup#egg=adhocracy4
 
 # Additional requirements

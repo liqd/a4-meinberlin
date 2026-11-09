@@ -1,6 +1,7 @@
 import pytest
 from django.urls import reverse
 
+from adhocracy4.reports.models import Report
 from meinberlin.test.factories.ideas import IdeaFactory
 
 
@@ -228,3 +229,16 @@ def test_edit_comment(client, user, moderated_project, module_factory, comment_f
     comment.refresh_from_db()
     assert response.status_code == 200
     assert comment.comment == "Neuer Text"
+
+
+@pytest.mark.django_db
+def test_dashboard_shows_report_count(client, user, moderated_project, module_factory):
+    module = module_factory(project=moderated_project)
+    idea = IdeaFactory(module=module)
+    Report.objects.create(content_object=idea, creator=user, description="Report")
+    client.login(username=user.email, password="password")
+
+    response = client.get(reverse("a4moderation:dashboard"))
+
+    project = list(response.context["moderated_projects"])[0]
+    assert project.report_count == 1

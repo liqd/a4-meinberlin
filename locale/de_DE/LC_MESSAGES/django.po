@@ -6453,3 +6453,7 @@ msgstr "Beiträge"
 #, python-format
 msgid "%(days)s days left"
 msgstr "noch %(days)s Tage"
+
+#: a4moderation
+msgid "reports"
+msgstr "Meldungen"

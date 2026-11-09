@@ -252,7 +252,8 @@ module.exports = {
     },
     poll_management: {
       import: [
-        'adhocracy4/adhocracy4/polls/static/react_poll_management.jsx'
+        'adhocracy4/adhocracy4/polls/static/react_poll_management.jsx',
+        './meinberlin/assets/scss/components_user_facing/uppy-image-upload.scss'
       ],
       dependOn: 'adhocracy4'
     },

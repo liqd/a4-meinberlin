@@ -182,28 +182,31 @@ def test_mark_idea_as_resolved(client, user, moderated_project, module_factory):
 
 
 @pytest.mark.django_db
-def test_hide_comment(client, user, moderated_project, module_factory, comment_factory):
+def test_delete_comment(
+    client, user, moderated_project, module_factory, comment_factory
+):
     module = module_factory(project=moderated_project)
     idea = IdeaFactory(module=module)
-    comment = comment_factory(content_object=idea)
+    comment = comment_factory(content_object=idea, comment="To be deleted")
     client.login(username=user.email, password="password")
 
     response = client.post(
         reverse(
-            "a4moderation:item-hide",
+            "a4moderation:item-delete",
             kwargs={
                 "project_pk": moderated_project.pk,
                 "item_type": "a4comments.comment",
                 "pk": comment.pk,
             },
         ),
-        {"hidden": "1"},
+        {},
         HTTP_HX_REQUEST="true",
     )
 
     comment.refresh_from_db()
     assert response.status_code == 200
-    assert comment.is_blocked is True
+    assert comment.is_censored is True
+    assert comment.comment == ""
 
 
 @pytest.mark.django_db

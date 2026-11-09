@@ -6457,3 +6457,11 @@ msgstr "noch %(days)s Tage"
 #: a4moderation
 msgid "reports"
 msgstr "Meldungen"
+
+#: a4moderation
+msgid "Deleted by moderator"
+msgstr "Von der Moderation gelöscht"
+
+#: a4moderation
+msgid "Do you really want to delete this comment?"
+msgstr "Möchten Sie diesen Kommentar wirklich löschen?"

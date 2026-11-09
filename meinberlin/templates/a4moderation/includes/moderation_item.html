@@ -4,7 +4,7 @@
 {% else %}
     {% translate "Add feedback" as feedback_label %}
 {% endif %}
-<li class="moderation-item moderation-card{% if not item.is_reviewed %} moderation-card--unread{% endif %}{% if item.is_resolved %} moderation-card--resolved{% endif %}{% if item.is_hidden %} moderation-card--hidden{% endif %}"
+<li class="moderation-item moderation-card{% if not item.is_reviewed %} moderation-card--unread{% endif %}{% if item.is_resolved %} moderation-card--resolved{% endif %}{% if item.is_deleted %} moderation-card--deleted{% endif %}"
     id="moderation-item-{{ item.key }}">
     <div class="moderation-card__header">
         <span class="moderation-card__avatar" aria-hidden="true">
@@ -145,25 +145,12 @@
             {% endif %}
         </div>
 
-        {% if item.is_hidden %}
+        {% if item.is_deleted %}
             <div class="moderation-card__footer">
                 <span>
-                    {% translate "Hidden from discussion by Moderator" %}
+                    {% translate "Deleted by moderator" %}
                     {% if item.modified %}· {{ item.modified|date:"d.m.Y" }}{% endif %}
                 </span>
-                <form method="post"
-                      action="{% url 'a4moderation:item-hide' project.pk item.type item.pk %}"
-                      hx-post="{% url 'a4moderation:item-hide' project.pk item.type item.pk %}"
-                      hx-target="closest .moderation-item"
-                      hx-swap="outerHTML">
-                    {% csrf_token %}
-                    <input type="hidden" name="hidden" value="0">
-                    <input type="hidden" name="state" value="{{ state }}">
-                    <button type="submit" class="moderation-card__reopen">
-                        <i class="fa fa-rotate-left" aria-hidden="true"></i>
-                        {% translate "Reopen" %}
-                    </button>
-                </form>
             </div>
         {% elif item.is_resolved %}
             <div class="moderation-card__footer">
@@ -210,18 +197,18 @@
                             <span>{% translate "Mark as resolved" %}</span>
                         </button>
                     </form>
-                    {% if item.can_hide %}
+                    {% if item.can_delete %}
                         <form method="post"
-                              action="{% url 'a4moderation:item-hide' project.pk item.type item.pk %}"
-                              hx-post="{% url 'a4moderation:item-hide' project.pk item.type item.pk %}"
+                              action="{% url 'a4moderation:item-delete' project.pk item.type item.pk %}"
+                              hx-post="{% url 'a4moderation:item-delete' project.pk item.type item.pk %}"
                               hx-target="closest .moderation-item"
-                              hx-swap="outerHTML">
+                              hx-swap="outerHTML"
+                              hx-confirm="{% translate 'Do you really want to delete this comment?' %}">
                             {% csrf_token %}
-                            <input type="hidden" name="hidden" value="1">
                             <input type="hidden" name="state" value="{{ state }}">
                             <button type="submit" class="moderation-card__action moderation-card__action--danger">
-                                <i class="fa fa-eye-slash" aria-hidden="true"></i>
-                                <span>{% translate "Hide" %}</span>
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                <span>{% translate "Delete" %}</span>
                             </button>
                         </form>
                     {% endif %}

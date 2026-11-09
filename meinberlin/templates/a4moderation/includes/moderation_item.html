@@ -61,6 +61,12 @@
             {{ item.status }}
         </span>
     {% endif %}
+    {% if item.num_reports %}
+        <span class="moderation-card__reports">
+            <i class="fa fa-triangle-exclamation" aria-hidden="true"></i>
+            {{ item.num_reports }} {% translate "reports" %}
+        </span>
+    {% endif %}
 
     {% if edit_mode %}
         <form class="moderation-card__edit-form"

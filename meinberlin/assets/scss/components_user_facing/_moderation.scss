@@ -510,3 +510,12 @@ a.moderation-card__action,
     margin: 0 0 0.75rem;
     font-size: 1rem;
 }
+
+.moderation-card__reports {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: 0.5rem;
+    color: $text-error;
+    font-size: 0.85rem;
+}

@@ -13,7 +13,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## v2611.2
 
-- Moderation dashboard for project moderators: review comments and ideas, mark as read or resolved, filter and sort, edit inline and hide comments from the discussion
+- Moderation dashboard for project moderators: review comments and ideas, mark as read or resolved, filter and sort, edit inline and delete comments
 
 
 ### Changed

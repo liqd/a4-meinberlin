@@ -3,6 +3,8 @@ MEDIA_ROOT = media
 NODE_BIN = node_modules/.bin
 SOURCE_DIRS = meinberlin tests
 ARGUMENTS=$(filter-out $(firstword $(MAKECMDGOALS)), $(MAKECMDGOALS))
+RUN_HOST ?= 127.0.0.1
+RUN_PORT ?= 8003
 WATCH_ADDRESS=$(or $(firstword $(ARGUMENTS)),8003)
 
 # for mac os gsed is needed (brew install gnu-sed and brew install gsed)
@@ -48,6 +50,7 @@ help:
 	@echo "  make server					-- start a dev server"
 	@echo "  make watch						-- start a dev server and rebuild js and css files on changes"
 	@echo "  make watch <port> | <host:port>		-- same, but bind to the given port/host (default 8003)"
+	@echo "  make run [port] | [host:port]		-- rebuild js and css, then start granian (default 127.0.0.1:8003)"
 	@echo "  make background				-- start background processes"
 	@echo "  make test						-- run all test cases"
 	@echo "  make pytest					-- run all test cases with pytest"
@@ -131,6 +134,19 @@ watch:
 	trap 'kill %1' KILL; \
 	npm run watch & \
 	$(VIRTUAL_ENV)/bin/python3 manage.py runserver $(WATCH_ADDRESS)
+
+.PHONY: run
+run:
+	ARG="$(firstword $(ARGUMENTS))"; \
+	HOST="$(RUN_HOST)"; PORT="$(RUN_PORT)"; \
+	if [ -n "$$ARG" ]; then \
+		case "$$ARG" in \
+			*:*) HOST="$${ARG%%:*}"; PORT="$${ARG##*:}";; \
+			*) PORT="$$ARG";; \
+		esac; \
+	fi; \
+	npm run build && \
+	$(VIRTUAL_ENV)/bin/granian --interface wsgi --host "$$HOST" --port "$$PORT" meinberlin.config.wsgi:application
 
 .PHONY: background
 background:

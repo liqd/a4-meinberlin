@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-02 11:40+0200\n"
+"POT-Creation-Date: 2026-11-10 16:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -80,12 +80,10 @@ msgstr "Do you really want to delete this comment?"
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:28
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:6
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:92
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:97
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:165
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:170
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:93
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:98
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:165
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:170
 msgid "Delete"
 msgstr "Delete"
 
@@ -163,7 +161,6 @@ msgstr ""
 "based on certain linguistic characteristics."
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:8
-#, javascript-format
 msgctxt "defakts"
 msgid ""
 "The AI considers some of the characteristics of disinformation to be "
@@ -304,7 +301,7 @@ msgid "Discussion"
 msgstr "Discussion"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:40
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:289
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:293
 #: adhocracy4/comments_async/static/comments_async/filter_category.jsx:6
 #: meinberlin/react/plans/FilterNav.jsx:6
 #: meinberlin/react/plans/FilterOptions.jsx:3
@@ -315,6 +312,10 @@ msgstr "all"
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:62
 msgid "Highlighted"
 msgstr "Highlighted"
+
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:76
+msgid "Failed to load comments. Please try again."
+msgstr "Failed to load comments. Please try again."
 
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:7
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:14
@@ -447,6 +448,12 @@ msgstr "Follow"
 msgid "Following"
 msgstr "Following"
 
+#: adhocracy4/images/assets/uppy_image_upload.js:33
+msgid ""
+"Images are resized and compressed automatically before you save the form."
+msgstr ""
+"Images are resized and compressed automatically before you save the form."
+
 #: adhocracy4/maps/static/a4maps/a4maps_address.js:104
 msgid "No matches found within the project area"
 msgstr "No matches found within the project area"
@@ -514,19 +521,19 @@ msgstr "Invalid file format."
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr "Do you want to load this preset and delete all the existing polygons?"
 
-#: adhocracy4/maps/static/a4maps/a4maps_display_points.js:101
+#: adhocracy4/maps/static/a4maps/a4maps_display_points.js:106
 msgid "person supports this proposal."
 msgid_plural "persons support this proposal."
 msgstr[0] "person supports this proposal."
 msgstr[1] "persons support this proposal."
 
-#: adhocracy4/maps/static/a4maps/a4maps_display_points.js:114
+#: adhocracy4/maps/static/a4maps/a4maps_display_points.js:119
 msgid "person voted for this proposal."
 msgid_plural "persons voted for this proposal."
 msgstr[0] "person voted for this proposal."
 msgstr[1] "persons voted for this proposal."
 
-#: adhocracy4/maps/static/a4maps/a4maps_display_points.js:127
+#: adhocracy4/maps/static/a4maps/a4maps_display_points.js:132
 msgid "person commented on this proposal."
 msgid_plural "persons commented on this proposal."
 msgstr[0] "person commented on this proposal."
@@ -570,8 +577,8 @@ msgid "Open question"
 msgstr "Open question"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:16
-msgid "Voting Options"
-msgstr "Voting Options"
+msgid "Options"
+msgstr "Options"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:17
 msgid "Allow unregistered users to vote"
@@ -586,22 +593,31 @@ msgstr ""
 "the voting process."
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:19
+msgid "Hide results until participation is over"
+msgstr "Hide results until participation is over"
+
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:20
+msgid ""
+"Enable this option to hide the poll results from participants until the "
+"participation phase has ended."
+msgstr ""
+"Enable this option to hide the poll results from participants until the "
+"participation phase has ended."
+
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:21
 msgid "Add and Edit Questions"
 msgstr "Add and Edit Questions"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:163
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:169
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:175
 msgid "The poll has been updated."
 msgstr "The poll has been updated."
 
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:178
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:184
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:198
 msgid "The poll could not be updated. Please check the data you entered again."
 msgstr ""
 "The poll could not be updated. Please check the data you entered again."
 
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:257
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:263
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:292
 #: meinberlin/react/documents/DocumentManagement.jsx:16
 #: meinberlin/react/kiezradar/SearchProfile.jsx:12
 msgid "Save"
@@ -614,36 +630,30 @@ msgstr "Save"
 msgid "Question"
 msgstr "Question"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:49
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:53
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:50
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:53
 msgid "Do not display answers publicly"
 msgstr "Do not display answers publicly"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:59
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:60
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
 #: adhocracy4/polls/static/PollDashboard/HelptextForm.jsx:11
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:60
 msgid "Explanation"
 msgstr "Explanation"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:69
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:74
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:142
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:147
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:70
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:75
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:142
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:147
 #: meinberlin/react/documents/ChapterNavItem.jsx:3
 #: meinberlin/react/documents/ParagraphForm.jsx:9
 msgid "Move up"
 msgstr "Move up"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:81
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:86
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:154
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:82
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:87
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:154
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
 #: meinberlin/react/documents/ChapterNavItem.jsx:4
 #: meinberlin/react/documents/ParagraphForm.jsx:10
 msgid "Move down"
@@ -666,41 +676,32 @@ msgstr "Other"
 msgid "New answer"
 msgstr "New answer"
 
-#: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:31
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:34
 msgid "Question image"
 msgstr "Question image"
 
-#: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:39
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:42
 msgid "Image uploaded"
 msgstr "Image uploaded"
 
-#: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:40
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:43
 msgid "No image uploaded"
 msgstr "No image uploaded"
 
-#: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:48
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:51
 msgid "Preview"
 msgstr "Preview"
 
-#: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:57
-#: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:58
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:60
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:61
 msgid "Upload image"
 msgstr "Upload image"
 
-#: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:68
-#: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:69
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:71
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:72
 msgid "Remove image"
 msgstr "Remove image"
 
-#: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:92
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:85
 msgid "Alt text"
 msgstr "Alt text"
@@ -714,60 +715,56 @@ msgstr "characters"
 msgid "other"
 msgstr "other"
 
-#: adhocracy4/polls/static/PollDetail/ConfidentialNotice.jsx:7
+#: adhocracy4/polls/static/PollDetail/ConfidentialNotice.jsx:8
 msgid ""
 "Your response will be kept confidential and will not be publicly displayed."
 msgstr ""
 "Your response will be kept confidential and will not be publicly displayed."
 
-#: adhocracy4/polls/static/PollDetail/PollChoice.jsx:7
+#: adhocracy4/polls/static/PollDetail/PollChoice.jsx:6
 msgid "Multiple answers are possible."
 msgstr "Multiple answers are possible."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:17
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:25
 msgid "Your answer has been saved."
 msgstr "Your answer has been saved."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:21
-msgid "In order to participate please <a href=\"%(url)s\">log in</a>."
-msgstr "In order to participate please <a href=\"%(url)s\">log in</a>."
-
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:42
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:32
 msgid ""
 "Your answer could not be saved. Please check the data you entered again."
 msgstr ""
 "Your answer could not be saved. Please check the data you entered again."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:49
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:39
 msgid "Your answer is invalid or empty. Please try again."
 msgstr "Your answer is invalid or empty. Please try again."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:80
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:70
 msgid "To poll"
 msgstr "To poll"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:93
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:193
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:83
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:183
 msgid "Change answer"
 msgstr "Change answer"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:194
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:184
 msgid "Submit answer"
 msgstr "Submit answer"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:203
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:193
 msgid "Please login to answer"
 msgstr "Please login to answer"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:211
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:201
 msgid "Show results"
 msgstr "Show results"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:213
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:203
 msgid "Show preliminary results"
 msgstr "Show preliminary results"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:236
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:226
 msgid "Please enter your answer in this field."
 msgstr "Please enter your answer in this field."
 

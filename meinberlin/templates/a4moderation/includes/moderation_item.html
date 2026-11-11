@@ -1,8 +1,10 @@
 {% load i18n easy_thumbnails_tags %}
-{% if item.status or item.feedback %}
-    {% translate "Edit feedback" as feedback_label %}
+{% if item.is_comment %}
+    {% translate "Edit" as edit_action_label %}
+{% elif item.status or item.feedback %}
+    {% translate "Edit feedback" as edit_action_label %}
 {% else %}
-    {% translate "Add feedback" as feedback_label %}
+    {% translate "Add feedback" as edit_action_label %}
 {% endif %}
 <li class="moderation-item moderation-card{% if not item.is_reviewed %} moderation-card--unread{% endif %}{% if item.is_resolved %} moderation-card--resolved{% endif %}{% if item.is_deleted %} moderation-card--deleted{% endif %}"
     id="moderation-item-{{ item.key }}">
@@ -108,7 +110,11 @@
                     <i class="fa fa-floppy-disk" aria-hidden="true"></i>
                     <span>{% translate "Save" %}</span>
                 </button>
-                <a class="moderation-card__action" href="{{ request.get_full_path }}">
+                <a class="moderation-card__action"
+                   href="{% url 'a4moderation:item-edit' project.pk item.type item.pk %}?cancel=1&state={{ state }}&content_type={{ content_type }}&ordering={{ ordering }}"
+                   hx-get="{% url 'a4moderation:item-edit' project.pk item.type item.pk %}?cancel=1&state={{ state }}&content_type={{ content_type }}&ordering={{ ordering }}"
+                   hx-target="closest .moderation-item"
+                   hx-swap="outerHTML">
                     {% translate "Cancel" %}
                 </a>
             </div>
@@ -181,7 +187,7 @@
                    hx-target="closest .moderation-item"
                    hx-swap="outerHTML">
                     <i class="fa fa-pen" aria-hidden="true"></i>
-                    <span>{% translate "Edit" %}</span>
+                    <span>{{ edit_action_label }}</span>
                 </a>
                 <div class="moderation-card__actions-right">
                     <form method="post"

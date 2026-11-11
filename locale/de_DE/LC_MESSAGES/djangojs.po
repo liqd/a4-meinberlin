@@ -2958,3 +2958,11 @@ msgstr "Erneut versuchen"
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:37
 msgid "The image could not be compressed enough. Please choose a smaller image."
 msgstr "Das Bild konnte nicht ausreichend komprimiert werden. Bitte wählen Sie ein kleineres Bild."
+
+#: adhocracy4/polls/static/PollDashboard/PollManagement.jsx
+msgid "Answer in multiple steps"
+msgstr "Beantwortung in mehreren Schritten"
+
+#: adhocracy4/polls/static/PollDashboard/PollManagement.jsx
+msgid "Disable this option to answer all questions on one page."
+msgstr "Deaktivieren Sie diese Option, um alle Fragen auf einer Seite zu beantworten."

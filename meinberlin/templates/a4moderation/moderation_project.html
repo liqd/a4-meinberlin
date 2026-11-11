@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{{ project.name }} — {% translate "Moderation" %} — {{ block.super }}{% endblock title %}
+
+{% block content %}
+<div id="layout-grid__area--maincontent" class="moderation-project">
+    <p class="moderation-project__back">
+        <a href="{{ moderation_dashboard_url }}">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            {% translate "Moderation overview" %}
+        </a>
+    </p>
+
+    <h1 class="moderation-project__title">{{ project.name }}</h1>
+
+    <div class="moderation-toolbar">
+        {% include "a4moderation/includes/moderation_tabs.html" %}
+
+        <form class="moderation-toolbar__filters"
+              method="get"
+              action="{{ request.path }}"
+              hx-get="{{ request.path }}"
+              hx-target="#moderation-items"
+              hx-swap="innerHTML"
+              hx-push-url="true"
+              hx-trigger="change">
+            <input type="hidden" name="state" value="{{ state }}">
+            <div class="moderation-filter">
+                <label for="moderation-content-type">{% translate "Type" %}:</label>
+                <select id="moderation-content-type" name="content_type">
+                    <option value="all"{% if content_type == "all" %} selected{% endif %}>{% translate "All" %}</option>
+                    <option value="items"{% if content_type == "items" %} selected{% endif %}>{% translate "Ideas" %}</option>
+                    <option value="comments"{% if content_type == "comments" %} selected{% endif %}>{% translate "Comments" %}</option>
+                </select>
+            </div>
+            <div class="moderation-filter">
+                <label for="moderation-ordering">{% translate "Sort" %}:</label>
+                <select id="moderation-ordering" name="ordering">
+                    <option value="newest"{% if ordering == "newest" %} selected{% endif %}>{% translate "Most recent" %}</option>
+                    <option value="oldest"{% if ordering == "oldest" %} selected{% endif %}>{% translate "Oldest" %}</option>
+                </select>
+            </div>
+            <noscript>
+                <button class="button button--light" type="submit">{% translate "Apply" %}</button>
+            </noscript>
+        </form>
+    </div>
+
+    <div id="moderation-items">
+        {% include "a4moderation/includes/moderation_items.html" %}
+    </div>
+
+    <div id="moderation-status" class="visually-hidden" role="status" aria-live="polite"></div>
+
+    <dialog id="moderation-image-dialog"
+            class="moderation-image-dialog"
+            aria-label="{% translate 'Image in full size' %}">
+        <img src="" width="1" height="1" alt="">
+        <form method="dialog">
+            <button class="button button--light" type="submit">{% translate "Close" %}</button>
+        </form>
+    </dialog>
+</div>
+{% endblock content %}
+
+{% block extra_js_deferred %}
+    <script src="{% static 'moderation.js' %}"></script>
+{% endblock extra_js_deferred %}

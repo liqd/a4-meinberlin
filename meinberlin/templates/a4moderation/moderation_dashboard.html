@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load i18n easy_thumbnails_tags %}
+
+{% block title %}{% translate "Moderation" %} — {{ block.super }}{% endblock title %}
+
+{% block content %}
+<div id="layout-grid__area--maincontent" class="moderation-dashboard">
+    <h1>{% translate "Moderation" %}</h1>
+
+    <form class="moderation-dashboard__search" method="get" action="{{ request.path }}">
+        <div class="moderation-dashboard__search-field">
+            <label for="moderation-project-search" class="visually-hidden">
+                {% translate "Search projects" %}
+            </label>
+            <input type="search"
+                   id="moderation-project-search"
+                   name="q"
+                   value="{{ query }}"
+                   placeholder="{% translate 'Search term' %}">
+            <button type="submit" aria-label="{% translate 'Search' %}">
+                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="moderation-dashboard__sort">
+            <label for="moderation-project-sort">{% translate "Sort" %}:</label>
+            <select id="moderation-project-sort" name="sort">
+                <option value="recent"{% if sort == "recent" %} selected{% endif %}>{% translate "Most recent" %}</option>
+                <option value="name"{% if sort == "name" %} selected{% endif %}>{% translate "Alphabetical" %}</option>
+            </select>
+            <noscript>
+                <button class="button button--light" type="submit">{% translate "Apply" %}</button>
+            </noscript>
+        </div>
+    </form>
+
+    {% if moderated_projects %}
+        <ul class="moderation-projects">
+            {% for project in moderated_projects %}
+                <li class="moderation-project-tile">
+                    <a href="{% url 'a4moderation:project' project.pk %}">
+                        <div class="moderation-project-tile__image">
+                            {% if project.tile_image %}
+                                <img src="{% thumbnail project.tile_image 'project_tile' %}"
+                                     width="330"
+                                     height="330"
+                                     loading="lazy"
+                                     alt="">
+                            {% endif %}
+                        </div>
+                        <div class="moderation-project-tile__body">
+                            <p class="moderation-project-tile__place">
+                                {% if project.administrative_district %}
+                                    {{ project.administrative_district.name }}
+                                {% else %}
+                                    {{ project.organisation.name }}
+                                {% endif %}
+                            </p>
+                            <h2 class="moderation-project-tile__title">{{ project.name }}</h2>
+                            <div class="moderation-project-tile__meta">
+                                <span>
+                                    <i class="fa fa-triangle-exclamation" aria-hidden="true"></i>
+                                    {{ project.unread_count }} {% translate "unread" %}
+                                </span>
+                                <span>
+                                    <i class="fa fa-triangle-exclamation" aria-hidden="true"></i>
+                                    {{ project.report_count }} {% translate "reports" %}
+                                </span>
+                                <span>
+                                    <i class="fa fa-comment" aria-hidden="true"></i>
+                                    {{ project.total_count }} {% translate "contributions" %}
+                                </span>
+                                {% if project.remaining_days is not None %}
+                                    <span>
+                                        <i class="fa fa-clock" aria-hidden="true"></i>
+                                        {% blocktranslate with days=project.remaining_days %}{{ days }} days left{% endblocktranslate %}
+                                    </span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="moderation-empty">{% translate "You are not moderating any projects yet." %}</p>
+    {% endif %}
+</div>
+{% endblock content %}

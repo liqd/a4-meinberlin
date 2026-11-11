@@ -1,5 +1,5 @@
 # A4
-git+https://github.com/liqd/adhocracy4.git@mB-v2611.1#egg=adhocracy4
+git+https://github.com/liqd/adhocracy4.git@gg-2026-10-moderation-dashboard#egg=adhocracy4
 
 # Additional requirements
 beautifulsoup4>=4.13.3
@@ -14,14 +14,13 @@ requests==2.33.0
 requests-mock==1.11.0
 sentry-sdk[django]==2.34.1
 urllib3==2.7.0
-wagtail==7.4.4
+wagtail==7.4
 whitenoise==6.9.0
 zeep==4.3.1
 drf-spectacular==0.28.0
 
 # Inherited a4-core requirements
 celery==5.4.0
-kombu==5.6.2
 granian==2.8.2
 django-allauth==65.14.1
 django-autoslug==1.9.9

@@ -2729,3 +2729,7 @@ msgstr ""
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "play video"
 msgstr "Video abspielen"
+
+#: adhocracy4/moderation/assets/moderation.js
+msgid "The list was updated."
+msgstr "Die Liste wurde aktualisiert."

@@ -1,0 +1,219 @@
+{% load i18n easy_thumbnails_tags %}
+{% if item.status or item.feedback %}
+    {% translate "Edit feedback" as feedback_label %}
+{% else %}
+    {% translate "Add feedback" as feedback_label %}
+{% endif %}
+<li class="moderation-item moderation-card{% if not item.is_reviewed %} moderation-card--unread{% endif %}{% if item.is_resolved %} moderation-card--resolved{% endif %}{% if item.is_deleted %} moderation-card--deleted{% endif %}"
+    id="moderation-item-{{ item.key }}">
+    <div class="moderation-card__header">
+        <span class="moderation-card__avatar" aria-hidden="true">
+            {% if item.is_comment %}
+                <i class="fa fa-comment"></i>
+            {% else %}
+                <i class="fa fa-lightbulb"></i>
+            {% endif %}
+        </span>
+        <p class="moderation-card__byline">
+            <strong>{{ item.author }}</strong>
+            {% if item.is_comment %}
+                {% translate "commented on" %}
+            {% else %}
+                {% translate "submitted the idea at" %}
+            {% endif %}
+            <a href="{{ project.get_absolute_url }}">{{ project.name }}</a>
+            <span class="moderation-card__date">· {{ item.created|date:"d.m.Y, H:i" }}</span>
+        </p>
+        <details class="moderation-card__menu">
+            <summary class="moderation-card__menu-button" aria-label="{% translate 'More actions' %}">
+                <i class="fa fa-ellipsis" aria-hidden="true"></i>
+            </summary>
+            <ul class="moderation-card__menu-list">
+                <li>
+                    <form method="post"
+                          action="{% url 'a4moderation:item-read' project.pk item.type item.pk %}"
+                          hx-post="{% url 'a4moderation:item-read' project.pk item.type item.pk %}"
+                          hx-target="closest .moderation-item"
+                          hx-swap="outerHTML">
+                        {% csrf_token %}
+                        <input type="hidden" name="state" value="{{ state }}">
+                        <input type="hidden" name="content_type" value="{{ content_type }}">
+                        <input type="hidden" name="ordering" value="{{ ordering }}">
+                        {% if item.is_reviewed %}
+                            <input type="hidden" name="read" value="0">
+                            <button type="submit" class="moderation-card__menu-action">
+                                {% translate "Mark as unread" %}
+                            </button>
+                        {% else %}
+                            <input type="hidden" name="read" value="1">
+                            <button type="submit" class="moderation-card__menu-action">
+                                {% translate "Mark as read" %}
+                            </button>
+                        {% endif %}
+                    </form>
+                </li>
+            </ul>
+        </details>
+    </div>
+
+    {% if item.status %}
+        <span class="moderation-card__status moderation-card__status--{{ item.status_value }}">
+            {{ item.status }}
+        </span>
+    {% endif %}
+    {% if item.num_reports %}
+        <span class="moderation-card__reports">
+            <i class="fa fa-triangle-exclamation" aria-hidden="true"></i>
+            {{ item.num_reports }} {% translate "reports" %}
+        </span>
+    {% endif %}
+
+    {% if edit_mode %}
+        <form class="moderation-card__edit-form"
+              method="post"
+              action="{% url 'a4moderation:item-edit' project.pk item.type item.pk %}"
+              hx-post="{% url 'a4moderation:item-edit' project.pk item.type item.pk %}"
+              hx-target="closest .moderation-item"
+              hx-swap="outerHTML">
+            {% csrf_token %}
+            <input type="hidden" name="state" value="{{ state }}">
+            <input type="hidden" name="content_type" value="{{ content_type }}">
+            <input type="hidden" name="ordering" value="{{ ordering }}">
+
+            {% if form.non_field_errors %}
+                <div class="moderation-card__form-errors">{{ form.non_field_errors }}</div>
+            {% endif %}
+
+            {% if item.is_comment %}
+                <div class="moderation-card__field">
+                    <label for="{{ form.comment.id_for_label }}">{{ form.comment.label }}</label>
+                    {{ form.comment }}
+                    {% for error in form.comment.errors %}
+                        <p class="moderation-card__form-error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="moderation-card__field">
+                    <label for="{{ form.moderator_status.id_for_label }}">{% translate "Status" %}</label>
+                    {{ form.moderator_status }}
+                </div>
+                <div class="moderation-card__field">
+                    <label for="{{ form.feedback_text.id_for_label }}">{{ form.feedback_text.label }}</label>
+                    {{ form.feedback_text }}
+                </div>
+            {% endif %}
+
+            <div class="moderation-card__edit-actions">
+                <button type="submit" class="moderation-card__action">
+                    <i class="fa fa-floppy-disk" aria-hidden="true"></i>
+                    <span>{% translate "Save" %}</span>
+                </button>
+                <a class="moderation-card__action" href="{{ request.get_full_path }}">
+                    {% translate "Cancel" %}
+                </a>
+            </div>
+        </form>
+    {% else %}
+        <div class="moderation-card__content">
+            {% if item.title %}
+                <h2 class="moderation-card__title">{{ item.title }}</h2>
+            {% endif %}
+            {% if item.is_truncated %}
+                <div class="moderation-card__text-short">{{ item.short_text|safe }}</div>
+                <details class="moderation-card__details">
+                    <summary class="moderation-card__more">
+                        <span class="moderation-card__more-open">{% translate "View More" %}</span>
+                        <span class="moderation-card__more-close">{% translate "View Less" %}</span>
+                    </summary>
+                    <div class="moderation-card__text-full">{{ item.text|safe }}</div>
+                </details>
+            {% else %}
+                {{ item.text|safe }}
+            {% endif %}
+
+            {% if item.image %}
+                <a class="moderation-card__image"
+                   href="{{ item.image.url }}"
+                   data-moderation-image="{{ item.image.url }}"
+                   aria-label="{% translate 'Open image in full size' %}">
+                    <img src="{% thumbnail item.image 'item_image' %}"
+                         width="{{ item.image_thumb_width }}"
+                         height="{{ item.image_thumb_height }}"
+                         loading="lazy"
+                         alt="">
+                </a>
+            {% endif %}
+        </div>
+
+        {% if item.is_deleted %}
+            <div class="moderation-card__footer">
+                <span>
+                    {% translate "Deleted by moderator" %}
+                    {% if item.modified %}· {{ item.modified|date:"d.m.Y" }}{% endif %}
+                </span>
+            </div>
+        {% elif item.is_resolved %}
+            <div class="moderation-card__footer">
+                <span>
+                    {% translate "Marked as resolved by" %}
+                    {% if item.resolved_by %}{{ item.resolved_by.get_short_name }}{% else %}{% translate "Moderator" %}{% endif %}
+                    {% if item.resolved_at %}· {{ item.resolved_at|date:"d.m.Y" }}{% endif %}
+                </span>
+                <form method="post"
+                      action="{% url 'a4moderation:item-resolve' project.pk item.type item.pk %}"
+                      hx-post="{% url 'a4moderation:item-resolve' project.pk item.type item.pk %}"
+                      hx-target="closest .moderation-item"
+                      hx-swap="outerHTML">
+                    {% csrf_token %}
+                    <input type="hidden" name="resolved" value="0">
+                    <input type="hidden" name="state" value="{{ state }}">
+                    <button type="submit" class="moderation-card__reopen">
+                        <i class="fa fa-rotate-left" aria-hidden="true"></i>
+                        {% translate "Reopen" %}
+                    </button>
+                </form>
+            </div>
+        {% else %}
+            <div class="moderation-card__actions">
+                <a class="moderation-card__action"
+                   href="{% url 'a4moderation:item-edit' project.pk item.type item.pk %}"
+                   hx-get="{% url 'a4moderation:item-edit' project.pk item.type item.pk %}?state={{ state }}&content_type={{ content_type }}&ordering={{ ordering }}"
+                   hx-target="closest .moderation-item"
+                   hx-swap="outerHTML">
+                    <i class="fa fa-pen" aria-hidden="true"></i>
+                    <span>{% translate "Edit" %}</span>
+                </a>
+                <div class="moderation-card__actions-right">
+                    <form method="post"
+                          action="{% url 'a4moderation:item-resolve' project.pk item.type item.pk %}"
+                          hx-post="{% url 'a4moderation:item-resolve' project.pk item.type item.pk %}"
+                          hx-target="closest .moderation-item"
+                          hx-swap="outerHTML">
+                        {% csrf_token %}
+                        <input type="hidden" name="resolved" value="1">
+                        <input type="hidden" name="state" value="{{ state }}">
+                        <button type="submit" class="moderation-card__action">
+                            <i class="fa fa-square-check" aria-hidden="true"></i>
+                            <span>{% translate "Mark as resolved" %}</span>
+                        </button>
+                    </form>
+                    {% if item.can_delete %}
+                        <form method="post"
+                              action="{% url 'a4moderation:item-delete' project.pk item.type item.pk %}"
+                              hx-post="{% url 'a4moderation:item-delete' project.pk item.type item.pk %}"
+                              hx-target="closest .moderation-item"
+                              hx-swap="outerHTML"
+                              hx-confirm="{% translate 'Do you really want to delete this comment?' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="state" value="{{ state }}">
+                            <button type="submit" class="moderation-card__action moderation-card__action--danger">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                <span>{% translate "Delete" %}</span>
+                            </button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+</li>

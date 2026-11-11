@@ -28,7 +28,8 @@
     flex-wrap: wrap;
 }
 
-.moderation-tab {
+a.moderation-tab,
+a.moderation-tab:visited {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
@@ -40,11 +41,12 @@
     & + & {
         border-left: 0;
     }
+}
 
-    &--active {
-        background-color: $text-base;
-        color: $text-inverted;
-    }
+a.moderation-tab--active,
+a.moderation-tab--active:visited {
+    background-color: $text-base;
+    color: $text-inverted;
 }
 
 .moderation-toolbar__filters {

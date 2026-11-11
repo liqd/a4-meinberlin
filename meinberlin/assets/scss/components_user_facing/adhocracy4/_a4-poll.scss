@@ -691,15 +691,8 @@ body.poll-answering .phase-info {
 // Longform presentation: all questions on one page
 
 .poll-longform {
-    &__questions {
-        display: flex;
-        flex-direction: column;
-        gap: 2 * $spacer;
-    }
-
     &__question + &__question {
-        padding-top: 2 * $spacer;
-        border-top: 1px solid $border-color;
+        margin-top: 1.5 * $spacer;
     }
 
     &__actions {

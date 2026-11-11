@@ -9,24 +9,35 @@
 
     <form class="moderation-dashboard__search" method="get" action="{{ request.path }}">
         <div class="moderation-dashboard__search-field">
-            <label for="moderation-project-search" class="visually-hidden">
-                {% translate "Search projects" %}
-            </label>
-            <input type="search"
-                   id="moderation-project-search"
-                   name="q"
-                   value="{{ query }}"
-                   placeholder="{% translate 'Search term' %}">
-            <button type="submit" aria-label="{% translate 'Search' %}">
-                <i class="fa fa-arrow-right" aria-hidden="true"></i>
-            </button>
+            <label for="moderation-project-search">{% translate "Search projects" %}</label>
+            <div class="moderation-dashboard__search-input">
+                <i class="fa fa-magnifying-glass" aria-hidden="true"></i>
+                <input type="search"
+                       id="moderation-project-search"
+                       name="q"
+                       value="{{ query }}"
+                       placeholder="{% translate 'Search term' %}">
+                <button type="submit" aria-label="{% translate 'Search' %}">
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </button>
+            </div>
         </div>
         <div class="moderation-dashboard__sort">
-            <label for="moderation-project-sort">{% translate "Sort" %}:</label>
+            <label for="moderation-project-sort" class="visually-hidden">
+                {% translate "Sort" %}
+            </label>
             <select id="moderation-project-sort" name="sort">
-                <option value="recent"{% if sort == "recent" %} selected{% endif %}>{% translate "Most recent" %}</option>
-                <option value="name"{% if sort == "name" %} selected{% endif %}>{% translate "Alphabetical" %}</option>
+                <option value="reports"{% if sort == "reports" %} selected{% endif %}>
+                    {% translate "Sort: Recently Reported" %}
+                </option>
+                <option value="recent"{% if sort == "recent" %} selected{% endif %}>
+                    {% translate "Sort: Most Recent" %}
+                </option>
+                <option value="name"{% if sort == "name" %} selected{% endif %}>
+                    {% translate "Sort: Alphabetical" %}
+                </option>
             </select>
+            <i class="fa fa-angle-down" aria-hidden="true"></i>
             <noscript>
                 <button class="button button--light" type="submit">{% translate "Apply" %}</button>
             </noscript>
@@ -38,15 +49,18 @@
             {% for project in moderated_projects %}
                 <li class="moderation-project-tile">
                     <a href="{% url 'a4moderation:project' project.pk %}">
-                        <div class="moderation-project-tile__image">
+                        <figure class="moderation-project-tile__image">
                             {% if project.tile_image %}
                                 <img src="{% thumbnail project.tile_image 'project_tile' %}"
-                                     width="330"
-                                     height="330"
+                                     width="173"
+                                     height="173"
                                      loading="lazy"
                                      alt="">
                             {% endif %}
-                        </div>
+                            {% if project.tile_image_copyright %}
+                                <figcaption>{{ project.tile_image_copyright }}</figcaption>
+                            {% endif %}
+                        </figure>
                         <div class="moderation-project-tile__body">
                             <p class="moderation-project-tile__place">
                                 {% if project.administrative_district %}
@@ -59,15 +73,11 @@
                             <div class="moderation-project-tile__meta">
                                 <span>
                                     <i class="fa fa-triangle-exclamation" aria-hidden="true"></i>
-                                    {{ project.unread_count }} {% translate "unread" %}
+                                    {{ project.open_count }} {% translate "Open contributions" %}
                                 </span>
                                 <span>
-                                    <i class="fa fa-triangle-exclamation" aria-hidden="true"></i>
+                                    <i class="fa fa-flag" aria-hidden="true"></i>
                                     {{ project.report_count }} {% translate "reports" %}
-                                </span>
-                                <span>
-                                    <i class="fa fa-comment" aria-hidden="true"></i>
-                                    {{ project.total_count }} {% translate "contributions" %}
                                 </span>
                                 {% if project.remaining_days is not None %}
                                     <span>

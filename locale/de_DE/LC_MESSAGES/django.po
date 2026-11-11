@@ -6465,3 +6465,19 @@ msgstr "Von der Moderation gelöscht"
 #: a4moderation
 msgid "Do you really want to delete this comment?"
 msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
+
+#: a4moderation
+msgid "Sort: Recently Reported"
+msgstr "Sortieren: Zuletzt gemeldet"
+
+#: a4moderation
+msgid "Sort: Most Recent"
+msgstr "Sortieren: Neueste"
+
+#: a4moderation
+msgid "Sort: Alphabetical"
+msgstr "Sortieren: Alphabetisch"
+
+#: a4moderation
+msgid "Open contributions"
+msgstr "Offene Beiträge"

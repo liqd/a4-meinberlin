@@ -1,5 +1,4 @@
-# A4 branch gg-2026-11-poll-setup (cache-bust: 2b124c8a4)
-git+https://github.com/liqd/adhocracy4.git@gg-2026-11-poll-setup#egg=adhocracy4
+git+https://github.com/liqd/adhocracy4.git@f98829971b9e4a01108b3d368724d25892720fde#egg=adhocracy4
 
 # Additional requirements
 beautifulsoup4>=4.13.3

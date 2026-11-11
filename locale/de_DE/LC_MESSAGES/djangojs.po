@@ -2946,3 +2946,15 @@ msgstr "Bitte nur eine Antwort wählen"
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx
 msgid "Start poll"
 msgstr "Umfrage beginnen"
+
+#: adhocracy4/polls/static/PollDetail/ChoiceRow.jsx:8
+msgid "Selected"
+msgstr "Ausgewählt"
+
+#: adhocracy4/polls/static/PollDashboard/PollManagement.jsx:33
+msgid "Retry"
+msgstr "Erneut versuchen"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:37
+msgid "The image could not be compressed enough. Please choose a smaller image."
+msgstr "Das Bild konnte nicht ausreichend komprimiert werden. Bitte wählen Sie ein kleineres Bild."

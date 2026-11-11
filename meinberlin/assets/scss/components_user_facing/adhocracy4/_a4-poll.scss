@@ -48,6 +48,12 @@
     line-height: 16.8px;
 }
 
+// Question help text and the "select one answer" hint are rendered as
+// siblings; keep them visually grouped instead of stacking both margins.
+.poll__help-text + .poll__help-text {
+    margin-top: -$spacer;
+}
+
 // Progress
 
 .poll-progress {
@@ -267,23 +273,6 @@
     width: 100%;
     margin-top: 8px;
     padding-left: 34px;
-
-    textarea {
-        width: 100%;
-        min-height: 86px;
-        padding: 10px 12px;
-        border: 2px solid $black;
-        border-radius: 0;
-        font-family: $font-family-base;
-        font-size: 16px;
-        line-height: 24px;
-        resize: vertical;
-
-        &:focus {
-            outline: 2px solid $secondary;
-            outline-offset: -1px;
-        }
-    }
 }
 
 // Question transitions
@@ -570,8 +559,8 @@
         }
 
         &:disabled {
-            opacity: 1;
-            color: $black;
+            opacity: 0.5;
+            color: $gray-light;
             cursor: not-allowed;
         }
     }

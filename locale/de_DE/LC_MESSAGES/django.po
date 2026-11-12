@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-11-10 16:00+0100\n"
-"PO-Revision-Date: 2026-06-16 13:00+0000\n"
+"PO-Revision-Date: 2026-11-12 13:45+0000\n"
 "Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main-"
-"design-dev/de/>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
+"main-design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -395,6 +395,7 @@ msgstr ""
 msgid ""
 "Images are resized and compressed automatically before you save the form."
 msgstr ""
+"Bilder werden automatisch verkleinert und komprimiert, bevor Sie speichern."
 
 #: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:3
 #: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:3
@@ -1301,30 +1302,30 @@ msgstr "Voter ID"
 
 #: adhocracy4/polls/exports.py:253
 msgid "Respondent"
-msgstr ""
+msgstr "Teilnehmer:in"
 
 #: adhocracy4/polls/exports.py:279
 #, python-format
 msgid "Respondent %(number)s"
-msgstr ""
+msgstr "Teilnehmer:in %(number)s"
 
 #: adhocracy4/polls/exports.py:280
 #, python-format
 msgid "Anonymous %(number)s"
-msgstr ""
+msgstr "Anonym %(number)s"
 
 #: adhocracy4/polls/exports.py:292
 #, python-format
 msgid "Other: %(answer)s"
-msgstr ""
+msgstr "Sonstige: %(answer)s"
 
 #: adhocracy4/polls/exports.py:294
 msgid "Other"
-msgstr ""
+msgstr "Sonstige"
 
 #: adhocracy4/polls/models.py:41
 msgid "Hide results until participation is over"
-msgstr ""
+msgstr "Ergebnisse verbergen, bis die Beteiligung beendet ist"
 
 #: adhocracy4/polls/models.py:64
 msgid "Explanation"
@@ -1423,17 +1424,17 @@ msgstr "Bitte geben Sie einen beschreibenden Alternativtext für das Fragenbild 
 
 #: adhocracy4/polls/validators.py:50
 msgid "The uploaded file is not a valid image."
-msgstr ""
+msgstr "Die hochgeladene Datei ist kein gültiges Bild."
 
 #: adhocracy4/polls/validators.py:60
 #, python-format
 msgid "Image must be at least %(width)s pixels wide."
-msgstr ""
+msgstr "Bilder müssen mindestens %(width)s Pixel breit sein."
 
 #: adhocracy4/polls/validators.py:64
 #, python-format
 msgid "Image must be at least %(height)s pixels high."
-msgstr ""
+msgstr "Bilder müssen mindestens %(height)s Pixel hoch sein."
 
 #: adhocracy4/polls/validators.py:82
 #, python-format
@@ -2727,7 +2728,7 @@ msgstr "Telefonnummer"
 
 #: meinberlin/apps/contrib/mixins.py:91
 msgid "Contact storage consent"
-msgstr ""
+msgstr "Einwilligung zur Speicherung der Daten"
 
 #: meinberlin/apps/contrib/mixins.py:129
 msgid "Please consent to the storage of your contact information."
@@ -5354,13 +5355,16 @@ msgstr ""
 #: meinberlin/apps/users/templates/meinberlin_users/guest_create.html:10
 #: meinberlin/apps/users/templates/meinberlin_users/guest_create.html:73
 msgid "Continue as a guest"
-msgstr ""
+msgstr "Als Gast fortfahren"
 
 #: meinberlin/apps/users/templates/meinberlin_users/guest_create.html:15
 msgid ""
 "Please log out after participating or close your browser. This ensures that "
 "neither you nor anyone else has access to your guest account."
 msgstr ""
+"Bitte melden Sie sich nach der Teilnahme ab oder schließen Sie Ihren "
+"Browser. So ist sichergestellt, dass weder Sie noch andere Personen Zugriff "
+"auf Ihr Gastkonto haben."
 
 #: meinberlin/apps/users/templates/meinberlin_users/guest_create.html:16
 msgid ""
@@ -5369,6 +5373,10 @@ msgid ""
 "their submissions. You can convert your guest account into a permanent "
 "account in the user settings."
 msgstr ""
+"Gastkonten können Projekten nicht folgen und erhalten keine "
+"Benachrichtigungen über den Status ihrer Beiträge oder darüber, dass andere "
+"Teilnehmende mit ihren Beiträgen interagieren. Im Menü können Sie Ihr "
+"Gastkonto in ein reguläres Konto umwandeln."
 
 #: meinberlin/apps/users/templates/meinberlin_users/guest_create.html:40
 #: meinberlin/templates/account/signup.html:53
@@ -5384,6 +5392,12 @@ msgid ""
 "                            <a href=\"%(privacy_policy)s\" "
 "target=\"_blank\">privacy policy</a>."
 msgstr ""
+"Ich willige hiermit ausdrücklich in die Erhebung und Verarbeitung "
+"(Speicherung) meiner Daten sowie in die Verarbeitung und Veröffentlichung "
+"meiner Ideen, Kommentare und Beiträge gemäß der Datenschutzerklärung ein. "
+"Außerdem bestätige ich, dass ich die <a href=\"%(terms_of_use_url)s\" target="
+"\"_blank\">Nutzungsbedingungen</a> und die <a href=\"%(privacy_policy)s\" "
+"target=\"_blank\">Datenschutzerklärung</a> gelesen habe und akzeptiere."
 
 #: meinberlin/apps/users/templates/meinberlin_users/guest_create.html:81
 #: meinberlin/templates/account/signup.html:95
@@ -5921,11 +5935,11 @@ msgstr "Mehr aus diesem Projekt"
 
 #: meinberlin/templates/account/auth_modal.html:4
 msgid "Login or register"
-msgstr ""
+msgstr "Anmelden oder Registrieren"
 
 #: meinberlin/templates/account/auth_modal.html:6
 msgid "Hide password"
-msgstr ""
+msgstr "Passwort verbergen"
 
 #: meinberlin/templates/account/email.html:5
 msgid "Email Addresses"
@@ -6063,7 +6077,7 @@ msgstr "Ihr Passwort wurde erfolgreich geändert."
 
 #: meinberlin/templates/account/signup.html:89
 msgid "Or continue as a guest"
-msgstr ""
+msgstr "Oder als Gast fortfahren"
 
 #: meinberlin/templates/base_errors.html:4
 msgid "Error"

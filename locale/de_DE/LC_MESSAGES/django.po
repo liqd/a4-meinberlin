@@ -1348,7 +1348,7 @@ msgstr ""
 
 #: adhocracy4/polls/models.py:87
 msgid "The image will be shown with the question"
-msgstr ""
+msgstr "Das Bild wird mit der Frage angezeigt."
 
 #: adhocracy4/polls/models.py:93
 msgid "Question image"
@@ -1419,7 +1419,7 @@ msgstr "Umfragen"
 #: adhocracy4/polls/serializers.py:233
 #: adhocracy4/polls/services.py:118
 msgid "Please provide a descriptive alt text for the question image."
-msgstr ""
+msgstr "Bitte geben Sie einen beschreibenden Alternativtext für das Fragenbild an."
 
 #: adhocracy4/polls/validators.py:50
 msgid "The uploaded file is not a valid image."
@@ -6311,3 +6311,49 @@ msgstr ""
 "href=\"%(terms_of_use_url)s\" target=\"_blank\">Nutzungsbedingungen</a> und "
 "die <a href=\"%(privacy_policy)s\" target=\"_blank\"> Datenschutzerklärung</"
 "a> gelesen habe und akzeptiere."
+
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/components/hero.html:17
+msgid "Image"
+msgstr "Bild"
+
+#: meinberlin/apps/users/templates/meinberlin_users/guest_create.html:39
+#: meinberlin/templates/account/signup.html:55
+#, python-format
+msgid ""
+"I hereby expressly consent to the collection and processing (storage) of my "
+"data and expressly consent to the processing and publication of my ideas, "
+"comments and contributions as described in the privacy policy. I also "
+"confirm that I have read and accept the\n"
+"                        <a href=\"%(terms_of_use_url)s\" "
+"target=\"_blank\">terms of use</a>\n"
+"                        and the\n"
+"                        <a href=\"%(privacy_policy)s\" "
+"target=\"_blank\">privacy policy</a>."
+msgstr ""
+"Ich willige hiermit ausdrücklich in die Erhebung und Verarbeitung "
+"(Speicherung) meiner Daten ein und stimme der Verarbeitung und "
+"Veröffentlichung meiner Ideen, Kommentare und Beiträge, wie in der "
+"Datenschutzerklärung beschrieben, ausdrücklich zu. Ich bestätige außerdem, "
+"dass ich die\n"
+"                        <a href=\"%(terms_of_use_url)s\" "
+"target=\"_blank\">Nutzungsbedingungen</a>\n"
+"                        und die\n"
+"                        <a href=\"%(privacy_policy)s\" "
+"target=\"_blank\">Datenschutzbestimmungen</a>\n"
+"                        gelesen habe und akzeptiere."
+
+#: adhocracy4/polls/templates/a4polls/poll_detail.html
+msgid "Start poll"
+msgstr "Umfrage beginnen"
+
+#: adhocracy4/polls/models.py
+msgid "Presentation"
+msgstr "Darstellung"
+
+#: adhocracy4/polls/models.py
+msgid "One question per step"
+msgstr "Eine Frage pro Schritt"
+
+#: adhocracy4/polls/models.py
+msgid "All questions on one page"
+msgstr "Alle Fragen auf einer Seite"

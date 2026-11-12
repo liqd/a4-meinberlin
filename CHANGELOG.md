@@ -11,7 +11,12 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Changed
 
+- Poll editor: question list with expandable rows, reordering and inline delete confirmation
+
 ### Fixed
+
+- Poll: compress question images before upload to prevent HTTP 413 errors
+- Poll: only offer guest participation when the project allows it
 
 ## v2611.1
 

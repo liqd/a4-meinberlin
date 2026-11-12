@@ -738,7 +738,7 @@ msgstr "Offene Frage"
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:16
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:16
 msgid "Options"
-msgstr ""
+msgstr "Optionen"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:17
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:17
@@ -755,7 +755,7 @@ msgstr "weblate."
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:19
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:19
 msgid "Hide results until participation is over"
-msgstr ""
+msgstr "Ergebnisse bis zum Ende der Beteiligung ausblenden"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:20
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:20
@@ -763,6 +763,8 @@ msgid ""
 "Enable this option to hide the poll results from participants until the "
 "participation phase has ended."
 msgstr ""
+"Aktivieren Sie diese Option, um die Umfrageergebnisse vor den Teilnehmenden "
+"bis zum Ende der Beteiligungsphase zu verbergen."
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:21
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:21
@@ -864,41 +866,41 @@ msgstr "Neue Antwort"
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:34
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:34
 msgid "Question image"
-msgstr ""
+msgstr "Bild"
 
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:42
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:42
 msgid "Image uploaded"
-msgstr ""
+msgstr "Bild hochgeladen"
 
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:43
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:43
 msgid "No image uploaded"
-msgstr ""
+msgstr "Kein Bild hochgeladen"
 
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:51
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:51
 msgid "Preview"
-msgstr ""
+msgstr "Vorschau"
 
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:60
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:61
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:60
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:61
 msgid "Upload image"
-msgstr ""
+msgstr "Bild hochladen"
 
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:71
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:72
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:71
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:72
 msgid "Remove image"
-msgstr ""
+msgstr "Bild entfernen"
 
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:85
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:85
 msgid "Alt text"
-msgstr ""
+msgstr "Alternativtext"
 
 #: adhocracy4/polls/static/PollDetail/CharCounter.jsx:5
 #: adhocracy4/polls/static/PollDetail/CharCounter.jsx:5
@@ -2746,3 +2748,217 @@ msgstr ""
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "play video"
 msgstr "Video abspielen"
+
+#: adhocracy4/polls/static/PollDashboard/AddQuestionDropdown.jsx
+#: adhocracy4/polls/static/PollDashboard/PollManagement.jsx
+msgid "New question"
+msgstr "Neue Frage"
+
+#: adhocracy4/polls/static/PollDashboard/PollManagement.jsx
+msgid "The poll could not be updated (HTTP %(status)s). Please try again."
+msgstr ""
+"Die Umfrage konnte nicht aktualisiert werden (HTTP %(status)s). Bitte "
+"versuchen Sie es erneut."
+
+#: adhocracy4/polls/static/PollDashboard/PollManagement.jsx
+msgid "The poll could not be loaded. Please try again."
+msgstr "Die Umfrage konnte nicht geladen werden. Bitte versuchen Sie es erneut."
+
+#: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
+msgid "%(number)s of %(total)s"
+msgstr "%(number)s von %(total)s"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
+msgid "Move question up"
+msgstr "Frage nach oben verschieben"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
+msgid "Move question down"
+msgstr "Frage nach unten verschieben"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
+msgid "This field is required"
+msgstr "Dieses Feld ist erforderlich"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
+msgid "Answer type"
+msgstr "Antworttyp"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
+msgid "Open Text"
+msgstr "Freitext"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
+msgid "Single choice"
+msgstr "Einzelauswahl"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
+msgid "Multiple choice"
+msgstr "Mehrfachauswahl"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
+msgid "Answer option"
+msgstr "Antwortoption"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
+msgid "Open answer"
+msgstr "Freie Antwort"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionListItem.jsx
+msgid "Untitled question"
+msgstr "Unbenannte Frage"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionListItem.jsx
+msgid "Delete question"
+msgstr "Frage löschen"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionListItem.jsx
+msgid "Confirm delete"
+msgstr "Löschen bestätigen"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionListItem.jsx
+msgid "Cancel delete"
+msgstr "Löschen abbrechen"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionListItem.jsx
+msgid "Delete this question?"
+msgstr "Diese Frage löschen?"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionListItem.jsx
+msgid "Expand question"
+msgstr "Frage ausklappen"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionListItem.jsx
+msgid "Collapse question"
+msgstr "Frage einklappen"
+
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx
+msgid "Failed to load poll data. Please try again."
+msgstr "Die Umfragedaten konnten nicht geladen werden. Bitte versuchen Sie es erneut."
+
+#: adhocracy4/polls/static/PollDetail/StartScreen.jsx
+msgid "Poll Participation Info"
+msgstr "Informationen zur Teilnahme an der Umfrage"
+
+#: adhocracy4/polls/static/PollDetail/StartScreen.jsx
+msgid "You can now participate in this poll even if you're not logged in."
+msgstr "Sie können jetzt auch ohne Anmeldung an dieser Umfrage teilnehmen."
+
+#: adhocracy4/polls/static/PollDetail/StartScreen.jsx
+msgid "Unregistered users can't edit their votes once submitted."
+msgstr "Nicht registrierte Nutzer*innen können ihre Stimme nach dem Absenden nicht mehr ändern."
+
+#: adhocracy4/polls/static/PollDetail/StartScreen.jsx
+msgid "Learn more about the voting options and rules"
+msgstr "Mehr über die Abstimmungsoptionen und -regeln erfahren"
+
+#: adhocracy4/polls/static/PollDetail/StartScreen.jsx
+msgid "Learn more about voting options."
+msgstr "Mehr über die Abstimmungsoptionen erfahren."
+
+#: adhocracy4/polls/static/PollDetail/StartScreen.jsx
+msgid "Poll contains <span class=\"poll-start-screen__count\">%(count)s question</span>."
+msgid_plural "Poll contains <span class=\"poll-start-screen__count\">%(count)s questions</span>."
+msgstr[0] "Die Umfrage enthält <span class=\"poll-start-screen__count\">%(count)s Frage</span>."
+msgstr[1] "Die Umfrage enthält <span class=\"poll-start-screen__count\">%(count)s Fragen</span>."
+
+#: adhocracy4/polls/static/PollDetail/StartScreen.jsx
+msgid "So far <span class=\"poll-start-screen__count\">%(count)s person</span> has participated."
+msgid_plural "So far <span class=\"poll-start-screen__count\">%(count)s people</span> have participated."
+msgstr[0] "Bisher hat <span class=\"poll-start-screen__count\">%(count)s Person</span> teilgenommen."
+msgstr[1] "Bisher haben <span class=\"poll-start-screen__count\">%(count)s Personen</span> teilgenommen."
+
+#: adhocracy4/polls/static/PollDetail/StartScreen.jsx
+msgid "Start"
+msgstr "Starten"
+
+#: adhocracy4/polls/static/PollDetail/StartScreen.jsx
+msgid "Log in to participate"
+msgstr "Zum Teilnehmen anmelden"
+
+#: adhocracy4/polls/static/PollDetail/NavigationButtons.jsx
+msgid "Go Back"
+msgstr "Zurück"
+
+#: adhocracy4/polls/static/PollDetail/NavigationButtons.jsx
+msgid "Skip"
+msgstr "Überspringen"
+
+#: adhocracy4/polls/static/PollDetail/NavigationButtons.jsx
+msgid "Next"
+msgstr "Weiter"
+
+#: adhocracy4/polls/static/PollDetail/NavigationButtons.jsx
+msgid "Submitting..."
+msgstr "Wird gesendet ..."
+
+#: adhocracy4/polls/static/PollDetail/NavigationButtons.jsx
+msgid "Submit All"
+msgstr "Antwort senden"
+
+#: adhocracy4/polls/static/PollDetail/QuestionFunnel.jsx
+msgid "Question %(current)s of %(total)s"
+msgstr "Frage %(current)s von %(total)s"
+
+#: adhocracy4/polls/static/PollDetail/ResultsView.jsx
+msgid "The poll has ended. Here are the results."
+msgstr "Die Umfrage ist beendet. Hier sind die Ergebnisse."
+
+#: adhocracy4/polls/static/PollDetail/ResultsView.jsx
+msgid "Here are the preliminary results."
+msgstr "Hier sind die vorläufigen Ergebnisse."
+
+#: adhocracy4/polls/static/PollDetail/ResultsView.jsx
+msgid "<strong>%s</strong> <strong>person</strong> has participated."
+msgid_plural "<strong>%s</strong> <strong>people</strong> have participated."
+msgstr[0] "<strong>%s</strong> <strong>Person</strong> hat teilgenommen."
+msgstr[1] "<strong>%s</strong> <strong>Personen</strong> haben teilgenommen."
+
+#: adhocracy4/polls/static/PollDetail/ResultsView.jsx
+#: adhocracy4/polls/static/PollDetail/PollAnswerReview.jsx
+msgid "Change my answers"
+msgstr "Meine Antworten ändern"
+
+#: adhocracy4/polls/static/PollDetail/PollAnswerReview.jsx
+msgid "Thank you for taking part in the poll! You will see the results as soon as the participation phase is over."
+msgstr ""
+"Vielen Dank für Ihre Teilnahme! Die Ergebnisse werden sichtbar, sobald die "
+"Beteiligungsphase beendet ist."
+
+#: adhocracy4/polls/static/PollDetail/PollAnswerReview.jsx
+msgid "No answer given."
+msgstr "Keine Antwort gegeben."
+
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx
+msgid "Answers to this question will be visible only to the initiators of this project."
+msgstr ""
+"Die Antworten auf diese Frage sind nur für die Initiator*innen dieses "
+"Projekts sichtbar."
+
+#: adhocracy4/polls/static/PollDetail/PollChoice.jsx
+msgid "Please select only one answer"
+msgstr "Bitte nur eine Antwort wählen"
+
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx
+msgid "Start poll"
+msgstr "Umfrage beginnen"
+
+#: adhocracy4/polls/static/PollDetail/ChoiceRow.jsx:8
+msgid "Selected"
+msgstr "Ausgewählt"
+
+#: adhocracy4/polls/static/PollDashboard/PollManagement.jsx:33
+msgid "Retry"
+msgstr "Erneut versuchen"
+
+#: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:37
+msgid "The image could not be compressed enough. Please choose a smaller image."
+msgstr "Das Bild konnte nicht ausreichend komprimiert werden. Bitte wählen Sie ein kleineres Bild."
+
+#: adhocracy4/polls/static/PollDashboard/PollManagement.jsx
+msgid "Answer in multiple steps"
+msgstr "Beantwortung in mehreren Schritten"
+
+#: adhocracy4/polls/static/PollDashboard/PollManagement.jsx
+msgid "Disable this option to answer all questions on one page."
+msgstr "Deaktivieren Sie diese Option, um alle Fragen auf einer Seite zu beantworten."

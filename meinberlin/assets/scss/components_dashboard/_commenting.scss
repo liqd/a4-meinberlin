@@ -1,19 +1,15 @@
-.editpoll__question-container,
-.editpoll__actions-container,
 .commenting {
     margin-bottom: $spacer;
 
     @extend .row;
 }
 
-.editpoll__question,
 .commenting__content {
     margin-bottom: $spacer;
 
     @extend .col-lg-9;
 }
 
-.editpoll__question--border,
 .commenting__content--border {
     margin-bottom: 0;
     margin-top: 0;
@@ -33,8 +29,6 @@
     }
 }
 
-.editpoll__question-actions,
-.editpoll__menu-container,
 .commenting__actions {
     margin-bottom: $spacer;
     text-align: right;

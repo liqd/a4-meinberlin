@@ -6345,3 +6345,15 @@ msgstr ""
 #: adhocracy4/polls/templates/a4polls/poll_detail.html
 msgid "Start poll"
 msgstr "Umfrage beginnen"
+
+#: adhocracy4/polls/models.py
+msgid "Presentation"
+msgstr "Darstellung"
+
+#: adhocracy4/polls/models.py
+msgid "One question per step"
+msgstr "Eine Frage pro Schritt"
+
+#: adhocracy4/polls/models.py
+msgid "All questions on one page"
+msgstr "Alle Fragen auf einer Seite"

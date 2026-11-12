@@ -638,11 +638,11 @@ msgstr "Ja"
 
 #: adhocracy4/dashboard/forms.py:40
 msgid "Only registered users can participate"
-msgstr ""
+msgstr "Nur registrierte Nutzer*innen können teilnehmen"
 
 #: adhocracy4/dashboard/forms.py:44
 msgid "Registered and guest users can participate"
-msgstr ""
+msgstr "Registrierte Nutzer:innen und Gastkonten können sich aktiv beteiligen"
 
 #: adhocracy4/dashboard/forms.py:105
 msgid "All users can participate (public)."
@@ -1018,7 +1018,7 @@ msgstr "Bitte fügen Sie jedem Bild einen Alternativtext hinzu."
 
 #: adhocracy4/images/widgets.py:27
 msgid "Select a picture from a local folder."
-msgstr ""
+msgstr "Wählen Sie ein Bild von Ihrem Gerät aus."
 
 #: adhocracy4/labels/dashboard.py:15
 #: meinberlin/templates/a4labels/includes/module_labels_form.html:6
@@ -1344,7 +1344,7 @@ msgstr ""
 
 #: adhocracy4/polls/models.py:86
 msgid "Image for Question"
-msgstr ""
+msgstr "Bild für Frage"
 
 #: adhocracy4/polls/models.py:87
 msgid "The image will be shown with the question"
@@ -1352,7 +1352,7 @@ msgstr "Das Bild wird mit der Frage angezeigt."
 
 #: adhocracy4/polls/models.py:93
 msgid "Question image"
-msgstr ""
+msgstr "Fragebild"
 
 #: adhocracy4/polls/models.py:110
 msgid "Questions with open answers cannot have multiple choices."
@@ -1614,13 +1614,15 @@ msgstr ""
 
 #: adhocracy4/projects/models.py:299
 msgid "Allow guest users to participate"
-msgstr ""
+msgstr "Erlaube Gastkonten teilzunehmen"
 
 #: adhocracy4/projects/models.py:301
 msgid ""
 "Whether guest users may participate in this project. Only applies when guest "
 "users are enabled for the platform."
 msgstr ""
+"Legt fest, ob Gäste an diesem Projekt teilnehmen dürfen. Gilt nur, wenn "
+"Gastzugänge für die Plattform aktiviert sind."
 
 #: adhocracy4/projects/utils.py:58
 #, python-brace-format
@@ -1678,11 +1680,11 @@ msgstr "Nutzerkonto Verbindungen"
 
 #: meinberlin/apps/account/templates/meinberlin_account/guest_convert.html:5
 msgid "Convert account"
-msgstr ""
+msgstr "Account umwandeln"
 
 #: meinberlin/apps/account/templates/meinberlin_account/guest_convert.html:8
 msgid "Convert to a regular account"
-msgstr ""
+msgstr "In ein reguläres Konto umwandeln"
 
 #: meinberlin/apps/account/templates/meinberlin_account/guest_convert.html:9
 msgid ""
@@ -1690,6 +1692,9 @@ msgid ""
 "means that all your previous posts, comments and ratings will be kept and "
 "assigned to your new user account."
 msgstr ""
+"Sie können Ihr Gastkonto jetzt in ein reguläres Benutzerkonto umwandeln. "
+"Alle Ihre bisherigen Beiträge, Kommentare und Bewertungen bleiben dabei "
+"erhalten und werden Ihrem neuen Benutzerkonto zugeordnet."
 
 #: meinberlin/apps/account/templates/meinberlin_account/guest_convert.html:44
 #, python-format
@@ -1704,6 +1709,12 @@ msgid ""
 "                    <a href=\"%(privacy_policy)s\" target=\"_blank\">privacy "
 "policy</a>."
 msgstr ""
+"Ich willige hiermit ausdrücklich in die Erhebung und Verarbeitung "
+"(Speicherung) meiner Daten sowie in die Verarbeitung und Veröffentlichung "
+"meiner Ideen, Kommentare und Beiträge gemäß der Datenschutzerklärung ein. "
+"Außerdem bestätige ich, dass ich die <a href=\"%(terms_of_use_url)s\" target="
+"\"_blank\"> Nutzungsbedingungen</a> und die <a href=\"%(privacy_policy)s\" "
+"target=\"_blank\">Datenschutzbestimmungen</a> gelesen habe."
 
 #: meinberlin/apps/account/templates/meinberlin_account/notification-settings.html:5
 #: meinberlin/apps/account/templates/meinberlin_account/profile.html:5
@@ -4778,6 +4789,10 @@ msgid ""
 "contributions permanently, <a href=\"%(guest_convert_url)s\">create an "
 "account</a>."
 msgstr ""
+"Sie nehmen als Gast teil. Bitte melden Sie sich anschließend ab oder "
+"schließen Sie Ihren Browser, damit niemand sonst auf Ihr Gastkonto zugreifen "
+"kann. Um Ihre Beiträge dauerhaft zu behalten, <a href=\"%(guest_convert_url)"
+"s\">erstellen Sie ein Konto</a>."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_detail_content.html:22
 msgid "Offline Events"
@@ -5272,7 +5287,7 @@ msgstr "E-Mail-Adresse"
 
 #: meinberlin/apps/users/forms.py:171
 msgid "Email already in use."
-msgstr ""
+msgstr "E-Mailadresse existiert bereits."
 
 #: meinberlin/apps/users/forms.py:194
 msgid "Username or email"
@@ -5977,7 +5992,7 @@ msgstr "Sie haben noch kein Konto?"
 
 #: meinberlin/templates/account/login.html:49
 msgid "Proceed as guest"
-msgstr ""
+msgstr "Als Gast fortfahren"
 
 #: meinberlin/templates/account/logout.html:4
 #: meinberlin/templates/account/logout.html:7
@@ -6183,23 +6198,23 @@ msgstr ""
 
 #: meinberlin/templates/meinberlin_projects/partials/project_preview_modal_htmx.html:12
 msgid "Preview device size"
-msgstr ""
+msgstr "Vorschau in Gerätegröße"
 
 #: meinberlin/templates/meinberlin_projects/partials/project_preview_modal_htmx.html:17
 msgid "Desktop"
-msgstr ""
+msgstr "Desktop"
 
 #: meinberlin/templates/meinberlin_projects/partials/project_preview_modal_htmx.html:26
 msgid "Mobile"
-msgstr ""
+msgstr "Mobil"
 
 #: meinberlin/templates/meinberlin_projects/partials/project_preview_modal_htmx.html:35
 msgid "Close preview mode"
-msgstr ""
+msgstr "Vorschaufenster schließen"
 
 #: meinberlin/templates/meinberlin_projects/partials/project_preview_modal_htmx.html:43
 msgid "Project preview"
-msgstr ""
+msgstr "Projektvorschau"
 
 #: meinberlin/templates/navigation_primary.html:27
 msgid "FAQ & Support"
@@ -6208,7 +6223,7 @@ msgstr "FAQ & Support"
 #: meinberlin/templates/navigation_primary.html:43
 #: meinberlin/templates/navigation_primary.html:111
 msgid "Create an account"
-msgstr ""
+msgstr "Account erstellen"
 
 #: meinberlin/templates/navigation_primary.html:61
 msgid "Notification Settings"

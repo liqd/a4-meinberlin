@@ -210,6 +210,65 @@ def test_delete_comment(
 
 
 @pytest.mark.django_db
+def test_delete_idea(client, user, moderated_project, module_factory):
+    module = module_factory(project=moderated_project)
+    idea = IdeaFactory(module=module)
+    report = Report.objects.create(
+        content_object=idea, creator=user, description="Report"
+    )
+    client.login(username=user.email, password="password")
+
+    response = client.post(
+        reverse(
+            "a4moderation:item-delete",
+            kwargs={
+                "project_pk": moderated_project.pk,
+                "item_type": "meinberlin_ideas.idea",
+                "pk": idea.pk,
+            },
+        ),
+        {},
+        HTTP_HX_REQUEST="true",
+    )
+
+    assert response.status_code == 200
+    assert response.content == b""
+    assert not idea.__class__.objects.filter(pk=idea.pk).exists()
+    assert not Report.objects.filter(pk=report.pk).exists()
+
+
+@pytest.mark.django_db
+def test_feedback_for_comment_is_stored_as_child_comment(
+    client, user, moderated_project, module_factory, comment_factory
+):
+    module = module_factory(project=moderated_project)
+    idea = IdeaFactory(module=module)
+    comment = comment_factory(content_object=idea, comment="Kommentar")
+    client.login(username=user.email, password="password")
+
+    response = client.post(
+        reverse(
+            "a4moderation:item-feedback",
+            kwargs={
+                "project_pk": moderated_project.pk,
+                "item_type": "a4comments.comment",
+                "pk": comment.pk,
+            },
+        ),
+        {"feedback_text": "Antwort auf den Kommentar"},
+        HTTP_HX_REQUEST="true",
+    )
+
+    comment.refresh_from_db()
+    child = comment.child_comments.get()
+    assert response.status_code == 200
+    assert child.comment == "Antwort auf den Kommentar"
+    assert child.creator == user
+    assert comment.is_reviewed is True
+    assert "Antwort auf den Kommentar" in response.content.decode()
+
+
+@pytest.mark.django_db
 def test_edit_comment(client, user, moderated_project, module_factory, comment_factory):
     module = module_factory(project=moderated_project)
     idea = IdeaFactory(module=module)

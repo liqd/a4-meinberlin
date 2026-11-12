@@ -6481,3 +6481,7 @@ msgstr "Sortieren: Alphabetisch"
 #: a4moderation
 msgid "Open contributions"
 msgstr "Offene Beiträge"
+
+#: a4moderation
+msgid "Do you really want to delete this contribution?"
+msgstr "Möchten Sie diesen Beitrag wirklich löschen?"

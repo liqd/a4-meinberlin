@@ -272,6 +272,13 @@ a.moderation-tab--active:visited {
     margin-top: 1rem;
 }
 
+.moderation-card__actions-left {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
 .moderation-card__actions-right {
     display: flex;
     flex-wrap: wrap;
@@ -280,6 +287,27 @@ a.moderation-tab--active:visited {
 
     form {
         margin: 0;
+    }
+}
+
+.moderation-card__feedback {
+    margin-top: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-left: 2px solid $text-base;
+    background-color: $gray-lightest;
+}
+
+.moderation-card__feedback-meta {
+    margin: 0 0 0.25rem;
+    color: $gray;
+    font-size: 0.875rem;
+}
+
+.moderation-card__feedback-text {
+    p:last-child,
+    ul:last-child,
+    ol:last-child {
+        margin-bottom: 0;
     }
 }
 
@@ -411,6 +439,11 @@ a.moderation-card__action,
     }
 
     .moderation-card__actions {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .moderation-card__actions-left {
         align-items: flex-start;
         flex-direction: column;
     }

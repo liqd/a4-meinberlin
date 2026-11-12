@@ -359,7 +359,11 @@ module.exports = {
     alias: {
       bootstrap$: 'bootstrap/dist/js/bootstrap.bundle.min.js',
       jquery$: 'jquery/dist/jquery.min.js',
-      select2$: 'select2/dist/js/select2.min.js'
+      select2$: 'select2/dist/js/select2.min.js',
+      // maplibre-gl v6 is ESM only, has no require export condition and needs
+      // its worker url to be registered. Route all imports through a small
+      // wrapper that does this (and still re-exports everything).
+      'maplibre-gl$': path.resolve('./meinberlin/assets/js/maplibre-gl.js')
     },
     // when using `npm link`, dependencies are resolved against the linked
     // folder by default. This may result in dependencies being included twice.
@@ -381,6 +385,11 @@ module.exports = {
       patterns: [{
         from: './meinberlin/assets/images/**/*',
         to: 'images/[name][ext]'
+      }, {
+        // the maplibre-gl worker is emitted as an asset and imports this
+        // shared chunk next to it
+        from: './node_modules/maplibre-gl/dist/maplibre-gl-shared.mjs',
+        to: 'maplibre-gl-shared.mjs'
       }]
     })
   ]

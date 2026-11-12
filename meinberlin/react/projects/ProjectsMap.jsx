@@ -1,4 +1,5 @@
 import React, {
+  memo,
   useEffect,
   useMemo,
   useCallback,
@@ -128,7 +129,13 @@ const Markers = ({ items, topicChoices, onVisibleMarkersChange }) => {
   )
 }
 
-const ProjectsMap = forwardRef(({
+// Memoised so a parent re-render does not reach this subtree. adhocracy4's Map
+// declares MapLayers inside the component body, so any re-render creates a new
+// component identity and remounts the MaplibreGlLayer, tearing down and
+// recreating the WebGL context (grey flash + "WebGL context was lost").
+// Trigger on pan: MapEventHandler -> onVisibleMarkersChange -> setVisibleProjects.
+// All props here are stable while panning, so this stops the remount.
+const ProjectsMap = memo(forwardRef(function ProjectsMap ({
   items,
   topicChoices,
   districtPolygons = [],
@@ -138,7 +145,7 @@ const ProjectsMap = forwardRef(({
   onVisibleMarkersChange,
   bounds,
   ...props
-}, ref) => {
+}, ref) {
   const mapRef = useRef(null)
 
   useImperativeHandle(ref, () => ({
@@ -365,7 +372,7 @@ const ProjectsMap = forwardRef(({
       </Map>
     </div>
   )
-})
+}))
 
 ProjectsMap.displayName = 'ProjectsMap'
 export default ProjectsMap

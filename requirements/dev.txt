@@ -1,15 +1,15 @@
 -r base.txt
-black==26.3.1
+black==26.10.1
 django-debug-toolbar==4.4.6
 djlint==1.36.3
-factory-boy==3.3.1
+factory-boy==3.3.3
 Faker==33.1.0
 flake8==7.1.1
-freezegun==1.5.1
+freezegun==1.5.5
 isort==5.13.2
 psycopg[binary]==3.2.3
-pytest==8.3.4
+pytest==9.0.3
 pytest-cov==6.0.0
 pytest-django==4.9.0
-pytest-factoryboy==2.7.0
+pytest-factoryboy==2.8.1
 pytest-testmon==2.2.0

@@ -252,7 +252,7 @@ MEDIA_URL = "/media/"
 IMAGE_ALIASES = {
     "*": {
         "max_size": 5 * 10**6,
-        "fileformats": ("image/png", "image/jpeg", "image/gif"),
+        "fileformats": ("image/png", "image/jpeg", "image/gif", "image/webp"),
     },
     "heroimage": {"min_resolution": (1000, 500)},
     "questionimage": {"min_resolution": (1500, 500)},
@@ -275,7 +275,7 @@ THUMBNAIL_ALIASES = {
     }
 }
 
-ALLOWED_UPLOAD_IMAGES = ("png", "jpeg", "gif")
+ALLOWED_UPLOAD_IMAGES = ("png", "jpeg", "gif", "webp")
 
 # default primary field for models without that field set
 
@@ -556,7 +556,7 @@ A4_OPENMAPTILES_TOKEN = "9aVUrssbx7PKNUKo3WtXY6MqETI6Q336u5D142QS"
 A4_MAPBOX_TOKEN = ""
 A4_MAP_ATTRIBUTION = "&copy; 2024 basemap.de / BKG | Datenquellen: &copy; GeoBasis-DE"
 A4_PROJECT_TOPICS = "meinberlin.apps.contrib.enums.TopicEnum"
-A4_POLL_QUESTION_IMAGES = False
+A4_POLL_QUESTION_IMAGES = True
 
 A4_BLUEPRINT_TYPES = [
     ("BS", "brainstorming"),

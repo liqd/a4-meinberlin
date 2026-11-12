@@ -1,5 +1,6 @@
 import factory
 import pytest
+from django.utils import translation
 from django.utils.translation import ngettext
 
 from adhocracy4.polls import phases as voting_phases
@@ -9,6 +10,9 @@ from meinberlin.apps.budgeting import phases as budgeting_phases
 from meinberlin.apps.documents import phases as textreview_phases
 from meinberlin.apps.ideas import phases as idea_phases
 from meinberlin.apps.livequestions import phases as livequestion_phases
+from meinberlin.apps.projects.templatetags.meinberlin_project_tags import (
+    module_type_label,
+)
 from meinberlin.apps.projects.templatetags.meinberlin_project_tags import (
     render_module_insights,
 )
@@ -21,6 +25,36 @@ def test_tel_uri_encodes_spaces_and_preserves_plus():
     assert tel_uri("+49 30 90277-6445") == "tel:+49%2030%2090277-6445"
     assert tel_uri("") == ""
     assert tel_uri("   ") == ""
+
+
+@pytest.mark.django_db
+def test_is_event_module(module_factory):
+    event_module = module_factory(blueprint_type="OE")
+    regular_module = module_factory(blueprint_type="IC")
+    template = (
+        "{% load meinberlin_project_tags %}"
+        "{% if module|is_event_module %}event{% else %}regular{% endif %}"
+    )
+
+    assert render_template(template, {"module": event_module}) == "event"
+    assert render_template(template, {"module": regular_module}) == "regular"
+
+
+@pytest.mark.django_db
+def test_is_event_module_cluster(module_factory):
+    event_module = module_factory(blueprint_type="OE")
+    regular_module = module_factory(blueprint_type="IC")
+    template = (
+        "{% load meinberlin_project_tags %}"
+        "{% if modules|is_event_module_cluster %}event{% else %}regular{% endif %}"
+    )
+
+    assert render_template(template, {"modules": [event_module]}) == "event"
+    assert (
+        render_template(template, {"modules": [event_module, regular_module]})
+        == "regular"
+    )
+    assert render_template(template, {"modules": []}) == "regular"
 
 
 @pytest.mark.django_db
@@ -199,3 +233,21 @@ def test_render_module_insights(
         assert data["count"] == 3
         assert data["label"] == ngettext("Participant", "Participants", 3)
         assert data["icon"] == "fas fa-user-group"
+
+
+@pytest.mark.django_db
+def test_module_type_label(module_factory, django_assert_num_queries):
+    module_mbs = module_factory(blueprint_type="MBS")
+    module_po = module_factory(blueprint_type="PO")
+    module_pb3 = module_factory(blueprint_type="PB3")
+    module_kk = module_factory(blueprint_type="KK")
+    module_blank = module_factory(blueprint_type="")
+
+    with translation.override("en_GB"):
+        clear_query_cache()
+        with django_assert_num_queries(0):
+            assert module_type_label(module_mbs) == "Spatial Brainstorming"
+            assert module_type_label(module_po) == "Poll"
+            assert module_type_label(module_pb3) == "Participatory budgeting (3 phase)"
+            assert module_type_label(module_kk) == "kiezkasse"
+            assert module_type_label(module_blank) == ""

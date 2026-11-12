@@ -50,7 +50,7 @@ help:
 	@echo "  make server					-- start a dev server"
 	@echo "  make watch						-- start a dev server and rebuild js and css files on changes"
 	@echo "  make watch <port> | <host:port>		-- same, but bind to the given port/host (default 8003)"
-	@echo "  make run [port] | [host:port]		-- rebuild js and css, then start granian (default 127.0.0.1:8003)"
+	@echo "  make run [port] | [host:port]		-- rebuild js and css, then start granian (default 127.0.0.1:8003, or a random free 8xxx port if 8003 is taken)"
 	@echo "  make background				-- start background processes"
 	@echo "  make test						-- run all test cases"
 	@echo "  make pytest					-- run all test cases with pytest"
@@ -144,7 +144,10 @@ run:
 			*:*) HOST="$${ARG%%:*}"; PORT="$${ARG##*:}";; \
 			*) PORT="$$ARG";; \
 		esac; \
+	elif [ "$(origin RUN_PORT)" = "file" ]; then \
+		PORT="$$($(VIRTUAL_ENV)/bin/python3 scripts/free_port.py "$$HOST" "$$PORT")"; \
 	fi; \
+	echo "Serving on http://$$HOST:$$PORT"; \
 	npm run build && \
 	$(VIRTUAL_ENV)/bin/granian --interface wsgi --host "$$HOST" --port "$$PORT" meinberlin.config.wsgi:application
 

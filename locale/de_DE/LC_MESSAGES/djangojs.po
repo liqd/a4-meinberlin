@@ -2832,10 +2832,6 @@ msgstr "Frage ausklappen"
 msgid "Collapse question"
 msgstr "Frage einklappen"
 
-#: adhocracy4/polls/static/PollDashboard/AddQuestionDropdown.jsx
-msgid "Multiple choice question"
-msgstr "Mehrfachauswahl-Frage"
-
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx
 msgid "Failed to load poll data. Please try again."
 msgstr "Die Umfragedaten konnten nicht geladen werden. Bitte versuchen Sie es erneut."

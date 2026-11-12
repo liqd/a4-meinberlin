@@ -1,4 +1,4 @@
-git+https://github.com/liqd/adhocracy4.git@d509cc35b8274fbcf2ae0faaf08c872d18f6da50#egg=adhocracy4
+git+https://github.com/liqd/adhocracy4.git@8fde17ce36acf74f252ca7734885e75ec7bf92d4#egg=adhocracy4
 
 # Additional requirements
 beautifulsoup4>=4.13.3

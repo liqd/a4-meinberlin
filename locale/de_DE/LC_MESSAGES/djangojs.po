@@ -2794,7 +2794,7 @@ msgstr "Einzelauswahl"
 
 #: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
 msgid "Multiple choice"
-msgstr "Mehrfachwahl"
+msgstr "Mehrfachauswahl"
 
 #: adhocracy4/polls/static/PollDashboard/QuestionEditor.jsx
 msgid "Answer option"
@@ -2834,7 +2834,7 @@ msgstr "Frage einklappen"
 
 #: adhocracy4/polls/static/PollDashboard/AddQuestionDropdown.jsx
 msgid "Multiple choice question"
-msgstr "Mehrfachwahl-Frage"
+msgstr "Mehrfachauswahl-Frage"
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx
 msgid "Failed to load poll data. Please try again."

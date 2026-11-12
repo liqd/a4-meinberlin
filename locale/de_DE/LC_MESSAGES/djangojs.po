@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-11-10 16:00+0100\n"
-"PO-Revision-Date: 2026-06-16 13:00+0000\n"
+"PO-Revision-Date: 2026-11-12 13:45+0000\n"
 "Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js-"
-"design-dev/de/>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/"
+"js-design-dev/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -397,7 +397,7 @@ msgstr "Hervorgehoben"
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:76
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:76
 msgid "Failed to load comments. Please try again."
-msgstr ""
+msgstr "Fehler beim Laden der Kommentare. Bitte erneut versuchen."
 
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:7
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:14
@@ -572,6 +572,7 @@ msgstr "Folge ich"
 msgid ""
 "Images are resized and compressed automatically before you save the form."
 msgstr ""
+"Bilder werden automatisch verkleinert und komprimiert, bevor Sie speichern."
 
 #: adhocracy4/maps/static/a4maps/a4maps_address.js:104
 #: adhocracy4/maps/static/a4maps/a4maps_address.js:104
@@ -755,7 +756,7 @@ msgstr "weblate."
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:19
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:19
 msgid "Hide results until participation is over"
-msgstr "Ergebnisse bis zum Ende der Beteiligung ausblenden"
+msgstr "Ergebnisse verbergen, bis die Beteiligung beendet ist"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:20
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:20

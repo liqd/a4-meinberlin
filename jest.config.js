@@ -7,7 +7,10 @@ const config = {
     '\\.(css|less|scss|sass)$': '<rootDir>/__mocks__/styleMock.js',
     '\\.(gif|ttf|eot|svg)$': '<rootDir>/__mocks__/fileMock.js',
     '(django)': '<rootDir>/__mocks__/djangoMock.js',
-    'react-flip-move': '<rootDir>/__mocks__/flipmoveMock.js'
+    'react-flip-move': '<rootDir>/__mocks__/flipmoveMock.js',
+    // maplibre-gl v6 is ESM only and jest resolves modules as CommonJS
+    '^maplibre-gl$': '<rootDir>/__mocks__/maplibreGlMock.js',
+    '^maplibre-gl/dist/maplibre-gl\\.mjs$': '<rootDir>/__mocks__/maplibreGlMock.js'
   },
   testMatch: [
     '**/*.jest.js',

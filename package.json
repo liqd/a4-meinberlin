@@ -23,7 +23,7 @@
     "@uppy/image-editor": "^4.2.0",
     "@uppy/locales": "^5.1.1",
     "acorn": "8.14.0",
-    "adhocracy4": "github:liqd/adhocracy4#f97b76b291ef3fdc63b9353b1bc3c15e0e63b5e9",
+    "adhocracy4": "github:liqd/adhocracy4#d509cc35b8274fbcf2ae0faaf08c872d18f6da50",
     "autoprefixer": "10.4.20",
     "bootstrap": "5.2.3",
     "copy-webpack-plugin": "12.0.2",

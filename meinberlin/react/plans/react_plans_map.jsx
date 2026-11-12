@@ -30,6 +30,7 @@ function init () {
     const searchProfilesUrl = el.getAttribute('data-search-profiles-url')
     const searchProfilesCount = JSON.parse(el.getAttribute('data-search-profiles-count'))
     const isAuthenticated = JSON.parse(el.getAttribute('data-is-authenticated'))
+    const isGuestUser = JSON.parse(el.getAttribute('data-is-guest-user'))
     const projectStatus = JSON.parse(el.getAttribute('data-project-status'))
     const root = createRoot(el)
     root.render(
@@ -60,6 +61,7 @@ function init () {
             searchProfilesUrl={searchProfilesUrl}
             searchProfilesCount={searchProfilesCount}
             isAuthenticated={isAuthenticated}
+            isGuestUser={isGuestUser}
             projectStatus={projectStatus}
           />
         </BrowserRouter>

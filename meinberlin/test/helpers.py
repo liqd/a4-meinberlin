@@ -1,8 +1,31 @@
 import factory
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import AnonymousUser
+from django.contrib.sessions.backends.db import SessionStore
 from django.db.models.signals import post_save
+from django.test import RequestFactory
 from django.utils.encoding import smart_str
+from guest_user.functions import maybe_create_guest_user
 
 from adhocracy4.test.helpers import redirect_target
+
+User = get_user_model()
+
+
+class GuestUserCreator:
+    """Create a real guest ``User`` the same way the site does (via a request)."""
+
+    def __init__(self):
+        self.request_factory = RequestFactory()
+
+    def create_guest_user(self):
+        request = self.request_factory.get("/")
+        request.user = AnonymousUser()
+        request.session = SessionStore()
+        request.session.create()
+
+        maybe_create_guest_user(request)
+        return User.objects.latest("date_joined")
 
 
 @factory.django.mute_signals(post_save)

@@ -56,6 +56,10 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"]
+    # django-guest-user reads PASSWORD_FIELD to authenticate freshly created
+    # guests. The GuestBackend authenticates by username only and ignores the
+    # password value, so any existing field works; mirror adhocracy-plus.
+    PASSWORD_FIELD = "username"
 
     @property
     def organisations(self):

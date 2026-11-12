@@ -6,7 +6,10 @@ import htmx from 'htmx.org'
 import '../../apps/actions/assets/timestamps.js'
 import '../../apps/newsletters/assets/dynamic_fields.js'
 import '../../apps/contrib/assets/dropdown.js'
+import './auto_grow_textarea.js'
 import './navigation_primary.js'
+import './auth_modal.js'
+import './password_criteria.js'
 
 // map search function
 import 'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_address.js'
@@ -39,9 +42,20 @@ if (typeof window !== 'undefined') {
   window.htmx = htmx
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+  htmx.process(document.body)
+}, false)
+
 document.addEventListener('DOMContentLoaded', init, false)
 document.addEventListener('a4.embed.ready', init, false)
 document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.js-history-back').forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      event.preventDefault()
+      history.back()
+    })
+  })
+
   // Password toggle functionality
   document.querySelectorAll('.password-toggle-btn').forEach(function (button) {
     button.addEventListener('click', function () {

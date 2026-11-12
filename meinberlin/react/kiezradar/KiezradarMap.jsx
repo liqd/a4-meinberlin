@@ -174,7 +174,7 @@ function Radius ({
 function RadiusControls ({ minRadius, maxRadius, radius, onChange }) {
   const rangeValue = ((radius - minRadius) / (maxRadius - minRadius)) * 100
   const rangeBackgroundStyle = {
-    background: 'linear-gradient(90deg, #00a982 0, #00a982 ' + rangeValue + '%, #CCC ' + (rangeValue + 0.1) + '%)'
+    background: 'linear-gradient(90deg, #439c76 0, #439c76 ' + rangeValue + '%, #CCC ' + (rangeValue + 0.1) + '%)'
   }
 
   const handleChange = (e) => {

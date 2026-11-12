@@ -94,7 +94,7 @@ def test_delete_project(user_factory, group_factory, organisation, project_facto
     assert not rules.has_perm(perm_name_delete, moderator, project)
     assert not rules.has_perm(perm_name_delete, group_member_in_orga, project)
     assert not rules.has_perm(perm_name_delete, group_member_out, project)
-    assert not rules.has_perm(perm_name_delete, group_member_in_project, project)
+    assert rules.has_perm(perm_name_delete, group_member_in_project, project)
     assert rules.has_perm(perm_name_delete, initiator, project)
     assert rules.has_perm(perm_name_delete, admin, project)
 
@@ -134,7 +134,7 @@ def test_group_member_initiator_perms(
 
     assert not rules.has_perm(perm_name_delete, initiator, project1)
     assert rules.has_perm(perm_name_delete, initiator, project2)  # initiator
-    assert not rules.has_perm(perm_name_delete, initiator, project3)  # group member
+    assert rules.has_perm(perm_name_delete, initiator, project3)  # group member
     assert rules.has_perm(perm_name_delete, initiator, project4)  # initiator
     assert not rules.has_perm(perm_name_delete, initiator, project5)
     assert rules.has_perm(

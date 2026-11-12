@@ -1,8 +1,17 @@
 import pytest
+from django import forms
 
 from adhocracy4.images.validators import ImageAltTextValidator
 from adhocracy4.projects.models import Topic
 from meinberlin.apps.plans.forms import PlanForm
+
+
+def test_plan_form_point_label_uses_auto_growing_textarea():
+    form = PlanForm()
+    widget = form.fields["point_label"].widget
+    assert isinstance(widget, forms.Textarea)
+    assert widget.attrs["rows"] == 1
+    assert "js-auto-grow-textarea" in widget.attrs["class"]
 
 
 @pytest.mark.django_db

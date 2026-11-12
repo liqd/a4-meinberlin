@@ -123,6 +123,7 @@ export const ProjectsControlBar = ({
   setParams,
   syncTrigger,
   isAuthenticated,
+  isGuestUser,
   projectStatus
 }) => {
   const [expandFilters, setExpandFilters] = useState(false)
@@ -412,6 +413,7 @@ export const ProjectsControlBar = ({
                   searchProfilesApiUrl={searchProfilesApiUrl}
                   searchProfilesCount={searchProfilesCount}
                   isAuthenticated={isAuthenticated}
+                  isGuestUser={isGuestUser}
                   appliedFilters={appliedFilters}
                   onSearchProfileCreate={handleCreateSearchProfile}
                 />

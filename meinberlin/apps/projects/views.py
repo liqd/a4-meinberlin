@@ -33,6 +33,7 @@ from meinberlin.apps.dashboard import is_event_module
 from ..bplan.views import BplanProjectDispatchMixin
 from . import forms
 from . import models
+from .mixins import ProjectDetailDisplayMixin
 
 User = get_user_model()
 
@@ -339,7 +340,9 @@ class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
         return self.project
 
 
-class ProjectDetailView(PermissionRequiredMixin, BplanProjectDispatchMixin):
+class ProjectDetailView(
+    ProjectDetailDisplayMixin, PermissionRequiredMixin, BplanProjectDispatchMixin
+):
     model = models.Project
     permission_required = "a4projects.view_project"
 
@@ -354,28 +357,6 @@ class ProjectDetailView(PermissionRequiredMixin, BplanProjectDispatchMixin):
     @property
     def raise_exception(self):
         return self.request.user.is_authenticated
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        # Load all modules with items prefetched
-        modules_qs = self.project.modules.prefetch_related("item_set")
-        all_modules = list(
-            itertools.chain(
-                modules_qs.running_modules(),
-                modules_qs.future_modules(),
-                modules_qs.past_modules(),
-            )
-        )
-
-        # Separate online and offline modules
-        context["modules"] = [m for m in all_modules if not is_event_module(m)]
-        context["offline_modules"] = [m for m in all_modules if is_event_module(m)]
-
-        context["edit_link"] = reverse(
-            "a4dashboard:project-edit", kwargs={"project_slug": self.project.slug}
-        )
-        return models.ProjectInsight.update_context(self.project, context)
 
 
 class ModuleDetailview(PermissionRequiredMixin, PhaseDispatchMixin):

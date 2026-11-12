@@ -21,7 +21,8 @@ The cache target is the `list` method of the following views:
 - `ExternalProjectListViewSet`
 - `PlansListViewSet`
 - `ProjectListViewSet`
-- `PrivateProjectListViewSet`
+
+`PrivateProjectListViewSet` is not cached because its response is filtered per user via object permissions.
 
 Cache keys expire after a timeout (default value 1h) or if a context specific signal is received (e.g. cache keys for projects are deleted if the signal for a saved project is detected).
 
@@ -29,7 +30,6 @@ The cache keys for projects are constructed by the view namespace and their stat
 - `projects_activeParticipation`
 - `projects_pastParticipation`
 - `projects_futureParticipation`
-- `privateprojects`
 - `extprojects`
 - `plans`
 
@@ -41,13 +41,11 @@ A periodic task checks for projects that will become either active or past in th
 In case of projects becoming active the cache is cleared for:
 - `projects_activeParticipation`
 - `projects_futureParticipation`
-- `privateprojects`
 - `extprojects`
 
 in case of projects becoming past the cache is cleared for:
 - `projects_activeParticipation`
 - `projects_pastParticipation`
-- `privateprojects`
 - `extprojects`
 
 In production, we use django's built-in [Redis](https://docs.djangoproject.com/en/4.2/topics/cache/#redis) as cache backend (see `settings/production.py::CACHES`). For development and testing the cache backend is the default, that is [local memory](https://docs.djangoproject.com/en/4.2/topics/cache/#local-memory-caching). If you want to enable redis cache for local development, then copy the production settings to your `settings/local.py`.

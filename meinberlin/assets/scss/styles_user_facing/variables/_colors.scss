@@ -10,10 +10,10 @@ $gray-light: #808080 !default;
 
 // Decorative Base Colors
 // Primary hue + values
-$primary: #00a982 !default;
-$primary-400: #00c295 !default;
+$primary: #439c76 !default;
+$primary-400: $primary !default;
 $primary-500: $primary !default;
-$primary-600: #006c53 !default;
+$primary-600: #2f6b4f !default;
 
 $secondary: #002856 !default;
 $purple: #9185be !default;

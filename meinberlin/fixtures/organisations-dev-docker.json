@@ -1,0 +1,15 @@
+[
+  {
+    "model": "meinberlin_organisations.organisation",
+    "pk": 1,
+    "fields": {
+      "slug": "liqd",
+      "name": "liqd",
+      "logo": "",
+      "address": "",
+      "url": "",
+      "initiators": [],
+      "groups": []
+    }
+  }
+]

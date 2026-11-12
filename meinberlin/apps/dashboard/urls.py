@@ -107,6 +107,16 @@ urlpatterns = [
         name="project-list",
     ),
     re_path(
+        r"^organisations/(?P<organisation_slug>[-\w_]+)/projects/(?P<project_slug>[-\w_]+)/preview/modal/$",
+        views.DashboardProjectPreviewModalView.as_view(),
+        name="project-preview-modal",
+    ),
+    re_path(
+        r"^organisations/(?P<organisation_slug>[-\w_]+)/projects/(?P<project_slug>[-\w_]+)/preview/content/$",
+        views.DashboardProjectPreviewContentView.as_view(),
+        name="project-preview-content",
+    ),
+    re_path(
         r"^organisations/(?P<organisation_slug>[-\w_]+)/projects/(?P<project_slug>[-\w_]+)/delete/modal/$",
         views.DashboardProjectDeleteModalView.as_view(),
         name="project-delete-modal",

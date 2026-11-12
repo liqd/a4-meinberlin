@@ -66,6 +66,9 @@ class PlanForm(PointFormMixin, ImageMetadataMixin, forms.ModelForm):
         ]
         widgets = {
             "point": maps_widgets.MapChoosePointWidget(polygon=settings.BERLIN_POLYGON),
+            "point_label": forms.Textarea(
+                attrs={"rows": 1, "class": "js-auto-grow-textarea"}
+            ),
             "topics": forms.CheckboxSelectMultiple,
         }
         error_messages = {

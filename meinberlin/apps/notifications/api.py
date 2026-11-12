@@ -14,6 +14,7 @@ from rest_framework.viewsets import GenericViewSet
 
 from meinberlin.apps.notifications.models import Notification
 from meinberlin.apps.notifications.serializers import NotificationSerializer
+from meinberlin.apps.users.permissions import IsRegularUser
 
 from .models import NotificationSettings
 from .serializers import NotificationSettingsSerializer
@@ -32,6 +33,7 @@ class NotificationViewSet(
 ):
     serializer_class = NotificationSerializer
     pagination_class = NotificationPagination
+    permission_classes = [IsRegularUser]
 
     def get_queryset(self):
         return (
@@ -162,6 +164,7 @@ class NotificationSettingsViewSet(
     mixins.RetrieveModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet
 ):
     serializer_class = NotificationSettingsSerializer
+    permission_classes = [IsRegularUser]
 
     def get_queryset(self):
         return NotificationSettings.objects.filter(user=self.request.user)

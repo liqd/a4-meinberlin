@@ -185,9 +185,9 @@ def test_bplan_shows_bplan_and_diplan(
     bplan_archived = bplan_factory(
         name="bplan_archived", is_draft=False, is_archived=True
     )
-    bplan_diplan = bplan_factory(name="bplan_diplan", is_draft=False, is_diplan=True)
+    bplan_diplan = bplan_factory(name="bplan_diplan", is_draft=False)
     bplan_diplan_unpublished = bplan_factory(
-        name="bplan_diplan_unpublished", is_draft=True, is_diplan=True
+        name="bplan_diplan_unpublished", is_draft=True
     )
 
     now = parse("2013-01-01 18:00:00 UTC")

@@ -4,17 +4,25 @@
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'ideas.js' %}"></script>
     {{ block.super }}
-{% endblock %}
+{% endblock extra_js %}
 
 {% block project_action %}
     {% has_or_would_have_perm 'meinberlin_ideas.add_idea' request.user module as propose_allowed %}
     {% if propose_allowed %}
         <a href="{% url 'meinberlin_ideas:idea-create' module_slug=module.slug %}" class="button">
             {% translate 'Submit idea' %}
-        </a>    
+        </a>
     {% endif %}
-{% endblock %}
+{% endblock project_action %}
+
+{% block sticky_cta %}
+    {% has_or_would_have_perm 'meinberlin_ideas.add_idea' request.user module as propose_allowed %}
+    {% if propose_allowed %}
+        {% url 'meinberlin_ideas:idea-create' module_slug=module.slug as create_url %}
+        {% include "a4modules/includes/module_sticky_cta.html" with url=create_url %}
+    {% endif %}
+{% endblock sticky_cta %}
 
 {% block phase_content %}
     {% react_ideas view.module %}
-{% endblock %}
+{% endblock phase_content %}

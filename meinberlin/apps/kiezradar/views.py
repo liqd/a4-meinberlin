@@ -1,10 +1,13 @@
 from django.views import generic
+from guest_user.mixins import RegularUserRequiredMixin
 from rules.contrib.views import LoginRequiredMixin
 
 
-class SearchProfileListView(LoginRequiredMixin, generic.TemplateView):
+class SearchProfileListView(
+    LoginRequiredMixin, RegularUserRequiredMixin, generic.TemplateView
+):
     template_name = "meinberlin_kiezradar/search_profile_list.html"
 
 
-class KiezRadarView(LoginRequiredMixin, generic.TemplateView):
+class KiezRadarView(LoginRequiredMixin, RegularUserRequiredMixin, generic.TemplateView):
     template_name = "meinberlin_kiezradar/kiezradar.html"

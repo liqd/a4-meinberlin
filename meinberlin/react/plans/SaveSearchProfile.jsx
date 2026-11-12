@@ -17,11 +17,17 @@ const savingText = django.gettext('Saving')
 
 export default function SaveSearchProfile ({
   isAuthenticated,
+  isGuestUser,
   searchProfile,
   ...props
 }) {
   const [searchParams] = useSearchParams()
   const [modal, setModal] = useState(false)
+
+  // Guests cannot own search profiles; hide the affordance entirely.
+  if (isGuestUser) {
+    return null
+  }
 
   if (!isAuthenticated) {
     return (

@@ -75,6 +75,7 @@ INSTALLED_APPS = (
     "rest_framework_gis",
     "drf_spectacular",
     "rules.apps.AutodiscoverRulesConfig",
+    "guest_user",
     "taggit",  # wagtail dependency
     "widget_tweaks",
     "adhocracy4.actions",
@@ -167,6 +168,9 @@ MIDDLEWARE = (
 # to allow cross-origin requests without blocking.
 SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
+# Allow same-origin iframes (e.g. dashboard project preview modal).
+X_FRAME_OPTIONS = "SAMEORIGIN"
+
 SITE_ID = 1
 
 ROOT_URLCONF = "meinberlin.config.urls"
@@ -248,9 +252,10 @@ MEDIA_URL = "/media/"
 IMAGE_ALIASES = {
     "*": {
         "max_size": 5 * 10**6,
-        "fileformats": ("image/png", "image/jpeg", "image/gif"),
+        "fileformats": ("image/png", "image/jpeg", "image/gif", "image/webp"),
     },
     "heroimage": {"min_resolution": (1000, 500)},
+    "questionimage": {"min_resolution": (1500, 500)},
     "tileimage": {"min_resolution": (500, 300)},
     "logo": {"min_resolution": (200, 50), "max_resolution": (650, 650)},
     "avatar": {"min_resolution": (200, 200)},
@@ -270,7 +275,7 @@ THUMBNAIL_ALIASES = {
     }
 }
 
-ALLOWED_UPLOAD_IMAGES = ("png", "jpeg", "gif")
+ALLOWED_UPLOAD_IMAGES = ("png", "jpeg", "gif", "webp")
 
 # default primary field for models without that field set
 
@@ -289,6 +294,7 @@ WAGTAILADMIN_BASE_URL = "http://localhost:8000"
 
 AUTH_USER_MODEL = "meinberlin_users.User"
 
+# guest_user: do not register guest_user.backends.GuestBackend (see fork CHANGELOG).
 AUTHENTICATION_BACKENDS = (
     "rules.permissions.ObjectPermissionBackend",
     "django.contrib.auth.backends.ModelBackend",
@@ -323,6 +329,18 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 LOGIN_URL = "account_login"
 LOGIN_REDIRECT_URL = "/"
+
+# Guest users (django-guest-user)
+A4_ENABLE_GUEST_USERS = True
+GUEST_USER_NAME_SUFFIX_DIGITS = 5
+GUEST_USER = {
+    # Friendly public display names, e.g. "Guest04810".
+    # Note: the library reads flat GUEST_USER_* settings (not this dict).
+    "NAME_GENERATOR": "guest_user.functions.generate_numbered_username",
+}
+GUEST_USER_REQUIRED_ANON_URL = "/accounts/guests/login/"
+GUEST_USER_REQUIRED_USER_URL = "/account/profile/"
+GUEST_USER_CONVERT_URL = "/account/guest/convert/"
 
 # Needed so client(s) like Gmail show sender name
 DEFAULT_FROM_EMAIL = '"meinBerlin" <no-reply@meinberlin-dev.liqd.net>'
@@ -538,6 +556,7 @@ A4_OPENMAPTILES_TOKEN = "9aVUrssbx7PKNUKo3WtXY6MqETI6Q336u5D142QS"
 A4_MAPBOX_TOKEN = ""
 A4_MAP_ATTRIBUTION = "&copy; 2024 basemap.de / BKG | Datenquellen: &copy; GeoBasis-DE"
 A4_PROJECT_TOPICS = "meinberlin.apps.contrib.enums.TopicEnum"
+A4_POLL_QUESTION_IMAGES = True
 
 A4_BLUEPRINT_TYPES = [
     ("BS", "brainstorming"),

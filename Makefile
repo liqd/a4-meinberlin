@@ -3,6 +3,7 @@ MEDIA_ROOT = media
 NODE_BIN = node_modules/.bin
 SOURCE_DIRS = meinberlin tests
 ARGUMENTS=$(filter-out $(firstword $(MAKECMDGOALS)), $(MAKECMDGOALS))
+WATCH_ADDRESS=$(or $(firstword $(ARGUMENTS)),8003)
 
 # for mac os gsed is needed (brew install gnu-sed and brew install gsed)
 SED = sed
@@ -46,6 +47,7 @@ help:
 	@echo "  make fixtures					-- install regions"
 	@echo "  make server					-- start a dev server"
 	@echo "  make watch						-- start a dev server and rebuild js and css files on changes"
+	@echo "  make watch <port> | <host:port>		-- same, but bind to the given port/host (default 8003)"
 	@echo "  make background				-- start background processes"
 	@echo "  make test						-- run all test cases"
 	@echo "  make pytest					-- run all test cases with pytest"
@@ -128,7 +130,7 @@ server:
 watch:
 	trap 'kill %1' KILL; \
 	npm run watch & \
-	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8003
+	$(VIRTUAL_ENV)/bin/python3 manage.py runserver $(WATCH_ADDRESS)
 
 .PHONY: background
 background:
@@ -289,3 +291,7 @@ celery-worker-dummy-task:
 .PHONY: celery-beat
 celery-beat:
 	$(VIRTUAL_ENV)/bin/celery --app meinberlin beat --loglevel INFO -S django
+
+# allow positional arguments for other targets (e.g. `make watch 8017`)
+%:
+	@:

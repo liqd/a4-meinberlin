@@ -5,8 +5,10 @@ from django.utils.timezone import localtime
 from rest_framework import serializers
 
 from adhocracy4.actions.models import Action
+from meinberlin.apps.offlineevents.models import OfflineEventItem
 from meinberlin.apps.plans.serializers import PlanSerializer
 from meinberlin.apps.projects.serializers import ProjectSerializer
+from meinberlin.apps.projects.utils import get_public_project_url
 
 
 class ActionSerializer(serializers.ModelSerializer):
@@ -95,6 +97,9 @@ class ActionSerializer(serializers.ModelSerializer):
             return trigger.content_object.get_absolute_url()
         if trigger_class == "Phase":
             return trigger.module.get_absolute_url()
+        if hasattr(trigger, "project_type"):
+            # Projects link to their public URL, which for bplans is the Diplan link.
+            return get_public_project_url(trigger)
         if hasattr(trigger, "get_absolute_url"):
             return trigger.get_absolute_url()
         return None
@@ -114,10 +119,16 @@ class ActionSerializer(serializers.ModelSerializer):
         return None
 
     def get_type(self, obj):
-        trigger = self.get_cached_target(obj)
-        if obj.type == "rating" and trigger.__class__.__name__ == "Proposal":
+        trigger, trigger_class = self.get_cached_trigger(obj)
+
+        if obj.type == "rating" and trigger_class == "Proposal":
             return "support"
         if obj.type == "phase" and obj.verb == "schedule":
+            is_offline_event = (
+                trigger and hasattr(trigger, "type") and "offline-event" in trigger.type
+            )
+            if is_offline_event:
+                return "offlineevent"
             return "phase_soon_over"
         if obj.type == "phase" and obj.verb == "start":
             return "phase_started"
@@ -126,18 +137,32 @@ class ActionSerializer(serializers.ModelSerializer):
         return obj.type
 
     def get_source(self, obj):
-        trigger, _ = self.get_cached_trigger(obj)
+        trigger, trigger_class = self.get_cached_trigger(obj)
+
+        is_offline_event = (
+            trigger_class == "Phase"
+            and hasattr(trigger, "type")
+            and "offline-event" in trigger.type
+        )
+        if is_offline_event:
+            event = OfflineEventItem.objects.filter(module=trigger.module).first()
+            if event and hasattr(event, "name"):
+                return event.name
 
         if trigger and hasattr(trigger, "name"):
             return trigger.name
         elif trigger and hasattr(trigger, "content_object"):
             return trigger.content_object.__class__.__name__.lower()
 
+        return None
+
     def get_source_timestamp(self, obj):
         trigger, _ = self.get_cached_trigger(obj)
-
-        if trigger and hasattr(trigger, "date"):
-            return localtime(trigger.date)
+        if trigger:
+            if hasattr(trigger, "date"):
+                return localtime(trigger.date)
+            elif hasattr(trigger, "start_date"):
+                return localtime(trigger.start_date)
         return None
 
     def is_moderator(self, obj):

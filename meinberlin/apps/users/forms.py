@@ -129,6 +129,63 @@ class TermsSignupForm(allauth_forms.SignupForm):
             return user
 
 
+class GuestCreateForm(forms.Form):
+    """Terms + captcha gate before a guest session is created.
+
+    No user fields: the guest ``User`` is created by django-guest-user once this
+    form validates.
+    """
+
+    terms_of_use = forms.BooleanField(label=_("Terms of use"))
+    captcha = CaptcheckCaptchaField(label=_("I am not a robot"))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs["placeholder"] = False
+        if not (hasattr(settings, "CAPTCHA_URL") and settings.CAPTCHA_URL):
+            del self.fields["captcha"]
+
+
+class GuestConvertForm(TermsSignupForm):
+    """Turn a guest ``User`` into a regular account.
+
+    Reuses the regular signup fields/validation but updates the existing guest
+    ``User`` instead of creating a new one. No captcha (the guest already
+    passed one on creation).
+    """
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop("user", None)
+        super().__init__(*args, **kwargs)
+        if "captcha" in self.fields:
+            del self.fields["captcha"]
+        self.fields["email"].required = True
+        self.fields["username"].required = True
+        self.fields["password1"].required = True
+        self.fields["password2"].required = True
+
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        if User.objects.filter(email__iexact=email).exists():
+            raise forms.ValidationError(_("Email already in use."))
+        return email
+
+    def save(self, request):
+        user = self.user
+        user.email = self.cleaned_data["email"]
+        user.username = self.cleaned_data["username"]
+        user.set_password(self.cleaned_data["password1"])
+        user.save()
+
+        notification_settings, _ = NotificationSettings.objects.get_or_create(user=user)
+        notification_settings.update_email_settings(
+            self.cleaned_data["get_notifications"],
+            email_newsletter=self.cleaned_data["get_newsletters"],
+        )
+        return user
+
+
 class CustomLoginForm(allauth_forms.LoginForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

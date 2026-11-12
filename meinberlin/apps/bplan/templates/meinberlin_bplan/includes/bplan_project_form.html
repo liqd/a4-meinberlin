@@ -2,15 +2,15 @@
 
 {% include 'a4dashboard/includes/form_field.html' with field=form.administrative_district %}
 
-{% include 'a4dashboard/includes/form_field.html' with field=form.identifier %}
-
 {% include 'a4dashboard/includes/form_field.html' with field=form.url %}
 
-{% include 'a4dashboard/includes/form_field.html' with field=form.tile_image %}
+{% include 'a4images/uppy_image_upload_field.html' with field=form.tile_image form_field_template='a4dashboard/includes/form_field.html' aspect_ratio='1.333' output_width=800 output_height=600 trigger_class='btn btn--primary' %}
 
 {% include 'a4dashboard/includes/form_field.html' with field=form.tile_image_alt_text %}
 
 {% include 'a4dashboard/includes/form_field.html' with field=form.tile_image_copyright %}
+
+{% include 'a4images/uppy_image_upload_assets.html' %}
 
 {% include 'a4dashboard/includes/form_field.html' with field=form.description %}
 
@@ -19,8 +19,6 @@
 {% include 'a4dashboard/includes/form_field.html' with field=form.end_date %}
 
 {% include 'a4dashboard/includes/form_field.html' with field=form.office_worker_email %}
-
-{% include 'meinberlin_embed/includes/project_embed_code.html' with project=view.object %}
 
 {% if project.has_finished %}
     {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.is_archived %}

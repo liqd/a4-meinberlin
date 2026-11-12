@@ -13,7 +13,6 @@ from adhocracy4.reports import emails as reports_emails
 from adhocracy4.reports.models import Report
 from meinberlin.apps.bplan import emails as bplan_emails
 from meinberlin.apps.bplan.models import Bplan
-from meinberlin.apps.bplan.models import Statement
 from meinberlin.apps.budgeting.models import Proposal
 from meinberlin.apps.cms.models import EmailFormPage
 from meinberlin.apps.contrib.emails import Email
@@ -61,7 +60,6 @@ class Command(BaseCommand):
         self._send_notification_phase()
 
         self._send_notification_project_created()
-        self._send_bplan_statement()
         self._send_bplan_update()
 
         self._send_report_mails()
@@ -196,26 +194,6 @@ class Command(BaseCommand):
             creator=self.user,
             receiver=[self.user],
             template_name=notification_emails.NotifyInitiatorsOnProjectCreatedEmail.template_name,
-        )
-
-    def _send_bplan_statement(self):
-        statement = Statement.objects.first()
-        identifier = statement.module.project.externalproject.bplan.identifier
-        if not statement:
-            self.stderr.write("At least one bplan statement is required")
-            return
-
-        TestEmail.send(
-            statement,
-            identifier=identifier,
-            receiver=[self.user],
-            template_name=bplan_emails.OfficeWorkerNotification.template_name,
-        )
-
-        TestEmail.send(
-            statement,
-            receiver=[self.user],
-            template_name=bplan_emails.SubmitterConfirmation.template_name,
         )
 
     def _send_bplan_update(self):

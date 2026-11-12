@@ -7,6 +7,19 @@ from meinberlin.apps.users.models import User
 
 
 @pytest.mark.django_db
+def test_signup_renders_password_criteria(client):
+    resp = client.get(reverse("account_signup"))
+    assert resp.status_code == 200
+    content = resp.content.decode()
+    assert 'data-password-criteria' in content
+    assert 'id="id_password1_criteria"' in content
+    assert 'data-password-input="#id_password1"' in content
+    assert 'data-criterion="length"' in content
+    assert 'data-criterion="username"' in content
+    assert 'data-criterion="categories"' in content
+
+
+@pytest.mark.django_db
 def test_signup_user_notifications_checked(client):
     resp = client.post(
         reverse("account_signup"),

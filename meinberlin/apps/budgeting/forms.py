@@ -2,16 +2,20 @@ from django import forms
 from django.core import validators
 from django.utils.translation import gettext_lazy as _
 
+from adhocracy4.projects.guest_users import is_guest_user
 from meinberlin.apps.contrib import fields
 from meinberlin.apps.contrib import widgets
-from meinberlin.apps.contrib.mixins import ContactStorageConsentMixin
 from meinberlin.apps.mapideas.forms import MapIdeaForm
 from meinberlin.apps.moderationtasks.mixins import TasksAddableFieldMixin
 
 from . import models
 
 
-class ProposalForm(ContactStorageConsentMixin, MapIdeaForm):
+class ProposalForm(MapIdeaForm):
+    # Guests may provide a custom contact email so they can receive the
+    # official statement, so budgeting keeps its own guest handling below.
+    hide_contact_for_guests = False
+
     class Meta:
         model = models.Proposal
         fields = [
@@ -27,16 +31,6 @@ class ProposalForm(ContactStorageConsentMixin, MapIdeaForm):
             "contact_email",
             "contact_phone",
         ]
-        labels = {
-            "allow_contact": _(
-                "For questions or in case of implementation "
-                "of my proposal you can contact me. I will "
-                "receive automatic notifications for any "
-                "status update or official statement to my "
-                "proposal."
-            ),
-            "contact_phone": _("Telephone number"),
-        }
         help_texts = {
             "category": _(
                 "Assign your proposal to a category. This "
@@ -52,18 +46,35 @@ class ProposalForm(ContactStorageConsentMixin, MapIdeaForm):
             ),
         }
 
-    class Media:
-        js = ("budgeting_disable_contact.js",)
-
     def __init__(self, *args, **kwargs):
         user = kwargs.pop("user", None)
         super().__init__(*args, **kwargs)
+
+        if user and is_guest_user(user):
+            # Guests have a throwaway account address (guest+...@liqd.net)
+            # which must never be used as contact address. Show an empty
+            # input instead of offering their account email for selection.
+            self.fields["contact_email"] = forms.EmailField(
+                required=False,
+                label=_("E-mail address"),
+                widget=forms.EmailInput(attrs={"class": "js-contact-email"}),
+            )
+            # Guests do not receive automatic notifications; only the
+            # official statement is sent to the entered contact email.
+            self.fields["allow_contact"].label = _(
+                "For questions or in case of implementation of my proposal "
+                "you can contact me. I will receive the official statement "
+                "on my proposal by email. As a guest I will not receive "
+                "automatic notifications – for that, I can convert my guest "
+                "account into a regular account."
+            )
+            return
+
         choices = [
             (
                 user.email,
                 _(
-                    "Please contact me via the e-mail address "
-                    "of my user account ({})."
+                    "Please contact me via the e-mail address of my user account ({})."
                 ).format(user.email),
             ),
             ("other", _("Please contact me via another e-mail address:")),

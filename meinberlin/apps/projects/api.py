@@ -6,10 +6,22 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from rest_framework.response import Response
 
+from adhocracy4.follows.api import FollowViewSet as A4FollowViewSet
 from adhocracy4.projects.enums import Access
 from adhocracy4.projects.models import Project
 from meinberlin.apps.projects import serializers as project_serializers
 from meinberlin.apps.projects.filters import StatusFilter
+from meinberlin.apps.users.permissions import IsRegularUser
+
+
+class FollowViewSet(A4FollowViewSet):
+    """Follows are for permanent accounts only; hard-block guest users.
+
+    a4's FollowViewSet permits any authenticated user (incl. guests). We tighten
+    it so guests cannot create or read follows via the API.
+    """
+
+    permission_classes = (IsRegularUser,)
 
 
 def get_public_projects() -> QuerySet[Project]:
@@ -41,6 +53,21 @@ def get_public_projects() -> QuerySet[Project]:
         )
     )
     return projects
+
+
+def get_private_projects() -> QuerySet[Project]:
+    private_projects = Project.objects.filter(
+        is_draft=False, is_archived=False, access=Access.PRIVATE
+    )
+    return private_projects.select_related(
+        "administrative_district", "organisation", "group"
+    ).prefetch_related(
+        "moderators",
+        "participants",
+        "organisation__initiators",
+        "topics",
+        "module_set__phase_set",
+    )
 
 
 class ProjectListViewSet(viewsets.ReadOnlyModelViewSet):
@@ -92,21 +119,13 @@ class PrivateProjectListViewSet(viewsets.ReadOnlyModelViewSet):
         self.now = now
 
     def get_queryset(self):
-        private_projects = cache.get("private_projects")
-        if private_projects is None:
-            private_projects = Project.objects.filter(
-                is_draft=False, is_archived=False, access=Access.PRIVATE
-            )
-            cache.set("private_projects", private_projects)
-        if private_projects:
-            not_allowed_projects = [
-                project.id
-                for project in private_projects
-                if not self.request.user.has_perm("a4projects.view_project", project)
-            ]
-            return private_projects.exclude(id__in=not_allowed_projects)
-        else:
-            return private_projects
+        private_projects = get_private_projects()
+        not_allowed_projects = [
+            project.id
+            for project in private_projects
+            if not self.request.user.has_perm("a4projects.view_project", project)
+        ]
+        return private_projects.exclude(id__in=not_allowed_projects)
 
     def get_serializer(self, *args, **kwargs):
         return project_serializers.ProjectSerializer(now=self.now, *args, **kwargs)

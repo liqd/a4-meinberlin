@@ -1,7 +1,7 @@
 {% extends "a4dashboard/base_dashboard.html" %}
 {% load i18n %}
 
-{% block title %}{% translate "Create project" %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate "Create project" %} — {{ block.super }}{% endblock title %}
 
 {% block dashboard_nav %}
 <div class="u--bg-secondary u-spacer-bottom-double">
@@ -18,7 +18,7 @@
         </nav>
     </div>
 </div>
-{% endblock %}
+{% endblock dashboard_nav %}
 
 {% block dashboard_content %}
     <div class="row">
@@ -40,6 +40,11 @@
 
                 {% include 'a4forms/includes/form_field.html' with field=form.description %}
 
+                {% include 'a4images/uppy_image_upload_field.html' with field=form.image form_field_template='a4dashboard/includes/form_field.html' aspect_ratio='2' output_width=1000 output_height=500 trigger_class='btn btn--primary' %}
+                {% include 'a4dashboard/includes/form_field.html' with field=form.image_alt_text %}
+                {% include 'a4dashboard/includes/form_field.html' with field=form.image_copyright %}
+                {% include 'a4images/uppy_image_upload_assets.html' %}
+
                 {% include 'a4dashboard/includes/form_field.html' with field=form.access %}
 
                 <div class="u-spacer-bottom">
@@ -50,13 +55,13 @@
             </form>
         </div>
     </div>
-{% endblock %}
+{% endblock dashboard_content %}
 
 {% block extra_js %}
     {{ block.super }}
     {{ form.media.js }}
-{% endblock %}
+{% endblock extra_js %}
 {% block extra_css %}
     {{ block.super }}
     {{ form.media.css }}
-{% endblock %}
+{% endblock extra_css %}

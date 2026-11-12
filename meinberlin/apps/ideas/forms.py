@@ -3,12 +3,14 @@ from django import forms
 from adhocracy4.categories.forms import CategorizableFieldMixin
 from adhocracy4.labels.mixins import LabelsAddableFieldMixin
 from meinberlin.apps.contrib.mixins import CategoryAndLabelAliasMixin
+from meinberlin.apps.contrib.mixins import ContactInfoFormMixin
 from meinberlin.apps.contrib.mixins import ImageRightOfUseMixin
 
 from . import models
 
 
 class IdeaForm(
+    ContactInfoFormMixin,
     CategorizableFieldMixin,
     LabelsAddableFieldMixin,
     ImageRightOfUseMixin,
@@ -17,7 +19,16 @@ class IdeaForm(
 ):
     class Meta:
         model = models.Idea
-        fields = ["name", "description", "image", "category", "labels"]
+        fields = [
+            "name",
+            "description",
+            "image",
+            "category",
+            "labels",
+            "allow_contact",
+            "contact_email",
+            "contact_phone",
+        ]
 
 
 class IdeaModerateForm(forms.ModelForm):

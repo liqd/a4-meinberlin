@@ -56,9 +56,9 @@ def send_publish_results_reminder_to_initiators(modeladmin, request, queryset):
             request,
             ngettext(
                 "Publish-results reminder sent for %(count)d project "
-                "(one e-mail per initiator of the organisation).",
+                "(one e-mail per initiator involved in the project).",
                 "Publish-results reminder sent for %(count)d projects "
-                "(one e-mail per initiator of each organisation).",
+                "(one e-mail per initiator involved in each project).",
                 sent,
             )
             % {"count": sent},

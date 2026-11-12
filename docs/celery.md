@@ -4,6 +4,8 @@ We want to upgrade Django from the current version to at least 4. But our curren
 
 ## Developer Notes
 
+Note: after changing celery tasks, celery / celery worker may need to be restarted for updates to come into effect, since tasks are cached.
+
 ### Configuration
 
 The celery configuration file is `meinberlin/config/celery.py`.

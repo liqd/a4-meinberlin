@@ -13,13 +13,13 @@
 
 .teaser-block--left {
     @media screen and (min-width: $breakpoint-palm) {
-        grid-template-columns: 2fr 1fr;
+        grid-template-columns: 2fr 3fr;
     }
 }
 
 .teaser-block--right {
     @media screen and (min-width: $breakpoint-palm) {
-        grid-template-columns: 1fr 2fr;
+        grid-template-columns: 3fr 2fr;
 
         picture {
             order: 1;
@@ -39,5 +39,8 @@
 }
 
 .teaser-block__img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
     object-fit: cover;
+    object-position: center;
 }

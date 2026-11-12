@@ -5,9 +5,12 @@
         height: 2.6875 * $spacer;
     }
 
+    .searchterm .submit {
+        color: $primary;
+    }
+
     .searchterm .submit i.icon {
-        // FIXME: currently icon is way too big
-        font-size: 1.25rem;
+        font-size: 30px;
     }
 
     .bicon {

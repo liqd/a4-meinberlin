@@ -23,6 +23,7 @@ from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules.mixins import PermissionRequiredMixin
 from meinberlin.apps.dashboard.forms import DashboardProjectCreateForm
 from meinberlin.apps.dashboard.mixins import DashboardProjectListGroupMixin
+from meinberlin.apps.projects.mixins import ProjectDetailDisplayMixin
 
 
 class ModuleBlueprintListView(
@@ -289,6 +290,68 @@ class DashboardProjectDeleteModalView(
                 "project_slug": self.project.slug,
             },
         )
+        return context
+
+
+class DashboardProjectPreviewModalView(
+    ProjectMixin, mixins.DashboardBaseMixin, PermissionRequiredMixin, generic.DetailView
+):
+    """Load the project preview modal shell via HTMX."""
+
+    permission_required = "a4projects.change_project"
+    model = project_models.Project
+    slug_url_kwarg = "project_slug"
+    template_name = "meinberlin_projects/partials/project_preview_modal_htmx.html"
+
+    def get_permission_object(self):
+        return self.get_object()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["content_url"] = reverse(
+            "a4dashboard:project-preview-content",
+            kwargs={
+                "organisation_slug": self.organisation.slug,
+                "project_slug": self.project.slug,
+            },
+        )
+        return context
+
+
+class DashboardProjectPreviewContentView(
+    ProjectDetailDisplayMixin,
+    ProjectMixin,
+    mixins.DashboardBaseMixin,
+    PermissionRequiredMixin,
+    generic.DetailView,
+):
+    """Load project detail content for the dashboard preview modal."""
+
+    permission_required = "a4projects.change_project"
+    model = project_models.Project
+    slug_url_kwarg = "project_slug"
+
+    def get_permission_object(self):
+        return self.get_object()
+
+    def dispatch(self, request, *args, **kwargs):
+        response = super().dispatch(request, *args, **kwargs)
+        response.xframe_options_exempt = True
+        return response
+
+    def get_template_names(self):
+        return ["meinberlin_projects/partials/project_preview_iframe.html"]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.project.project_type == "meinberlin_bplan.Bplan":
+            context["preview_partial"] = (
+                "meinberlin_projects/partials/project_bplan_detail_preview.html"
+            )
+        else:
+            context["preview_partial"] = (
+                "meinberlin_projects/partials/project_detail_preview.html"
+            )
         return context
 
 

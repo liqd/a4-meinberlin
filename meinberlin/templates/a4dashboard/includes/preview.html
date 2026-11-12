@@ -1,7 +1,8 @@
 {% load i18n meinberlin_project_tags %}
 
+{% if project|is_external %}
 <a href="{{ project|project_url }}"
-   target="{{ project|is_external|yesno:"_blank,_self" }}"
+   target="_blank"
    class="btn btn--light btn--full u-spacer-bottom">
     <i class="fa fa-eye" aria-hidden="true"></i>
     {% if project.is_draft %}
@@ -10,3 +11,19 @@
     {% translate 'View' %}
     {% endif %}
 </a>
+{% else %}
+<a href="{% url 'project-detail' slug=project.slug %}"
+   class="btn btn--light btn--full u-spacer-bottom js-project-preview-trigger"
+   hx-get="{% url 'a4dashboard:project-preview-modal' organisation_slug=view.organisation.slug project_slug=project.slug %}"
+   hx-target="#modal-root .modal-content"
+   hx-swap="innerHTML"
+   data-bs-toggle="modal"
+   data-bs-target="#modal-root">
+    <i class="fa fa-eye" aria-hidden="true"></i>
+    {% if project.is_draft %}
+    {% translate 'Preview' %}
+    {% else %}
+    {% translate 'View' %}
+    {% endif %}
+</a>
+{% endif %}

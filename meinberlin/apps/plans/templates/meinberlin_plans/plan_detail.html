@@ -48,7 +48,7 @@
                 <dl class="item-detail__factsheet-table" title="{% translate 'Plan details' %}">
 
                     {% if object.point_label %}
-                        <div><dt>{% translate 'Location' %}</dt><dd>{{ object.point_label|default:'no val' }}</dd></div>
+                        <div><dt>{% translate 'Location' %}</dt><dd>{{ object.point_label|linebreaksbr }}</dd></div>
                     {% endif %}
 
                     {% if object.duration %}

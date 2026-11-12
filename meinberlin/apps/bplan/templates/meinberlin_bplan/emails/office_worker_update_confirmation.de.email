@@ -10,7 +10,7 @@
 
 {% block content_html %}
 <p>
-der oben genannte Bebauungsplan wurde auf {{ site.name }} veröffentlicht, geändert oder als Entwurf angelegt. Alle eingehenden Stellungnahmen werden an {{ bplan.office_worker_email }} weitergeleitet.
+der oben genannte Bebauungsplan wurde auf {{ site.name }} veröffentlicht, geändert oder als Entwurf angelegt. Alle Stellungnahmen gehen über <a href="{{ bplan.url }}">Diplan</a> ein.
 </p>
 <p>
 Bebauungsplan-Nr.: {{ bplan.project.name }}<br>
@@ -22,7 +22,7 @@ Falls der Bebauungsplan nicht korrekt angezeigt wird, können Sie sich an {{ con
 {% endblock %}
 
 {% block content_text %}
-der oben genannte Bebauungsplan wurde auf {{ site.name }} veröffentlicht, geändert oder als Entwurf angelegt. Alle eingehenden Stellungnahmen werden an {{ bplan.office_worker_email }} weitergeleitet.
+der oben genannte Bebauungsplan wurde auf {{ site.name }} veröffentlicht, geändert oder als Entwurf angelegt. Alle Stellungnahmen gehen über {{ bplan.url }} ein.
 
 Name: {{ bplan.project.name }}
 Beteiligungszeitraum: {{ bplan.start_date }} Uhr – {{ bplan.end_date }} Uhr

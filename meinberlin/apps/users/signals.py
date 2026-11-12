@@ -1,6 +1,7 @@
 from allauth.account.signals import email_confirmed
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from guest_user.models import Guest
 
 from meinberlin.apps.notifications.models import NotificationSettings
 
@@ -12,6 +13,12 @@ from .models import User
 def send_welcome_email(request, email_address, **kwargs):
     user = email_address.user
     emails.WelcomeEmail.send(user)
+
+
+@receiver(email_confirmed)
+def convert_guest_on_email_confirmed(request, email_address, **kwargs):
+    """Finalize guest conversion: drop the Guest row once the email is verified."""
+    Guest.objects.filter(user=email_address.user).delete()
 
 
 @receiver(post_save, sender=User)

@@ -20,6 +20,7 @@ from adhocracy4.filters import views as filter_views
 from adhocracy4.filters import widgets as filter_widgets
 from adhocracy4.filters.filters import DefaultsFilterSet
 from adhocracy4.filters.filters import FreeTextFilter
+from adhocracy4.projects.guest_users import is_guest_user
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.projects.models import Topic
 from adhocracy4.rules import mixins as rules_mixins
@@ -110,7 +111,8 @@ class PlanListView(rules_mixins.PermissionRequiredMixin, generic.ListView):
 
     def get_district_polygons(self):
         district_polygons = [
-            {"name": preset.name, "polygon": preset.polygon} for preset in self.districts
+            {"name": preset.name, "polygon": preset.polygon}
+            for preset in self.districts
         ]
         return json.dumps(district_polygons)
 
@@ -224,6 +226,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin, generic.ListView):
         context["search_profiles_url"] = reverse("search_profiles")
         context["search_profiles_count"] = self.get_search_profiles_count()
         context["is_authenticated"] = json.dumps(self.request.user.is_authenticated)
+        context["is_guest_user"] = json.dumps(is_guest_user(self.request.user))
         context["project_status"] = self.get_project_status()
         context["district_polygons"] = self.get_district_polygons()
         context["polygon"] = json.dumps(settings.BERLIN_POLYGON)

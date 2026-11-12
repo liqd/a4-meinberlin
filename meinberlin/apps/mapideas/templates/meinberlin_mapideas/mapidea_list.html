@@ -4,12 +4,12 @@
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'map_ideas.js' %}"></script>
     {{ block.super }}
-{% endblock %}
+{% endblock extra_js %}
 
 {% block extra_css %}
     {{ block.super }}
-    <link type="text/css" href="{% static 'map_ideas.css'%}" rel="stylesheet" />
-{% endblock %}
+    <link type="text/css" href="{% static 'map_ideas.css' %}" rel="stylesheet" />
+{% endblock extra_css %}
 
 {% block project_action %}
     {% has_or_would_have_perm 'meinberlin_mapideas.add_mapidea' request.user module as propose_allowed %}
@@ -18,8 +18,16 @@
             {% translate 'Submit Idea' %}
         </a>
     {% endif %}
-{% endblock %}
+{% endblock project_action %}
+
+{% block sticky_cta %}
+    {% has_or_would_have_perm 'meinberlin_mapideas.add_mapidea' request.user module as propose_allowed %}
+    {% if propose_allowed %}
+        {% url 'meinberlin_mapideas:mapidea-create' module_slug=module.slug as create_url %}
+        {% include "a4modules/includes/module_sticky_cta.html" with url=create_url %}
+    {% endif %}
+{% endblock sticky_cta %}
 
 {% block phase_content %}
     {% react_mapideas view.module %}
-{% endblock %}
+{% endblock phase_content %}

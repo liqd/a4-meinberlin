@@ -18,6 +18,9 @@ class ProposalForm(MapIdeaForm):
             "creator_contribution",
             "point",
             "point_label",
+            "allow_contact",
+            "contact_email",
+            "contact_phone",
         ]
 
 

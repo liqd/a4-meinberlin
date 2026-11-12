@@ -1,6 +1,7 @@
-{% load menu static i18n %}
+{% load menu static i18n userindicator %}
 
 {% get_notifications_count as notifications_count %}
+{% account_redirect_url as redirect_field_value %}
 
 <header id="header" class="header">
 
@@ -129,6 +130,36 @@
                 <!--googleon: index--><!--/noindex-->
             </div>
 
+            <!-- Login / Logout button -->
+            <div id="servicebuttonAccount" class="service-button-overlay account">
+                <div class="service-button-overlay__button">
+                    {% if request.user.is_authenticated %}
+                        <form class="service-button-overlay__form" action="{% url 'account_logout' %}" method="post" aria-label="Logout">
+                            {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ redirect_field_value }}">
+                            <button type="submit" class="icon-button">
+                                <i class="icon fas fa-user-check" aria-hidden="true"></i>
+                                <span class="text">Logout</span>
+                            </button>
+                        </form>
+                    {% else %}
+                        <form class="service-button-overlay__form"
+                              action="{% url 'account_login' %}"
+                              method="get"
+                              aria-label="Login"
+                              hx-get="{% url 'account_login' %}"
+                              hx-target="#auth-modal-body"
+                              hx-swap="innerHTML">
+                            <input type="hidden" name="next" value="{{ redirect_field_value }}">
+                            <button type="submit" class="icon-button">
+                                <i class="icon fas fa-user" aria-hidden="true"></i>
+                                <span class="text">Login</span>
+                            </button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+
             <!-- Hamburger navigation button and overlay -->
             <div id="servicebuttonMenu" class="service-button-overlay js-service-button-overlay menu">
                 <div class="service-button-overlay__button">
@@ -153,4 +184,8 @@
             </div>
         </div>
     </div>
+
+    {% if not request.user.is_authenticated %}
+        {% include "account/auth_modal.html" %}
+    {% endif %}
 </header>

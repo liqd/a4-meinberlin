@@ -9,14 +9,110 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
+### Changed
+
+- Poll editor: question list with expandable rows, reordering and inline delete confirmation
+
+### Fixed
+
+- Poll: compress question images before upload to prevent HTTP 413 errors
+- Poll: only offer guest participation when the project allows it
+
+## v2611.1
+
+### Added
+
+- Module tiles on the project page show a pill with the module type
+- Registration: live password criteria checklist below the password field that marks requirements as met while typing
+- Header: New login/logout button next to the menu
+- Header: Login and registration open in a modal instead of navigating away, closing automatically on success
+- Dashboard project preview modal with desktop/mobile device toggle
+- Guest participation: visitors can participate as one-time guests in projects that allow it, and later convert their guest account into a regular account keeping their contributions.
+- Image upload: Uppy-based modal upload with cropping and automatic resizing/compression for project, idea, map idea, proposal, plan and organisation logo images. The generic upload behaviour and templates live in adhocracy4; the design layer stays in this project.
+
+### Changed
+
+- Upgrade Wagtail to 7.4.4 (security fixes)
+- Contact information section on idea and mapidea submission, matching the existing budgeting proposal flow: optional email (account or custom) and phone, with storage consent and privacy policy link; data only included in CSV exports
+- Apply colour tokens (`#439c76`) via SCSS overrides sourced from `berlin_parcticipation.css` published styleguide
+- Update `$primary` to `#439c76` for user-facing components (pills, buttons, status bar)
+- Green `.panel--colored` background via SCSS override
+- Green search submit arrow on hero search form
+- Align homepage text/image teaser blocks with `modul-text_bild` image and text width ratio
+- Remove border line above project detail hero below breadcrumbs
+- Show hero image copyright on the image instead of below the description on project detail pages
+- Align FAQ accordion item spacing and chevron icon with style guide
+- Reduce space above grey content footer; set footer to-top link text to black and up-arrow circle to primary green
+- Footer to-top link label: “Zum Seitenanfang” (was “Zum Anfang der Seite”)
+- Full title on project detail page
+- Project group members can now delete projects that have no participant contributions; content authored by other users blocks deletion for non-initiator group members
+- Plan location (Vorhabenort) now supports line breaks: the input starts with one row and grows automatically, and the line breaks are shown on the plan detail page
+- Project detail page: project details box now shows bold labels with regular-weight values
+
+### Fixed
+
+- Project timeline: offline events are labelled "Veranstaltung" and dated with "am"
+- Project edit log: multi-line entries no longer overlap the following entry
+- Notifications: restore missing toggle labels
+- Project tiles: display project descriptions with HTML correctly
+- Notifications: translate "link to event" and "at" in event notifications
+
+## v2606.3
+
+### Added
+
+- Polls question images behind feature flag set to false
+
+### Fixed
+
+- Refactor inline js for back button blocked by CSP
+
+
+## v2606.1
+
+### Added
+
+- Permanent sticky submit CTA on module detail pages (ideas, map ideas, budgeting)
+- Redirect users back to the page they were on before logging in
+- Confidential poll questions: participants can answer without seeing others' responses
+- Bplan: now reuses `ExternalPhase` instead of the Statement phase to hold participation dates (existing phases re-typed via data migration)
+- Bplan: initiators receive email on publish
+
+### Changed
+
+- Publish-results reminder emails are only sent to initiators involved in the project (admin log).
+- Poll dashboard and detail styling for confidential questions
+
+### Fixed
+
+- Module phase swiper: show only one prev/next icon per button
+- Private projects API: unauthenticated users cant see metadata of just created Private Projets anymore
+- bplans: if no bplan url is given on draft, link in notification email falls back to dashboard edit url
+
+### Removed
+
+- Bplan: legacy Imperia statement embed code from the API and dashboard
+- Bplan: obsolete `bplan_get_location` and `bplan_auto_archive` management commands
+- Bplan: deprecated `identifier` field from the dashboard edit form, the API, and the project list serializer
+- Bplan API docs: legacy Imperia integration section and Imperia-only field notes
+- Bplan: legacy `Statement` model and database table, its submission form, views, signal, notification emails and templates
+- Bplan: Imperia-only `bplan_id` and `image_url` API fields (Diplan sends `tile_image` as base64)
+- Bplan: `is_diplan` model field (all Bplans are now Diplan-only)
+
+## mB-v2605.1
+
+### Added
+
 - Initiator reminder to publish project results.
 - Admin and management command to trigger reminder to publish project results (same rules)
+- In-app notifications for offline events to have different text with link to project and module
 
 ### Changed
 
 - Upgrade Wagtail to 7.4 (LTS)
 
 ## mB-v2604.1
+
 
 ### Fixed
 
@@ -75,8 +171,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Translation for kiezradar organisation search "No matches found"
 - Translation for Likes/Dislikes on CardStats used on map and Map with Ideas
 - Translation for validation error generic message
-- CKEditor image aspect ratio options (4:3 and 2:1) Bug 
-- Bug for deleted ContentTypes in Notifications (Actions) 
+- CKEditor image aspect ratio options (4:3 and 2:1) Bug
+- Bug for deleted ContentTypes in Notifications (Actions)
 - Allow tile_image in Bplan to be blank null
 - Improve Accessibility
 - Add back pagination css deleted for burgermenu
@@ -102,7 +198,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Removed
 
-- Removed Old project-based OfflineEvent Model, Views, Templates and Tests.    
+- Removed Old project-based OfflineEvent Model, Views, Templates and Tests.
 
 ### Fixed
 
@@ -133,7 +229,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Changed
 
-- Address search endpoints, properties like strname -> street_name 
+- Address search endpoints, properties like strname -> street_name
 - Make tile images 4:3 (#716)
 
 ## v2507.1
@@ -167,7 +263,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Fixed
 
 - Styling for dropdown menu in archived proposals
-- Custom Kieze dont get Notifications for Projects without Points anymore. #622 
+- Custom Kieze dont get Notifications for Projects without Points anymore. #622
 - Fixed styling of checkbox form fields
 - When getting Notifications for External Projects these now provide the external Url (#773)
 - Show pagination also on mobile
@@ -194,7 +290,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Fixed
 
 - Updated heroimage alias to represent frontend representation of 1000x500px
-- not being able to use the scrollbar in the MultiSelect dropdown 
+- not being able to use the scrollbar in the MultiSelect dropdown
 - wrong translation string causing a doubled helptext
 
 ### Changed
@@ -216,11 +312,11 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Removed
 
-- static breadcrumbs 
+- static breadcrumbs
 
 ### Changed
 
-- project admin model to GIS admin model to render the map in the django-admin dashboard 
+- project admin model to GIS admin model to render the map in the django-admin dashboard
 
 
 ## v2503.1.2

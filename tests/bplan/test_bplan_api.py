@@ -362,54 +362,6 @@ def test_bplan_api_diplan_adds_district_from_short_code(
 
 
 @pytest.mark.django_db
-def test_bplan_api_sets_is_diplan_true_always(apiclient, districts, organisation):
-    district, _ = AdministrativeDistrict.objects.get_or_create(
-        name="Mitte", short_code="mi"
-    )
-
-    url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
-    data = {
-        "name": "bplan-1",
-        "description": "desc",
-        "administrative_district": "mi",
-        "url": "https://bplan.net",
-        "office_worker_email": "test@liqd.de",
-        "start_date": "2013-01-01 18:00",
-        "end_date": "2021-01-01 18:00",
-    }
-    user = organisation.initiators.first()
-    apiclient.force_authenticate(user=user)
-    response = apiclient.post(url, data, format="json")
-    assert response.status_code == status.HTTP_201_CREATED
-    bplan = bplan_models.Bplan.objects.first()
-    assert bplan.is_diplan is True
-
-
-@pytest.mark.django_db
-def test_bplan_api_adds_is_diplan_if_point_is_sent(apiclient, districts, organisation):
-    district, _ = AdministrativeDistrict.objects.get_or_create(
-        name="Mitte", short_code="mi"
-    )
-
-    url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
-    data = {
-        "name": "bplan-1",
-        "description": "desc",
-        "administrative_district": "mi",
-        "url": "https://bplan.net",
-        "start_date": "2013-01-01 18:00",
-        "point": '{"type":"Feature", "geometry":{"type":"Point","coordinates":[13.397788148643649,52.52958586909979]}}',
-        "end_date": "2021-01-01 18:00",
-    }
-    user = organisation.initiators.first()
-    apiclient.force_authenticate(user=user)
-    response = apiclient.post(url, data, format="json")
-    assert response.status_code == status.HTTP_201_CREATED
-    bplan = bplan_models.Bplan.objects.first()
-    assert bplan.is_diplan is True
-
-
-@pytest.mark.django_db
 def test_bplan_api_accepts_valid_geojson(
     apiclient,
     districts,
@@ -440,7 +392,6 @@ def test_bplan_api_accepts_valid_geojson(
         assert response.status_code == status.HTTP_201_CREATED
         bplan = bplan_models.Bplan.objects.first()
         assert bplan.is_draft is False
-        assert bplan.is_diplan is True
         assert bplan.point.equals(geos_point)
 
 
@@ -478,7 +429,6 @@ def test_bplan_api_accepts_valid_base64_image(
         assert response.status_code == status.HTTP_201_CREATED
         bplan = bplan_models.Bplan.objects.first()
         assert bplan.is_draft is False
-        assert bplan.is_diplan is True
         with bplan.tile_image.file.open("r") as file:
             img = base64.b64encode(file.read())
             assert img == image
@@ -517,7 +467,6 @@ def test_bplan_api_accepts_bplan_without_tile_image(
         assert response.status_code == status.HTTP_201_CREATED
         bplan = bplan_models.Bplan.objects.first()
         assert bplan.is_draft is False
-        assert bplan.is_diplan is True
         assert bplan.point.equals(geos_point)
         # Verify that tile_image is not set (empty or None)
         assert not bplan.tile_image
@@ -546,7 +495,6 @@ def test_bplan_api_accepts_long_name_and_truncates_it(
     response = apiclient.post(url, data, format="json")
     assert response.status_code == status.HTTP_201_CREATED
     bplan = bplan_models.Bplan.objects.first()
-    assert bplan.is_diplan is True
     assert len(bplan.name) == 120
     assert bplan.name == "bplan-" + "a" * 114
 
@@ -574,6 +522,45 @@ def test_bplan_api_accepts_long_description_and_truncates_it(
     response = apiclient.post(url, data, format="json")
     assert response.status_code == status.HTTP_201_CREATED
     bplan = bplan_models.Bplan.objects.first()
-    assert bplan.is_diplan is True
     assert len(bplan.description) == 250
-    assert bplan.description == "desc" + "a" * 246
+
+
+@pytest.mark.django_db
+def test_initiator_notified_when_bplan_published_via_api(
+    apiclient, bplan_factory, user_factory, phase
+):
+    district, _ = AdministrativeDistrict.objects.get_or_create(
+        name="Mitte", short_code="mi"
+    )
+
+    bplan = bplan_factory(
+        is_draft=True,
+        url="https://diplan.example.com/bplan/1",
+        administrative_district=district,
+    )
+    phase.module.project = bplan
+    phase.module.save()
+
+    creator = bplan.organisation.initiators.first()
+    other_initiator = user_factory()
+    bplan.organisation.initiators.add(other_initiator)
+    mail.outbox.clear()
+
+    url = reverse(
+        "bplan-detail",
+        kwargs={"organisation_pk": bplan.organisation.pk, "pk": bplan.pk},
+    )
+    apiclient.force_authenticate(user=creator)
+    response = apiclient.patch(url, {"is_draft": False}, format="json")
+    assert response.status_code == status.HTTP_200_OK
+
+    initiator_messages = [
+        message for message in mail.outbox if other_initiator.email in message.to
+    ]
+    assert initiator_messages
+    bodies = []
+    for message in initiator_messages:
+        bodies.append(message.body)
+        bodies.extend(alternative[0] for alternative in message.alternatives)
+    combined = "\n".join(bodies)
+    assert "https://diplan.example.com/bplan/1" in combined

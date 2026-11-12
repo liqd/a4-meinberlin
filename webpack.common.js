@@ -68,8 +68,8 @@ module.exports = {
     unload_warning: {
       import: './meinberlin/assets/js/unload_warning.js'
     },
-    budgeting_disable_contact: {
-      import: './meinberlin/assets/js/disable_contact.js'
+    contact_information: {
+      import: './meinberlin/assets/js/contact_information.js'
     },
     vote_button: {
       import: './meinberlin/react/budgeting/react_vote_button_init.jsx'
@@ -94,6 +94,9 @@ module.exports = {
     },
     init_dashboard_accordion: {
       import: './meinberlin/apps/dashboard/assets/init_dashboard_accordion.js'
+    },
+    init_project_preview_modal: {
+      import: './meinberlin/apps/dashboard/assets/init_project_preview_modal.js'
     },
     react_map_teaser: {
       import: './meinberlin/react/plans/react_map_teaser.jsx'
@@ -237,9 +240,20 @@ module.exports = {
       ],
       dependOn: 'adhocracy4'
     },
+    uppy_image_upload: {
+      import: [
+        'adhocracy4/adhocracy4/images/assets/uppy_image_upload.js',
+        '@uppy/core/css/style.min.css',
+        '@uppy/dashboard/css/style.min.css',
+        '@uppy/image-editor/css/style.min.css',
+        './meinberlin/assets/scss/components_user_facing/uppy-image-upload.scss'
+      ],
+      dependOn: 'adhocracy4'
+    },
     poll_management: {
       import: [
-        'adhocracy4/adhocracy4/polls/static/react_poll_management.jsx'
+        'adhocracy4/adhocracy4/polls/static/react_poll_management.jsx',
+        './meinberlin/assets/scss/components_user_facing/uppy-image-upload.scss'
       ],
       dependOn: 'adhocracy4'
     },
@@ -266,8 +280,21 @@ module.exports = {
   module: {
     rules: [
       {
+        // adhocracy4 ships as "type": "module" but still uses CommonJS in
+        // several files; treat them as javascript/auto so both work.
+        test: /\.jsx?$/,
+        include: /node_modules[\\/]adhocracy4[\\/]/,
+        type: 'javascript/auto'
+      },
+      {
         test: /\.jsx?$/,
         exclude: /node_modules\/(?!(adhocracy4)\/).*/, // exclude most dependencies
+        // The repository and the adhocracy4 package are "type": "module".
+        // Their sources are transpiled to CommonJS by babel (plugin below),
+        // so let webpack parse them as CommonJS instead of strict ESM.
+        // Otherwise the generated require/exports identifiers are not
+        // rewritten and break at runtime.
+        type: 'javascript/auto',
         loader: 'babel-loader',
         options: {
           presets: ['@babel/preset-env', '@babel/preset-react'].map(require.resolve),

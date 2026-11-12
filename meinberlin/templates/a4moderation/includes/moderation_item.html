@@ -1,8 +1,6 @@
 {% load i18n easy_thumbnails_tags %}
 {% if item.is_comment %}
     {% translate "Edit" as edit_action_label %}
-{% elif item.status or item.feedback %}
-    {% translate "Edit feedback" as edit_action_label %}
 {% else %}
     {% translate "Add feedback" as edit_action_label %}
 {% endif %}
@@ -81,16 +79,27 @@
             <input type="hidden" name="state" value="{{ state }}">
             <input type="hidden" name="content_type" value="{{ content_type }}">
             <input type="hidden" name="ordering" value="{{ ordering }}">
+            {% if feedback_mode %}
+                <input type="hidden" name="feedback" value="1">
+            {% endif %}
 
             {% if form.non_field_errors %}
                 <div class="moderation-card__form-errors">{{ form.non_field_errors }}</div>
             {% endif %}
 
-            {% if item.is_comment %}
+            {% if item.is_comment and not feedback_mode %}
                 <div class="moderation-card__field">
                     <label for="{{ form.comment.id_for_label }}">{{ form.comment.label }}</label>
                     {{ form.comment }}
                     {% for error in form.comment.errors %}
+                        <p class="moderation-card__form-error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% elif item.is_comment %}
+                <div class="moderation-card__field">
+                    <label for="{{ form.feedback_text.id_for_label }}">{{ form.feedback_text.label }}</label>
+                    {{ form.feedback_text }}
+                    {% for error in form.feedback_text.errors %}
                         <p class="moderation-card__form-error">{{ error }}</p>
                     {% endfor %}
                 </div>
@@ -151,6 +160,22 @@
             {% endif %}
         </div>
 
+        {% if item.feedback_items %}
+            {% for feedback in item.feedback_items %}
+                <div class="moderation-card__feedback">
+                    <p class="moderation-card__feedback-meta">
+                        <strong>{{ feedback.author }}</strong>
+                        <span>· {{ feedback.created|date:"d.m.Y, H:i" }}</span>
+                    </p>
+                    <div class="moderation-card__feedback-text">{{ feedback.text|safe }}</div>
+                </div>
+            {% endfor %}
+        {% elif item.feedback %}
+            <div class="moderation-card__feedback">
+                <div class="moderation-card__feedback-text">{{ item.feedback|safe }}</div>
+            </div>
+        {% endif %}
+
         {% if item.is_deleted %}
             <div class="moderation-card__footer">
                 <span>
@@ -181,14 +206,35 @@
             </div>
         {% else %}
             <div class="moderation-card__actions">
-                <a class="moderation-card__action"
-                   href="{% url 'a4moderation:item-edit' project.pk item.type item.pk %}"
-                   hx-get="{% url 'a4moderation:item-edit' project.pk item.type item.pk %}?state={{ state }}&content_type={{ content_type }}&ordering={{ ordering }}"
-                   hx-target="closest .moderation-item"
-                   hx-swap="outerHTML">
-                    <i class="fa fa-pen" aria-hidden="true"></i>
-                    <span>{{ edit_action_label }}</span>
-                </a>
+                <div class="moderation-card__actions-left">
+                    {% if item.is_comment %}
+                        <a class="moderation-card__action"
+                           href="{% url 'a4moderation:item-edit' project.pk item.type item.pk %}"
+                           hx-get="{% url 'a4moderation:item-edit' project.pk item.type item.pk %}?state={{ state }}&content_type={{ content_type }}&ordering={{ ordering }}"
+                           hx-target="closest .moderation-item"
+                           hx-swap="outerHTML">
+                            <i class="fa fa-pen" aria-hidden="true"></i>
+                            <span>{% translate "Edit" %}</span>
+                        </a>
+                        <a class="moderation-card__action"
+                           href="{% url 'a4moderation:item-edit' project.pk item.type item.pk %}?feedback=1&state={{ state }}&content_type={{ content_type }}&ordering={{ ordering }}"
+                           hx-get="{% url 'a4moderation:item-edit' project.pk item.type item.pk %}?feedback=1&state={{ state }}&content_type={{ content_type }}&ordering={{ ordering }}"
+                           hx-target="closest .moderation-item"
+                           hx-swap="outerHTML">
+                            <i class="fa fa-reply" aria-hidden="true"></i>
+                            <span>{% translate "Add feedback" %}</span>
+                        </a>
+                    {% else %}
+                        <a class="moderation-card__action"
+                           href="{% url 'a4moderation:item-edit' project.pk item.type item.pk %}"
+                           hx-get="{% url 'a4moderation:item-edit' project.pk item.type item.pk %}?state={{ state }}&content_type={{ content_type }}&ordering={{ ordering }}"
+                           hx-target="closest .moderation-item"
+                           hx-swap="outerHTML">
+                            <i class="fa fa-pen" aria-hidden="true"></i>
+                            <span>{{ edit_action_label }}</span>
+                        </a>
+                    {% endif %}
+                </div>
                 <div class="moderation-card__actions-right">
                     <form method="post"
                           action="{% url 'a4moderation:item-resolve' project.pk item.type item.pk %}"
@@ -209,7 +255,7 @@
                               hx-post="{% url 'a4moderation:item-delete' project.pk item.type item.pk %}"
                               hx-target="closest .moderation-item"
                               hx-swap="outerHTML"
-                              hx-confirm="{% translate 'Do you really want to delete this comment?' %}">
+                              hx-confirm="{% if item.is_comment %}{% translate 'Do you really want to delete this comment?' %}{% else %}{% translate 'Do you really want to delete this contribution?' %}{% endif %}">
                             {% csrf_token %}
                             <input type="hidden" name="state" value="{{ state }}">
                             <button type="submit" class="moderation-card__action moderation-card__action--danger">

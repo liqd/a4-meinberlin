@@ -19,7 +19,7 @@ zeep==4.3.3
 drf-spectacular==0.28.0
 
 # Inherited a4-core requirements
-celery[redis]==5.6.3
+celery[redis]==5.7.0
 kombu==5.7.0
 granian==2.8.8
 django-allauth==65.14.1

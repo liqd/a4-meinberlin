@@ -22,7 +22,7 @@
     "@uppy/dashboard": "^5.1.1",
     "@uppy/image-editor": "^4.2.0",
     "@uppy/locales": "^5.1.1",
-    "acorn": "8.14.0",
+    "acorn": "8.19.0",
     "adhocracy4": "github:liqd/adhocracy4#main",
     "autoprefixer": "10.6.2",
     "bootstrap": "5.2.3",

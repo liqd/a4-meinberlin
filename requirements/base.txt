@@ -1,4 +1,4 @@
-git+https://github.com/liqd/adhocracy4.git@main#mB-v2611.2
+git+https://github.com/liqd/adhocracy4.git@mB-v2611.2
 
 # Additional requirements
 beautifulsoup4>=4.13.3

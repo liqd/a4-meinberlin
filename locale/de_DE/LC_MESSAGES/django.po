@@ -6018,6 +6018,33 @@ msgstr "Abmelden"
 msgid "Are you sure you want to sign out?"
 msgstr "Sind Sie sicher, dass Sie sich abmelden möchten?"
 
+#: meinberlin/templates/account/logout.html:10
+msgid "Log in with a personal account"
+msgstr "Mit einem persönlichen Konto anmelden"
+
+#: meinberlin/templates/account/logout.html:11
+msgid ""
+"You are currently logged in as a guest. To log in with a personal account, "
+"end your guest session first."
+msgstr ""
+"Sie sind derzeit als Gast angemeldet. Um sich mit einem persönlichen Konto "
+"anzumelden, beenden Sie zuerst Ihre Gast-Sitzung."
+
+#: meinberlin/templates/account/logout.html:29
+msgid "Continue"
+msgstr "Fortfahren"
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/guest_participation_warning.html:8
+#, python-format
+msgid ""
+"You are currently logged in as guest. In order to take part in the project "
+"you have to <a href=\"%(register_url)s\">register</a> or <a "
+"href=\"%(login_url)s\">login</a> with a personal account"
+msgstr ""
+"Sie sind derzeit als Gast angemeldet. Um am Projekt teilnehmen zu können, "
+"müssen Sie sich mit einem persönlichen Konto <a href=\"%(register_url)s\">registrieren</a> "
+"oder <a href=\"%(login_url)s\">anmelden</a>."
+
 #: meinberlin/templates/account/password_change.html:20
 msgid "Current Password"
 msgstr "Aktuelles Passwort"

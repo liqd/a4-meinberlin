@@ -54,6 +54,7 @@ from meinberlin.apps.users.decorators import user_is_project_admin
 from meinberlin.apps.users.views import CustomLoginView
 from meinberlin.apps.users.views import CustomSignupView
 from meinberlin.apps.users.views import GuestCreateView
+from meinberlin.apps.users.views import LogoutView
 from meinberlin.apps.votes.api import TokenVoteViewSet
 from meinberlin.apps.votes.routers import TokenVoteDefaultRouter
 
@@ -140,6 +141,7 @@ urlpatterns = [
         GuestCreateView.as_view(),
         name="guest_create",
     ),
+    path("accounts/logout/", LogoutView.as_view(), name="account_logout"),
     # Block guests from allauth account-management pages (they must convert
     # first). These override allauth's defaults and must precede the include.
     path(

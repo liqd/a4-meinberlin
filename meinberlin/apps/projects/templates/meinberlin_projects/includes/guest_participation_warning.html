@@ -1,0 +1,15 @@
+{% load i18n guest_user signup_flow %}
+{% if request.user|is_guest_user and not project.allow_guest_users %}
+    {% guest_convert_url as register_url %}
+    {% guest_personal_login_url as login_url %}
+    <div class="alert alert--warning" role="alert" aria-live="polite" aria-atomic="true">
+        <div class="alert__content">
+            <p class="alert__text">
+                {% blocktranslate %}You are currently logged in as guest. In order to take part in the project you have to <a href="{{ register_url }}">register</a> or <a href="{{ login_url }}">login</a> with a personal account{% endblocktranslate %}
+            </p>
+            <button type="button" class="alert__close" data-bs-dismiss="alert" aria-label="{% translate 'Close' %}">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+{% endif %}

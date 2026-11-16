@@ -1,15 +1,29 @@
 from urllib.parse import urlparse
 
 from allauth.account.views import LoginView
+from allauth.account.views import LogoutView as AllauthLogoutView
 from allauth.account.views import SignupView
 from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.generic import FormView
+from guest_user.functions import is_guest_user
 from guest_user.functions import maybe_create_guest_user
 
+from .constants import GUEST_SWITCH_QUERY_PARAM
 from .forms import GuestCreateForm
+
+
+class LogoutView(AllauthLogoutView):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["guest_switch_logout"] = (
+            self.request.user.is_authenticated
+            and is_guest_user(self.request.user)
+            and self.request.GET.get(GUEST_SWITCH_QUERY_PARAM) == "1"
+        )
+        return context
 
 
 class HtmxAuthMixin:

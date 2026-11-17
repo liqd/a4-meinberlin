@@ -9,6 +9,9 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 ### Changed
+
+- Kiezradar Bezirk filters now has Gesamtstädtisch at the top of the list
+
 ### Fixed
 
 ## v2611.2

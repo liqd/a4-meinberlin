@@ -107,6 +107,10 @@ class PlanListView(rules_mixins.PermissionRequiredMixin, generic.ListView):
     def get_districts(self):
         districts = AdministrativeDistrict.objects.values("id", "name")
         districts_list = [district for district in districts]
+        # The citywide filter option is a district stored in the database. It
+        # is listed above the districts, which keep their alphabetical order.
+        city_wide = str(_("City wide"))
+        districts_list.sort(key=lambda district: district["name"] != city_wide)
         return json.dumps(districts_list)
 
     def get_district_polygons(self):

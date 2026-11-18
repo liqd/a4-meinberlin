@@ -22,7 +22,7 @@ drf-spectacular==0.28.0
 celery[redis]==5.6.3
 kombu==5.7.0
 granian==2.8.8
-django-allauth==65.14.1
+django-allauth==65.22.1
 django-autoslug==1.9.9
 https://github.com/liqd/django-ckeditor-5/raw/refs/heads/main/dist/django_ckeditor_5-0.2.15-py3-none-any.whl
 django-filter==24.3

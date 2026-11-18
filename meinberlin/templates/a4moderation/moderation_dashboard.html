@@ -4,8 +4,7 @@
 {% block title %}{% translate "Moderation" %} — {{ block.super }}{% endblock title %}
 
 {% block breadcrumbs %}
-    {% translate "Moderation" as moderation_title %}
-    {% include "a4moderation/includes/breadcrumbs.html" with final_title=moderation_title %}
+    {% include "a4moderation/includes/breadcrumbs.html" %}
 {% endblock breadcrumbs %}
 
 {% block content %}

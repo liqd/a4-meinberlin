@@ -1,7 +1,6 @@
 {% extends "a4dashboard/base_dashboard.html" %}
 {% load i18n %}
 
-
 {% block dashboard_content %}
 <div class="row">
     <nav class="col-lg-3" aria-label="{% translate 'Participation projects' %}">
@@ -39,7 +38,7 @@
     </nav>
 
     <div class="col-lg-9">
-        {% block project_list %}{% endblock %}
+        {% block project_list %}{% endblock project_list %}
     </div>
 </div>
-{% endblock %}
+{% endblock dashboard_content %}

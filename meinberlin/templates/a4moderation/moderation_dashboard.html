@@ -1,7 +1,12 @@
 {% extends "base.html" %}
-{% load i18n easy_thumbnails_tags %}
+{% load i18n static easy_thumbnails_tags %}
 
 {% block title %}{% translate "Moderation" %} — {{ block.super }}{% endblock title %}
+
+{% block breadcrumbs %}
+    {% translate "Moderation" as moderation_title %}
+    {% include "a4moderation/includes/breadcrumbs.html" with final_title=moderation_title %}
+{% endblock breadcrumbs %}
 
 {% block content %}
 <div id="layout-grid__area--maincontent" class="moderation-dashboard">
@@ -28,13 +33,13 @@
             </label>
             <select id="moderation-project-sort" name="sort">
                 <option value="reports"{% if sort == "reports" %} selected{% endif %}>
-                    {% translate "Sort: Recently Reported" %}
+                    {% translate "Recently reported" %}
                 </option>
                 <option value="recent"{% if sort == "recent" %} selected{% endif %}>
-                    {% translate "Sort: Most Recent" %}
+                    {% translate "Most recent" %}
                 </option>
                 <option value="name"{% if sort == "name" %} selected{% endif %}>
-                    {% translate "Sort: Alphabetical" %}
+                    {% translate "Alphabetical" %}
                 </option>
             </select>
             <i class="fa fa-angle-down" aria-hidden="true"></i>
@@ -50,16 +55,32 @@
                 <li class="moderation-project-tile">
                     <a href="{% url 'a4moderation:project' project.pk %}">
                         <figure class="moderation-project-tile__image">
-                            {% if project.tile_image %}
-                                <img src="{% thumbnail project.tile_image 'project_tile' %}"
+                            {% if project.image %}
+                                <img src="{% thumbnail project.image 'project_tile' %}"
                                      width="173"
                                      height="173"
                                      loading="lazy"
-                                     alt="">
+                                     alt="{{ project.image_alt_text }}">
+                            {% else %}
+                                <picture>
+                                    <source type="image/webp" srcset="{% static 'images/placeholder_tile.webp' %}">
+                                    <source type="image/avif" srcset="{% static 'images/placeholder_tile.avif' %}">
+                                    <img src="{% static 'images/placeholder_tile.svg' %}"
+                                         width="173"
+                                         height="173"
+                                         loading="lazy"
+                                         alt="{{ project.image_alt_text }}">
+                                </picture>
                             {% endif %}
-                            {% if project.tile_image_copyright %}
-                                <figcaption>{{ project.tile_image_copyright }}</figcaption>
-                            {% endif %}
+                            <figcaption class="image__copyright">
+                                {% if not project.image %}
+                                    {% translate 'copyright by' %} Senatskanzlei Berlin
+                                {% elif project.image_copyright %}
+                                    {% translate 'copyright by' %} {{ project.image_copyright }}
+                                {% else %}
+                                    {% translate 'copyright missing' %}
+                                {% endif %}
+                            </figcaption>
                         </figure>
                         <div class="moderation-project-tile__body">
                             <p class="moderation-project-tile__place">

@@ -6,6 +6,7 @@
         align-items: center;
         gap: 0.5em;
         min-height: 44px;
+        text-decoration: none;
     }
 }
 
@@ -466,7 +467,7 @@ a.moderation-card__action,
 
 .moderation-dashboard__search {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 229px;
+    grid-template-columns: minmax(0, 1fr) 260px;
     gap: 20px;
     align-items: end;
     max-width: 980px;
@@ -528,7 +529,7 @@ a.moderation-card__action,
 
 .moderation-dashboard__sort {
     position: relative;
-    width: 229px;
+    width: 260px;
 
     select {
         width: 100%;
@@ -587,8 +588,8 @@ a.moderation-card__action,
     }
 
     figcaption {
-        width: 230px;
-        margin-top: 2px;
+        width: 173px;
+        margin: 4px auto 0;
         color: $text-base;
         font-size: 0.6875rem;
         line-height: 1.05rem;

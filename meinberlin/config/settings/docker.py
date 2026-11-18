@@ -91,3 +91,18 @@ def _load_json_value(name, default="{}"):
 
 
 globals().update(_load_json_value("MEINBERLIN_CONFIG"))
+
+# Captcha settings may be supplied through container env vars so preview
+# deployments can point at a different Cap instance without changing /data/.env.
+for _captcha_setting in (
+    "A4_CAPTCHA_TYPE",
+    "CAPTCHA_URL",
+    "A4_CAP_CAPTCHA_ENDPOINT",
+    "A4_CAP_CAPTCHA_SITEVERIFY_URL",
+    "A4_CAP_CAPTCHA_SECRET",
+    "A4_CAP_CAPTCHA_WIDGET_URL",
+    "A4_CAP_CAPTCHA_WASM_URL",
+    "A4_CAP_CAPTCHA_HASHWX_URL",
+):
+    if _captcha_setting in os.environ:
+        globals()[_captcha_setting] = os.environ[_captcha_setting]

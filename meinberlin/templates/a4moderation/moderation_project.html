@@ -3,6 +3,10 @@
 
 {% block title %}{{ project.name }} — {% translate "Moderation" %} — {{ block.super }}{% endblock title %}
 
+{% block breadcrumbs %}
+    {% include "a4moderation/includes/breadcrumbs.html" %}
+{% endblock breadcrumbs %}
+
 {% block content %}
 <div id="layout-grid__area--maincontent" class="moderation-project">
     <p class="moderation-project__back">

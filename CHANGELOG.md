@@ -18,6 +18,9 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Fixed
 
 - Project create: remove the non-functional image upload field
+- Moderation: show header images with placeholder fallback, add breadcrumbs and
+  navigation entry, hide deleted comments, only show moderator feedback for
+  comments and close the feedback dialog after saving.
 
 ## v2611.2
 

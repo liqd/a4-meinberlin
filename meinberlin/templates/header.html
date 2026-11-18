@@ -1,4 +1,4 @@
-{% load menu static i18n userindicator %}
+{% load menu static i18n userindicator moderation_tags %}
 
 {% get_notifications_count as notifications_count %}
 {% account_redirect_url as redirect_field_value %}
@@ -43,6 +43,13 @@
                     <a href="{{ item.url }}">{{ item.title }}</a>
                 </li>
                 {% endfor %}
+                {% user_moderates_any_project request.user as has_moderation %}
+                {% if has_moderation %}
+                    {% url 'a4moderation:dashboard' as moderation_url %}
+                    <li class="{% if request.path == moderation_url %}active{% endif %}">
+                        <a href="{{ moderation_url }}">{% translate 'Moderation' %}</a>
+                    </li>
+                {% endif %}
                 {% if settings.meinberlin_cms.HeaderPages.help_page %}
                 <li class="{% if request.path == settings.meinberlin_cms.HeaderPages.help_page.get_url %}active{% endif %}">
                     <a href="{{ settings.meinberlin_cms.HeaderPages.help_page.get_url }}">{% translate 'Help' %}</a>

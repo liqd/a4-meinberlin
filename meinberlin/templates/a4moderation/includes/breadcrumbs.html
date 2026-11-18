@@ -1,0 +1,27 @@
+{% load i18n %}
+<div id="content-header">
+    <nav class="breadcrumb" aria-label="{% translate 'Breadcrumb' %}">
+        <ol>
+            <li>
+                <a href="{% url 'wagtail_serve' '' %}">{% translate 'Home page' %}</a>
+            </li>
+            <li{% if not project %} class="active"{% endif %}>
+                <a href="{% url 'a4moderation:dashboard' %}"{% if not project %} aria-current="page"{% endif %}>
+                    {% translate 'Moderation' %}
+                </a>
+            </li>
+            {% if project %}
+                <li{% if not final_title %} class="active"{% endif %}>
+                    <a href="{% url 'a4moderation:project' project.pk %}"{% if not final_title %} aria-current="page"{% endif %}>
+                        {{ project.name }}
+                    </a>
+                </li>
+            {% endif %}
+            {% if final_title %}
+                <li class="active">
+                    <a href="{{ request.path }}" aria-current="page">{{ final_title }}</a>
+                </li>
+            {% endif %}
+        </ol>
+    </nav>
+</div>

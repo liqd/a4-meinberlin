@@ -1952,6 +1952,9 @@ msgstr "Meine Auswahl"
 #: meinberlin/apps/kiezkasse/views.py:16 meinberlin/apps/mapideas/views.py:16
 #: meinberlin/apps/maptopicprio/views.py:19
 #: meinberlin/apps/projects/views.py:89
+msgid "Recently reported"
+msgstr "Zuletzt gemeldet"
+
 msgid "Most recent"
 msgstr "am aktuellsten"
 

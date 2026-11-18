@@ -1,4 +1,4 @@
-{% load i18n guest_user %}
+{% load i18n guest_user moderation_tags %}
 
 <nav class="hamburger-nav hamburger-nav--primary js-navigation-primary" id="navigation-primary">
     <div class="hamburger-nav__tree-wrapper js-navigation-tree-wrapper">
@@ -17,6 +17,23 @@
                         {% if notifications_count > 0 %}
                             <span class="hamburger-nav__badge">{{ notifications_count }}</span>
                         {% endif %}
+                    </a>
+                </li>
+            {% endif %}
+
+            {% if not request.user|is_guest_user %}
+                {% url 'followed_projects' as followed_projects_url %}
+                <li class="hamburger-nav__item {% if request.path == followed_projects_url %}hamburger-nav__item--active{% endif %}">
+                    <a href="{{ followed_projects_url }}" class="hamburger-nav__link">{% translate 'Followed Projects' %}</a>
+                </li>
+            {% endif %}
+
+            {% user_moderates_any_project request.user as has_moderation %}
+            {% if has_moderation %}
+                {% url 'a4moderation:dashboard' as moderation_url %}
+                <li class="hamburger-nav__item {% if request.path == moderation_url %}hamburger-nav__item--active{% endif %}">
+                    <a href="{{ moderation_url }}" class="hamburger-nav__link">
+                        {% translate 'Moderation' %}
                     </a>
                 </li>
             {% endif %}
@@ -59,10 +76,6 @@
                         {% url 'notification_settings' as notification_settings_url %}
                         <li class="hamburger-nav__item">
                             <a href="{{ notification_settings_url }}" class="hamburger-nav__link {% if request.path == notification_settings_url %}hamburger-nav__link--active{% endif %}">{% translate "Notification Settings" %}</a>
-                        </li>
-                        {% url 'followed_projects' as followed_projects_url %}
-                        <li class="hamburger-nav__item">
-                            <a href="{{ followed_projects_url }}" class="hamburger-nav__link {% if request.path == followed_projects_url %}active{% endif %}">{% translate "Followed Projects" %}</a>
                         </li>
                         {% url 'search_profiles' as search_profiles_url %}
                         <li class="hamburger-nav__item">

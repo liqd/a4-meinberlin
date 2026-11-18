@@ -186,6 +186,13 @@ class AbstractIdea(module_models.Item, Moderateable, ItemBadgesPropertyMixin):
 
 
 class Idea(AbstractIdea):
+    is_reviewed = models.BooleanField(
+        default=False,
+        verbose_name=_("Reviewed"),
+    )
+    is_resolved = models.BooleanField(default=False)
+    resolved_at = models.DateTimeField(blank=True, null=True)
+
     ratings = GenericRelation(
         rating_models.Rating, related_query_name="idea", object_id_field="object_pk"
     )

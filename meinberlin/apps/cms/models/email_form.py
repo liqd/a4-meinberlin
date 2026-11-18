@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from modelcluster.fields import ParentalKey
@@ -8,7 +7,8 @@ from wagtail.contrib.forms.forms import FormBuilder
 from wagtail.contrib.forms.models import AbstractEmailForm
 from wagtail.contrib.forms.models import AbstractFormField
 
-from meinberlin.apps.captcha.fields import CaptcheckCaptchaField
+from meinberlin.apps.captcha.fields import get_captcha_field
+from meinberlin.apps.captcha.fields import is_captcha_enabled
 from meinberlin.apps.cms import emails
 
 
@@ -21,8 +21,8 @@ class WagtailCaptchaFormBuilder(FormBuilder):
     def formfields(self):
         # Add captcha to formfields property
         fields = super().formfields
-        if hasattr(settings, "CAPTCHA_URL") and settings.CAPTCHA_URL:
-            fields["captcha"] = CaptcheckCaptchaField(label=_("I am not a robot"))
+        if is_captcha_enabled():
+            fields["captcha"] = get_captcha_field()(label=_("I am not a robot"))
 
         return fields
 

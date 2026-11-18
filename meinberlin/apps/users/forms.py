@@ -3,13 +3,13 @@ import collections
 from allauth.account import forms as allauth_forms
 from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 from django import forms
-from django.conf import settings
 from django.contrib.auth import forms as auth_forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext
 
-from meinberlin.apps.captcha.fields import CaptcheckCaptchaField
+from meinberlin.apps.captcha.fields import get_captcha_field
+from meinberlin.apps.captcha.fields import is_captcha_enabled
 from meinberlin.apps.notifications.models import NotificationSettings
 from meinberlin.apps.organisations.models import Organisation
 from meinberlin.apps.users.models import User
@@ -102,7 +102,7 @@ class TermsSignupForm(allauth_forms.SignupForm):
         required=False,
         initial=True,
     )
-    captcha = CaptcheckCaptchaField(label=_("I am not a robot"))
+    captcha = get_captcha_field()(label=_("I am not a robot"))
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -113,7 +113,7 @@ class TermsSignupForm(allauth_forms.SignupForm):
         self.fields["email"].label = _("Email address")
         for field in self.fields.values():
             field.widget.attrs["placeholder"] = False
-        if not (hasattr(settings, "CAPTCHA_URL") and settings.CAPTCHA_URL):
+        if not is_captcha_enabled():
             del self.fields["captcha"]
 
     def save(self, request):
@@ -137,13 +137,13 @@ class GuestCreateForm(forms.Form):
     """
 
     terms_of_use = forms.BooleanField(label=_("Terms of use"))
-    captcha = CaptcheckCaptchaField(label=_("I am not a robot"))
+    captcha = get_captcha_field()(label=_("I am not a robot"))
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs["placeholder"] = False
-        if not (hasattr(settings, "CAPTCHA_URL") and settings.CAPTCHA_URL):
+        if not is_captcha_enabled():
             del self.fields["captcha"]
 
 

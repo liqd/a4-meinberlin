@@ -6,7 +6,23 @@ from django import forms
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
+from adhocracy4.captcha.fields import CapCaptchaField
+from adhocracy4.captcha.verification import get_captcha_type
+from adhocracy4.captcha.verification import is_cap_captcha_enabled
+
 from .widgets import CaptcheckCaptchaWidget
+
+
+def get_captcha_field():
+    if get_captcha_type() == "cap":
+        return CapCaptchaField
+    return CaptcheckCaptchaField
+
+
+def is_captcha_enabled():
+    if get_captcha_type() == "cap":
+        return is_cap_captcha_enabled()
+    return bool(getattr(settings, "CAPTCHA_URL", ""))
 
 
 class CaptcheckCaptchaField(forms.CharField):

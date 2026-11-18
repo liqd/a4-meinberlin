@@ -11,6 +11,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Changed
 ### Fixed
 
+- Project create: remove the non-functional image upload field
+
 ## v2611.2
 
 ### Changed

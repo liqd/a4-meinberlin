@@ -74,7 +74,8 @@
               action="{% url 'a4moderation:item-edit' project.pk item.type item.pk %}"
               hx-post="{% url 'a4moderation:item-edit' project.pk item.type item.pk %}"
               hx-target="closest .moderation-item"
-              hx-swap="outerHTML">
+              hx-swap="outerHTML"
+              hx-disabled-elt="find button[type='submit']">
             {% csrf_token %}
             <input type="hidden" name="state" value="{{ state }}">
             <input type="hidden" name="content_type" value="{{ content_type }}">

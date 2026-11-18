@@ -8,6 +8,7 @@ A4_MAP_ATTRIBUTION = (
 
 ACCOUNT_EMAIL_VERIFICATION = "optional"
 
+A4_CAPTCHA_TYPE = "captcheck"
 CAPTCHA_TEST_ACCEPTED_ANSWER = "testpass"
 CAPTCHA_URL = "https://captcheck.netsyms.com/api.php"
 

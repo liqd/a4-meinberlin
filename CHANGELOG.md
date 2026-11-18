@@ -9,6 +9,9 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 ### Changed
+
+- Kiezradar Bezirk filters now has Gesamtstädtisch at the top of the list
+
 ### Fixed
 
 - Project create: remove the non-functional image upload field

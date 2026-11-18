@@ -49,6 +49,7 @@ from meinberlin.apps.plans.api import PlansListViewSet
 from meinberlin.apps.projects.api import FollowViewSet
 from meinberlin.apps.projects.api import PrivateProjectListViewSet
 from meinberlin.apps.projects.api import ProjectListViewSet
+from meinberlin.apps.projects.views import FollowSuggestionClaimView
 from meinberlin.apps.topicprio.api import TopicViewSet
 from meinberlin.apps.users.decorators import user_is_project_admin
 from meinberlin.apps.users.views import CustomLoginView
@@ -238,6 +239,11 @@ urlpatterns = [
     path("api/", include(orga_router.urls)),
     path("api/", include(tokenvote_router.urls)),
     path("api/", include(router.urls)),
+    path(
+        "api/follow-suggestion/<slug:slug>/",
+        FollowSuggestionClaimView.as_view(),
+        name="follow_suggestion_claim",
+    ),
     # API Documentation
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(

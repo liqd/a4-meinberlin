@@ -80,6 +80,7 @@ INSTALLED_APPS = (
     "widget_tweaks",
     "adhocracy4.actions",
     "adhocracy4.administrative_districts",
+    "adhocracy4.captcha",
     "adhocracy4.categories",
     "adhocracy4.ckeditor",
     "adhocracy4.comments",  # needed for comment model
@@ -586,9 +587,18 @@ A4_DASHBOARD = {
 A4_ACTIONS_PHASE_ENDS_HOURS = 48
 ACTIONS_OFFLINE_EVENT_STARTING_HOURS = 72
 
-# Add a Captcheck captcha URL in the production server's local.py to use it
-# Captcha software we use: https://source.netsyms.com/Netsyms/Captcheck
+# Captcha configuration
+# Supported types: "captcheck" (legacy) and "cap" (self-hosted)
+# Set A4_CAPTCHA_TYPE to "cap" once the Cap Standalone instance is configured.
+# Captcha software we use: https://trycap.dev
+A4_CAPTCHA_TYPE = "captcheck"
 CAPTCHA_URL = ""
+A4_CAP_CAPTCHA_ENDPOINT = ""
+A4_CAP_CAPTCHA_SITEVERIFY_URL = ""
+A4_CAP_CAPTCHA_SECRET = ""
+A4_CAP_CAPTCHA_WIDGET_URL = ""
+A4_CAP_CAPTCHA_WASM_URL = ""
+A4_CAP_CAPTCHA_HASHWX_URL = ""
 
 # Celery configuration
 CELERY_BROKER_URL = "redis://localhost:6379"

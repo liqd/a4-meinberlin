@@ -18,6 +18,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## v2611.2
 
+- Captcha: self-hosted Cap captcha for registration, guest registration, contact forms and polls
+
 ### Changed
 
 - Poll editor: question list with expandable rows, reordering and inline delete confirmation

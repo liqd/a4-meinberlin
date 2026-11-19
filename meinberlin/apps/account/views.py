@@ -5,6 +5,7 @@ from django.conf import settings
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
 from django.views.generic.base import RedirectView
@@ -65,13 +66,28 @@ class GuestConvertView(
         kwargs.pop("instance", None)
         return kwargs
 
+    def get_next_url(self):
+        next_url = self.request.POST.get("next") or self.request.GET.get("next")
+        if next_url and url_has_allowed_host_and_scheme(
+            next_url,
+            allowed_hosts={self.request.get_host()},
+            require_https=self.request.is_secure(),
+        ):
+            return next_url
+        return None
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["next"] = self.get_next_url() or ""
+        return context
+
     def form_valid(self, form):
         user = form.save(self.request)
         return complete_signup(
             self.request,
             user,
             email_verification=settings.ACCOUNT_EMAIL_VERIFICATION,
-            success_url=settings.LOGIN_REDIRECT_URL,
+            success_url=self.get_next_url() or settings.LOGIN_REDIRECT_URL,
         )
 
 

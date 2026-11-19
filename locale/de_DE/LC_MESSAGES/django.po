@@ -6413,3 +6413,54 @@ msgstr "Eine Frage pro Schritt"
 #: adhocracy4/polls/models.py
 msgid "All questions on one page"
 msgstr "Alle Fragen auf einer Seite"
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/follow_suggestion.html
+msgid "With an account, you can follow this project and hear about updates."
+msgstr ""
+"Mit einem Konto können Sie diesem Projekt folgen und über Neuigkeiten "
+"informiert werden."
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/follow_suggestion.html
+msgid "Want to hear about updates from this project?"
+msgstr "Möchten Sie über Neuigkeiten aus diesem Projekt informiert werden?"
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/follow_suggestion.html
+msgid "Register and follow project"
+msgstr "Registrieren und Projekt folgen"
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/follow_suggestion.html
+msgid "Follow project"
+msgstr "Projekt folgen"
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/follow_suggestion.html
+msgid "Close notice"
+msgstr "Hinweis schließen"
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/follow_suggestion.html
+msgid "You’re now following this project."
+msgstr "Sie folgen jetzt diesem Projekt."
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/follow_suggestion.html
+msgid "You’re logged in and now following this project."
+msgstr "Sie sind angemeldet und folgen jetzt diesem Projekt."
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/follow_suggestion.html
+#, python-format
+msgid ""
+"We’ll let you know about updates from the project. You can change your <a "
+"href=\"%(notification_settings_url)s\">notification settings</a> or manage "
+"your <a href=\"%(followed_projects_url)s\">followed projects</a> at any time."
+msgstr ""
+"Wir informieren Sie über Neuigkeiten aus dem Projekt. Sie können jederzeit "
+"Ihre <a "
+"href=\"%(notification_settings_url)s\">Benachrichtigungseinstellungen</a> "
+"anpassen oder Ihre <a "
+"href=\"%(followed_projects_url)s\">gefolgten Projekte</a> verwalten."
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/follow_suggestion.html
+msgid "Something went wrong. You are not following this project yet."
+msgstr "Etwas ist schiefgelaufen. Sie folgen dem Projekt noch nicht."
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/follow_suggestion.html
+msgid "Try again"
+msgstr "Erneut versuchen"

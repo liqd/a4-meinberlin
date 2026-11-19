@@ -52,6 +52,12 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 
     date_joined = models.DateTimeField(editable=False, default=timezone.now)
 
+    follow_suggestion_shown_at = models.DateTimeField(
+        _("follow suggestion last shown at"),
+        null=True,
+        blank=True,
+    )
+
     objects = auth_models.UserManager()
 
     USERNAME_FIELD = "email"

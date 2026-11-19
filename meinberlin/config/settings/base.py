@@ -158,6 +158,7 @@ MIDDLEWARE = (
     "django.middleware.common.CommonMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
+    "meinberlin.apps.projects.middleware.FollowSuggestionMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     "allauth.account.middleware.AccountMiddleware",
     "meinberlin.apps.embed.middleware.AjaxPathMiddleware",

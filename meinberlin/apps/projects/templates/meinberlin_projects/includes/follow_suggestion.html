@@ -1,0 +1,128 @@
+{% load i18n static %}
+{% if render %}
+<div class="follow-suggestion"
+     data-follow-suggestion
+     data-claim-url="{{ claim_url }}"
+     data-follow-url="{{ follow_url }}"
+     data-initial-trigger="{{ initial_trigger|yesno:'true,false' }}"
+     {% if not confirmation_auth %}hidden{% endif %}>
+    {# Makes sure the CSRF cookie exists before the banner talks to the API. #}
+    <div hidden aria-hidden="true">{% csrf_token %}</div>
+    <div class="alert follow-suggestion__alert"
+         data-follow-suggestion-state="initial"
+         role="status"
+         aria-live="polite"
+         aria-atomic="true"
+         {% if confirmation_auth %}hidden{% endif %}>
+        <div class="alert__content">
+            <p class="alert__text">
+                {% if guest %}
+                    {% translate "With an account, you can follow this project and hear about updates." %}
+                {% else %}
+                    {% translate "Want to hear about updates from this project?" %}
+                {% endif %}
+            </p>
+            <div class="follow-suggestion__actions">
+                {% if guest %}
+                    {% if request.user.is_authenticated %}
+                        <a class="button button--fullwidth-palm" href="{{ guest_convert_url }}">
+                            {% translate "Register and follow project" %}
+                        </a>
+                    {% else %}
+                        <a class="button button--fullwidth-palm"
+                           href="{{ signup_url }}"
+                           hx-get="{{ signup_url }}"
+                           hx-target="#auth-modal-body"
+                           hx-swap="innerHTML">
+                            {% translate "Register and follow project" %}
+                        </a>
+                    {% endif %}
+                {% else %}
+                    <button type="button"
+                            class="button button--fullwidth-palm"
+                            data-follow-suggestion-follow>
+                        {% translate "Follow project" %}
+                    </button>
+                {% endif %}
+            </div>
+            <button type="button"
+                    class="alert__close follow-suggestion__close"
+                    data-follow-suggestion-close
+                    aria-label="{% translate 'Close notice' %}">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="alert alert--success follow-suggestion__alert"
+         data-follow-suggestion-state="confirmation"
+         role="status"
+         aria-live="polite"
+         aria-atomic="true"
+         hidden>
+        <div class="alert__content">
+            <p class="alert__headline">
+                {% translate "You’re now following this project." %}
+            </p>
+            <p class="alert__text">
+                {% blocktranslate %}We’ll let you know about updates from the project. You can change your <a href="{{ notification_settings_url }}">notification settings</a> or manage your <a href="{{ followed_projects_url }}">followed projects</a> at any time.{% endblocktranslate %}
+            </p>
+            <button type="button"
+                    class="alert__close follow-suggestion__close"
+                    data-follow-suggestion-close
+                    aria-label="{% translate 'Close notice' %}">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="alert alert--success follow-suggestion__alert"
+         data-follow-suggestion-state="confirmation-auth"
+         role="status"
+         aria-live="polite"
+         aria-atomic="true"
+         {% if not confirmation_auth %}hidden{% endif %}>
+        <div class="alert__content">
+            <p class="alert__headline">
+                {% translate "You’re logged in and now following this project." %}
+            </p>
+            <p class="alert__text">
+                {% blocktranslate %}We’ll let you know about updates from the project. You can change your <a href="{{ notification_settings_url }}">notification settings</a> or manage your <a href="{{ followed_projects_url }}">followed projects</a> at any time.{% endblocktranslate %}
+            </p>
+            <button type="button"
+                    class="alert__close follow-suggestion__close"
+                    data-follow-suggestion-close
+                    aria-label="{% translate 'Close notice' %}">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="alert alert--danger follow-suggestion__alert"
+         data-follow-suggestion-state="error"
+         role="alert"
+         aria-live="assertive"
+         aria-atomic="true"
+         hidden>
+        <div class="alert__content">
+            <p class="alert__text">
+                {% translate "Something went wrong. You are not following this project yet." %}
+            </p>
+            <div class="follow-suggestion__actions">
+                <button type="button"
+                        class="button button--fullwidth-palm"
+                        data-follow-suggestion-retry>
+                    {% translate "Try again" %}
+                </button>
+            </div>
+            <button type="button"
+                    class="alert__close follow-suggestion__close"
+                    data-follow-suggestion-close
+                    aria-label="{% translate 'Close notice' %}">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</div>
+    <script src="{% static 'follow_suggestion.js' %}" defer></script>
+{% endif %}

@@ -1,6 +1,8 @@
 import cookie from 'js-cookie'
 import django from 'django'
 
+import { ACTION_EVENT } from '../../assets/js/action-events'
+
 export function updateItem (data, url, method) {
   return fetch(url, {
     headers: {
@@ -10,7 +12,14 @@ export function updateItem (data, url, method) {
     method,
     body: JSON.stringify(data)
   }
-  )
+  ).then((response) => {
+    if (response.ok) {
+      document.dispatchEvent(
+        new CustomEvent(ACTION_EVENT, { detail: { url, method } })
+      )
+    }
+    return response
+  })
 }
 
 // toLocaleDate returns a formatted and internationalized

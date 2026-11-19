@@ -8,6 +8,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ## Unreleased
 
 ### Added
+- Follow suggestion banner after submitting an idea/proposal or interacting with a project via comments, ratings or votes; shown to users only once per 30 days
+
 ### Changed
 
 - Kiezradar Bezirk filters now has Gesamtstädtisch at the top of the list

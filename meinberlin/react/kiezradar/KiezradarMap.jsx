@@ -7,6 +7,7 @@ import { Circle, MapContainer, Marker, useMap, useMapEvents, ZoomControl } from 
 import { AddressSearch } from 'adhocracy4'
 import ControlWrapper from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/ControlWrapper'
 import MaplibreGlLayer from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/MaplibreGlLayer'
+import { ShowMyLocationControl } from '../contrib/map/ShowMyLocationControl'
 import * as turf from '@turf/turf'
 
 const chooseYourRadiusText = django.gettext('Choose your radius')
@@ -57,6 +58,7 @@ export default function KiezradarMap ({
           />
           <Search onChange={handleAddressChange} />
           <ZoomControl position="topleft" />
+          <ShowMyLocationControl />
         </MapContainer>
       </div>
     </>

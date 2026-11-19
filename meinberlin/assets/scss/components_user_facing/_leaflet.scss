@@ -37,3 +37,91 @@
   border: 1px solid #737373;
   border-radius: 0;
 }
+
+.a4-show-my-location-control.leaflet-control {
+  clear: both;
+}
+
+.a4-show-my-location__button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid #737373;
+  border-radius: 0;
+  background-color: $white;
+  color: $text-base;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+
+  // Keep a 44x44 tap area without making the button wider than the zoom
+  // controls.
+  &:before {
+    position: absolute;
+    inset: -7px;
+    content: "";
+  }
+
+  &:hover {
+    background-color: $gray-lightest;
+  }
+
+  &:focus-visible {
+    outline: 3px solid $primary;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: progress;
+  }
+}
+
+.a4-show-my-location__spinner {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba($primary, 0.3);
+  border-top-color: $primary;
+  border-radius: 50%;
+  animation: a4-show-my-location-spin 0.8s linear infinite;
+}
+
+.a4-show-my-location__status {
+  max-width: 15rem;
+  margin-top: 8px;
+  padding: 6px 8px;
+  border: 1px solid $gray-lighter;
+  background-color: $white;
+  color: $text-base;
+  font-size: $font-size-sm;
+  line-height: 1.3;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.a4-show-my-location__status--error {
+  border-color: $text-error;
+  border-left-width: 4px;
+}
+
+// Pin with a ring, based on the existing a+ ring pin, so the own position is
+// clearly different from the filled project pins.
+.show-my-location__marker {
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.35));
+}
+
+@keyframes a4-show-my-location-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .a4-show-my-location__spinner {
+    animation-duration: 1.6s;
+  }
+}

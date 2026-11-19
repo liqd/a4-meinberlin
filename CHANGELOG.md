@@ -8,6 +8,9 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ## Unreleased
 
 ### Added
+
+- Maps: "Show my location" button with a location marker on the project, map idea and Kiezradar maps
+
 ### Changed
 
 - Kiezradar Bezirk filters now has Gesamtstädtisch at the top of the list

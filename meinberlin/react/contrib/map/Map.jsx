@@ -6,6 +6,7 @@ import MarkerClusterLayer
 import GeoJsonMarker
   from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/GeoJsonMarker'
 import { ItemPopup } from './ItemPopup'
+import { ShowMyLocationControl } from './ShowMyLocationControl'
 
 const translations = {
   beginningMap: django.gettext('A map representation follows.'),
@@ -67,6 +68,7 @@ export const MapWithMarkers = ({ points, withoutPopup, children, ...props }) => 
       {...props}
     >
       {points.length > 1 ? <MarkerClusterLayer>{markers}</MarkerClusterLayer> : markers}
+      <ShowMyLocationControl />
       {children}
     </Map>
   )

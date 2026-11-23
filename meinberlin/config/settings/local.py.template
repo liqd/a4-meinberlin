@@ -8,6 +8,7 @@ A4_CAPTCHA_TYPE = "captcheck"
 CAPTCHA_URL = "https://captcheck.netsyms.com/api.php"
 
 # Cap (set A4_CAPTCHA_TYPE = "cap" after filling endpoint and secret)
+# Site key goes into the endpoint: https://cap.liqd.net/<site-key>/
 A4_CAP_CAPTCHA_ENDPOINT = ""
 A4_CAP_CAPTCHA_SITEVERIFY_URL = ""
 A4_CAP_CAPTCHA_SECRET = ""

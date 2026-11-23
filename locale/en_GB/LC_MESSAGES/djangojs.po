@@ -935,6 +935,10 @@ msgstr ""
 msgid "There was a problem loading the CAPTCHA."
 msgstr "There was a problem loading the CAPTCHA."
 
+#: adhocracy4/captcha/static/CapCaptcha.jsx:7
+msgid "Please enable JavaScript to complete the captcha."
+msgstr "Please enable JavaScript to complete the captcha."
+
 #: adhocracy4/static/TermsOfUseCheckbox.jsx:5
 msgid ""
 "Yes, I have read and agree to this organisation's %(linkStart)s terms of use "

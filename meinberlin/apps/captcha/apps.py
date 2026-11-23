@@ -6,4 +6,6 @@ class Config(AppConfig):
     label = "meinberlin_captcha"
 
     def ready(self):
-        from . import checks  # noqa: F401
+        from . import checks
+
+        checks.ensure_cap_captcha_configured()

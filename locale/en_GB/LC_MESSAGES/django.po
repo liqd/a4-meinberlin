@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-10 16:00+0100\n"
+"POT-Creation-Date: 2026-11-23 12:08+0100\n"
 "PO-Revision-Date: 2024-02-08 08:57+0000\n"
 "Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
 "Language-Team: English <https://weblate.liqd.net/projects/meinberlin/main/en/"
@@ -66,9 +66,10 @@ msgstr "Missing fields for publication"
 #: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:68
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_form.html:21
 #: meinberlin/templates/a4categories/includes/module_categories_form.html:44
-#: meinberlin/templates/a4dashboard/base_form_module.html:28
+#: meinberlin/templates/a4dashboard/base_form_module.html:31
 #: meinberlin/templates/a4dashboard/base_form_project.html:28
-#: meinberlin/templates/a4dashboard/project_create_form.html:51
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:251
+#: meinberlin/templates/a4dashboard/project_create_form.html:46
 #: meinberlin/templates/a4labels/includes/module_labels_form.html:44
 msgid "Save"
 msgstr "Save"
@@ -89,15 +90,7 @@ msgstr "Phase"
 msgid "Select"
 msgstr "Select"
 
-#: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:5
-#: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/form_field.html:12
-#: meinberlin/apps/plans/templates/meinberlin_plans/project_plans_form.html:8
-#: meinberlin/apps/votes/templates/meinberlin_votes/token_generation_dashboard.html:26
-#: meinberlin/templates/a4forms/includes/form_field.html:5
-msgid "This field is required"
-msgstr "This field is required"
-
+#: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:6
 #: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:10
 #: meinberlin/templates/a4dashboard/includes/form_field.html:6
 msgid "Missing field for publication"
@@ -197,9 +190,12 @@ msgstr "Create draft"
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_confirm_delete.html:14
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_form.html:22
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_confirm_delete.html:15
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:168
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:248
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:282
 #: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:88
 #: meinberlin/templates/a4dashboard/includes/progress.html:56
-#: meinberlin/templates/a4dashboard/project_create_form.html:53
+#: meinberlin/templates/a4dashboard/project_create_form.html:48
 #: meinberlin/templates/meinberlin_projects/partials/project_delete_modal_htmx.html:14
 msgid "Cancel"
 msgstr "Cancel"
@@ -239,6 +235,7 @@ msgstr "private"
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:42
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_actions.html:10
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:19
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:71
 #: meinberlin/templates/a4dashboard/includes/project_list_item.html:56
 msgid "Edit"
 msgstr "Edit"
@@ -299,6 +296,21 @@ msgstr "here you can export all comments"
 msgid "Search"
 msgstr "Search"
 
+#: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
+#: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:5
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/form_field.html:12
+#: meinberlin/apps/plans/templates/meinberlin_plans/project_plans_form.html:8
+#: meinberlin/apps/votes/templates/meinberlin_votes/token_generation_dashboard.html:26
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:121
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:147
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:157
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:204
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:227
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:237
+#: meinberlin/templates/a4forms/includes/form_field.html:5
+msgid "This field is required"
+msgstr "This field is required"
+
 #: adhocracy4/forms/templates/a4forms/includes/inline_form.html:14
 #: adhocracy4/forms/templates/a4forms/includes/inline_form.html:15
 #: adhocracy4/forms/templates/a4forms/includes/inline_form.html:18
@@ -331,12 +343,6 @@ msgstr ""
 "            at the end of this page.\n"
 "            "
 
-#: adhocracy4/images/templates/a4images/uppy_image_upload_field.html:38
-msgid ""
-"Images are resized and compressed automatically before you save the form."
-msgstr ""
-"Images are resized and compressed automatically before you save the form."
-
 #: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:3
 msgid ""
 "In this section, you can create\n"
@@ -365,6 +371,7 @@ msgid "Setup the poll by adding questions and answers in the dashboard."
 msgstr "Setup the poll by adding questions and answers in the dashboard."
 
 #: adhocracy4/polls/templates/a4polls/poll_dashboard.html:5
+#: adhocracy4/polls/templates/a4polls/poll_dashboard.html:10
 msgid "Edit poll"
 msgstr "Edit poll"
 
@@ -653,8 +660,8 @@ msgstr "Project successfully duplicated."
 msgid "Project successfully created."
 msgstr "Project successfully created."
 
-#: adhocracy4/dashboard/views.py:164 meinberlin/apps/dashboard/views.py:140
-#: meinberlin/apps/plans/views.py:334
+#: adhocracy4/dashboard/views.py:164 meinberlin/apps/dashboard/views.py:143
+#: meinberlin/apps/plans/views.py:338
 msgid "Invalid action"
 msgstr "Invalid action"
 
@@ -725,6 +732,8 @@ msgid "Created"
 msgstr "Created"
 
 #: adhocracy4/exports/mixins/general.py:62
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:120
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:203
 msgid "Link"
 msgstr "Link"
 
@@ -878,6 +887,12 @@ msgstr "Please add copyright information."
 #: adhocracy4/images/mixins.py:40 adhocracy4/images/mixins.py:45
 msgid "Please add an alternative text for this image"
 msgstr "Please add an alternative text for this image"
+
+#: adhocracy4/images/templates/a4images/uppy_image_upload_field.html:38
+msgid ""
+"Images are resized and compressed automatically before you save the form."
+msgstr ""
+"Images are resized and compressed automatically before you save the form."
 
 #: adhocracy4/images/validators.py:36
 #, python-brace-format
@@ -1127,24 +1142,29 @@ msgstr "Your answer to the captcha was wrong."
 msgid "Something about the answer to the captcha was wrong."
 msgstr "Something about the answer to the captcha was wrong."
 
-#: adhocracy4/polls/api.py:267
+#: adhocracy4/polls/api.py:252 adhocracy4/polls/api.py:264
+#, python-format
+msgid "Answer must be at most %(max_length)d characters long."
+msgstr "Answer must be at most %(max_length)d characters long."
+
+#: adhocracy4/polls/api.py:300
 msgid "Please specify your answer."
 msgstr "Please specify your answer."
 
-#: adhocracy4/polls/api.py:281
+#: adhocracy4/polls/api.py:314
 #, python-brace-format
 msgid "Key error for {}"
 msgstr "Key error for {}"
 
-#: adhocracy4/polls/api.py:283
+#: adhocracy4/polls/api.py:316
 msgid "Choice not found."
 msgstr "Choice not found."
 
-#: adhocracy4/polls/api.py:304
+#: adhocracy4/polls/api.py:337
 msgid "Duplicate choices detected."
 msgstr "Duplicate choices detected."
 
-#: adhocracy4/polls/api.py:307
+#: adhocracy4/polls/api.py:340
 msgid "Multiple choice disabled for question."
 msgstr "Multiple choice disabled for question."
 
@@ -1198,19 +1218,31 @@ msgstr "Other: %(answer)s"
 msgid "Other"
 msgstr "Other"
 
-#: adhocracy4/polls/models.py:41
+#: adhocracy4/polls/models.py:39
+msgid "One question per step"
+msgstr "One question per step"
+
+#: adhocracy4/polls/models.py:40
+msgid "All questions on one page"
+msgstr "All questions on one page"
+
+#: adhocracy4/polls/models.py:45
 msgid "Hide results until participation is over"
 msgstr "Hide results until participation is over"
 
-#: adhocracy4/polls/models.py:64
+#: adhocracy4/polls/models.py:51
+msgid "Presentation"
+msgstr "Presentation"
+
+#: adhocracy4/polls/models.py:74
 msgid "Explanation"
 msgstr "Explanation"
 
-#: adhocracy4/polls/models.py:73
+#: adhocracy4/polls/models.py:83
 msgid "Confidential answers"
 msgstr "Confidential answers"
 
-#: adhocracy4/polls/models.py:75
+#: adhocracy4/polls/models.py:85
 msgid ""
 "Individual responses are not shown publicly; only the number of submissions "
 "is visible."
@@ -1218,23 +1250,23 @@ msgstr ""
 "Individual responses are not shown publicly; only the number of submissions "
 "is visible."
 
-#: adhocracy4/polls/models.py:86
+#: adhocracy4/polls/models.py:96
 msgid "Image for Question"
 msgstr "Image for Question"
 
-#: adhocracy4/polls/models.py:87
+#: adhocracy4/polls/models.py:97
 msgid "The image will be shown with the question"
 msgstr "The image will be shown with the question"
 
-#: adhocracy4/polls/models.py:93
+#: adhocracy4/polls/models.py:103
 msgid "Question image"
 msgstr "Question image"
 
-#: adhocracy4/polls/models.py:110
+#: adhocracy4/polls/models.py:120
 msgid "Questions with open answers cannot have multiple choices."
 msgstr "Questions with open answers cannot have multiple choices."
 
-#: adhocracy4/polls/models.py:118
+#: adhocracy4/polls/models.py:128
 msgid ""
 "Question with choices cannot become open question. Delete choices or add new "
 "open question."
@@ -1242,33 +1274,33 @@ msgstr ""
 "Question with choices cannot become open question. Delete choices or add new "
 "open question."
 
-#: adhocracy4/polls/models.py:179 adhocracy4/polls/models.py:299
+#: adhocracy4/polls/models.py:189 adhocracy4/polls/models.py:309
 msgid "Answer"
 msgstr "Answer"
 
-#: adhocracy4/polls/models.py:190
+#: adhocracy4/polls/models.py:200
 msgid "Only open questions can have answers."
 msgstr "Only open questions can have answers."
 
-#: adhocracy4/polls/models.py:226
+#: adhocracy4/polls/models.py:236
 msgid "Open questions cannot have choices."
 msgstr "Open questions cannot have choices."
 
-#: adhocracy4/polls/models.py:232
+#: adhocracy4/polls/models.py:242
 msgid ""
 "\"Other\" cannot be the only choice. Use open question or add more choices."
 msgstr ""
 "\"Other\" cannot be the only choice. Use open question or add more choices."
 
-#: adhocracy4/polls/models.py:243
+#: adhocracy4/polls/models.py:253
 msgid "Question already has \"other\" choice."
 msgstr "Question already has \"other\" choice."
 
-#: adhocracy4/polls/models.py:306
+#: adhocracy4/polls/models.py:316
 msgid "Other vote can only be created for vote on \"other\" choice."
 msgstr "Other vote can only be created for vote on \"other\" choice."
 
-#: adhocracy4/polls/models.py:328
+#: adhocracy4/polls/models.py:338
 msgid "other"
 msgstr "other"
 
@@ -1286,9 +1318,13 @@ msgstr "Answer the questions and comment on the poll."
 msgid "polls"
 msgstr "polls"
 
-#: adhocracy4/polls/serializers.py:233 adhocracy4/polls/services.py:118
+#: adhocracy4/polls/serializers.py:233 adhocracy4/polls/services.py:124
 msgid "Please provide a descriptive alt text for the question image."
 msgstr "Please provide a descriptive alt text for the question image."
+
+#: adhocracy4/polls/templates/a4polls/poll_detail.html:6
+msgid "Start poll"
+msgstr "Start poll"
 
 #: adhocracy4/polls/validators.py:50
 msgid "The uploaded file is not a valid image."
@@ -1896,7 +1932,7 @@ msgstr "New Development plan"
 msgid "We could not find any development plans."
 msgstr "We could not find any development plans."
 
-#: meinberlin/apps/bplan/views.py:43 meinberlin/apps/dashboard/views.py:386
+#: meinberlin/apps/bplan/views.py:43 meinberlin/apps/dashboard/views.py:435
 #: meinberlin/apps/extprojects/views.py:39
 msgid "Project was created."
 msgstr "Project was created."
@@ -2579,6 +2615,10 @@ msgstr "Please consent to the storage of your contact information."
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/components/alert.html:13
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:101
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/guest_participation_warning.html:10
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:110
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:193
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:270
 #: meinberlin/templates/a4dashboard/includes/nav_modules.html:29
 #: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:69
 #: meinberlin/templates/a4dashboard/includes/progress.html:34
@@ -2951,43 +2991,43 @@ msgstr ""
 msgid "New Module"
 msgstr "New Module"
 
-#: meinberlin/apps/dashboard/views.py:56
+#: meinberlin/apps/dashboard/views.py:59
 msgid "The module was created"
 msgstr "The module was created"
 
-#: meinberlin/apps/dashboard/views.py:158
+#: meinberlin/apps/dashboard/views.py:161
 msgid "Module is already added"
 msgstr "Module is already added"
 
-#: meinberlin/apps/dashboard/views.py:168
+#: meinberlin/apps/dashboard/views.py:171
 msgid "Module cannot be added. Required fields are missing."
 msgstr "Module cannot be added. Required fields are missing."
 
-#: meinberlin/apps/dashboard/views.py:179
+#: meinberlin/apps/dashboard/views.py:182
 msgid "The module is displayed in the project."
 msgstr "The module is displayed in the project."
 
-#: meinberlin/apps/dashboard/views.py:184
+#: meinberlin/apps/dashboard/views.py:187
 msgid "Module is already removed"
 msgstr "Module is already removed"
 
-#: meinberlin/apps/dashboard/views.py:188
+#: meinberlin/apps/dashboard/views.py:191
 msgid "Module cannot be removed from a published project."
 msgstr "Module cannot be removed from a published project."
 
-#: meinberlin/apps/dashboard/views.py:195
+#: meinberlin/apps/dashboard/views.py:198
 msgid "Module cannot be removed. It is the only module added to the project."
 msgstr "Module cannot be removed. It is the only module added to the project."
 
-#: meinberlin/apps/dashboard/views.py:209
+#: meinberlin/apps/dashboard/views.py:212
 msgid "The module is no longer displayed in the project."
 msgstr "The module is no longer displayed in the project."
 
-#: meinberlin/apps/dashboard/views.py:216
+#: meinberlin/apps/dashboard/views.py:219
 msgid "The module has been deleted"
 msgstr "The module has been deleted"
 
-#: meinberlin/apps/dashboard/views.py:221
+#: meinberlin/apps/dashboard/views.py:224
 msgid "Module added to a project cannot be deleted."
 msgstr "Module added to a project cannot be deleted."
 
@@ -3586,9 +3626,68 @@ msgstr ""
 msgid "Submit Idea"
 msgstr "Submit Idea"
 
+#: meinberlin/apps/maps/dashboard.py:82 meinberlin/apps/maps/dashboard.py:85
+#: meinberlin/apps/maps/dashboard.py:95
+msgid "The map layers could not be read."
+msgstr "The map layers could not be read."
+
+#: meinberlin/apps/maps/dashboard.py:88
+#, python-format
+msgid "You can add at most %(count)s map layers."
+msgstr "You can add at most %(count)s map layers."
+
+#: meinberlin/apps/maps/dashboard.py:101
+msgid "Please select a layer for every map service."
+msgstr "Please select a layer for every map service."
+
+#: meinberlin/apps/maps/dashboard.py:125
+msgid "The selected map layer is not available."
+msgstr "The selected map layer is not available."
+
+#: meinberlin/apps/maps/dashboard.py:129 meinberlin/apps/maps/dashboard.py:148
+msgid "This map layer has already been added."
+msgstr "This map layer has already been added."
+
+#: meinberlin/apps/maps/gdi_wms.py:37
+msgid "Please enter a link to a map service from the Berlin geoportal."
+msgstr "Please enter a link to a map service from the Berlin geoportal."
+
+#: meinberlin/apps/maps/gdi_wms.py:44 meinberlin/apps/maps/gdi_wms.py:53
+msgid "Only links from gdi.berlin.de are allowed."
+msgstr "Only links from gdi.berlin.de are allowed."
+
+#: meinberlin/apps/maps/gdi_wms.py:60 meinberlin/apps/maps/gdi_wms.py:67
+msgid "Please enter a link to a WMS map service from the Berlin geoportal."
+msgstr "Please enter a link to a WMS map service from the Berlin geoportal."
+
+#: meinberlin/apps/maps/gdi_wms.py:103 meinberlin/apps/maps/gdi_wms.py:116
+#: meinberlin/apps/maps/gdi_wms.py:153 meinberlin/apps/maps/gdi_wms.py:161
+#: meinberlin/apps/maps/gdi_wms.py:167
+msgid "The link does not lead to a usable map layer."
+msgstr "The link does not lead to a usable map layer."
+
+#: meinberlin/apps/maps/gdi_wms.py:142 meinberlin/apps/maps/gdi_wms.py:148
+msgid "The map service could not be reached. Please try again later."
+msgstr "The map service could not be reached. Please try again later."
+
+#: meinberlin/apps/maps/models.py:34
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:146
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:226
+msgid "Map layer"
+msgstr "Map layer"
+
+#: meinberlin/apps/maps/models.py:35
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:7
+msgid "Map layers"
+msgstr "Map layers"
+
 #: meinberlin/apps/maps/templates/meinberlin_maps/map_choose_polygon_with_preset_widget.html:6
 msgid "You can choose a preset for further customization."
 msgstr "You can choose a preset for further customization."
+
+#: meinberlin/apps/maps/views.py:25
+msgid "The request could not be read."
+msgstr "The request could not be read."
 
 #: meinberlin/apps/maptopicprio/dashboard.py:15
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_dashboard_list.html:4
@@ -4001,7 +4100,7 @@ msgstr "Topics"
 
 #: meinberlin/apps/plans/exports.py:74
 #: meinberlin/apps/plans/templatetags/react_map_teaser.py:18
-#: meinberlin/apps/projects/admin.py:219
+#: meinberlin/apps/plans/views.py:112 meinberlin/apps/projects/admin.py:219
 #: meinberlin/apps/projects/serializers.py:21
 msgid "City wide"
 msgstr "City wide"
@@ -4340,31 +4439,31 @@ msgstr ""
 "Please select the plan your project belongs to. Your project will be shown "
 "in the list of plans accordingly."
 
-#: meinberlin/apps/plans/views.py:264
+#: meinberlin/apps/plans/views.py:268
 msgid "The plan was created"
 msgstr "The plan was created"
 
-#: meinberlin/apps/plans/views.py:289
+#: meinberlin/apps/plans/views.py:293
 msgid "The plan has been updated"
 msgstr "The plan has been updated"
 
-#: meinberlin/apps/plans/views.py:299
+#: meinberlin/apps/plans/views.py:303
 msgid "The plan has been deleted"
 msgstr "The plan has been deleted"
 
-#: meinberlin/apps/plans/views.py:349
+#: meinberlin/apps/plans/views.py:353
 msgid "The plan is already published"
 msgstr "The plan is already published"
 
-#: meinberlin/apps/plans/views.py:357
+#: meinberlin/apps/plans/views.py:361
 msgid "The plan is published."
 msgstr "The plan is published."
 
-#: meinberlin/apps/plans/views.py:362
+#: meinberlin/apps/plans/views.py:366
 msgid "The plan is already unpublished"
 msgstr "The plan is already unpublished"
 
-#: meinberlin/apps/plans/views.py:368
+#: meinberlin/apps/plans/views.py:372
 msgid "The plan is unpublished."
 msgstr "The plan is unpublished."
 
@@ -4549,6 +4648,17 @@ msgstr "Responsible body"
 msgid "Call"
 msgstr "Call"
 
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/guest_participation_warning.html:8
+#, python-format
+msgid ""
+"You are currently logged in as guest. In order to take part in the project "
+"you have to <a href=\"%(register_url)s\">register</a> or <a "
+"href=\"%(login_url)s\">login</a> with a personal account"
+msgstr ""
+"You are currently logged in as guest. In order to take part in the project "
+"you have to <a href=\"%(register_url)s\">register</a> or <a "
+"href=\"%(login_url)s\">login</a> with a personal account"
+
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/module-tile/module_tile.html:22
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:91
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/status_bar.html:13
@@ -4597,7 +4707,7 @@ msgstr "Participation is not possible at the moment."
 msgid "It starts on %(date)s."
 msgstr "It starts on %(date)s."
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_detail_content.html:11
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_detail_content.html:12
 #, python-format
 msgid ""
 "You are participating as a guest. Please log out or close your browser "
@@ -4610,7 +4720,7 @@ msgstr ""
 "contributions permanently, <a href=\"%(guest_convert_url)s\">create an "
 "account</a>."
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_detail_content.html:22
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_detail_content.html:23
 msgid "Offline Events"
 msgstr "Offline Events"
 
@@ -4708,6 +4818,8 @@ msgstr "on"
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_user_list.html:8
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_user_list.html:19
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_user_list.html:20
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:75
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:287
 #: meinberlin/templates/account/email.html:35
 #: meinberlin/templates/socialaccount/connections.html:31
 msgid "Remove"
@@ -5495,6 +5607,80 @@ msgstr "Dashboard: "
 msgid "All participation projects"
 msgstr "All participation projects"
 
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:9
+msgid ""
+"Choose the map layer that should be shown on the participation map. Only one "
+"layer can be active at a time."
+msgstr ""
+"Choose the map layer that should be shown on the participation map. Only one "
+"layer can be active at a time."
+
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:33
+msgid "No map layer"
+msgstr "No map layer"
+
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:62
+msgid "This map layer could not be loaded."
+msgstr "This map layer could not be loaded."
+
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:81
+msgid "No map layer has been added yet."
+msgstr "No map layer has been added yet."
+
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:87
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:106
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:171
+msgid "Add map layer"
+msgstr "Add map layer"
+
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:116
+#, python-format
+msgid ""
+"Copy the link of a map service from the <a href=\"%(url)s\" "
+"target=\"_blank\" rel=\"noopener noreferrer\">Berlin geoportal</a> and paste "
+"it here."
+msgstr ""
+"Copy the link of a map service from the <a href=\"%(url)s\" "
+"target=\"_blank\" rel=\"noopener noreferrer\">Berlin geoportal</a> and paste "
+"it here."
+
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:136
+msgid "Example: https://gdi.berlin.de/services/wms/baumbestand"
+msgstr "Example: https://gdi.berlin.de/services/wms/baumbestand"
+
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:150
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:230
+msgid "Please choose a layer"
+msgstr "Please choose a layer"
+
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:156
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:236
+msgid "Map layer name"
+msgstr "Map layer name"
+
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:189
+msgid "Edit map layer"
+msgstr "Edit map layer"
+
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:199
+#, python-format
+msgid ""
+"Change the name or replace the link with another map service from the <a "
+"href=\"%(url)s\" target=\"_blank\" rel=\"noopener noreferrer\">Berlin "
+"geoportal</a>."
+msgstr ""
+"Change the name or replace the link with another map service from the <a "
+"href=\"%(url)s\" target=\"_blank\" rel=\"noopener noreferrer\">Berlin "
+"geoportal</a>."
+
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:266
+msgid "Remove map layer?"
+msgstr "Remove map layer?"
+
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:277
+msgid "will be removed from the list."
+msgstr "will be removed from the list."
+
 #: meinberlin/templates/a4dashboard/includes/module_phases_form.html:6
 msgid ""
 "Depending on the selected module, the participation process has one or two "
@@ -5728,12 +5914,12 @@ msgstr "Get involved now."
 msgid "Participate"
 msgstr "Participate"
 
-#: meinberlin/templates/a4modules/module_detail.html:33
+#: meinberlin/templates/a4modules/module_detail.html:34
 msgctxt "video"
 msgid "Live"
 msgstr "Live"
 
-#: meinberlin/templates/a4modules/module_detail.html:60
+#: meinberlin/templates/a4modules/module_detail.html:61
 msgid "More from this online participation"
 msgstr "More from this online participation"
 
@@ -5812,21 +5998,18 @@ msgstr "Don't have an account yet?"
 msgid "Proceed as guest"
 msgstr "Proceed as guest"
 
-#: meinberlin/templates/account/logout.html:4
-#: meinberlin/templates/account/logout.html:7
+#: meinberlin/templates/account/logout.html:6
 #: meinberlin/templates/account/logout.html:15
-msgid "Sign Out"
-msgstr "Sign Out"
-
-#: meinberlin/templates/account/logout.html:8
-msgid "Are you sure you want to sign out?"
-msgstr "Are you sure you want to sign out?"
-
-#: meinberlin/templates/account/logout.html:10
 msgid "Log in with a personal account"
 msgstr "Log in with a personal account"
 
-#: meinberlin/templates/account/logout.html:11
+#: meinberlin/templates/account/logout.html:8
+#: meinberlin/templates/account/logout.html:23
+#: meinberlin/templates/account/logout.html:36
+msgid "Sign Out"
+msgstr "Sign Out"
+
+#: meinberlin/templates/account/logout.html:17
 msgid ""
 "You are currently logged in as a guest. To log in with a personal account, "
 "end your guest session first."
@@ -5834,20 +6017,13 @@ msgstr ""
 "You are currently logged in as a guest. To log in with a personal account, "
 "end your guest session first."
 
-#: meinberlin/templates/account/logout.html:29
+#: meinberlin/templates/account/logout.html:24
+msgid "Are you sure you want to sign out?"
+msgstr "Are you sure you want to sign out?"
+
+#: meinberlin/templates/account/logout.html:34
 msgid "Continue"
 msgstr "Continue"
-
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/guest_participation_warning.html:8
-#, python-format
-msgid ""
-"You are currently logged in as guest. In order to take part in the project "
-"you have to <a href=\"%(register_url)s\">register</a> or <a "
-"href=\"%(login_url)s\">login</a> with a personal account"
-msgstr ""
-"You are currently logged in as guest. In order to take part in the project "
-"you have to <a href=\"%(register_url)s\">register</a> or <a "
-"href=\"%(login_url)s\">login</a> with a personal account"
 
 #: meinberlin/templates/account/password_change.html:20
 msgid "Current Password"

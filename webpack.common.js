@@ -228,6 +228,10 @@ module.exports = {
       ],
       dependOn: 'adhocracy4'
     },
+    map_layers_dashboard: {
+      import: ['./meinberlin/assets/js/map_layers_dashboard.js'],
+      dependOn: 'adhocracy4'
+    },
     category_formset: {
       import: [
         'adhocracy4/adhocracy4/categories/assets/category_formset.js'

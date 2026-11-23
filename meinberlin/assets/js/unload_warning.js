@@ -6,8 +6,8 @@
 
 $(function () {
   let submitted = false
-  const changeHandler = function () {
-    const target = event.target.id
+  const changeHandler = function (event) {
+    const target = (event.target && event.target.id) || ''
     if (target.includes('dashboard-nav')) {
       submitted = true
     }

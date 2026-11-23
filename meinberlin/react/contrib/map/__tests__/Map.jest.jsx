@@ -2,6 +2,18 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 
 import { Map, MapWithMarkers } from '../Map'
+
+jest.mock('react-leaflet', () => {
+  const React = require('react')
+  return {
+    ...jest.requireActual('react-leaflet'),
+    WMSTileLayer: (props) => React.createElement('div', {
+      'data-testid': 'wms-layer',
+      'data-url': props.url,
+      'data-layers': props.layers
+    })
+  }
+})
 jest.mock('adhocracy4/adhocracy4/maps_react/static/a4maps_react/MarkerClusterLayer', () => ({
   __esModule: true,
   default: (props) => <div>MarkerClusterLayer <div>{props.children}</div></div>
@@ -21,6 +33,33 @@ describe('Map component', () => {
     expect(() => {
       render(<Map title="Test Title" />)
     }).toThrow('id must be defined when using Map')
+  })
+
+  test('renders the selected WMS layer and its name', () => {
+    render(
+      <Map
+        id="test-id"
+        layer={{
+          url: 'https://gdi.berlin.de/services/wms/baumbestand',
+          layers: 'strassenbaeume',
+          title: 'Straßenbäume',
+          attribution: 'GDI Berlin'
+        }}
+      />
+    )
+    expect(screen.getByTestId('wms-layer').getAttribute('data-layers')).toBe(
+      'strassenbaeume'
+    )
+    expect(
+      screen.getByTestId('wms-layer').getAttribute('data-url')
+    ).toBe('https://gdi.berlin.de/services/wms/baumbestand')
+    expect(screen.getByText(/Straßenbäume/)).toBeTruthy()
+  })
+
+  test('renders no WMS layer when no layer is selected', () => {
+    render(<Map id="test-id" />)
+    expect(screen.queryByTestId('wms-layer')).toBeNull()
+    expect(screen.queryByText(/Straßenbäume/)).toBeNull()
   })
 })
 

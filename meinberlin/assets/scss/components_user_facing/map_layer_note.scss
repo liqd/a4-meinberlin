@@ -1,0 +1,16 @@
+.geomap-container {
+    position: relative;
+}
+
+.geomap__layer-note {
+    background: rgba(255, 255, 255, 0.9);
+    bottom: 0.5rem;
+    color: $text-base;
+    font-size: $font-size-xs;
+    left: 0.5rem;
+    margin: 0;
+    max-width: calc(100% - 1rem);
+    padding: 0.15rem 0.4rem;
+    position: absolute;
+    z-index: 500;
+}

@@ -10,7 +10,7 @@ from meinberlin.apps.maps.models import MapPresetCategory
 
 class MapChoosePolygonWithPresetWidget(Widget):
     class Media:
-        js = ("a4maps_choose_polygon.js",)
+        js = ("map_layers_dashboard.js", "a4maps_choose_polygon.js")
 
         css = {"all": ["a4maps_choose_polygon.css"]}
 

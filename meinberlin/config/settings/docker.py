@@ -92,8 +92,9 @@ def _load_json_value(name, default="{}"):
 
 globals().update(_load_json_value("MEINBERLIN_CONFIG"))
 
-# Captcha settings may be supplied through container env vars so preview
-# deployments can point at a different Cap instance without changing /data/.env.
+# Captcha settings are read from container env vars so preview deployments can
+# override the shared /data/.env instance config with a separate Cap instance.
+# These values intentionally take precedence over MEINBERLIN_CONFIG.
 for _captcha_setting in (
     "A4_CAPTCHA_TYPE",
     "CAPTCHA_URL",

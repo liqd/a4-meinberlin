@@ -1,0 +1,22 @@
+# Copy this file to local.py for local development. local.py is gitignored.
+# Deployment-specific values belong in the admin/Salt pillar instead.
+
+# Captcha: "captcheck" (legacy) or "cap" (self-hosted)
+A4_CAPTCHA_TYPE = "captcheck"
+
+# Captcheck
+CAPTCHA_URL = "https://captcheck.netsyms.com/api.php"
+
+# Cap (set A4_CAPTCHA_TYPE = "cap" after filling endpoint and secret)
+A4_CAP_CAPTCHA_ENDPOINT = ""
+A4_CAP_CAPTCHA_SITEVERIFY_URL = ""
+A4_CAP_CAPTCHA_SECRET = ""
+A4_CAP_CAPTCHA_WIDGET_URL = "https://cdn.jsdelivr.net/npm/cap-widget@0.1.63"
+A4_CAP_CAPTCHA_WASM_URL = ""
+A4_CAP_CAPTCHA_HASHWX_URL = ""
+A4_CAPTCHA_TIMEOUT = 5
+
+# Force German for local development (override if your env or browser defaults to English)
+LANGUAGE_CODE = "de-DE"
+DEBUG_TOOLBAR_ENABLED = False
+RESULTS_PUBLISH_REMINDER_DELAY_HOURS = 0

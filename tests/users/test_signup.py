@@ -187,3 +187,30 @@ def test_signup_with_cap_captcha(client):
 
     assert resp.status_code == 302
     assert User.objects.filter(username="capuser").exists()
+
+
+@override_settings(
+    A4_CAPTCHA_TYPE="cap",
+    A4_CAP_CAPTCHA_ENDPOINT="",
+    A4_CAP_CAPTCHA_SECRET="",
+    A4_CAP_CAPTCHA_WIDGET_URL="",
+)
+def test_cap_startup_check_rejects_incomplete_config():
+    from django.core.exceptions import ImproperlyConfigured
+
+    from meinberlin.apps.captcha.checks import ensure_cap_captcha_configured
+
+    with pytest.raises(ImproperlyConfigured):
+        ensure_cap_captcha_configured()
+
+
+@override_settings(
+    A4_CAPTCHA_TYPE="cap",
+    A4_CAP_CAPTCHA_ENDPOINT="https://cap.example.com/sitekey/",
+    A4_CAP_CAPTCHA_SECRET="secret",
+    A4_CAP_CAPTCHA_WIDGET_URL="https://cdn.jsdelivr.net/npm/cap-widget@0.1.63",
+)
+def test_cap_startup_check_accepts_complete_config():
+    from meinberlin.apps.captcha.checks import ensure_cap_captcha_configured
+
+    ensure_cap_captcha_configured()

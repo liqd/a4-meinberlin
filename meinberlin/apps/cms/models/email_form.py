@@ -7,7 +7,7 @@ from wagtail.contrib.forms.forms import FormBuilder
 from wagtail.contrib.forms.models import AbstractEmailForm
 from wagtail.contrib.forms.models import AbstractFormField
 
-from meinberlin.apps.captcha.fields import get_captcha_field
+from meinberlin.apps.captcha.fields import CaptchaField
 from meinberlin.apps.captcha.fields import is_captcha_enabled
 from meinberlin.apps.cms import emails
 
@@ -22,7 +22,7 @@ class WagtailCaptchaFormBuilder(FormBuilder):
         # Add captcha to formfields property
         fields = super().formfields
         if is_captcha_enabled():
-            fields["captcha"] = get_captcha_field()(label=_("I am not a robot"))
+            fields["captcha"] = CaptchaField(label=_("I am not a robot"))
 
         return fields
 

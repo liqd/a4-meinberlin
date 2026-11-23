@@ -8,7 +8,8 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext
 
-from meinberlin.apps.captcha.fields import get_captcha_field
+from meinberlin.apps.captcha.fields import CaptchaField
+from meinberlin.apps.captcha.fields import get_captcha_widget
 from meinberlin.apps.captcha.fields import is_captcha_enabled
 from meinberlin.apps.notifications.models import NotificationSettings
 from meinberlin.apps.organisations.models import Organisation
@@ -102,7 +103,7 @@ class TermsSignupForm(allauth_forms.SignupForm):
         required=False,
         initial=True,
     )
-    captcha = get_captcha_field()(label=_("I am not a robot"))
+    captcha = CaptchaField(label=_("I am not a robot"))
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -113,6 +114,8 @@ class TermsSignupForm(allauth_forms.SignupForm):
         self.fields["email"].label = _("Email address")
         for field in self.fields.values():
             field.widget.attrs["placeholder"] = False
+        if "captcha" in self.fields:
+            self.fields["captcha"].widget = get_captcha_widget()
         if not is_captcha_enabled():
             del self.fields["captcha"]
 
@@ -137,12 +140,14 @@ class GuestCreateForm(forms.Form):
     """
 
     terms_of_use = forms.BooleanField(label=_("Terms of use"))
-    captcha = get_captcha_field()(label=_("I am not a robot"))
+    captcha = CaptchaField(label=_("I am not a robot"))
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs["placeholder"] = False
+        if "captcha" in self.fields:
+            self.fields["captcha"].widget = get_captcha_widget()
         if not is_captcha_enabled():
             del self.fields["captcha"]
 

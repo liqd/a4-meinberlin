@@ -11,7 +11,7 @@ def test_signup_renders_password_criteria(client):
     resp = client.get(reverse("account_signup"))
     assert resp.status_code == 200
     content = resp.content.decode()
-    assert 'data-password-criteria' in content
+    assert "data-password-criteria" in content
     assert 'id="id_password1_criteria"' in content
     assert 'data-password-input="#id_password1"' in content
     assert 'data-criterion="length"' in content
@@ -133,3 +133,57 @@ def test_signup_user_with_captcha_url_as_empty_string(client):
     assert resp.status_code == 302
     user = User.objects.get()
     assert user.notification_settings.email_newsletter
+
+
+@override_settings(
+    A4_CAPTCHA_TYPE="cap",
+    A4_CAP_CAPTCHA_ENDPOINT="https://cap.example.com/sitekey/",
+    A4_CAP_CAPTCHA_SECRET="secret",
+    A4_CAP_CAPTCHA_WIDGET_URL="https://cdn.jsdelivr.net/npm/cap-widget@0.1.63",
+)
+def test_signup_form_uses_cap_widget():
+    from adhocracy4.captcha.widgets import CapCaptchaWidget
+    from meinberlin.apps.users.forms import TermsSignupForm
+
+    form = TermsSignupForm()
+
+    assert "captcha" in form.fields
+    assert isinstance(form.fields["captcha"].widget, CapCaptchaWidget)
+
+
+@override_settings(
+    A4_CAPTCHA_TYPE="cap",
+    A4_CAP_CAPTCHA_ENDPOINT="",
+    A4_CAP_CAPTCHA_SECRET="",
+    A4_CAP_CAPTCHA_WIDGET_URL="",
+)
+def test_signup_form_removes_captcha_when_cap_is_not_configured():
+    from meinberlin.apps.users.forms import TermsSignupForm
+
+    form = TermsSignupForm()
+
+    assert "captcha" not in form.fields
+
+
+@override_settings(
+    A4_CAPTCHA_TYPE="cap",
+    A4_CAP_CAPTCHA_ENDPOINT="https://cap.example.com/sitekey/",
+    A4_CAP_CAPTCHA_SECRET="secret",
+    A4_CAP_CAPTCHA_WIDGET_URL="https://cdn.jsdelivr.net/npm/cap-widget@0.1.63",
+)
+@pytest.mark.django_db
+def test_signup_with_cap_captcha(client):
+    resp = client.post(
+        reverse("account_signup"),
+        {
+            "username": "capuser",
+            "email": "cap@example.com",
+            "password1": "password",
+            "password2": "password",
+            "terms_of_use": "on",
+            "captcha": "testpass",
+        },
+    )
+
+    assert resp.status_code == 302
+    assert User.objects.filter(username="capuser").exists()

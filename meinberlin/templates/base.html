@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load i18n static contrib_tags wagtailuserbar breadcrumbs_tags %}
+{% load i18n static contrib_tags wagtailuserbar breadcrumbs_tags follow_suggestion_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
@@ -61,6 +61,10 @@
             {% for message in messages %}
                 {% include 'meinberlin_contrib/components/alert.html' with alert_message=message|stringformat:"s" alert_headline=message.level_headline alert_type=message.level_tag %}
             {% endfor %}
+        {% endif %}
+
+        {% if project %}
+            {% follow_suggestion project %}
         {% endif %}
 
         {% block super_content %}

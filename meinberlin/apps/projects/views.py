@@ -5,6 +5,7 @@ from django.apps import apps
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -31,6 +32,7 @@ from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.dashboard import is_event_module
 
 from ..bplan.views import BplanProjectDispatchMixin
+from . import follow_suggestions
 from . import forms
 from . import models
 from .mixins import ProjectDetailDisplayMixin
@@ -425,3 +427,24 @@ class ProjectResultsView(PermissionRequiredMixin, generic.DetailView):
             kwargs={"project_slug": self.object.slug},
         )
         return context
+
+
+class FollowSuggestionClaimView(generic.View):
+    """Atomically decide whether the follow suggestion may be displayed.
+
+    The response indicates whether the client should show the banner. The
+    display timestamp is stored as soon as the banner is allowed to be shown,
+    independent of whether the user later follows or dismisses it.
+    """
+
+    def post(self, request, *args, **kwargs):
+        project = get_object_or_404(models.Project, slug=kwargs["slug"])
+
+        if not follow_suggestions.may_show(request):
+            return JsonResponse({"show": False})
+
+        if follow_suggestions.is_following(request.user, project):
+            return JsonResponse({"show": False})
+
+        follow_suggestions.mark_shown(request)
+        return JsonResponse({"show": True})

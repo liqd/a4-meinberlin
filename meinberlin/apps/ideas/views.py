@@ -28,6 +28,7 @@ from meinberlin.apps.moderatorremark.models import ModeratorRemark
 from meinberlin.apps.notifications.emails import (
     NotifyCreatorOrContactOnModeratorFeedback,
 )
+from meinberlin.apps.projects import follow_suggestions
 
 from . import forms
 from . import models
@@ -123,6 +124,7 @@ class AbstractIdeaCreateView(
     def form_valid(self, form):
         form.instance.creator = self.request.user
         form.instance.module = self.module
+        follow_suggestions.trigger(self.request, self.project)
         return super().form_valid(form)
 
     def get_form_kwargs(self):

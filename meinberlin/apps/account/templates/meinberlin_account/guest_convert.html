@@ -19,6 +19,10 @@
 
         {% csrf_token %}
 
+        {% if next %}
+            <input type="hidden" name="next" value="{{ next }}"/>
+        {% endif %}
+
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.email %}
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.username %}
         {% include "meinberlin_contrib/includes/form_password_field.html" with field=form.password1 %}

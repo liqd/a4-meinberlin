@@ -56,6 +56,10 @@ module.exports = {
     documents: {
       import: './meinberlin/react/documents/react_documents_init.js'
     },
+    follow_suggestion: {
+      import: './meinberlin/apps/projects/assets/follow_suggestion.js',
+      dependOn: 'adhocracy4'
+    },
     ideas: {
       import: './meinberlin/react/ideas/react_ideas_init.jsx'
     },

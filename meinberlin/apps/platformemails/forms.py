@@ -10,6 +10,8 @@ class PlatformEmailForm(forms.ModelForm):
         fields = ["sender_name", "sender", "subject", "body"]
         help_texts = {
             "body": _(
+                "Use headings to structure longer emails. Start with "
+                "Heading 1 and do not skip heading levels. "
                 "If you add an image, please provide an alternate text. "
                 "It serves as a textual description of the image content "
                 "and is read out by screen readers. Describe the image "
@@ -17,6 +19,9 @@ class PlatformEmailForm(forms.ModelForm):
                 "people in summer."
             ),
         }
+
+    class Media:
+        js = ("ckeditor_heading_shortcuts.js",)
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

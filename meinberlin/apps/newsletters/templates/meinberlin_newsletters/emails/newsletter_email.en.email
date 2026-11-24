@@ -2,11 +2,12 @@
 
 {% block headline %}{{ newsletter.subject }}{% endblock %}
 
-{% block subject %}{{ newsletter.subject }}{% endblock %}
+{% block subject %}{{ newsletter.subject|striptags }}{% endblock %}
 
 {% block greeting %}{% endblock %}
+{% block cta %}{% endblock %}
 
-{% block content_html %}{{ newsletter.body_with_absolute_urls|safe }}{% endblock content_html %}
-{% block content_text %}{{ newsletter.body_with_absolute_urls|safe }}{% endblock content_text %}
+{% block content_html %}{{ newsletter.body_for_email|safe }}{% endblock content_html %}
+{% block content_text %}{{ newsletter.body_text|safe }}{% endblock content_text %}
 
 {% block reason %}This email was sent to {{ receiver.email }}. This email was sent to you because you are registered on {{ site.name }}. If you don't want to receive newsletters anymore, you may disable them in your user account settings.{% endblock %}

@@ -8,6 +8,9 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ## Unreleased
 
 ### Added
+
+- Initiators can add additional map layers from Berlin GDI
+
 ### Changed
 
 - Kiezradar Bezirk filters now has Gesamtstädtisch at the top of the list

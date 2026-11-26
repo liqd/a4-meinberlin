@@ -1,1 +1,339 @@
+{% load i18n %}
 {% include 'a4dashboard/includes/form_field.html' with field=form.polygon %}
+
+<fieldset class="form-fieldset map-layers"
+          data-map-layers
+          data-resolve-url="{% url 'a4dashboard:map-layer-resolve' module_slug=view.module.slug %}">
+    <legend class="map-layers__legend">{% translate 'Map layers' %}</legend>
+    <p class="form-hint">
+        {% translate 'Choose the map layer that should be shown on the participation map. Only one layer can be active at a time.' %}
+    </p>
+
+    {{ form.map_layers }}
+    {{ form.selected_map_layer }}
+
+    {% if form.map_layers.errors %}
+        <ul class="errorlist" role="alert" aria-live="assertive">
+            {% for error in form.map_layers.errors %}
+                <li>{{ error|escape }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <ul class="map-layers__list" data-map-layers-list>
+        <li class="map-layers__item map-layers__item--none">
+            <label class="map-layers__label" for="map-layer-none">
+                <input class="form-check-input"
+                       type="radio"
+                       name="map-layer-selection"
+                       id="map-layer-none"
+                       value=""
+                       data-map-layer-none
+                       {% if not form.get_selected_map_layer_key %}checked{% endif %} />
+                <span class="map-layers__name">{% translate 'No map layer' %}</span>
+            </label>
+        </li>
+        {% for layer in form.get_map_layer_rows %}
+            <li class="map-layers__item"
+                data-map-layer
+                data-key="{{ layer.key }}"
+                data-name="{{ layer.name }}"
+                data-service-url="{{ layer.service_url }}"
+                data-layer-name="{{ layer.layer_name }}"
+                data-title="{{ layer.title }}"
+                data-attribution="{{ layer.attribution }}"
+                data-available="{{ layer.is_available|yesno:'true,false' }}">
+                <div class="map-layers__details">
+                    <label class="map-layers__label" for="map-layer-{{ forloop.counter }}">
+                        <input class="form-check-input"
+                               type="radio"
+                               name="map-layer-selection"
+                               id="map-layer-{{ forloop.counter }}"
+                               value="{{ layer.key }}"
+                               {% if layer.key == form.get_selected_map_layer_key %}checked{% endif %} />
+                        <span class="map-layers__text">
+                            <span class="map-layers__name">{{ layer.name }}</span>
+                            <span class="map-layers__url" title="{{ layer.service_url }}">
+                                {{ layer.service_url|cut:"https://" }}
+                            </span>
+                            {% if not layer.is_available %}
+                                <span class="map-layers__warning">
+                                    <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+                                    {% translate 'This map layer could not be loaded.' %}
+                                </span>
+                            {% endif %}
+                        </span>
+                    </label>
+                </div>
+                <div class="map-layers__actions">
+                    <button type="button" class="map-layers__action" data-map-layer-edit>
+                        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                        {% translate 'Edit' %}
+                    </button>
+                    <button type="button" class="map-layers__action" data-map-layer-remove>
+                        <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                        {% translate 'Remove' %}
+                    </button>
+                </div>
+            </li>
+        {% empty %}
+            <li class="map-layers__empty" data-map-layers-empty>
+                {% translate 'No map layer has been added yet.' %}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <button type="button" class="map-layer-button map-layers__add" data-map-layer-add>
+        <span class="map-layer-button__label">{% translate 'Add map layer' %}</span>
+        <span class="map-layer-button__icon">
+            <i class="fas fa-plus" aria-hidden="true"></i>
+        </span>
+    </button>
+    <p class="map-layers__status visually-hidden"
+       data-map-layers-status
+       role="status"
+       aria-live="polite"></p>
+</fieldset>
+
+<div class="modal fade map-layer-modal"
+     id="map-layer-add-modal"
+     tabindex="-1"
+     aria-labelledby="map-layer-add-title"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="map-layer-add-title">{% translate 'Add map layer' %}</h2>
+                <button type="button"
+                        class="close"
+                        data-bs-dismiss="modal"
+                        aria-label="{% translate 'Close' %}">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="map-layer-modal__intro">
+                    {% blocktranslate with url="https://gdi.berlin.de/viewer/main/" %}Copy the link of a map service from the <a href="{{ url }}" target="_blank" rel="noopener noreferrer">Berlin geoportal</a> and paste it here.{% endblocktranslate %}
+                </p>
+                <div class="form-group">
+                    <label for="map-layer-add-url">
+                        {% translate 'Link' %}
+                        <span role="presentation" title="{% translate 'This field is required' %}">*</span>
+                    </label>
+                    <div class="map-layer-url-field">
+                        <input type="url"
+                               id="map-layer-add-url"
+                               class="form-control"
+                               autocomplete="url"
+                               data-map-layer-url />
+                        <span class="spinner-border spinner-border-sm map-layer-url-field__spinner"
+                              data-map-layer-spinner
+                              role="status"
+                              aria-hidden="true"
+                              hidden></span>
+                    </div>
+                    <p class="form-hint">
+                        {% translate 'Example: https://gdi.berlin.de/services/wms/baumbestand' %}
+                    </p>
+                    <p class="map-layer-modal__error"
+                       data-map-layer-error
+                       role="alert"
+                       aria-live="assertive"></p>
+                </div>
+
+                <div class="form-group" data-map-layer-select-group hidden>
+                    <label for="map-layer-add-layer">
+                        {% translate 'Map layer' %}
+                        <span role="presentation" title="{% translate 'This field is required' %}">*</span>
+                    </label>
+                    <select id="map-layer-add-layer" class="form-control" data-map-layer-select>
+                        <option value="">{% translate 'Please choose a layer' %}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="map-layer-add-name">
+                        {% translate 'Map layer name' %}
+                        <span role="presentation" title="{% translate 'This field is required' %}">*</span>
+                    </label>
+                    <input type="text"
+                           id="map-layer-add-name"
+                           class="form-control"
+                           maxlength="200"
+                           data-map-layer-name />
+                </div>
+                <div class="form-group" data-map-layer-opacity-group hidden>
+                    <span class="map-layer-opacity__label"
+                          id="map-layer-add-opacity-label">{% translate 'Transparency' %}</span>
+                    <div class="map-layer-opacity"
+                         role="group"
+                         aria-labelledby="map-layer-add-opacity-label">
+                        <button type="button"
+                                class="map-layer-opacity__button"
+                                data-map-layer-opacity-increase
+                                aria-label="{% translate 'More transparency' %}">
+                            <i class="fas fa-plus" aria-hidden="true"></i>
+                        </button>
+                        <output class="map-layer-opacity__value"
+                                data-map-layer-opacity-value
+                                aria-live="polite">0 %</output>
+                        <button type="button"
+                                class="map-layer-opacity__button"
+                                data-map-layer-opacity-decrease
+                                aria-label="{% translate 'Less transparency' %}">
+                            <i class="fas fa-minus" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer map-layer-modal__actions">
+                <button type="button" class="map-layer-link" data-bs-dismiss="modal">
+                    {% translate 'Cancel' %}
+                </button>
+                <button type="button" class="map-layer-button" data-map-layer-save disabled>
+                    <span class="map-layer-button__label">{% translate 'Add map layer' %}</span>
+                    <span class="map-layer-button__icon">
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade map-layer-modal"
+     id="map-layer-edit-modal"
+     tabindex="-1"
+     aria-labelledby="map-layer-edit-title"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="map-layer-edit-title">{% translate 'Edit map layer' %}</h2>
+                <button type="button"
+                        class="close"
+                        data-bs-dismiss="modal"
+                        aria-label="{% translate 'Close' %}">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="map-layer-modal__intro">
+                    {% blocktranslate with url="https://gdi.berlin.de/viewer/main/" %}Change the name or replace the link with another map service from the <a href="{{ url }}" target="_blank" rel="noopener noreferrer">Berlin geoportal</a>.{% endblocktranslate %}
+                </p>
+                <div class="form-group">
+                    <label for="map-layer-edit-url">
+                        {% translate 'Link' %}
+                        <span role="presentation" title="{% translate 'This field is required' %}">*</span>
+                    </label>
+                    <div class="map-layer-url-field">
+                        <input type="url"
+                               id="map-layer-edit-url"
+                               class="form-control"
+                               autocomplete="url"
+                               data-map-layer-url />
+                        <span class="spinner-border spinner-border-sm map-layer-url-field__spinner"
+                              data-map-layer-spinner
+                              role="status"
+                              aria-hidden="true"
+                              hidden></span>
+                    </div>
+                    <p class="map-layer-modal__error"
+                       data-map-layer-error
+                       role="alert"
+                       aria-live="assertive"></p>
+                </div>
+
+                <div class="form-group" data-map-layer-select-group hidden>
+                    <label for="map-layer-edit-layer">
+                        {% translate 'Map layer' %}
+                        <span role="presentation" title="{% translate 'This field is required' %}">*</span>
+                    </label>
+                    <select id="map-layer-edit-layer" class="form-control" data-map-layer-select>
+                        <option value="">{% translate 'Please choose a layer' %}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="map-layer-edit-name">
+                        {% translate 'Map layer name' %}
+                        <span role="presentation" title="{% translate 'This field is required' %}">*</span>
+                    </label>
+                    <input type="text"
+                           id="map-layer-edit-name"
+                           class="form-control"
+                           maxlength="200"
+                           data-map-layer-name />
+                </div>
+                <div class="form-group" data-map-layer-opacity-group hidden>
+                    <span class="map-layer-opacity__label"
+                          id="map-layer-edit-opacity-label">{% translate 'Transparency' %}</span>
+                    <div class="map-layer-opacity"
+                         role="group"
+                         aria-labelledby="map-layer-edit-opacity-label">
+                        <button type="button"
+                                class="map-layer-opacity__button"
+                                data-map-layer-opacity-increase
+                                aria-label="{% translate 'More transparency' %}">
+                            <i class="fas fa-plus" aria-hidden="true"></i>
+                        </button>
+                        <output class="map-layer-opacity__value"
+                                data-map-layer-opacity-value
+                                aria-live="polite">0 %</output>
+                        <button type="button"
+                                class="map-layer-opacity__button"
+                                data-map-layer-opacity-decrease
+                                aria-label="{% translate 'Less transparency' %}">
+                            <i class="fas fa-minus" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer map-layer-modal__actions">
+                <button type="button" class="map-layer-link" data-bs-dismiss="modal">
+                    {% translate 'Cancel' %}
+                </button>
+                <button type="button" class="map-layer-button" data-map-layer-save disabled>
+                    <span class="map-layer-button__label">{% translate 'Save' %}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade map-layer-modal"
+     id="map-layer-delete-modal"
+     tabindex="-1"
+     aria-labelledby="map-layer-delete-title"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="map-layer-delete-title">{% translate 'Remove map layer?' %}</h2>
+                <button type="button"
+                        class="close"
+                        data-bs-dismiss="modal"
+                        aria-label="{% translate 'Close' %}">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <span data-map-layer-delete-name></span>
+                    {% translate 'will be removed from the list.' %}
+                </p>
+            </div>
+            <div class="modal-footer map-layer-modal__actions">
+                <button type="button" class="map-layer-link" data-bs-dismiss="modal">
+                    {% translate 'Cancel' %}
+                </button>
+                <button type="button" class="map-layer-button map-layer-button--danger" data-map-layer-delete-confirm>
+                    <span class="map-layer-button__label">
+                        <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                        {% translate 'Remove' %}
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

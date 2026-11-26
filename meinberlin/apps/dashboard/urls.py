@@ -3,6 +3,7 @@ from django.urls import re_path
 from adhocracy4.dashboard.urls import urlpatterns as a4dashboard_urlpatterns
 from meinberlin.apps.bplan import views as bplan_views
 from meinberlin.apps.extprojects import views as extproject_views
+from meinberlin.apps.maps import views as map_views
 from meinberlin.apps.newsletters import views as newsletter_views
 from meinberlin.apps.organisations import views as organisation_views
 from meinberlin.apps.plans import views as plan_views
@@ -105,6 +106,11 @@ urlpatterns = [
         r"^organisations/(?P<organisation_slug>[-\w_]+)/projects/$",
         views.DashboardProjectListView.as_view(),
         name="project-list",
+    ),
+    re_path(
+        r"^modules/(?P<module_slug>[-\w_]+)/area_settings/resolve-layer/$",
+        map_views.MapLayerResolveView.as_view(),
+        name="map-layer-resolve",
     ),
     re_path(
         r"^organisations/(?P<organisation_slug>[-\w_]+)/projects/(?P<project_slug>[-\w_]+)/preview/modal/$",

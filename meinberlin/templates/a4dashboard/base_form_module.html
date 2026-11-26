@@ -1,7 +1,7 @@
 {% extends "a4dashboard/base_dashboard_project.html" %}
 {% load i18n static %}
 
-{% block title %}{{ view.title }}{% if project %} &mdash; {{ project.name }}{% endif %} &mdash; {{ block.super }}{% endblock%}
+{% block title %}{{ view.title }}{% if project %} — {{ project.name }}{% endif %} — {{ block.super }}{% endblock title %}
 
 {% block dashboard_project_content %}
     <h1 class="u-first-heading">{{ view.title }}</h1>
@@ -19,7 +19,11 @@
         </ul>
     {% endif %}
 
-    <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+    <form class="module-form module-form--{{ view.component.identifier }}"
+          autocomplete="off"
+          enctype="multipart/form-data"
+          action="{{ request.path }}"
+          method="post">
         {% csrf_token %}
 
         {% include view.form_template_name %}
@@ -28,13 +32,13 @@
             <input type="submit" class="btn btn--primary" name="save" value="{% translate 'Save' %}"/>
         </div>
     </form>
-{% endblock %}
+{% endblock dashboard_project_content %}
 
 {% block extra_js %}
     {{ block.super }}
     {{ form.media.js }}
-{% endblock %}
+{% endblock extra_js %}
 {% block extra_css %}
     {{ block.super }}
     {{ form.media.css }}
-{% endblock %}
+{% endblock extra_css %}

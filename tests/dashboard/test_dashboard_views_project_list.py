@@ -2,6 +2,7 @@ import pytest
 from django.urls import reverse
 
 from adhocracy4.test.helpers import assert_template_response
+from meinberlin.apps.maps.models import MapLayer
 
 
 @pytest.mark.django_db
@@ -65,3 +66,50 @@ def test_dashboard_project_list_view_group_member(
     assert project_2 not in response.context_data["project_list"]
     assert project_3 not in response.context_data["project_list"]
     assert bplan not in response.context_data["project_list"]
+
+
+@pytest.mark.django_db
+def test_project_duplicate_copies_map_layers(
+    project, module_factory, organisation, client
+):
+    module = module_factory(project=project, weight=0)
+    MapLayer.objects.create(
+        module=module,
+        name="Straßenbäume",
+        service_url="https://gdi.berlin.de/services/wms/baumbestand",
+        layer_name="strassenbaeume",
+        title="Straßenbäume",
+        attribution="GDI Berlin",
+        is_active=True,
+        opacity=40,
+    )
+    MapLayer.objects.create(
+        module=module,
+        name="Anlagenbäume",
+        service_url="https://gdi.berlin.de/services/wms/baumbestand",
+        layer_name="anlagenbaeume",
+        title="Anlagenbäume",
+        attribution="GDI Berlin",
+        is_active=False,
+    )
+
+    initiator = organisation.initiators.first()
+    client.login(username=initiator.email, password="password")
+    url = reverse(
+        "a4dashboard:project-list", kwargs={"organisation_slug": organisation.slug}
+    )
+    response = client.post(url, {"duplicate": "", "project_pk": str(project.pk)})
+    assert response.status_code == 302
+
+    clone = project.__class__.objects.exclude(pk=project.pk).get(
+        organisation=organisation
+    )
+    clone_module = clone.module_set.get(weight=0)
+    copied = clone_module.map_layers.order_by("layer_name")
+    assert [layer.layer_name for layer in copied] == [
+        "anlagenbaeume",
+        "strassenbaeume",
+    ]
+    assert [layer.is_active for layer in copied] == [False, True]
+    assert [layer.opacity for layer in copied] == [100, 40]
+    assert all(layer.attribution == "GDI Berlin" for layer in copied)

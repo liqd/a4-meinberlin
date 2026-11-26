@@ -1,10 +1,12 @@
 import json
 from urllib import parse
+from urllib.parse import urlsplit
 
 from django.apps import apps
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
 from django.urls import resolve
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -23,6 +25,7 @@ from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules.mixins import PermissionRequiredMixin
 from meinberlin.apps.dashboard.forms import DashboardProjectCreateForm
 from meinberlin.apps.dashboard.mixins import DashboardProjectListGroupMixin
+from meinberlin.apps.maps.models import MapLayer
 from meinberlin.apps.projects.mixins import ProjectDetailDisplayMixin
 
 
@@ -266,6 +269,53 @@ class DashboardProjectListView(
 ):
     def get_queryset(self):
         return super().get_queryset().filter(externalproject=None)
+
+    def post(self, request, *args, **kwargs):
+        source_project = None
+        if "duplicate" in request.POST:
+            source_project = get_object_or_404(
+                project_models.Project, pk=request.POST.get("project_pk")
+            )
+
+        response = super().post(request, *args, **kwargs)
+
+        if source_project and response.status_code == 302:
+            self._copy_map_layers(source_project, response.url)
+
+        return response
+
+    def _copy_map_layers(self, source_project, redirect_url):
+        match = resolve(urlsplit(redirect_url).path)
+        project_slug = match.kwargs.get("project_slug")
+        if not project_slug:
+            return
+        target_project = get_object_or_404(project_models.Project, slug=project_slug)
+
+        source_modules = {
+            module.weight: module
+            for module in source_project.module_set.prefetch_related("map_layers")
+        }
+        new_layers = []
+        for target_module in target_project.module_set.all():
+            source_module = source_modules.get(target_module.weight)
+            if not source_module:
+                continue
+            for layer in source_module.map_layers.all():
+                new_layers.append(
+                    MapLayer(
+                        module=target_module,
+                        name=layer.name,
+                        service_url=layer.service_url,
+                        layer_name=layer.layer_name,
+                        title=layer.title,
+                        attribution=layer.attribution,
+                        is_active=layer.is_active,
+                        is_available=layer.is_available,
+                        opacity=layer.opacity,
+                        last_checked_at=layer.last_checked_at,
+                    )
+                )
+        MapLayer.objects.bulk_create(new_layers)
 
 
 class DashboardProjectDeleteModalView(

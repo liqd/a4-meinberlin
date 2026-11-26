@@ -27,6 +27,12 @@ export default function KiezradarMap ({
     onChange({ point, radius })
   }
 
+  const radiusRef = useRef(radius)
+
+  useEffect(() => {
+    radiusRef.current = radius
+  }, [radius])
+
   const handleAddressChange = (point) => {
     onChange({ point, radius })
   }
@@ -47,7 +53,7 @@ export default function KiezradarMap ({
       }
     }
 
-    onChange({ point, radius })
+    onChange({ point, radius: radiusRef.current })
   }
 
   const areaBounds = useMemo(() => {

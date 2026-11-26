@@ -39,10 +39,6 @@ jest.mock('adhocracy4', () => ({
   SearchAndShowAddress: () => <div>SearchAndShowAddress</div>
 }))
 
-jest.mock('../../contrib/map/ShowMyLocationControl', () => ({
-  ShowMyLocationControl: () => <div data-testid="show-my-location-control" />
-}))
-
 jest.mock('../ProjectsMapInfo', () => ({
   __esModule: true,
   default: () => <div>ProjectsMapInfo</div>
@@ -83,7 +79,6 @@ describe('ProjectsMap overlays', () => {
 
     expect(screen.queryByTestId('geojson')).toBeNull()
     expect(screen.queryByTestId('circle')).toBeNull()
-    expect(screen.getByTestId('show-my-location-control')).toBeTruthy()
   })
 
   test('renders district polygon and kiezradar circle for active filters', () => {

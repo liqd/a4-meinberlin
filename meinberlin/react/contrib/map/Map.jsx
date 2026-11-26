@@ -23,7 +23,7 @@ const translations = {
  * @returns {React.Element} - The rendered Map component.
  * @throws {Error} - If id is not defined.
  */
-export const Map = React.forwardRef(function Map ({ id, title, ...props }, ref) {
+export const Map = React.forwardRef(function Map ({ id, title, children, ...props }, ref) {
   if (!id) {
     throw new Error('id must be defined when using Map')
   }
@@ -37,7 +37,10 @@ export const Map = React.forwardRef(function Map ({ id, title, ...props }, ref) 
           <a href={'#' + id + '_skipmap'}>{translations.skipMap}</a>
         </p>
         <div className="geomap-container">
-          <BaseMap {...props} ref={ref} />
+          <BaseMap {...props} ref={ref}>
+            {children}
+            <ShowMyLocationControl />
+          </BaseMap>
         </div>
       </div>
 
@@ -68,7 +71,6 @@ export const MapWithMarkers = ({ points, withoutPopup, children, ...props }) => 
       {...props}
     >
       {points.length > 1 ? <MarkerClusterLayer>{markers}</MarkerClusterLayer> : markers}
-      <ShowMyLocationControl />
       {children}
     </Map>
   )

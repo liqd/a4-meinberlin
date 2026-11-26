@@ -16,9 +16,12 @@ const locationIcon = L.icon({
 /**
  * meinBerlin configuration for the reusable adhocracy4 location control.
  */
-export const ShowMyLocationControl = (props) => (
+export const ShowMyLocationControl = ({
+  areaBounds = DEFAULT_AREA_BOUNDS,
+  ...props
+}) => (
   <A4ShowMyLocationControl
-    areaBounds={DEFAULT_AREA_BOUNDS}
+    areaBounds={areaBounds}
     icon={locationIcon}
     {...props}
   />

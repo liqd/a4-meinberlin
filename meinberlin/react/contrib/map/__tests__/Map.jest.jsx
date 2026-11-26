@@ -19,6 +19,7 @@ describe('Map component', () => {
   test('renders Map component with title', () => {
     render(<Map id="test-id" title="Test Title" />)
     expect(screen.getByText('Test Title')).toBeTruthy()
+    expect(screen.getByTestId('show-my-location-control')).toBeTruthy()
   })
 
   test('renders Map component and throws an error when no id is provided', () => {

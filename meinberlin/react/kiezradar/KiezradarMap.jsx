@@ -31,6 +31,34 @@ export default function KiezradarMap ({
     onChange({ point, radius })
   }
 
+  const handleShowMyLocation = (latlng) => {
+    const point = {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [latlng.lng, latlng.lat]
+      }
+    }
+
+    if (polygon?.features?.[0]?.geometry) {
+      const turfPolygon = turf.polygon(polygon.features[0].geometry.coordinates)
+      if (!turf.booleanPointInPolygon(point, turfPolygon)) {
+        return
+      }
+    }
+
+    onChange({ point, radius })
+  }
+
+  const areaBounds = useMemo(() => {
+    if (!polygon) {
+      return undefined
+    }
+
+    const [minX, minY, maxX, maxY] = turf.bbox(polygon)
+    return [[minY, minX], [maxY, maxX]]
+  }, [polygon])
+
   return (
     <>
       <div className="kiezradar__map">
@@ -58,7 +86,10 @@ export default function KiezradarMap ({
           />
           <Search onChange={handleAddressChange} />
           <ZoomControl position="topleft" />
-          <ShowMyLocationControl />
+          <ShowMyLocationControl
+            areaBounds={areaBounds}
+            onLocate={handleShowMyLocation}
+          />
         </MapContainer>
       </div>
     </>

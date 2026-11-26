@@ -16,7 +16,6 @@ import ControlWrapper
 import { SearchAndShowAddress } from 'adhocracy4'
 
 import { Map } from '../contrib/map/Map'
-import { ShowMyLocationControl } from '../contrib/map/ShowMyLocationControl'
 import ProjectTile from './ProjectTile'
 import ProjectMarker from './ProjectMarker'
 import ProjectsMapInfo from './ProjectsMapInfo'
@@ -330,7 +329,6 @@ const ProjectsMap = memo(forwardRef(function ProjectsMap ({
           <ProjectsMapInfo />
         </ControlWrapper>
         <ZoomControl position="topleft" />
-        <ShowMyLocationControl />
         {greyedOutArea && (
           <GeoJSON
             key={maskKey}

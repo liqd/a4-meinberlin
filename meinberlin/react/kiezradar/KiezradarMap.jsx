@@ -7,6 +7,7 @@ import { Circle, MapContainer, Marker, useMap, useMapEvents, ZoomControl } from 
 import { AddressSearch } from 'adhocracy4'
 import ControlWrapper from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/ControlWrapper'
 import MaplibreGlLayer from 'adhocracy4/adhocracy4/maps_react/static/a4maps_react/MaplibreGlLayer'
+import { ShowMyLocationControl } from '../contrib/map/ShowMyLocationControl'
 import * as turf from '@turf/turf'
 
 const chooseYourRadiusText = django.gettext('Choose your radius')
@@ -26,9 +27,43 @@ export default function KiezradarMap ({
     onChange({ point, radius })
   }
 
+  const radiusRef = useRef(radius)
+
+  useEffect(() => {
+    radiusRef.current = radius
+  }, [radius])
+
   const handleAddressChange = (point) => {
     onChange({ point, radius })
   }
+
+  const handleShowMyLocation = (latlng) => {
+    const point = {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [latlng.lng, latlng.lat]
+      }
+    }
+
+    if (polygon?.features?.[0]?.geometry) {
+      const turfPolygon = turf.polygon(polygon.features[0].geometry.coordinates)
+      if (!turf.booleanPointInPolygon(point, turfPolygon)) {
+        return
+      }
+    }
+
+    onChange({ point, radius: radiusRef.current })
+  }
+
+  const areaBounds = useMemo(() => {
+    if (!polygon) {
+      return undefined
+    }
+
+    const [minX, minY, maxX, maxY] = turf.bbox(polygon)
+    return [[minY, minX], [maxY, maxX]]
+  }, [polygon])
 
   return (
     <>
@@ -57,6 +92,10 @@ export default function KiezradarMap ({
           />
           <Search onChange={handleAddressChange} />
           <ZoomControl position="topleft" />
+          <ShowMyLocationControl
+            areaBounds={areaBounds}
+            onLocate={handleShowMyLocation}
+          />
         </MapContainer>
       </div>
     </>

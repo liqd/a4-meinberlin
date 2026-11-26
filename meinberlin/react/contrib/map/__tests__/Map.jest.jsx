@@ -11,10 +11,15 @@ jest.mock('adhocracy4/adhocracy4/maps_react/static/a4maps_react/GeoJsonMarker', 
   default: () => <div>Marker</div>
 }))
 
+jest.mock('../ShowMyLocationControl', () => ({
+  ShowMyLocationControl: () => <div data-testid="show-my-location-control" />
+}))
+
 describe('Map component', () => {
   test('renders Map component with title', () => {
     render(<Map id="test-id" title="Test Title" />)
     expect(screen.getByText('Test Title')).toBeTruthy()
+    expect(screen.getByTestId('show-my-location-control')).toBeTruthy()
   })
 
   test('renders Map component and throws an error when no id is provided', () => {
@@ -43,6 +48,7 @@ describe('MapWithMarkers component', () => {
     render(<MapWithMarkers id="test-id" points={points} />)
     expect(screen.getByText('MarkerClusterLayer')).toBeTruthy()
     expect(screen.getAllByText('Marker')).toHaveLength(2)
+    expect(screen.getByTestId('show-my-location-control')).toBeTruthy()
   })
 
   test('renders MapWithMarkers correctly without cluster layer', () => {

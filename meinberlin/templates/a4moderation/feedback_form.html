@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Official feedback" %} — {{ block.super }}{% endblock title %}
+
+{% block breadcrumbs %}
+    {% translate "Official feedback" as feedback_title %}
+    {% include "a4moderation/includes/breadcrumbs.html" with final_title=feedback_title %}
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div id="layout-grid__area--maincontent" class="moderation-feedback">
+    <p class="moderation-project__back">
+        <a href="{% url 'a4moderation:project' project.pk %}?state={{ state }}&content_type={{ content_type }}&ordering={{ ordering }}">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            {% translate "Back to moderation" %}
+        </a>
+    </p>
+    <p class="moderation-project__organisation">{{ project.name }}</p>
+    {% include "a4moderation/includes/feedback_form.html" %}
+</div>
+{% endblock content %}

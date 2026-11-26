@@ -21,7 +21,7 @@ def search_factories(kiezradar_query_factory, search_profile_factory, user, user
     non_matching_profile_same_user = search_profile_factory(creator=user)
     matching_profile_other_user = search_profile_factory(creator=user2)
     query1 = kiezradar_query_factory(text="Berlin")
-    query2 = kiezradar_query_factory(text="Other")
+    query2 = kiezradar_query_factory(text="zzz-does-not-match")
 
     matching_profile.query = query1
     matching_profile.save()

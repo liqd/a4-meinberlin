@@ -18,8 +18,18 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Fixed
 
 - Project create: remove the non-functional image upload field
+- Moderation: show header images with placeholder fallback, add breadcrumbs and
+  navigation entry, hide deleted comments, only show moderator feedback for
+  comments and close the feedback dialog after saving.
+- Moderation: update filter counts and tab links when filtering by content type,
+  keep the selected content type when switching tabs, submit the project
+  overview sorting on change, and fix the expand/collapse behaviour of long
+  texts.
 
 ## v2611.2
+
+- Moderation dashboard for project moderators: review comments and ideas, mark as read or resolved, filter and sort, edit inline and delete comments
+
 
 ### Changed
 

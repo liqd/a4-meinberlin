@@ -1,4 +1,5 @@
 venv/
+.venv/
 node_modules/
 .git/
 .github/
@@ -13,6 +14,18 @@ test-results/
 .testmondata*
 .playwright-mcp/
 .env.playwright*
+.env
+.env.*
 .idea/
 *.md
 !meinberlin/**/*.md
+
+# Local build output. The assets stage rebuilds these; copying stale local
+# builds into the context only bloats the image and risks outdated assets.
+meinberlin/static/
+/static/
+
+# Not needed to build or run the app.
+docs/
+tests/
+changelog/

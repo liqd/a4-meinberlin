@@ -9,6 +9,7 @@ from django_ckeditor_5.fields import CKEditor5Field
 from adhocracy4 import transforms
 from adhocracy4.images.validators import ImageAltTextValidator
 from adhocracy4.models.base import UserGeneratedContentModel
+from meinberlin.apps.contrib import email_transforms
 
 
 class PlatformEmail(UserGeneratedContentModel):
@@ -17,7 +18,7 @@ class PlatformEmail(UserGeneratedContentModel):
     subject = models.CharField(max_length=254, verbose_name=_("Subject"))
     body = CKEditor5Field(
         blank=True,
-        config_name="image-editor",
+        config_name="email-editor",
         verbose_name=_("Email body"),
         validators=[ImageAltTextValidator()],
     )
@@ -27,14 +28,25 @@ class PlatformEmail(UserGeneratedContentModel):
     def body_with_absolute_urls(self):
         return self.replace_relative_media_urls(self.body)
 
+    @cached_property
+    def body_for_email(self):
+        """Body as sent in the HTML part: absolute URLs and inline styles."""
+        return email_transforms.render_for_email(self.body_with_absolute_urls)
+
+    @cached_property
+    def body_text(self):
+        """Body as sent in the plain text part: no markup, URLs kept."""
+        return email_transforms.html_to_text(self.body_with_absolute_urls)
+
     def __setattr__(self, key, value):
         super().__setattr__(key, value)
         # Delete cached properties
-        try:
-            if key == "body":
-                del self.body_with_absolute_urls
-        except AttributeError:
-            pass
+        if key == "body":
+            for name in ("body_with_absolute_urls", "body_for_email", "body_text"):
+                try:
+                    delattr(self, name)
+                except AttributeError:
+                    pass
 
     @staticmethod
     def replace_relative_media_urls(text):
@@ -49,7 +61,9 @@ class PlatformEmail(UserGeneratedContentModel):
         return text
 
     def save(self, update_fields=None, *args, **kwargs):
-        self.body = transforms.clean_html_field(self.body, "image-editor")
+        self.body = transforms.clean_html_field(
+            email_transforms.normalise_body(self.body), "email-editor"
+        )
         if update_fields:
             update_fields = {"body"}.union(update_fields)
         super().save(update_fields=update_fields, *args, **kwargs)

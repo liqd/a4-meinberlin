@@ -3984,19 +3984,37 @@ msgstr "Der Vorschlag wurde erfolgreich gelöscht."
 msgid "The idea was successfully deleted."
 msgstr "Die Idee wurde erfolgreich gelöscht."
 
+#: meinberlin/apps/platformemails/forms.py:12
+msgid ""
+"Use headings to structure longer emails. Start with Heading 1 and do not "
+"skip heading levels. If you add an image, please provide an alternate text. "
+"It serves as a textual description of the image content and is read out by "
+"screen readers. Describe the image in approx. 80 characters. Example: A busy "
+"square with people in summer."
+msgstr ""
+"Verwenden Sie Überschriften, um längere E-Mails zu strukturieren. Beginnen "
+"Sie mit Überschrift 1 und überspringen Sie keine Überschriftsebenen. Wenn Sie "
+"ein Bild hinzufügen, geben Sie bitte einen alternativen Text an. Er dient als "
+"textliche Beschreibung des Bildinhaltes und wird von Screenreadern "
+"vorgelesen. Beschreiben Sie das Bild mit ca. 80 Zeichen. Beispiel: Ein "
+"belebter Platz mit Menschen im Sommer."
+
 #: meinberlin/apps/newsletters/forms.py:27
 msgid ""
-"If you add an image, please ensure to set the width no larger than 650px and "
-"to provide an alternate text of the image. An alternate text serves as a "
-"textual description of the image content and is read out by screen readers. "
-"Describe the image in approx. 80 characters. Example: A busy square with "
-"people in summer."
+"Use headings to structure longer newsletters. Start with Heading 1 and do "
+"not skip heading levels. If you add an image, please ensure to set the width "
+"no larger than 650px and to provide an alternate text of the image. An "
+"alternate text serves as a textual description of the image content and is "
+"read out by screen readers. Describe the image in approx. 80 characters. "
+"Example: A busy square with people in summer."
 msgstr ""
-"Wenn Sie ein Bild hinzufügen, achten Sie bitte darauf, dass die Breite nicht "
-"größer als 650px ist und dass Sie einen alternativen Text zum Bild angeben. "
-"Ein Alternativtext dient als textliche Beschreibung des Bildinhaltes und "
-"wird von Screenreadern vorgelesen. Beschreiben Sie das Bild mit ca. 80 "
-"Zeichen. Beispiel: Ein belebter Platz mit Menschen im Sommer."
+"Verwenden Sie Überschriften, um längere Newsletter zu strukturieren. Beginnen "
+"Sie mit Überschrift 1 und überspringen Sie keine Überschriftsebenen. Wenn Sie "
+"ein Bild hinzufügen, achten Sie bitte darauf, dass die Breite nicht größer "
+"als 650px ist und dass Sie einen alternativen Text zum Bild angeben. Ein "
+"Alternativtext dient als textliche Beschreibung des Bildinhaltes und wird "
+"von Screenreadern vorgelesen. Beschreiben Sie das Bild mit ca. 80 Zeichen. "
+"Beispiel: Ein belebter Platz mit Menschen im Sommer."
 
 #: meinberlin/apps/newsletters/forms.py:44
 #: meinberlin/apps/newsletters/models.py:40
@@ -4016,8 +4034,8 @@ msgid "Users following a specific project"
 msgstr "Nutzer*innen die einem bestimmten Projekt folgen"
 
 #: meinberlin/apps/newsletters/models.py:21
-msgid "Users following your organisation"
-msgstr "Nutzer*innen die Ihrer Organisation folgen"
+msgid "Users following a project of your organisation"
+msgstr "Nutzer*innen die einem Projekt Ihrer Organisation folgen"
 
 #: meinberlin/apps/newsletters/models.py:22
 msgid "Every initiator of your organisation"

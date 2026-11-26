@@ -9,6 +9,17 @@ from . import models
 
 Organisation = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
 
+BODY_HELP_TEXT = _(
+    "Use headings to structure longer newsletters. Start with Heading 1 "
+    "and do not skip heading levels. "
+    "If you add an image, please ensure to set the width "
+    "no larger than 650px and to provide an alternate text "
+    "of the image. An alternate text serves as a textual "
+    "description of the image content and is read out by "
+    "screen readers. Describe the image in approx. 80 characters. "
+    "Example: A busy square with people in summer."
+)
+
 
 class NewsletterForm(forms.ModelForm):
     class Meta:
@@ -23,15 +34,11 @@ class NewsletterForm(forms.ModelForm):
             "body",
         ]
         help_texts = {
-            "body": _(
-                "If you add an image, please ensure to set the width "
-                "no larger than 650px and to provide an alternate text "
-                "of the image. An alternate text serves as a textual "
-                "description of the image content and is read out by "
-                "screen readers. Describe the image in approx. 80 characters. "
-                "Example: A busy square with people in summer."
-            ),
+            "body": BODY_HELP_TEXT,
         }
+
+    class Media:
+        js = ("ckeditor_heading_shortcuts.js",)
 
     def __init__(self, user=None, organisation=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -81,6 +88,12 @@ class RestrictedNewsletterForm(forms.ModelForm):
             "subject",
             "body",
         ]
+        help_texts = {
+            "body": BODY_HELP_TEXT,
+        }
+
+    class Media:
+        js = ("ckeditor_heading_shortcuts.js",)
 
     def __init__(self, user=None, organisation=None, *args, **kwargs):
         super().__init__(*args, **kwargs)

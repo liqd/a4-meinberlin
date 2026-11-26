@@ -68,6 +68,9 @@ module.exports = {
     unload_warning: {
       import: './meinberlin/assets/js/unload_warning.js'
     },
+    ckeditor_heading_shortcuts: {
+      import: './meinberlin/assets/js/ckeditor_heading_shortcuts.js'
+    },
     contact_information: {
       import: './meinberlin/assets/js/contact_information.js'
     },

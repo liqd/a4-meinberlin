@@ -459,6 +459,13 @@ BLEACH_LIST = {
     },
 }
 
+# Email bodies (newsletters, platform emails) may additionally contain
+# headings. Derived from "image-editor" so both profiles stay in sync.
+BLEACH_LIST["email-editor"] = {
+    **BLEACH_LIST["image-editor"],
+    "tags": sorted(BLEACH_LIST["image-editor"]["tags"] + ["h2", "h3", "h4"]),
+}
+
 # adhocracy4
 
 A4_ORGANISATIONS_MODEL = "meinberlin_organisations.Organisation"
@@ -824,6 +831,48 @@ CKEDITOR_5_CONFIGS = {
             ],
             "previewsInData": True,
         },
+    },
+}
+
+# Email editor: same as "image-editor", plus headings. The email template
+# renders the subject as <h1> and the greeting as <h3>, so in-body headings
+# start at <h2>: "Heading 1" -> h2, "Heading 2" -> h3, "Heading 3" -> h4.
+CKEDITOR_5_CONFIGS["email-editor"] = {
+    **CKEDITOR_5_CONFIGS["image-editor"],
+    "toolbar": {
+        **CKEDITOR_5_CONFIGS["image-editor"]["toolbar"],
+        "items": [
+            "heading",
+            "|",
+            *CKEDITOR_5_CONFIGS["image-editor"]["toolbar"]["items"],
+        ],
+    },
+    "heading": {
+        "options": [
+            {
+                "model": "paragraph",
+                "title": "Absatz",
+                "class": "ck-heading_paragraph",
+            },
+            {
+                "model": "heading1",
+                "view": "h2",
+                "title": "Überschrift 1",
+                "class": "ck-heading_heading1",
+            },
+            {
+                "model": "heading2",
+                "view": "h3",
+                "title": "Überschrift 2",
+                "class": "ck-heading_heading2",
+            },
+            {
+                "model": "heading3",
+                "view": "h4",
+                "title": "Überschrift 3",
+                "class": "ck-heading_heading3",
+            },
+        ],
     },
 }
 # BO external footer

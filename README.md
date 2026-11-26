@@ -9,7 +9,7 @@ based on [adhocracy 4](https://github.com/liqd/adhocracy4).
 ## Requirements
 
 - Node.js (+ npm)
-- Python 3.x (+ venv + pip)
+- Python 3.12 and [uv](https://docs.astral.sh/uv/getting-started/installation/)
 - libmagic
 - libjpeg
 - libpq (only if PostgreSQL is used)
@@ -47,15 +47,25 @@ For GeoDjango to be able to find the SpatiaLite library, add the following to yo
 SPATIALITE_LIBRARY_PATH = "/usr/local/lib/mod_spatialite.dylib"
 ```
 
-#### Pyenv
+#### Python version
 
-If you are using pyenv, you need to create your venv with the following command:
+`pyproject.toml` requires Python 3.12 and `uv sync` uses the interpreter it finds. With pyenv:
 
 ```
-PYTHON_CONFIGURE_OPTS="--enable-loadable-sqlite-extensions" pyenv install 3.12.9 (with your version)
+PYTHON_CONFIGURE_OPTS="--enable-loadable-sqlite-extensions" pyenv install 3.12
+# use it for this project's uv commands in this shell; do not export it globally,
+# otherwise it may pick another 3.12 without loadable SQLite extensions
+export UV_PYTHON="$(pyenv prefix 3.12)/bin/python3"
 ```
 
 ### Steps to Install and Run Development Server
+
+Install [uv](https://docs.astral.sh/uv/getting-started/installation/) first
+(`curl -LsSf https://astral.sh/uv/0.13.9/install.sh | sh`; 0.13.x satisfies the
+`required-version` in `pyproject.toml`). Dependencies live in `pyproject.toml`
+and are locked in `uv.lock`. `make install` installs into `.venv`. Unset any
+inherited override first — `deactivate` if another environment is active and
+`unset UV_PROJECT_ENVIRONMENT`. Then:
 
 ```
 git clone https://github.com/liqd/a4-meinberlin.git
@@ -64,6 +74,34 @@ make install
 make fixtures
 make watch
 ```
+
+If you still have a `venv/` directory from the previous pip setup, remove it (`rm -rf venv`);
+the environment now lives in `.venv`.
+
+### Start virtual environment
+
+```
+source .venv/bin/activate
+```
+
+To add a dependency use `uv add <package>`; it updates `pyproject.toml` and `uv.lock`.
+adhocracy4 follows the commit locked in `uv.lock` and `package-lock.json`;
+`make bump-a4` runs `uv lock --upgrade-package adhocracy4`, `npm update adhocracy4`,
+then `scripts/a4-check.sh` to verify both lockfiles agree.
+Inside the environment you can also use `uv run python manage.py ...` without activating it.
+
+### Production installation
+
+Build the production environment with only the `prod` extra and no dev group:
+
+```
+uv sync --frozen --no-default-groups --extra prod
+source .venv/bin/activate
+```
+
+Then run `npm install`, `npm run build:prod`, `python manage.py compilemessages`,
+`python manage.py collectstatic`. The provided `make release` target runs
+`uv sync --locked --no-default-groups --extra prod` for you.
 
 ### (Optional) PostgreSQL Database for Testing
 
@@ -85,12 +123,6 @@ To remove the Python virtual environment and npm modules:
 
 ```
 make clean
-```
-
-If your virtual environment is located outside the project, uninstall Python packages manually:
-
-```
-pip uninstall -r requirements/dev.txt
 ```
 
 ### (Optional) celery for task queues

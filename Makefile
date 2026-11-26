@@ -1,4 +1,10 @@
-VIRTUAL_ENV ?= venv
+# One environment path for everything: uv syncs into it and every target runs
+# the binaries from it. An explicit UV_PROJECT_ENVIRONMENT wins over VIRTUAL_ENV,
+# absolute paths are kept and relative ones resolve against the checkout.
+VIRTUAL_ENV ?= .venv
+ENV_DIR := $(abspath $(if $(UV_PROJECT_ENVIRONMENT),$(UV_PROJECT_ENVIRONMENT),$(VIRTUAL_ENV)))
+UV_PROJECT_ENVIRONMENT := $(ENV_DIR)
+export UV_PROJECT_ENVIRONMENT
 MEDIA_ROOT = media
 NODE_BIN = node_modules/.bin
 SOURCE_DIRS = meinberlin tests
@@ -39,13 +45,12 @@ all: help
 help:
 	@echo mein.berlin development tools
 	@echo
-	@echo It will either use an exisiting virtualenv if it was entered
-	@echo before or create a new one in the venv subdirectory.
+	@echo It manages the Python environment with uv in the .venv directory.
 	@echo
 	@echo usage:
 	@echo
 	@echo "  make install					-- install dev setup"
-	@echo "  make clean						-- delete node modules and venv"
+	@echo "  make clean						-- delete node modules and .venv"
 	@echo "  make fixtures					-- install regions"
 	@echo "  make server					-- start a dev server"
 	@echo "  make watch						-- start a dev server and rebuild js and css files on changes"
@@ -74,6 +79,7 @@ help:
 	@echo "  make postgres-stop				-- stops the local postgres cluster"
 	@echo "  make postgres-create			-- create the local postgres cluster (only works on ubuntu 20.04)"
 	@echo "  make local-a4					-- patch to use local a4 (needs to have path ../adhocracy4)"
+	@echo "  make bump-a4					-- update a4 to the latest main commit"
 	@echo "  make celery-worker-start		-- starts the celery worker in the foreground"
 	@echo "  make celery-worker-status		-- lists all registered tasks and active worker nodes"
 	@echo "  make celery-worker-dummy-task	-- calls the dummy task and prints result from redis"
@@ -84,15 +90,15 @@ help:
 install:
 	npm install --no-save
 	npm run build
-	if [ ! -f $(VIRTUAL_ENV)/bin/python3 ]; then python3 -m venv $(VIRTUAL_ENV); fi
-	$(VIRTUAL_ENV)/bin/python3 -m pip install --upgrade -r requirements/dev.txt
-	$(VIRTUAL_ENV)/bin/python3 manage.py migrate
+	uv sync
+	$(ENV_DIR)/bin/python manage.py migrate
 	mkdir -p $(MEDIA_ROOT)
 
 .PHONY: clean
 clean:
 	if [ -f package-lock.json ]; then rm package-lock.json; fi
 	if [ -d node_modules ]; then rm -rf node_modules; fi
+	if [ -d $(ENV_DIR) ]; then rm -rf $(ENV_DIR); fi
 	if [ -d venv ]; then rm -rf venv; fi
 
 .PHONY: fixtures
@@ -106,34 +112,34 @@ fixtures:
 	# set start date of last phase to today + 62
 	$(SED) -i "s/2023-02-28T23:00:00Z/$(START_3)/g" meinberlin/fixtures/phases.json
 	$(SED) -i "s/2023-03-31T21:59:00Z/$(END_3)/g" meinberlin/fixtures/phases.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/site-dev.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/users.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/accounts.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/administrative_districts.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/map-preset.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/organisations.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/projects.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/modules.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/phases.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/maps.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/polls.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/live_questions.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/categories.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/documents.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/labels.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/moderationtasks.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/votes.json
+	$(ENV_DIR)/bin/python manage.py loaddata meinberlin/fixtures/site-dev.json
+	$(ENV_DIR)/bin/python manage.py loaddata meinberlin/fixtures/users.json
+	$(ENV_DIR)/bin/python manage.py loaddata meinberlin/fixtures/accounts.json
+	$(ENV_DIR)/bin/python manage.py loaddata meinberlin/fixtures/administrative_districts.json
+	$(ENV_DIR)/bin/python manage.py loaddata meinberlin/fixtures/map-preset.json
+	$(ENV_DIR)/bin/python manage.py loaddata meinberlin/fixtures/organisations.json
+	$(ENV_DIR)/bin/python manage.py loaddata meinberlin/fixtures/projects.json
+	$(ENV_DIR)/bin/python manage.py loaddata meinberlin/fixtures/modules.json
+	$(ENV_DIR)/bin/python manage.py loaddata meinberlin/fixtures/phases.json
+	$(ENV_DIR)/bin/python manage.py loaddata meinberlin/fixtures/maps.json
+	$(ENV_DIR)/bin/python manage.py loaddata meinberlin/fixtures/polls.json
+	$(ENV_DIR)/bin/python manage.py loaddata meinberlin/fixtures/live_questions.json
+	$(ENV_DIR)/bin/python manage.py loaddata meinberlin/fixtures/categories.json
+	$(ENV_DIR)/bin/python manage.py loaddata meinberlin/fixtures/documents.json
+	$(ENV_DIR)/bin/python manage.py loaddata meinberlin/fixtures/labels.json
+	$(ENV_DIR)/bin/python manage.py loaddata meinberlin/fixtures/moderationtasks.json
+	$(ENV_DIR)/bin/python manage.py loaddata meinberlin/fixtures/votes.json
 	git restore meinberlin/fixtures/phases.json
 
 .PHONY: server
 server:
-	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8003
+	$(ENV_DIR)/bin/python manage.py runserver 8003
 
 .PHONY: watch
 watch:
 	trap 'kill %1' KILL; \
 	npm run watch & \
-	$(VIRTUAL_ENV)/bin/python3 manage.py runserver $(WATCH_ADDRESS)
+	$(ENV_DIR)/bin/python manage.py runserver $(WATCH_ADDRESS)
 
 .PHONY: run
 run:
@@ -145,33 +151,33 @@ run:
 			*) PORT="$$ARG";; \
 		esac; \
 	elif [ "$(origin RUN_PORT)" = "file" ]; then \
-		PORT="$$($(VIRTUAL_ENV)/bin/python3 scripts/free_port.py "$$HOST" "$$PORT")"; \
+		PORT="$$($(ENV_DIR)/bin/python scripts/free_port.py "$$HOST" "$$PORT")"; \
 	fi; \
 	echo "Serving on http://$$HOST:$$PORT"; \
 	npm run build && \
-	$(VIRTUAL_ENV)/bin/granian --interface wsgi --host "$$HOST" --port "$$PORT" meinberlin.config.wsgi:application
+	$(ENV_DIR)/bin/granian --interface wsgi --host "$$HOST" --port "$$PORT" meinberlin.config.wsgi:application
 
 .PHONY: background
 background:
-	$(VIRTUAL_ENV)/bin/python3 manage.py process_tasks
+	$(ENV_DIR)/bin/python manage.py process_tasks
 
 .PHONY: test
 test:
-	$(VIRTUAL_ENV)/bin/py.test --reuse-db
+	$(ENV_DIR)/bin/py.test --reuse-db
 	npm run testNoCov
 
 .PHONY: pytest
 pytest:
-	$(VIRTUAL_ENV)/bin/py.test --reuse-db
+	$(ENV_DIR)/bin/py.test --reuse-db
 
 .PHONY: pytest-lastfailed
 pytest-lastfailed:
-	$(VIRTUAL_ENV)/bin/py.test --reuse-db --last-failed
+	$(ENV_DIR)/bin/py.test --reuse-db --last-failed
 
 .PHONY: pytest-clean
 pytest-clean:
 	if [ -f test_db.sqlite3 ]; then rm test_db.sqlite3; fi
-	$(VIRTUAL_ENV)/bin/py.test
+	$(ENV_DIR)/bin/py.test
 
 .PHONY: jstest
 jstest:
@@ -191,22 +197,22 @@ jstest-updateSnapshots:
 
 .PHONY: coverage
 coverage:
-	$(VIRTUAL_ENV)/bin/py.test --reuse-db --cov --cov-report=html
+	$(ENV_DIR)/bin/py.test --reuse-db --cov --cov-report=html
 
 .PHONY: lint
 lint:
 	EXIT_STATUS=0; \
-	$(VIRTUAL_ENV)/bin/isort --diff -c $(SOURCE_DIRS) ||  EXIT_STATUS=$$?; \
-	$(VIRTUAL_ENV)/bin/flake8 $(SOURCE_DIRS) --exclude migrations,settings ||  EXIT_STATUS=$$?; \
+	$(ENV_DIR)/bin/isort --diff -c $(SOURCE_DIRS) ||  EXIT_STATUS=$$?; \
+	$(ENV_DIR)/bin/flake8 $(SOURCE_DIRS) --exclude migrations,settings ||  EXIT_STATUS=$$?; \
 	npm run lint ||  EXIT_STATUS=$$?; \
-	$(VIRTUAL_ENV)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
+	$(ENV_DIR)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 .PHONY: lint-quick
 lint-quick:
 	EXIT_STATUS=0; \
 	npm run lint-staged ||  EXIT_STATUS=$$?; \
-	$(VIRTUAL_ENV)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
+	$(ENV_DIR)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 .PHONY: lint-js-fix
@@ -219,27 +225,27 @@ lint-js-fix:
 .PHONY: lint-html-fix
 lint-html-fix:
 	EXIT_STATUS=0; \
-	$(VIRTUAL_ENV)/bin/djlint $(ARGUMENTS) --reformat --profile=django --ignore=H030,H031,T002 || EXIT_STATUS=$$?; \
+	$(ENV_DIR)/bin/djlint $(ARGUMENTS) --reformat --profile=django --ignore=H030,H031,T002 || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 .PHONY: lint-html-files
 lint-html-files:
 	EXIT_STATUS=0; \
-	$(VIRTUAL_ENV)/bin/djlint $(ARGUMENTS) --profile=django --ignore=H030,H031,T002 || EXIT_STATUS=$$?; \
+	$(ENV_DIR)/bin/djlint $(ARGUMENTS) --profile=django --ignore=H030,H031,T002 || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 .PHONY: lint-python-files
 lint-python-files:
 	EXIT_STATUS=0; \
-	$(VIRTUAL_ENV)/bin/black $(ARGUMENTS) || EXIT_STATUS=$$?; \
-	$(VIRTUAL_ENV)/bin/isort $(ARGUMENTS) --filter-files || EXIT_STATUS=$$?; \
-	$(VIRTUAL_ENV)/bin/flake8 $(ARGUMENTS) || EXIT_STATUS=$$?; \
+	$(ENV_DIR)/bin/black $(ARGUMENTS) || EXIT_STATUS=$$?; \
+	$(ENV_DIR)/bin/isort $(ARGUMENTS) --filter-files || EXIT_STATUS=$$?; \
+	$(ENV_DIR)/bin/flake8 $(ARGUMENTS) || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 .PHONY: po
 po:
-	$(VIRTUAL_ENV)/bin/python manage.py makemessages --all --no-obsolete -d django --extension html,email,py --ignore '$(CURDIR)/node_modules/adhocracy4/adhocracy4/*'
-	$(VIRTUAL_ENV)/bin/python manage.py makemessages --all --no-obsolete -d djangojs --ignore '$(VIRTUAL_ENV)/*' --ignore '$(CURDIR)/node_modules/dsgvo-video-embed/dist/*'
+	$(ENV_DIR)/bin/python manage.py makemessages --all --no-obsolete -d django --extension html,email,py --ignore '$(CURDIR)/node_modules/adhocracy4/adhocracy4/*'
+	$(ENV_DIR)/bin/python manage.py makemessages --all --no-obsolete -d djangojs --ignore '$(ENV_DIR)/*' --ignore '$(CURDIR)/node_modules/dsgvo-video-embed/dist/*'
 	$(foreach file, $(wildcard locale/*/LC_MESSAGES/django*.po), \
 		$(SED) -i 's%#: .*/adhocracy4%#: adhocracy4%' $(file);)
 	$(foreach file, $(wildcard locale/*/LC_MESSAGES/django*.po), \
@@ -249,16 +255,16 @@ po:
 
 .PHONY: mo
 mo:
-	$(VIRTUAL_ENV)/bin/python manage.py compilemessages
+	$(ENV_DIR)/bin/python manage.py compilemessages
 
 .PHONY: release
 release: export DJANGO_SETTINGS_MODULE ?= meinberlin.config.settings.build
 release:
-	npm install --silent
+	npm install
 	npm run build:prod
-	$(VIRTUAL_ENV)/bin/python3 -m pip install -r requirements.txt -q
-	$(VIRTUAL_ENV)/bin/python3 manage.py compilemessages -v0
-	$(VIRTUAL_ENV)/bin/python3 manage.py collectstatic --noinput -v0
+	uv sync --locked --no-default-groups --extra prod
+	$(ENV_DIR)/bin/python manage.py compilemessages -v0
+	$(ENV_DIR)/bin/python manage.py collectstatic --noinput -v0
 
 .PHONY: postgres-start
 start-postgres:
@@ -284,10 +290,16 @@ create-postgres:
 .PHONY: local-a4
 local-a4:
 	if [ -d "../adhocracy4" ]; then \
-		$(VIRTUAL_ENV)/bin/python -m pip install --upgrade ../adhocracy4; \
-		$(VIRTUAL_ENV)/bin/python manage.py migrate; \
+		uv pip install --python $(ENV_DIR)/bin/python --reinstall ../adhocracy4; \
+		$(ENV_DIR)/bin/python manage.py migrate; \
 		npm link ../adhocracy4; \
 	fi
+
+.PHONY: bump-a4
+bump-a4:
+	uv lock --upgrade-package adhocracy4
+	npm update adhocracy4
+	./scripts/a4-check.sh
 
 .PHONY: local-dsgvo
 local-dsgvo:
@@ -297,19 +309,19 @@ local-dsgvo:
 
 .PHONY: celery-worker-start
 celery-worker-start:
-	$(VIRTUAL_ENV)/bin/celery --app meinberlin worker --loglevel INFO
+	$(ENV_DIR)/bin/celery --app meinberlin worker --loglevel INFO
 
 .PHONY: celery-worker-status
 celery-worker-status:
-	$(VIRTUAL_ENV)/bin/celery --app meinberlin inspect registered
+	$(ENV_DIR)/bin/celery --app meinberlin inspect registered
 
 .PHONY: celery-worker-dummy-task
 celery-worker-dummy-task:
-	$(VIRTUAL_ENV)/bin/celery --app meinberlin call dummy_task | awk '{print "celery-task-meta-"$$0}' | xargs redis-cli get | python3 -m json.tool
+	$(ENV_DIR)/bin/celery --app meinberlin call dummy_task | awk '{print "celery-task-meta-"$$0}' | xargs redis-cli get | python3 -m json.tool
 
 .PHONY: celery-beat
 celery-beat:
-	$(VIRTUAL_ENV)/bin/celery --app meinberlin beat --loglevel INFO -S django
+	$(ENV_DIR)/bin/celery --app meinberlin beat --loglevel INFO -S django
 
 # allow positional arguments for other targets (e.g. `make watch 8017`)
 %:

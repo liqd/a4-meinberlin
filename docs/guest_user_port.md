@@ -49,7 +49,7 @@ Fork bugs fixed in `@8fa934f`: `IntegrityError` retry re-derives `email`/`passwo
 
 Source: [adhocracy-plus](file:///Users/josh/projects/adhocracy-plus) commits `c898b407` (core guest feature) and `28ae9021` (per-project `allow_guest_users`). Built on `[liqd/django-guest-user@8fa934f](https://github.com/liqd/django-guest-user)` and adhocracy4 framework support (now on a4 `main` as `e8362f685`).
 
-meinberlin currently has **zero guest-related code**. First dependency change: point a4 at `@main` in `[requirements/base.txt](requirements/base.txt)`.
+meinberlin currently has **zero guest-related code**. First dependency change: point a4 at `main` in `pyproject.toml` `[tool.uv.sources]`.
 
 ## Recent meinberlin changes (post-pull)
 
@@ -120,12 +120,8 @@ flowchart TD
 
 Guest framework support is on adhocracy4 `main` (`e8362f685`). **Decision:** pin meinberlin at `@main` for now (no new mB tag required).
 
-1. **Point adhocracy4 at `main`** in `[requirements/base.txt](requirements/base.txt)` — replace `mB-v2606.3` with:
-  ```
-   git+https://github.com/liqd/adhocracy4.git@main#egg=adhocracy4
-  ```
-   Then `pip install -r requirements/base.txt` and run migrations — notably `adhocracy4.projects.0054_project_allow_guest_users`.
-2. **Add `django-guest-user`** to `[requirements/base.txt](requirements/base.txt)` (`git+https://github.com/liqd/django-guest-user.git@8fa934fe0b18f42d1a82e87932cfdf18dcbe0496`).
+1. **Point adhocracy4 at `main`** in `pyproject.toml` `[tool.uv.sources]` — replace `mB-v2606.3` with adhocracy4 `main`, then `uv lock` and `uv sync`, and run migrations — notably `adhocracy4.projects.0054_project_allow_guest_users`.
+2. **Add `django-guest-user`** to `[project.dependencies]` in `pyproject.toml` (git source `https://github.com/liqd/django-guest-user.git@8fa934fe0b18f42d1a82e87932cfdf18dcbe0496` in `[tool.uv.sources]`).
 3. **Settings** in `[meinberlin/config/settings/base.py](meinberlin/config/settings/base.py)`:
   - `guest_user` in `INSTALLED_APPS`
   - **Do NOT add `guest_user.backends.GuestBackend`** to `AUTHENTICATION_BACKENDS` (see fork `CHANGELOG.md` at `@8fa934f`).
@@ -320,7 +316,7 @@ Reviewer notes synced — items marked **resolved** need no further discussion u
 
 ### High severity
 
-1. **meinberlin a4 pin is stale** — **Resolved:** pin `[requirements/base.txt](requirements/base.txt)` to `@main`, migrate (`0054_project_allow_guest_users`). *Caveat:* `@main` may include non-guest changes — run broader smoke/regression, not guest-only tests.
+1. **meinberlin a4 pin is stale** — **Resolved:** pin `pyproject.toml` `[tool.uv.sources]` adhocracy4 to `main`, migrate (`0054_project_allow_guest_users`). *Caveat:* `@main` may include non-guest changes — run broader smoke/regression, not guest-only tests.
 2. **Email-as-username User model** — **Resolved (simpler than first thought):** we accept the fork's `guest+{username}@liqd.net`, and stock `create_user(username, email, password)` populates both meinBerlin columns correctly (`USERNAME_FIELD="email"` only changes login lookup). So **no swappable-model / `GuestManager` override is expected** — just set `NAME_GENERATOR` and verify with a two-guests-in-a-row creation test. (Earlier assumption that the stock call was "wrong" only held for a `.invalid` domain, which we are not using.)
 3. **Custom project rules override** — **Resolved:** implementation detail — add `guest_may_participate` to public branch only in `[projects/rules.py](meinberlin/apps/projects/rules.py)`; keep `is_prj_group_member` + custom `delete_project`.
 4. **NotificationSettings vs get_newsletters** — **Resolved:** mB has no `User.get_newsletters` (removed in migration `0009`). Guest **create:** `NotificationSettings` via existing `post_save` on `User` (`[signals.py](meinberlin/apps/users/signals.py)`). Guest **convert:** `GuestConvertForm.save()` calls `notification_settings.update_email_settings()` like `[TermsSignupForm](meinberlin/apps/users/forms.py)` — do not port a+ `get_newsletters` field. Figma convert shows one notifications checkbox → map to `update_email_settings`.

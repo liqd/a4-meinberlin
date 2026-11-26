@@ -37,6 +37,7 @@
   ],
   "ignorePatterns": [
     "node_modules/",
+    ".venv/",
     "venv/",
     "static/",
     "meinberlin/assets/berlin_js/"

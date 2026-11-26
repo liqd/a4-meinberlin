@@ -2,7 +2,7 @@
 Regression tests that mirror the meinBerlin HTML audit (Nu Html Checker style).
 
 Each test fails with a message matching the validator wording until the underlying
-markup issue is fixed. Run: venv/bin/python -m pytest tests/html_audit/ -v
+markup issue is fixed. Run: .venv/bin/python -m pytest tests/html_audit/ -v
 """
 
 from __future__ import annotations

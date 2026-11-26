@@ -1,24 +1,44 @@
 #!/bin/bash
 
-# Path to pip requirement file
-PIP_REQUIREMENTS_FILE="requirements/base.txt"
+# Ensure the adhocracy4 commit locked for Python (uv.lock) and JavaScript
+# (package-lock.json) is the same, so backend and frontend come from one a4 commit.
+set -euo pipefail
 
-# Path to package.json file
-PACKAGE_JSON_FILE="package.json"
+UV_LOCK_FILE="${UV_LOCK_FILE:-uv.lock}"
+PACKAGE_LOCK_FILE="${PACKAGE_LOCK_FILE:-package-lock.json}"
 
-# Package name
 PACKAGE_NAME="adhocracy4"
 
-# Read the hash from the pip requirements file
-PIP_HASH=$(grep -E "$PACKAGE_NAME" "$PIP_REQUIREMENTS_FILE" | awk -F'@' '{print $2}' | awk -F'#' '{print $1}')
+fail() {
+  echo "$*" >&2
+  exit 1
+}
 
-# Read the commit hash from the package.json file
-PACKAGE_JSON_HASH=$(jq -r ".dependencies.\"$PACKAGE_NAME\"" "$PACKAGE_JSON_FILE" | awk -F'#' '{print $2}')
+[ -f "$UV_LOCK_FILE" ] || fail "Could not find $UV_LOCK_FILE."
+[ -f "$PACKAGE_LOCK_FILE" ] || fail "Could not find $PACKAGE_LOCK_FILE."
+
+# adhocracy4 commit locked for Python: <repo>.git?rev=<sha>#<sha> in uv.lock
+UV_HASH=$(grep -oE 'liqd/adhocracy4\.git[^#"]*#[0-9a-f]{40}' "$UV_LOCK_FILE" | head -n1 | sed -E 's/.*#([0-9a-f]{40})$/\1/' || true)
+
+if [[ -z "$UV_HASH" ]]; then
+  fail "Could not find the $PACKAGE_NAME commit in $UV_LOCK_FILE."
+fi
+
+# adhocracy4 commit locked for JavaScript in package-lock.json:
+# "resolved": "git+ssh://git@github.com/liqd/adhocracy4.git#<sha>"
+NPM_HASH=$(grep -oE 'git\+ssh://git@github\.com/liqd/adhocracy4\.git#[0-9a-f]{40}' "$PACKAGE_LOCK_FILE" | head -n1 | sed -E 's/.*#([0-9a-f]{40})$/\1/' || true)
+
+if [[ -z "$NPM_HASH" ]]; then
+  fail "Could not find the $PACKAGE_NAME commit in $PACKAGE_LOCK_FILE."
+fi
 
 # Check if the hashes match
-if [[ "$PIP_HASH" != "$PACKAGE_JSON_HASH" ]]; then
-  echo "Hash for $PACKAGE_NAME does not match between pip and package.json."
-  echo "PIP hash: $PIP_HASH"
-  echo "package.json hash: $PACKAGE_JSON_HASH"
+if [[ "$UV_HASH" != "$NPM_HASH" ]]; then
+  echo "$PACKAGE_NAME commit mismatch:" >&2
+  echo "  $UV_LOCK_FILE: $UV_HASH" >&2
+  echo "  $PACKAGE_LOCK_FILE: $NPM_HASH" >&2
+  echo "Run 'make bump-a4' to update both." >&2
   exit 1
 fi
+
+echo "OK: $PACKAGE_NAME $UV_HASH matches in $UV_LOCK_FILE and $PACKAGE_LOCK_FILE."

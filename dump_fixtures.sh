@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VIRTUAL_ENV=venv
+VIRTUAL_ENV=.venv
 if [ ! -f $VIRTUAL_ENV/bin/python3 ]
 then
     printf "no virtual env, did you run make install?";

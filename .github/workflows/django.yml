@@ -46,24 +46,19 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
 
-      - name: Cache uv packages
-        uses: actions/cache@v4
-        env:
-          cache-name: cache-uv-packages
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.4.0
         with:
-          path: ~/.cache/uv
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/requirements/dev.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+          version: '0.13.9'
+          enable-cache: true
+          cache-dependency-glob: uv.lock
 
       - name: Cache testmon data
         id: cache-testmon
         uses: actions/cache@v4
         with:
           path: .testmondata
-          key: ${{ runner.os }}-testmon-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/requirements/dev.txt', 'meinberlin/config/settings/travis.py', 'meinberlin/config/settings/test.py', 'pytest.ini') }}
+          key: ${{ runner.os }}-testmon-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('uv.lock', 'meinberlin/config/settings/travis.py', 'meinberlin/config/settings/test.py', 'pytest.ini') }}
           restore-keys: |
             ${{ runner.os }}-testmon-${{ steps.setup-python.outputs.python-version }}-
 
@@ -74,11 +69,11 @@ jobs:
           echo "testmon cache hit: ${{ steps.cache-testmon.outputs.cache-hit }}"
           ls -la .testmondata || true
           ./scripts/a4-check.sh
+          uv lock --check
 
       - name: Install Python Dependencies
         run: |
-          uv pip install -r requirements/dev.txt --system
-          uv pip install coveralls --system
+          uv sync --frozen
 
       - name: Clear npm cache
         run: npm cache clean --force
@@ -100,21 +95,21 @@ jobs:
           PGPASSWORD: postgres
           PGHOSTADDR: 127.0.0.1
         run: |
-          python manage.py collectstatic > /dev/null
+          uv run python manage.py collectstatic > /dev/null
           mkdir -p media
-          isort --diff -c meinberlin tests
-          python manage.py makemigrations --dry-run --check --noinput
-          python manage.py clear_cache
-          flake8 meinberlin tests --exclude migrations,settings
+          uv run isort --diff -c meinberlin tests
+          uv run python manage.py makemigrations --dry-run --check --noinput
+          uv run python manage.py clear_cache
+          uv run flake8 meinberlin tests --exclude migrations,settings
 
           if [ "${{ github.event_name }}" = "push" ]; then
             # Run all tests and update testmon cache for future PRs
             # Delete .testmondata to force running all tests, but still update cache
             rm -f .testmondata
-            py.test --ds=meinberlin.config.settings.travis --testmon --cov -n auto
+            uv run py.test --ds=meinberlin.config.settings.travis --testmon --cov -n auto
           elif [ "${{ github.event_name }}" = "pull_request" ]; then
             # Use testmon to run only changed tests
-            py.test --ds=meinberlin.config.settings.travis --testmon --cov -n auto
+            uv run py.test --ds=meinberlin.config.settings.travis --testmon --cov -n auto
           fi
 
       - name: Coveralls
@@ -126,7 +121,7 @@ jobs:
           git config --global --add safe.directory /__w/a4-meinberlin/a4-meinberlin
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          coveralls
+          uv run coveralls
 
       - name: Run Frontend Tests
         run: |

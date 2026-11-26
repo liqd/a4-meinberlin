@@ -365,7 +365,7 @@ Use `adhocracy4.projects.guest_users.is_guest_user` everywhere (it safely return
 
 ### 1. adhocracy4 bump (`@main` for now — decided)
 
-- **Decision:** point [`requirements/base.txt`](../requirements/base.txt) at `git+https://github.com/liqd/adhocracy4.git@main` (matches a+). Guest support is on `main` (`e8362f685`), 2 commits past `mB-v2606.3`.
+- **Decision:** point `adhocracy4` in [`pyproject.toml`](../pyproject.toml) `[tool.uv.sources]` at adhocracy4 `main` (matches a+). Guest support is on `main` (`e8362f685`), 2 commits past `mB-v2606.3`.
 - ⚠️ Caveat: those 2 commits also touch unrelated files (`polls/serializers.py`, `polls` JSX, `images/widgets.py`, `FormFieldError.jsx`, dashboard `form_field.html`), so run a **broad smoke/regression pass, not guest-only tests**. Revisit pinning a proper `mB-*` tag before release.
 - Once bumped, a4 provides for free: `allow_guest_users` field + migration `0054`, `guest_may_participate` predicate, `Project.has_member()` guest check, `guest_users.is_guest_user`, and the `A4_ENABLE_GUEST_USERS`-gated field in a4's own `ProjectBasicForm`. **Note:** a4 also adds `& guest_may_participate` to *its* `participate_in_project` rule, but meinBerlin overrides that rule (see item 3), so a4's version does not take effect — meinBerlin must re-add it.
 

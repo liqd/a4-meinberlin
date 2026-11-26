@@ -1,3 +1,5 @@
+from django.core.validators import MaxValueValidator
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -19,6 +21,10 @@ class MapLayer(models.Model):
     attribution = models.CharField(max_length=500, blank=True)
     is_active = models.BooleanField(default=False)
     is_available = models.BooleanField(default=True)
+    opacity = models.PositiveSmallIntegerField(
+        default=100,
+        validators=[MinValueValidator(0), MaxValueValidator(100)],
+    )
     last_checked_at = models.DateTimeField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)

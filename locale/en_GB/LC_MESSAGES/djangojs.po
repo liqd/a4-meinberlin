@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-23 12:08+0100\n"
+"POT-Creation-Date: 2026-11-26 14:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -131,7 +131,7 @@ msgstr "Only invited users can actively participate."
 
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:5
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:5
-#: meinberlin/assets/js/map_layers_dashboard.js:210
+#: meinberlin/assets/js/map_layers_dashboard.js:254
 #: meinberlin/react/kiezradar/EditKiezradar.jsx:7
 #: meinberlin/react/kiezradar/KiezradarList.jsx:16
 msgid "Edit"
@@ -510,6 +510,7 @@ msgid "Invalid file format."
 msgstr "Invalid file format."
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:286
+#: meinberlin/assets/js/map_layers_dashboard.js:342
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr "Do you want to load this preset and delete all the existing polygons?"
 
@@ -1344,19 +1345,19 @@ msgstr "Map layer selected."
 msgid "Map layer deselected."
 msgstr "Map layer deselected."
 
-#: meinberlin/assets/js/map_layers_dashboard.js:133
+#: meinberlin/assets/js/map_layers_dashboard.js:177
 msgid "No map layer"
 msgstr "No map layer"
 
-#: meinberlin/assets/js/map_layers_dashboard.js:143
+#: meinberlin/assets/js/map_layers_dashboard.js:187
 msgid "No map layer has been added yet."
 msgstr "No map layer has been added yet."
 
-#: meinberlin/assets/js/map_layers_dashboard.js:192
+#: meinberlin/assets/js/map_layers_dashboard.js:236
 msgid "This map layer could not be loaded."
 msgstr "This map layer could not be loaded."
 
-#: meinberlin/assets/js/map_layers_dashboard.js:217
+#: meinberlin/assets/js/map_layers_dashboard.js:261
 #: meinberlin/react/documents/ChapterNavItem.jsx:5
 #: meinberlin/react/documents/ParagraphForm.jsx:11
 #: meinberlin/react/kiezradar/KiezradarList.jsx:17
@@ -1366,12 +1367,12 @@ msgstr "This map layer could not be loaded."
 msgid "Remove"
 msgstr "Remove"
 
-#: meinberlin/assets/js/map_layers_dashboard.js:326
-#: meinberlin/assets/js/map_layers_dashboard.js:366
+#: meinberlin/assets/js/map_layers_dashboard.js:475
+#: meinberlin/assets/js/map_layers_dashboard.js:517
 msgid "Please choose a layer"
 msgstr "Please choose a layer"
 
-#: meinberlin/assets/js/map_layers_dashboard.js:504
+#: meinberlin/assets/js/map_layers_dashboard.js:659
 msgid "Please wait until the link has been checked."
 msgstr "Please wait until the link has been checked."
 

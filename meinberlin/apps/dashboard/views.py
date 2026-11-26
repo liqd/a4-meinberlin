@@ -311,6 +311,7 @@ class DashboardProjectListView(
                         attribution=layer.attribution,
                         is_active=layer.is_active,
                         is_available=layer.is_available,
+                        opacity=layer.opacity,
                         last_checked_at=layer.last_checked_at,
                     )
                 )

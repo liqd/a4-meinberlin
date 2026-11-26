@@ -81,6 +81,7 @@ def test_project_duplicate_copies_map_layers(
         title="Straßenbäume",
         attribution="GDI Berlin",
         is_active=True,
+        opacity=40,
     )
     MapLayer.objects.create(
         module=module,
@@ -110,4 +111,5 @@ def test_project_duplicate_copies_map_layers(
         "strassenbaeume",
     ]
     assert [layer.is_active for layer in copied] == [False, True]
+    assert [layer.opacity for layer in copied] == [100, 40]
     assert all(layer.attribution == "GDI Berlin" for layer in copied)

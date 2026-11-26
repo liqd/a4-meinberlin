@@ -11,6 +11,7 @@ def get_selected_map_layer(module):
         "layers": layer.layer_name,
         "title": layer.name,
         "attribution": layer.attribution or "GDI Berlin",
+        "opacity": layer.opacity / 100,
     }
 
 

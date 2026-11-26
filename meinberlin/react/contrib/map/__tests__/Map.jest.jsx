@@ -10,7 +10,8 @@ jest.mock('react-leaflet', () => {
     WMSTileLayer: (props) => React.createElement('div', {
       'data-testid': 'wms-layer',
       'data-url': props.url,
-      'data-layers': props.layers
+      'data-layers': props.layers,
+      'data-opacity': String(props.opacity)
     })
   }
 })
@@ -43,7 +44,8 @@ describe('Map component', () => {
           url: 'https://gdi.berlin.de/services/wms/baumbestand',
           layers: 'strassenbaeume',
           title: 'Straßenbäume',
-          attribution: 'GDI Berlin'
+          attribution: 'GDI Berlin',
+          opacity: 0.4
         }}
       />
     )
@@ -53,6 +55,9 @@ describe('Map component', () => {
     expect(
       screen.getByTestId('wms-layer').getAttribute('data-url')
     ).toBe('https://gdi.berlin.de/services/wms/baumbestand')
+    expect(screen.getByTestId('wms-layer').getAttribute('data-opacity')).toBe(
+      '0.4'
+    )
     expect(screen.getByText(/Straßenbäume/)).toBeTruthy()
   })
 

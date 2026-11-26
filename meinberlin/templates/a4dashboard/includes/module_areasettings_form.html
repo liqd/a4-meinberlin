@@ -162,6 +162,29 @@
                            maxlength="200"
                            data-map-layer-name />
                 </div>
+                <div class="form-group" data-map-layer-opacity-group hidden>
+                    <span class="map-layer-opacity__label"
+                          id="map-layer-add-opacity-label">{% translate 'Transparency' %}</span>
+                    <div class="map-layer-opacity"
+                         role="group"
+                         aria-labelledby="map-layer-add-opacity-label">
+                        <button type="button"
+                                class="map-layer-opacity__button"
+                                data-map-layer-opacity-increase
+                                aria-label="{% translate 'More transparency' %}">
+                            <i class="fas fa-plus" aria-hidden="true"></i>
+                        </button>
+                        <output class="map-layer-opacity__value"
+                                data-map-layer-opacity-value
+                                aria-live="polite">0 %</output>
+                        <button type="button"
+                                class="map-layer-opacity__button"
+                                data-map-layer-opacity-decrease
+                                aria-label="{% translate 'Less transparency' %}">
+                            <i class="fas fa-minus" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer map-layer-modal__actions">
                 <button type="button" class="map-layer-link" data-bs-dismiss="modal">
@@ -241,6 +264,29 @@
                            class="form-control"
                            maxlength="200"
                            data-map-layer-name />
+                </div>
+                <div class="form-group" data-map-layer-opacity-group hidden>
+                    <span class="map-layer-opacity__label"
+                          id="map-layer-edit-opacity-label">{% translate 'Transparency' %}</span>
+                    <div class="map-layer-opacity"
+                         role="group"
+                         aria-labelledby="map-layer-edit-opacity-label">
+                        <button type="button"
+                                class="map-layer-opacity__button"
+                                data-map-layer-opacity-increase
+                                aria-label="{% translate 'More transparency' %}">
+                            <i class="fas fa-plus" aria-hidden="true"></i>
+                        </button>
+                        <output class="map-layer-opacity__value"
+                                data-map-layer-opacity-value
+                                aria-live="polite">0 %</output>
+                        <button type="button"
+                                class="map-layer-opacity__button"
+                                data-map-layer-opacity-decrease
+                                aria-label="{% translate 'Less transparency' %}">
+                            <i class="fas fa-minus" aria-hidden="true"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer map-layer-modal__actions">

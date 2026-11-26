@@ -56,6 +56,7 @@ def test_saves_layers_with_area_settings(module, area_settings_factory):
             "title": "Straßenbäume",
             "attribution": "GDI Berlin",
             "is_available": True,
+            "opacity": 40,
             "key": "https://gdi.berlin.de/services/wms/baumbestand|strassenbaeume",
         }
     ]
@@ -76,6 +77,15 @@ def test_saves_layers_with_area_settings(module, area_settings_factory):
     assert saved.name == "Straßenbäume"
     assert saved.layer_name == "strassenbaeume"
     assert saved.is_active is True
+    assert saved.opacity == 40
+
+
+def test_opacity_is_clamped_and_snapped():
+    clean = ExtendedAreaSettingsForm._clean_opacity
+    assert clean({"opacity": 57}) == 60
+    assert clean({"opacity": -5}) == 0
+    assert clean({"opacity": 500}) == 100
+    assert clean({}) == 100
 
 
 @pytest.mark.django_db

@@ -58,6 +58,7 @@ class ExtendedAreaSettingsForm(AreaSettingsForm):
                 "title": layer.title,
                 "attribution": layer.attribution,
                 "is_available": layer.is_available,
+                "opacity": layer.opacity,
                 "key": layer.key,
             }
             for layer in self.module.map_layers.all()
@@ -137,6 +138,7 @@ class ExtendedAreaSettingsForm(AreaSettingsForm):
             "title": layer["title"][:500],
             "attribution": layer["attribution"][:500],
             "is_available": True,
+            "opacity": self._clean_opacity(layer_data),
             "last_checked_at": timezone.now(),
             "key": key,
         }
@@ -158,9 +160,19 @@ class ExtendedAreaSettingsForm(AreaSettingsForm):
             "title": str(layer_data.get("title", "")).strip()[:500],
             "attribution": str(layer_data.get("attribution", "")).strip()[:500],
             "is_available": False,
+            "opacity": self._clean_opacity(layer_data),
             "last_checked_at": timezone.now(),
             "key": key,
         }
+
+    @staticmethod
+    def _clean_opacity(layer_data):
+        try:
+            value = int(layer_data.get("opacity", 100))
+        except (TypeError, ValueError):
+            value = 100
+        # The UI offers 10% steps; snap and clamp so stored values stay in range.
+        return max(0, min(100, int(round(value / 10.0)) * 10))
 
     def clean(self):
         cleaned_data = super().clean()
@@ -190,6 +202,7 @@ class ExtendedAreaSettingsForm(AreaSettingsForm):
                     attribution=layer["attribution"],
                     is_active=layer["key"] == selected,
                     is_available=layer["is_available"],
+                    opacity=layer["opacity"],
                     last_checked_at=layer["last_checked_at"],
                 )
             return module

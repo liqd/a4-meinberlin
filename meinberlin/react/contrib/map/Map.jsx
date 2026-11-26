@@ -49,6 +49,7 @@ export const Map = React.forwardRef(function Map (
                 format="image/png"
                 transparent
                 version="1.3.0"
+                opacity={typeof layer.opacity === 'number' ? layer.opacity : 1}
                 attribution={layer.attribution || ''}
                 zIndex={1}
               />

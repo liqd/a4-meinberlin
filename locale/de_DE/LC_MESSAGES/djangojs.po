@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-23 12:08+0100\n"
+"POT-Creation-Date: 2026-11-26 14:15+0100\n"
 "PO-Revision-Date: 2026-11-12 13:45+0000\n"
 "Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js-"
@@ -167,7 +167,7 @@ msgstr "Nur eingeladene Nutzer*innen können sich aktiv beteiligen."
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:5
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:5
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:5
-#: meinberlin/assets/js/map_layers_dashboard.js:210
+#: meinberlin/assets/js/map_layers_dashboard.js:254
 #: meinberlin/react/kiezradar/EditKiezradar.jsx:7
 #: meinberlin/react/kiezradar/KiezradarList.jsx:16
 msgid "Edit"
@@ -647,6 +647,7 @@ msgstr "Ungültiges Dateiformat."
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:286
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:286
+#: meinberlin/assets/js/map_layers_dashboard.js:342
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr ""
 "Möchten Sie diesen Kartenausschnitt auswählen und alle vorher ausgewählten "
@@ -1526,19 +1527,19 @@ msgstr "Kartenebene ausgewählt."
 msgid "Map layer deselected."
 msgstr "Kartenebene abgewählt."
 
-#: meinberlin/assets/js/map_layers_dashboard.js:133
+#: meinberlin/assets/js/map_layers_dashboard.js:177
 msgid "No map layer"
 msgstr "Keine Kartenebene"
 
-#: meinberlin/assets/js/map_layers_dashboard.js:143
+#: meinberlin/assets/js/map_layers_dashboard.js:187
 msgid "No map layer has been added yet."
 msgstr "Es wurde noch keine Kartenebene hinzugefügt."
 
-#: meinberlin/assets/js/map_layers_dashboard.js:192
+#: meinberlin/assets/js/map_layers_dashboard.js:236
 msgid "This map layer could not be loaded."
 msgstr "Diese Kartenebene konnte nicht geladen werden."
 
-#: meinberlin/assets/js/map_layers_dashboard.js:217
+#: meinberlin/assets/js/map_layers_dashboard.js:261
 #: meinberlin/react/documents/ChapterNavItem.jsx:5
 #: meinberlin/react/documents/ParagraphForm.jsx:11
 #: meinberlin/react/kiezradar/KiezradarList.jsx:17
@@ -1548,12 +1549,12 @@ msgstr "Diese Kartenebene konnte nicht geladen werden."
 msgid "Remove"
 msgstr "Entfernen"
 
-#: meinberlin/assets/js/map_layers_dashboard.js:326
-#: meinberlin/assets/js/map_layers_dashboard.js:366
+#: meinberlin/assets/js/map_layers_dashboard.js:475
+#: meinberlin/assets/js/map_layers_dashboard.js:517
 msgid "Please choose a layer"
 msgstr "Bitte wählen Sie eine Ebene"
 
-#: meinberlin/assets/js/map_layers_dashboard.js:504
+#: meinberlin/assets/js/map_layers_dashboard.js:659
 msgid "Please wait until the link has been checked."
 msgstr "Bitte warten Sie, bis der Link geprüft wurde."
 

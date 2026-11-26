@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-23 12:08+0100\n"
+"POT-Creation-Date: 2026-11-26 14:15+0100\n"
 "PO-Revision-Date: 2026-11-12 13:45+0000\n"
 "Last-Translator: Tietje Khieu <t.khieu@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main-"
@@ -73,9 +73,9 @@ msgstr "Benötigte Felder zur Veröffentlichung"
 #: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:68
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_form.html:21
 #: meinberlin/templates/a4categories/includes/module_categories_form.html:44
-#: meinberlin/templates/a4dashboard/base_form_module.html:31
+#: meinberlin/templates/a4dashboard/base_form_module.html:32
 #: meinberlin/templates/a4dashboard/base_form_project.html:28
-#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:251
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:297
 #: meinberlin/templates/a4dashboard/project_create_form.html:46
 #: meinberlin/templates/a4labels/includes/module_labels_form.html:44
 msgid "Save"
@@ -217,9 +217,9 @@ msgstr "Projektentwurf anlegen"
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_confirm_delete.html:14
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_form.html:22
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_confirm_delete.html:15
-#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:168
-#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:248
-#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:282
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:191
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:294
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:328
 #: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:88
 #: meinberlin/templates/a4dashboard/includes/progress.html:56
 #: meinberlin/templates/a4dashboard/project_create_form.html:48
@@ -353,9 +353,9 @@ msgstr "Suche"
 #: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:121
 #: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:147
 #: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:157
-#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:204
 #: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:227
-#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:237
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:250
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:260
 #: meinberlin/templates/a4forms/includes/form_field.html:5
 msgid "This field is required"
 msgstr "Dieses Feld muss ausgefüllt werden"
@@ -820,7 +820,7 @@ msgstr "Erstellt"
 
 #: adhocracy4/exports/mixins/general.py:62
 #: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:120
-#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:203
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:226
 msgid "Link"
 msgstr "Link"
 
@@ -2075,7 +2075,7 @@ msgstr "Neuer Bebauungsplan"
 msgid "We could not find any development plans."
 msgstr "Wir konnten keine Bebauungspläne finden."
 
-#: meinberlin/apps/bplan/views.py:43 meinberlin/apps/dashboard/views.py:435
+#: meinberlin/apps/bplan/views.py:43 meinberlin/apps/dashboard/views.py:436
 #: meinberlin/apps/extprojects/views.py:39
 msgid "Project was created."
 msgstr "Das Projekt wurde angelegt."
@@ -2772,8 +2772,8 @@ msgstr "Bitte stimmen Sie der Speicherung Ihrer Kontaktinformationen zu."
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:101
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/guest_participation_warning.html:10
 #: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:110
-#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:193
-#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:270
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:216
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:316
 #: meinberlin/templates/a4dashboard/includes/nav_modules.html:29
 #: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:69
 #: meinberlin/templates/a4dashboard/includes/progress.html:34
@@ -3804,25 +3804,25 @@ msgstr ""
 msgid "Submit Idea"
 msgstr "Idee anlegen"
 
-#: meinberlin/apps/maps/dashboard.py:82 meinberlin/apps/maps/dashboard.py:85
-#: meinberlin/apps/maps/dashboard.py:95
+#: meinberlin/apps/maps/dashboard.py:83 meinberlin/apps/maps/dashboard.py:86
+#: meinberlin/apps/maps/dashboard.py:96
 msgid "The map layers could not be read."
 msgstr "Die Kartenebenen konnten nicht gelesen werden."
 
-#: meinberlin/apps/maps/dashboard.py:88
+#: meinberlin/apps/maps/dashboard.py:89
 #, python-format
 msgid "You can add at most %(count)s map layers."
 msgstr "Sie können höchstens %(count)s Kartenebenen hinzufügen."
 
-#: meinberlin/apps/maps/dashboard.py:101
+#: meinberlin/apps/maps/dashboard.py:102
 msgid "Please select a layer for every map service."
 msgstr "Bitte wählen Sie für jeden Kartendienst eine Kartenebene aus."
 
-#: meinberlin/apps/maps/dashboard.py:125
+#: meinberlin/apps/maps/dashboard.py:126
 msgid "The selected map layer is not available."
 msgstr "Die ausgewählte Kartenebene ist nicht verfügbar."
 
-#: meinberlin/apps/maps/dashboard.py:129 meinberlin/apps/maps/dashboard.py:148
+#: meinberlin/apps/maps/dashboard.py:130 meinberlin/apps/maps/dashboard.py:150
 msgid "This map layer has already been added."
 msgstr "Diese Kartenebene wurde bereits hinzugefügt."
 
@@ -3853,13 +3853,13 @@ msgstr ""
 "Der Kartendienst konnte nicht erreicht werden. Bitte versuchen Sie es später "
 "erneut."
 
-#: meinberlin/apps/maps/models.py:34
+#: meinberlin/apps/maps/models.py:40
 #: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:146
-#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:226
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:249
 msgid "Map layer"
 msgstr "Kartenebene"
 
-#: meinberlin/apps/maps/models.py:35
+#: meinberlin/apps/maps/models.py:41
 #: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:7
 msgid "Map layers"
 msgstr "Kartenebenen"
@@ -5008,7 +5008,7 @@ msgstr "am"
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_user_list.html:19
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_user_list.html:20
 #: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:75
-#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:287
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:333
 #: meinberlin/templates/account/email.html:35
 #: meinberlin/templates/socialaccount/connections.html:31
 msgid "Remove"
@@ -5826,7 +5826,7 @@ msgstr "Es wurde noch keine Kartenebene hinzugefügt."
 
 #: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:87
 #: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:106
-#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:171
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:194
 msgid "Add map layer"
 msgstr "Kartenebene hinzufügen"
 
@@ -5836,39 +5836,60 @@ msgid ""
 "Copy the link of a map service from the <a href=\"%(url)s\" "
 "target=\"_blank\" rel=\"noopener noreferrer\">Berlin geoportal</a> and paste "
 "it here."
-msgstr "Kopieren Sie den Link eines Kartendienstes aus dem <a href=\"%(url)s\" target=\"_blank\" rel=\"noopener noreferrer\">Geoportal Berlin</a> und fügen Sie ihn hier ein."
+msgstr ""
+"Kopieren Sie den Link eines Kartendienstes aus dem <a href=\"%(url)s\" "
+"target=\"_blank\" rel=\"noopener noreferrer\">Geoportal Berlin</a> und fügen "
+"Sie ihn hier ein."
 
 #: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:136
 msgid "Example: https://gdi.berlin.de/services/wms/baumbestand"
 msgstr "Beispiel: https://gdi.berlin.de/services/wms/baumbestand"
 
 #: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:150
-#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:230
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:253
 msgid "Please choose a layer"
 msgstr "Bitte wählen Sie eine Ebene"
 
 #: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:156
-#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:236
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:259
 msgid "Map layer name"
 msgstr "Name der Kartenebene"
 
-#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:189
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:167
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:270
+msgid "Transparency"
+msgstr "Transparenz"
+
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:174
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:277
+msgid "More transparency"
+msgstr "Mehr Transparenz"
+
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:183
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:286
+msgid "Less transparency"
+msgstr "Weniger Transparenz"
+
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:212
 msgid "Edit map layer"
 msgstr "Kartenebene bearbeiten"
 
-#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:199
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:222
 #, python-format
 msgid ""
 "Change the name or replace the link with another map service from the <a "
 "href=\"%(url)s\" target=\"_blank\" rel=\"noopener noreferrer\">Berlin "
 "geoportal</a>."
-msgstr "Ändern Sie den Namen oder ersetzen Sie den Link durch einen anderen Kartendienst aus dem <a href=\"%(url)s\" target=\"_blank\" rel=\"noopener noreferrer\">Geoportal Berlin</a>."
+msgstr ""
+"Ändern Sie den Namen oder ersetzen Sie den Link durch einen anderen "
+"Kartendienst aus dem <a href=\"%(url)s\" target=\"_blank\" rel=\"noopener "
+"noreferrer\">Geoportal Berlin</a>."
 
-#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:266
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:312
 msgid "Remove map layer?"
 msgstr "Kartenebene entfernen?"
 
-#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:277
+#: meinberlin/templates/a4dashboard/includes/module_areasettings_form.html:323
 msgid "will be removed from the list."
 msgstr "wird aus der Liste entfernt."
 

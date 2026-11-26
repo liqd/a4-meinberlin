@@ -19,6 +19,12 @@ const choosePolygonMaps = new Map()
 const historyReloadFlag = 'mbAreaSettingsReloaded'
 let presetConfirmPatched = false
 
+function normalizeOpacity (value) {
+  const number = Number(value)
+  if (!Number.isFinite(number)) return 100
+  return Math.max(0, Math.min(100, Math.round(number / 10) * 10))
+}
+
 function arrivedFromHistory () {
   try {
     if (window.performance && window.performance.getEntriesByType) {
@@ -98,7 +104,8 @@ function init () {
     selected: hiddenSelected.value || '',
     removeIndex: null,
     activeWmsLayer: null,
-    activeWmsKey: ''
+    activeWmsKey: '',
+    activeWmsOpacity: null
   }
 
   function readLayers (value) {
@@ -117,6 +124,7 @@ function init () {
             title: String(layer.title || ''),
             attribution: String(layer.attribution || ''),
             is_available: layer.is_available !== false,
+            opacity: normalizeOpacity(layer.opacity),
             key: String(layer.key || `${serviceUrl}|${layerName}`)
           }
         })
@@ -318,6 +326,7 @@ function init () {
       if (map) map.removeLayer(state.activeWmsLayer)
       state.activeWmsLayer = null
       state.activeWmsKey = ''
+      state.activeWmsOpacity = null
     }
     writeState()
   }
@@ -353,10 +362,14 @@ function init () {
         map.removeLayer(state.activeWmsLayer)
         state.activeWmsLayer = null
         state.activeWmsKey = ''
+        state.activeWmsOpacity = null
       }
       return
     }
-    if (state.activeWmsKey === layer.key) return
+    const opacity = normalizeOpacity(layer.opacity) / 100
+    if (state.activeWmsKey === layer.key && state.activeWmsOpacity === opacity) {
+      return
+    }
 
     if (state.activeWmsLayer) {
       map.removeLayer(state.activeWmsLayer)
@@ -366,11 +379,13 @@ function init () {
       format: 'image/png',
       transparent: true,
       version: '1.3.0',
-      attribution: layer.attribution
+      attribution: layer.attribution,
+      opacity
     })
     state.activeWmsLayer.setZIndex(1)
     state.activeWmsLayer.addTo(map)
     state.activeWmsKey = layer.key
+    state.activeWmsOpacity = opacity
   }
 
   function layerKey (serviceUrl, layerName) {
@@ -387,6 +402,7 @@ function init () {
         editingIndex: null,
         resolvedUrl: '',
         fallback: null,
+        opacity: 100,
         abort: null
       }
       modalState.set(modalEl, value)
@@ -402,6 +418,14 @@ function init () {
       selectGroup: modalEl.querySelector('[data-map-layer-select-group]'),
       error: modalEl.querySelector('[data-map-layer-error]'),
       spinner: modalEl.querySelector('[data-map-layer-spinner]'),
+      opacityGroup: modalEl.querySelector('[data-map-layer-opacity-group]'),
+      opacityValue: modalEl.querySelector('[data-map-layer-opacity-value]'),
+      opacityIncrease: modalEl.querySelector(
+        '[data-map-layer-opacity-increase]'
+      ),
+      opacityDecrease: modalEl.querySelector(
+        '[data-map-layer-opacity-decrease]'
+      ),
       save: modalEl.querySelector('[data-map-layer-save]')
     }
   }
@@ -424,6 +448,16 @@ function init () {
     parts.url.setAttribute('aria-busy', busy ? 'true' : 'false')
   }
 
+  function setModalOpacity (modalEl, opacity) {
+    const parts = modalParts(modalEl)
+    const controller = getModalState(modalEl)
+    controller.opacity = normalizeOpacity(opacity)
+    const transparency = 100 - controller.opacity
+    if (parts.opacityValue) {
+      parts.opacityValue.textContent = `${transparency} %`
+    }
+  }
+
   function resetModal (modalEl) {
     const parts = modalParts(modalEl)
     const controller = getModalState(modalEl)
@@ -440,6 +474,8 @@ function init () {
     parts.select.value = ''
     parts.select.innerHTML = `<option value="">${django.gettext('Please choose a layer')}</option>`
     parts.selectGroup.hidden = true
+    parts.opacityGroup.hidden = true
+    setModalOpacity(modalEl, 100)
     parts.save.disabled = true
     clearError(modalEl)
     setBusy(modalEl, false)
@@ -497,6 +533,7 @@ function init () {
     controller.resolved = null
     controller.layerName = ''
     parts.save.disabled = true
+    parts.opacityGroup.hidden = true
     if (!url) {
       parts.selectGroup.hidden = true
       return
@@ -526,6 +563,7 @@ function init () {
 
       controller.resolved = data
       controller.resolvedUrl = url
+      parts.opacityGroup.hidden = false
       if (data.layers.length === 1) {
         parts.selectGroup.hidden = true
         selectLayer(modalEl, data.layers[0].name)
@@ -550,6 +588,7 @@ function init () {
         ? preferred || controller.fallback.layers[0].name
         : ''
       updateSaveState(modalEl)
+      if (controller.fallback) parts.opacityGroup.hidden = false
       showError(modalEl, error.message || translations.invalid)
     } finally {
       if (controller.abort === abort) {
@@ -594,6 +633,7 @@ function init () {
     controller.resolved = controller.fallback
     controller.layerName = layer.layer_name
     controller.autoName = layer.title || layer.name
+    setModalOpacity(editModalEl, layer.opacity)
     parts.url.value = layer.service_url
     parts.name.value = layer.name
     parts.save.disabled = false
@@ -655,6 +695,7 @@ function init () {
       title: serviceLayer ? serviceLayer.title : '',
       attribution: serviceLayer ? serviceLayer.attribution || '' : '',
       is_available: true,
+      opacity: controller.opacity,
       key
     }
 
@@ -751,6 +792,8 @@ function init () {
       controller.layerName = ''
       parts.save.disabled = true
       parts.selectGroup.hidden = true
+      parts.opacityGroup.hidden = true
+      setModalOpacity(modalEl, 100)
       if (!wmsUrlPattern.test(value)) return
       // Re-check while typing once the value looks like a full service link.
       resolveTimer = window.setTimeout(() => {
@@ -761,6 +804,12 @@ function init () {
     })
     parts.select.addEventListener('change', () => {
       selectLayer(modalEl, parts.select.value)
+    })
+    parts.opacityIncrease.addEventListener('click', () => {
+      setModalOpacity(modalEl, controller.opacity - 10)
+    })
+    parts.opacityDecrease.addEventListener('click', () => {
+      setModalOpacity(modalEl, controller.opacity + 10)
     })
     parts.name.addEventListener('input', () => {
       clearError(modalEl)
@@ -784,7 +833,7 @@ function init () {
       syncFromServer()
     } else {
       // A restored <select> is not detectable reliably, so always re-assert
-      // the preset that matches the stored polygon.
+      // the blank preset selection.
       syncPolygonField()
     }
   }

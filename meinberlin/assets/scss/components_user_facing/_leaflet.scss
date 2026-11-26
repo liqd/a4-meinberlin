@@ -47,8 +47,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   padding: 0;
   border: 1px solid #737373;
   border-radius: 0;
@@ -59,11 +59,12 @@
   cursor: pointer;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
 
-  // Keep a 44x44 tap area without making the button wider than the zoom
-  // controls.
+  // Keep a 44x44 tap area without changing the visual size. The button is
+  // 32px wide including its border, matching the 30px zoom buttons plus the
+  // 1px border of their control container.
   &:before {
     position: absolute;
-    inset: -7px;
+    inset: -6px;
     content: "";
   }
 

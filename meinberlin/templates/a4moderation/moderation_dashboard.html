@@ -11,7 +11,10 @@
 <div id="layout-grid__area--maincontent" class="moderation-dashboard">
     <h1>{% translate "Moderation" %}</h1>
 
-    <form class="moderation-dashboard__search" method="get" action="{{ request.path }}">
+    <form class="moderation-dashboard__search"
+          method="get"
+          action="{{ request.path }}"
+          data-moderation-auto-submit>
         <div class="moderation-dashboard__search-field">
             <label for="moderation-project-search">{% translate "Search projects" %}</label>
             <div class="moderation-dashboard__search-input">
@@ -116,3 +119,7 @@
     {% endif %}
 </div>
 {% endblock content %}
+
+{% block extra_js_deferred %}
+    <script src="{% static 'moderation.js' %}"></script>
+{% endblock extra_js_deferred %}

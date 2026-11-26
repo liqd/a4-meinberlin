@@ -1,0 +1,34 @@
+{% load i18n %}
+<div id="moderation-toolbar"
+     class="moderation-toolbar"{% if oob %} hx-swap-oob="true"{% endif %}>
+    {% include "a4moderation/includes/moderation_tabs.html" %}
+
+    <form class="moderation-toolbar__filters"
+          method="get"
+          action="{{ request.path }}"
+          hx-get="{{ request.path }}"
+          hx-target="#moderation-items"
+          hx-swap="innerHTML"
+          hx-push-url="true"
+          hx-trigger="change">
+        <input type="hidden" name="state" value="{{ state }}">
+        <div class="moderation-filter">
+            <label for="moderation-content-type">{% translate "Type" %}:</label>
+            <select id="moderation-content-type" name="content_type">
+                <option value="all"{% if content_type == "all" %} selected{% endif %}>{% translate "All" %}</option>
+                <option value="items"{% if content_type == "items" %} selected{% endif %}>{% translate "Ideas" %}</option>
+                <option value="comments"{% if content_type == "comments" %} selected{% endif %}>{% translate "Comments" %}</option>
+            </select>
+        </div>
+        <div class="moderation-filter">
+            <label for="moderation-ordering">{% translate "Sort" %}:</label>
+            <select id="moderation-ordering" name="ordering">
+                <option value="newest"{% if ordering == "newest" %} selected{% endif %}>{% translate "Most recent" %}</option>
+                <option value="oldest"{% if ordering == "oldest" %} selected{% endif %}>{% translate "Oldest" %}</option>
+            </select>
+        </div>
+        <noscript>
+            <button class="button button--light" type="submit">{% translate "Apply" %}</button>
+        </noscript>
+    </form>
+</div>

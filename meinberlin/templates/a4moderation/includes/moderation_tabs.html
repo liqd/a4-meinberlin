@@ -6,7 +6,7 @@
      hx-trigger="moderationCountsChanged from:body"
      hx-target="this"
      hx-swap="outerHTML">
-    <a class="moderation-tab{% if state == 'all' %} moderation-tab--active{% endif %}"
+    <a class="moderation-tab{% if state == 'all' %} moderation-tab--active{% endif %}"{% if state == 'all' %} aria-current="page"{% endif %}
        href="?state=all&content_type={{ content_type }}&ordering={{ ordering }}"
        hx-get="?state=all&content_type={{ content_type }}&ordering={{ ordering }}"
        hx-target="#moderation-items"
@@ -14,7 +14,7 @@
        hx-push-url="true">
         {% translate "All" %} ({{ counts.all }})
     </a>
-    <a class="moderation-tab{% if state == 'unread' %} moderation-tab--active{% endif %}"
+    <a class="moderation-tab{% if state == 'unread' %} moderation-tab--active{% endif %}"{% if state == 'unread' %} aria-current="page"{% endif %}
        href="?state=unread&content_type={{ content_type }}&ordering={{ ordering }}"
        hx-get="?state=unread&content_type={{ content_type }}&ordering={{ ordering }}"
        hx-target="#moderation-items"
@@ -22,7 +22,7 @@
        hx-push-url="true">
         {% translate "Unread" %} ({{ counts.unread }})
     </a>
-    <a class="moderation-tab{% if state == 'resolved' %} moderation-tab--active{% endif %}"
+    <a class="moderation-tab{% if state == 'resolved' %} moderation-tab--active{% endif %}"{% if state == 'resolved' %} aria-current="page"{% endif %}
        href="?state=resolved&content_type={{ content_type }}&ordering={{ ordering }}"
        hx-get="?state=resolved&content_type={{ content_type }}&ordering={{ ordering }}"
        hx-target="#moderation-items"

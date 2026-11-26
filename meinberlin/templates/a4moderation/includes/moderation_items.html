@@ -1,4 +1,7 @@
 {% load i18n %}
+{% if is_htmx %}
+    {% include "a4moderation/includes/moderation_toolbar.html" with oob=True %}
+{% endif %}
 {% if items %}
     <ul class="moderation-list">
         {% for item in items %}

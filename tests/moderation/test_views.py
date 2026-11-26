@@ -50,6 +50,32 @@ def test_project_view_lists_ideas_and_comments(
 
 
 @pytest.mark.django_db
+def test_filter_updates_toolbar_counts_and_keeps_content_type(
+    client, user, moderated_project, module_factory, comment_factory
+):
+    module = module_factory(project=moderated_project)
+    idea = IdeaFactory(module=module, name="An idea")
+    comment_factory(content_object=idea, comment="First comment")
+    comment_factory(content_object=idea, comment="Second comment")
+    client.login(username=user.email, password="password")
+
+    response = client.get(
+        reverse("a4moderation:project", kwargs={"project_pk": moderated_project.pk}),
+        {"state": "all", "content_type": "comments", "ordering": "newest"},
+        HTTP_HX_REQUEST="true",
+    )
+
+    html = response.content.decode()
+    assert response.status_code == 200
+    assert response.context["counts"]["all"] == 2
+    assert 'hx-swap-oob="true"' in html
+    assert "content_type=comments" in html
+    assert "First comment" in html
+    assert "Second comment" in html
+    assert "An idea" not in html
+
+
+@pytest.mark.django_db
 def test_project_view_forbidden_for_non_moderator(client, user2, moderated_project):
     client.login(username=user2.email, password="password")
 
@@ -149,8 +175,9 @@ def test_save_feedback_from_dashboard(client, user, moderated_project, module_fa
 
     idea.refresh_from_db()
     assert response.status_code == 200
-    assert response["HX-Retarget"]
-    assert response.content == b""
+    assert "moderation-item-meinberlin_ideas_idea-{}".format(idea.pk) in (
+        response.content.decode()
+    )
     assert idea.moderator_status == "ACCEPTED"
     assert "Sehr gute Idee" in idea.moderator_feedback_text.feedback_text
     assert idea.is_reviewed is True

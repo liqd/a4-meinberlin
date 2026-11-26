@@ -136,15 +136,16 @@
             {% endif %}
             {% if item.is_truncated %}
                 <div class="moderation-card__text-short">{{ item.short_text|safe }}</div>
-                <details class="moderation-card__details">
-                    <summary class="moderation-card__more">
-                        <span class="moderation-card__more-open">{% translate "View More" %}</span>
-                        <span class="moderation-card__more-close">{% translate "View Less" %}</span>
-                    </summary>
-                    <div class="moderation-card__text-full">{{ item.text|safe }}</div>
-                </details>
+                <div class="moderation-card__text-full" hidden>{{ item.text|safe }}</div>
+                <button type="button"
+                        class="moderation-card__more"
+                        data-moderation-text-toggle
+                        aria-expanded="false">
+                    <span class="moderation-card__more-open">{% translate "View More" %}</span>
+                    <span class="moderation-card__more-close">{% translate "View Less" %}</span>
+                </button>
             {% else %}
-                {{ item.text|safe }}
+                <div class="moderation-card__text-full">{{ item.text|safe }}</div>
             {% endif %}
 
             {% if item.image %}

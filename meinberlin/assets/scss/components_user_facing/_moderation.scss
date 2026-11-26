@@ -243,6 +243,9 @@ a.moderation-tab--active:visited {
 .moderation-card__more {
     display: inline-block;
     margin-top: 0.5rem;
+    padding: 0;
+    border: 0;
+    background: none;
     color: $link-color;
     cursor: pointer;
 }
@@ -251,16 +254,16 @@ a.moderation-tab--active:visited {
     display: none;
 }
 
-.moderation-card__details[open] .moderation-card__more-open {
+.moderation-card__more[aria-expanded="true"] .moderation-card__more-open {
     display: none;
 }
 
-.moderation-card__details[open] .moderation-card__more-close {
+.moderation-card__more[aria-expanded="true"] .moderation-card__more-close {
     display: inline;
 }
 
-.moderation-card__details[open] ~ .moderation-card__text-short,
-.moderation-card__content:has(.moderation-card__details[open]) .moderation-card__text-short {
+.moderation-card__text-short[hidden],
+.moderation-card__text-full[hidden] {
     display: none;
 }
 

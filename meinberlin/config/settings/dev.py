@@ -85,6 +85,8 @@ try:
 except ImportError:
     pass
 
+add_csp_nonce_to_policies(globals())
+
 try:
     from .polygons import *
 except ImportError:

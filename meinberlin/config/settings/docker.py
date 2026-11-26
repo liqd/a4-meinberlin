@@ -107,3 +107,5 @@ for _captcha_setting in (
 ):
     if _captcha_setting in os.environ:
         globals()[_captcha_setting] = os.environ[_captcha_setting]
+
+add_csp_nonce_to_policies(globals())

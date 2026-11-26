@@ -30,6 +30,10 @@
 
     <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'adhocracy4.js' %}"></script>
+    <script nonce="{{ request.csp_nonce }}">
+        window.CAP_SCRIPT_NONCE = "{{ request.csp_nonce }}";
+        window.CAP_CSS_NONCE = "{{ request.csp_nonce }}";
+    </script>
 
     <title>{% block title %}{% translate "meinBerlin" %}{% endblock title %}</title>
 

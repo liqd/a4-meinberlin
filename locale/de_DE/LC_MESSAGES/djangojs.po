@@ -1188,6 +1188,10 @@ msgstr ""
 msgid "There was a problem loading the CAPTCHA."
 msgstr "Es gab ein Problem beim Laden des CAPTCHA."
 
+#: adhocracy4/captcha/static/CapCaptcha.jsx:7
+msgid "Please enable JavaScript to complete the captcha."
+msgstr "Bitte aktivieren Sie JavaScript, um das Captcha zu vervollständigen."
+
 #: adhocracy4/static/TermsOfUseCheckbox.jsx:5
 #: adhocracy4/static/TermsOfUseCheckbox.jsx:5
 msgid ""

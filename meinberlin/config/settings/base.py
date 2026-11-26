@@ -80,6 +80,7 @@ INSTALLED_APPS = (
     "widget_tweaks",
     "adhocracy4.actions",
     "adhocracy4.administrative_districts",
+    "adhocracy4.captcha",
     "adhocracy4.categories",
     "adhocracy4.ckeditor",
     "adhocracy4.comments",  # needed for comment model
@@ -586,9 +587,37 @@ A4_DASHBOARD = {
 A4_ACTIONS_PHASE_ENDS_HOURS = 48
 ACTIONS_OFFLINE_EVENT_STARTING_HOURS = 72
 
-# Add a Captcheck captcha URL in the production server's local.py to use it
-# Captcha software we use: https://source.netsyms.com/Netsyms/Captcheck
+# Captcha defaults live in local.py (see local.py.template) and deployment
+# configuration. The legacy Captcheck URL is disabled when empty.
 CAPTCHA_URL = ""
+
+
+def add_csp_nonce_to_policies(settings_globals):
+    """Add django-csp's per-request nonce to the effective CSP directives."""
+    from csp.constants import NONCE
+
+    for setting_name in (
+        "CONTENT_SECURITY_POLICY",
+        "CONTENT_SECURITY_POLICY_REPORT_ONLY",
+    ):
+        policy = settings_globals.get(setting_name)
+        if not policy:
+            continue
+        directives = policy.setdefault("DIRECTIVES", {})
+        for directive in ("script-src-elem", "style-src-elem"):
+            values = directives.get(directive)
+            if values is None:
+                values = ["'self'"]
+                directives[directive] = values
+            elif isinstance(values, str):
+                values = [values]
+                directives[directive] = values
+            elif not isinstance(values, list):
+                values = list(values)
+                directives[directive] = values
+            if NONCE not in values:
+                values.append(NONCE)
+
 
 # Celery configuration
 CELERY_BROKER_URL = "redis://localhost:6379"

@@ -2320,6 +2320,10 @@ msgstr "Response"
 msgid "I am not a robot"
 msgstr "I am not a robot"
 
+#: adhocracy4/captcha/templates/a4captcha/cap_captcha_widget.html:12
+msgid "Please enable JavaScript to complete the captcha."
+msgstr "Please enable JavaScript to complete the captcha."
+
 #: meinberlin/apps/cms/models/pages.py:46
 msgid "Project teaser"
 msgstr "Project teaser"

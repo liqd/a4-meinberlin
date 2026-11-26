@@ -6,7 +6,38 @@ from django import forms
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
+from adhocracy4.captcha.fields import CapCaptchaField
+from adhocracy4.captcha.verification import get_captcha_type
+from adhocracy4.captcha.verification import is_cap_captcha_enabled
+from adhocracy4.captcha.widgets import CapCaptchaWidget
+
 from .widgets import CaptcheckCaptchaWidget
+
+
+def get_captcha_widget():
+    if get_captcha_type() == "cap":
+        return CapCaptchaWidget()
+    return CaptcheckCaptchaWidget()
+
+
+def is_captcha_enabled():
+    if get_captcha_type() == "cap":
+        return is_cap_captcha_enabled()
+    return bool(getattr(settings, "CAPTCHA_URL", ""))
+
+
+class CaptchaField(forms.CharField):
+    """Captcha field that selects the configured backend at form instantiation."""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.widget = get_captcha_widget()
+
+    def validate(self, value):
+        if get_captcha_type() == "cap":
+            CapCaptchaField().validate(value)
+        else:
+            CaptcheckCaptchaField().validate(value)
 
 
 class CaptcheckCaptchaField(forms.CharField):
